@@ -24,12 +24,21 @@ src/bots/                      lógica de los bots (libro + motor); no conoce el
   - Los bots, en Node con el mismo motor: todas sus jugadas son legales, usan su libro y piensan con el motor según su tipo.
 - **Detalle técnico:** `go movetime 0` hace que Stockfish piense sin límite. Por eso `uci.ts` pone un mínimo de 100 ms.
 
-## Licencia: qué falta decidir antes de publicar (hito 7)
-Mientras la app solo se prueba en el celular del desarrollador no hay distribución, y por lo tanto ninguna obligación. Antes de publicar en Google Play hay que elegir una de estas opciones:
-1. **Publicar la app como GPL v3**: código abierto, por ejemplo en GitHub. Es la opción segura.
-2. **Mantener la app cerrada**, con el argumento de que Stockfish es un programa separado que se comunica por UCI y va sin modificar. Hay que mostrarle esta arquitectura a un abogado.
-3. **Cambiar a un motor con licencia MIT** (Arasan) antes de publicar.
+## Licencia de la app: GPL v3 o posterior (decidido el 29-10-2026)
+Antes de publicar se evaluaron tres opciones: app GPL, app cerrada con Stockfish como «programa separado» o cambiar a Arasan (MIT). Se eligió **publicar la app como software libre bajo la GNU GPL v3 o posterior**:
+- Es la opción sin riesgo legal y no exige cambiar el motor.
+- El argumento del «programa separado» era débil: Stockfish viaja dentro del mismo paquete de la app (como texto, en `stockfishAssets.ts`), y el equipo de Stockfish hace cumplir su licencia (demanda contra ChessBase en 2021).
+- La GPL permite cobrar o poner anuncios. A cambio, cualquiera puede copiar y redistribuir el código y el contenido, siempre bajo la misma licencia.
 
-En todos los casos: pantalla de créditos con la licencia de Stockfish y el enlace a su código (hito 6). Si la app es GPL, el set de piezas también tiene que tener una licencia compatible.
+Qué se hizo:
+- `LICENSE`: texto completo de la GPL v3 (el mismo que `src/engine/stockfish/COPYING.txt`). Reemplazó la licencia MIT de Expo que venía con la plantilla y no correspondía a la app.
+- `README.md`: aviso de copyright y licencia, cómo ejecutar y regenerar los archivos, y la tabla de componentes de terceros.
+- `package.json`: `"license": "GPL-3.0-or-later"`.
+- Créditos: tarjeta «Esta app» con la licencia, el aviso de que no hay garantía y el enlace al código. Piezas y sonidos pasan a «GPL v3 o posterior, como la app».
+- Revisión del historial antes de hacer público el repositorio: no hay claves, contraseñas ni archivos de configuración privados. Lo único personal es el nombre de usuario y el correo del autor de los commits.
+
+Para cumplir la GPL al publicar:
+- El repositorio de GitHub tiene que ser público y corresponder a la versión publicada. Conviene etiquetar cada versión que se sube a Google Play (`git tag v1.0.0`).
+- Si alguna vez se agregan piezas, sonidos o código de otra persona, tienen que tener una licencia compatible con la GPL v3.
 
 Esto no es asesoramiento legal.

@@ -17,7 +17,7 @@
 - Ajustes: `src/settings/SettingsContext.tsx` (`useSettings()`, clave `@ajedrez/settings`, aparte del progreso). Sonido y vibración: `useFeedback()` en `src/feedback/` (expo-audio, expo-haptics). Recordatorio: `src/settings/reminders.ts` (expo-notifications, notificación local). Sonidos propios generados con `npm run build:sounds`.
 - `react-dom` está instalado a propósito (versión del SDK): sin él, npm trae una versión incompatible y fallan las instalaciones.
 - Proyecto en `C:\dev\ajedrez-app`. Se inicia con `npx expo start -c`.
-- Git: repositorio desde el 29-10-2026, rama `main`, subido a GitHub como repositorio privado: https://github.com/GradusStudio/ajedrez-app (remoto `origin`; la sesión de GitHub la guarda el administrador de credenciales de Git). No hay `gh` instalado. Git no está en el PATH de PowerShell: usarlo desde Git Bash. `.gitattributes` fija finales de línea LF. Guardar un commit después de cada cambio terminado y comprobado.
+- Git: repositorio desde el 29-10-2026, rama `main`, subido a GitHub (privado hasta publicar; con la GPL tiene que pasar a público): https://github.com/GradusStudio/ajedrez-app (remoto `origin`; la sesión de GitHub la guarda el administrador de credenciales de Git). No hay `gh` instalado. Git no está en el PATH de PowerShell: usarlo desde Git Bash. `.gitattributes` fija finales de línea LF. Guardar un commit después de cada cambio terminado y comprobado.
 
 ## Documentos (en /docs)
 - `design.md`: colores, tipografía, botones 3D, textos (español, sin exclamaciones en mensajes del sistema).
@@ -54,8 +54,8 @@
 7. Prueba cerrada en Google Play (12 testers, 14 días).
 
 ## Pendientes y avisos
-- Stockfish y Maia son GPL: hace falta pantalla de créditos. Antes de publicar (hito 7) decidir: app GPL, app cerrada con Stockfish como programa separado (consultar abogado) o cambiar a Arasan (MIT). Ver docs/motor.md. No es asesoramiento legal.
-- Piezas: la app usa solo los 5 sets de `pieceSets.ts` (hechos con ChatGPT). El set anterior (`PieceLegacy.tsx`, "Sombra lateral") ya no se importa en ningún lado y no viaja en la app. Si algún día se agrega un set de otra persona (por ejemplo, el de un amigo), hace falta su permiso por escrito, los archivos originales y una licencia compatible con la de la app (si la app termina siendo GPL).
+- Licencia: la app es software libre, GPL v3 o posterior (decidido el 29-10-2026; `LICENSE`, `README.md`, Créditos). Motivo y obligaciones en docs/motor.md. Antes de publicar, el repositorio de GitHub tiene que ser público y corresponder a la versión subida (etiquetar cada versión). No es asesoramiento legal.
+- Piezas: la app usa solo los 5 sets de `pieceSets.ts` (hechos con ChatGPT). El set anterior (`PieceLegacy.tsx`, "Sombra lateral") ya no se importa en ningún lado y no viaja en la app. Si algún día se agrega un set de otra persona (por ejemplo, el de un amigo), hace falta su permiso por escrito, los archivos originales y una licencia compatible con la GPL v3.
 - Líneas de apertura revisadas con Stockfish (profundidad 20): Danés corregido; Albin se deja como está a propósito (gambito de trampas). Detalle en docs/formato-lecciones.md. Si se agregan aperturas nuevas, revisarlas igual.
 - Lint (`npx expo lint`): 0 errores. Los 4 avisos de dependencias de efectos (Board, LineStep, GameScreen, PuzzleScreen) son a propósito y están comentados.
 - Revisión final de las piezas en el celular: en algunos sets llegan al borde de la casilla y podrían tapar las coordenadas (Board dibuja la pieza del tamaño de la casilla, `Board.tsx`, línea ~338).

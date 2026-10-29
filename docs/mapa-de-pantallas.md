@@ -170,7 +170,7 @@ Pantalla `creditos`, con una tarjeta por componente: qué hace, su licencia y lo
 - Expo, React Native y bibliotecas (MIT).
 
 Las licencias se revisaron en el `package.json` de cada paquete.
-Debe mostrar los motores y bases usados con su licencia (Stockfish, Maia, chess.js y los puzzles de Lichess, CC0) y el enlace al código fuente cuando la licencia lo exija. Es necesaria para cumplir la GPL. También debe decir el origen de las piezas: los 5 sets se generaron a partir de imágenes hechas con ChatGPT.
+Debe mostrar los motores y bases usados con su licencia (Stockfish, chess.js y los puzzles de Lichess, CC0), la licencia de la propia app (GPL v3 o posterior) con el enlace a su código, y el enlace al código fuente cuando la licencia lo exija. Es necesaria para cumplir la GPL. También debe decir el origen de las piezas: los 5 sets se generaron a partir de imágenes hechas con ChatGPT.
 
 ---
 

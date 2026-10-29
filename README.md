@@ -1,0 +1,48 @@
+# Ajedrez App
+
+App gratuita para Android para aprender ajedrez: una ruta de 41 lecciones (de cómo se mueven las piezas a conceptos avanzados), 28 cursos de aperturas, 10.000 puzzles, bots con personalidad que juegan las aperturas enseñadas y un tablero de análisis con Stockfish.
+
+Hecha con Expo, React Native y TypeScript.
+
+## Cómo ejecutarla
+
+Requisitos: Node.js y la app Expo Go en el celular.
+
+```bash
+npm install
+npx expo start -c
+```
+
+Después, escanea el código QR con Expo Go.
+
+Los archivos generados ya están en el repositorio. Para volver a crearlos:
+
+- `npm run build:engine`: copia Stockfish desde el paquete `stockfish` de npm (ver `docs/motor.md`).
+- `npm run build:puzzles -- <ruta a lichess_db_puzzle.csv.zst>`: elige los puzzles de la base de Lichess (ver `docs/puzzles.md`).
+- `npm run build:sounds`: genera los sonidos.
+
+## Documentación
+
+En `docs/`: diseño, formato de las lecciones, mapa de pantallas, bots, motor y puzzles.
+
+## Licencia
+
+Copyright (C) 2026 Gradus Studio
+
+Este programa es software libre: puedes redistribuirlo y modificarlo según los términos de la Licencia Pública General GNU (GNU GPL) publicada por la Free Software Foundation, versión 3 o, a tu elección, cualquier versión posterior.
+
+Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA, ni siquiera la garantía implícita de COMERCIABILIDAD o de APTITUD PARA UN PROPÓSITO PARTICULAR. Consulta la GNU GPL para más detalles. El texto completo está en [`LICENSE`](LICENSE).
+
+La licencia cubre el código y el contenido propio de la app: lecciones, cursos de aperturas, piezas y sonidos.
+
+### Componentes de terceros
+
+| Componente | Licencia | Origen |
+|---|---|---|
+| Stockfish 19 (Stockfish.js 19.0.1), sin modificar, en `src/engine/stockfish/` | GNU GPL v3 | https://github.com/official-stockfish/Stockfish · https://github.com/nmrugg/stockfish.js |
+| Puzzles de Lichess (`src/puzzles/puzzles.json`) | CC0 (dominio público) | https://database.lichess.org/#puzzles |
+| chess.js | BSD-2-Clause | https://github.com/jhlywa/chess.js |
+| Fuente Nunito | SIL Open Font License 1.1 | https://fonts.google.com/specimen/Nunito |
+| Expo, React Native, React y demás paquetes de `package.json` | MIT (en su mayoría) | ver cada paquete en `node_modules` |
+
+Las piezas se generaron a partir de imágenes creadas con ChatGPT (OpenAI) y se pasaron a dibujos vectoriales.

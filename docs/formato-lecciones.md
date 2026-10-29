@@ -36,6 +36,10 @@ El paso `line` parte de la posición inicial. El usuario juega solo las jugadas 
 | `mode: 'drill'` | Sin notas ni pistas; un error se marca y se reintenta, sin vidas (como en el resto de la app) |
 | `moves[].uci` | Jugada para validar, como `e2e4`. El enroque es el movimiento del rey: `e1g1` |
 | `moves[].san` | Texto para mostrar, en español: `Cf3`, `Axf7+`, `O-O` |
+| `success` (opcional) | Mensaje del panel verde al terminar. Si falta, "Completaste la línea" |
+| `hint` (opcional) | Mensaje del panel rojo tras un error. Si falta, el de las aperturas |
+
+`line` también sirve para **combinaciones tácticas** y **puzzles** (desde la Unidad 3): el `fen` puede ser cualquier posición, juegue quien juegue, y la numeración de jugadas sigue el `fen` ("23… Cxe5"). Si en el `fen` mueve el rival (puzzles de Lichess, cuya primera jugada es la del rival), la app la juega sola. Para tácticas se usa `mode: 'drill'` con `success` y `hint` propios.
 
 La captura al paso (por ejemplo `exf6` en la Vienesa) y el enroque funcionan con chess.js sin cambios: el tablero muestra el destino y `chess.move` lo resuelve.
 
@@ -144,6 +148,32 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 4 | u2-l04 | El rey ahogado | 7 |
 | 5 | u2-l05 | Otras tablas | 8 |
 | 6 | u2-l06 | Cómo se escriben las jugadas | 9 |
+
+## Contenido de la Unidad 3 · Táctica básica
+
+`src/data/unidad-3-tactica-basica.json`: 8 lecciones, 75 pasos. Sin «El valor de las piezas» (ya está en «Intercambios», Unidad 1) y con «Antes de mover» en lugar de «Piezas colgadas» (lo básico está en «Proteger piezas»).
+
+- **Combinaciones:** pasos `line` en modo `drill` con `success` y `hint` propios.
+- **Puzzles reales de Lichess (CC0):** cada lección termina con 2, y «La horquilla», «La descubierta» y «La desviación» tienen uno más en el medio (0TCrY, MZ2x1, dvqbx), en lugar de posiciones propias que no funcionaban. El enunciado muestra el número del puzzle.
+- **Validación con chess.js:** cada posición y jugada, y lo que dicen los textos (clavadas, mates, piezas sueltas, defensores).
+- **Revisión con Stockfish (profundidad 16, todas las jugadas legales):** en cada ejercicio y en cada jugada propia de las combinaciones, la solución es la mejor jugada, o todas las jugadas buenas se aceptan. En los que tienen consigna («da jaque con la dama», «ataca con un peón»), la solución está a menos de 1,5 peones de la mejor y las otras buenas no cumplen la consigna.
+- **Lo que encontró Stockfish y se corrigió:**
+  - Una horquilla de dama en la misma fila que la torre (la torre la capturaba).
+  - Mates en la última fila que no se veían: se agregó h3 o se protegió la torre.
+  - Una horquilla de peón que la torre rival anulaba clavando el peón contra el rey.
+  - Un «eliminar al defensor» donde la torre escapaba. Ahora la captura es con jaque.
+  - Posiciones con tanta ventaja que cualquier jugada ganaba. Se emparejó el material.
+
+| # | id | Lección | Pasos |
+|---|---|---|---|
+| 1 | u3-l01 | La horquilla | 10 |
+| 2 | u3-l02 | La clavada | 10 |
+| 3 | u3-l03 | El ataque a la descubierta | 9 |
+| 4 | u3-l04 | Jaque doble y ataque doble | 9 |
+| 5 | u3-l05 | Eliminar al defensor | 9 |
+| 6 | u3-l06 | La desviación | 9 |
+| 7 | u3-l07 | Mate del pasillo y mate del pastor | 10 |
+| 8 | u3-l08 | Antes de mover: jaques, capturas y amenazas | 9 |
 
 ## Pendiente
 - Revisión de redacción (los textos son una primera versión).

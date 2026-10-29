@@ -68,6 +68,10 @@ export type LineStep = StepBase & {
   side: 'w' | 'b';
   mode: 'guided' | 'drill'; // guided: muestra notas y ayuda; drill: sin ayudas
   moves: LineMove[];
+  /** Mensaje al completar (combinaciones tácticas). Si falta, "Completaste la línea". */
+  success?: string;
+  /** Pista tras un error (combinaciones tácticas). Si falta, el mensaje de las aperturas. */
+  hint?: string;
 };
 
 export type Step = ExplainStep | MoveStep | SelectSquaresStep | QuizStep | LineStep;

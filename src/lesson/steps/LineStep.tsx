@@ -59,7 +59,7 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
   // Turno del rival: juega solo. Al terminar la línea, el paso queda resuelto.
   useEffect(() => {
     if (finished) {
-      onCorrect(guided ? 'Completaste la línea.' : 'Completaste la línea de memoria.');
+      onCorrect(step.success ?? (guided ? 'Completaste la línea.' : 'Completaste la línea de memoria.'));
       return;
     }
     if (chess.turn() === step.side) return;
@@ -86,9 +86,10 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
       setWrong({ fen: probe.fen(), move: { from: m.from, to: m.to } });
       if (guided) setShowHint(true);
       onWrong(
-        guided
-          ? `En esta línea se juega ${san(expected.san)}. Al reintentar, la flecha te la marca.`
-          : 'Esa no es la jugada de la línea.',
+        step.hint ??
+          (guided
+            ? `En esta línea se juega ${san(expected.san)}. Al reintentar, la flecha te la marca.`
+            : 'Esa no es la jugada de la línea.'),
         () => setWrong(null)
       );
     }
@@ -149,13 +150,22 @@ function lastUserMoveBefore(step: LineStepData, ply: number): number {
   return -1;
 }
 
-/** Jugadas hechas hasta ahora, numeradas: "1. e4 d5 2. exd5 Dxd5". `san` convierte a la notación elegida. */
+/**
+ * Jugadas hechas hasta ahora, numeradas desde la posición del paso: "1. e4 d5 2. exd5 Dxd5", o
+ * "23… Cxe5 24. Dxe5" si empieza a mitad de partida con las negras. `san` convierte a la notación elegida.
+ */
 function notation(step: LineStepData, ply: number, san: (s: string) => string): string {
   if (ply === 0) return 'Aún no hay jugadas';
+  const [, turn, , , , full] = step.fen.split(' ');
+  let moveNo = Number(full) || 1;
+  let white = turn !== 'b';
   const parts: string[] = [];
-  step.moves.slice(0, ply).forEach((m, i) => {
-    if (i % 2 === 0) parts.push(`${i / 2 + 1}. ${san(m.san)}`);
+  step.moves.slice(0, ply).forEach((m) => {
+    if (white) parts.push(`${moveNo}. ${san(m.san)}`);
+    else if (parts.length === 0) parts.push(`${moveNo}… ${san(m.san)}`);
     else parts[parts.length - 1] += ` ${san(m.san)}`;
+    if (!white) moveNo++;
+    white = !white;
   });
   return parts.join('   ');
 }

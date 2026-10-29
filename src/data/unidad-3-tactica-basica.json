@@ -1,0 +1,1405 @@
+{
+  "unit": 3,
+  "title": "Táctica básica",
+  "lessons": [
+    {
+      "id": "u3-l01",
+      "unit": 3,
+      "order": 19,
+      "title": "La horquilla",
+      "summary": "Una pieza ataca dos a la vez",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Una horquilla es una pieza que ataca dos a la vez: el rival solo puede salvar una. Aquí el caballo da jaque al rey y ataca la dama.",
+          "fen": "q3k3/8/8/3N4/8/8/8/4K3 w - - 0 1",
+          "play": [
+            "d5c7",
+            "e8e7",
+            "c7a8"
+          ],
+          "id": "u3-l01-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Los peones también hacen horquillas. Al avanzar, este peón ataca la torre y el caballo: una de las dos se pierde.",
+          "fen": "4k3/8/3r1n2/8/4P3/4B3/5PPP/R5K1 w - - 0 1",
+          "play": [
+            "e4e5"
+          ],
+          "id": "u3-l01-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Haz una horquilla con el caballo: ataca al rey y a la torre.",
+          "fen": "4r1k1/5p1p/8/3N4/8/8/5PPP/6K1 w - - 0 1",
+          "solutions": [
+            "d5f6"
+          ],
+          "hint": "Busca la casilla desde donde el caballo ataca g8 y e8 a la vez.",
+          "success": "Correcto. Cf6+ da jaque y ataca la torre: después del jaque, la capturas.",
+          "id": "u3-l01-s03"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#0TCrY). No solo el caballo hace horquillas: encuentra una con el alfil.",
+          "fen": "8/p7/8/P2p1p1p/kPp1b2K/2P4P/8/3R4 w - - 3 39",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "h4h5",
+              "san": "Rxh5"
+            },
+            {
+              "uci": "e4f3",
+              "san": "Af3+"
+            },
+            {
+              "uci": "h5h4",
+              "san": "Rh4"
+            },
+            {
+              "uci": "f3d1",
+              "san": "Axd1"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Busca un jaque del alfil que, en la misma diagonal o en la otra, ataque una pieza grande.",
+          "id": "u3-l01-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Avanza el peón para atacar dos piezas a la vez.",
+          "fen": "4k3/8/3r1n2/8/4P3/4B3/5PPP/R5K1 w - - 0 1",
+          "solutions": [
+            "e4e5"
+          ],
+          "hint": "El peón captura en diagonal: busca dónde ataca a las dos piezas.",
+          "success": "Correcto. El peón ataca la torre y el caballo.",
+          "id": "u3-l01-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Haz una horquilla con la dama: jaque al rey y ataque a la torre.",
+          "fen": "6k1/1rp3pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+          "solutions": [
+            "d1d5"
+          ],
+          "hint": "Busca un jaque en la diagonal del rey que también ataque, en diagonal, la torre de b7.",
+          "success": "Correcto. Dd5+ da jaque y ataca la torre de b7.",
+          "id": "u3-l01-s06"
+        },
+        {
+          "type": "line",
+          "prompt": "Gana la dama con una horquilla. Después del jaque, captúrala.",
+          "fen": "2q3k1/5ppp/8/3N4/8/8/5PPP/6K1 w - - 0 1",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d5e7",
+              "san": "Ce7+"
+            },
+            {
+              "uci": "g8h8",
+              "san": "Rh8"
+            },
+            {
+              "uci": "e7c8",
+              "san": "Cxc8"
+            }
+          ],
+          "success": "Correcto. Ce7+ y, cuando el rey se mueve, Cxc8: ganaste la dama.",
+          "hint": "Busca un jaque del caballo que también ataque la dama de c8.",
+          "id": "u3-l01-s07"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Desde qué casilla el caballo ataca a las dos torres negras?",
+          "fen": "3r3r/8/k7/4N3/8/8/8/6K1 w - - 0 1",
+          "highlight": [
+            "d8",
+            "h8"
+          ],
+          "options": [
+            "f7",
+            "e6",
+            "g6"
+          ],
+          "answer": 0,
+          "explanation": "Desde f7, el caballo ataca d8 y h8: es una horquilla a las dos torres.",
+          "feedback": [
+            "",
+            "Desde e6 el caballo ataca d8, pero no h8.",
+            "Desde g6 el caballo ataca h8, pero no d8."
+          ],
+          "id": "u3-l01-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#acSs0). Encuentra la horquilla.",
+          "fen": "7q/7P/3k2K1/p4pN1/8/4nP2/P7/8 b - - 5 48",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e3d5",
+              "san": "Cd5"
+            },
+            {
+              "uci": "g5f7",
+              "san": "Cf7+"
+            },
+            {
+              "uci": "d6e6",
+              "san": "Re6"
+            },
+            {
+              "uci": "f7h8",
+              "san": "Cxh8"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Busca una jugada que ataque dos piezas a la vez, mejor si una es el rey.",
+          "id": "u3-l01-s09"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#DKj7y). Encuentra la horquilla.",
+          "fen": "8/8/7k/5np1/2K5/5P2/8/3B4 w - - 3 52",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c4d5",
+              "san": "Rd5"
+            },
+            {
+              "uci": "f5e3",
+              "san": "Ce3+"
+            },
+            {
+              "uci": "d5d4",
+              "san": "Rd4"
+            },
+            {
+              "uci": "e3d1",
+              "san": "Cxd1"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Busca una jugada que ataque dos piezas a la vez, mejor si una es el rey.",
+          "id": "u3-l01-s10"
+        }
+      ]
+    },
+    {
+      "id": "u3-l02",
+      "unit": 3,
+      "order": 20,
+      "title": "La clavada",
+      "summary": "Una pieza que no se puede mover",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El caballo no se puede mover: si lo hace, el alfil daría jaque al rey. Está clavado. Cuando detrás está el rey, es una clavada absoluta.",
+          "fen": "4k3/8/2n5/1B6/8/8/8/4K3 b - - 0 1",
+          "arrows": [
+            "b5e8"
+          ],
+          "showMovesFrom": "c6",
+          "id": "u3-l02-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Si detrás está la dama, es una clavada relativa: el caballo puede moverse, pero el alfil capturaría la dama.",
+          "fen": "3qk3/8/5n2/6B1/8/8/8/4K3 b - - 0 1",
+          "arrows": [
+            "g5d8"
+          ],
+          "id": "u3-l02-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Puede moverse el caballo negro de c6?",
+          "fen": "r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 4",
+          "highlight": [
+            "c6"
+          ],
+          "options": [
+            "Sí",
+            "No, está clavado al rey"
+          ],
+          "answer": 1,
+          "explanation": "El alfil de b5 apunta al rey de e8 a través del caballo: si el caballo se mueve, el rey queda en jaque.",
+          "feedback": [
+            "Mira la diagonal del alfil de b5: ¿qué hay detrás del caballo?",
+            ""
+          ],
+          "id": "u3-l02-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Clava el caballo de c6 al rey con tu alfil.",
+          "fen": "r1bqkbnr/ppp2ppp/2np4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 4",
+          "solutions": [
+            "f1b5"
+          ],
+          "hint": "El alfil de f1 puede ponerse en la diagonal que une el caballo con el rey.",
+          "success": "Correcto. Ab5 clava el caballo: no puede moverse sin dejar al rey en jaque.",
+          "id": "u3-l02-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Clava la dama al rey y gánala.",
+          "fen": "7k/6q1/8/8/8/2P5/5B2/7K w - - 0 1",
+          "solutions": [
+            "f2d4"
+          ],
+          "hint": "La dama y el rey negros están en la misma diagonal. Pon el alfil en ella, protegido por el peón.",
+          "success": "Correcto. Ad4 clava la dama: si captura el alfil, el peón captura la dama.",
+          "id": "u3-l02-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "El caballo de f6 está clavado a la dama. Atácalo con un peón.",
+          "fen": "3qk3/ppp2ppp/5n2/6B1/4P3/8/PPP1QPPP/4K3 w - - 0 1",
+          "solutions": [
+            "e4e5"
+          ],
+          "hint": "Un peón puede atacar el caballo: como está clavado, no conviene que se mueva.",
+          "success": "Correcto. El caballo no puede escapar sin dejar la dama: ganas una pieza.",
+          "id": "u3-l02-s06"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Esta clavada es absoluta o relativa?",
+          "fen": "3qk3/8/5n2/6B1/8/8/8/4K3 w - - 0 1",
+          "highlight": [
+            "g5",
+            "f6",
+            "d8"
+          ],
+          "options": [
+            "Absoluta: detrás está el rey",
+            "Relativa: detrás está la dama"
+          ],
+          "answer": 1,
+          "explanation": "Detrás del caballo está la dama, no el rey: el caballo puede moverse, pero perdería la dama.",
+          "feedback": [
+            "Mira qué pieza hay detrás del caballo, en la diagonal del alfil.",
+            ""
+          ],
+          "id": "u3-l02-s07"
+        },
+        {
+          "type": "explain",
+          "text": "Para defenderte de una clavada, protege la pieza clavada o saca de la línea al rey o la dama. Aquí Ae7 corta la diagonal y el caballo vuelve a quedar libre.",
+          "fen": "rnbqkb1r/ppp2ppp/3p1n2/4p1B1/4P3/3P4/PPP2PPP/RN1QKBNR b KQkq - 1 4",
+          "play": [
+            "f8e7"
+          ],
+          "id": "u3-l02-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#bhvfQ). Aprovecha la clavada.",
+          "fen": "8/7k/p5p1/6P1/1P4qP/P5R1/6K1/8 b - - 4 60",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g4h4",
+              "san": "Dxh4"
+            },
+            {
+              "uci": "g3h3",
+              "san": "Th3"
+            },
+            {
+              "uci": "h4h3",
+              "san": "Dxh3+"
+            },
+            {
+              "uci": "g2h3",
+              "san": "Rxh3"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Busca una pieza que no se pueda mover porque detrás está el rey o la dama.",
+          "id": "u3-l02-s09"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#jvBim). Aprovecha la clavada.",
+          "fen": "4r1r1/8/6pk/p1Q5/8/KPP5/P7/8 w - - 3 37",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c5a5",
+              "san": "Dxa5"
+            },
+            {
+              "uci": "e8a8",
+              "san": "Ta8"
+            },
+            {
+              "uci": "a5a8",
+              "san": "Dxa8"
+            },
+            {
+              "uci": "g8a8",
+              "san": "Txa8+"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Busca una pieza que no se pueda mover porque detrás está el rey o la dama.",
+          "id": "u3-l02-s10"
+        }
+      ]
+    },
+    {
+      "id": "u3-l03",
+      "unit": 3,
+      "order": 21,
+      "title": "El ataque a la descubierta",
+      "summary": "Una pieza se aparta y destapa otra",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "En un ataque a la descubierta, una pieza se mueve y destapa el ataque de la que estaba detrás. Aquí el alfil da jaque y, a la vez, la torre ataca la dama.",
+          "fen": "3q2k1/7p/8/8/8/3B4/8/3R2K1 w - - 0 1",
+          "play": [
+            "d3h7",
+            "g8h7",
+            "d1d8"
+          ],
+          "id": "u3-l03-s01"
+        },
+        {
+          "type": "move",
+          "prompt": "Mueve el caballo con jaque y gana la dama.",
+          "fen": "6k1/4qppp/8/8/4N3/8/5PPP/4R1K1 w - - 0 1",
+          "solutions": [
+            "e4f6"
+          ],
+          "hint": "Si el caballo sale de e4 dando jaque, la torre ataca la dama y no hay tiempo de salvarla.",
+          "success": "Correcto. Cf6+ da jaque y destapa la torre sobre la dama.",
+          "id": "u3-l03-s02"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#MZ2x1). Avanza un peón con jaque: al moverse, destapa el ataque de tu alfil.",
+          "fen": "8/2k5/5p2/1R2b1p1/P2pP1P1/8/1p2K3/8 w - - 0 56",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "b5b2",
+              "san": "Txb2"
+            },
+            {
+              "uci": "d4d3",
+              "san": "d3+"
+            },
+            {
+              "uci": "e2d3",
+              "san": "Rxd3"
+            },
+            {
+              "uci": "e5b2",
+              "san": "Axb2"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "El peón que está delante de tu alfil puede dar jaque al avanzar.",
+          "id": "u3-l03-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué pieza blanca tienes que mover para que la torre ataque la dama?",
+          "fen": "6k1/4q1pp/8/8/4B3/8/6PP/4R1K1 w - - 0 1",
+          "options": [
+            "El alfil de e4",
+            "La torre de e1",
+            "El rey"
+          ],
+          "answer": 0,
+          "explanation": "El alfil tapa la columna e: cuando se mueve, la torre ataca la dama.",
+          "feedback": [
+            "",
+            "La torre ya está en la columna: lo que la tapa es otra pieza.",
+            "El rey no está en la columna e."
+          ],
+          "id": "u3-l03-s04"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la pieza blanca que, al moverse, descubre un ataque a la dama negra.",
+          "fen": "q5k1/6pp/8/8/N7/8/6PP/R5K1 w - - 0 1",
+          "squares": [
+            "a4"
+          ],
+          "hint": "Mira la columna a: entre la torre y la dama hay una pieza tuya.",
+          "id": "u3-l03-s05"
+        },
+        {
+          "type": "line",
+          "prompt": "Da jaque a la descubierta con el alfil y gana la dama.",
+          "fen": "2q1k3/pp6/8/3p4/4B3/8/5PPP/4R1K1 w - - 0 1",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e4f5",
+              "san": "Af5+"
+            },
+            {
+              "uci": "e8d8",
+              "san": "Rd8"
+            },
+            {
+              "uci": "f5c8",
+              "san": "Axc8"
+            }
+          ],
+          "success": "Correcto. Af5+ y después Axc8: el jaque de la torre no dejó tiempo para salvar la dama.",
+          "hint": "El alfil puede salir dando jaque descubierto y, a la vez, atacar la dama de c8.",
+          "id": "u3-l03-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Para encontrar descubiertas, busca piezas tuyas alineadas con el rey o la dama del rival y con otra pieza tuya en el medio. Si la pieza del medio se mueve con amenaza, el rival no puede atender las dos.",
+          "fen": "2q1k3/pp6/8/3p4/4B3/8/5PPP/4R1K1 w - - 0 1",
+          "arrows": [
+            "e1e8"
+          ],
+          "id": "u3-l03-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#dG99T). Encuentra el ataque a la descubierta.",
+          "fen": "4r1k1/p4p2/1p3p1p/3B4/1Pb5/P5P1/5P1P/3R2K1 b - - 0 25",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e8d8",
+              "san": "Td8"
+            },
+            {
+              "uci": "d5f7",
+              "san": "Axf7+"
+            },
+            {
+              "uci": "g8f7",
+              "san": "Rxf7"
+            },
+            {
+              "uci": "d1d8",
+              "san": "Txd8"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Mueve la pieza que tapa a otra tuya: así atacas dos cosas a la vez.",
+          "id": "u3-l03-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#b2gII). Encuentra el ataque a la descubierta.",
+          "fen": "6k1/R5bp/p5p1/1pBPrp2/8/5P1P/PP3P2/6K1 w - - 1 30",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c5d4",
+              "san": "Ad4"
+            },
+            {
+              "uci": "e5e1",
+              "san": "Te1+"
+            },
+            {
+              "uci": "g1h2",
+              "san": "Rh2"
+            },
+            {
+              "uci": "g7d4",
+              "san": "Axd4"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Mueve la pieza que tapa a otra tuya: así atacas dos cosas a la vez.",
+          "id": "u3-l03-s09"
+        }
+      ]
+    },
+    {
+      "id": "u3-l04",
+      "unit": 3,
+      "order": 22,
+      "title": "Jaque doble y ataque doble",
+      "summary": "Dos amenazas en una jugada",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "En el jaque doble, dos piezas dan jaque a la vez. No se puede tapar ni capturar las dos: solo queda mover el rey. Aquí la dama negra podría capturar el caballo, pero el jaque de la torre seguiría.",
+          "fen": "4k3/8/6q1/8/4N3/8/8/4R2K w - - 0 1",
+          "play": [
+            "e4f6",
+            "e8f8"
+          ],
+          "id": "u3-l04-s01"
+        },
+        {
+          "type": "move",
+          "prompt": "Da jaque doble con el caballo y el alfil.",
+          "fen": "3q2k1/6pp/8/3N4/8/1B6/6PP/6K1 w - - 0 1",
+          "solutions": [
+            "d5e7",
+            "d5f6"
+          ],
+          "hint": "Si el caballo sale de la diagonal del alfil dando jaque, son dos jaques a la vez.",
+          "success": "Correcto. El caballo da jaque y destapa el jaque del alfil: el rey tiene que moverse.",
+          "id": "u3-l04-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Da jaque doble: es mate.",
+          "fen": "3qkb2/3p1p2/8/8/4N3/8/8/4R1K1 w - - 0 1",
+          "solutions": [
+            "e4d6",
+            "e4f6"
+          ],
+          "hint": "El caballo puede dar jaque y destapar el de la torre. El rey está rodeado de sus piezas.",
+          "success": "Correcto. Jaque doble y mate: el rey no tiene adónde ir.",
+          "id": "u3-l04-s03"
+        },
+        {
+          "type": "explain",
+          "text": "La dama es experta en ataques dobles: puede atacar dos piezas sueltas a la vez, en líneas distintas.",
+          "fen": "4k2n/r7/8/8/3Q4/8/8/4K3 b - - 0 1",
+          "arrows": [
+            "d4a7",
+            "d4h8"
+          ],
+          "id": "u3-l04-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Da jaque con la dama y ataca la torre a la vez.",
+          "fen": "6k1/6pp/8/8/8/8/r5PP/3Q2K1 w - - 0 1",
+          "solutions": [
+            "d1d5",
+            "d1b3"
+          ],
+          "hint": "Busca un jaque en la diagonal del rey que también apunte a la torre de a2.",
+          "success": "Correcto. Jaque y ataque a la torre: después del jaque, la capturas.",
+          "id": "u3-l04-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca a la vez el caballo y el alfil, que están sueltos.",
+          "fen": "6k1/5pp1/7p/n6b/8/3Q4/5PPP/6K1 w - - 0 1",
+          "solutions": [
+            "d3d5",
+            "d3b5"
+          ],
+          "hint": "El caballo y el alfil están en la misma fila: ponte en esa fila.",
+          "success": "Correcto. La dama ataca las dos piezas: solo una se puede salvar.",
+          "id": "u3-l04-s06"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Por qué el jaque doble es tan fuerte?",
+          "fen": "4k3/8/6q1/8/4N3/8/8/4R2K w - - 0 1",
+          "options": [
+            "Solo se responde moviendo el rey",
+            "Siempre es mate",
+            "Siempre gana la dama"
+          ],
+          "answer": 0,
+          "explanation": "Con dos jaques a la vez no alcanza con tapar ni con capturar una pieza: el rey tiene que moverse.",
+          "feedback": [
+            "",
+            "No siempre es mate: a veces el rey tiene una casilla libre.",
+            "Depende de la posición: lo seguro es que el rey tiene que moverse."
+          ],
+          "id": "u3-l04-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#FSOWT). Da jaque doble.",
+          "fen": "4r1k1/6p1/6Rp/p7/3N1P1P/P3P3/1r1n3K/3R4 w - - 0 37",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d1g1",
+              "san": "Tdg1"
+            },
+            {
+              "uci": "d2f3",
+              "san": "Cf3+"
+            },
+            {
+              "uci": "h2h3",
+              "san": "Rh3"
+            },
+            {
+              "uci": "f3g1",
+              "san": "Cxg1+"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Busca una jugada en la que den jaque dos piezas a la vez.",
+          "id": "u3-l04-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#o0pmM). Da jaque doble.",
+          "fen": "5k2/1R6/6p1/3N1p2/8/1p2P3/6PP/1rn3K1 w - - 5 44",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d5c3",
+              "san": "Cc3"
+            },
+            {
+              "uci": "c1e2",
+              "san": "Ce2+"
+            },
+            {
+              "uci": "g1f2",
+              "san": "Rf2"
+            },
+            {
+              "uci": "e2c3",
+              "san": "Cxc3"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Busca una jugada en la que den jaque dos piezas a la vez.",
+          "id": "u3-l04-s09"
+        }
+      ]
+    },
+    {
+      "id": "u3-l05",
+      "unit": 3,
+      "order": 23,
+      "title": "Eliminar al defensor",
+      "summary": "Captura a quien defiende",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Si una pieza defiende a otra, captura o cambia la que defiende: la otra queda sin protección. Aquí el caballo de f6 defiende la torre de d5. Si lo capturas con jaque, no hay tiempo de salvar la torre.",
+          "fen": "8/5pkp/5np1/3r2B1/8/2N4P/5PP1/6K1 w - - 0 1",
+          "arrows": [
+            "g5f6",
+            "c3d5"
+          ],
+          "id": "u3-l05-s01"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la pieza negra que defiende a la torre de d5.",
+          "fen": "8/5pkp/5np1/3r2B1/8/2N4P/5PP1/6K1 w - - 0 1",
+          "squares": [
+            "f6"
+          ],
+          "hint": "Busca qué pieza negra podría recapturar en d5.",
+          "id": "u3-l05-s02"
+        },
+        {
+          "type": "line",
+          "prompt": "Elimina al defensor con jaque y gana la torre.",
+          "fen": "8/5pkp/5np1/3r2B1/8/2N4P/5PP1/6K1 w - - 0 1",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g5f6",
+              "san": "Axf6+"
+            },
+            {
+              "uci": "g7f6",
+              "san": "Rxf6"
+            },
+            {
+              "uci": "c3d5",
+              "san": "Cxd5+"
+            }
+          ],
+          "success": "Correcto. Axf6+ y, después de Rxf6, Cxd5+: la torre quedó sin defensa.",
+          "hint": "Primero captura la pieza que defiende la torre.",
+          "id": "u3-l05-s03"
+        },
+        {
+          "type": "line",
+          "prompt": "Cambia al defensor del alfil de b4 y gánalo.",
+          "fen": "6k1/3p1ppp/2n5/8/Bb6/8/5PPP/1R4K1 w - - 0 1",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "a4c6",
+              "san": "Axc6"
+            },
+            {
+              "uci": "d7c6",
+              "san": "dxc6"
+            },
+            {
+              "uci": "b1b4",
+              "san": "Txb4"
+            }
+          ],
+          "success": "Correcto. Cambiaste el caballo por tu alfil y ganaste el alfil de b4.",
+          "hint": "El caballo de c6 defiende el alfil: tu alfil lo puede capturar.",
+          "id": "u3-l05-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "El caballo de f6 defiende h7. Elimínalo y amenaza mate.",
+          "fen": "5rk1/5ppp/5n2/6N1/8/2BQ4/5PPP/6K1 w - - 0 1",
+          "solutions": [
+            "c3f6"
+          ],
+          "hint": "Tu dama y tu caballo atacan h7. Solo el caballo de f6 lo defiende.",
+          "success": "Correcto. Sin el caballo, Dxh7 es mate.",
+          "id": "u3-l05-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué jugada gana más material?",
+          "fen": "8/5pkp/5np1/3r2B1/8/2N4P/5PP1/6K1 w - - 0 1",
+          "options": [
+            "Axf6+ y después Cxd5",
+            "Cxd5 enseguida",
+            "Ah4"
+          ],
+          "answer": 0,
+          "explanation": "Cxd5 Cxd5 cambia la torre por un caballo. Axf6+ primero gana la torre entera: el defensor ya no está.",
+          "feedback": [
+            "",
+            "Cxd5 gana algo, pero el caballo de f6 recaptura. Elimina antes al defensor.",
+            "Ah4 no gana nada."
+          ],
+          "id": "u3-l05-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Antes de atacar una pieza, mira quién la defiende. Si puedes capturar o cambiar al defensor, la pieza queda colgada.",
+          "fen": "8/5pkp/5np1/3r2B1/8/2N4P/5PP1/6K1 w - - 0 1",
+          "highlight": [
+            "f6",
+            "d5"
+          ],
+          "id": "u3-l05-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#kLMGg). Elimina al defensor y gana material.",
+          "fen": "4r1k1/5p1p/1pq2p2/3b4/1Q1Rp3/4P1P1/4BPKP/8 b - - 2 28",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c6c5",
+              "san": "Dc5"
+            },
+            {
+              "uci": "b4c5",
+              "san": "Dxc5"
+            },
+            {
+              "uci": "b6c5",
+              "san": "bxc5"
+            },
+            {
+              "uci": "d4d5",
+              "san": "Txd5"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Busca qué pieza defiende a otra y captúrala o cámbiala.",
+          "id": "u3-l05-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#JgCiY). Elimina al defensor y gana material.",
+          "fen": "8/3qp1kp/6p1/6P1/1p1b1Q2/1P1P1N2/6PK/8 b - - 0 43",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d7d6",
+              "san": "Dd6"
+            },
+            {
+              "uci": "f4d6",
+              "san": "Dxd6"
+            },
+            {
+              "uci": "e7d6",
+              "san": "exd6"
+            },
+            {
+              "uci": "f3d4",
+              "san": "Cxd4"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Busca qué pieza defiende a otra y captúrala o cámbiala.",
+          "id": "u3-l05-s09"
+        }
+      ]
+    },
+    {
+      "id": "u3-l06",
+      "unit": 3,
+      "order": 24,
+      "title": "La desviación",
+      "summary": "Saca al defensor de su lugar",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La desviación obliga a una pieza a irse de la casilla que defiende. Aquí la torre de d8 defiende la dama y la última fila. Si la dama blanca captura, la torre tiene que recapturar y deja libre e8.",
+          "fen": "3r2k1/3q1ppp/8/1Q6/8/8/5PPP/4R1K1 w - - 0 1",
+          "play": [
+            "b5d7",
+            "d8d7",
+            "e1e8"
+          ],
+          "id": "u3-l06-s01"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la pieza negra que tiene dos tareas a la vez.",
+          "fen": "3r2k1/3q1ppp/8/1Q6/8/8/5PPP/4R1K1 w - - 0 1",
+          "squares": [
+            "d8"
+          ],
+          "hint": "Una pieza defiende la dama y también la casilla e8.",
+          "id": "u3-l06-s02"
+        },
+        {
+          "type": "line",
+          "prompt": "Desvía la torre que defiende la última fila y da mate.",
+          "fen": "2r3k1/5ppp/2b5/8/Q7/8/5PPP/4R1K1 w - - 0 1",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "a4c6",
+              "san": "Dxc6"
+            },
+            {
+              "uci": "c8c6",
+              "san": "Txc6"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Te8#"
+            }
+          ],
+          "success": "Correcto. La torre tuvo que recapturar y Te8 fue mate.",
+          "hint": "La torre de c8 defiende el alfil y la última fila. Captura el alfil.",
+          "id": "u3-l06-s03"
+        },
+        {
+          "type": "line",
+          "prompt": "Da jaque con la dama: la torre tiene que capturarla y la última fila queda sin defensa.",
+          "fen": "3r2k1/5ppp/8/1Q6/8/7P/5PP1/4R1K1 w - - 0 1",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "b5e8",
+              "san": "De8+"
+            },
+            {
+              "uci": "d8e8",
+              "san": "Txe8"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Txe8#"
+            }
+          ],
+          "success": "Correcto. De8+ obliga a la torre a capturar y Txe8 es mate.",
+          "hint": "Busca un jaque de la dama en e8: tu torre también apunta a esa casilla.",
+          "id": "u3-l06-s04"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#dvqbx). El rey negro defiende el alfil de d8. Da jaque con el peón para desviarlo y gana el alfil.",
+          "fen": "4K3/2kP4/8/1Pp5/2P4b/8/8/8 b - - 4 67",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "h4d8",
+              "san": "Ad8"
+            },
+            {
+              "uci": "b5b6",
+              "san": "b6+"
+            },
+            {
+              "uci": "c7b6",
+              "san": "Rxb6"
+            },
+            {
+              "uci": "e8d8",
+              "san": "Rxd8"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Un jaque de peón obliga al rey a capturarlo y alejarse del alfil.",
+          "id": "u3-l06-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué pieza negra está sobrecargada?",
+          "fen": "2r3k1/5ppp/2b5/8/Q7/8/5PPP/4R1K1 w - - 0 1",
+          "options": [
+            "La torre de c8",
+            "El alfil de c6",
+            "El rey"
+          ],
+          "answer": 0,
+          "explanation": "La torre de c8 defiende el alfil y también la última fila: no puede con las dos.",
+          "feedback": [
+            "",
+            "El alfil no defiende nada importante: lo defiende la torre.",
+            "El rey no puede salir de sus peones, pero no defiende nada."
+          ],
+          "id": "u3-l06-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Una pieza que defiende dos cosas a la vez está sobrecargada. Si la obligas a ocuparse de una, la otra queda sin defensa.",
+          "fen": "3r2k1/3q1ppp/8/1Q6/8/8/5PPP/4R1K1 w - - 0 1",
+          "highlight": [
+            "d8"
+          ],
+          "id": "u3-l06-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#mjPq7). Desvía al defensor.",
+          "fen": "8/1p1b4/4p2p/1k1pP1p1/1rr2p2/1N3P1P/PR4P1/1R3K2 b - - 0 36",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "b5a4",
+              "san": "Ra4"
+            },
+            {
+              "uci": "b3c5",
+              "san": "Cc5+"
+            },
+            {
+              "uci": "c4c5",
+              "san": "Txc5"
+            },
+            {
+              "uci": "b2b4",
+              "san": "Txb4+"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Obliga a una pieza rival a dejar la casilla que defiende, casi siempre con un jaque.",
+          "id": "u3-l06-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#yokJ4). Desvía al defensor.",
+          "fen": "2krr3/pp3ppp/2p5/5P2/2n1N3/7P/PPP2K2/R3R3 b - - 4 24",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c4d2",
+              "san": "Cd2"
+            },
+            {
+              "uci": "e4d6",
+              "san": "Cd6+"
+            },
+            {
+              "uci": "d8d6",
+              "san": "Txd6"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Txe8+"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Obliga a una pieza rival a dejar la casilla que defiende, casi siempre con un jaque.",
+          "id": "u3-l06-s09"
+        }
+      ]
+    },
+    {
+      "id": "u3-l07",
+      "unit": 3,
+      "order": 25,
+      "title": "Mate del pasillo y mate del pastor",
+      "summary": "Dos mates que hay que conocer",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "En el mate del pasillo, el rey queda encerrado por sus propios peones en la última fila, y una torre o la dama da mate.",
+          "fen": "6k1/5ppp/8/8/8/8/5PPP/R5K1 w - - 0 1",
+          "play": [
+            "a1a8"
+          ],
+          "id": "u3-l07-s01"
+        },
+        {
+          "type": "move",
+          "prompt": "Da mate del pasillo.",
+          "fen": "7k/6pp/8/8/8/8/r5PP/3R2K1 w - - 0 1",
+          "solutions": [
+            "d1d8"
+          ],
+          "hint": "El rey negro no puede salir de la última fila.",
+          "success": "Correcto. Td8 es mate.",
+          "id": "u3-l07-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Juegas con negras. Da mate del pasillo.",
+          "fen": "4r1k1/R4ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+          "orientation": "b",
+          "solutions": [
+            "e8e1"
+          ],
+          "hint": "El rey blanco está encerrado por sus peones.",
+          "success": "Correcto. Te1 es mate.",
+          "id": "u3-l07-s03"
+        },
+        {
+          "type": "explain",
+          "text": "Para evitarlo, dale una salida al rey: un movimiento de peón como h3 deja libre h2. También sirve tener una torre que cuide la última fila.",
+          "fen": "3r2k1/5ppp/8/8/8/7P/5PP1/6K1 w - - 0 1",
+          "highlight": [
+            "h2"
+          ],
+          "id": "u3-l07-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Las negras amenazan Td1 mate. ¿Qué jugada lo evita?",
+          "fen": "3r2k1/5ppp/8/8/8/8/PP3PPP/6K1 w - - 0 1",
+          "options": [
+            "h3",
+            "a3",
+            "b4"
+          ],
+          "answer": 0,
+          "explanation": "Con h3, el rey tiene la casilla h2 para escapar: Td1+ ya no es mate.",
+          "feedback": [
+            "",
+            "a3 no le da ninguna salida al rey.",
+            "b4 no le da ninguna salida al rey."
+          ],
+          "id": "u3-l07-s05"
+        },
+        {
+          "type": "explain",
+          "text": "El mate del pastor: la dama y el alfil atacan juntos f7, la casilla débil que solo defiende el rey. Si las negras no lo ven, Dxf7 es mate.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "play": [
+            "e2e4",
+            "e7e5",
+            "f1c4",
+            "b8c6",
+            "d1h5",
+            "g8f6",
+            "h5f7"
+          ],
+          "id": "u3-l07-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Juegas con negras. La dama y el alfil amenazan Dxf7 mate. Defiéndete.",
+          "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 3 3",
+          "orientation": "b",
+          "solutions": [
+            "g7g6",
+            "d8e7",
+            "d8f6",
+            "g8h6"
+          ],
+          "hint": "Defiende f7 con la dama o el caballo, o ataca a la dama blanca con un peón.",
+          "success": "Correcto. Ya no hay mate en f7.",
+          "id": "u3-l07-s07"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué casilla atacan juntos la dama y el alfil blancos?",
+          "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 3 3",
+          "options": [
+            "f7",
+            "e5",
+            "h7"
+          ],
+          "answer": 0,
+          "explanation": "f7: la ataca la dama de h5 y el alfil de c4, y solo la defiende el rey.",
+          "feedback": [
+            "",
+            "e5 la ataca solo la dama.",
+            "h7 la ataca solo la dama, y la defiende la torre."
+          ],
+          "id": "u3-l07-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#JypAq). Da mate del pasillo.",
+          "fen": "1r4k1/1q3ppp/2b5/8/3Q4/4PB2/1P3PPP/1K1R4 b - - 5 26",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c6f3",
+              "san": "Axf3"
+            },
+            {
+              "uci": "d4d8",
+              "san": "Dd8+"
+            },
+            {
+              "uci": "b8d8",
+              "san": "Txd8"
+            },
+            {
+              "uci": "d1d8",
+              "san": "Txd8#"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "El rey está encerrado por sus propios peones en la última fila.",
+          "id": "u3-l07-s09"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#eyM8V). Da mate del pasillo.",
+          "fen": "2Q5/3R4/2p2rp1/pk6/8/8/PPP2q2/1K5R w - - 11 35",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d7a7",
+              "san": "Ta7"
+            },
+            {
+              "uci": "f2f1",
+              "san": "Df1+"
+            },
+            {
+              "uci": "h1f1",
+              "san": "Txf1"
+            },
+            {
+              "uci": "f6f1",
+              "san": "Txf1#"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "El rey está encerrado por sus propios peones en la última fila.",
+          "id": "u3-l07-s10"
+        }
+      ]
+    },
+    {
+      "id": "u3-l08",
+      "unit": 3,
+      "order": 26,
+      "title": "Antes de mover: jaques, capturas y amenazas",
+      "summary": "La rutina para no perder piezas",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Antes de cada jugada, una rutina: primero, ¿qué amenaza la última jugada del rival? Después, revisa tus jaques, tus capturas y tus amenazas.",
+          "fen": "r1bqkbnr/2pp1ppp/p1n5/1p2p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq b6 0 5",
+          "id": "u3-l08-s01"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Las negras acaban de jugar b5. Toca tu pieza que quedó atacada.",
+          "fen": "r1bqkbnr/2pp1ppp/p1n5/1p2p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq b6 0 5",
+          "squares": [
+            "c4"
+          ],
+          "hint": "El peón de b5 ataca en diagonal.",
+          "id": "u3-l08-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Las negras acaban de jugar Cb4. ¿Qué amenazan?",
+          "fen": "4k3/pp3ppp/8/8/1n6/8/PP3PPP/R3K2R w KQ - 0 1",
+          "options": [
+            "Una horquilla en c2: jaque al rey y ataque a la torre",
+            "Una clavada",
+            "Un ataque a la descubierta"
+          ],
+          "answer": 0,
+          "explanation": "Desde c2, el caballo daría jaque al rey de e1 y atacaría la torre de a1.",
+          "feedback": [
+            "",
+            "Mira adónde puede saltar el caballo.",
+            "Mira adónde puede saltar el caballo."
+          ],
+          "id": "u3-l08-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Evita la horquilla del caballo en c2.",
+          "fen": "4k3/pp3ppp/8/8/1n6/8/PP3PPP/R3K2R w KQ - 0 1",
+          "solutions": [
+            "e1g1",
+            "e1c1",
+            "a1d1",
+            "e1e2",
+            "e1d2",
+            "e1d1",
+            "a1b1",
+            "e1f1"
+          ],
+          "hint": "Cubre la casilla c2, o saca de allí al rey o a la torre.",
+          "success": "Correcto. La horquilla ya no funciona.",
+          "id": "u3-l08-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Las negras dejaron una pieza sin defensa. Captúrala.",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/4P1b1/2NP4/PPP2PPP/R1BQKBNR w KQkq - 1 4",
+          "solutions": [
+            "d1g4"
+          ],
+          "hint": "Revisa tus capturas: ¿qué pieza negra nadie defiende?",
+          "success": "Correcto. El alfil de g4 estaba sin defensa.",
+          "id": "u3-l08-s05"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca todas las piezas negras que puedes capturar gratis.",
+          "fen": "6k1/6pp/r4p2/3nb3/8/8/1B3PPP/3R1BK1 w - - 0 1",
+          "squares": [
+            "d5",
+            "a6"
+          ],
+          "hint": "Busca piezas negras que tus piezas atacan y que nadie defiende.",
+          "id": "u3-l08-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Las tácticas de esta unidad también te las pueden hacer a ti. Revisar jaques, capturas y amenazas antes de mover sirve para verlas venir.",
+          "fen": "4k3/pp3ppp/8/8/1n6/8/PP3PPP/R3K2R w KQ - 0 1",
+          "arrows": [
+            "b4c2"
+          ],
+          "id": "u3-l08-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#HsDvr). Revisa jaques, capturas y amenazas.",
+          "fen": "r1b1r1k1/ppp1qppp/8/3P4/2P1B3/8/PP2QPPP/R4RK1 w - - 3 16",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e4h7",
+              "san": "Axh7+"
+            },
+            {
+              "uci": "g8h7",
+              "san": "Rxh7"
+            },
+            {
+              "uci": "e2e7",
+              "san": "Dxe7"
+            },
+            {
+              "uci": "e8e7",
+              "san": "Txe7"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Mira qué piezas del rival quedaron sueltas después de su jugada.",
+          "id": "u3-l08-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#40mS4). Revisa jaques, capturas y amenazas.",
+          "fen": "1k2r3/1p6/4p3/p3P2p/P7/5q2/1P1p2Q1/6RK b - - 3 45",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e8g8",
+              "san": "Tg8"
+            },
+            {
+              "uci": "g2f3",
+              "san": "Dxf3"
+            },
+            {
+              "uci": "g8g1",
+              "san": "Txg1+"
+            },
+            {
+              "uci": "h1g1",
+              "san": "Rxg1"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Mira qué piezas del rival quedaron sueltas después de su jugada.",
+          "id": "u3-l08-s09"
+        }
+      ]
+    }
+  ]
+}

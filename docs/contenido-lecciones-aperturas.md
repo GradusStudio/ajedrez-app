@@ -44,7 +44,7 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 
 «Valor de las piezas» se quitó: ya está en «Intercambios» (Unidad 1). «Piezas colgadas» pasó a ser «Antes de mover», porque lo básico ya está en «Proteger piezas». Cada lección termina con puzzles reales de Lichess del mismo tema.
 
-### Unidad 4 · Apertura y estrategia (6 lecciones)
+### Unidad 4 · Apertura y estrategia (6 lecciones, ya escritas en `src/data/unidad-4-apertura-y-estrategia.json`)
 28. Principios de apertura: centro, desarrollo, enroque
 29. Errores típicos de apertura (dama temprana, mover la misma pieza dos veces)
 30. Estructura de peones: aislado, doblado, pasado

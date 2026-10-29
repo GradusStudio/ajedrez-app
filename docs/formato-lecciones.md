@@ -247,5 +247,30 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 4 | u5-l04 | La regla del cuadrado | 8 |
 | 5 | u5-l05 | La posición de Lucena | 7 |
 
+## Contenido de la Unidad 6 · Conceptos avanzados
+
+`src/data/unidad-6-conceptos-avanzados.json`: 4 lecciones, 40 pasos (órdenes 38 a 41). Cierra la ruta de Aprender con un repaso final de puzzles de todos los temas.
+
+- **Validación con chess.js:**
+  - Mate por zugzwang (Tg6): es el único mate en 2, no da jaque, la única respuesta negra es Ra8, Ta6 es el único mate y, si las negras pudieran pasar, no habría mate.
+  - Trébuchet: con cualquier turno, solo se mueve el rey y cualquier jugada abandona su peón.
+  - Triangulación: después de Re4, Rc5, Rd3, Rb6 y Rd4 se repite la posición con el turno de las negras.
+  - Profilaxis: si las blancas pasan, Ag4 es posible y h3 controla g4. En el pasillo, Txb7 permite Te1 mate y, tras cada jugada aceptada, no hay mate en una. En h2, la amenaza es Dxh2 mate y g3 y h3 la impiden.
+  - Los puzzles no se repiten entre sí ni con las unidades 1 a 5, y ninguno tiene otro mate posible en la última jugada.
+- **Revisión con Stockfish (profundidad 16 a 24):**
+  - Triangulación (posición hallada con un programa de búsqueda): con blancas solo ganan Re4, Re3 y Rd3; Rc3 y c5 dejan tablas. Con el turno de las negras, todas pierden.
+  - h3 en la Italiana es la mejor jugada (+0,31). En el pasillo se aceptan las 7 jugadas que abren salida al rey o lo acercan (de +0,28 a +0,57) y Tc1 (−0,08). En h2 se aceptan g3 y h3; f4 queda en −1,53.
+  - Lo que afirman los textos: el trébuchet lo pierde el que mueve, la triangulación gana y la Italiana tras h3 está equilibrada.
+- **Simulación de la práctica:** triangulación, 13 de 25 jugadas, sin jugadas buenas marcadas como error.
+- **Puzzles de Lichess:** zugzwang (dxvDC, FoRGt, 1Bee7), sacrificio de calidad (SjHwN, EkrEH, LTQbv, p4P0n) y repaso final (8PHlY, Z2PVU, to19k, 1gxnS, 9XWAR, d49wh, Kv9DA, 7CgP1). Los de calidad se eligieron con un programa: la primera jugada es una torre que captura un alfil o un caballo y el rival la recaptura.
+- La lección de profilaxis no tiene puzzles de Lichess: los de los temas «jugada defensiva» y «jugada tranquila» casi siempre responden a un jaque o son finales de peones, y no muestran la idea de anticipar el plan rival.
+
+| # | id | Lección | Pasos |
+|---|---|---|---|
+| 1 | u6-l01 | Zugzwang | 11 |
+| 2 | u6-l02 | Profilaxis | 10 |
+| 3 | u6-l03 | Sacrificio de calidad | 9 |
+| 4 | u6-l04 | Repaso final | 10 |
+
 ## Pendiente
 - Revisión de redacción (los textos son una primera versión).

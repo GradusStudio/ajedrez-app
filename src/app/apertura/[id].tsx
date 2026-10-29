@@ -1,0 +1,25 @@
+import React from 'react';
+import { Redirect, router, useLocalSearchParams } from 'expo-router';
+import { botForOpening } from '../../data/bots';
+import { findOpening } from '../../data/openings';
+import { OpeningDetailScreen } from '../../screens/OpeningDetailScreen';
+
+export default function OpeningRoute() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const course = findOpening(id);
+  if (!course) return <Redirect href="/aperturas" />;
+
+  return (
+    <OpeningDetailScreen
+      course={course}
+      onBack={() => router.back()}
+      onStartLesson={(lesson) => router.push({ pathname: '/leccion/[id]', params: { id: lesson.id } })}
+      onPractice={() =>
+        router.push({
+          pathname: '/partida',
+          params: { bot: botForOpening(course.id).id, color: course.color, curso: course.id },
+        })
+      }
+    />
+  );
+}

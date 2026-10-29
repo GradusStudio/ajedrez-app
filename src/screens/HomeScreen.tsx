@@ -1,0 +1,188 @@
+import React, { useState } from 'react';
+import { Alert, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import Svg, { Line } from 'react-native-svg';
+import { Button3D } from '../components/Button3D';
+import { LessonNode, NODE_BOX } from '../components/LessonNode';
+import { ProgressBar } from '../components/ProgressBar';
+import { StatIcon } from '../components/StatIcon';
+import { Lesson, Unit } from '../data/lessonTypes';
+import { units } from '../data/units';
+import { lessonStates, suggestedLesson } from '../progress/path';
+import { useProgress } from '../progress/ProgressContext';
+import { currentStreak, minutesToday, xpToday } from '../progress/progressStore';
+import { colors, fonts, radius, space } from '../theme';
+
+type Props = {
+  onStartLesson: (lesson: Lesson) => void;
+};
+
+// Alto de cada fila de la ruta (nodo con su anillo + título) y desplazamiento en zigzag.
+const ROW = 124;
+const ZIGZAG = [0, 56, 0, -56];
+
+// Pestaña Aprender: barra de racha y meta, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
+export function HomeScreen({ onStartLesson }: Props) {
+  const { progress } = useProgress();
+  const suggested = suggestedLesson(units, progress);
+
+  const streak = currentStreak(progress);
+  const minutes = minutesToday(progress);
+  const goal = progress.profile.dailyGoalMin;
+
+  return (
+    <View style={styles.screen}>
+      <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}>
+        {/* Racha, XP del día y meta diaria */}
+        <View style={styles.statsRow}>
+          <View style={styles.stat} accessibilityLabel={`Racha de ${streak} días`}>
+            <StatIcon name="streak" />
+            <Text style={styles.statText}>{streak}</Text>
+          </View>
+          <View style={styles.stat} accessibilityLabel={`${xpToday(progress)} XP hoy`}>
+            <StatIcon name="xp" />
+            <Text style={styles.statText}>{xpToday(progress)} XP hoy</Text>
+          </View>
+        </View>
+        <View style={styles.goalRow}>
+          <Text style={styles.goalLabel}>Meta diaria</Text>
+          <ProgressBar value={minutes / goal} />
+          <Text style={styles.goalLabel}>
+            {Math.min(minutes, goal)}/{goal} min
+          </Text>
+        </View>
+
+        {units.map((unit) => (
+          <UnitPath key={unit.unit} unit={unit} onStartLesson={onStartLesson} />
+        ))}
+      </ScrollView>
+
+      {/* Botón flotante con la lección sugerida */}
+      {suggested && (
+        <View style={styles.floating}>
+          <Text style={styles.floatingCaption} numberOfLines={1}>
+            Lección {suggested.order} · {suggested.title}
+          </Text>
+          <Button3D
+            label={progress.drafts[suggested.id] ? 'Continuar' : 'Empezar'}
+            variant="primary"
+            onPress={() => onStartLesson(suggested)}
+          />
+        </View>
+      )}
+    </View>
+  );
+}
+
+/** Encabezado de una unidad y su ruta: línea que une los nodos y los nodos encima. */
+function UnitPath({ unit, onStartLesson }: { unit: Unit; onStartLesson: (lesson: Lesson) => void }) {
+  const { progress } = useProgress();
+  const [width, setWidth] = useState(0);
+  const lessons = unit.lessons;
+  const states = lessonStates(lessons, progress);
+  const doneCount = states.filter((s) => s === 'done').length;
+  const current = lessons[states.indexOf('current')];
+  const centers = lessons.map((_, i) => ({ x: width / 2 + ZIGZAG[i % ZIGZAG.length], y: i * ROW + NODE_BOX / 2 }));
+
+  const openLesson = (lesson: Lesson, i: number) => {
+    if (states[i] === 'locked') {
+      Alert.alert('Lección bloqueada', `Termina «${current?.title}» para seguir avanzando en esta unidad.`);
+      return;
+    }
+    onStartLesson(lesson);
+  };
+
+  return (
+    <>
+      <View style={styles.unitCard}>
+        <Text style={styles.unitCaption}>Unidad {unit.unit}</Text>
+        <Text style={styles.unitTitle}>
+          {unit.title} · {doneCount} de {lessons.length}
+        </Text>
+      </View>
+
+      <View
+        style={{ height: lessons.length * ROW, marginTop: space.xl }}
+        onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
+      >
+        {width > 0 && (
+          <>
+            <Svg style={StyleSheet.absoluteFill} width={width} height={lessons.length * ROW}>
+              {centers.slice(1).map((c, i) => (
+                <Line
+                  key={i}
+                  x1={centers[i].x}
+                  y1={centers[i].y}
+                  x2={c.x}
+                  y2={c.y}
+                  stroke={states[i] === 'done' ? colors.primary : colors.surfaceRaised}
+                  strokeWidth={6}
+                  strokeLinecap="round"
+                />
+              ))}
+            </Svg>
+            {lessons.map((lesson, i) => (
+              <View key={lesson.id} style={[styles.nodeWrap, { left: centers[i].x - 80, top: i * ROW }]}>
+                <LessonNode
+                  state={states[i]}
+                  order={lesson.order}
+                  label={lesson.title}
+                  onPress={() => openLesson(lesson, i)}
+                />
+                <Text
+                  style={[styles.nodeLabel, states[i] === 'locked' && { color: colors.textMuted }]}
+                  numberOfLines={2}
+                >
+                  {lesson.title}
+                </Text>
+              </View>
+            ))}
+          </>
+        )}
+      </View>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1, backgroundColor: colors.bg },
+  content: { paddingHorizontal: space.lg, paddingBottom: 140 }, // deja lugar al botón flotante
+  statsRow: { flexDirection: 'row', gap: space.lg },
+  stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
+  statText: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.gold },
+  goalRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md },
+  goalLabel: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted },
+  unitCard: {
+    marginTop: space.lg,
+    backgroundColor: colors.primary,
+    borderRadius: radius.control,
+    borderBottomWidth: 4,
+    borderBottomColor: colors.primaryShadow,
+    paddingVertical: space.md,
+    paddingHorizontal: 14,
+  },
+  unitCaption: {
+    fontFamily: fonts.extrabold,
+    fontSize: 12,
+    color: '#FFFFFF',
+    opacity: 0.85,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  unitTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: '#FFFFFF' },
+  nodeWrap: { position: 'absolute', width: 160, alignItems: 'center' },
+  nodeLabel: { fontFamily: fonts.bold, fontSize: 13, color: colors.text, textAlign: 'center', marginTop: space.xs },
+  floating: {
+    position: 'absolute',
+    left: space.lg,
+    right: space.lg,
+    bottom: space.lg,
+    backgroundColor: colors.surface,
+    borderRadius: radius.control,
+    borderWidth: 2,
+    borderColor: colors.surfaceRaised,
+    borderBottomWidth: 4,
+    borderBottomColor: colors.surfaceShadow,
+    padding: space.md,
+  },
+  floatingCaption: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text, marginBottom: space.sm },
+});

@@ -1,0 +1,638 @@
+{
+  "unit": 2,
+  "title": "Reglas especiales",
+  "lessons": [
+    {
+      "id": "u2-l01",
+      "unit": 2,
+      "order": 13,
+      "title": "El enroque",
+      "summary": "Rey y torre en una sola jugada",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El enroque mueve el rey y una torre en la misma jugada. El rey va dos casillas hacia la torre, y la torre salta al otro lado del rey. Este es el enroque corto: O-O.",
+          "fen": "4k3/8/8/8/8/8/8/4K2R w K - 0 1",
+          "play": [
+            "e1g1"
+          ],
+          "id": "u2-l01-s01"
+        },
+        {
+          "type": "explain",
+          "text": "El enroque largo se hace hacia la torre de a1: el rey va a c1 y la torre a d1. Se escribe O-O-O.",
+          "fen": "4k3/8/8/8/8/8/8/R3K3 w Q - 0 1",
+          "play": [
+            "e1c1"
+          ],
+          "id": "u2-l01-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Enroca corto.",
+          "fen": "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+          "solutions": [
+            "e1g1"
+          ],
+          "hint": "Toca el rey y luego g1: el rey se mueve dos casillas hacia la torre.",
+          "success": "Correcto. El rey quedó en g1, protegido, y la torre pasó a f1.",
+          "id": "u2-l01-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Juegas con negras. Enroca largo.",
+          "fen": "r3kbnr/pppqpppp/2n5/3p1b2/3P1B2/2N5/PPPQPPPP/R3KBNR b KQkq - 6 5",
+          "orientation": "b",
+          "solutions": [
+            "e8c8"
+          ],
+          "hint": "Mueve el rey dos casillas hacia la torre de a8.",
+          "success": "Correcto. El rey fue a c8 y la torre a d8.",
+          "id": "u2-l01-s04"
+        },
+        {
+          "type": "explain",
+          "text": "Para enrocar, el rey y esa torre no se pueden haber movido en toda la partida, y las casillas entre ellos tienen que estar vacías.",
+          "fen": "4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1",
+          "highlight": [
+            "b1",
+            "c1",
+            "d1",
+            "f1",
+            "g1"
+          ],
+          "id": "u2-l01-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Tampoco se puede enrocar si el rey está en jaque, ni si pasa por una casilla atacada o termina en una. Aquí el alfil negro ataca f1: no hay enroque corto, pero el largo sí.",
+          "fen": "4k3/8/8/8/2b5/8/8/R3K2R w KQ - 0 1",
+          "arrows": [
+            "c4f1"
+          ],
+          "showMovesFrom": "e1",
+          "id": "u2-l01-s06"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Pueden enrocar corto las blancas?",
+          "fen": "4k3/8/8/8/8/7n/8/R3K2R w KQ - 0 1",
+          "options": [
+            "Sí",
+            "No, el rey terminaría en una casilla atacada",
+            "No, la torre está atacada"
+          ],
+          "answer": 1,
+          "explanation": "El caballo ataca g1, la casilla donde terminaría el rey. Por eso el enroque corto no está permitido.",
+          "feedback": [
+            "Mira qué casillas ataca el caballo de h3.",
+            "",
+            "La torre de h1 no está atacada, y aunque lo estuviera, eso no impide enrocar."
+          ],
+          "id": "u2-l01-s07"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Y pueden enrocar largo?",
+          "fen": "4k3/8/8/8/8/7n/8/R3K2R w KQ - 0 1",
+          "options": [
+            "Sí",
+            "No"
+          ],
+          "answer": 0,
+          "explanation": "Del lado de la dama nada está atacado: el rey pasa por d1 y termina en c1 sin problema.",
+          "feedback": [
+            "",
+            "Revisa d1 y c1: ninguna está atacada."
+          ],
+          "id": "u2-l01-s08"
+        }
+      ]
+    },
+    {
+      "id": "u2-l02",
+      "unit": 2,
+      "order": 14,
+      "title": "La captura al paso",
+      "summary": "Una captura especial de peón",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Si un peón avanza dos casillas y queda al lado de un peón rival, ese peón puede capturarlo como si hubiera avanzado solo una. Se llama captura al paso.",
+          "fen": "4k3/3p4/8/4P3/8/8/8/4K3 b - - 0 1",
+          "play": [
+            "d7d5",
+            "e5d6"
+          ],
+          "id": "u2-l02-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Solo se puede hacer en la jugada siguiente. Si juegas otra cosa, el derecho se pierde.",
+          "fen": "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2",
+          "arrows": [
+            "e5d6"
+          ],
+          "highlight": [
+            "d5"
+          ],
+          "id": "u2-l02-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Las negras acaban de jugar f5. Captura al paso.",
+          "fen": "rnbqkbnr/ppp1p1pp/8/3pPp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3",
+          "solutions": [
+            "e5f6"
+          ],
+          "hint": "El peón de f avanzó dos casillas y quedó al lado del tuyo. Captúralo yendo a f6.",
+          "success": "Correcto. Tu peón quedó en f6 y el peón de f5 salió del tablero.",
+          "id": "u2-l02-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Juegas con negras. Las blancas acaban de jugar b4. Captura al paso.",
+          "fen": "rnbqkbnr/pp1ppppp/8/8/1Pp5/4P3/P1PP1PPP/RNBQKBNR b KQkq b3 0 3",
+          "orientation": "b",
+          "solutions": [
+            "c4b3"
+          ],
+          "hint": "El peón de b avanzó dos casillas y quedó al lado de tu peón de c4.",
+          "success": "Correcto. Tu peón quedó en b3 y el peón de b4 salió del tablero.",
+          "id": "u2-l02-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Las negras acaban de jugar d5. ¿Dónde queda tu peón si captura al paso?",
+          "fen": "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2",
+          "options": [
+            "d6",
+            "d5",
+            "e6"
+          ],
+          "answer": 0,
+          "explanation": "Queda en d6, la casilla que saltó el peón negro. El peón de d5 sale del tablero.",
+          "feedback": [
+            "",
+            "Captura como si el peón hubiera avanzado una sola casilla.",
+            "El peón captura en diagonal."
+          ],
+          "id": "u2-l02-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Las negras jugaron d5 hace dos jugadas. ¿Todavía puedes capturar al paso?",
+          "fen": "3k4/8/8/3pP3/8/8/8/3K4 w - - 2 3",
+          "options": [
+            "Sí",
+            "No, el momento ya pasó"
+          ],
+          "answer": 1,
+          "explanation": "La captura al paso solo vale en la jugada siguiente al avance de dos casillas.",
+          "feedback": [
+            "Solo se puede en la jugada inmediata.",
+            ""
+          ],
+          "id": "u2-l02-s06"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Las negras acaban de jugar e5, avanzando dos casillas. Toca el peón que puedes capturar al paso.",
+          "fen": "4k3/8/8/2pPp3/8/8/8/4K3 w - e6 0 2",
+          "squares": [
+            "e5"
+          ],
+          "hint": "Es el peón que acaba de avanzar dos casillas.",
+          "id": "u2-l02-s07"
+        }
+      ]
+    },
+    {
+      "id": "u2-l03",
+      "unit": 2,
+      "order": 15,
+      "title": "Coronar bien",
+      "summary": "Elegir la pieza justa al coronar",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Repaso: cuando el peón llega a la última fila, eliges en qué pieza se convierte. Casi siempre conviene la dama.",
+          "fen": "8/1P6/8/7k/8/8/8/4K3 w - - 0 1",
+          "play": [
+            "b7b8q"
+          ],
+          "id": "u2-l03-s01"
+        },
+        {
+          "type": "move",
+          "prompt": "Corona capturando la torre.",
+          "fen": "2r4k/3P4/8/8/8/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d7c8"
+          ],
+          "hint": "El peón también captura en diagonal al coronar. Si avanza a d8, la torre lo captura.",
+          "success": "Correcto. Capturaste la torre y coronaste a la vez.",
+          "id": "u2-l03-s02"
+        },
+        {
+          "type": "explain",
+          "text": "Cuidado con el ahogado. Si aquí coronas dama, el rey negro no tiene casillas y no está en jaque: es ahogado y la partida termina en tablas.",
+          "fen": "8/k1P5/2K5/8/8/8/8/8 w - - 0 1",
+          "highlight": [
+            "a7"
+          ],
+          "id": "u2-l03-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Corona sin ahogar al rey negro, y que te quede material para dar mate.",
+          "fen": "8/k1P5/2K5/8/8/8/8/8 w - - 0 1",
+          "solutions": [
+            "c7c8r"
+          ],
+          "hint": "La dama ahoga. Prueba con la torre: deja libre la casilla a6.",
+          "success": "Correcto. Con torre el rey negro tiene a6, y después de Ra6 viene Ta8 mate.",
+          "id": "u2-l03-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Las negras amenazan Df1 mate. ¿Qué pieza conviene coronar?",
+          "fen": "8/1k1P1q2/8/8/8/8/6PP/7K w - - 0 1",
+          "options": [
+            "Dama",
+            "Caballo",
+            "Torre"
+          ],
+          "answer": 1,
+          "explanation": "Un caballo en d8 da jaque al rey y ataca la dama al mismo tiempo. Con dama o torre, las negras dan mate con Df1.",
+          "feedback": [
+            "Con dama, las negras juegan Df1 y es mate.",
+            "",
+            "Con torre, las negras juegan Df1 y es mate."
+          ],
+          "id": "u2-l03-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Corona de forma que las negras no puedan dar mate.",
+          "fen": "8/1k1P1q2/8/8/8/8/6PP/7K w - - 0 1",
+          "solutions": [
+            "d7d8n"
+          ],
+          "hint": "Corona caballo: da jaque y ataca la dama.",
+          "success": "Correcto. Después del jaque, el caballo captura la dama.",
+          "id": "u2-l03-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Antes de coronar, revisa dos cosas: si la dama dejaría al rey rival ahogado, y si después te pueden dar mate. Casi siempre es dama; a veces, otra pieza.",
+          "fen": "8/1k1P1q2/8/8/8/8/6PP/7K w - - 0 1",
+          "play": [
+            "d7d8n",
+            "b7c8",
+            "d8f7"
+          ],
+          "id": "u2-l03-s07"
+        }
+      ]
+    },
+    {
+      "id": "u2-l04",
+      "unit": 2,
+      "order": 16,
+      "title": "El rey ahogado",
+      "summary": "Sin jugadas y sin jaque: tablas",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Juegan las negras, pero el rey no tiene ninguna casilla segura y no está en jaque. Es ahogado: la partida termina en tablas.",
+          "fen": "7k/8/6Q1/8/8/8/8/6K1 b - - 0 1",
+          "highlight": [
+            "h8"
+          ],
+          "id": "u2-l04-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Aquí, en cambio, el rey está en jaque y no puede escapar: es mate. La diferencia entre mate y ahogado es el jaque.",
+          "fen": "7k/6Q1/6K1/8/8/8/8/8 b - - 0 1",
+          "highlight": [
+            "h8"
+          ],
+          "id": "u2-l04-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Juegan las negras. ¿Mate o ahogado?",
+          "fen": "k7/2Q5/1K6/8/8/8/8/8 b - - 0 1",
+          "options": [
+            "Mate",
+            "Ahogado"
+          ],
+          "answer": 1,
+          "explanation": "El rey negro no tiene casillas, pero no está en jaque: es ahogado, tablas.",
+          "feedback": [
+            "¿Está el rey en jaque?",
+            ""
+          ],
+          "id": "u2-l04-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Juegan las negras. ¿Mate o ahogado?",
+          "fen": "k7/1Q6/1K6/8/8/8/8/8 b - - 0 1",
+          "options": [
+            "Mate",
+            "Ahogado"
+          ],
+          "answer": 0,
+          "explanation": "La dama da jaque y el rey no puede escapar ni capturarla, porque la protege el rey blanco: es mate.",
+          "feedback": [
+            "",
+            "Mira si la dama da jaque."
+          ],
+          "id": "u2-l04-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Juegan las blancas. ¿Cuál de estas jugadas ahoga al rey negro?",
+          "fen": "7k/5K2/8/8/8/3Q4/8/8 w - - 0 1",
+          "options": [
+            "Dg6",
+            "Dh3",
+            "Dd8"
+          ],
+          "answer": 0,
+          "explanation": "Después de Dg6, el rey negro no tiene casillas y no está en jaque: ahogado. En cambio, Dh3 es mate.",
+          "feedback": [
+            "",
+            "Dh3 da jaque: no es ahogado. De hecho, es mate.",
+            "Dd8 da jaque y el rey escapa a h7."
+          ],
+          "id": "u2-l04-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Ahora da mate, sin ahogar.",
+          "fen": "7k/5K2/8/8/8/3Q4/8/8 w - - 0 1",
+          "solutions": [
+            "d3h3"
+          ],
+          "hint": "Tu rey ya controla g7 y g8. Da jaque por la columna h.",
+          "success": "Correcto. Dh3 es mate: el rey negro está en jaque y no tiene adónde ir.",
+          "id": "u2-l04-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Si vas perdiendo, el ahogado puede salvarte. Aquí las negras tienen dama, pero las blancas no tienen ninguna jugada y no están en jaque: tablas.",
+          "fen": "k7/8/8/8/8/7p/5q1P/7K w - - 0 1",
+          "highlight": [
+            "h1"
+          ],
+          "id": "u2-l04-s07"
+        }
+      ]
+    },
+    {
+      "id": "u2-l05",
+      "unit": 2,
+      "order": 17,
+      "title": "Otras tablas",
+      "summary": "Repetición, material y 50 jugadas",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Las negras tienen más material y amenazan mate, pero las blancas dan jaque tras jaque. Si la misma posición se repite tres veces, la partida es tablas.",
+          "fen": "6k1/6p1/8/2b5/4Q3/8/rr4PP/7K w - - 0 1",
+          "play": [
+            "e4d5",
+            "g8h7",
+            "d5h5",
+            "h7g8",
+            "h5d5",
+            "g8h7",
+            "d5h5",
+            "h7g8",
+            "h5d5"
+          ],
+          "id": "u2-l05-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Esto se llama jaque perpetuo: jaques sin fin que el rival no puede evitar. Es la forma más común de salvar una partida perdida por repetición.",
+          "fen": "6k1/6p1/8/2b5/4Q3/8/rr4PP/7K w - - 0 1",
+          "arrows": [
+            "e4d5",
+            "d5h5"
+          ],
+          "id": "u2-l05-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Vas perdiendo y las negras amenazan mate. Da jaque para empezar el perpetuo.",
+          "fen": "6k1/6p1/8/2b5/4Q3/8/rr4PP/7K w - - 0 1",
+          "solutions": [
+            "e4d5",
+            "e4e6",
+            "e4c4",
+            "e4e8"
+          ],
+          "hint": "Busca un jaque con la dama en el que no la puedan capturar.",
+          "success": "Correcto. Con jaques sin fin, las negras no pueden evitar las tablas.",
+          "id": "u2-l05-s03"
+        },
+        {
+          "type": "explain",
+          "text": "También son tablas cuando a ninguno le alcanza el material para dar mate: rey contra rey, rey y alfil contra rey, o rey y caballo contra rey.",
+          "fen": "8/8/3k4/8/8/2NK4/8/8 w - - 0 1",
+          "id": "u2-l05-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Rey y torre contra rey. ¿Alcanza para dar mate?",
+          "fen": "8/8/3k4/8/8/3K4/8/7R w - - 0 1",
+          "options": [
+            "Sí",
+            "No"
+          ],
+          "answer": 0,
+          "explanation": "Sí: con rey y torre se puede dar mate. Lo verás en la unidad de finales.",
+          "feedback": [
+            "",
+            "La torre, con ayuda del rey, puede dar mate."
+          ],
+          "id": "u2-l05-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Rey y caballo contra rey. ¿Alcanza para dar mate?",
+          "fen": "8/8/3k4/8/8/3K4/8/6N1 w - - 0 1",
+          "options": [
+            "Sí",
+            "No"
+          ],
+          "answer": 1,
+          "explanation": "No: con un solo caballo no se puede forzar el mate. Son tablas por material insuficiente.",
+          "feedback": [
+            "Un caballo solo no alcanza para dar mate.",
+            ""
+          ],
+          "id": "u2-l05-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Regla de las 50 jugadas: si pasan 50 jugadas de cada bando sin capturas ni movimientos de peón, son tablas. Además, los jugadores pueden acordar tablas: en Bots puedes ofrecérselas al rival.",
+          "fen": "4k3/8/8/3r4/8/8/3R4/4K3 w - - 0 1",
+          "id": "u2-l05-s07"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuál de estas situaciones no es tablas?",
+          "fen": "7k/6Q1/6K1/8/8/8/8/8 b - - 0 1",
+          "options": [
+            "Rey ahogado",
+            "Jaque mate",
+            "Triple repetición"
+          ],
+          "answer": 1,
+          "explanation": "El jaque mate termina la partida con un ganador. Las otras dos son tablas.",
+          "feedback": [
+            "El ahogado es tablas.",
+            "",
+            "La triple repetición es tablas."
+          ],
+          "id": "u2-l05-s08"
+        }
+      ]
+    },
+    {
+      "id": "u2-l06",
+      "unit": 2,
+      "order": 18,
+      "title": "Cómo se escriben las jugadas",
+      "summary": "Leer y anotar jugadas",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Cada jugada se escribe con la letra de la pieza y la casilla adonde va: R rey, D dama, T torre, A alfil y C caballo. Esta jugada es Cf3. Los peones no llevan letra: e4.",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2",
+          "arrows": [
+            "g1f3"
+          ],
+          "id": "u2-l06-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Si la jugada captura, se agrega una x: Axf7. Cuando captura un peón, se escribe la columna de donde sale: exd5.",
+          "fen": "rnbqkbnr/ppp2ppp/8/3pp3/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq d6 0 3",
+          "arrows": [
+            "c4f7",
+            "e4d5"
+          ],
+          "id": "u2-l06-s02"
+        },
+        {
+          "type": "explain",
+          "text": "Otros signos: + es jaque y # es mate, como Dxf7# en esta posición. O-O es el enroque corto, O-O-O el largo, y =D indica la coronación: e8=D.",
+          "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4",
+          "arrows": [
+            "h5f7"
+          ],
+          "id": "u2-l06-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cómo se escribe la jugada del caballo de g1 a f3?",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "highlight": [
+            "g1",
+            "f3"
+          ],
+          "options": [
+            "Cf3",
+            "Rf3",
+            "Af3"
+          ],
+          "answer": 0,
+          "explanation": "C es el caballo: Cf3.",
+          "feedback": [
+            "",
+            "R es el rey.",
+            "A es el alfil."
+          ],
+          "id": "u2-l06-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Juega Ac4.",
+          "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+          "solutions": [
+            "f1c4"
+          ],
+          "hint": "A es el alfil: lleva el alfil de f1 a c4.",
+          "success": "Correcto. Ac4: el alfil fue a c4.",
+          "id": "u2-l06-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Juega exd5.",
+          "fen": "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq d6 0 2",
+          "solutions": [
+            "e4d5"
+          ],
+          "hint": "El peón de la columna e captura en d5.",
+          "success": "Correcto. exd5: el peón de e capturó en d5.",
+          "id": "u2-l06-s06"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué significa O-O-O?",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "options": [
+            "Enroque largo",
+            "Enroque corto",
+            "Jaque mate"
+          ],
+          "answer": 0,
+          "explanation": "O-O-O es el enroque largo, hacia la torre de la columna a. O-O es el corto.",
+          "feedback": [
+            "",
+            "El corto lleva dos O: O-O.",
+            "El mate se marca con #."
+          ],
+          "id": "u2-l06-s07"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué jugada es e8=C+?",
+          "fen": "8/4P3/8/8/8/k7/8/4K3 w - - 0 1",
+          "options": [
+            "Un peón corona caballo en e8 y da jaque",
+            "Un caballo va a e8 y da jaque",
+            "Un peón corona dama en e8"
+          ],
+          "answer": 0,
+          "explanation": "e8 es la casilla, =C la pieza que se corona y + el jaque.",
+          "feedback": [
+            "",
+            "Si fuera un caballo, empezaría con C: Ce8+.",
+            "=C indica caballo, no dama."
+          ],
+          "id": "u2-l06-s08"
+        },
+        {
+          "type": "explain",
+          "text": "En inglés las letras son K (rey), Q (dama), R (torre), B (alfil) y N (caballo): Cf3 se escribe Nf3. Las lecciones usan la notación española; en Ajustes > Notación eliges cuál ver en partidas, aperturas y análisis.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "id": "u2-l06-s09"
+        }
+      ]
+    }
+  ]
+}

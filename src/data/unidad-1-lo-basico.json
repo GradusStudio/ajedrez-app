@@ -1,0 +1,944 @@
+{
+  "unit": 1,
+  "title": "Lo básico",
+  "lessons": [
+    {
+      "id": "u1-l01",
+      "unit": 1,
+      "order": 1,
+      "title": "El tablero y las coordenadas",
+      "summary": "Aprende a nombrar cada casilla",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El tablero tiene 64 casillas: 8 columnas y 8 filas, con colores alternados.",
+          "fen": "4k3/8/8/8/8/8/8/4K3 w - - 0 1",
+          "id": "u1-l01-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Las columnas se nombran con letras, de la a a la h. Las filas, con números, del 1 al 8. Las blancas empiezan abajo.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "id": "u1-l01-s02"
+        },
+        {
+          "type": "explain",
+          "text": "Cada casilla se nombra con su columna y su fila. La marcada es e4: columna e, fila 4.",
+          "fen": "4k3/8/8/8/8/8/8/4K3 w - - 0 1",
+          "highlight": [
+            "e4"
+          ],
+          "id": "u1-l01-s03"
+        },
+        {
+          "type": "explain",
+          "text": "Un truco: la casilla de la esquina inferior derecha, h1, siempre es clara.",
+          "fen": "4k3/8/8/8/8/8/8/4K3 w - - 0 1",
+          "highlight": [
+            "h1"
+          ],
+          "id": "u1-l01-s04"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla e4.",
+          "fen": "4k3/8/8/8/8/8/8/4K3 w - - 0 1",
+          "squares": [
+            "e4"
+          ],
+          "hint": "Columna e, cuarta fila contando desde abajo.",
+          "id": "u1-l01-s05"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla c7.",
+          "fen": "4k3/8/8/8/8/8/8/4K3 w - - 0 1",
+          "squares": [
+            "c7"
+          ],
+          "hint": "Columna c, séptima fila.",
+          "id": "u1-l01-s06"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla g2.",
+          "fen": "4k3/8/8/8/8/8/8/4K3 w - - 0 1",
+          "squares": [
+            "g2"
+          ],
+          "hint": "Columna g, segunda fila.",
+          "id": "u1-l01-s07"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cómo se llama la casilla marcada?",
+          "fen": "4k3/8/8/8/8/8/8/4K3 w - - 0 1",
+          "options": [
+            "f3",
+            "c3",
+            "f6",
+            "g3"
+          ],
+          "answer": 0,
+          "explanation": "Está en la columna f y en la fila 3: f3.",
+          "highlight": [
+            "f3"
+          ],
+          "id": "u1-l01-s08"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cómo se llama la casilla marcada?",
+          "fen": "4k3/8/8/8/8/8/8/4K3 w - - 0 1",
+          "options": [
+            "a6",
+            "f2",
+            "b6",
+            "b5"
+          ],
+          "answer": 2,
+          "explanation": "Está en la columna b y en la fila 6: b6.",
+          "highlight": [
+            "b6"
+          ],
+          "id": "u1-l01-s09"
+        }
+      ]
+    },
+    {
+      "id": "u1-l02",
+      "unit": 1,
+      "order": 2,
+      "title": "La torre",
+      "summary": "Se mueve en línea recta",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La torre se mueve en línea recta: por columnas y por filas, tantas casillas como quiera.",
+          "fen": "4k3/8/8/8/3R4/8/8/4K3 w - - 0 1",
+          "showMovesFrom": "d4",
+          "id": "u1-l02-s01"
+        },
+        {
+          "type": "explain",
+          "text": "No puede saltar sobre otras piezas. Si encuentra una pieza rival, puede capturarla y se detiene ahí.",
+          "fen": "4k3/8/8/3p4/3R4/8/8/4K3 w - - 0 1",
+          "showMovesFrom": "d4",
+          "id": "u1-l02-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva la torre a h4.",
+          "fen": "4k3/8/8/8/3R4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4h4"
+          ],
+          "hint": "Muévela hacia la derecha por la fila 4.",
+          "success": "Correcto",
+          "id": "u1-l02-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva la torre a d1.",
+          "fen": "4k3/8/8/8/3R4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4d1"
+          ],
+          "hint": "Muévela hacia abajo por la columna d.",
+          "success": "Correcto",
+          "id": "u1-l02-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura el peón negro con la torre.",
+          "fen": "4k3/8/8/3p4/3R4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4d5"
+          ],
+          "hint": "Está en tu misma columna.",
+          "success": "Correcto",
+          "id": "u1-l02-s05"
+        }
+      ]
+    },
+    {
+      "id": "u1-l03",
+      "unit": 1,
+      "order": 3,
+      "title": "El alfil",
+      "summary": "Se mueve en diagonal",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El alfil se mueve en diagonal, tantas casillas como quiera, sin saltar piezas.",
+          "fen": "4k3/8/8/8/3B4/8/8/4K3 w - - 0 1",
+          "showMovesFrom": "d4",
+          "id": "u1-l03-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Cada alfil se queda siempre en casillas del mismo color. Por eso empiezas con dos: uno de casillas claras y otro de oscuras.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "highlight": [
+            "c1",
+            "f1"
+          ],
+          "id": "u1-l03-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva el alfil a g7.",
+          "fen": "4k3/8/8/8/3B4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4g7"
+          ],
+          "hint": "Sube en diagonal hacia la derecha.",
+          "success": "Correcto",
+          "id": "u1-l03-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva el alfil a a1.",
+          "fen": "4k3/8/8/8/3B4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4a1"
+          ],
+          "hint": "Baja en diagonal hacia la izquierda.",
+          "success": "Correcto",
+          "id": "u1-l03-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura el peón negro con el alfil.",
+          "fen": "4k3/8/8/4p3/3B4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4e5"
+          ],
+          "hint": "Está en la diagonal, una casilla arriba a la derecha.",
+          "success": "Correcto",
+          "id": "u1-l03-s05"
+        }
+      ]
+    },
+    {
+      "id": "u1-l04",
+      "unit": 1,
+      "order": 4,
+      "title": "La dama",
+      "summary": "Torre y alfil en una sola pieza",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La dama se mueve como una torre y como un alfil a la vez. Es la pieza más poderosa.",
+          "fen": "4k3/8/8/8/3Q4/8/8/4K3 w - - 0 1",
+          "showMovesFrom": "d4",
+          "id": "u1-l04-s01"
+        },
+        {
+          "type": "explain",
+          "text": "La dama blanca empieza en una casilla clara y la negra, en una oscura. Cuídala: perderla suele decidir la partida.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "highlight": [
+            "d1",
+            "d8"
+          ],
+          "id": "u1-l04-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva la dama a g7.",
+          "fen": "4k3/8/8/8/3Q4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4g7"
+          ],
+          "hint": "Muévela en diagonal.",
+          "success": "Correcto",
+          "id": "u1-l04-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva la dama a a4.",
+          "fen": "4k3/8/8/8/3Q4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4a4"
+          ],
+          "hint": "Muévela en línea recta por la fila 4.",
+          "success": "Correcto",
+          "id": "u1-l04-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura el peón negro con la dama.",
+          "fen": "4k3/8/8/8/3Qp3/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4e4"
+          ],
+          "hint": "Está justo a su derecha.",
+          "success": "Correcto",
+          "id": "u1-l04-s05"
+        }
+      ]
+    },
+    {
+      "id": "u1-l05",
+      "unit": 1,
+      "order": 5,
+      "title": "El rey",
+      "summary": "Una casilla, con cuidado",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El rey se mueve una casilla en cualquier dirección. Es la pieza más importante: si lo pierdes, pierdes la partida.",
+          "fen": "4k3/8/8/8/4K3/8/8/8 w - - 0 1",
+          "showMovesFrom": "e4",
+          "id": "u1-l05-s01"
+        },
+        {
+          "type": "explain",
+          "text": "El rey nunca puede ir a una casilla atacada por el rival. Aquí la torre negra controla la columna d y la fila 2.",
+          "fen": "4k3/8/8/8/4K3/8/3r4/8 w - - 0 1",
+          "showMovesFrom": "e4",
+          "id": "u1-l05-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva el rey a e5.",
+          "fen": "4k3/8/8/8/4K3/8/8/8 w - - 0 1",
+          "solutions": [
+            "e4e5"
+          ],
+          "hint": "Una casilla hacia adelante.",
+          "success": "Correcto",
+          "id": "u1-l05-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Mueve el rey a una casilla segura.",
+          "fen": "4k3/8/8/8/4K3/8/3r4/8 w - - 0 1",
+          "solutions": [
+            "e4e3",
+            "e4e5",
+            "e4f3",
+            "e4f4",
+            "e4f5"
+          ],
+          "hint": "Evita la columna d.",
+          "success": "Correcto",
+          "id": "u1-l05-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Puede el rey ir a d3?",
+          "fen": "4k3/8/8/8/4K3/8/3r4/8 w - - 0 1",
+          "options": [
+            "Sí",
+            "No, la torre ataca esa casilla"
+          ],
+          "answer": 1,
+          "explanation": "La torre negra controla toda la columna d.",
+          "highlight": [
+            "d3"
+          ],
+          "id": "u1-l05-s05"
+        }
+      ]
+    },
+    {
+      "id": "u1-l06",
+      "unit": 1,
+      "order": 6,
+      "title": "El caballo",
+      "summary": "Salta en forma de L",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El caballo se mueve en L: dos casillas en una dirección y una en perpendicular.",
+          "fen": "4k3/8/8/8/3N4/8/8/4K3 w - - 0 1",
+          "showMovesFrom": "d4",
+          "id": "u1-l06-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Es la única pieza que salta sobre las demás. Aquí está rodeado de peones y aun así puede moverse.",
+          "fen": "4k3/8/8/2ppp3/2pNp3/2ppp3/8/4K3 w - - 0 1",
+          "showMovesFrom": "d4",
+          "id": "u1-l06-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva el caballo a f5.",
+          "fen": "4k3/8/8/8/3N4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4f5"
+          ],
+          "hint": "Dos casillas a la derecha y una arriba.",
+          "success": "Correcto",
+          "id": "u1-l06-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva el caballo a c2.",
+          "fen": "4k3/8/8/8/3N4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4c2"
+          ],
+          "hint": "Dos casillas abajo y una a la izquierda.",
+          "success": "Correcto",
+          "id": "u1-l06-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura el peón negro con el caballo.",
+          "fen": "4k3/8/8/5p2/3N4/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d4f5"
+          ],
+          "hint": "Dos a la derecha y una arriba.",
+          "success": "Correcto",
+          "id": "u1-l06-s05"
+        }
+      ]
+    },
+    {
+      "id": "u1-l07",
+      "unit": 1,
+      "order": 7,
+      "title": "El peón",
+      "summary": "Avanza recto, captura en diagonal y corona",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El peón avanza una casilla hacia adelante. En su primera jugada puede avanzar dos.",
+          "fen": "4k3/8/8/8/8/8/4P3/4K3 w - - 0 1",
+          "showMovesFrom": "e2",
+          "id": "u1-l07-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Después de moverse, solo puede avanzar una casilla.",
+          "fen": "4k3/8/8/8/4P3/8/8/4K3 w - - 0 1",
+          "showMovesFrom": "e4",
+          "id": "u1-l07-s02"
+        },
+        {
+          "type": "explain",
+          "text": "El peón captura en diagonal, una casilla hacia adelante.",
+          "fen": "4k3/8/8/3p1p2/4P3/8/8/4K3 w - - 0 1",
+          "showMovesFrom": "e4",
+          "id": "u1-l07-s03"
+        },
+        {
+          "type": "explain",
+          "text": "No captura hacia adelante: si hay una pieza delante, el peón queda bloqueado.",
+          "fen": "4k3/8/8/4p3/4P3/8/8/4K3 w - - 0 1",
+          "showMovesFrom": "e4",
+          "id": "u1-l07-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Avanza el peón dos casillas.",
+          "fen": "4k3/8/8/8/8/8/4P3/4K3 w - - 0 1",
+          "solutions": [
+            "e2e4"
+          ],
+          "hint": "Es su primera jugada.",
+          "success": "Correcto",
+          "id": "u1-l07-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura uno de los peones negros.",
+          "fen": "4k3/8/8/3p1p2/4P3/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "e4d5",
+            "e4f5"
+          ],
+          "hint": "Los peones capturan en diagonal.",
+          "success": "Correcto",
+          "id": "u1-l07-s06"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Puede avanzar el peón blanco?",
+          "fen": "4k3/8/8/4p3/4P3/8/8/4K3 w - - 0 1",
+          "options": [
+            "Sí",
+            "No, tiene una pieza delante"
+          ],
+          "answer": 1,
+          "explanation": "El peón no puede avanzar ni capturar hacia adelante.",
+          "highlight": [
+            "e4"
+          ],
+          "id": "u1-l07-s07"
+        },
+        {
+          "type": "explain",
+          "text": "Cuando el peón llega a la última fila, corona: se convierte en dama, torre, alfil o caballo, la que elijas. Casi siempre conviene la dama, la pieza más fuerte.",
+          "fen": "8/4P3/8/8/8/k7/8/4K3 w - - 0 1",
+          "play": [
+            "e7e8q"
+          ],
+          "id": "u1-l07-s08"
+        },
+        {
+          "type": "move",
+          "prompt": "Corona el peón y elige la dama.",
+          "fen": "8/3P4/8/8/8/k7/8/4K3 w - - 0 1",
+          "solutions": [
+            "d7d8q"
+          ],
+          "hint": "Avanza el peón hasta d8 y, en el selector, toca la dama.",
+          "success": "Correcto. El peón ahora es una dama.",
+          "id": "u1-l07-s09"
+        },
+        {
+          "type": "explain",
+          "text": "La dama no siempre es lo mejor. Aquí, si coronas dama, las negras juegan Dc1+: tu dama nueva tapa en e1, la capturan y es mate.",
+          "fen": "8/2q1P1k1/8/8/8/8/6PP/7K w - - 0 1",
+          "arrows": [
+            "c7c1"
+          ],
+          "highlight": [
+            "e7"
+          ],
+          "id": "u1-l07-s10"
+        },
+        {
+          "type": "move",
+          "prompt": "Corona el peón de forma que ganes la dama negra.",
+          "fen": "8/2q1P1k1/8/8/8/8/6PP/7K w - - 0 1",
+          "solutions": [
+            "e7e8n"
+          ],
+          "hint": "Un caballo en e8 daría jaque al rey y atacaría la dama a la vez.",
+          "success": "Correcto. El caballo da jaque y ataca la dama: después del jaque, la capturas.",
+          "id": "u1-l07-s11"
+        },
+        {
+          "type": "explain",
+          "text": "El rey se aparta y el caballo captura la dama. Coronar otra pieza en lugar de la dama se llama subpromoción.",
+          "fen": "8/2q1P1k1/8/8/8/8/6PP/7K w - - 0 1",
+          "play": [
+            "e7e8n",
+            "g7f8",
+            "e8c7"
+          ],
+          "id": "u1-l07-s12"
+        }
+      ]
+    },
+    {
+      "id": "u1-l08",
+      "unit": 1,
+      "order": 8,
+      "title": "Proteger piezas",
+      "summary": "Evita regalar material",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El caballo está protegido por el peón: si el alfil lo captura, el peón recaptura. A eso se le llama proteger.",
+          "fen": "4k3/6b1/8/8/3N4/4P3/8/4K3 w - - 0 1",
+          "highlight": [
+            "d4",
+            "e3"
+          ],
+          "id": "u1-l08-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Ahora nadie protege al caballo. Si el alfil lo captura, lo pierdes sin compensación. A una pieza así se le llama colgada.",
+          "fen": "4k3/6b1/8/8/3N4/8/8/4K3 w - - 0 1",
+          "highlight": [
+            "d4"
+          ],
+          "id": "u1-l08-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Está protegido el caballo blanco?",
+          "fen": "4k3/6b1/8/8/3N4/8/8/4K3 w - - 0 1",
+          "options": [
+            "Sí",
+            "No"
+          ],
+          "answer": 1,
+          "explanation": "Ninguna pieza blanca lo defiende, así que el alfil lo captura gratis.",
+          "highlight": [
+            "d4"
+          ],
+          "id": "u1-l08-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Protege el caballo con la torre.",
+          "fen": "4k3/6b1/8/8/3N4/8/R7/4K3 w - - 0 1",
+          "solutions": [
+            "a2a4",
+            "a2d2"
+          ],
+          "hint": "Mueve la torre para que vea la casilla d4.",
+          "success": "Correcto",
+          "id": "u1-l08-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura la pieza negra que no está protegida.",
+          "fen": "4k3/8/2p5/3b4/8/8/3R3n/4K3 w - - 0 1",
+          "solutions": [
+            "d2h2"
+          ],
+          "hint": "El alfil está protegido por un peón.",
+          "success": "Correcto",
+          "id": "u1-l08-s05"
+        }
+      ]
+    },
+    {
+      "id": "u1-l09",
+      "unit": 1,
+      "order": 9,
+      "title": "Intercambios",
+      "summary": "Cuándo conviene capturar",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Un intercambio ocurre cuando capturas y el rival recaptura. Para decidir si conviene, suma los puntos: peón 1, caballo 3, alfil 3, torre 5, dama 9.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "id": "u1-l09-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Si la torre captura este peón, el peón de c6 recaptura. Ganas 1 punto y pierdes 5: es un mal intercambio.",
+          "fen": "4k3/8/2p5/3p4/8/8/3R4/4K3 w - - 0 1",
+          "highlight": [
+            "d5"
+          ],
+          "id": "u1-l09-s02"
+        },
+        {
+          "type": "explain",
+          "text": "Aquí tu peón captura un caballo. Si el peón de c6 recaptura, ganaste 3 puntos y perdiste 1: es un buen intercambio.",
+          "fen": "4k3/8/2p5/3n4/4P3/8/8/4K3 w - - 0 1",
+          "highlight": [
+            "d5"
+          ],
+          "id": "u1-l09-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Conviene capturar el peón con la torre?",
+          "fen": "4k3/8/2p5/3p4/8/8/3R4/4K3 w - - 0 1",
+          "options": [
+            "Sí, gano un peón",
+            "No, pierdo la torre por un peón"
+          ],
+          "answer": 1,
+          "explanation": "Ganas 1 punto y pierdes 5.",
+          "highlight": [
+            "d5"
+          ],
+          "id": "u1-l09-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Conviene capturar el caballo con tu peón?",
+          "fen": "4k3/8/2p5/3n4/4P3/8/8/4K3 w - - 0 1",
+          "options": [
+            "Sí, gano un caballo por un peón",
+            "No, me recapturan el peón"
+          ],
+          "answer": 0,
+          "explanation": "Ganas 3 puntos y, aunque recapturen, solo pierdes 1.",
+          "feedback": [
+            "",
+            "Es cierto que pueden recapturar, pero el caballo vale más que el peón."
+          ],
+          "highlight": [
+            "d5"
+          ],
+          "id": "u1-l09-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Hay un peón negro en d5. ¿Con qué pieza conviene capturarlo?",
+          "fen": "3qk3/8/8/3p4/4P3/8/8/3QK3 w - - 0 1",
+          "options": [
+            "Con el peón de e4",
+            "Con la dama"
+          ],
+          "answer": 0,
+          "explanation": "Con el peón: si la dama negra recaptura, tu dama toma la suya.",
+          "feedback": [
+            "",
+            "Con la dama se cambian las damas. Hay una opción mejor."
+          ],
+          "highlight": [
+            "d5"
+          ],
+          "id": "u1-l09-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Mira la secuencia: el peón captura, la dama negra recaptura y tu dama toma la dama negra. Ganas 9 puntos por un peón.",
+          "fen": "3qk3/8/8/3p4/4P3/8/8/3QK3 w - - 0 1",
+          "play": [
+            "e4d5",
+            "d8d5",
+            "d1d5"
+          ],
+          "id": "u1-l09-s07"
+        }
+      ]
+    },
+    {
+      "id": "u1-l10",
+      "unit": 1,
+      "order": 10,
+      "title": "El jaque",
+      "summary": "Cuando el rey está atacado",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Jaque significa que el rey está atacado por una pieza rival. Aquí la torre blanca da jaque al rey negro.",
+          "fen": "R3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+          "highlight": [
+            "a8",
+            "e8"
+          ],
+          "id": "u1-l10-s01"
+        },
+        {
+          "type": "explain",
+          "text": "El rey nunca se captura. Si está en jaque, su dueño debe salir del jaque en la siguiente jugada.",
+          "fen": "R3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+          "highlight": [
+            "e8"
+          ],
+          "id": "u1-l10-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Da jaque al rey negro con la torre.",
+          "fen": "4k3/8/8/8/8/8/8/R3K3 w - - 0 1",
+          "solutions": [
+            "a1a8"
+          ],
+          "hint": "Llega a la fila 8 por la columna a.",
+          "success": "Correcto",
+          "id": "u1-l10-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Da jaque al rey negro con el caballo.",
+          "fen": "4k3/8/8/8/4N3/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "e4d6",
+            "e4f6"
+          ],
+          "hint": "Busca una casilla desde la que el caballo ataque e8.",
+          "success": "Correcto",
+          "id": "u1-l10-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Está en jaque el rey negro?",
+          "fen": "4k3/8/8/8/8/8/R7/4K3 b - - 0 1",
+          "options": [
+            "Sí",
+            "No"
+          ],
+          "answer": 1,
+          "explanation": "La torre ataca la fila 2 y la columna a, no al rey.",
+          "highlight": [
+            "e8"
+          ],
+          "id": "u1-l10-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Está en jaque el rey negro?",
+          "fen": "4k3/8/8/8/8/8/4R3/4K3 b - - 0 1",
+          "options": [
+            "Sí",
+            "No"
+          ],
+          "answer": 0,
+          "explanation": "La torre ataca por la columna e y no hay nada en medio.",
+          "highlight": [
+            "e8"
+          ],
+          "id": "u1-l10-s06"
+        }
+      ]
+    },
+    {
+      "id": "u1-l11",
+      "unit": 1,
+      "order": 11,
+      "title": "Salir del jaque",
+      "summary": "Tres formas de salvar al rey",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Si tu rey está en jaque, debes salir de él. Primera forma: mover el rey a una casilla que no esté atacada.",
+          "fen": "R3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+          "orientation": "b",
+          "showMovesFrom": "e8",
+          "id": "u1-l11-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Segunda forma: bloquear el ataque poniendo una pieza en medio.",
+          "fen": "4k3/8/2n5/8/8/8/4R3/4K3 b - - 0 1",
+          "orientation": "b",
+          "showMovesFrom": "c6",
+          "id": "u1-l11-s02"
+        },
+        {
+          "type": "explain",
+          "text": "Tercera forma: capturar la pieza que da jaque.",
+          "fen": "1b2k3/8/3N4/8/8/8/8/4K3 b - - 0 1",
+          "orientation": "b",
+          "showMovesFrom": "b8",
+          "id": "u1-l11-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Bloquea el jaque con el caballo.",
+          "fen": "4k3/8/2n5/8/8/8/4R3/4K3 b - - 0 1",
+          "solutions": [
+            "c6e5",
+            "c6e7"
+          ],
+          "hint": "Pon el caballo en la columna e, entre la torre y el rey.",
+          "success": "Correcto",
+          "orientation": "b",
+          "id": "u1-l11-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura la pieza que da jaque con el alfil.",
+          "fen": "1b2k3/8/3N4/8/8/8/8/4K3 b - - 0 1",
+          "solutions": [
+            "b8d6"
+          ],
+          "hint": "El atacante es el caballo blanco.",
+          "success": "Correcto",
+          "orientation": "b",
+          "id": "u1-l11-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Mueve el rey a una casilla segura.",
+          "fen": "R3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+          "solutions": [
+            "e8d7",
+            "e8e7",
+            "e8f7"
+          ],
+          "hint": "La torre controla toda la fila 8.",
+          "success": "Correcto",
+          "orientation": "b",
+          "id": "u1-l11-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Si ninguna de las tres opciones funciona, no hay salida: es jaque mate. Lo vemos en la siguiente lección.",
+          "fen": "R3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+          "orientation": "b",
+          "id": "u1-l11-s07"
+        }
+      ]
+    },
+    {
+      "id": "u1-l12",
+      "unit": 1,
+      "order": 12,
+      "title": "Jaque mate en una jugada",
+      "summary": "Cómo termina la partida",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Jaque mate: el rey está en jaque y no tiene forma de salir. La partida termina y gana quien dio el mate. Aquí el rey negro queda encerrado por sus propios peones.",
+          "fen": "R5k1/5ppp/8/8/8/8/8/4K3 b - - 0 1",
+          "highlight": [
+            "a8",
+            "g8"
+          ],
+          "id": "u1-l12-s01"
+        },
+        {
+          "type": "explain",
+          "text": "La dama da jaque y el rey blanco la protege, así que el rey negro no puede capturarla ni escapar.",
+          "fen": "7k/6Q1/6K1/8/8/8/8/8 b - - 0 1",
+          "highlight": [
+            "g7",
+            "h8"
+          ],
+          "id": "u1-l12-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Da jaque mate en una jugada.",
+          "fen": "6k1/5ppp/8/8/8/8/8/R3K3 w - - 0 1",
+          "solutions": [
+            "a1a8"
+          ],
+          "hint": "La torre sube por la columna a.",
+          "success": "Correcto",
+          "id": "u1-l12-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Da jaque mate en una jugada.",
+          "fen": "7k/8/5K2/8/8/8/8/6Q1 w - - 0 1",
+          "solutions": [
+            "g1g7"
+          ],
+          "hint": "Pon la dama donde tu rey la proteja.",
+          "success": "Correcto",
+          "id": "u1-l12-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Da jaque mate con las dos torres.",
+          "fen": "6k1/R7/8/8/8/8/8/1R2K3 w - - 0 1",
+          "solutions": [
+            "b1b8"
+          ],
+          "hint": "Una torre cierra la fila 7; la otra da jaque en la fila 8.",
+          "success": "Correcto",
+          "id": "u1-l12-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Es jaque mate?",
+          "fen": "R3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+          "options": [
+            "Sí",
+            "No, el rey puede escapar"
+          ],
+          "answer": 1,
+          "explanation": "El rey puede ir a d7, e7 o f7.",
+          "highlight": [
+            "e8"
+          ],
+          "id": "u1-l12-s06"
+        }
+      ]
+    }
+  ]
+}

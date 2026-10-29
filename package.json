@@ -1,0 +1,46 @@
+{
+  "name": "ajedrez-app",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "dependencies": {
+    "@expo-google-fonts/nunito": "^0.4.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "chess.js": "^1.4.0",
+    "expo": "~58.0.20",
+    "expo-audio": "~58.0.10",
+    "expo-constants": "~58.0.13",
+    "expo-font": "~58.0.10",
+    "expo-haptics": "~58.0.7",
+    "expo-linking": "~58.0.14",
+    "expo-navigation-bar": "~58.0.4",
+    "expo-notifications": "~58.1.7",
+    "expo-router": "~58.0.27",
+    "expo-status-bar": "~58.0.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.0",
+    "react-native-safe-area-context": "~5.10.1",
+    "react-native-screens": "~4.30.0",
+    "react-native-svg": "15.16.0",
+    "react-native-webview": "14.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "~19.3.0",
+    "eslint": "^9.0.0",
+    "eslint-config-expo": "~58.0.4",
+    "fzstd": "0.1.1",
+    "stockfish": "19.0.1",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "build:engine": "node scripts/build-engine.js",
+    "build:puzzles": "node scripts/build-puzzles.js",
+    "build:sounds": "node scripts/build-sounds.js",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "lint": "expo lint"
+  },
+  "private": true
+}

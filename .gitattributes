@@ -1,0 +1,8 @@
+# Finales de línea: todo queda en LF (como está escrito), también en Windows.
+* text=auto eol=lf
+
+# Archivos binarios
+*.png binary
+*.jpg binary
+*.wav binary
+*.ttf binary

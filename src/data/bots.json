@@ -1,0 +1,412 @@
+{
+  "version": 1,
+  "note": "Los Elo son objetivos: hay que calibrarlos jugando contra cada bot.",
+  "readyOpenings": [
+    "london",
+    "italian",
+    "vienna",
+    "scandinavian",
+    "sicilian",
+    "dragon",
+    "kia",
+    "kings-indian",
+    "modern",
+    "pirc",
+    "scotch",
+    "evans",
+    "bdg",
+    "caro-kann",
+    "ruy-lopez",
+    "rossolimo",
+    "alapin",
+    "queens-gambit",
+    "kings-gambit",
+    "albin",
+    "catalan",
+    "english",
+    "danish",
+    "french",
+    "nimzo-indian",
+    "petrov",
+    "queens-gambit-declined",
+    "queens-gambit-accepted"
+  ],
+  "plannedOpenings": [],
+  "bots": [
+    {
+      "id": "pipo",
+      "name": "Pipo",
+      "tagline": "El curioso",
+      "elo": 500,
+      "style": "equilibrado",
+      "trait": "Mueve las piezas con buena intención, pero se olvida de protegerlas. Toma lo que le dejas suelto y cae en mates simples.",
+      "teaches": "Capturar piezas sin protección y dar mates básicos.",
+      "engine": {
+        "type": "human-like",
+        "depth": 1,
+        "multipv": 15,
+        "temperature": 160,
+        "blunderRate": 0.26,
+        "maxBlunder": 825,
+        "thinkMs": [
+          400,
+          1200
+        ]
+      },
+      "repertoire": {
+        "white": [
+          "italian"
+        ],
+        "black": []
+      },
+      "book": "corto",
+      "lines": {
+        "greeting": "Hola. Todavía estoy aprendiendo, pero me gusta jugar.",
+        "onGoodMove": "Buena jugada. No la vi venir.",
+        "onBlunder": "Eso estaba suelto. Gracias.",
+        "onWin": "Gané. No sé cómo, pero gané.",
+        "onLose": "Me ganaste. Quiero ver cómo lo hiciste."
+      }
+    },
+    {
+      "id": "lola",
+      "name": "Lola",
+      "tagline": "La prudente",
+      "elo": 800,
+      "style": "tranquilo",
+      "trait": "Protege todo y casi nunca ataca. Cambia piezas cuando puede y espera tu error.",
+      "teaches": "Paciencia: cómo romper una posición sólida sin arriesgar de más.",
+      "engine": {
+        "type": "human-like",
+        "depth": 1,
+        "multipv": 12,
+        "temperature": 110,
+        "blunderRate": 0.18,
+        "maxBlunder": 650,
+        "thinkMs": [
+          500,
+          1500
+        ]
+      },
+      "repertoire": {
+        "white": [
+          "london"
+        ],
+        "black": [
+          "scandinavian"
+        ]
+      },
+      "book": "medio",
+      "lines": {
+        "greeting": "Con calma. Aquí no hay apuro.",
+        "onGoodMove": "Bien jugado. Tendré que cuidarme.",
+        "onBlunder": "Cuidado: esa pieza quedó sin protección.",
+        "onWin": "Ganar con calma también es ganar.",
+        "onLose": "Muy bien. Rompiste mi defensa."
+      }
+    },
+    {
+      "id": "tomas",
+      "name": "Tomás",
+      "tagline": "El tramposo",
+      "elo": 1000,
+      "style": "agresivo",
+      "trait": "Busca trampas desde la apertura y ataca f7. Si no caes, se queda sin plan.",
+      "teaches": "Defenderse de amenazas tempranas y reconocer trampas conocidas.",
+      "engine": {
+        "type": "human-like",
+        "depth": 2,
+        "multipv": 10,
+        "temperature": 90,
+        "blunderRate": 0.13,
+        "maxBlunder": 550,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "bias": "trampas"
+      },
+      "repertoire": {
+        "white": [
+          "italian",
+          "vienna"
+        ],
+        "black": [
+          "albin"
+        ]
+      },
+      "book": "medio",
+      "lines": {
+        "greeting": "Te voy a enseñar un truco.",
+        "onGoodMove": "Mmm, no caíste. Casi.",
+        "onBlunder": "Justo lo que esperaba.",
+        "onWin": "Te dije que había un truco.",
+        "onLose": "Me descubriste. Bien visto."
+      }
+    },
+    {
+      "id": "valentina",
+      "name": "Valentina",
+      "tagline": "La atacante",
+      "elo": 1200,
+      "style": "agresivo",
+      "trait": "Sacrifica peones por iniciativa y ataca al rey. Se debilita si te defiendes con calma.",
+      "teaches": "Defenderse bajo presión y contraatacar.",
+      "engine": {
+        "type": "human-like",
+        "depth": 2,
+        "multipv": 10,
+        "temperature": 70,
+        "blunderRate": 0.1,
+        "maxBlunder": 500,
+        "thinkMs": [
+          600,
+          1800
+        ],
+        "bias": "ataque"
+      },
+      "repertoire": {
+        "white": [
+          "vienna",
+          "kings-gambit",
+          "danish"
+        ],
+        "black": [
+          "sicilian"
+        ]
+      },
+      "book": "largo",
+      "lines": {
+        "greeting": "Vamos a jugar rápido y con ataque.",
+        "onGoodMove": "Buena defensa. Voy por otro lado.",
+        "onBlunder": "Eso abre mi ataque.",
+        "onWin": "El ataque funcionó.",
+        "onLose": "Te defendiste muy bien."
+      }
+    },
+    {
+      "id": "ramiro",
+      "name": "Don Ramiro",
+      "tagline": "El profesor",
+      "elo": 1350,
+      "style": "equilibrado",
+      "trait": "Juega las aperturas como en los libros y castiga cada error de principios.",
+      "teaches": "Los principios de apertura: centro, desarrollo y enroque.",
+      "engine": {
+        "type": "stockfish-elo",
+        "uciElo": 1350,
+        "multipv": 3,
+        "thinkMs": [
+          700,
+          2000
+        ]
+      },
+      "repertoire": {
+        "white": [
+          "italian",
+          "scotch"
+        ],
+        "black": [
+          "french",
+          "petrov"
+        ]
+      },
+      "book": "largo",
+      "lines": {
+        "greeting": "Empecemos por los principios: centro, desarrollo y enroque.",
+        "onGoodMove": "Eso es lo que dice el libro.",
+        "onBlunder": "Esa jugada rompe un principio de apertura.",
+        "onWin": "Repasa los principios y vuelve a intentarlo.",
+        "onLose": "Excelente. Has aprendido bien."
+      }
+    },
+    {
+      "id": "camila",
+      "name": "Camila",
+      "tagline": "La estratega",
+      "elo": 1500,
+      "style": "posicional",
+      "trait": "Evita las tácticas, mejora sus piezas y busca finales con ventaja pequeña.",
+      "teaches": "Estructura de peones, casillas débiles y planes a largo plazo.",
+      "engine": {
+        "type": "stockfish-elo",
+        "uciElo": 1500,
+        "multipv": 3,
+        "thinkMs": [
+          800,
+          2200
+        ],
+        "bias": "posicional"
+      },
+      "repertoire": {
+        "white": [
+          "english",
+          "catalan",
+          "queens-gambit"
+        ],
+        "black": [
+          "queens-gambit-declined"
+        ]
+      },
+      "book": "largo",
+      "lines": {
+        "greeting": "Prefiero ganar despacio.",
+        "onGoodMove": "Una mejora de posición muy sensata.",
+        "onBlunder": "Esa debilidad la voy a aprovechar.",
+        "onWin": "Las pequeñas ventajas suman una victoria.",
+        "onLose": "Mejor estructura la tuya. Felicitaciones."
+      }
+    },
+    {
+      "id": "bruno",
+      "name": "Bruno",
+      "tagline": "El muro",
+      "elo": 1650,
+      "style": "tranquilo",
+      "trait": "Defensa sólida y paciencia infinita. Concede espacio, pero casi no deja debilidades.",
+      "teaches": "Atacar una posición sólida con paciencia y buenos cambios.",
+      "engine": {
+        "type": "stockfish-elo",
+        "uciElo": 1650,
+        "multipv": 3,
+        "thinkMs": [
+          900,
+          2500
+        ],
+        "bias": "solidez"
+      },
+      "repertoire": {
+        "white": [
+          "london"
+        ],
+        "black": [
+          "caro-kann",
+          "french"
+        ]
+      },
+      "book": "largo",
+      "lines": {
+        "greeting": "Intenta romper mi muro.",
+        "onGoodMove": "Lograste una grieta. Atento.",
+        "onBlunder": "Dejaste un hueco en tu defensa.",
+        "onWin": "Mi muro resistió.",
+        "onLose": "El muro cayó. Buena técnica."
+      }
+    },
+    {
+      "id": "sofia",
+      "name": "Sofía",
+      "tagline": "La táctica",
+      "elo": 1800,
+      "style": "agresivo",
+      "trait": "Calcula varias jugadas por delante. Castiga cualquier pieza sin protección.",
+      "teaches": "Ver tácticas: horquillas, clavadas y ataques dobles, antes de que lleguen.",
+      "engine": {
+        "type": "stockfish-elo",
+        "uciElo": 1800,
+        "multipv": 3,
+        "thinkMs": [
+          1000,
+          2800
+        ],
+        "bias": "tactica"
+      },
+      "repertoire": {
+        "white": [
+          "evans",
+          "kings-gambit"
+        ],
+        "black": [
+          "sicilian",
+          "kings-indian"
+        ]
+      },
+      "book": "largo",
+      "lines": {
+        "greeting": "Calculo cada jugada. Que gane el mejor.",
+        "onGoodMove": "Buena táctica. La vi tarde.",
+        "onBlunder": "Había una combinación y no la viste.",
+        "onWin": "La táctica decidió la partida.",
+        "onLose": "Me ganaste con una táctica limpia."
+      }
+    },
+    {
+      "id": "ivo",
+      "name": "Maestro Ivo",
+      "tagline": "El finalista",
+      "elo": 1950,
+      "style": "posicional",
+      "trait": "Cambia piezas con precisión y juega los finales con una técnica muy fina.",
+      "teaches": "Técnica de finales y conversión de ventajas pequeñas.",
+      "engine": {
+        "type": "stockfish-elo",
+        "uciElo": 1950,
+        "multipv": 2,
+        "thinkMs": [
+          1200,
+          3000
+        ],
+        "bias": "finales"
+      },
+      "repertoire": {
+        "white": [
+          "ruy-lopez",
+          "queens-gambit"
+        ],
+        "black": [
+          "nimzo-indian",
+          "queens-gambit-declined"
+        ]
+      },
+      "book": "largo",
+      "lines": {
+        "greeting": "Los finales muestran la verdad de una partida.",
+        "onGoodMove": "Esa es una jugada de jugador paciente.",
+        "onBlunder": "En el final, ese error cuesta caro.",
+        "onWin": "El final lo decidió. Revisa la actividad de tu rey.",
+        "onLose": "Gran técnica de final."
+      }
+    },
+    {
+      "id": "ada",
+      "name": "Ada",
+      "tagline": "La máquina",
+      "elo": 2200,
+      "style": "equilibrado",
+      "trait": "Juega con precisión casi total y usa todo su repertorio. Es el desafío final.",
+      "teaches": "Jugar sin errores contra un rival muy exacto.",
+      "engine": {
+        "type": "stockfish-elo",
+        "uciElo": 2200,
+        "multipv": 1,
+        "thinkMs": [
+          1500,
+          3500
+        ]
+      },
+      "repertoire": {
+        "white": [
+          "london",
+          "italian",
+          "vienna",
+          "ruy-lopez",
+          "queens-gambit"
+        ],
+        "black": [
+          "scandinavian",
+          "petrov",
+          "sicilian",
+          "nimzo-indian"
+        ]
+      },
+      "book": "largo",
+      "lines": {
+        "greeting": "Juego lo mejor que sé. Que comience la partida.",
+        "onGoodMove": "Precisa. Esa fue la mejor jugada.",
+        "onBlunder": "Error. Lo aprovecho.",
+        "onWin": "Revisa la partida: vas a aprender mucho.",
+        "onLose": "Impresionante. Me ganaste."
+      }
+    }
+  ]
+}

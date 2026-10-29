@@ -1,0 +1,709 @@
+{
+  "unit": 4,
+  "title": "Apertura y estrategia",
+  "lessons": [
+    {
+      "id": "u4-l01",
+      "unit": 4,
+      "order": 27,
+      "title": "Principios de apertura",
+      "summary": "Centro, desarrollo y enroque",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "En la apertura hay tres ideas: ocupar el centro con peones, sacar las piezas (desarrollarlas) y enrocar para poner al rey a salvo.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "play": [
+            "e2e4",
+            "e7e5",
+            "g1f3",
+            "b8c6",
+            "f1c4",
+            "f8c5",
+            "e1g1"
+          ],
+          "id": "u4-l01-s01"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca las 4 casillas del centro.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "squares": [
+            "d4",
+            "e4",
+            "d5",
+            "e5"
+          ],
+          "hint": "Son las 4 casillas del medio del tablero.",
+          "id": "u4-l01-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Primera jugada: ocupa el centro con un peón.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "solutions": [
+            "e2e4",
+            "d2d4"
+          ],
+          "hint": "Avanza dos casillas el peón de la columna e o el de la columna d.",
+          "success": "Correcto. El peón ocupa el centro y abre camino a tus piezas.",
+          "id": "u4-l01-s03"
+        },
+        {
+          "type": "explain",
+          "text": "Después, desarrolla: primero los caballos y los alfiles, hacia el centro. Las torres y la dama salen más tarde, cuando el camino está abierto.",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "arrows": [
+            "g1f3",
+            "b1c3",
+            "f1c4"
+          ],
+          "id": "u4-l01-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Desarrolla un caballo o un alfil hacia el centro.",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "solutions": [
+            "g1f3",
+            "b1c3",
+            "f1c4",
+            "f1b5"
+          ],
+          "hint": "Saca un caballo o un alfil a una casilla donde mire al centro.",
+          "success": "Correcto. Una pieza más en juego.",
+          "id": "u4-l01-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué jugada sigue los principios de apertura?",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "options": [
+            "Cf3",
+            "h4",
+            "Dh5"
+          ],
+          "answer": 0,
+          "explanation": "Cf3 desarrolla un caballo y ataca el peón de e5. h4 no desarrolla nada, y Dh5 saca la dama tan temprano que el rival la puede atacar ganando tiempo.",
+          "feedback": [
+            "",
+            "h4 no saca ninguna pieza ni ocupa el centro.",
+            "La dama sale demasiado temprano: el rival la atacará desarrollando sus piezas."
+          ],
+          "id": "u4-l01-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Ya desarrollaste tus piezas del lado del rey. Enroca.",
+          "fen": "r1bqk2r/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQK2R w KQkq - 0 6",
+          "solutions": [
+            "e1g1"
+          ],
+          "hint": "Mueve el rey dos casillas hacia la torre de h1.",
+          "success": "Correcto. El rey quedó a salvo y la torre lista para jugar.",
+          "id": "u4-l01-s07"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Para qué sirve enrocar temprano?",
+          "fen": "r1bqk2r/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQ1RK1 b kq - 1 6",
+          "options": [
+            "Pone al rey a salvo y conecta las torres",
+            "Ataca al rey rival",
+            "Gana un peón"
+          ],
+          "answer": 0,
+          "explanation": "El rey se va del centro, donde se abren las columnas, y la torre sale hacia el medio.",
+          "feedback": [
+            "",
+            "El enroque es una jugada de defensa y desarrollo, no de ataque.",
+            "El enroque no captura nada."
+          ],
+          "id": "u4-l01-s08"
+        }
+      ]
+    },
+    {
+      "id": "u4-l02",
+      "unit": 4,
+      "order": 28,
+      "title": "Errores típicos de apertura",
+      "summary": "Lo que conviene evitar",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Si sacas la dama temprano, el rival la ataca mientras desarrolla sus piezas y tú pierdes tiempo moviéndola otra vez.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "play": [
+            "e2e4",
+            "e7e5",
+            "d1h5",
+            "b8c6",
+            "f1c4",
+            "g7g6",
+            "h5f3",
+            "g8f6"
+          ],
+          "id": "u4-l02-s01"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Las negras sacaron la dama a d5. ¿Qué jugada la ataca y además desarrolla una pieza?",
+          "fen": "rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 3",
+          "options": [
+            "Cc3",
+            "Dg4",
+            "h3"
+          ],
+          "answer": 0,
+          "explanation": "Cc3 saca un caballo y ataca la dama: las negras tienen que volver a moverla.",
+          "feedback": [
+            "",
+            "Dg4 saca tu dama temprano, y además la pierde: el alfil de c8 la captura.",
+            "h3 no desarrolla nada ni ataca la dama."
+          ],
+          "id": "u4-l02-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca la dama negra desarrollando una pieza.",
+          "fen": "rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 3",
+          "solutions": [
+            "b1c3"
+          ],
+          "hint": "Un caballo puede atacar la dama de d5.",
+          "success": "Correcto. Desarrollaste con ganancia de tiempo.",
+          "id": "u4-l02-s03"
+        },
+        {
+          "type": "explain",
+          "text": "Mover la misma pieza varias veces en la apertura deja a las demás sin salir. Aquí las blancas movieron el caballo tres veces y volvió a f3; las negras, en cambio, ya sacaron tres piezas.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "play": [
+            "e2e4",
+            "e7e5",
+            "g1f3",
+            "b8c6",
+            "f3g5",
+            "g8f6",
+            "g5f3",
+            "f8c5"
+          ],
+          "id": "u4-l02-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuál de estas jugadas pierde tiempo?",
+          "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+          "options": [
+            "Cg1",
+            "Ac4",
+            "d4"
+          ],
+          "answer": 0,
+          "explanation": "Cg1 devuelve el caballo a su casilla: es deshacer una jugada de desarrollo.",
+          "feedback": [
+            "",
+            "Ac4 desarrolla un alfil hacia el centro: es una buena jugada.",
+            "d4 ataca el centro: es una buena jugada."
+          ],
+          "id": "u4-l02-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Dejar el rey en el centro es peligroso cuando se abre la columna e. Aquí el alfil negro de e7 está clavado: si se mueve, la torre da jaque.",
+          "fen": "r1bqk2r/ppp1bppp/2np1n2/8/2B5/2N2N2/PPP2PPP/R1BQR1K1 w kq - 0 9",
+          "arrows": [
+            "e1e8"
+          ],
+          "id": "u4-l02-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Las negras no enrocaron y la columna e está abierta. Pon allí una pieza pesada, contra su rey.",
+          "fen": "r1bqk2r/ppp1bppp/2np1n2/8/2B5/2N2N2/PPP2PPP/R1BQ1RK1 w kq - 0 9",
+          "solutions": [
+            "f1e1",
+            "d1e2",
+            "d1e1"
+          ],
+          "hint": "Una torre o la dama en la columna e apuntan al rey negro.",
+          "success": "Correcto. Ahora el alfil de e7 está clavado y el rey negro, incómodo.",
+          "id": "u4-l02-s07"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: no saques la dama demasiado temprano, no muevas la misma pieza muchas veces y no dejes al rey en el centro.",
+          "fen": "r1bqk2r/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQ1RK1 b kq - 1 6",
+          "id": "u4-l02-s08"
+        }
+      ]
+    },
+    {
+      "id": "u4-l03",
+      "unit": 4,
+      "order": 29,
+      "title": "Estructura de peones",
+      "summary": "Peones aislados, doblados y pasados",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Un peón aislado no tiene peones propios en las columnas de al lado: ningún peón lo puede defender. Aquí el peón blanco de d4 está aislado.",
+          "fen": "4k3/pp3ppp/4p3/8/3P4/8/PP3PPP/4K3 w - - 0 1",
+          "highlight": [
+            "d4"
+          ],
+          "id": "u4-l03-s01"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca el peón negro aislado.",
+          "fen": "4k3/pp3ppp/8/3p4/8/4P3/PP3PPP/4K3 w - - 0 1",
+          "squares": [
+            "d5"
+          ],
+          "hint": "Busca un peón negro sin peones negros en las columnas de al lado.",
+          "id": "u4-l03-s02"
+        },
+        {
+          "type": "explain",
+          "text": "Los peones doblados están en la misma columna, uno delante del otro. Se estorban al avanzar y no se pueden defender entre sí.",
+          "fen": "4k3/pp3ppp/8/8/8/2P5/P1P2PPP/4K3 w - - 0 1",
+          "highlight": [
+            "c2",
+            "c3"
+          ],
+          "id": "u4-l03-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿En cuántas columnas tienen las blancas peones doblados?",
+          "fen": "4k3/pp3ppp/8/8/8/2P2P2/P1P2P1P/4K3 w - - 0 1",
+          "options": [
+            "Ninguna",
+            "Una",
+            "Dos"
+          ],
+          "answer": 2,
+          "explanation": "En dos: la columna c (c2 y c3) y la columna f (f2 y f3).",
+          "feedback": [
+            "Mira las columnas c y f.",
+            "Hay más de una: revisa también la columna f.",
+            ""
+          ],
+          "id": "u4-l03-s04"
+        },
+        {
+          "type": "explain",
+          "text": "Un peón pasado no tiene peones rivales delante, ni en su columna ni en las de al lado: nadie le impide avanzar. Es una gran ventaja en el final.",
+          "fen": "4k3/pp4pp/8/3P4/8/8/PP4PP/4K3 w - - 0 1",
+          "highlight": [
+            "d5"
+          ],
+          "id": "u4-l03-s05"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca el peón pasado de las blancas.",
+          "fen": "4k3/pp4pp/8/4P3/8/P7/1P4PP/4K3 w - - 0 1",
+          "squares": [
+            "e5"
+          ],
+          "hint": "Busca un peón blanco que no tenga peones negros delante, ni en su columna ni en las de al lado.",
+          "id": "u4-l03-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "El rey negro se acerca. Avanza tu peón pasado sin perder tiempo.",
+          "fen": "8/8/8/2P3k1/8/8/8/7K w - - 0 1",
+          "solutions": [
+            "c5c6"
+          ],
+          "hint": "Si no avanzas ahora, el rey negro llega a tiempo para detener el peón.",
+          "success": "Correcto. El rey negro ya no alcanza al peón: va a coronar.",
+          "id": "u4-l03-s07"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuál es la debilidad de un peón aislado?",
+          "fen": "4k3/pp3ppp/4p3/8/3P4/8/PP3PPP/4K3 w - - 0 1",
+          "highlight": [
+            "d4"
+          ],
+          "options": [
+            "Ningún peón lo puede defender",
+            "No puede avanzar",
+            "Siempre se pierde"
+          ],
+          "answer": 0,
+          "explanation": "Solo lo pueden defender las piezas, que así quedan atadas a cuidarlo. Pero un peón aislado no siempre se pierde.",
+          "feedback": [
+            "",
+            "Puede avanzar si la casilla de delante está libre.",
+            "No siempre: es una debilidad, no una pérdida segura."
+          ],
+          "id": "u4-l03-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#naoae). Corona tu peón pasado.",
+          "fen": "8/8/8/2k2P2/6K1/P2p4/8/8 w - - 0 54",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "f5f6",
+              "san": "f6"
+            },
+            {
+              "uci": "d3d2",
+              "san": "d2"
+            },
+            {
+              "uci": "f6f7",
+              "san": "f7"
+            },
+            {
+              "uci": "d2d1q",
+              "san": "d1=D+"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Avanza el peón: cuenta si llega a coronar antes que el del rival.",
+          "id": "u4-l03-s09"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#eh3NH). Corona tu peón pasado.",
+          "fen": "8/1N6/8/PKP5/4k3/5p2/8/4b3 w - - 0 54",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "a5a6",
+              "san": "a6"
+            },
+            {
+              "uci": "f3f2",
+              "san": "f2"
+            },
+            {
+              "uci": "b5c6",
+              "san": "Rc6"
+            },
+            {
+              "uci": "f2f1q",
+              "san": "f1=D"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Avanza el peón: cuenta si llega a coronar antes que el del rival.",
+          "id": "u4-l03-s10"
+        }
+      ]
+    },
+    {
+      "id": "u4-l04",
+      "unit": 4,
+      "order": 30,
+      "title": "Columnas abiertas y torres activas",
+      "summary": "Dónde juegan mejor las torres",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Una columna abierta es una columna sin peones. Las torres son mucho más fuertes en las columnas abiertas: desde allí pueden entrar en el campo rival.",
+          "fen": "r4rk1/ppp2ppp/2n1b3/4p3/4P3/2N1B3/PPP2PPP/R4RK1 w - - 0 1",
+          "highlight": [
+            "d1",
+            "d2",
+            "d3",
+            "d4",
+            "d5",
+            "d6",
+            "d7",
+            "d8"
+          ],
+          "id": "u4-l04-s01"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué columna está abierta?",
+          "fen": "r4rk1/ppp2ppp/2n1b3/4p3/4P3/2N1B3/PPP2PPP/R4RK1 w - - 0 1",
+          "options": [
+            "La columna d",
+            "La columna e",
+            "La columna c"
+          ],
+          "answer": 0,
+          "explanation": "En la columna d no hay ningún peón.",
+          "feedback": [
+            "",
+            "En la columna e hay peones de los dos bandos.",
+            "En la columna c hay peones de los dos bandos."
+          ],
+          "id": "u4-l04-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Pon una torre en la columna abierta.",
+          "fen": "r4rk1/ppp2ppp/2n1b3/4p3/4P3/2N1B3/PPP2PPP/R4RK1 w - - 0 1",
+          "solutions": [
+            "a1d1",
+            "f1d1"
+          ],
+          "hint": "Cualquiera de tus dos torres puede ir a d1.",
+          "success": "Correcto. La torre controla la columna abierta.",
+          "id": "u4-l04-s03"
+        },
+        {
+          "type": "explain",
+          "text": "Dos torres en la misma columna están dobladas: se protegen entre sí y presionan el doble.",
+          "fen": "r4rk1/ppp2ppp/2n1b3/4p3/4P3/2N1B3/PPPR1PPP/3R2K1 w - - 0 1",
+          "highlight": [
+            "d1",
+            "d2"
+          ],
+          "id": "u4-l04-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Dobla las torres en la columna d.",
+          "fen": "r4rk1/ppp2ppp/2n1b3/4p3/4P3/2N1B3/PPP1RPPP/3R2K1 w - - 0 1",
+          "solutions": [
+            "e2d2"
+          ],
+          "hint": "Lleva la torre de e2 a la columna d, delante de la otra.",
+          "success": "Correcto. Las torres quedaron dobladas.",
+          "id": "u4-l04-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Una torre en la séptima fila ataca los peones que todavía no se movieron y encierra al rey rival en la última fila.",
+          "fen": "r5k1/pp1R1ppp/8/8/8/7P/PP3PP1/6K1 w - - 0 1",
+          "arrows": [
+            "d7b7",
+            "d7f7"
+          ],
+          "id": "u4-l04-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva tu torre a la séptima fila.",
+          "fen": "2r3k1/pp3ppp/8/8/8/7P/PP3PP1/3R2K1 w - - 0 1",
+          "solutions": [
+            "d1d7"
+          ],
+          "hint": "La columna d está abierta: la torre llega hasta d7.",
+          "success": "Correcto. La torre ataca los peones de b7 y f7.",
+          "id": "u4-l04-s07"
+        }
+      ]
+    },
+    {
+      "id": "u4-l05",
+      "unit": 4,
+      "order": 31,
+      "title": "Casillas débiles y puestos avanzados",
+      "summary": "Casillas que los peones ya no cubren",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Una casilla débil es una que ningún peón del rival puede defender, ni ahora ni más adelante. Aquí las negras jugaron e5 sin peón en c: ningún peón negro puede cuidar d5.",
+          "fen": "rnbqk2r/1p2bppp/p2p1n2/4p3/4P3/1NN5/PPP1BPPP/R1BQK2R w KQkq - 2 8",
+          "highlight": [
+            "d5"
+          ],
+          "id": "u4-l05-s01"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla débil del centro, en el lado de las negras: ningún peón negro la puede defender.",
+          "fen": "rnbqkb1r/pp4pp/2p1pn2/3p1p2/3P4/3BPN2/PPP2PPP/RNBQ1RK1 w kq - 2 6",
+          "squares": [
+            "e5"
+          ],
+          "hint": "Los peones negros de d5 y f5 ya pasaron: la casilla de en medio, delante de e6, quedó sin defensa.",
+          "id": "u4-l05-s02"
+        },
+        {
+          "type": "explain",
+          "text": "Un puesto avanzado es una casilla débil del rival donde tu pieza, casi siempre un caballo, queda protegida por un peón propio. Desde allí nadie la puede echar.",
+          "fen": "rnbqk2r/1p2bppp/p2p1n2/4p3/4P3/1NN5/PPP1BPPP/R1BQK2R w KQkq - 2 8",
+          "play": [
+            "c3d5"
+          ],
+          "id": "u4-l05-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva el caballo al puesto avanzado.",
+          "fen": "rnbqkb1r/pp4pp/2p1pn2/3p1p2/3P4/3BPN2/PPP2PPP/RNBQ1RK1 w kq - 2 6",
+          "solutions": [
+            "f3e5"
+          ],
+          "hint": "La casilla débil de las negras está en el centro, y tu peón de d4 la protege.",
+          "success": "Correcto. El caballo en e5 está protegido y ningún peón negro lo puede echar.",
+          "id": "u4-l05-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Por qué es tan fuerte el caballo en d5?",
+          "fen": "rnbqk2r/1p2bppp/p2p1n2/3Np3/4P3/1N6/PPP1BPPP/R1BQK2R b KQkq - 3 8",
+          "highlight": [
+            "d5"
+          ],
+          "options": [
+            "Ningún peón negro lo puede echar",
+            "Da jaque al rey",
+            "Ataca la dama"
+          ],
+          "answer": 0,
+          "explanation": "Está en una casilla débil: para echarlo, las negras tendrían que cambiarlo por una pieza.",
+          "feedback": [
+            "",
+            "El caballo en d5 no da jaque.",
+            "No ataca la dama: su fuerza es que nadie lo puede echar."
+          ],
+          "id": "u4-l05-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuál de estas casillas es un buen puesto avanzado para tu caballo?",
+          "fen": "rnbqkb1r/pp4pp/2p1pn2/3p1p2/3P4/3BPN2/PPP2PPP/RNBQ1RK1 w kq - 2 6",
+          "options": [
+            "e5",
+            "c5",
+            "g5"
+          ],
+          "answer": 0,
+          "explanation": "e5 está protegida por tu peón de d4 y ningún peón negro la puede atacar.",
+          "feedback": [
+            "",
+            "El peón de b7 puede avanzar a b6 y echar al caballo.",
+            "Ningún peón tuyo protege g5, y el peón de h7 lo puede echar."
+          ],
+          "id": "u4-l05-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Antes de mover un peón, piensa qué casillas deja de defender: un peón no puede volver atrás, y esas casillas quedan débiles para siempre.",
+          "fen": "rnbqkb1r/pp4pp/2p1pn2/3p1p2/3P4/3BPN2/PPP2PPP/RNBQ1RK1 w kq - 2 6",
+          "highlight": [
+            "e5"
+          ],
+          "id": "u4-l05-s07"
+        }
+      ]
+    },
+    {
+      "id": "u4-l06",
+      "unit": 4,
+      "order": 32,
+      "title": "La pareja de alfiles",
+      "summary": "Dos alfiles juntos valen más",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Los dos alfiles juntos cubren casillas de los dos colores. En posiciones abiertas, la pareja de alfiles suele valer más que un alfil y un caballo.",
+          "fen": "4k3/pp3ppp/4bn2/8/8/2B5/PP2BPPP/6K1 w - - 0 1",
+          "highlight": [
+            "c3",
+            "e2"
+          ],
+          "id": "u4-l06-s01"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué bando tiene la pareja de alfiles?",
+          "fen": "2b1kb2/pp3ppp/8/8/8/2N5/PP2BPPP/6K1 w - - 0 1",
+          "options": [
+            "Las blancas",
+            "Las negras",
+            "Ninguno"
+          ],
+          "answer": 1,
+          "explanation": "Las negras tienen los dos alfiles. Las blancas tienen alfil y caballo.",
+          "feedback": [
+            "Las blancas tienen un alfil y un caballo.",
+            "",
+            "Un bando tiene sus dos alfiles."
+          ],
+          "id": "u4-l06-s02"
+        },
+        {
+          "type": "explain",
+          "text": "Cuando el centro está cerrado por cadenas de peones, los alfiles chocan contra ellos y los caballos, que saltan, suelen estar mejor. Cuando el centro se abre, ganan los alfiles.",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 1 5",
+          "highlight": [
+            "d4",
+            "e5",
+            "d5",
+            "e6"
+          ],
+          "id": "u4-l06-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "El centro está cerrado por peones. ¿Qué pieza suele estar mejor en posiciones así?",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 1 5",
+          "options": [
+            "El caballo",
+            "El alfil"
+          ],
+          "answer": 0,
+          "explanation": "En general, con el centro bloqueado, los caballos saltan por encima de los peones y los alfiles quedan encerrados.",
+          "feedback": [
+            "",
+            "Los alfiles necesitan diagonales abiertas: aquí chocan contra los peones."
+          ],
+          "id": "u4-l06-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Tienes la pareja de alfiles. Rompe en el centro con un peón para abrir la posición.",
+          "fen": "r4rk1/ppp2ppp/2npb3/4p3/4P3/2PPB3/PP2BPPP/R4RK1 w - - 0 1",
+          "solutions": [
+            "d3d4"
+          ],
+          "hint": "Un peón del centro puede avanzar y chocar contra el peón de e5.",
+          "success": "Correcto. Si se cambian peones, se abren diagonales para tus alfiles.",
+          "id": "u4-l06-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "En una posición abierta, ¿conviene cambiar uno de tus alfiles por el caballo rival?",
+          "fen": "r4rk1/ppp2ppp/2npb3/4p3/4P3/2PPB3/PP2BPPP/R4RK1 w - - 0 1",
+          "options": [
+            "No, salvo que se gane algo: perderías la pareja de alfiles",
+            "Sí, siempre conviene"
+          ],
+          "answer": 0,
+          "explanation": "Sin motivo concreto, conviene conservar la pareja de alfiles, sobre todo si la posición se va a abrir.",
+          "feedback": [
+            "",
+            "No siempre: la pareja de alfiles es una ventaja que conviene conservar."
+          ],
+          "id": "u4-l06-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: si tienes la pareja de alfiles, busca abrir la posición. Si la tiene el rival, intenta mantenerla cerrada.",
+          "fen": "r4rk1/ppp2ppp/2npb3/4p3/4P3/2PPB3/PP2BPPP/R4RK1 w - - 0 1",
+          "highlight": [
+            "e2",
+            "e3"
+          ],
+          "id": "u4-l06-s07"
+        }
+      ]
+    }
+  ]
+}

@@ -175,5 +175,28 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 7 | u3-l07 | Mate del pasillo y mate del pastor | 10 |
 | 8 | u3-l08 | Antes de mover: jaques, capturas y amenazas | 9 |
 
+## Contenido de la Unidad 4 · Apertura y estrategia
+
+`src/data/unidad-4-apertura-y-estrategia.json`: 6 lecciones, 47 pasos. En estrategia casi nunca hay una sola jugada correcta: hay más preguntas y casillas para tocar, y los ejercicios de jugada aceptan todas las que cumplen la idea.
+
+- **Posiciones de apertura reales:** se arman jugando desde el inicio (Italiana, Escandinava, Siciliana con ...e5, Stonewall).
+- **Validación con chess.js:** cada posición y jugada, y lo que nombran los textos. Peón aislado, peones doblados, único peón pasado, única columna abierta, casillas débiles (que ningún peón rival las pueda atacar nunca), clavada del alfil de e7, quién tiene la pareja de alfiles.
+- **Revisión con Stockfish** (profundidad 16, todas las jugadas legales, margen de medio peón):
+  - Las soluciones son la mejor jugada o están cerca de ella.
+  - En las preguntas «¿cuál es mejor?» (Cf3, Cc3, Cg1), la respuesta correcta es la mejor de las opciones. Dg4 en la Escandinava, además, pierde la dama.
+- **Lo que encontró Stockfish y se corrigió:**
+  - A las blancas les faltaba el caballo de f3 en la posición del rey en el centro.
+  - La carrera de peones era tablas con el rey negro en f5. Con el rey en g5 solo gana c6.
+- **Puzzles de Lichess:** 2 de peón pasado al final de «Estructura de peones» (naoae, eh3NH).
+
+| # | id | Lección | Pasos |
+|---|---|---|---|
+| 1 | u4-l01 | Principios de apertura | 8 |
+| 2 | u4-l02 | Errores típicos de apertura | 8 |
+| 3 | u4-l03 | Estructura de peones | 10 |
+| 4 | u4-l04 | Columnas abiertas y torres activas | 7 |
+| 5 | u4-l05 | Casillas débiles y puestos avanzados | 7 |
+| 6 | u4-l06 | La pareja de alfiles | 7 |
+
 ## Pendiente
 - Revisión de redacción (los textos son una primera versión).

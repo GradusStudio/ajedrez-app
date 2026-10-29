@@ -29,7 +29,8 @@
 - Unidad 1 (`src/data/unidad-1-lo-basico.json`, única copia): 12 lecciones, 77 pasos. «El peón» incluye coronación y subpromoción.
 - Unidad 2 (`src/data/unidad-2-reglas-especiales.json`): 6 lecciones, 46 pasos (enroque, al paso, coronar bien, ahogado, otras tablas, notación). Validada con chess.js y posiciones clave con Stockfish (detalle en formato-lecciones.md). 
 - Unidad 3 (`src/data/unidad-3-tactica-basica.json`): 8 lecciones, 75 pasos de táctica. Usa pasos `line` para combinaciones (con `success` y `hint`) y puzzles reales de Lichess al final de cada lección. Ejercicios revisados con Stockfish probando todas las jugadas legales (detalle en formato-lecciones.md).
-- Las unidades 4 a 6 están planificadas en `contenido-lecciones-aperturas.md` pero todavía no escritas. Cada unidad nueva se suma en `src/data/units.ts`. Al crear posiciones propias, revisar siempre con Stockfish: casi todos los errores de la Unidad 3 fueron mates en la última fila que no se veían y posiciones donde cualquier jugada ganaba.
+- Unidad 4 (`src/data/unidad-4-apertura-y-estrategia.json`): 6 lecciones, 47 pasos de estrategia (principios y errores de apertura, estructura de peones, columnas abiertas, casillas débiles, pareja de alfiles). Los ejercicios aceptan todas las jugadas que cumplen la idea y están a menos de medio peón de la mejor.
+- Las unidades 5 y 6 están planificadas en `contenido-lecciones-aperturas.md` pero todavía no escritas. Cada unidad nueva se suma en `src/data/units.ts`. Al crear posiciones propias, revisar siempre con Stockfish: casi todos los errores de la Unidad 3 fueron mates en la última fila que no se veían y posiciones donde cualquier jugada ganaba.
 - `motor.md`: Stockfish, cómo está armado y opciones de licencia.
 - `puzzles.md`: origen (Lichess, CC0), criterios de selección y funcionamiento de los puzzles.
 

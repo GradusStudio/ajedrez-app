@@ -74,7 +74,24 @@ export type LineStep = StepBase & {
   hint?: string;
 };
 
-export type Step = ExplainStep | MoveStep | SelectSquaresStep | QuizStep | LineStep;
+/**
+ * Práctica contra Stockfish (finales): el usuario juega libre y el motor defiende con todo.
+ * Vale cualquier jugada que mantenga el resultado; solo es error la que lo deja escapar
+ * (ahogar, perder material, dejar de ganar o, si el objetivo es tablas, pasar a perder).
+ */
+export type PracticeStep = StepBase & {
+  type: 'practice';
+  prompt: string;
+  side: 'w' | 'b';
+  /** mate: dar mate. promote: coronar sin perder la pieza nueva. draw: no perder durante `maxMoves` jugadas. */
+  goal: 'mate' | 'promote' | 'draw';
+  /** mate/promote: jugadas propias disponibles para lograrlo. draw: jugadas que hay que aguantar. */
+  maxMoves: number;
+  success: string;
+  hint: string; // tras una jugada que deja escapar el resultado
+};
+
+export type Step = ExplainStep | MoveStep | SelectSquaresStep | QuizStep | LineStep | PracticeStep;
 
 export type Lesson = {
   id: string;

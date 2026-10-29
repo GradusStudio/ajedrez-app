@@ -52,7 +52,7 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 32. Casillas débiles y puestos avanzados para caballos
 33. La pareja de alfiles
 
-### Unidad 5 · Finales (5 lecciones)
+### Unidad 5 · Finales (5 lecciones, ya escritas en `src/data/unidad-5-finales.json`)
 34. Mate con dama y rey contra rey
 35. Mate con torre y rey contra rey
 36. Oposición entre reyes
@@ -70,7 +70,7 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 3. Drill final de repaso (se repite según errores).
 
 ### Estructura de datos
-El formato definitivo de los pasos está en `formato-lecciones.md` y `src/data/lessonTypes.ts` (tipos `explain`, `move`, `select_squares`, `quiz` y `line`). Las soluciones se escriben como origen+destino (`f3e5`), no en notación.
+El formato definitivo de los pasos está en `formato-lecciones.md` y `src/data/lessonTypes.ts` (tipos `explain`, `move`, `select_squares`, `quiz`, `line` y `practice`). Las soluciones se escriben como origen+destino (`f3e5`), no en notación.
 
 ---
 

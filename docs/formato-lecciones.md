@@ -1,7 +1,7 @@
 # Formato de lecciones
 
 Archivo de datos: `unidad-1-lo-basico.json`. Tipos TypeScript: `lessonTypes.ts`.
-Cada lección tiene pasos; hay 5 tipos de paso (los 4 de abajo y `line`, más adelante). Todos llevan `fen` (la posición) y pueden llevar `orientation` y `highlight`.
+Cada lección tiene pasos; hay 6 tipos de paso. Todos llevan `fen` (la posición) y pueden llevar `orientation` y `highlight`.
 
 ## Tipos de paso
 
@@ -11,6 +11,8 @@ Cada lección tiene pasos; hay 5 tipos de paso (los 4 de abajo y `line`, más ad
 | `move` | Pregunta + tablero | Juega una pieza | La jugada (`e2e4`) está en `solutions` |
 | `select_squares` | Pregunta + tablero | Toca casillas | Tocó todas las de `squares` |
 | `quiz` | Pregunta + opciones | Elige una opción | Índice elegido = `answer` |
+| `line` | Tablero + línea de jugadas | Juega las jugadas de su color | Completó la línea |
+| `practice` | Tablero contra Stockfish | Juega libre | Cumplió el objetivo (`goal`) sin dejar escapar el resultado |
 
 ## Comportamiento esperado de la app
 
@@ -197,6 +199,53 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 4 | u4-l04 | Columnas abiertas y torres activas | 7 |
 | 5 | u4-l05 | Casillas débiles y puestos avanzados | 7 |
 | 6 | u4-l06 | La pareja de alfiles | 7 |
+
+## Paso `practice` (práctica contra Stockfish)
+
+`src/lesson/steps/PracticeStep.tsx`. Se usa en los finales, donde hay muchas jugadas buenas y una línea fija marcaría como error jugadas que también ganan.
+
+- Campos: `side` (con qué color juega el usuario), `goal` (`mate`, `promote` o `draw`), `maxMoves`, `success` y `hint`.
+- El paso monta su propio Stockfish (`EngineView`) y muestra «Preparando a Stockfish…» mientras carga.
+- Después de cada jugada, Stockfish evalúa la posición a profundidad 14 y, con esa misma búsqueda, elige su respuesta. Juega con toda su fuerza.
+- **Cuándo es error:**
+  - En `mate` y `promote`, si la evaluación para el usuario baja de +3 (`WIN_CP`).
+  - En `draw`, si baja de −3 (`LOSING_CP`).
+  - El ahogado y las demás tablas las detecta chess.js antes de preguntarle al motor.
+  - La jugada equivocada queda a la vista y «Reintentar» la deshace.
+- **Cuándo se cumple el objetivo:**
+  - `mate`: al dar mate.
+  - `promote`: al coronar sin perder la pieza nueva.
+  - `draw`: al aguantar `maxMoves` jugadas, o antes si la partida termina en tablas.
+- Si en `mate` o `promote` se terminan las `maxMoves` jugadas, «Reintentar» vuelve a la posición inicial. También hay un botón «Empezar de nuevo».
+- Medido con Stockfish: un final de rey y peón ganado da cerca de +5,7, uno en tablas cerca de 0, la Lucena +4,9 y rey y torre contra rey +4,7. Los mates dan miles.
+- Ojo: Stockfish se cierra si recibe una posición ilegal (por ejemplo, con el bando que no mueve en jaque). Los armadores de unidades rechazan esas posiciones.
+
+## Contenido de la Unidad 5 · Finales
+
+`src/data/unidad-5-finales.json`: 5 lecciones, 39 pasos. Las lecciones de mates, oposición y Lucena terminan con prácticas contra Stockfish.
+
+- **Validación con chess.js:**
+  - Los ejercicios de «da mate» aceptan todas las jugadas que dan mate.
+  - El de «salto de caballo» acepta todas las jugadas de dama a esas casillas.
+  - Lo que dicen los textos: que Dg6 ahoga, que Dg7 es mate, que Dh2+ deja escapar al rey a g8, que la torre de e1 corta al rey, y qué casillas tiene el cuadrado de b5 y si el rey entra en él.
+- **Revisión con Stockfish:**
+  - Las jugadas únicas (oposición, Re4, a5, b6, c6, a6) son la única jugada que gana.
+  - Las jugadas de espera con la torre dan el mate más rápido.
+  - Tf1+ está entre las buenas. En la Lucena hay muchas jugadas que ganan, por eso la línea es guiada.
+  - Lo que afirman las preguntas: victoria con e3, si el rey alcanza o no al peón, la Lucena ganada y la defensa en tablas.
+- **Posiciones de rey y peón:** las encontró un programa que recorrió muchas posiciones y se quedó con las que tienen una sola jugada que gana o que salva.
+- **Simulación de las prácticas:** Stockfish jugó por los dos lados con la misma lógica que la app.
+  - Ninguna jugada buena se marcó como error, y todas cumplen el objetivo dentro de `maxMoves`.
+  - Jugadas usadas: dama 8 de 20, torre 13 de 35, rey y peón 16 de 25, defensa 10 de 10 y Lucena 11 de 20.
+- **Puzzles de Lichess:** 2 carreras de peones al final de «La regla del cuadrado» (xW6Ug, VEzBQ).
+
+| # | id | Lección | Pasos |
+|---|---|---|---|
+| 1 | u5-l01 | Mate con dama | 8 |
+| 2 | u5-l02 | Mate con torre | 8 |
+| 3 | u5-l03 | La oposición | 8 |
+| 4 | u5-l04 | La regla del cuadrado | 8 |
+| 5 | u5-l05 | La posición de Lucena | 7 |
 
 ## Pendiente
 - Revisión de redacción (los textos son una primera versión).

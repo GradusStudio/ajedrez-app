@@ -7,6 +7,7 @@ import { Lesson, Step } from '../data/lessonTypes';
 import { ExplainStep } from './steps/ExplainStep';
 import { LineStep } from './steps/LineStep';
 import { MoveStep } from './steps/MoveStep';
+import { PracticeStep } from './steps/PracticeStep';
 import { QuizStep } from './steps/QuizStep';
 import { SelectSquaresStep } from './steps/SelectSquaresStep';
 import { colors, fonts, space } from '../theme';
@@ -120,6 +121,8 @@ export function LessonPlayer({ lesson, initial, exitMessage, onExit, onAdvance, 
         return <SelectSquaresStep step={step} {...callbacks} />;
       case 'line':
         return <LineStep step={step} {...callbacks} onClear={onClear} />;
+      case 'practice':
+        return <PracticeStep step={step} {...callbacks} />;
     }
   };
 

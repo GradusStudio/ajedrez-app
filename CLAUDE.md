@@ -21,7 +21,7 @@
 
 ## Documentos (en /docs)
 - `design.md`: colores, tipografía, botones 3D, textos (español, sin exclamaciones en mensajes del sistema).
-- `formato-lecciones.md`: tipos de paso (explain, move, select_squares, quiz, line) y listado de contenido.
+- `formato-lecciones.md`: tipos de paso (explain, move, select_squares, quiz, line, practice) y listado de contenido.
 - `mapa-de-pantallas.md`: pantallas y plan de hitos.
 - `bots.md` / `bots.json`: 10 bots con personalidad y aperturas que juegan.
 - `contenido-lecciones-aperturas.md`: temario de unidades.
@@ -30,13 +30,14 @@
 - Unidad 2 (`src/data/unidad-2-reglas-especiales.json`): 6 lecciones, 46 pasos (enroque, al paso, coronar bien, ahogado, otras tablas, notación). Validada con chess.js y posiciones clave con Stockfish (detalle en formato-lecciones.md). 
 - Unidad 3 (`src/data/unidad-3-tactica-basica.json`): 8 lecciones, 75 pasos de táctica. Usa pasos `line` para combinaciones (con `success` y `hint`) y puzzles reales de Lichess al final de cada lección. Ejercicios revisados con Stockfish probando todas las jugadas legales (detalle en formato-lecciones.md).
 - Unidad 4 (`src/data/unidad-4-apertura-y-estrategia.json`): 6 lecciones, 47 pasos de estrategia (principios y errores de apertura, estructura de peones, columnas abiertas, casillas débiles, pareja de alfiles). Los ejercicios aceptan todas las jugadas que cumplen la idea y están a menos de medio peón de la mejor.
-- Las unidades 5 y 6 están planificadas en `contenido-lecciones-aperturas.md` pero todavía no escritas. Cada unidad nueva se suma en `src/data/units.ts`. Al crear posiciones propias, revisar siempre con Stockfish: casi todos los errores de la Unidad 3 fueron mates en la última fila que no se veían y posiciones donde cualquier jugada ganaba.
+- Unidad 5 (`src/data/unidad-5-finales.json`): 5 lecciones, 39 pasos de finales (mate con dama, mate con torre, oposición, regla del cuadrado, Lucena). Usa el paso `practice`: el usuario juega libre contra Stockfish y solo es error la jugada que deja escapar el resultado (`src/lesson/steps/PracticeStep.tsx`). Las prácticas se simularon con Stockfish jugando por los dos lados.
+- La unidad 6 está planificada en `contenido-lecciones-aperturas.md` pero todavía no escrita. Cada unidad nueva se suma en `src/data/units.ts`. Al crear posiciones propias, revisar siempre con Stockfish: casi todos los errores de la Unidad 3 fueron mates en la última fila que no se veían y posiciones donde cualquier jugada ganaba.
 - `motor.md`: Stockfish, cómo está armado y opciones de licencia.
 - `puzzles.md`: origen (Lichess, CC0), criterios de selección y funcionamiento de los puzzles.
 
 ## Arquitectura clave
 - `Board` es "tonto": recibe fen, orientation, lastMove, interactive, onMove, highlight, arrows, showMovesFrom, pickedSquares, onSquarePress. La partida la guarda quien lo usa. Se juega tocando pieza y destino o arrastrando la pieza (una capa transparente encima del tablero recibe los toques). Anima el deslizamiento de piezas al cambiar el fen (salvo la pieza recién soltada). Al coronar muestra un selector (dama, caballo, torre, alfil); `BoardMove.promotion` lleva la pieza elegida y las soluciones de 5 letras (`e7e8n`) la exigen.
-- Transiciones: pantallas con `ios_from_right` (bienvenida y resultado con fundido), pestañas con fundido. Textos de lecciones y paneles de acierto/error aparecen con `FadeIn` (`src/components/FadeIn.tsx`). Botón de los avisos de error: `Button3D` variante `danger` (rojo). Coronación siempre a dama (falta selector).
+- Transiciones: pantallas con `ios_from_right` (bienvenida y resultado con fundido), pestañas con fundido. Textos de lecciones y paneles de acierto/error aparecen con `FadeIn` (`src/components/FadeIn.tsx`). Botón de los avisos de error: `Button3D` variante `danger` (rojo).
 - `LessonPlayer` maneja índice, estado (idle/correct/wrong), errores y panel de feedback. Cada paso se renderiza con `key={step.id}` para empezar con estado limpio.
 - Los ids de lección y de paso deben ser únicos (un id repetido rompe las listas).
 - Diseño de pasos: el tablero va siempre arriba, en la misma posición; el texto, opciones y botones van debajo.

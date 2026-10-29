@@ -1,0 +1,707 @@
+{
+  "unit": 5,
+  "title": "Finales",
+  "lessons": [
+    {
+      "id": "u5-l01",
+      "unit": 5,
+      "order": 33,
+      "title": "Mate con dama",
+      "summary": "Rey y dama contra rey",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Con rey y dama contra rey siempre se gana. La dama encierra al rey rival en un «cajón» cada vez más chico, y tu rey se acerca para ayudar a dar el mate.",
+          "fen": "8/8/8/8/8/2k5/8/K6Q w - - 0 1",
+          "play": [
+            "h1d5",
+            "c3c2",
+            "a1a2",
+            "c2c3",
+            "a2b1",
+            "c3b4",
+            "b1b2",
+            "b4a4",
+            "b2c3",
+            "a4a3",
+            "d5b3"
+          ],
+          "id": "u5-l01-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Una técnica simple: pon la dama a un salto de caballo del rey rival. Así le quita muchas casillas sin darle jaque. Cuando el rey se mueve, la dama lo sigue de la misma forma.",
+          "fen": "8/8/8/3k4/8/8/7Q/4K3 w - - 0 1",
+          "play": [
+            "h2f4"
+          ],
+          "id": "u5-l01-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Pon la dama a un salto de caballo del rey negro.",
+          "fen": "8/8/8/3k4/8/8/7Q/4K3 w - - 0 1",
+          "solutions": [
+            "h2f4",
+            "h2c7"
+          ],
+          "hint": "Busca una casilla a la que llegaría un caballo desde d5 y a la que tu dama pueda ir.",
+          "success": "Correcto. El rey negro quedó encerrado en un cajón más chico.",
+          "id": "u5-l01-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "El rey negro está en el borde. Da mate.",
+          "fen": "6k1/8/6K1/8/8/8/8/3Q4 w - - 0 1",
+          "solutions": [
+            "d1d8"
+          ],
+          "hint": "Tu rey ya cubre las casillas de la séptima fila. Usa la dama en la última fila.",
+          "success": "Correcto. Es jaque mate.",
+          "id": "u5-l01-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuál de estas jugadas ahoga al rey negro?",
+          "fen": "7k/8/5K2/8/8/8/8/6Q1 w - - 0 1",
+          "options": [
+            "Dg6",
+            "Dg7",
+            "Dh2+"
+          ],
+          "answer": 0,
+          "explanation": "Con Dg6, el rey negro no está en jaque pero no tiene ninguna casilla: es ahogado y la partida termina en tablas. Dg7 es mate porque tu rey protege la dama.",
+          "feedback": [
+            "",
+            "Dg7 es jaque mate: tu rey de f6 protege la dama.",
+            "Dh2+ es jaque, y el rey negro escapa a g8."
+          ],
+          "id": "u5-l01-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Da mate, sin ahogar al rey negro.",
+          "fen": "7k/8/5K2/8/8/8/8/6Q1 w - - 0 1",
+          "solutions": [
+            "g1g7"
+          ],
+          "hint": "Acerca la dama al rey negro, en una casilla que proteja tu rey.",
+          "success": "Correcto. Mate, y no ahogado.",
+          "id": "u5-l01-s06"
+        },
+        {
+          "type": "practice",
+          "prompt": "Da mate con rey y dama. Stockfish defiende al rey negro.",
+          "fen": "8/8/8/4k3/8/8/8/3QK3 w - - 0 1",
+          "side": "w",
+          "goal": "mate",
+          "maxMoves": 20,
+          "success": "Correcto. Diste mate con rey y dama.",
+          "hint": "Con esa jugada se escapa la victoria. Cuida que la dama no quede sin protección y que el rey negro siempre tenga una casilla.",
+          "id": "u5-l01-s07"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: encierra al rey con la dama, acerca tu rey y da mate en el borde. Antes de cada jugada, mira si el rey rival todavía tiene una casilla: si no tiene ninguna y no está en jaque, es ahogado.",
+          "fen": "6k1/8/6K1/8/8/8/8/3Q4 w - - 0 1",
+          "play": [
+            "d1d8"
+          ],
+          "id": "u5-l01-s08"
+        }
+      ]
+    },
+    {
+      "id": "u5-l02",
+      "unit": 5,
+      "order": 34,
+      "title": "Mate con torre",
+      "summary": "Rey y torre contra rey",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La torre corta al rey rival: aquí, desde la columna e, no lo deja pasar al otro lado. Tu rey se acerca y, entre los dos, lo empujan hasta el borde.",
+          "fen": "8/8/8/3k4/8/8/8/2K4R w - - 0 1",
+          "play": [
+            "h1e1"
+          ],
+          "id": "u5-l02-s01"
+        },
+        {
+          "type": "explain",
+          "text": "El mate se da en el borde, con los reyes enfrentados: tu rey cubre las casillas de la fila de al lado y la torre da jaque por la última fila.",
+          "fen": "3k4/8/3K4/8/8/8/8/7R w - - 0 1",
+          "play": [
+            "h1h8"
+          ],
+          "id": "u5-l02-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Los reyes están enfrentados. Da mate con la torre.",
+          "fen": "6k1/8/6K1/8/8/8/8/R7 w - - 0 1",
+          "solutions": [
+            "a1a8"
+          ],
+          "hint": "Lleva la torre a la última fila.",
+          "success": "Correcto. Es jaque mate.",
+          "id": "u5-l02-s03"
+        },
+        {
+          "type": "explain",
+          "text": "Cuando los reyes no están enfrentados, haz una jugada de espera: la torre se mueve por su fila sin dejar de cortar al rey. El rey negro tiene que moverse y, si se pone frente a tu rey, llega el mate.",
+          "fen": "2k5/7R/3K4/8/8/8/8/8 w - - 0 1",
+          "play": [
+            "h7g7",
+            "c8d8",
+            "g7g8"
+          ],
+          "id": "u5-l02-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Haz una jugada de espera: mueve la torre por la séptima fila sin dejar de cortar al rey negro.",
+          "fen": "5k2/R7/4K3/8/8/8/8/8 w - - 0 1",
+          "solutions": [
+            "a7b7",
+            "a7c7",
+            "a7d7",
+            "a7e7",
+            "a7h7"
+          ],
+          "hint": "La torre debe seguir en la séptima fila, lejos del rey negro. Ojo con g7: el rey negro la captura.",
+          "success": "Correcto. Ahora el rey negro tiene que moverse.",
+          "id": "u5-l02-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Por qué conviene que los reyes queden enfrentados para dar el mate?",
+          "fen": "3k4/8/3K4/8/8/8/8/7R w - - 0 1",
+          "options": [
+            "Tu rey cubre las casillas de escape de la fila de al lado",
+            "Así el rey negro no puede capturar la torre",
+            "Es una regla: sin reyes enfrentados no hay mate"
+          ],
+          "answer": 0,
+          "explanation": "La torre da jaque por la última fila y tu rey, enfrente, le quita al rey negro las tres casillas de la fila de al lado. No queda ninguna salida.",
+          "feedback": [
+            "",
+            "La torre está lejos del rey negro: el problema no es la captura, sino las casillas de escape.",
+            "No es una regla: es la forma de que el rey negro no tenga salida."
+          ],
+          "id": "u5-l02-s06"
+        },
+        {
+          "type": "practice",
+          "prompt": "Da mate con rey y torre. Stockfish defiende al rey negro.",
+          "fen": "8/8/8/4k3/8/8/8/R3K3 w - - 0 1",
+          "side": "w",
+          "goal": "mate",
+          "maxMoves": 35,
+          "success": "Correcto. Diste mate con rey y torre.",
+          "hint": "Con esa jugada se escapa la victoria. Cuida la torre: si el rey negro la puede capturar, protégela o aléjala.",
+          "id": "u5-l02-s07"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: corta al rey con la torre, acerca tu rey, usa jugadas de espera cuando haga falta y da mate en el borde con los reyes enfrentados. Lleva más jugadas que con la dama, así que ten paciencia.",
+          "fen": "3k4/8/3K4/8/8/8/8/7R w - - 0 1",
+          "play": [
+            "h1h8"
+          ],
+          "id": "u5-l02-s08"
+        }
+      ]
+    },
+    {
+      "id": "u5-l03",
+      "unit": 5,
+      "order": 35,
+      "title": "La oposición",
+      "summary": "El duelo entre los reyes",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Dos reyes enfrentados, con una casilla en medio, no pueden avanzar: ninguno puede pisar las casillas que controla el otro. El que no tiene que mover tiene la oposición, porque el otro debe ceder el paso.",
+          "fen": "8/8/4k3/8/4K3/8/8/8 b - - 0 1",
+          "highlight": [
+            "e4",
+            "e6"
+          ],
+          "id": "u5-l03-s01"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Juegan las negras. ¿Quién tiene la oposición?",
+          "fen": "8/8/4k3/8/4K3/8/8/8 b - - 0 1",
+          "options": [
+            "Las blancas",
+            "Las negras",
+            "Ninguno"
+          ],
+          "answer": 0,
+          "explanation": "Les toca mover a las negras, así que su rey tiene que apartarse. La oposición la tienen las blancas.",
+          "feedback": [
+            "",
+            "Tiene la oposición el que no mueve. Aquí mueven las negras.",
+            "Los reyes están enfrentados con una casilla en medio: uno de los dos la tiene."
+          ],
+          "id": "u5-l03-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Toma la oposición: pon tu rey frente al rey negro, con una casilla en medio.",
+          "fen": "8/4k3/8/3K4/8/4P3/8/8 w - - 0 1",
+          "solutions": [
+            "d5e5"
+          ],
+          "hint": "El rey negro está en e7. Lleva tu rey a la misma columna, dos filas más abajo.",
+          "success": "Correcto. Con Re5 tienes la oposición y el rey negro tiene que ceder el paso.",
+          "id": "u5-l03-s03"
+        },
+        {
+          "type": "explain",
+          "text": "En rey y peón contra rey, tu rey va delante del peón y gana terreno con la oposición. El peón avanza detrás, protegido.",
+          "fen": "8/4k3/8/4K3/8/4P3/8/8 b - - 0 1",
+          "play": [
+            "e7d7",
+            "e5f6",
+            "d7d6",
+            "e3e4",
+            "d6d7",
+            "e4e5",
+            "d7e8",
+            "f6e6"
+          ],
+          "id": "u5-l03-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Solo una jugada gana. Encuéntrala.",
+          "fen": "8/8/4k3/8/8/3KP3/8/8 w - - 0 1",
+          "solutions": [
+            "d3e4"
+          ],
+          "hint": "Pon tu rey delante del peón y frente al rey negro.",
+          "success": "Correcto. Re4 toma la oposición, delante del peón.",
+          "id": "u5-l03-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Juegan las blancas, y la oposición la tienen las negras. ¿Es victoria o tablas?",
+          "fen": "8/8/4k3/8/4K3/8/4P3/8 w - - 0 1",
+          "options": [
+            "Victoria de las blancas",
+            "Tablas"
+          ],
+          "answer": 0,
+          "explanation": "Las blancas ganan: con e3, el peón hace una jugada de espera y la oposición pasa a las blancas. Por eso conviene no apurar el peón.",
+          "feedback": [
+            "",
+            "Mira el peón: puede avanzar una sola casilla y así le pasa el turno a las negras."
+          ],
+          "id": "u5-l03-s06"
+        },
+        {
+          "type": "practice",
+          "prompt": "Corona el peón. Stockfish defiende con las negras.",
+          "fen": "8/8/3k4/8/8/2K1P3/8/8 w - - 0 1",
+          "side": "w",
+          "goal": "promote",
+          "maxMoves": 25,
+          "success": "Correcto. Coronaste con la ayuda de tu rey.",
+          "hint": "Con esa jugada el final queda en tablas. Lleva el rey delante del peón y toma la oposición antes de avanzarlo.",
+          "id": "u5-l03-s07"
+        },
+        {
+          "type": "practice",
+          "prompt": "Ahora defiendes con negras: consigue las tablas. Aguanta 10 jugadas.",
+          "fen": "4k3/8/8/2K5/4P3/8/8/8 b - - 0 1",
+          "side": "b",
+          "goal": "draw",
+          "maxMoves": 10,
+          "success": "Correcto. Con tu rey delante del peón, las blancas no pueden ganar.",
+          "hint": "Con esa jugada las blancas ganan. Pon tu rey delante del peón y busca la oposición.",
+          "id": "u5-l03-s08",
+          "orientation": "b"
+        }
+      ]
+    },
+    {
+      "id": "u5-l04",
+      "unit": 5,
+      "order": 36,
+      "title": "La regla del cuadrado",
+      "summary": "¿El rey alcanza al peón?",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Para saber si un rey alcanza a un peón, imagina un cuadrado desde el peón hasta la fila de coronación. Si al rey le toca mover y puede entrar en el cuadrado, alcanza al peón. Si no, el peón corona.",
+          "fen": "8/8/8/1P3k2/8/8/8/7K b - - 0 1",
+          "highlight": [
+            "b5",
+            "b6",
+            "b7",
+            "b8",
+            "c5",
+            "c6",
+            "c7",
+            "c8",
+            "d5",
+            "d6",
+            "d7",
+            "d8",
+            "e5",
+            "e6",
+            "e7",
+            "e8"
+          ],
+          "id": "u5-l04-s01"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Juegan las negras. ¿El rey negro alcanza al peón?",
+          "fen": "8/8/8/1P3k2/8/8/8/7K b - - 0 1",
+          "highlight": [
+            "b5",
+            "b6",
+            "b7",
+            "b8",
+            "c5",
+            "c6",
+            "c7",
+            "c8",
+            "d5",
+            "d6",
+            "d7",
+            "d8",
+            "e5",
+            "e6",
+            "e7",
+            "e8"
+          ],
+          "options": [
+            "Sí, entra en el cuadrado",
+            "No, el peón corona"
+          ],
+          "answer": 0,
+          "explanation": "Con Re5 o Re6 el rey entra en el cuadrado. Desde ahí alcanza al peón antes de que corone.",
+          "feedback": [
+            "",
+            "Mira e5 y e6: están dentro del cuadrado, y el rey negro llega en una jugada."
+          ],
+          "id": "u5-l04-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Juegan las negras. ¿Y ahora? ¿El rey negro alcanza al peón?",
+          "fen": "8/8/8/1P4k1/8/8/8/7K b - - 0 1",
+          "highlight": [
+            "b5",
+            "b6",
+            "b7",
+            "b8",
+            "c5",
+            "c6",
+            "c7",
+            "c8",
+            "d5",
+            "d6",
+            "d7",
+            "d8",
+            "e5",
+            "e6",
+            "e7",
+            "e8"
+          ],
+          "options": [
+            "Sí, entra en el cuadrado",
+            "No, el peón corona"
+          ],
+          "answer": 1,
+          "explanation": "El rey negro está a una casilla más. Con una jugada no entra en el cuadrado, y el peón corona.",
+          "feedback": [
+            "El rey de g5 solo llega a la columna f, y el cuadrado termina en la columna e.",
+            ""
+          ],
+          "id": "u5-l04-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Juegan las blancas. Solo una jugada gana: ¿avanzas el peón o mueves el rey?",
+          "fen": "8/8/8/5k2/P7/8/8/7K w - - 0 1",
+          "solutions": [
+            "a4a5"
+          ],
+          "hint": "Si mueves el rey, el rey negro entra en el cuadrado. Avanza el peón: el cuadrado se achica.",
+          "success": "Correcto. Con a5 el cuadrado se achica y el rey negro queda afuera.",
+          "id": "u5-l04-s04"
+        },
+        {
+          "type": "explain",
+          "text": "A veces no hay un peón pasado, pero se puede crear. Con tres peones contra tres, b6 rompe la cadena: después de cualquier captura, otro peón blanco avanza y uno de ellos corona. El rey negro está demasiado lejos para ayudar.",
+          "fen": "8/ppp5/6k1/PPP5/8/8/8/7K w - - 0 1",
+          "arrows": [
+            "b5b6"
+          ],
+          "id": "u5-l04-s05"
+        },
+        {
+          "type": "line",
+          "prompt": "Haz la ruptura y crea un peón pasado que corone.",
+          "fen": "8/ppp5/6k1/PPP5/8/8/8/7K w - - 0 1",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "b5b6",
+              "san": "b6"
+            },
+            {
+              "uci": "a7b6",
+              "san": "axb6"
+            },
+            {
+              "uci": "c5c6",
+              "san": "c6"
+            },
+            {
+              "uci": "b7c6",
+              "san": "bxc6"
+            },
+            {
+              "uci": "a5a6",
+              "san": "a6"
+            }
+          ],
+          "success": "Correcto. El peón de a ya no se puede parar: el rey negro está fuera del cuadrado.",
+          "hint": "Empieza con b6. Después avanza el peón que quedó sin peón negro delante.",
+          "id": "u5-l04-s06"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#xW6Ug). Gana la carrera de peones.",
+          "fen": "8/8/4k3/5p2/P7/5K2/8/8 b - - 0 62",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e6f6",
+              "san": "Rf6"
+            },
+            {
+              "uci": "a4a5",
+              "san": "a5"
+            },
+            {
+              "uci": "f6e5",
+              "san": "Re5"
+            },
+            {
+              "uci": "a5a6",
+              "san": "a6"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Cuenta las casillas: el rey rival no llega a entrar en el cuadrado de tu peón.",
+          "id": "u5-l04-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Puzzle real de Lichess (#VEzBQ). Gana la carrera de peones.",
+          "fen": "8/p7/2p5/8/4KP2/8/k7/8 b - - 0 38",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "a2b3",
+              "san": "Rb3"
+            },
+            {
+              "uci": "f4f5",
+              "san": "f5"
+            },
+            {
+              "uci": "a7a5",
+              "san": "a5"
+            },
+            {
+              "uci": "f5f6",
+              "san": "f6"
+            }
+          ],
+          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "hint": "Cuenta las casillas: el rey rival no llega a entrar en el cuadrado de tu peón.",
+          "id": "u5-l04-s08"
+        }
+      ]
+    },
+    {
+      "id": "u5-l05",
+      "unit": 5,
+      "order": 37,
+      "title": "La posición de Lucena",
+      "summary": "Torre y peón contra torre",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Esta es la posición de Lucena, el final de torres más importante. Tu peón está en séptima y tu rey delante, en la casilla de coronación. Tu torre corta al rey negro por la columna e, y la torre negra vigila la columna c para que tu rey no salga por ahí.",
+          "fen": "3K4/3P1k2/8/8/8/8/2r5/4R3 w - - 0 1",
+          "highlight": [
+            "d8",
+            "d7"
+          ],
+          "id": "u5-l05-s01"
+        },
+        {
+          "type": "explain",
+          "text": "El plan tiene dos pasos. Primero, un jaque aleja un poco más al rey negro. Después, tu torre va a la cuarta fila. Cuando tu rey salga, la torre negra dará jaques, y tu torre tapará el último. A eso se le llama construir el puente.",
+          "fen": "3K4/3P1k2/8/8/8/8/2r5/4R3 w - - 0 1",
+          "arrows": [
+            "e1f1",
+            "f1f4"
+          ],
+          "id": "u5-l05-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Primer paso: da jaque desde la columna f para alejar al rey negro.",
+          "fen": "3K4/3P1k2/8/8/8/8/2r5/4R3 w - - 0 1",
+          "solutions": [
+            "e1f1"
+          ],
+          "hint": "Lleva la torre de e1 a la columna del rey negro.",
+          "success": "Correcto. El rey negro tiene que alejarse.",
+          "id": "u5-l05-s03"
+        },
+        {
+          "type": "line",
+          "prompt": "Construye el puente, jugada a jugada.",
+          "fen": "3K4/3P1k2/8/8/8/8/2r5/4R3 w - - 0 1",
+          "side": "w",
+          "mode": "guided",
+          "moves": [
+            {
+              "uci": "e1f1",
+              "san": "Tf1+",
+              "note": "Jaque desde la columna f: el rey negro se aleja un poco más."
+            },
+            {
+              "uci": "f7g7",
+              "san": "Rg7"
+            },
+            {
+              "uci": "f1f4",
+              "san": "Tf4",
+              "note": "Tu torre va a la cuarta fila. Desde ahí va a tapar los jaques más adelante."
+            },
+            {
+              "uci": "c2c1",
+              "san": "Tc1"
+            },
+            {
+              "uci": "d8e7",
+              "san": "Re7",
+              "note": "Tu rey sale de delante del peón. Ahora la torre negra solo puede dar jaques."
+            },
+            {
+              "uci": "c1e1",
+              "san": "Te1+"
+            },
+            {
+              "uci": "e7d6",
+              "san": "Rd6",
+              "note": "El rey se acerca a tu torre, sin dejar de proteger el peón."
+            },
+            {
+              "uci": "e1d1",
+              "san": "Td1+"
+            },
+            {
+              "uci": "d6e6",
+              "san": "Re6",
+              "note": "Sigue bajando hacia la torre."
+            },
+            {
+              "uci": "d1e1",
+              "san": "Te1+"
+            },
+            {
+              "uci": "e6d5",
+              "san": "Rd5",
+              "note": "Un paso más: ahora la torre puede tapar el jaque."
+            },
+            {
+              "uci": "e1d1",
+              "san": "Td1+"
+            },
+            {
+              "uci": "f4d4",
+              "san": "Td4",
+              "note": "El puente: tu torre tapa el jaque y la torre negra ya no puede seguir. El peón corona."
+            }
+          ],
+          "success": "Construiste el puente. El peón corona en la jugada siguiente.",
+          "id": "u5-l05-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Para qué va la torre a la cuarta fila?",
+          "fen": "3K4/3P1k2/8/8/8/8/2r5/4R3 w - - 0 1",
+          "options": [
+            "Para tapar con ella los jaques de la torre negra",
+            "Para atacar al rey negro",
+            "Para proteger el peón desde atrás"
+          ],
+          "answer": 0,
+          "explanation": "Cuando tu rey sale, la torre negra lo persigue con jaques. Tu torre en la cuarta fila se interpone en el momento justo: ese es el puente.",
+          "feedback": [
+            "",
+            "El rey negro está cortado y lejos: la torre no busca atacarlo.",
+            "El peón ya lo protege tu rey. La torre sirve para cortar los jaques."
+          ],
+          "id": "u5-l05-s05"
+        },
+        {
+          "type": "practice",
+          "prompt": "Gana la posición de Lucena: corona el peón. Stockfish defiende con las negras.",
+          "fen": "3K4/3P1k2/8/8/8/8/2r5/4R3 w - - 0 1",
+          "side": "w",
+          "goal": "promote",
+          "maxMoves": 20,
+          "success": "Correcto. Ganaste la posición de Lucena.",
+          "hint": "Con esa jugada se escapa la victoria. Recuerda el plan: jaque para alejar al rey, torre a la cuarta fila y después saca tu rey.",
+          "id": "u5-l05-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: aleja al rey rival, lleva la torre a la cuarta fila, saca tu rey y tapa los jaques con la torre. Si el rey del bando que defiende llega delante del peón, la defensa es otra: la posición de Philidor, que da tablas. La verás más adelante.",
+          "fen": "3K4/3P1k2/8/8/8/8/2r5/4R3 w - - 0 1",
+          "play": [
+            "e1f1",
+            "f7g7",
+            "f1f4",
+            "c2c1",
+            "d8e7",
+            "c1e1",
+            "e7d6",
+            "e1d1",
+            "d6e6",
+            "d1e1",
+            "e6d5",
+            "e1d1",
+            "f4d4"
+          ],
+          "id": "u5-l05-s07"
+        }
+      ]
+    }
+  ]
+}

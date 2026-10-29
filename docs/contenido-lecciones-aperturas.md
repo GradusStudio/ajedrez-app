@@ -32,16 +32,17 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 17. Otras tablas: repetición y jaque perpetuo, material insuficiente, 50 jugadas
 18. Cómo se escriben las jugadas (notación)
 
-### Unidad 3 · Táctica básica (9 lecciones)
-19. Valor de las piezas
-20. Horquilla
-21. Clavada
-22. Ataque a la descubierta
-23. Ataque doble y jaque doble
-24. Eliminar al defensor
-25. Desviación
-26. Mate del pasillo y mate del pastor (y cómo defenderse)
-27. Piezas colgadas: revisar antes de mover
+### Unidad 3 · Táctica básica (8 lecciones, ya escritas en `src/data/unidad-3-tactica-basica.json`)
+19. La horquilla
+20. La clavada
+21. El ataque a la descubierta
+22. Jaque doble y ataque doble
+23. Eliminar al defensor
+24. La desviación
+25. Mate del pasillo y mate del pastor (y cómo defenderse)
+26. Antes de mover: jaques, capturas y amenazas
+
+«Valor de las piezas» se quitó: ya está en «Intercambios» (Unidad 1). «Piezas colgadas» pasó a ser «Antes de mover», porque lo básico ya está en «Proteger piezas». Cada lección termina con puzzles reales de Lichess del mismo tema.
 
 ### Unidad 4 · Apertura y estrategia (6 lecciones)
 28. Principios de apertura: centro, desarrollo, enroque

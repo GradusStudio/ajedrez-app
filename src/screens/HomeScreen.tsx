@@ -22,17 +22,28 @@ const ZIGZAG = [0, 56, 0, -56];
 
 // Pestaña Aprender: barra de racha y meta, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
 export function HomeScreen({ onStartLesson }: Props) {
-  const { progress } = useProgress();
-  // Unidad elegida en el menú. Sin elegir, se muestra la de la lección sugerida.
+  const { progress, setLastUnit } = useProgress();
+  // Unidad elegida en el menú. Sin elegir, se muestra la de la última lección empezada
+  // (guardada en el progreso) o, la primera vez, la de la lección sugerida.
   const [chosen, setChosen] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const globalSuggested = suggestedLesson(units, progress);
   const unit =
-    units.find((u) => u.unit === chosen) ??
+    units.find((u) => u.unit === (chosen ?? progress.lastUnit)) ??
     units.find((u) => u.lessons.some((l) => l.id === globalSuggested?.id)) ??
     units[0];
   // El botón flotante sigue a la unidad en pantalla; si ya está completa, sugiere otra.
   const suggested = unit.lessons.find((l) => !progress.lessons[l.id]) ?? globalSuggested;
+
+  /** Abre la lección y recuerda su unidad, para mostrarla al volver y al abrir la app. */
+  const startLesson = (lesson: Lesson) => {
+    const n = units.find((u) => u.lessons.some((l) => l.id === lesson.id))?.unit;
+    if (n !== undefined) {
+      setChosen(n);
+      setLastUnit(n);
+    }
+    onStartLesson(lesson);
+  };
 
   const streak = currentStreak(progress);
   const minutes = minutesToday(progress);
@@ -60,7 +71,7 @@ export function HomeScreen({ onStartLesson }: Props) {
           </Text>
         </View>
 
-        <UnitPath key={unit.unit} unit={unit} onStartLesson={onStartLesson} onOpenMenu={() => setMenuOpen(true)} />
+        <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
       </ScrollView>
 
       <UnitMenu
@@ -82,7 +93,7 @@ export function HomeScreen({ onStartLesson }: Props) {
           <Button3D
             label={progress.drafts[suggested.id] ? 'Continuar' : 'Empezar'}
             variant="primary"
-            onPress={() => onStartLesson(suggested)}
+            onPress={() => startLesson(suggested)}
           />
         </View>
       )}

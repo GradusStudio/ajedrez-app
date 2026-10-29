@@ -12,6 +12,7 @@ import {
   saveProgress,
   withDraft,
   withGameFinished,
+  withLastUnit,
   withLessonFinished,
   withPractice,
   withProfile,
@@ -27,6 +28,8 @@ type ProgressValue = {
   finishReview: (r: ReviewFinish) => void;
   /** Guarda (o borra, con null) el avance de una lección a medio hacer. */
   saveDraft: (lessonId: string, draft: LessonDraft | null) => void;
+  /** Recuerda la unidad de la última lección empezada en Aprender. */
+  setLastUnit: (unit: number) => void;
   addPractice: (seconds: number) => void;
   finishGame: (game: Omit<GameRecord, 'playedAt'>, seconds: number) => void;
   finishPuzzle: (id: string, result: PuzzleResult, seconds: number) => void;
@@ -73,6 +76,8 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     [commit]
   );
 
+  const setLastUnit = useCallback((unit: number) => commit(withLastUnit(current.current, unit)), [commit]);
+
   const addPractice = useCallback((seconds: number) => commit(withPractice(current.current, seconds)), [commit]);
 
   const finishGame = useCallback(
@@ -105,6 +110,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         finishLesson,
         finishReview,
         saveDraft,
+        setLastUnit,
         addPractice,
         finishGame,
         finishPuzzle,

@@ -54,7 +54,7 @@ Sin registro ni correo. Más adelante, "Guardar mi progreso en la nube" puede ap
 - Barra superior: racha (en `gold`), XP del día y barra de meta diaria (minutos practicados hoy sobre la meta; hasta que exista la bienvenida, la meta es 10 minutos).
 - Ruta vertical de lecciones por unidad, como la de Duolingo: nodos circulares en zigzag unidos por una línea (verde hasta la última completada). Estados: completada (verde con ✓), actual (verde, con anillo y pulso suave), bloqueada (gris).
 - Dentro de cada unidad, las lecciones se desbloquean de a una, al terminar la anterior. Entre unidades no hay bloqueo: la primera lección de cada unidad siempre está disponible, para que cada uno empiece por la unidad de su nivel. Se controla con `LOCK_LESSONS` en `src/progress/path.ts`; con `false`, todas quedan abiertas. Tocar una bloqueada avisa qué lección terminar.
-- Se muestra una sola unidad a la vez (`units` en `src/data/units.ts`). Encabezado de unidad con título, progreso ("Lo básico · 4 de 12") y una flecha: al tocarlo se abre un menú con todas las unidades y su progreso, y se elige cuál ver. Sin elegir, se muestra la unidad de la lección sugerida. La elección no se guarda al cerrar la app.
+- Se muestra una sola unidad a la vez (`units` en `src/data/units.ts`). Encabezado de unidad con título, progreso ("Lo básico · 4 de 12") y una flecha: al tocarlo se abre un menú con todas las unidades y su progreso, y se elige cuál ver. Al abrir la app se muestra la unidad de la última lección empezada (`lastUnit` en el progreso) y, la primera vez, la de la lección sugerida. Empezar una lección (también con el botón flotante) cambia a su unidad.
 - Botón flotante primario con la lección sugerida: "Empezar" o "Continuar" si quedó a medias. Sigue a la unidad en pantalla (su primera lección sin terminar). Si esa unidad está completa, o sin elegir unidad, la sugerida es la siguiente de la unidad donde se terminó la última lección; si esa unidad está completa, la de la unidad siguiente.
 
 ### 2.4 Reproductor de lección (pantalla completa)
@@ -206,6 +206,7 @@ Lo que ya se guarda (versión 2, `src/progress/progressStore.ts`, clave `ajedrez
 
 - `lessons[].errors` es el menor número de errores en una pasada.
 - `drafts` guarda el avance de las lecciones a medio hacer.
+- `lastUnit` (opcional) es la unidad de la última lección empezada desde Aprender; es la que se muestra al abrir la app. Elegir una unidad en el menú sin empezar una lección no la cambia.
 - `xp.today` y `practice.seconds` valen para el día de `date`; al cambiar el día empiezan en 0.
 - El tiempo de práctica tiene un tope de 30 minutos por sesión, por si la app queda abierta sin usar.
 - Si cambia la forma de los datos, se sube `version` y se migra en `migrate()`; la versión 1 ya se migra sola.

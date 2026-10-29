@@ -13,7 +13,7 @@
 - 6 pestañas: Aprender, Aperturas, Puzzles, Bots, Análisis (tablero libre con Stockfish en vivo: barra de evaluación y 3 mejores variantes, `UciEngine.analyze`) y Perfil. Las que no tienen contenido muestran `ComingSoonScreen`.
 - Progreso: AsyncStorage en `src/progress/` (`useProgress()`). Guarda lecciones, avance a medias, racha, XP total y del día, minutos de práctica y pasos fallados. Modelo en `mapa-de-pantallas.md`, sección 4.
 - Motor: Stockfish.js 19 lite (WebAssembly, GPL v3) en un WebView invisible; la app le habla solo por texto UCI (`src/engine/`). Archivos de Stockfish sin modificar, generados con `npm run build:engine`. Ver docs/motor.md.
-- Puzzles: `src/puzzles/puzzles.json` (10.000 de Lichess, CC0) generado con `npm run build:puzzles -- C:\dev\datos-lichess\lichess_db_puzzle.csv.zst` (archivo de 293 MB bajado de database.lichess.org; guardado ahí, fuera del proyecto). Ver docs/puzzles.md.
+- Puzzles: `src/puzzles/puzzles.json` (50.000 de Lichess, CC0; incluye subpromociones) generado con `npm run build:puzzles -- C:\dev\datos-lichess\lichess_db_puzzle.csv.zst` (archivo de 293 MB bajado de database.lichess.org; guardado ahí, fuera del proyecto). Ver docs/puzzles.md.
 - Ajustes: `src/settings/SettingsContext.tsx` (`useSettings()`, clave `@ajedrez/settings`, aparte del progreso). Sonido y vibración: `useFeedback()` en `src/feedback/` (expo-audio, expo-haptics). Recordatorio: `src/settings/reminders.ts` (expo-notifications, notificación local). Sonidos propios generados con `npm run build:sounds`.
 - `react-dom` está instalado a propósito (versión del SDK): sin él, npm trae una versión incompatible y fallan las instalaciones.
 - Proyecto en `C:\dev\ajedrez-app`. Se inicia con `npx expo start -c`.
@@ -48,7 +48,7 @@
 2. Guardar progreso + 6 pestañas + ruta de Aprender, racha, meta diaria y repaso de errores: HECHO (probado en el celular).
 3. Paso `line` (aperturas guiadas y drill, con explicación antes de cada jugada) + pestaña Aperturas con los 28 cursos: HECHO (ver LEEME-hito3.md).
 4. Bots con Stockfish (pestaña Bots, ficha, partida, práctica de aperturas): HECHO (probado en el celular; ver LEEME-hito4.md). Niveles de Pipo a Valentina recalibrados midiendo partidas entre bots vecinos (docs/bots.md, "Calibración").
-5. Puzzles: 10.000 de la base abierta de Lichess (CC0), puzzle del día y práctica por nivel y tema: HECHO (probado en el celular; ver LEEME-hito5.md y docs/puzzles.md).
+5. Puzzles: 50.000 (al principio 10.000) de la base abierta de Lichess (CC0), puzzle del día y práctica por nivel y tema: HECHO (probado en el celular; ver LEEME-hito5.md y docs/puzzles.md).
 6. Perfil, Ajustes, Créditos, bienvenida, sonidos, vibración, recordatorio diario, 5 temas de tablero y animación de jugadas: HECHO (probado en el celular; ver LEEME-hito6.md). Después: arrastrar piezas, transiciones, selector de coronación y análisis en vivo.
 7. Prueba cerrada en Google Play (12 testers, 14 días).
 

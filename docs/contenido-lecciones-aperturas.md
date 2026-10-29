@@ -4,7 +4,7 @@ Notación en español: R rey, D dama, T torre, A alfil, C caballo. Todas las lí
 
 ---
 
-## Parte 1 · Ruta rápida de lecciones (6 unidades, 41 lecciones)
+## Parte 1 · Ruta rápida de lecciones (6 unidades, 41 lecciones, todas escritas)
 
 Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzado) y en los cuatro niveles de chess.com (nuevo, principiante, intermedio, avanzado). Los títulos son propios.
 
@@ -59,10 +59,13 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 37. Regla del cuadrado y peón pasado
 38. Posición de Lucena (torre y peón)
 
-### Unidad 6 · Conceptos avanzados (3 lecciones)
-39. Zugzwang: cuando mover es perder
-40. Profilaxis: anticipar el plan del rival
-41. Sacrificio posicional y calidad (torre por pieza menor)
+### Unidad 6 · Conceptos avanzados (4 lecciones, ya escritas en `src/data/unidad-6-conceptos-avanzados.json`)
+- Zugzwang: cuando mover es perder (incluye triangulación)
+- Profilaxis: anticipar el plan del rival
+- Sacrificio de calidad (torre por pieza menor)
+- Repaso final: puzzles de todos los temas de la ruta (agregado al escribir la unidad)
+
+Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 41 (Unidad 6: 38 a 41).
 
 ### Formato de cada lección
 1. Explicación corta con tablero interactivo (máx. 3 pantallas).

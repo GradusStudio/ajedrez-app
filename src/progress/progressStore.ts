@@ -50,6 +50,7 @@ export type Progress = {
   mistakes: Mistake[];
   games: GameRecord[]; // las últimas MAX_GAMES, la más reciente primero
   puzzles: Record<string, PuzzleRecord>; // por id de puzzle de Lichess
+  lastUnit?: number; // unidad de la última lección empezada en Aprender, la que se muestra al abrir la app
 };
 
 const KEY = 'ajedrez:progreso';
@@ -122,6 +123,10 @@ export function withDraft(p: Progress, lessonId: string, draft: LessonDraft | nu
   if (draft) drafts[lessonId] = draft;
   else delete drafts[lessonId];
   return { ...p, drafts };
+}
+
+export function withLastUnit(p: Progress, unit: number): Progress {
+  return p.lastUnit === unit ? p : { ...p, lastUnit: unit };
 }
 
 /** Suma un fallo a cada paso de `stepIds`. */

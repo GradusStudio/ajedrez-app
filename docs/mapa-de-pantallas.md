@@ -54,9 +54,8 @@ Sin registro ni correo. Más adelante, "Guardar mi progreso en la nube" puede ap
 - Barra superior: racha (en `gold`), XP del día y barra de meta diaria (minutos practicados hoy sobre la meta; hasta que exista la bienvenida, la meta es 10 minutos).
 - Ruta vertical de lecciones por unidad, como la de Duolingo: nodos circulares en zigzag unidos por una línea (verde hasta la última completada). Estados: completada (verde con ✓), actual (verde, con anillo y pulso suave), bloqueada (gris).
 - Dentro de cada unidad, las lecciones se desbloquean de a una, al terminar la anterior. Entre unidades no hay bloqueo: la primera lección de cada unidad siempre está disponible, para que cada uno empiece por la unidad de su nivel. Se controla con `LOCK_LESSONS` en `src/progress/path.ts`; con `false`, todas quedan abiertas. Tocar una bloqueada avisa qué lección terminar.
-- Cada unidad muestra su encabezado y su propia ruta, una debajo de la otra (`units` en `src/data/units.ts`).
-- Encabezado de unidad con título y progreso ("Lo básico · 4 de 12").
-- Botón flotante primario con la lección sugerida: "Empezar" o "Continuar" si quedó a medias. La sugerida es la siguiente de la unidad donde se terminó la última lección; si esa unidad está completa, la de la unidad siguiente.
+- Se muestra una sola unidad a la vez (`units` en `src/data/units.ts`). Encabezado de unidad con título, progreso ("Lo básico · 4 de 12") y una flecha: al tocarlo se abre un menú con todas las unidades y su progreso, y se elige cuál ver. Sin elegir, se muestra la unidad de la lección sugerida. La elección no se guarda al cerrar la app.
+- Botón flotante primario con la lección sugerida: "Empezar" o "Continuar" si quedó a medias. Sigue a la unidad en pantalla (su primera lección sin terminar). Si esa unidad está completa, o sin elegir unidad, la sugerida es la siguiente de la unidad donde se terminó la última lección; si esa unidad está completa, la de la unidad siguiente.
 
 ### 2.4 Reproductor de lección (pantalla completa)
 Es la pantalla más importante: sirve para lecciones, aperturas y repasos.

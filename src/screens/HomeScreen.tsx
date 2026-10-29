@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Alert, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
-import Svg, { Line } from 'react-native-svg';
+import { Alert, Modal, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
 import { LessonNode, NODE_BOX } from '../components/LessonNode';
 import { ProgressBar } from '../components/ProgressBar';
@@ -23,7 +23,16 @@ const ZIGZAG = [0, 56, 0, -56];
 // Pestaña Aprender: barra de racha y meta, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
 export function HomeScreen({ onStartLesson }: Props) {
   const { progress } = useProgress();
-  const suggested = suggestedLesson(units, progress);
+  // Unidad elegida en el menú. Sin elegir, se muestra la de la lección sugerida.
+  const [chosen, setChosen] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const globalSuggested = suggestedLesson(units, progress);
+  const unit =
+    units.find((u) => u.unit === chosen) ??
+    units.find((u) => u.lessons.some((l) => l.id === globalSuggested?.id)) ??
+    units[0];
+  // El botón flotante sigue a la unidad en pantalla; si ya está completa, sugiere otra.
+  const suggested = unit.lessons.find((l) => !progress.lessons[l.id]) ?? globalSuggested;
 
   const streak = currentStreak(progress);
   const minutes = minutesToday(progress);
@@ -51,10 +60,18 @@ export function HomeScreen({ onStartLesson }: Props) {
           </Text>
         </View>
 
-        {units.map((unit) => (
-          <UnitPath key={unit.unit} unit={unit} onStartLesson={onStartLesson} />
-        ))}
+        <UnitPath key={unit.unit} unit={unit} onStartLesson={onStartLesson} onOpenMenu={() => setMenuOpen(true)} />
       </ScrollView>
+
+      <UnitMenu
+        visible={menuOpen}
+        selected={unit.unit}
+        onSelect={(n) => {
+          setChosen(n);
+          setMenuOpen(false);
+        }}
+        onClose={() => setMenuOpen(false)}
+      />
 
       {/* Botón flotante con la lección sugerida */}
       {suggested && (
@@ -73,8 +90,73 @@ export function HomeScreen({ onStartLesson }: Props) {
   );
 }
 
-/** Encabezado de una unidad y su ruta: línea que une los nodos y los nodos encima. */
-function UnitPath({ unit, onStartLesson }: { unit: Unit; onStartLesson: (lesson: Lesson) => void }) {
+/** Flecha hacia abajo del encabezado de la unidad. */
+function Chevron() {
+  return (
+    <Svg width={22} height={22} viewBox="0 0 24 24">
+      <Path d="M6 9l6 6 6-6" stroke="#FFFFFF" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </Svg>
+  );
+}
+
+/** Menú para elegir qué unidad se muestra en la ruta. */
+function UnitMenu({
+  visible,
+  selected,
+  onSelect,
+  onClose,
+}: {
+  visible: boolean;
+  selected: number;
+  onSelect: (unit: number) => void;
+  onClose: () => void;
+}) {
+  const { progress } = useProgress();
+  return (
+    <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={onClose}>
+      <Pressable style={styles.backdrop} onPress={onClose} accessibilityLabel="Cerrar menú">
+        {/* Tocar dentro del menú (fuera de una unidad) no lo cierra */}
+        <View style={[styles.menu, { marginTop: (RNStatusBar.currentHeight ?? 40) + 96 }]} onStartShouldSetResponder={() => true}>
+          <Text style={styles.menuTitle}>Elige una unidad</Text>
+          <ScrollView>
+            {units.map((u) => {
+              const done = u.lessons.filter((l) => progress.lessons[l.id]).length;
+              const active = u.unit === selected;
+              return (
+                <Pressable
+                  key={u.unit}
+                  onPress={() => onSelect(u.unit)}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: active }}
+                  style={({ pressed }) => [styles.menuItem, active && styles.menuItemActive, pressed && { opacity: 0.7 }]}
+                >
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.menuCaption}>Unidad {u.unit}</Text>
+                    <Text style={styles.menuLabel}>{u.title}</Text>
+                  </View>
+                  <Text style={[styles.menuCount, done === u.lessons.length && { color: colors.primary }]}>
+                    {done} de {u.lessons.length}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+        </View>
+      </Pressable>
+    </Modal>
+  );
+}
+
+/** Encabezado de una unidad (abre el menú de unidades) y su ruta: línea que une los nodos y los nodos encima. */
+function UnitPath({
+  unit,
+  onStartLesson,
+  onOpenMenu,
+}: {
+  unit: Unit;
+  onStartLesson: (lesson: Lesson) => void;
+  onOpenMenu: () => void;
+}) {
   const { progress } = useProgress();
   const [width, setWidth] = useState(0);
   const lessons = unit.lessons;
@@ -93,12 +175,20 @@ function UnitPath({ unit, onStartLesson }: { unit: Unit; onStartLesson: (lesson:
 
   return (
     <>
-      <View style={styles.unitCard}>
-        <Text style={styles.unitCaption}>Unidad {unit.unit}</Text>
-        <Text style={styles.unitTitle}>
-          {unit.title} · {doneCount} de {lessons.length}
-        </Text>
-      </View>
+      <Pressable
+        onPress={onOpenMenu}
+        accessibilityRole="button"
+        accessibilityLabel={`Unidad ${unit.unit}, ${unit.title}. Cambiar de unidad`}
+        style={({ pressed }) => [styles.unitCard, pressed && { opacity: 0.85 }]}
+      >
+        <View style={{ flex: 1 }}>
+          <Text style={styles.unitCaption}>Unidad {unit.unit}</Text>
+          <Text style={styles.unitTitle}>
+            {unit.title} · {doneCount} de {lessons.length}
+          </Text>
+        </View>
+        <Chevron />
+      </Pressable>
 
       <View
         style={{ height: lessons.length * ROW, marginTop: space.xl }}
@@ -159,6 +249,9 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.primaryShadow,
     paddingVertical: space.md,
     paddingHorizontal: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: space.sm,
   },
   unitCaption: {
     fontFamily: fonts.extrabold,
@@ -184,5 +277,27 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.surfaceShadow,
     padding: space.md,
   },
+  backdrop: { flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.6)', paddingHorizontal: space.lg },
+  menu: {
+    maxHeight: '70%',
+    backgroundColor: colors.surface,
+    borderRadius: radius.control,
+    borderWidth: 2,
+    borderColor: colors.surfaceRaised,
+    padding: space.sm,
+  },
+  menuTitle: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text, padding: space.sm },
+  menuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: space.md,
+    paddingVertical: space.md,
+    paddingHorizontal: space.md,
+    borderRadius: radius.bar,
+  },
+  menuItemActive: { backgroundColor: colors.surfaceRaised },
+  menuCaption: { fontFamily: fonts.extrabold, fontSize: 11, color: colors.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 },
+  menuLabel: { fontFamily: fonts.bold, fontSize: 16, color: colors.text },
+  menuCount: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted },
   floatingCaption: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text, marginBottom: space.sm },
 });

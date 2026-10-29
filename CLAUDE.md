@@ -17,6 +17,7 @@
 - Ajustes: `src/settings/SettingsContext.tsx` (`useSettings()`, clave `@ajedrez/settings`, aparte del progreso). Sonido y vibración: `useFeedback()` en `src/feedback/` (expo-audio, expo-haptics). Recordatorio: `src/settings/reminders.ts` (expo-notifications, notificación local). Sonidos propios generados con `npm run build:sounds`.
 - `react-dom` está instalado a propósito (versión del SDK): sin él, npm trae una versión incompatible y fallan las instalaciones.
 - Proyecto en `C:\dev\ajedrez-app`. Se inicia con `npx expo start -c`.
+- Git: repositorio local desde el 29-10-2026, rama `main`, sin GitHub todavía (subirlo solo si el usuario lo decide). Git no está en el PATH de PowerShell: usarlo desde Git Bash. `.gitattributes` fija finales de línea LF. Guardar un commit después de cada cambio terminado y comprobado.
 
 ## Documentos (en /docs)
 - `design.md`: colores, tipografía, botones 3D, textos (español, sin exclamaciones en mensajes del sistema).

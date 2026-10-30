@@ -41,6 +41,7 @@ export function OnboardingScreen({ onFinish }: Props) {
       {step === 0 && (
         <View style={styles.body}>
           <Text style={styles.emoji}>♞</Text>
+          <Text style={styles.brand}>Gradus</Text>
           <Text style={styles.title}>Aprende ajedrez paso a paso</Text>
           <Text style={styles.text}>
             Lecciones cortas, aperturas, puzzles y bots que juegan como personas. Si te equivocas, ves una pista y
@@ -107,6 +108,7 @@ const styles = StyleSheet.create({
   skip: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
   body: { flex: 1 },
   emoji: { fontSize: 72, color: colors.primary, marginBottom: space.md },
+  brand: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.gold, letterSpacing: 2, textTransform: 'uppercase', marginBottom: space.xs },
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   text: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },
   choice: {

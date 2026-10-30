@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "ajedrez-app",
-    "slug": "ajedrez-app",
-    "scheme": "ajedrez",
+    "name": "Gradus",
+    "slug": "gradus",
+    "scheme": "gradus",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

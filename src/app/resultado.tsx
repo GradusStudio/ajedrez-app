@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { findLesson } from '../data/units';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak } from '../progress/progressStore';
 import { LessonResultScreen } from '../screens/LessonResultScreen';
-import { ensureReminderPermission } from '../settings/reminders';
-import { useSettings } from '../settings/SettingsContext';
+import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
+import { ensureReminderPermission } from '../settings/reminders';import { useSettings } from '../settings/SettingsContext';
 
 export default function ResultRoute() {
   const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; meta?: string; recuperada?: string; fallos?: string; modo?: string }>();
@@ -15,23 +15,34 @@ export default function ResultRoute() {
   const lesson = findLesson(params.id);
   const failed = params.fallos ?? '';
 
+  // Se decide una vez al abrir la pantalla: la oferta sigue visible en esta visita aunque
+  // `reminderOffered` pase a true al mostrarla.
+  const [showOffer, setShowOffer] = useState(
+    () => params.modo !== 'repaso' && !settings.reminderOffered && !settings.reminder.enabled
+  );
+  const accepting = useRef(false);
+
+  // Al mostrarla se marca como ofrecida: si se ignora, no vuelve a aparecer en otras lecciones.
+  useEffect(() => {
+    if (showOffer) update({ reminderOffered: true });
+  }, [showOffer, update]);
+
   const accept = async () => {
+    if (accepting.current) return; // evita que un doble toque corra dos veces
+    accepting.current = true;
+    setShowOffer(false);
     try {
       if (await ensureReminderPermission()) {
-        update({ reminderOffered: true, reminder: { enabled: true, hour: 19 } });
+        update({ reminder: { enabled: true, hour: OFFER_REMINDER_HOUR } });
         return;
       }
     } catch {}
-    update({ reminderOffered: true });
     Alert.alert(
       'Sin permiso para avisarte',
       'Para recibir el recordatorio, permite las notificaciones de esta app en los ajustes del teléfono.'
     );
   };
-  const offer =
-    params.modo !== 'repaso' && !settings.reminderOffered && !settings.reminder.enabled
-      ? { onAccept: accept, onDecline: () => update({ reminderOffered: true }) }
-      : undefined;
+  const offer = showOffer ? { onAccept: accept, onDecline: () => setShowOffer(false) } : undefined;
 
   return (
     <LessonResultScreen

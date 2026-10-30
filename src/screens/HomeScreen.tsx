@@ -11,6 +11,7 @@ import { units } from '../data/units';
 import { lessonStates, suggestedLesson } from '../progress/path';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, minutesToday, streakStatusNow } from '../progress/progressStore';
+import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = {
@@ -46,9 +47,10 @@ export function HomeScreen({ onStartLesson }: Props) {
     onStartLesson(lesson);
   };
 
-  const streak = currentStreak(progress);
-  const status = streakStatusNow(progress);
-  const minutes = minutesToday(progress);
+  const today = useTodayKey();
+  const streak = currentStreak(progress, today);
+  const status = streakStatusNow(progress, today);
+  const minutes = minutesToday(progress, today);
   const goal = progress.profile.dailyGoalMin;
   // Alto del botón flotante: el final de la ruta se puede subir por encima de él.
   const [floatingHeight, setFloatingHeight] = useState(140);

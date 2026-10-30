@@ -6,6 +6,9 @@ export type PlannedReminder = { date: Date; title: string; body: string };
 
 const DAYS_AHEAD = 7;
 
+/** Hora a la que se ofrece el recordatorio al terminar una lección. */
+export const OFFER_REMINDER_HOUR = 19;
+
 /**
  * Avisos de hoy y los 6 días siguientes a `hour`:00. No supone práctica futura: cada día se evalúa
  * con la racha de hoy. Si ya practicó ese día (`safe`) no hay aviso; las fechas pasadas se saltean.

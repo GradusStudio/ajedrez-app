@@ -18,6 +18,7 @@ export function RecoveryCard({ days, done }: { days: number; done: Record<Streak
         {ITEMS.map(({ action, label }) => (
           <View
             key={action}
+            accessible
             style={[styles.item, done[action] && styles.itemDone]}
             accessibilityLabel={`${label}: ${done[action] ? 'hecho' : 'pendiente'}`}
           >
@@ -54,5 +55,5 @@ const styles = StyleSheet.create({
   },
   itemDone: { backgroundColor: colors.primary },
   itemText: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted },
-  itemTextDone: { color: '#FFFFFF' },
+  itemTextDone: { color: colors.text },
 });

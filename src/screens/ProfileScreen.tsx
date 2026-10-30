@@ -10,6 +10,7 @@ import { findLesson, units } from '../data/units';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, isPuzzleSolved, recordAgainst } from '../progress/progressStore';
 import { puzzles } from '../puzzles/puzzles';
+import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = {
@@ -23,6 +24,7 @@ type Props = {
 // Perfil: racha, monedas, lecciones, aperturas, puzzles y bots; acceso a Ajustes y Créditos (mapa-de-pantallas.md, 2.11).
 export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onOpenReview }: Props) {
   const { progress } = useProgress();
+  const today = useTodayKey();
   // Errores que se pueden repasar (un paso pudo desaparecer si cambió el contenido de la lección).
   const reviewable = progress.mistakes.filter((m) => findLesson(m.lessonId)?.steps.some((s) => s.id === m.stepId));
   const openReview = () => {
@@ -47,7 +49,7 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
       <Text style={styles.title}>Perfil</Text>
 
       <View style={styles.grid}>
-        <Stat icon="streak" value={currentStreak(progress)} label={`días de racha · mejor: ${progress.streak.best}`} />
+        <Stat icon="streak" value={currentStreak(progress, today)} label={`días de racha · mejor: ${progress.streak.best}`} />
         <Stat icon="coin" value={progress.coins} label="monedas" />
         <Stat value={`${lessonsDone}/${unitLessons.length}`} label="lecciones" />
         <Stat value={puzzlesSolved} label="puzzles resueltos" />

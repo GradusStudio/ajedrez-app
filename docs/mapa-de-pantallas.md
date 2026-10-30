@@ -197,7 +197,7 @@ Lo que ya se guarda (versión 2, `src/progress/progressStore.ts`, clave `ajedrez
   "profile": { "dailyGoalMin": 10, "level": "basico", "onboarded": true },
   "lessons": { "u1-l01": { "done": true, "errors": 1, "completedAt": "...", "completions": 2 } },
   "drafts": { "u1-l03": { "stepIndex": 2, "errors": 1, "mistakes": ["u1-l03-s03"] } },
-  "streak": { "current": 3, "best": 5, "lastActiveDate": "2026-10-27" },
+  "streak": { "current": 3, "best": 5, "lastActiveDate": "2026-10-27", "actions": { "date": "2026-10-27", "lesson": true, "puzzle": false, "bot": false } },
   "coins": 120,
   "rewards": { "goalDate": "2026-10-27", "botWins": { "lola": "2026-10-27" } },
   "pieceSets": [],
@@ -208,7 +208,7 @@ Lo que ya se guarda (versión 2, `src/progress/progressStore.ts`, clave `ajedrez
 ```
 
 - `puzzles` guarda, por id de Lichess, el mejor resultado: `{ "result": "clean" | "solved" | "failed", "at": "..." }`. Ver `puzzles.md`.
-- `games` guarda las últimas 50 partidas, de la más reciente a la más vieja. Una partida terminada cuenta para la racha y la meta diaria. Ganarle a un bot da monedas (su Elo/100), una vez por día y por bot y nunca en el modo práctica. El registro contra cada bot no cuenta las partidas de práctica.
+- `games` guarda las últimas 50 partidas, de la más reciente a la más vieja. Una partida terminada cuenta para la racha y la meta diaria; una abandonada cuenta solo con 10 jugadas o más. Ganarle a un bot da monedas (su Elo/100), una vez por día y por bot y nunca en el modo práctica. El registro contra cada bot no cuenta las partidas de práctica.
 
 - `lessons[].errors` es el menor número de errores en una pasada.
 - `drafts` guarda el avance de las lecciones a medio hacer.

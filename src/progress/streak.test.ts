@@ -43,6 +43,14 @@ test('las tres acciones recuperan sin sumar, y el día siguiente suma', () => {
   assert.equal(r.streak.lastActiveDate, '2026-10-30');
   assert.equal(withStreakAction(r.streak, 'puzzle', '2026-10-31').streak.current, 11);
 });
+test('tras completar la recuperación, otra acción el mismo día no cambia nada', () => {
+  let x = s(10, '2026-10-28');
+  for (const a of ['puzzle', 'lesson', 'bot'] as const) x = withStreakAction(x, a, '2026-10-30').streak;
+  const r = withStreakAction(x, 'lesson', '2026-10-30');
+  assert.equal(streakStatus(r.streak, '2026-10-30').kind, 'safe');
+  assert.equal(r.recovered, false);
+  assert.equal(r.streak.current, 10);
+});
 test('la misma acción repetida no completa la recuperación', () => {
   let x = s(10, '2026-10-28');
   for (let i = 0; i < 3; i++) x = withStreakAction(x, 'puzzle', '2026-10-30').streak;

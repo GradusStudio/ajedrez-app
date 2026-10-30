@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { StatIcon } from '../components/StatIcon';
+import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = {
@@ -65,7 +66,7 @@ export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus
       {reminderOffer && (
         <View style={styles.offer}>
           <Text style={styles.offerTitle}>¿Quieres que te recuerde practicar?</Text>
-          <Button3D label="Sí, a las 19:00" onPress={reminderOffer.onAccept} style={{ marginTop: space.md }} />
+          <Button3D label={`Sí, a las ${OFFER_REMINDER_HOUR}:00`} onPress={reminderOffer.onAccept} style={{ marginTop: space.md }} />
           <Button3D label="Ahora no" onPress={reminderOffer.onDecline} style={{ marginTop: space.sm }} />
         </View>
       )}

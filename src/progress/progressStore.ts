@@ -87,8 +87,6 @@ export const emptyProgress: Progress = {
   puzzles: {},
 };
 
-// ---------- Fechas (día local, formato 2026-10-27) ----------
-
 // ---------- Lectura para mostrar ----------
 
 /** Estado de la racha hoy (reglas en streak.ts). */
@@ -210,7 +208,8 @@ export function withReviewFinished(
 }
 
 /**
- * Partida terminada: se guarda y cuenta para la racha y la meta diaria. Ganarle a un bot (fuera del modo
+ * Partida terminada: se guarda y cuenta para la meta diaria. Cuenta para la racha solo si `countsForStreak`
+ * (una partida abandonada con menos de 10 jugadas no cuenta). Ganarle a un bot (fuera del modo
  * práctica) da monedas según su nivel, una vez por día y por bot, para que no convenga repetir contra el más fácil.
  */
 export function withGameFinished(
@@ -247,7 +246,8 @@ export function withProfile(p: Progress, patch: Partial<Progress['profile']>): P
 const PUZZLE_RANK: Record<PuzzleResult, number> = { failed: 0, solved: 1, clean: 2 };
 
 /**
- * Puzzle terminado: guarda el mejor resultado y cuenta para la racha y la meta diaria.
+ * Puzzle terminado: guarda el mejor resultado y cuenta para la meta diaria. Cuenta para la racha salvo
+ * que se haya mirado la solución (`failed`).
  * Da monedas solo la primera vez que se resuelve (si antes se había mirado la solución, todavía cuenta).
  */
 export function withPuzzleFinished(

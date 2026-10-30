@@ -36,7 +36,7 @@ El script lee el archivo descomprimiéndolo sobre la marcha (con `fzstd`), sin d
   - `solved`: resuelto con errores o con pista.
   - `failed`: se miró la solución; el puzzle sigue pendiente en Práctica.
 
-  Se guarda el mejor resultado de cada puzzle. Cada puzzle terminado cuenta para la racha y la meta diaria. La primera vez que se resuelve da monedas: 2 sin errores ni pista, 1 con errores o pista (mirar la solución no da, pero el puzzle puede dar monedas después, al resolverlo).
+  Se guarda el mejor resultado de cada puzzle. Cada puzzle terminado cuenta para la meta diaria, y para la racha salvo que se haya mirado la solución. La primera vez que se resuelve da monedas: 2 sin errores ni pista, 1 con errores o pista (mirar la solución no da, pero el puzzle puede dar monedas después, al resolverlo).
 - **Temas en español:** `src/puzzles/themes.json`. Los nombres son traducciones propias, no copiadas de Lichess.
 
 ## Pendiente

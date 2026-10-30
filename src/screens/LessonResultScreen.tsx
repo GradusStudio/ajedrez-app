@@ -13,6 +13,8 @@ type Props = {
   /** Premio de la meta diaria, si se cumplió al terminar esta lección. */
   goalBonus: number;
   streak: number;
+  /** Con esta lección se completó la recuperación de la racha. */
+  streakRecovered: boolean;
   onContinue: () => void;
   /** Solo si hubo errores: abre el repaso de los pasos fallados. */
   onReviewMistakes?: () => void;
@@ -20,7 +22,7 @@ type Props = {
 
 const HEADINGS = { lesson: 'Lección completada', replay: 'Repaso completado', review: 'Errores repasados' } as const;
 
-export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus, streak, onContinue, onReviewMistakes }: Props) {
+export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus, streak, streakRecovered, onContinue, onReviewMistakes }: Props) {
   return (
     <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.xxl }]}>
       <Text style={styles.heading}>{HEADINGS[mode]}</Text>
@@ -50,6 +52,7 @@ export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus
       {goalBonus > 0 && (
         <Text style={[styles.note, { color: colors.gold }]}>Cumpliste tu meta diaria: +{goalBonus} monedas.</Text>
       )}
+      {streakRecovered && <Text style={[styles.note, { color: colors.gold }]}>Recuperaste tu racha.</Text>}
       {mode === 'review' && errors === 0 && (
         <Text style={styles.note}>Resolviste todos los pasos fallados. Salen de tu lista de errores.</Text>
       )}

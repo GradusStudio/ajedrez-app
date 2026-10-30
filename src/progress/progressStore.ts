@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { todayKey } from './streak';
+import { puzzleCountsForStreak, Streak, streakStatus, StreakStatus, StreakAction, todayKey, withStreakAction } from './streak';
 
 export { todayKey } from './streak';
 
@@ -47,7 +47,7 @@ export type Progress = {
   profile: { dailyGoalMin: number; level?: PlayerLevel; onboarded?: boolean };
   lessons: Record<string, LessonProgress>;
   drafts: Record<string, LessonDraft>;
-  streak: { current: number; best: number; lastActiveDate: string | null };
+  streak: Streak;
   /** Monedas para gastar en la tienda (reemplazaron a la XP en la versión 3). */
   coins: number;
   /** Para no pagar dos veces el mismo premio: día del premio de la meta y, por bot, día de la última victoria premiada. */
@@ -89,17 +89,16 @@ export const emptyProgress: Progress = {
 
 // ---------- Fechas (día local, formato 2026-10-27) ----------
 
-function dayBefore(day: string): string {
-  const [y, m, d] = day.split('-').map(Number);
-  return todayKey(new Date(y, m - 1, d - 1));
-}
-
 // ---------- Lectura para mostrar ----------
 
-/** Racha vigente: si el último día activo fue antes de ayer, la racha ya se cortó. */
+/** Estado de la racha hoy (reglas en streak.ts). */
+export function streakStatusNow(p: Progress, today = todayKey()): StreakStatus {
+  return streakStatus(p.streak, today);
+}
+
+/** Racha vigente: 0 si ya se cortó. */
 export function currentStreak(p: Progress, today = todayKey()): number {
-  const last = p.streak.lastActiveDate;
-  return last === today || last === dayBefore(today) ? p.streak.current : 0;
+  return streakStatus(p.streak, today).days;
 }
 
 export function minutesToday(p: Progress, today = todayKey()): number {
@@ -121,12 +120,14 @@ export function withPractice(p: Progress, seconds: number, today = todayKey()): 
   return withCoins({ ...next, rewards: { ...next.rewards, goalDate: today } }, GOAL_BONUS_COINS);
 }
 
-/** Marca el día como activo y actualiza la racha. */
-function withActiveDay(p: Progress, today: string): Progress {
-  const { lastActiveDate, current, best } = p.streak;
-  if (lastActiveDate === today) return p;
-  const next = lastActiveDate === dayBefore(today) ? current + 1 : 1;
-  return { ...p, streak: { current: next, best: Math.max(best, next), lastActiveDate: today } };
+/** Registra una acción del día en la racha; `streakRecovered` es true si con ella se completó una recuperación. */
+function withStreak(
+  p: Progress,
+  action: StreakAction,
+  today: string
+): { progress: Progress; streakRecovered: boolean } {
+  const { streak, recovered } = withStreakAction(p.streak, action, today);
+  return { progress: { ...p, streak }, streakRecovered: recovered };
 }
 
 export function withDraft(p: Progress, lessonId: string, draft: LessonDraft | null): Progress {
@@ -167,7 +168,7 @@ export function withLessonFinished(
   p: Progress,
   f: LessonFinish,
   now = new Date()
-): { progress: Progress; coinsEarned: number; goalBonus: number } {
+): { progress: Progress; coinsEarned: number; goalBonus: number; streakRecovered: boolean } {
   const today = todayKey(now);
   const iso = now.toISOString();
   const prev = p.lessons[f.lessonId];
@@ -182,9 +183,9 @@ export function withLessonFinished(
   const beforeGoal = next.coins;
   next = withPractice(next, f.seconds, today);
   const goalBonus = next.coins - beforeGoal;
-  next = withActiveDay(next, today);
-  next = withMistakes(next, f.lessonId, f.mistakes, iso);
-  return { progress: next, coinsEarned, goalBonus };
+  const streak = withStreak(next, 'lesson', today);
+  next = withMistakes(streak.progress, f.lessonId, f.mistakes, iso);
+  return { progress: next, coinsEarned, goalBonus, streakRecovered: streak.streakRecovered };
 }
 
 export type ReviewFinish = {
@@ -195,14 +196,17 @@ export type ReviewFinish = {
 };
 
 /** Repaso de errores: los pasos acertados salen de la lista; los fallados de nuevo suman un fallo. */
-export function withReviewFinished(p: Progress, r: ReviewFinish, now = new Date()): Progress {
+export function withReviewFinished(
+  p: Progress,
+  r: ReviewFinish,
+  now = new Date()
+): { progress: Progress; streakRecovered: boolean } {
   const today = todayKey(now);
   const solved = r.stepIds.filter((id) => !r.failed.includes(id));
   let next: Progress = { ...p, mistakes: p.mistakes.filter((m) => !solved.includes(m.stepId)) };
   next = withMistakes(next, r.lessonId, r.failed, now.toISOString());
   next = withPractice(next, r.seconds, today);
-  next = withActiveDay(next, today);
-  return next;
+  return withStreak(next, 'lesson', today);
 }
 
 /**
@@ -214,8 +218,9 @@ export function withGameFinished(
   game: Omit<GameRecord, 'playedAt'>,
   seconds: number,
   botElo: number,
+  countsForStreak: boolean,
   now = new Date()
-): { progress: Progress; coinsEarned: number } {
+): { progress: Progress; coinsEarned: number; streakRecovered: boolean } {
   const today = todayKey(now);
   let next: Progress = { ...p, games: [{ ...game, playedAt: now.toISOString() }, ...p.games].slice(0, MAX_GAMES) };
   let coinsEarned = 0;
@@ -224,8 +229,9 @@ export function withGameFinished(
     next = withCoins({ ...next, rewards: { ...next.rewards, botWins: { ...next.rewards.botWins, [game.botId]: today } } }, coinsEarned);
   }
   next = withPractice(next, seconds, today);
-  next = withActiveDay(next, today);
-  return { progress: next, coinsEarned };
+  if (!countsForStreak) return { progress: next, coinsEarned, streakRecovered: false };
+  const streak = withStreak(next, 'bot', today);
+  return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered };
 }
 
 /** Compra un set de piezas. Devuelve null si no alcanzan las monedas o si ya era suyo. */
@@ -250,7 +256,7 @@ export function withPuzzleFinished(
   result: PuzzleResult,
   seconds: number,
   now = new Date()
-): { progress: Progress; coinsEarned: number } {
+): { progress: Progress; coinsEarned: number; streakRecovered: boolean } {
   const today = todayKey(now);
   const prev = p.puzzles[id];
   const best = prev && PUZZLE_RANK[prev.result] >= PUZZLE_RANK[result] ? prev.result : result;
@@ -258,8 +264,9 @@ export function withPuzzleFinished(
   let next: Progress = { ...p, puzzles: { ...p.puzzles, [id]: { result: best, at: now.toISOString() } } };
   next = withCoins(next, coinsEarned);
   next = withPractice(next, seconds, today);
-  next = withActiveDay(next, today);
-  return { progress: next, coinsEarned };
+  if (!puzzleCountsForStreak(result)) return { progress: next, coinsEarned, streakRecovered: false };
+  const streak = withStreak(next, 'puzzle', today);
+  return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered };
 }
 
 /** true si el puzzle ya se resolvió (con o sin errores). */

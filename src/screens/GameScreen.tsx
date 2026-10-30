@@ -15,6 +15,7 @@ import { EngineView } from '../engine/EngineView';
 import { UciEngine } from '../engine/uci';
 import { useFeedback } from '../feedback/feedback';
 import { useProgress } from '../progress/ProgressContext';
+import { gameCountsForStreak } from '../progress/streak';
 import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -29,8 +30,8 @@ type Props = {
 };
 
 type Result = { kind: 'win' | 'loss' | 'draw'; reason: string };
-// Resultado ya guardado, con las monedas ganadas (victoria) y el premio de la meta diaria.
-type Finished = Result & { coins: number; goalBonus: number };
+// Resultado ya guardado, con las monedas ganadas (victoria), el premio de la meta diaria y si se recuperó la racha.
+type Finished = Result & { coins: number; goalBonus: number; streakRecovered: boolean };
 
 // Tope del tiempo de práctica por partida, por si la app queda abierta sin usar.
 const MAX_SESSION_SECONDS = 30 * 60;
@@ -83,7 +84,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   };
 
   const end = useCallback(
-    (r: Result) => {
+    // quit: se rindió o abandonó (cuenta para la racha solo con 10 jugadas o más).
+    (r: Result, quit = false) => {
       if (finished.current) return;
       finished.current = true;
       if (r.kind === 'win') feedback.correct();
@@ -99,7 +101,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           practiceCourseId: practiceCourse?.id,
         },
         Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS),
-        bot.elo
+        bot.elo,
+        gameCountsForStreak(quit, chess.history().length)
       );
       setResult({ ...r, ...earned });
     },
@@ -177,7 +180,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const resign = () =>
     Alert.alert('¿Rendirte?', 'La partida cuenta como derrota.', [
       { text: 'Seguir jugando', style: 'cancel' },
-      { text: 'Rendirme', style: 'destructive', onPress: () => end({ kind: 'loss', reason: 'Te rendiste' }) },
+      { text: 'Rendirme', style: 'destructive', onPress: () => end({ kind: 'loss', reason: 'Te rendiste' }, true) },
     ]);
 
   const offerDraw = () => {
@@ -201,7 +204,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
         text: 'Abandonar',
         style: 'destructive',
         onPress: () => {
-          end({ kind: 'loss', reason: 'Abandonaste la partida' });
+          end({ kind: 'loss', reason: 'Abandonaste la partida' }, true);
           onExit();
         },
       },
@@ -331,6 +334,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           {result.goalBonus > 0 && (
             <Text style={styles.coinsText}>Cumpliste tu meta diaria: +{result.goalBonus} monedas.</Text>
           )}
+          {result.streakRecovered && <Text style={styles.coinsText}>Recuperaste tu racha.</Text>}
           <Button3D
             label={practiceCourse ? 'Practicar otra vez' : 'Revancha'}
             variant="primary"

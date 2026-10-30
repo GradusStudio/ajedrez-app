@@ -10,6 +10,8 @@ export type Settings = {
   boardTheme: BoardThemeId;
   /** Recordatorio diario: hora local (0-23). */
   reminder: { enabled: boolean; hour: number };
+  /** Ya se ofreció el recordatorio al terminar una lección (no se vuelve a ofrecer). */
+  reminderOffered: boolean;
 };
 
 export const defaultSettings: Settings = {
@@ -18,6 +20,7 @@ export const defaultSettings: Settings = {
   notation: 'es',
   boardTheme: 'verde',
   reminder: { enabled: false, hour: 19 },
+  reminderOffered: false,
 };
 
 const STORAGE_KEY = '@ajedrez/settings';

@@ -18,11 +18,13 @@ type Props = {
   onContinue: () => void;
   /** Solo si hubo errores: abre el repaso de los pasos fallados. */
   onReviewMistakes?: () => void;
+  /** Oferta única del recordatorio diario; no bloquea Continuar. */
+  reminderOffer?: { onAccept: () => void; onDecline: () => void };
 };
 
 const HEADINGS = { lesson: 'Lección completada', replay: 'Repaso completado', review: 'Errores repasados' } as const;
 
-export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus, streak, streakRecovered, onContinue, onReviewMistakes }: Props) {
+export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer }: Props) {
   return (
     <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.xxl }]}>
       <Text style={styles.heading}>{HEADINGS[mode]}</Text>
@@ -60,6 +62,14 @@ export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus
         <Text style={styles.note}>Los pasos que volviste a fallar siguen en tu lista de errores.</Text>
       )}
 
+      {reminderOffer && (
+        <View style={styles.offer}>
+          <Text style={styles.offerTitle}>¿Quieres que te recuerde practicar?</Text>
+          <Button3D label="Sí, a las 19:00" onPress={reminderOffer.onAccept} style={{ marginTop: space.md }} />
+          <Button3D label="Ahora no" onPress={reminderOffer.onDecline} style={{ marginTop: space.sm }} />
+        </View>
+      )}
+
       <View style={{ flex: 1 }} />
       <Button3D label="Continuar" variant="primary" onPress={onContinue} />
       {onReviewMistakes && (
@@ -88,5 +98,16 @@ const styles = StyleSheet.create({
   },
   statValue: { fontFamily: fonts.extrabold, fontSize: 30, color: colors.text, marginTop: space.xs },
   statLabel: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: 2, textAlign: 'center' },
+  offer: {
+    marginTop: space.xl,
+    backgroundColor: colors.surface,
+    borderRadius: radius.control,
+    borderWidth: 2,
+    borderColor: colors.surfaceRaised,
+    borderBottomWidth: 4,
+    borderBottomColor: colors.surfaceShadow,
+    padding: space.lg,
+  },
+  offerTitle: { fontFamily: fonts.bold, fontSize: 16, color: colors.text, textAlign: 'center' },
   note: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: space.lg, textAlign: 'center' },
 });

@@ -52,6 +52,7 @@ Sin registro ni correo. Más adelante, "Guardar mi progreso en la nube" puede ap
 
 ### 2.3 Aprender (inicio)
 - Barra superior: racha (en `gold`), saldo de monedas y barra de meta diaria (minutos practicados hoy sobre la meta; hasta que exista la bienvenida, la meta es 10 minutos).
+- Tarjeta de recuperación de racha: si pasó un día sin practicar y la racha era de 2 o más, aparece arriba de la ruta con las tres acciones que faltan (lección, puzzle y partida contra un bot), marcadas a medida que se hacen. Al completarlas se muestra "Recuperaste tu racha" en el resultado.
 - Ruta vertical de lecciones por unidad, como la de Duolingo: nodos circulares en zigzag unidos por una línea (verde hasta la última completada). Estados: completada (verde con ✓), actual (verde, con anillo y pulso suave), bloqueada (gris).
 - Dentro de cada unidad, las lecciones se desbloquean de a una, al terminar la anterior. Entre unidades no hay bloqueo: la primera lección de cada unidad siempre está disponible, para que cada uno empiece por la unidad de su nivel. Se controla con `LOCK_LESSONS` en `src/progress/path.ts`; con `false`, todas quedan abiertas. Tocar una bloqueada avisa qué lección terminar.
 - Se muestra una sola unidad a la vez (`units` en `src/data/units.ts`). Encabezado de unidad con título, progreso ("Lo básico · 4 de 12") y una flecha: al tocarlo se abre un menú con todas las unidades y su progreso, y se elige cuál ver. Al abrir la app se muestra la unidad de la última lección empezada (`lastUnit` en el progreso) y, la primera vez, la de la lección sugerida. Empezar una lección (también con el botón flotante) cambia a su unidad.
@@ -93,6 +94,7 @@ Reglas:
 
 ### 2.5 Resultado de lección
 Monedas ganadas, racha actualizada y errores cometidos (y el premio de la meta diaria, si se cumplió con esta lección). Botones: "Continuar" (primario) y "Repasar errores" (secundario, solo si hubo errores).
+- Oferta del recordatorio: la primera vez que se termina una lección (no en repaso de errores) y con el recordatorio apagado, una tarjeta pregunta "¿Quieres que te recuerde practicar?" con "Sí, a las 19:00" y "Ahora no". Se ofrece una sola vez (`reminderOffered`); no bloquea "Continuar". Sin permiso de notificaciones, se avisa y el recordatorio queda apagado.
 - Las monedas de una lección se suman solo la primera vez. Repetirla cuenta para la racha y la meta diaria, y guarda el menor número de errores.
 - "Repasar errores" abre solo los pasos fallados de esa pasada. Los que se aciertan salen de la lista de errores; los que se vuelven a fallar siguen y suman un fallo.
 
@@ -147,7 +149,7 @@ Tablero libre con jugadas legales (chess.js): deshacer, voltear, reiniciar y nue
 Pantalla `ajustes`. Cada cambio se guarda al instante, en `@ajedrez/settings`, separado del progreso.
 - **Práctica:**
   - Meta diaria (5, 10 o 15 minutos).
-  - Recordatorio diario, con interruptor y hora (9, 13, 19 o 21). Es una notificación local, que funciona en Expo Go. Si no hay permiso, se avisa y el interruptor vuelve a apagado.
+  - Recordatorio diario, con interruptor y hora (9, 13, 19 o 21). Es una notificación local, que funciona en Expo Go. Los avisos dependen de la racha: hoy y los 6 días siguientes, sin aviso en los días en que ya se practicó, con texto distinto si la racha corre peligro o se puede recuperar. Si no hay permiso, se avisa y el interruptor vuelve a apagado.
 - **Tablero:**
   - Tema: Verde, Madera, Azul, Gris o Morado.
   - Piezas (abre la pantalla Piezas).

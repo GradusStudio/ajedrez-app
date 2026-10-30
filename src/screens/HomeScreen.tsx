@@ -4,12 +4,13 @@ import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
 import { LessonNode, NODE_BOX } from '../components/LessonNode';
 import { ProgressBar } from '../components/ProgressBar';
+import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
 import { Lesson, Unit } from '../data/lessonTypes';
 import { units } from '../data/units';
 import { lessonStates, suggestedLesson } from '../progress/path';
 import { useProgress } from '../progress/ProgressContext';
-import { currentStreak, minutesToday } from '../progress/progressStore';
+import { currentStreak, minutesToday, streakStatusNow } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = {
@@ -46,6 +47,7 @@ export function HomeScreen({ onStartLesson }: Props) {
   };
 
   const streak = currentStreak(progress);
+  const status = streakStatusNow(progress);
   const minutes = minutesToday(progress);
   const goal = progress.profile.dailyGoalMin;
   // Alto del botón flotante: el final de la ruta se puede subir por encima de él.
@@ -70,6 +72,7 @@ export function HomeScreen({ onStartLesson }: Props) {
             <Text style={styles.statText}>{progress.coins}</Text>
           </View>
         </View>
+        {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
         <View style={styles.goalRow}>
           <Text style={styles.goalLabel}>Meta diaria</Text>
           <ProgressBar value={minutes / goal} />

@@ -27,11 +27,13 @@
     "react-native-webview": "14.0.1"
   },
   "devDependencies": {
+    "@types/node": "^26.6.6",
     "@types/react": "~19.3.0",
     "eslint": "^9.0.0",
     "eslint-config-expo": "~58.0.4",
     "fzstd": "0.1.1",
     "stockfish": "19.0.1",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3"
   },
   "scripts": {
@@ -42,7 +44,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "test": "tsx --test \"src/**/*.test.ts\""
   },
   "private": true
 }

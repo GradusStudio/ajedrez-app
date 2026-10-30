@@ -1,4 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { todayKey } from './streak';
+
+export { todayKey } from './streak';
 
 // Progreso del usuario, guardado en el teléfono con AsyncStorage (mapa-de-pantallas.md, sección 4).
 // Si cambia la forma de los datos, subir `version` y migrar en `migrate`.
@@ -85,12 +88,6 @@ export const emptyProgress: Progress = {
 };
 
 // ---------- Fechas (día local, formato 2026-10-27) ----------
-
-export function todayKey(now = new Date()): string {
-  const m = String(now.getMonth() + 1).padStart(2, '0');
-  const d = String(now.getDate()).padStart(2, '0');
-  return `${now.getFullYear()}-${m}-${d}`;
-}
 
 function dayBefore(day: string): string {
   const [y, m, d] = day.split('-').map(Number);

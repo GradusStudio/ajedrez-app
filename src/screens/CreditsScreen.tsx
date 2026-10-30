@@ -8,8 +8,17 @@ type Credit = { name: string; what: string; license: string; links?: { label: st
 // Licencias revisadas en el package.json de cada paquete (ver docs/motor.md y docs/puzzles.md).
 const CREDITS: Credit[] = [
   {
+    name: 'Esta app',
+    what: 'Es software libre: puedes usarla, estudiar su código, modificarla y compartirla según la GPL v3 o posterior. Se ofrece sin ninguna garantía.',
+    license: 'GNU GPL v3 o posterior',
+    links: [
+      { label: 'Código de la app', url: 'https://github.com/GradusStudio/ajedrez-app' },
+      { label: 'Texto de la licencia GPL v3', url: 'https://www.gnu.org/licenses/gpl-3.0.html' },
+    ],
+  },
+  {
     name: `Stockfish 19 · Stockfish.js ${STOCKFISH_VERSION.split(' ')[0]}`,
-    what: 'Motor de ajedrez de los bots. Se incluye sin modificar y la app le habla solo por el protocolo UCI.',
+    what: 'Motor de ajedrez de la app. Se incluye sin modificar y la app le habla solo por el protocolo UCI.',
     license: 'GNU GPL v3',
     links: [
       { label: 'Código de Stockfish', url: 'https://github.com/official-stockfish/Stockfish' },
@@ -38,12 +47,12 @@ const CREDITS: Credit[] = [
   {
     name: 'Piezas',
     what: 'Los 5 sets de piezas se generaron a partir de imágenes creadas con ChatGPT (OpenAI) y se pasaron a dibujos vectoriales.',
-    license: 'Diseño de la app',
+    license: 'GNU GPL v3 o posterior, como la app',
   },
   {
     name: 'Sonidos',
     what: 'Generados por la propia app (síntesis de sonido).',
-    license: 'Diseño de la app',
+    license: 'GNU GPL v3 o posterior, como la app',
   },
   {
     name: 'Expo, React Native y React',

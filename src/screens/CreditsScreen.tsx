@@ -50,6 +50,11 @@ const CREDITS: Credit[] = [
     license: 'GNU GPL v3 o posterior, como la app',
   },
   {
+    name: 'Personajes de los bots',
+    what: 'Los avatares de los bots se crearon con ChatGPT (OpenAI).',
+    license: 'GNU GPL v3 o posterior, como la app',
+  },
+  {
     name: 'Sonidos',
     what: 'Generados por la propia app (síntesis de sonido).',
     license: 'GNU GPL v3 o posterior, como la app',

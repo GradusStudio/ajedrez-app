@@ -47,4 +47,4 @@ La licencia cubre el código y el contenido propio de la app: lecciones, cursos 
 | Fuente Nunito | SIL Open Font License 1.1 | https://fonts.google.com/specimen/Nunito |
 | Expo, React Native, React y demás paquetes de `package.json` | MIT (en su mayoría) | ver cada paquete en `node_modules` |
 
-Las piezas se generaron a partir de imágenes creadas con ChatGPT (OpenAI) y se pasaron a dibujos vectoriales.
+Las piezas se generaron a partir de imágenes creadas con ChatGPT (OpenAI) y se pasaron a dibujos vectoriales. Los personajes de los bots y el icono también se crearon con ChatGPT.

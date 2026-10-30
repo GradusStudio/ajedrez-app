@@ -220,9 +220,22 @@ Para las pestañas sin contenido: título de pantalla y una tarjeta con "Próxim
 - Errores: qué pasó y qué hacer, en una frase. Sin "por favor" ni signos de exclamación en mensajes del sistema.
 - Los bots pueden tener tono propio, pero siempre dentro de la paleta y tipografía de la app.
 
+## Icono de la app
+
+- Dibujo: cabeza de caballo verde (#81B64C, sombras #45753C) que sube una escalera de tres escalones, con una flecha dorada (#F7C631) que sale del último. Une las dos ideas de la app: ajedrez y avanzar paso a paso (*gradus*). Hecho con ChatGPT (mencionado en Créditos).
+- Original: `assets/fuente/icono-figura.png` (1254 px, fondo transparente).
+- Archivos que salen de él (se escalan con Chrome sin ventana, centrados según la caja de la figura):
+  - `icon.png`: 1024 px, fondo #262421, figura con radio del 41 % del ancho.
+  - `android-icon-foreground.png`: 1024 px, transparente, figura con radio del 29 % (el círculo seguro de Android mide 30,5 %; lo que queda afuera puede recortarse).
+  - `android-icon-monochrome.png`: igual, en blanco y con el ojo hueco (iconos temáticos de Android 13 en adelante).
+  - `android-icon-background.png`: liso #262421 (y `backgroundColor` en app.json).
+  - `splash-icon.png`: transparente, figura casi a tamaño completo.
+  - `favicon.png` (48 px) y `assets/tienda/icono-512.png` (ficha de Google Play).
+- En Expo Go se ve el icono de Expo Go: el propio aparece al instalar la versión de prueba.
+
 ## 8. Pendiente por definir
 
-- Piezas: ~~elegir el set~~ resuelto. Hay 5 sets a elegir (ver "Piezas" en la sección 5). Falta solo la revisión final del tamaño dentro de la casilla y mencionar su origen (ChatGPT) en Créditos.
+- Piezas: ~~elegir el set~~ resuelto. Hay 5 sets a elegir (ver "Piezas" en la sección 5), dibujados al 89 % de la casilla y con su origen (ChatGPT) en Créditos.
 - Iconografía: por ahora, íconos SVG propios (`TabIcon.tsx`, `StatIcon.tsx`), dibujados con trazo de 2px y puntas redondeadas. Se puede pasar a una librería más adelante.
 - Avatares y colores de acento por personalidad de bot.
 - Sonidos y animaciones de feedback.

@@ -28,7 +28,7 @@ const CREDITS: Credit[] = [
   },
   {
     name: 'Puzzles de Lichess',
-    what: '10.000 puzzles de la base abierta de lichess.org.',
+    what: '50.000 puzzles de la base abierta de lichess.org.',
     license: 'CC0 (dominio público)',
     links: [{ label: 'database.lichess.org', url: 'https://database.lichess.org/#puzzles' }],
   },

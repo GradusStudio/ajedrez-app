@@ -21,13 +21,15 @@ const themes = require(path.join(root, 'src', 'puzzles', 'themes.json'));
 const RATING_MIN = 500;
 const RATING_MAX = 2500; // sin incluir
 const BAND = 100; // 20 franjas de 100 puntos
-const PER_BAND = 500; // 20 × 500 = 10.000 puzzles
+const PER_BAND = 2500; // 20 × 2500 = 50.000 puzzles
 const MIN_POPULARITY = 85; // votos positivos en Lichess (−100 a 100)
 const MIN_PLAYS = 1000;
 const MAX_DEVIATION = 80; // rating bien establecido
 const MAX_PLIES = 8; // jugada del rival + hasta 4 jugadas del usuario y 3 respuestas
-const KEEP_PER_THEME = 150; // candidatos que se guardan por tema y franja
-const EXCLUDE = new Set(['underPromotion']); // el tablero corona siempre a dama
+const KEEP_PER_THEME = 1000; // candidatos que se guardan por tema y franja
+// Temas que no se usan. Ninguno por ahora: las subpromociones ya entran porque el tablero tiene
+// selector de coronación y la solución exige la pieza elegida (`e7e8n`).
+const EXCLUDE = new Set();
 // En los niveles más bajos hay pocos puzzles que cumplan todo: ahí se aceptan filtros más flexibles
 // para completar la franja (solo si con los normales no alcanza).
 const RELAXED_BELOW = 800;
@@ -89,9 +91,7 @@ function isValid(p) {
   try {
     const c = new Chess(p.fen);
     for (const uci of p.moves.split(' ')) {
-      const promotion = uci[4];
-      if (promotion && promotion !== 'q') return false;
-      c.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion });
+      c.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion: uci[4] });
     }
     return true;
   } catch {

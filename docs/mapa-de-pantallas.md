@@ -112,7 +112,7 @@ Tablero libre con jugadas legales (chess.js): deshacer, voltear, reiniciar y nue
 
 ### 2.8 Puzzles · hecha en el hito 5
 - **Pestaña:**
-  - "X de 10.000 resueltos".
+  - "X de 50.000 resueltos".
   - Tarjeta dorada **Puzzle del día**, con su objetivo, su nivel y el botón "Resolver".
   - **Práctica:** dificultad (Fácil, Medio, Difícil), chips de tema (Todos, mates, horquilla, clavada…), botón "Practicar" y cuántos puzzles hay con esa elección.
 - **Pantalla de puzzle** (`puzzle`):
@@ -249,7 +249,7 @@ src/
   theme.ts
   components/   Board, Piece, PieceSetPicker, Button3D, ProgressBar, FeedbackPanel, LessonNode, TabIcon, StatIcon, Chip,
                 BotAvatar (PieceLegacy: set anterior, sin uso)
-  puzzles/      puzzles.json (10.000 de Lichess, generado), themes.json (temas en español), puzzles.ts (del día, práctica)
+  puzzles/      puzzles.json (50.000 de Lichess, generado), themes.json (temas en español), puzzles.ts (del día, práctica)
   pieces/       pieceSets.ts (los 5 sets como trazados SVG; archivo generado, no editar a mano)
   settings/     SettingsContext.tsx (ajustes), PieceSetContext.tsx (set de piezas), reminders.ts (recordatorio diario)
   feedback/     feedback.ts (sonidos y vibración: useFeedback)
@@ -287,7 +287,7 @@ Se agregan a `design.md` cuando se construyan:
 | 2 | Guardado local + 6 pestañas + ruta de Aprender, racha, meta diaria y repaso de errores · hecho | Progreso que se mantiene |
 | 3 | Paso `line` + pestaña Aperturas · hecho | Estudiar los 28 cursos de aperturas |
 | 4 | Pestaña Bots con Stockfish limitado por nivel · hecho | Partidas contra bots y práctica de aperturas |
-| 5 | Puzzles: 10.000 de la base de Lichess (CC0), puzzle del día y práctica por nivel y tema · hecho | Puzzle del día |
+| 5 | Puzzles: 50.000 de la base de Lichess (CC0), puzzle del día y práctica por nivel y tema · hecho | Puzzle del día |
 | 6 | Perfil, Ajustes, Créditos, bienvenida, sonidos, vibración, recordatorio, temas de tablero y animación de jugadas · hecho, falta probar en el celular | App completa y pulida |
 | 7 | Prueba cerrada en Google Play (12 testers, 14 días) | Publicación |
 

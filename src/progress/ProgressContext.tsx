@@ -14,25 +14,31 @@ import {
   withGameFinished,
   withLastUnit,
   withLessonFinished,
+  withPieceSetBought,
   withPractice,
   withProfile,
   withPuzzleFinished,
   withReviewFinished,
 } from './progressStore';
 
+/** Monedas ganadas por algo terminado, y aparte el premio de la meta diaria si se cumplió en ese momento. */
+export type Earned = { coins: number; goalBonus: number };
+
 type ProgressValue = {
   progress: Progress;
   loaded: boolean;
-  /** Guarda la lección como terminada y devuelve la XP ganada (0 si ya estaba hecha). */
-  finishLesson: (f: LessonFinish) => number;
+  /** Guarda la lección como terminada y devuelve las monedas ganadas (0 si ya estaba hecha). */
+  finishLesson: (f: LessonFinish) => Earned;
   finishReview: (r: ReviewFinish) => void;
   /** Guarda (o borra, con null) el avance de una lección a medio hacer. */
   saveDraft: (lessonId: string, draft: LessonDraft | null) => void;
   /** Recuerda la unidad de la última lección empezada en Aprender. */
   setLastUnit: (unit: number) => void;
   addPractice: (seconds: number) => void;
-  finishGame: (game: Omit<GameRecord, 'playedAt'>, seconds: number) => void;
-  finishPuzzle: (id: string, result: PuzzleResult, seconds: number) => void;
+  finishGame: (game: Omit<GameRecord, 'playedAt'>, seconds: number, botElo: number) => Earned;
+  finishPuzzle: (id: string, result: PuzzleResult, seconds: number) => Earned;
+  /** Compra un set de piezas: devuelve false si no alcanzan las monedas. */
+  buyPieceSet: (id: string, price: number) => boolean;
   updateProfile: (patch: Partial<Progress['profile']>) => void;
   /** Borra todo el progreso. Conserva la bienvenida ya hecha y la meta diaria. */
   resetProgress: () => void;
@@ -64,7 +70,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     (f: LessonFinish) => {
       const result = withLessonFinished(current.current, f);
       commit(result.progress);
-      return result.xpEarned;
+      return { coins: result.coinsEarned, goalBonus: result.goalBonus };
     },
     [commit]
   );
@@ -80,13 +86,33 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
 
   const addPractice = useCallback((seconds: number) => commit(withPractice(current.current, seconds)), [commit]);
 
-  const finishGame = useCallback(
-    (game: Omit<GameRecord, 'playedAt'>, seconds: number) => commit(withGameFinished(current.current, game, seconds)),
+  /** Guarda el resultado y separa las monedas propias del premio de la meta diaria. */
+  const commitEarned = useCallback(
+    (before: Progress, r: { progress: Progress; coinsEarned: number }): Earned => {
+      commit(r.progress);
+      return { coins: r.coinsEarned, goalBonus: r.progress.coins - before.coins - r.coinsEarned };
+    },
     [commit]
   );
 
+  const finishGame = useCallback(
+    (game: Omit<GameRecord, 'playedAt'>, seconds: number, botElo: number) =>
+      commitEarned(current.current, withGameFinished(current.current, game, seconds, botElo)),
+    [commitEarned]
+  );
+
   const finishPuzzle = useCallback(
-    (id: string, result: PuzzleResult, seconds: number) => commit(withPuzzleFinished(current.current, id, result, seconds)),
+    (id: string, result: PuzzleResult, seconds: number) =>
+      commitEarned(current.current, withPuzzleFinished(current.current, id, result, seconds)),
+    [commitEarned]
+  );
+
+  const buyPieceSet = useCallback(
+    (id: string, price: number) => {
+      const next = withPieceSetBought(current.current, id, price);
+      if (next) commit(next);
+      return !!next;
+    },
     [commit]
   );
 
@@ -114,6 +140,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         addPractice,
         finishGame,
         finishPuzzle,
+        buyPieceSet,
         updateProfile,
         resetProgress,
       }}

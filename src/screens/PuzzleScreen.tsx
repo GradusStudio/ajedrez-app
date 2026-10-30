@@ -7,7 +7,7 @@ import { Chip } from '../components/Chip';
 import { FadeIn } from '../components/FadeIn';
 import { FeedbackPanel } from '../components/FeedbackPanel';
 import { useFeedback } from '../feedback/feedback';
-import { useProgress } from '../progress/ProgressContext';
+import { Earned, useProgress } from '../progress/ProgressContext';
 import { PuzzleResult } from '../progress/progressStore';
 import { displayThemes, Puzzle, puzzleGoal, userColor } from '../puzzles/puzzles';
 import { colors, fonts, radius, space } from '../theme';
@@ -29,6 +29,11 @@ const SOLUTION_STEP_MS = 800; // ritmo al mostrar la solución
 const FADE_IN_MS = 220; // entrada suave de cada puzzle
 const MAX_SESSION_SECONDS = 30 * 60;
 
+/** Texto de las monedas ganadas, para sumar al mensaje del panel. */
+const coinsMessage = (e: Earned | null) =>
+  (e?.coins ? ` +${e.coins} ${e.coins === 1 ? 'moneda' : 'monedas'}.` : '') +
+  (e?.goalBonus ? ` Cumpliste tu meta diaria: +${e.goalBonus} monedas.` : '');
+
 const toSquares = (uci: string): SquareMove => ({ from: uci.slice(0, 2) as Square, to: uci.slice(2, 4) as Square });
 
 // Puzzle de Lichess: el rival hace la primera jugada y el usuario busca la solución (mapa-de-pantallas.md, 2.8).
@@ -41,6 +46,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   const [lastMove, setLastMove] = useState<SquareMove | null>(null);
   const [status, setStatus] = useState<Status>('playing');
   const [errors, setErrors] = useState(0);
+  const [earned, setEarned] = useState<Earned | null>(null);
   const [hintUsed, setHintUsed] = useState(false);
   const [showHint, setShowHint] = useState(false);
   // Jugada equivocada que quedó en el tablero hasta tocar "Reintentar".
@@ -87,7 +93,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   const finish = (result: PuzzleResult) => {
     if (result !== 'failed') feedback.correct();
     setStatus(result === 'failed' ? 'failed' : 'solved');
-    finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS));
+    setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS)));
   };
 
   const handleMove = (m: BoardMove) => {
@@ -214,7 +220,10 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
         <FeedbackPanel
           kind="correct"
           title="Resuelto"
-          message={errors === 0 && !hintUsed ? 'Sin errores.' : errors > 0 ? `Con ${errors} ${errors === 1 ? 'error' : 'errores'}.` : 'Con pista.'}
+          message={
+            (errors === 0 && !hintUsed ? 'Sin errores.' : errors > 0 ? `Con ${errors} ${errors === 1 ? 'error' : 'errores'}.` : 'Con pista.') +
+            coinsMessage(earned)
+          }
           buttonLabel={onNext ? 'Siguiente puzzle' : 'Continuar'}
           onButton={onNext ?? onExit}
         />
@@ -223,7 +232,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
         <FeedbackPanel
           kind="neutral"
           title="Solución"
-          message="Mira cómo se resolvía. Este puzzle queda pendiente para otra vez."
+          message={'Mira cómo se resolvía. Este puzzle queda pendiente para otra vez.' + coinsMessage(earned)}
           buttonLabel={onNext ? 'Siguiente puzzle' : 'Continuar'}
           onButton={onNext ?? onExit}
         />

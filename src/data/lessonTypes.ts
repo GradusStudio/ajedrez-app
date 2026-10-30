@@ -99,7 +99,7 @@ export type Lesson = {
   order: number;
   title: string;
   summary: string;
-  xp: number;
+  xp: number; // monedas que da la primera vez que se termina (el nombre viene de cuando era XP)
   steps: Step[];
 };
 

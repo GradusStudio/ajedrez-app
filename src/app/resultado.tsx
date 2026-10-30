@@ -6,7 +6,7 @@ import { currentStreak } from '../progress/progressStore';
 import { LessonResultScreen } from '../screens/LessonResultScreen';
 
 export default function ResultRoute() {
-  const params = useLocalSearchParams<{ id: string; errors: string; xp: string; fallos?: string; modo?: string }>();
+  const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; meta?: string; fallos?: string; modo?: string }>();
   const { progress } = useProgress();
   const lesson = findLesson(params.id);
   const failed = params.fallos ?? '';
@@ -14,9 +14,10 @@ export default function ResultRoute() {
   return (
     <LessonResultScreen
       title={lesson?.title ?? ''}
-      mode={params.modo === 'repaso' ? 'review' : params.xp === '0' ? 'replay' : 'lesson'}
+      mode={params.modo === 'repaso' ? 'review' : params.monedas === '0' ? 'replay' : 'lesson'}
       errors={Number(params.errors) || 0}
-      xpEarned={Number(params.xp) || 0}
+      coinsEarned={Number(params.monedas) || 0}
+      goalBonus={Number(params.meta) || 0}
       streak={currentStreak(progress)}
       onContinue={() => router.back()}
       onReviewMistakes={

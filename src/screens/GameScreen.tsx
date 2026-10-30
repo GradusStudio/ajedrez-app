@@ -8,6 +8,7 @@ import { Board, BoardMove } from '../components/Board';
 import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
+import { StatIcon } from '../components/StatIcon';
 import { Bot } from '../data/bots';
 import { OpeningCourse } from '../data/lessonTypes';
 import { EngineView } from '../engine/EngineView';
@@ -28,6 +29,8 @@ type Props = {
 };
 
 type Result = { kind: 'win' | 'loss' | 'draw'; reason: string };
+// Resultado ya guardado, con las monedas ganadas (victoria) y el premio de la meta diaria.
+type Finished = Result & { coins: number; goalBonus: number };
 
 // Tope del tiempo de práctica por partida, por si la app queda abierta sin usar.
 const MAX_SESSION_SECONDS = 30 * 60;
@@ -51,7 +54,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const [speech, setSpeech] = useState(
     practiceCourse ? `Practiquemos la ${practiceCourse.name}. Sigue la línea que aprendiste.` : bot.lines.greeting
   );
-  const [result, setResult] = useState<Result | null>(null);
+  const [result, setResult] = useState<Finished | null>(null);
 
   const botColor = userColor === 'w' ? 'b' : 'w';
   const startedAt = useRef(0); // se fija al montar: el render tiene que ser puro
@@ -82,9 +85,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
     (r: Result) => {
       if (r.kind === 'win') feedback.correct();
       else if (r.kind === 'loss') feedback.wrong();
-      setResult(r);
       setSpeech(r.kind === 'win' ? bot.lines.onLose : r.kind === 'loss' ? bot.lines.onWin : 'Tablas. Buena partida.');
-      finishGame(
+      const earned = finishGame(
         {
           botId: bot.id,
           userColor,
@@ -93,8 +95,10 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           moves: chess.history({ verbose: true }).map((m) => m.from + m.to + (m.promotion ?? '')),
           practiceCourseId: practiceCourse?.id,
         },
-        Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS)
+        Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS),
+        bot.elo
       );
+      setResult({ ...r, ...earned });
     },
     [bot, chess, finishGame, practiceCourse, userColor, feedback]
   );
@@ -304,6 +308,18 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
             {result.kind === 'win' ? 'Ganaste' : result.kind === 'loss' ? 'Perdiste' : 'Tablas'}
           </Text>
           <Text style={styles.resultReason}>{result.reason}</Text>
+          {result.coins > 0 && (
+            <View style={styles.coinsRow}>
+              <StatIcon name="coin" size={18} />
+              <Text style={[styles.coinsText, { marginTop: 0 }]}>+{result.coins} monedas</Text>
+            </View>
+          )}
+          {result.kind === 'win' && result.coins === 0 && !practiceCourse && (
+            <Text style={styles.coinsNote}>Las monedas por ganarle a cada bot se dan una vez por día.</Text>
+          )}
+          {result.goalBonus > 0 && (
+            <Text style={styles.coinsText}>Cumpliste tu meta diaria: +{result.goalBonus} monedas.</Text>
+          )}
           <Button3D
             label={practiceCourse ? 'Practicar otra vez' : 'Revancha'}
             variant="primary"
@@ -355,4 +371,7 @@ const styles = StyleSheet.create({
   resultPanel: { paddingHorizontal: space.lg, paddingTop: space.lg, paddingBottom: space.xl },
   resultTitle: { fontFamily: fonts.extrabold, fontSize: 22 },
   resultReason: { fontFamily: fonts.semibold, fontSize: 15, color: colors.text, marginTop: 4 },
+  coinsRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.sm },
+  coinsText: { fontFamily: fonts.extrabold, fontSize: 15, color: colors.gold, marginTop: space.xs },
+  coinsNote: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: space.sm },
 });

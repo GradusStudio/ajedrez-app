@@ -1,20 +1,31 @@
 import React from 'react';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text } from 'react-native';
+import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { PieceSetPicker } from '../components/PieceSetPicker';
+import { StatIcon } from '../components/StatIcon';
+import { useProgress } from '../progress/ProgressContext';
 import { colors, fonts, space } from '../theme';
 
-// Pantalla "Piezas": se abre desde Perfil > Ajustes. El cambio se aplica al tocar un set.
+// Pantalla "Piezas" (también la tienda de sets): se abre desde Perfil y desde Ajustes. El cambio se aplica al tocar un set.
 export function PieceSetScreen({ onBack }: { onBack: () => void }) {
+  const { progress } = useProgress();
   return (
     <ScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel="Volver a Ajustes" hitSlop={12}>
-        <Text style={styles.back}>‹ Ajustes</Text>
+      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel="Volver" hitSlop={12}>
+        <Text style={styles.back}>‹ Volver</Text>
       </Pressable>
-      <Text style={styles.title}>Piezas</Text>
-      <Text style={styles.subtitle}>Elige el estilo que más te guste. Se aplica en todos los tableros.</Text>
+      <View style={styles.titleRow}>
+        <Text style={styles.title}>Piezas</Text>
+        <View style={styles.balance} accessibilityLabel={`Tienes ${progress.coins} monedas`}>
+          <StatIcon name="coin" size={20} />
+          <Text style={styles.balanceText}>{progress.coins}</Text>
+        </View>
+      </View>
+      <Text style={styles.subtitle}>
+        Elige el estilo que más te guste. Se aplica en todos los tableros. Los sets con precio se compran con monedas.
+      </Text>
       <PieceSetPicker />
     </ScrollView>
   );
@@ -24,6 +35,9 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
+  titleRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
+  balance: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
+  balanceText: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.gold },
   subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
 });

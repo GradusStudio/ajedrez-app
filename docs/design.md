@@ -138,14 +138,14 @@ Dos botones del mismo ancho, radio 16, borde 2px. Sin elegir: fondo `surface`, b
 ### Círculos 3D
 En formas redondas, el efecto 3D **no** se hace con `borderBottomWidth`: Android lo dibuja como una media luna que se afina hacia los costados y se ve rara. Se usa `Circle3D`: dos círculos iguales, el de abajo (canto, color `*-shadow`) corrido 3 o 4 px hacia abajo. Al presionar, la cara baja hasta la mitad del canto. Lo usan los nodos de la ruta, los avatares de bots y los números de las lecciones de apertura. Las tarjetas y los botones (radio 16, lados rectos) siguen con `borderBottomWidth`.
 
-### Avatar de bot (provisorio)
-Círculo con la inicial del bot (Nunito 800, blanco) y canto 3D de 3px (`Circle3D`), con el color de su estilo:
+### Avatar de bot
+Círculo con canto 3D de 3px (`Circle3D`), con el color de su estilo:
 - `tranquilo`: `primary`.
 - `equilibrado`: `gold`.
 - `posicional`: el azul `#4FA3E0`.
 - `agresivo`: `danger`.
 
-Se reemplaza cuando haya avatares definitivos.
+Adentro va el personaje del bot (`assets/bots/<id>.webp`, registrado en `AVATARS` de `BotAvatar.tsx`): imagen cuadrada con fondo transparente, cabeza y hombros, hecha con ChatGPT. Se dibuja al 89 % del círculo, centrada y apoyada abajo, para que las puntas de las orejas no se corten. Los bots sin personaje muestran su inicial (Nunito 800, blanco). Por ahora solo Ada tiene personaje.
 
 ### Partida contra un bot
 - Arriba, el bot: avatar de 40px, nombre, nivel y estado en 12px `text-muted`. Debajo, un globo `surface-raised` con su frase.

@@ -51,11 +51,13 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   const [loaded, setLoaded] = useState(false);
   // Copia sincrónica del estado, para encadenar cambios y calcular resultados en el mismo toque.
   const current = useRef<Progress>(emptyProgress);
+  const canSave = useRef(true);
 
   useEffect(() => {
-    loadProgress().then((p) => {
-      current.current = p;
-      setProgress(p);
+    loadProgress().then((r) => {
+      current.current = r.progress;
+      canSave.current = r.canSave;
+      setProgress(r.progress);
       setLoaded(true);
     });
   }, []);
@@ -63,7 +65,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   const commit = useCallback((next: Progress) => {
     current.current = next;
     setProgress(next);
-    saveProgress(next).catch(() => {});
+    if (canSave.current) saveProgress(next).catch(() => {});
   }, []);
 
   const finishLesson = useCallback(

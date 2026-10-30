@@ -83,10 +83,13 @@ export async function thinkMove(engine: UciEngine, bot: Bot, o: ThinkOptions): P
       movetime: Math.round(thinkTime * 0.8),
       elo: bot.engine.uciElo,
     });
+    if (!bestmove) throw new Error('sin jugadas');
     const chosen = lines.find((l) => l.move === bestmove) ?? lines[0];
     return finish({ uci: bestmove, score: chosen?.score, fromBook: false });
-  } catch {
-    // Si el motor falla, una jugada legal cualquiera: la partida no se traba.
+  } catch (e) {
+    // Motor caído: la pantalla ofrece reintentar y entonces el bot vuelve a pensar esta jugada.
+    if (engine.failed) throw e;
+    // Si solo falló esta respuesta, una jugada legal cualquiera: la partida no se traba.
     const moves = new Chess(o.fen).moves({ verbose: true });
     const m = moves[Math.floor(Math.random() * moves.length)];
     return finish({ uci: m.from + m.to + (m.promotion ?? ''), fromBook: false });

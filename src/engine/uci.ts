@@ -27,6 +27,9 @@ const ANALYSIS_UPDATE_MS = 250; // cada cuánto se avisa del avance del análisi
 
 const MIN_MOVETIME_MS = 100;
 
+// Sin ninguna línea del motor durante este tiempo, se lo da por colgado. Mientras busca, Stockfish habla seguido.
+const ENGINE_SILENCE_MS = 30_000;
+
 type Waiter = {
   done: (line: string) => boolean;
   lines: string[];
@@ -37,19 +40,60 @@ type Waiter = {
 export class UciEngine {
   private waiters: Waiter[] = [];
   private queue: Promise<unknown> = Promise.resolve();
+  private failure: Error | null = null;
+  private watchdog: ReturnType<typeof setTimeout> | null = null;
+
+  private onFailure?: (message: string) => void;
 
   constructor(private send: (cmd: string) => void = () => {}) {}
+
+  /** `fn` se llama una vez, cuando el motor deja de funcionar. */
+  setOnFailure(fn: (message: string) => void) {
+    this.onFailure = fn;
+  }
 
   /** Cambia por dónde salen los comandos (por ejemplo, cuando el WebView ya existe). */
   connect(send: (cmd: string) => void) {
     this.send = send;
   }
 
+  get failed() {
+    return this.failure !== null;
+  }
+
+  /** Empieza a contar el tiempo de silencio: si el motor no habla a tiempo, se lo da por colgado. */
+  arm() {
+    this.disarm();
+    this.watchdog = setTimeout(() => this.fail('error: el motor no responde'), ENGINE_SILENCE_MS);
+  }
+
+  private disarm() {
+    if (this.watchdog) clearTimeout(this.watchdog);
+    this.watchdog = null;
+  }
+
+  /** El motor dejó de funcionar: corta todo lo que estaba esperando y avisa. */
+  fail(message: string) {
+    if (this.failure) return;
+    const err = new Error(message);
+    this.failure = err;
+    this.disarm();
+    this.waiters.splice(0).forEach((w) => w.reject(err));
+    this.onFailure?.(message);
+  }
+
+  /** Al desmontar el WebView: nadie espera más al motor y ya no hay a quién avisar. */
+  close() {
+    this.onFailure = undefined;
+    this.disarm();
+    const err = new Error('motor cerrado');
+    this.waiters.splice(0).forEach((w) => w.reject(err));
+  }
+
   /** Cada línea que manda el motor. */
   receive(line: string) {
     if (line.startsWith('error')) {
-      const err = new Error(line);
-      this.waiters.splice(0).forEach((w) => w.reject(err));
+      this.fail(line);
       return;
     }
     for (const w of [...this.waiters]) {
@@ -59,9 +103,13 @@ export class UciEngine {
         w.resolve(w.lines);
       }
     }
+    if (this.waiters.length > 0) this.arm();
+    else this.disarm();
   }
 
   private waitFor(done: (line: string) => boolean): Promise<string[]> {
+    if (this.failure) return Promise.reject(this.failure);
+    this.arm();
     return new Promise((resolve, reject) => this.waiters.push({ done, lines: [], resolve, reject }));
   }
 

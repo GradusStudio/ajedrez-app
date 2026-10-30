@@ -62,6 +62,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const prevScore = useRef<number | undefined>(undefined); // evaluación de la última jugada del bot
   const sincePhrase = useRef(0);
   const inBook = useRef(true);
+  const finished = useRef(false); // la partida se guarda una sola vez
 
   useEffect(() => {
     startedAt.current = Date.now();
@@ -83,6 +84,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
 
   const end = useCallback(
     (r: Result) => {
+      if (finished.current) return;
+      finished.current = true;
       if (r.kind === 'win') feedback.correct();
       else if (r.kind === 'loss') feedback.wrong();
       setSpeech(r.kind === 'win' ? bot.lines.onLose : r.kind === 'loss' ? bot.lines.onWin : 'Tablas. Buena partida.');
@@ -151,7 +154,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
         }
         sync();
         checkEnd();
-      }
+      },
+      () => {} // motor caído: se muestra "Reintentar" y este efecto vuelve a correr con el motor nuevo
     );
     return () => {
       cancelled = true;
@@ -216,7 +220,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const userTurn = !!engine && !result && chess.turn() === userColor;
   const thinking = !!engine && !result && chess.turn() === botColor;
   const status = engineError
-    ? 'No se pudo iniciar el motor'
+    ? 'El motor no responde'
     : !engine
       ? `Preparando a ${bot.name}…`
       : result
@@ -228,7 +232,14 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   return (
     <View style={styles.screen}>
       {!engineError && (
-        <EngineView key={engineKey} onReady={setEngine} onError={(msg) => setEngineError(msg)} />
+        <EngineView
+          key={engineKey}
+          onReady={setEngine}
+          onError={(msg) => {
+            setEngineError(msg);
+            setEngine(null);
+          }}
+        />
       )}
 
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
@@ -270,7 +281,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
 
         {engineError && (
           <View style={styles.errorCard}>
-            <Text style={styles.errorText}>No se pudo iniciar el motor de ajedrez. Prueba otra vez.</Text>
+            <Text style={styles.errorText}>El motor de ajedrez no responde. Prueba otra vez: la partida sigue donde estaba.</Text>
             <Button3D
               label="Reintentar"
               variant="danger"

@@ -14,14 +14,14 @@ export type Captured = { cell: string; type: PieceType; color: PieceColor } | nu
 export function computeMove(prev: Grid, grid: Grid, orientation: 'w' | 'b'): { offsets: Offsets; captured: Captured } {
   const none = { offsets: {}, captured: null };
   const key = (c: { color: string; type: string } | null) => (c ? c.color + c.type : '');
-  const changedNew: { cell: string; k: string }[] = [];
+  const changedNew: { cell: string; k: string; color: PieceColor }[] = [];
   const changedOld: { cell: string; k: string; type: PieceType; color: PieceColor }[] = [];
   for (let r = 0; r < 8; r++) {
     for (let c = 0; c < 8; c++) {
       const a = prev[r][c];
       const b = grid[r][c];
       if (key(a) === key(b)) continue;
-      if (b) changedNew.push({ cell: `${r}${c}`, k: key(b) });
+      if (b) changedNew.push({ cell: `${r}${c}`, k: key(b), color: b.color });
       if (a) changedOld.push({ cell: `${r}${c}`, k: key(a), type: a.type, color: a.color });
     }
   }
@@ -38,8 +38,11 @@ export function computeMove(prev: Grid, grid: Grid, orientation: 'w' | 'b'): { o
   for (const n of changedNew) {
     let best: string | null = null;
     let bestDist = Infinity;
+    // Coronación: la pieza nueva viene del peón propio. Un peón nunca está en la primera ni en la última fila.
+    const promoted = n.cell[0] === '0' || n.cell[0] === '7';
     for (const o of changedOld) {
-      if (o.k !== n.k || used.has(o.cell)) continue;
+      const same = o.k === n.k || (promoted && o.type === 'p' && o.color === n.color);
+      if (!same || used.has(o.cell)) continue;
       const a = pos(o.cell);
       const b = pos(n.cell);
       const d = Math.abs(a.col - b.col) + Math.abs(a.row - b.row);

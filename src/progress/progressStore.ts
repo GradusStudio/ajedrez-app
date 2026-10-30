@@ -59,6 +59,7 @@ export type Progress = {
 };
 
 const KEY = 'ajedrez:progreso';
+const BACKUP_KEY = 'ajedrez:progreso:respaldo'; // copia de datos que no se pudieron interpretar
 const MAX_GAMES = 50;
 
 // ---------- Monedas ----------
@@ -311,14 +312,29 @@ function migrate(data: Progress | ProgressV2 | ProgressV1): Progress {
   return emptyProgress;
 }
 
-export async function loadProgress(): Promise<Progress> {
+/**
+ * Lee el progreso guardado. `canSave` es false si guardar podría pisar datos que no se pudieron leer:
+ * un fallo de lectura puede ser pasajero y el progreso seguiría ahí la próxima vez.
+ */
+export async function loadProgress(): Promise<{ progress: Progress; canSave: boolean }> {
+  let raw: string | null;
   try {
-    const raw = await AsyncStorage.getItem(KEY);
-    if (!raw) return emptyProgress;
-    return migrate(JSON.parse(raw));
+    raw = await AsyncStorage.getItem(KEY);
   } catch {
-    // Datos dañados o ilegibles: se empieza de cero en vez de romper la app.
-    return emptyProgress;
+    return { progress: emptyProgress, canSave: false };
+  }
+  if (!raw) return { progress: emptyProgress, canSave: true };
+  try {
+    const data = JSON.parse(raw);
+    if (![1, 2, 3].includes(data?.version)) throw new Error('versión desconocida');
+    return { progress: migrate(data), canSave: true };
+  } catch {
+    // Datos dañados: se empieza de cero en vez de romper la app, pero antes se guarda una copia.
+    const canSave = await AsyncStorage.setItem(BACKUP_KEY, raw).then(
+      () => true,
+      () => false
+    );
+    return { progress: emptyProgress, canSave };
   }
 }
 

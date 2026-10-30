@@ -81,8 +81,13 @@ export function LessonPlayer({ lesson, initial, exitMessage, onExit, onAdvance, 
     onClear();
   };
 
+  // Un doble toque en "Terminar" no debe registrar la lección dos veces.
+  const finished = useRef(false);
+
   const next = () => {
     if (isLast) {
+      if (finished.current) return;
+      finished.current = true;
       onFinish({ errors, xp: lesson.xp, mistakes });
     } else {
       setIndex(index + 1);

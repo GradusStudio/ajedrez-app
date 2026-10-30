@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { WebView as WebViewBase, WebViewMessageEvent } from 'react-native-webview';
 import { buildEngineHtml } from './engineHtml';
@@ -26,6 +26,16 @@ const engineHtml = () => (cachedHtml ??= buildEngineHtml());
 export function EngineView({ onReady, onError }: Props) {
   const [engine] = useState(() => new UciEngine());
 
+  useEffect(() => {
+    engine.setOnFailure(onError);
+  });
+
+  // Desde que se monta ya cuenta el tiempo: si la página nunca arranca, también se avisa.
+  useEffect(() => {
+    engine.arm();
+    return () => engine.close();
+  }, [engine]);
+
   return (
     <WebView
       // Cuando el WebView existe, el motor manda por él cada comando.
@@ -39,18 +49,18 @@ export function EngineView({ onReady, onError }: Props) {
       onMessage={(e: WebViewMessageEvent) => {
         const line = e.nativeEvent.data;
         if (line === 'host ready') {
+          // Si falla, ya avisó `onFailure`.
           engine.init().then(
             () => onReady(engine),
-            (err: Error) => onError(err.message)
+            () => {}
           );
-        } else if (line.startsWith('error')) {
-          onError(line);
-          engine.receive(line);
         } else {
           engine.receive(line);
         }
       }}
-      onError={(e: { nativeEvent: { description: string } }) => onError(e.nativeEvent.description)}
+      onError={(e: { nativeEvent: { description: string } }) => engine.fail(e.nativeEvent.description)}
+      // Android puede cerrar el proceso del WebView (por ejemplo, por falta de memoria).
+      onRenderProcessGone={() => engine.fail('error: se cerró el motor')}
     />
   );
 }

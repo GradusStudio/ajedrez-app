@@ -55,6 +55,11 @@ const CREDITS: Credit[] = [
     license: 'GNU GPL v3 o posterior, como la app',
   },
   {
+    name: 'Icono',
+    what: 'El icono de la app (el caballo que sube la escalera) se creó con ChatGPT (OpenAI).',
+    license: 'GNU GPL v3 o posterior, como la app',
+  },
+  {
     name: 'Sonidos',
     what: 'Generados por la propia app (síntesis de sonido).',
     license: 'GNU GPL v3 o posterior, como la app',

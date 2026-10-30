@@ -3,10 +3,14 @@ import * as Notifications from 'expo-notifications';
 import { AndroidImportance } from 'expo-notifications';
 import type { Streak } from '../progress/streak';
 import { planReminders } from './reminderPlan';
+import { createSerializer } from './serialize';
 
 // Recordatorio diario (notificación local; funciona en Expo Go). Ajustes > Recordatorio diario.
 
 const CHANNEL_ID = 'recordatorio';
+
+// Programar y cancelar pasan por una sola cola: dos operaciones nunca se pisan.
+const enqueue = createSerializer();
 
 // Con la app abierta, el recordatorio también se muestra.
 Notifications.setNotificationHandler({
@@ -40,7 +44,11 @@ export async function ensureReminderPermission(): Promise<boolean> {
  * Reprograma los avisos de los próximos días según la racha. Cancela todo primero, lo que también
  * borra el aviso diario fijo de versiones anteriores. Sin permiso, no programa nada.
  */
-export async function syncReminders(s: Streak, hour: number): Promise<void> {
+export function syncReminders(s: Streak, hour: number): Promise<void> {
+  return enqueue(() => doSync(s, hour));
+}
+
+async function doSync(s: Streak, hour: number): Promise<void> {
   await Notifications.cancelAllScheduledNotificationsAsync();
   const { granted } = await Notifications.getPermissionsAsync();
   if (!granted) return;
@@ -53,6 +61,6 @@ export async function syncReminders(s: Streak, hour: number): Promise<void> {
   }
 }
 
-export async function cancelDailyReminder(): Promise<void> {
-  await Notifications.cancelAllScheduledNotificationsAsync();
+export function cancelDailyReminder(): Promise<void> {
+  return enqueue(() => Notifications.cancelAllScheduledNotificationsAsync());
 }

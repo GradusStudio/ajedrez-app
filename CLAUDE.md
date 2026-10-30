@@ -42,7 +42,7 @@
 - `LessonPlayer` maneja índice, estado (idle/correct/wrong), errores y panel de feedback. Cada paso se renderiza con `key={step.id}` para empezar con estado limpio.
 - Los ids de lección y de paso deben ser únicos (un id repetido rompe las listas).
 - Diseño de pasos: el tablero va siempre arriba, en la misma posición; el texto, opciones y botones van debajo.
-- Piezas: 5 sets vectoriales (clasico, minimalista, gotico, redondeado, contorneado) en `src/pieces/pieceSets.ts`, generados a partir de imágenes hechas con ChatGPT (copyright de obras de IA incierto; mencionar origen en Créditos). `Piece.tsx` usa el set elegido en Perfil > Piezas (`PieceSetContext`, clave AsyncStorage `@ajedrez/pieceSet`). El set anterior quedó en `PieceLegacy.tsx`.
+- Piezas: 5 sets vectoriales (clasico, minimalista, gotico, redondeado, contorneado) en `src/pieces/pieceSets.ts`, generados a partir de imágenes hechas con ChatGPT (copyright de obras de IA incierto; mencionar origen en Créditos). `Piece.tsx` dibuja la pieza al 89 % de la casilla (margen `PAD`) para no tapar las coordenadas, y usa el set elegido en Perfil > Piezas (`PieceSetContext`, clave AsyncStorage `@ajedrez/pieceSet`). El set anterior quedó en `PieceLegacy.tsx`.
 
 ## Hitos
 1. Reproductor de lecciones: HECHO.
@@ -58,5 +58,4 @@
 - Piezas: la app usa solo los 5 sets de `pieceSets.ts` (hechos con ChatGPT). El set anterior (`PieceLegacy.tsx`, "Sombra lateral") ya no se importa en ningún lado y no viaja en la app. Si algún día se agrega un set de otra persona (por ejemplo, el de un amigo), hace falta su permiso por escrito, los archivos originales y una licencia compatible con la GPL v3.
 - Líneas de apertura revisadas con Stockfish (profundidad 20): Danés corregido; Albin se deja como está a propósito (gambito de trampas). Detalle en docs/formato-lecciones.md. Si se agregan aperturas nuevas, revisarlas igual.
 - Lint (`npx expo lint`): 0 errores. Los 4 avisos de dependencias de efectos (Board, LineStep, GameScreen, PuzzleScreen) son a propósito y están comentados.
-- Revisión final de las piezas en el celular: en algunos sets llegan al borde de la casilla y podrían tapar las coordenadas (Board dibuja la pieza del tamaño de la casilla, `Board.tsx`, línea ~338).
 - Cuando algo falle, el usuario pega el mensaje de error: explicar la causa y la corrección en pasos simples.

@@ -18,7 +18,7 @@ const CREDITS: Credit[] = [
   },
   {
     name: `Stockfish 19 · Stockfish.js ${STOCKFISH_VERSION.split(' ')[0]}`,
-    what: 'Motor de ajedrez de los bots. Se incluye sin modificar y la app le habla solo por el protocolo UCI.',
+    what: 'Motor de ajedrez de la app. Se incluye sin modificar y la app le habla solo por el protocolo UCI.',
     license: 'GNU GPL v3',
     links: [
       { label: 'Código de Stockfish', url: 'https://github.com/official-stockfish/Stockfish' },

@@ -5,7 +5,7 @@ import { boardHighlight, colors, fonts } from '../theme';
 import { Circle3D } from './Circle3D';
 
 // Avatar del bot: su personaje sobre un círculo con el color de su estilo (design.md, sección 8).
-// Los bots que todavía no tienen personaje muestran su inicial.
+// Un bot sin imagen en AVATARS muestra su inicial.
 const STYLE_COLOR: Record<BotStyle, { bg: string; edge: string }> = {
   tranquilo: { bg: colors.primary, edge: colors.primaryShadow },
   equilibrado: { bg: colors.gold, edge: '#B8901C' },
@@ -24,6 +24,9 @@ const AVATARS: Record<string, { source: ImageSourcePropType; scale: number }> = 
   camila: { source: require('../../assets/bots/camila.webp'), scale: 1 },
   ramiro: { source: require('../../assets/bots/ramiro.webp'), scale: 1 },
   valentina: { source: require('../../assets/bots/valentina.webp'), scale: 1 },
+  tomas: { source: require('../../assets/bots/tomas.webp'), scale: 1 },
+  lola: { source: require('../../assets/bots/lola.webp'), scale: 1 },
+  pipo: { source: require('../../assets/bots/pipo.webp'), scale: 1 },
 };
 
 export function BotAvatar({ bot, size = 48 }: { bot: Bot; size?: number }) {

@@ -145,7 +145,7 @@ Círculo con canto 3D de 3px (`Circle3D`), con el color de su estilo:
 - `posicional`: el azul `#4FA3E0`.
 - `agresivo`: `danger`.
 
-Adentro va el personaje del bot (`assets/bots/<id>.webp`, registrado en `AVATARS` de `BotAvatar.tsx`): imagen cuadrada con fondo transparente, cabeza y hombros, hecha con ChatGPT. Si ya viene recortada en círculo, lo llena entero (`scale: 1`); si no, se achica y se apoya abajo para que nada se corte (Ada, `scale: 0.89`). Los bots sin personaje muestran su inicial (Nunito 800, blanco). Tienen personaje: Ada, Maestro Ivo, Sofía, Bruno, Camila, Don Ramiro y Valentina.
+Adentro va el personaje del bot (`assets/bots/<id>.webp`, registrado en `AVATARS` de `BotAvatar.tsx`): imagen cuadrada con fondo transparente, cabeza y hombros, hecha con ChatGPT. Si ya viene recortada en círculo, lo llena entero (`scale: 1`); si no, se achica y se apoya abajo para que nada se corte (Ada, `scale: 0.89`). Los 10 bots tienen personaje; si se agrega uno nuevo sin imagen, muestra su inicial (Nunito 800, blanco).
 
 ### Partida contra un bot
 - Arriba, el bot: avatar de 40px, nombre, nivel y estado en 12px `text-muted`. Debajo, un globo `surface-raised` con su frase.

@@ -6,7 +6,7 @@ import { SettingRow } from '../components/SettingRow';
 import { PIECE_SET_META } from '../pieces/pieceSets';
 import { useProgress } from '../progress/ProgressContext';
 import { usePieceSet } from '../settings/PieceSetContext';
-import { cancelDailyReminder, scheduleDailyReminder } from '../settings/reminders';
+import { cancelDailyReminder, ensureReminderPermission } from '../settings/reminders';
 import { useSettings } from '../settings/SettingsContext';
 import { BoardThemeId, boardThemes, colors, fonts, radius, space } from '../theme';
 
@@ -28,7 +28,7 @@ export function SettingsScreen({ onBack, onOpenPieces }: Props) {
       return;
     }
     try {
-      const ok = await scheduleDailyReminder(hour);
+      const ok = await ensureReminderPermission();
       if (!ok) {
         Alert.alert(
           'Sin permiso para avisarte',

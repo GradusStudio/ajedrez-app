@@ -12,7 +12,7 @@ import { QuizStep } from './steps/QuizStep';
 import { SelectSquaresStep } from './steps/SelectSquaresStep';
 import { colors, fonts, space } from '../theme';
 
-export type LessonResult = { errors: number; xp: number; mistakes: string[] };
+export type LessonResult = { errors: number; xp: number; mistakes: string[] }; // xp: monedas de la lección
 
 /** Dónde va el usuario: sirve para guardar el avance y retomarlo. */
 export type LessonState = { stepIndex: number; errors: number; mistakes: string[] };

@@ -1,6 +1,8 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DEFAULT_PIECE_SET, PIECE_SET_META, PieceSetId } from '../pieces/pieceSets';
+import { isPieceSetOwned } from '../pieces/shop';
+import { useProgress } from '../progress/ProgressContext';
 
 const STORAGE_KEY = '@ajedrez/pieceSet';
 
@@ -30,7 +32,11 @@ export function PieceSetProvider({ children }: { children: React.ReactNode }) {
     AsyncStorage.setItem(STORAGE_KEY, id).catch(() => {});
   }, []);
 
-  const value = useMemo(() => ({ pieceSet, setPieceSet, loaded }), [pieceSet, setPieceSet, loaded]);
+  // Un set de pago que ya no se tiene (por ejemplo, tras borrar el progreso) vuelve al set por defecto.
+  const bought = useProgress().progress.pieceSets;
+  const inUse = isPieceSetOwned(pieceSet, bought) ? pieceSet : DEFAULT_PIECE_SET;
+
+  const value = useMemo(() => ({ pieceSet: inUse, setPieceSet, loaded }), [inUse, setPieceSet, loaded]);
   return <PieceSetContext.Provider value={value}>{children}</PieceSetContext.Provider>;
 }
 

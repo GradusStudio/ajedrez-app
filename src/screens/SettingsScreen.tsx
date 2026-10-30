@@ -46,7 +46,7 @@ export function SettingsScreen({ onBack, onOpenPieces }: Props) {
   const confirmReset = () =>
     Alert.alert(
       '¿Borrar todo el progreso?',
-      'Se borran tus lecciones, racha, XP, puzzles y partidas. Los ajustes no se borran. No se puede deshacer.',
+      'Se borran tus lecciones, racha, monedas, sets comprados, puzzles y partidas. Los ajustes no se borran. No se puede deshacer.',
       [
         { text: 'Cancelar', style: 'cancel' },
         { text: 'Borrar', style: 'destructive', onPress: resetProgress },

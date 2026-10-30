@@ -110,8 +110,8 @@ Círculo de 64px con canto 3D de 4px (`Circle3D`), número de la lección en Nun
 - Bloqueado: `surface-raised`, número en `outline`, título en `text-muted`.
 - La línea que une los nodos mide 6px: `primary` hasta la última lección completada y `surface-raised` después.
 
-### Íconos de racha y XP
-Llama (racha) y rayo (XP) en `gold`, con el número al lado en Nunito 800 `gold`.
+### Íconos de racha y monedas
+Llama (racha) y moneda (círculo `gold` con borde y marca #B8901C) en `gold`, con el número al lado en Nunito 800 `gold` (`StatIcon`, nombres `streak` y `coin`).
 
 ### Piezas
 - **5 sets vectoriales** en `src/pieces/pieceSets.ts`: Clásico (el que viene por defecto), Minimalista, Gótico, Redondeado y Contorneado. Cada pieza tiene dos trazados con `fillRule="evenodd"`:

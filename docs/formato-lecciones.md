@@ -24,7 +24,7 @@ Cada lección tiene pasos; hay 6 tipos de paso. Todos llevan `fen` (la posición
 - `quiz`: tras responder, mostrar siempre `explanation` (acierte o no).
 - `orientation: 'b'` se usa cuando mueven las negras, para ver las negras abajo.
 - Cada error muestra la pista y se reintenta al instante, sin vidas. El paso fallado se guarda y se puede volver a hacer con "Repasar errores" desde el resultado.
-- Al terminar la lección por primera vez, se suma `xp` (15 por lección, provisional). Repetirla no suma XP.
+- Al terminar la lección por primera vez, se suman `xp` monedas (15 por lección; el campo conserva el nombre de cuando era XP). Repetirla no suma monedas.
 
 ## Paso `line` (aperturas)
 

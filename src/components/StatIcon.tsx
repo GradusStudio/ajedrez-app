@@ -1,10 +1,13 @@
 import React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Circle, Path } from 'react-native-svg';
 import { colors } from '../theme';
 
-type Props = { name: 'streak' | 'xp'; size?: number; color?: string };
+type Props = { name: 'streak' | 'coin'; size?: number; color?: string };
 
-// Íconos de racha (llama) y XP (rayo), en `gold` (mapa-de-pantallas.md, sección 6).
+// Borde y brillo de la moneda, sobre el dorado de `gold`.
+const COIN_EDGE = '#B8901C';
+
+// Íconos de racha (llama) y monedas, en `gold` (mapa-de-pantallas.md, sección 6).
 export function StatIcon({ name, size = 18, color = colors.gold }: Props) {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24">
@@ -14,7 +17,11 @@ export function StatIcon({ name, size = 18, color = colors.gold }: Props) {
           fill={color}
         />
       ) : (
-        <Path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill={color} />
+        <>
+          <Circle cx={12} cy={12} r={10} fill={color} />
+          <Circle cx={12} cy={12} r={7} fill="none" stroke={COIN_EDGE} strokeWidth={1.8} />
+          <Path d="M10 8.5h4M12 8.5v7M10 15.5h4" stroke={COIN_EDGE} strokeWidth={1.8} strokeLinecap="round" />
+        </>
       )}
     </Svg>
   );

@@ -49,13 +49,13 @@ export default function LessonRoute() {
         router.back();
       }}
       onFinish={(result) => {
-        let xpEarned = 0;
+        let earned = { coins: 0, goalBonus: 0 };
         if (isReview) {
           finishReview({ lessonId: base.id, stepIds: reviewIds, failed: result.mistakes, seconds: seconds() });
         } else {
-          xpEarned = finishLesson({
+          earned = finishLesson({
             lessonId: base.id,
-            lessonXp: base.xp,
+            lessonCoins: base.xp,
             errors: result.errors,
             mistakes: result.mistakes,
             seconds: seconds(),
@@ -67,7 +67,8 @@ export default function LessonRoute() {
           params: {
             id: base.id,
             errors: String(result.errors),
-            xp: String(xpEarned),
+            monedas: String(earned.coins),
+            meta: String(earned.goalBonus),
             fallos: result.mistakes.join(','),
             modo: isReview ? 'repaso' : 'leccion',
           },

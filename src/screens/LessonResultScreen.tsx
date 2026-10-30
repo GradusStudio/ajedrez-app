@@ -9,7 +9,9 @@ type Props = {
   /** lesson: primera vez · replay: lección ya terminada antes · review: repaso de errores */
   mode: 'lesson' | 'replay' | 'review';
   errors: number;
-  xpEarned: number;
+  coinsEarned: number;
+  /** Premio de la meta diaria, si se cumplió al terminar esta lección. */
+  goalBonus: number;
   streak: number;
   onContinue: () => void;
   /** Solo si hubo errores: abre el repaso de los pasos fallados. */
@@ -18,7 +20,7 @@ type Props = {
 
 const HEADINGS = { lesson: 'Lección completada', replay: 'Repaso completado', review: 'Errores repasados' } as const;
 
-export function LessonResultScreen({ title, mode, errors, xpEarned, streak, onContinue, onReviewMistakes }: Props) {
+export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus, streak, onContinue, onReviewMistakes }: Props) {
   return (
     <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.xxl }]}>
       <Text style={styles.heading}>{HEADINGS[mode]}</Text>
@@ -26,9 +28,9 @@ export function LessonResultScreen({ title, mode, errors, xpEarned, streak, onCo
 
       <View style={styles.row}>
         <View style={styles.stat}>
-          <StatIcon name="xp" size={22} />
-          <Text style={[styles.statValue, { color: colors.gold }]}>+{xpEarned}</Text>
-          <Text style={styles.statLabel}>XP</Text>
+          <StatIcon name="coin" size={22} />
+          <Text style={[styles.statValue, { color: colors.gold }]}>+{coinsEarned}</Text>
+          <Text style={styles.statLabel}>{coinsEarned === 1 ? 'moneda' : 'monedas'}</Text>
         </View>
         <View style={styles.stat}>
           <StatIcon name="streak" size={22} />
@@ -43,7 +45,10 @@ export function LessonResultScreen({ title, mode, errors, xpEarned, streak, onCo
       </View>
 
       {mode === 'replay' && (
-        <Text style={styles.note}>La XP de cada lección se suma solo la primera vez que la terminas.</Text>
+        <Text style={styles.note}>Las monedas de cada lección se ganan solo la primera vez que la terminas.</Text>
+      )}
+      {goalBonus > 0 && (
+        <Text style={[styles.note, { color: colors.gold }]}>Cumpliste tu meta diaria: +{goalBonus} monedas.</Text>
       )}
       {mode === 'review' && errors === 0 && (
         <Text style={styles.note}>Resolviste todos los pasos fallados. Salen de tu lista de errores.</Text>

@@ -9,7 +9,7 @@ import { Lesson, Unit } from '../data/lessonTypes';
 import { units } from '../data/units';
 import { lessonStates, suggestedLesson } from '../progress/path';
 import { useProgress } from '../progress/ProgressContext';
-import { currentStreak, minutesToday, xpToday } from '../progress/progressStore';
+import { currentStreak, minutesToday } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = {
@@ -52,15 +52,15 @@ export function HomeScreen({ onStartLesson }: Props) {
   return (
     <View style={styles.screen}>
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}>
-        {/* Racha, XP del día y meta diaria */}
+        {/* Racha, monedas y meta diaria */}
         <View style={styles.statsRow}>
           <View style={styles.stat} accessibilityLabel={`Racha de ${streak} días`}>
             <StatIcon name="streak" />
             <Text style={styles.statText}>{streak}</Text>
           </View>
-          <View style={styles.stat} accessibilityLabel={`${xpToday(progress)} XP hoy`}>
-            <StatIcon name="xp" />
-            <Text style={styles.statText}>{xpToday(progress)} XP hoy</Text>
+          <View style={styles.stat} accessibilityLabel={`${progress.coins} monedas`}>
+            <StatIcon name="coin" />
+            <Text style={styles.statText}>{progress.coins}</Text>
           </View>
         </View>
         <View style={styles.goalRow}>

@@ -3,6 +3,7 @@ import { Alert, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Tex
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { Circle3D } from '../components/Circle3D';
+import { StatIcon } from '../components/StatIcon';
 import { ProgressBar } from '../components/ProgressBar';
 import { Lesson, OpeningCourse } from '../data/lessonTypes';
 import { lessonStates, NodeState } from '../progress/path';
@@ -91,7 +92,11 @@ export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack 
               <Text style={[styles.cardTitle, pending && { color: colors.textMuted }]}>{lesson.title}</Text>
               <Text style={styles.cardCaption}>{caption(lesson, state)}</Text>
             </View>
-            <Text style={[styles.xp, state === 'done' && { color: colors.textMuted }]}>{lesson.xp} XP</Text>
+            {/* Monedas que da la lección la primera vez (campo `xp` del JSON) */}
+            <View style={styles.coins} accessibilityLabel={`${lesson.xp} monedas`}>
+              <StatIcon name="coin" size={14} color={state === 'done' ? colors.textMuted : colors.gold} />
+              <Text style={[styles.xp, state === 'done' && { color: colors.textMuted }]}>{lesson.xp}</Text>
+            </View>
           </Pressable>
         );
       })}
@@ -131,6 +136,7 @@ const styles = StyleSheet.create({
   badgeText: { fontFamily: fonts.extrabold, fontSize: 16, color: '#FFFFFF' },
   cardTitle: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
   cardCaption: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: 2 },
+  coins: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   xp: { fontFamily: fonts.extrabold, fontSize: 13, color: colors.gold },
   practiceNote: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: space.sm, textAlign: 'center' },
 });

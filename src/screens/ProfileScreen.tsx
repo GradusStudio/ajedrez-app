@@ -12,10 +12,10 @@ import { currentStreak, isPuzzleSolved, recordAgainst } from '../progress/progre
 import { puzzles } from '../puzzles/puzzles';
 import { colors, fonts, radius, space } from '../theme';
 
-type Props = { onOpenSettings: () => void; onOpenCredits: () => void };
+type Props = { onOpenSettings: () => void; onOpenCredits: () => void; onOpenPieces: () => void };
 
-// Perfil: racha, XP, lecciones, aperturas, puzzles y bots; acceso a Ajustes y Créditos (mapa-de-pantallas.md, 2.11).
-export function ProfileScreen({ onOpenSettings, onOpenCredits }: Props) {
+// Perfil: racha, monedas, lecciones, aperturas, puzzles y bots; acceso a Ajustes y Créditos (mapa-de-pantallas.md, 2.11).
+export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces }: Props) {
   const { progress } = useProgress();
   const unitLessons = units.flatMap((u) => u.lessons);
   const lessonsDone = unitLessons.filter((l) => progress.lessons[l.id]).length;
@@ -36,7 +36,7 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits }: Props) {
 
       <View style={styles.grid}>
         <Stat icon="streak" value={currentStreak(progress)} label={`días de racha · mejor: ${progress.streak.best}`} />
-        <Stat icon="xp" value={progress.xp.total} label="XP total" />
+        <Stat icon="coin" value={progress.coins} label="monedas" />
         <Stat value={`${lessonsDone}/${unitLessons.length}`} label="lecciones" />
         <Stat value={puzzlesSolved} label="puzzles resueltos" />
       </View>
@@ -76,13 +76,14 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits }: Props) {
       )}
 
       <View style={{ height: space.xl }} />
+      <SettingRow label="Piezas" description="Elige tu set o compra sets nuevos con monedas" onPress={onOpenPieces} />
       <SettingRow label="Ajustes" description="Meta diaria, recordatorio, tablero, piezas, sonido" onPress={onOpenSettings} />
       <SettingRow label="Créditos y licencias" onPress={onOpenCredits} />
     </ScrollView>
   );
 }
 
-function Stat({ icon, value, label }: { icon?: 'streak' | 'xp'; value: number | string; label: string }) {
+function Stat({ icon, value, label }: { icon?: 'streak' | 'coin'; value: number | string; label: string }) {
   return (
     <View style={styles.stat}>
       <View style={styles.statTop}>

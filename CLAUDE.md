@@ -1,6 +1,7 @@
-# App de ajedrez para aprender (estilo Duolingo / Chessly)
+# Gradus · app de ajedrez para aprender (estilo Duolingo / Chessly)
 
 ## Contexto
+- Nombre de la app: **Gradus** (latín, «paso»; elegido el 29-10-2026). En la tienda: «Gradus Chess: aprende ajedrez». Dominio libre sugerido: graduschess.com (sin comprar). La carpeta, el repositorio y las claves de AsyncStorage (`@ajedrez/...`, `ajedrez:progreso`) siguen con el nombre viejo a propósito: cambiarlas borraría el progreso guardado.
 - Usuario: hispanohablante (Argentina), primera vez que desarrolla una app. PC con Windows 11 (PowerShell), prueba en un Redmi Note 13 con Expo Go.
 - Explicar los pasos con claridad y en español. Pedir confirmación antes de cambios grandes.
 - Objetivo: app gratuita para Android con lecciones de aperturas, ejercicios, puzzles y bots con personalidad que juegan las aperturas enseñadas.

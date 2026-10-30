@@ -42,7 +42,7 @@ Carga las fuentes (Nunito) y el progreso guardado. Fondo `bg`, indicador `primar
 
 ### 2.2 Primera vez (3 pasos, saltables) · hecha en el hito 6
 Pantalla `bienvenida`. Se abre sola mientras `profile.onboarded` no sea true (ver `(tabs)/_layout.tsx`). Arriba muestra los tres puntos de avance y "Saltar".
-1. **Bienvenida:** "Aprende ajedrez paso a paso" y botón primario "Empezar".
+1. **Bienvenida:** el nombre de la app («Gradus», en dorado), "Aprende ajedrez paso a paso" y botón primario "Empezar".
 2. **Tu nivel:** "Nunca jugué", "Sé mover las piezas", "Juego de vez en cuando".
    - Hoy decide la dificultad inicial de los puzzles: Medio para "Juego de vez en cuando" y Fácil para los otros dos.
    - Cuando existan las Unidades 3 y 4, podrá decidir desde dónde empieza la ruta. Por ahora todas las unidades están abiertas.

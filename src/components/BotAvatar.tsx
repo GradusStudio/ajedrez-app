@@ -21,6 +21,9 @@ const AVATARS: Record<string, { source: ImageSourcePropType; scale: number }> = 
   ivo: { source: require('../../assets/bots/ivo.webp'), scale: 1 },
   sofia: { source: require('../../assets/bots/sofia.webp'), scale: 1 },
   bruno: { source: require('../../assets/bots/bruno.webp'), scale: 1 },
+  camila: { source: require('../../assets/bots/camila.webp'), scale: 1 },
+  ramiro: { source: require('../../assets/bots/ramiro.webp'), scale: 1 },
+  valentina: { source: require('../../assets/bots/valentina.webp'), scale: 1 },
 };
 
 export function BotAvatar({ bot, size = 48 }: { bot: Bot; size?: number }) {

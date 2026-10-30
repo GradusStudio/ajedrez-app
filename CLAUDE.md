@@ -44,6 +44,7 @@
 - Los ids de lección y de paso deben ser únicos (un id repetido rompe las listas).
 - Diseño de pasos: el tablero va siempre arriba, en la misma posición; el texto, opciones y botones van debajo.
 - Piezas: 5 sets vectoriales (clasico, minimalista, gotico, redondeado, contorneado) en `src/pieces/pieceSets.ts`, generados a partir de imágenes hechas con ChatGPT (copyright de obras de IA incierto; mencionar origen en Créditos). `Piece.tsx` dibuja la pieza al 89 % de la casilla (margen `PAD`) para no tapar las coordenadas, y usa el set elegido en Perfil > Piezas (`PieceSetContext`, clave AsyncStorage `@ajedrez/pieceSet`). El set anterior quedó en `PieceLegacy.tsx`.
+- Avatares de bots: un personaje por bot en `assets/bots/<id>.webp` (hechos con ChatGPT, mencionados en Créditos), registrados en `AVATARS` de `src/components/BotAvatar.tsx` con su escala dentro del círculo.
 
 ## Hitos
 1. Reproductor de lecciones: HECHO.

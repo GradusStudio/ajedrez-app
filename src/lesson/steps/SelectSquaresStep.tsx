@@ -15,9 +15,12 @@ export function SelectSquaresStep({ step, onCorrect, onWrong, locked }: Props) {
   const [solved, setSolved] = useState(false);
 
   // Tras un error, las casillas elegidas quedan marcadas para corregirlas después de "Reintentar".
+  // No se pueden marcar más casillas que las de la respuesta: con una sola, tocar otra la reemplaza;
+  // con varias, al pasarse se desmarca la más antigua.
   const toggle = (s: Square) => {
     if (solved || locked) return;
-    setPicked((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s]));
+    const max = step.squares.length;
+    setPicked((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s].slice(-max)));
   };
 
   const check = () => {

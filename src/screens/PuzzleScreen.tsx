@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Linking, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { Board, BoardMove } from '../components/Board';
 import { Button3D } from '../components/Button3D';
@@ -207,13 +207,6 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
           </View>
         )}
 
-        <Pressable
-          onPress={() => Linking.openURL(`https://lichess.org/training/${puzzle.id}`)}
-          accessibilityRole="link"
-          accessibilityLabel="Ver este puzzle en Lichess"
-        >
-          <Text style={styles.credit}>Puzzle #{puzzle.id} de Lichess · ver en lichess.org</Text>
-        </Pressable>
       </ScrollView>
 
       {status === 'solved' && (
@@ -263,5 +256,4 @@ const styles = StyleSheet.create({
   },
   wrongTitle: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.danger },
   wrongText: { fontFamily: fonts.semibold, fontSize: 15, color: colors.text, marginTop: 4, lineHeight: 21 },
-  credit: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: space.lg, textDecorationLine: 'underline' },
 });

@@ -43,7 +43,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#0TCrY). No solo el caballo hace horquillas: encuentra una con el alfil.",
+          "prompt": "No solo el caballo hace horquillas: encuentra una con el alfil.",
           "fen": "8/p7/8/P2p1p1p/kPp1b2K/2P4P/8/3R4 w - - 3 39",
           "orientation": "b",
           "side": "b",
@@ -66,7 +66,7 @@
               "san": "Axd1"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Busca un jaque del alfil que, en la misma diagonal o en la otra, ataque una pieza grande.",
           "id": "u3-l01-s04"
         },
@@ -141,7 +141,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#acSs0). Encuentra la horquilla.",
+          "prompt": "Encuentra la horquilla.",
           "fen": "7q/7P/3k2K1/p4pN1/8/4nP2/P7/8 b - - 5 48",
           "orientation": "w",
           "side": "w",
@@ -164,13 +164,13 @@
               "san": "Cxh8"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Busca una jugada que ataque dos piezas a la vez, mejor si una es el rey.",
           "id": "u3-l01-s09"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#DKj7y). Encuentra la horquilla.",
+          "prompt": "Encuentra la horquilla.",
           "fen": "8/8/7k/5np1/2K5/5P2/8/3B4 w - - 3 52",
           "orientation": "b",
           "side": "b",
@@ -193,7 +193,7 @@
               "san": "Cxd1"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Busca una jugada que ataque dos piezas a la vez, mejor si una es el rey.",
           "id": "u3-l01-s10"
         }
@@ -310,7 +310,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#bhvfQ). Aprovecha la clavada.",
+          "prompt": "Aprovecha la clavada.",
           "fen": "8/7k/p5p1/6P1/1P4qP/P5R1/6K1/8 b - - 4 60",
           "orientation": "w",
           "side": "w",
@@ -333,13 +333,13 @@
               "san": "Rxh3"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Busca una pieza que no se pueda mover porque detrás está el rey o la dama.",
           "id": "u3-l02-s09"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#jvBim). Aprovecha la clavada.",
+          "prompt": "Aprovecha la clavada.",
           "fen": "4r1r1/8/6pk/p1Q5/8/KPP5/P7/8 w - - 3 37",
           "orientation": "b",
           "side": "b",
@@ -362,7 +362,7 @@
               "san": "Txa8+"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Busca una pieza que no se pueda mover porque detrás está el rey o la dama.",
           "id": "u3-l02-s10"
         }
@@ -400,7 +400,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#MZ2x1). Avanza un peón con jaque: al moverse, destapa el ataque de tu alfil.",
+          "prompt": "Avanza un peón con jaque: al moverse, destapa el ataque de tu alfil.",
           "fen": "8/2k5/5p2/1R2b1p1/P2pP1P1/8/1p2K3/8 w - - 0 56",
           "orientation": "b",
           "side": "b",
@@ -423,7 +423,7 @@
               "san": "Axb2"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "El peón que está delante de tu alfil puede dar jaque al avanzar.",
           "id": "u3-l03-s03"
         },
@@ -491,7 +491,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#dG99T). Encuentra el ataque a la descubierta.",
+          "prompt": "Encuentra el ataque a la descubierta.",
           "fen": "4r1k1/p4p2/1p3p1p/3B4/1Pb5/P5P1/5P1P/3R2K1 b - - 0 25",
           "orientation": "w",
           "side": "w",
@@ -514,13 +514,13 @@
               "san": "Txd8"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Mueve la pieza que tapa a otra tuya: así atacas dos cosas a la vez.",
           "id": "u3-l03-s08"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#b2gII). Encuentra el ataque a la descubierta.",
+          "prompt": "Encuentra el ataque a la descubierta.",
           "fen": "6k1/R5bp/p5p1/1pBPrp2/8/5P1P/PP3P2/6K1 w - - 1 30",
           "orientation": "b",
           "side": "b",
@@ -543,7 +543,7 @@
               "san": "Axd4"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Mueve la pieza que tapa a otra tuya: así atacas dos cosas a la vez.",
           "id": "u3-l03-s09"
         }
@@ -645,7 +645,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#FSOWT). Da jaque doble.",
+          "prompt": "Da jaque doble.",
           "fen": "4r1k1/6p1/6Rp/p7/3N1P1P/P3P3/1r1n3K/3R4 w - - 0 37",
           "orientation": "b",
           "side": "b",
@@ -668,13 +668,13 @@
               "san": "Cxg1+"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Busca una jugada en la que den jaque dos piezas a la vez.",
           "id": "u3-l04-s08"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#o0pmM). Da jaque doble.",
+          "prompt": "Da jaque doble.",
           "fen": "5k2/1R6/6p1/3N1p2/8/1p2P3/6PP/1rn3K1 w - - 5 44",
           "orientation": "b",
           "side": "b",
@@ -697,7 +697,7 @@
               "san": "Cxc3"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Busca una jugada en la que den jaque dos piezas a la vez.",
           "id": "u3-l04-s09"
         }
@@ -822,7 +822,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#kLMGg). Elimina al defensor y gana material.",
+          "prompt": "Elimina al defensor y gana material.",
           "fen": "4r1k1/5p1p/1pq2p2/3b4/1Q1Rp3/4P1P1/4BPKP/8 b - - 2 28",
           "orientation": "w",
           "side": "w",
@@ -845,13 +845,13 @@
               "san": "Txd5"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Busca qué pieza defiende a otra y captúrala o cámbiala.",
           "id": "u3-l05-s08"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#JgCiY). Elimina al defensor y gana material.",
+          "prompt": "Elimina al defensor y gana material.",
           "fen": "8/3qp1kp/6p1/6P1/1p1b1Q2/1P1P1N2/6PK/8 b - - 0 43",
           "orientation": "w",
           "side": "w",
@@ -874,7 +874,7 @@
               "san": "Cxd4"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Busca qué pieza defiende a otra y captúrala o cámbiala.",
           "id": "u3-l05-s09"
         }
@@ -961,7 +961,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#dvqbx). El rey negro defiende el alfil de d8. Da jaque con el peón para desviarlo y gana el alfil.",
+          "prompt": "El rey negro defiende el alfil de d8. Da jaque con el peón para desviarlo y gana el alfil.",
           "fen": "4K3/2kP4/8/1Pp5/2P4b/8/8/8 b - - 4 67",
           "orientation": "w",
           "side": "w",
@@ -984,7 +984,7 @@
               "san": "Rxd8"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Un jaque de peón obliga al rey a capturarlo y alejarse del alfil.",
           "id": "u3-l06-s05"
         },
@@ -1017,7 +1017,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#mjPq7). Desvía al defensor.",
+          "prompt": "Desvía al defensor.",
           "fen": "8/1p1b4/4p2p/1k1pP1p1/1rr2p2/1N3P1P/PR4P1/1R3K2 b - - 0 36",
           "orientation": "w",
           "side": "w",
@@ -1040,13 +1040,13 @@
               "san": "Txb4+"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Obliga a una pieza rival a dejar la casilla que defiende, casi siempre con un jaque.",
           "id": "u3-l06-s08"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#yokJ4). Desvía al defensor.",
+          "prompt": "Desvía al defensor.",
           "fen": "2krr3/pp3ppp/2p5/5P2/2n1N3/7P/PPP2K2/R3R3 b - - 4 24",
           "orientation": "w",
           "side": "w",
@@ -1069,7 +1069,7 @@
               "san": "Txe8+"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Obliga a una pieza rival a dejar la casilla que defiende, casi siempre con un jaque.",
           "id": "u3-l06-s09"
         }
@@ -1192,7 +1192,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#JypAq). Da mate del pasillo.",
+          "prompt": "Da mate del pasillo.",
           "fen": "1r4k1/1q3ppp/2b5/8/3Q4/4PB2/1P3PPP/1K1R4 b - - 5 26",
           "orientation": "w",
           "side": "w",
@@ -1215,13 +1215,13 @@
               "san": "Txd8#"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "El rey está encerrado por sus propios peones en la última fila.",
           "id": "u3-l07-s09"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#eyM8V). Da mate del pasillo.",
+          "prompt": "Da mate del pasillo.",
           "fen": "2Q5/3R4/2p2rp1/pk6/8/8/PPP2q2/1K5R w - - 11 35",
           "orientation": "b",
           "side": "b",
@@ -1244,7 +1244,7 @@
               "san": "Txf1#"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "El rey está encerrado por sus propios peones en la última fila.",
           "id": "u3-l07-s10"
         }
@@ -1343,7 +1343,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#HsDvr). Revisa jaques, capturas y amenazas.",
+          "prompt": "Revisa jaques, capturas y amenazas.",
           "fen": "r1b1r1k1/ppp1qppp/8/3P4/2P1B3/8/PP2QPPP/R4RK1 w - - 3 16",
           "orientation": "b",
           "side": "b",
@@ -1366,13 +1366,13 @@
               "san": "Txe7"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Mira qué piezas del rival quedaron sueltas después de su jugada.",
           "id": "u3-l08-s08"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#40mS4). Revisa jaques, capturas y amenazas.",
+          "prompt": "Revisa jaques, capturas y amenazas.",
           "fen": "1k2r3/1p6/4p3/p3P2p/P7/5q2/1P1p2Q1/6RK b - - 3 45",
           "orientation": "w",
           "side": "w",
@@ -1395,7 +1395,7 @@
               "san": "Rxg1"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Mira qué piezas del rival quedaron sueltas después de su jugada.",
           "id": "u3-l08-s09"
         }

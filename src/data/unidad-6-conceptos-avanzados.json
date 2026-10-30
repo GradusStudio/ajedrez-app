@@ -113,7 +113,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#dxvDC). Juegan las blancas. Usa el zugzwang para ganar el final.",
+          "prompt": "Juegan las blancas. Usa el zugzwang para ganar el final.",
           "fen": "8/3k4/5p2/1p1P1p1p/1P3P1P/2K5/8/8 b - - 0 51",
           "orientation": "w",
           "side": "w",
@@ -136,13 +136,13 @@
               "san": "Rc5"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Mueve el rey para que el rey rival tenga que apartarse y deje sus peones sin defensa.",
           "id": "u6-l01-s09"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#FoRGt). Juegan las blancas. Usa el zugzwang para ganar el final.",
+          "prompt": "Juegan las blancas. Usa el zugzwang para ganar el final.",
           "fen": "8/8/5k2/p1p1P3/P2p1K2/3P4/8/8 b - - 0 52",
           "orientation": "w",
           "side": "w",
@@ -165,13 +165,13 @@
               "san": "Rd5"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Mueve el rey para que el rey rival tenga que apartarse y deje sus peones sin defensa.",
           "id": "u6-l01-s10"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#1Bee7). Juegan las negras. Usa el zugzwang para ganar el final.",
+          "prompt": "Juegan las negras. Usa el zugzwang para ganar el final.",
           "fen": "8/3k4/5p2/1pP1p1p1/4P1Pp/2K2P1P/8/8 w - - 1 43",
           "orientation": "b",
           "side": "b",
@@ -194,7 +194,7 @@
               "san": "Rxc5"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Mueve el rey para que el rey rival tenga que apartarse y deje sus peones sin defensa.",
           "id": "u6-l01-s11"
         }
@@ -370,7 +370,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#SjHwN). Juegan las blancas. Entrega la calidad para que tu peón corone.",
+          "prompt": "Juegan las blancas. Entrega la calidad para que tu peón corone.",
           "fen": "8/pBp3k1/2P5/4rp2/4n1p1/P2R4/6PK/8 b - - 1 30",
           "orientation": "w",
           "side": "w",
@@ -393,13 +393,13 @@
               "san": "c7"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "El caballo de d6 frena tu peón de c. ¿Qué pasa si lo eliminas, aunque te cueste la torre?",
           "id": "u6-l03-s04"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#EkrEH). Juegan las blancas. Otra vez: la calidad a cambio de un peón imparable.",
+          "prompt": "Juegan las blancas. Otra vez: la calidad a cambio de un peón imparable.",
           "fen": "3R4/4ppkp/1P1nb1p1/8/8/7P/6PK/8 b - - 2 41",
           "orientation": "w",
           "side": "w",
@@ -422,7 +422,7 @@
               "san": "b7"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "¿Qué pieza negra frena tu peón de b? Elimínala con la torre.",
           "id": "u6-l03-s05"
         },
@@ -437,7 +437,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#LTQbv). Juegan las blancas. Entrega la calidad para atacar al rey.",
+          "prompt": "Juegan las blancas. Entrega la calidad para atacar al rey.",
           "fen": "4r3/5Rbk/p3P1pp/1pBq4/P1p5/2P2Q2/1P5P/7K b - - 1 36",
           "orientation": "w",
           "side": "w",
@@ -460,13 +460,13 @@
               "san": "Df7+"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "El alfil de g7 protege al rey negro. Captúralo con la torre y después entra con la dama.",
           "id": "u6-l03-s07"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#p4P0n). Juegan las blancas. Elimina al defensor: la calidad a cambio de ganar más material.",
+          "prompt": "Juegan las blancas. Elimina al defensor: la calidad a cambio de ganar más material.",
           "fen": "3r2k1/5ppp/1q3n2/p2r4/1pQN4/P1P2R2/1P4P1/KR6 b - - 1 29",
           "orientation": "w",
           "side": "w",
@@ -489,7 +489,7 @@
               "san": "Dxd5"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "El caballo de f6 defiende la torre de d5. Si desaparece, la torre queda sin defensa.",
           "id": "u6-l03-s08"
         },
@@ -511,13 +511,13 @@
       "steps": [
         {
           "type": "explain",
-          "text": "Repaso final: ocho puzzles de partidas reales de Lichess con temas de toda la ruta. Antes de mover, revisa jaques, capturas y amenazas. Si te equivocas, la pista te dice qué tema buscar.",
+          "text": "Repaso final: ocho puzzles de partidas reales con temas de toda la ruta. Antes de mover, revisa jaques, capturas y amenazas. Si te equivocas, la pista te dice qué tema buscar.",
           "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
           "id": "u6-l04-s01"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#8PHlY). Juegan las blancas. Encuentra la mejor jugada.",
+          "prompt": "Juegan las blancas. Encuentra la mejor jugada.",
           "fen": "8/5ppk/6bp/3Pq3/4N1P1/1P2KQ2/P7/8 b - - 0 49",
           "orientation": "w",
           "side": "w",
@@ -540,13 +540,13 @@
               "san": "Dxd5"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Pista: ataque a la descubierta. Si el caballo se mueve con jaque, tu dama gana la dama negra.",
           "id": "u6-l04-s02"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#Z2PVU). Juegan las negras. Encuentra la mejor jugada.",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
           "fen": "3r4/6p1/1pR3p1/4k3/1P2N2r/P4P1n/5PKP/7R w - - 5 32",
           "orientation": "b",
           "side": "b",
@@ -569,13 +569,13 @@
               "san": "Cxg6"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Pista: horquilla. Tu caballo puede dar jaque y atacar la torre a la vez.",
           "id": "u6-l04-s03"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#to19k). Juegan las blancas. Encuentra la mejor jugada.",
+          "prompt": "Juegan las blancas. Encuentra la mejor jugada.",
           "fen": "8/7p/5kp1/B7/7P/KP6/7r/8 b - - 2 40",
           "orientation": "w",
           "side": "w",
@@ -598,13 +598,13 @@
               "san": "Axh4"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Pista: ensartada. Un jaque del alfil obliga al rey a moverse y deja la torre sin protección.",
           "id": "u6-l04-s04"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#1gxnS). Juegan las negras. Encuentra la mejor jugada.",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
           "fen": "3r2k1/p4pp1/5p1p/8/2p1qP2/P1Q3P1/1P3P1P/2R3K1 w - - 6 26",
           "orientation": "b",
           "side": "b",
@@ -627,13 +627,13 @@
               "san": "Dxc4"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Pista: desviación. Un jaque en la primera fila aparta la torre que defiende la dama.",
           "id": "u6-l04-s05"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#9XWAR). Juegan las negras. Encuentra la mejor jugada.",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
           "fen": "8/8/7p/8/3PQ3/2P2N2/P4k1K/5q2 w - - 1 53",
           "orientation": "b",
           "side": "b",
@@ -656,13 +656,13 @@
               "san": "Dg3#"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Pista: mate en 2. Captura la pieza que defiende y sigue con jaque de dama.",
           "id": "u6-l04-s06"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#d49wh). Juegan las negras. Encuentra la mejor jugada.",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
           "fen": "8/8/8/5kp1/7p/5PKP/8/8 w - - 0 59",
           "orientation": "b",
           "side": "b",
@@ -685,13 +685,13 @@
               "san": "Rg3"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Pista: zugzwang. Acerca tu rey a los peones blancos: el rey rival no puede defenderlos sin apartarse.",
           "id": "u6-l04-s07"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#Kv9DA). Juegan las negras. Encuentra la mejor jugada.",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
           "fen": "1k5r/2q5/p2b4/1b1Qp3/P7/1R5r/1PP3P1/R1B4K w - - 0 26",
           "orientation": "b",
           "side": "b",
@@ -714,13 +714,13 @@
               "san": "Ac6"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Pista: clavada. Cambia las torres y después clava la dama contra su rey con el alfil.",
           "id": "u6-l04-s08"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#7CgP1). Juegan las blancas. Encuentra la mejor jugada.",
+          "prompt": "Juegan las blancas. Encuentra la mejor jugada.",
           "fen": "8/3PQpkp/1p3rp1/8/8/1P5P/6PK/3r4 b - - 0 36",
           "orientation": "w",
           "side": "w",
@@ -743,7 +743,7 @@
               "san": "Dxd8"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Pista: coronación. Tu peón de d7 está a un paso: corona aunque la torre lo pueda capturar.",
           "id": "u6-l04-s09"
         },

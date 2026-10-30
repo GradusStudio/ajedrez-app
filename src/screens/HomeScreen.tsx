@@ -17,7 +17,7 @@ type Props = {
 };
 
 // Alto de cada fila de la ruta (nodo con su anillo + título) y desplazamiento en zigzag.
-const ROW = 124;
+const ROW = 150; // deja lugar a títulos de hasta 3 renglones
 const ZIGZAG = [0, 56, 0, -56];
 
 // Pestaña Aprender: barra de racha y meta, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
@@ -48,10 +48,17 @@ export function HomeScreen({ onStartLesson }: Props) {
   const streak = currentStreak(progress);
   const minutes = minutesToday(progress);
   const goal = progress.profile.dailyGoalMin;
+  // Alto del botón flotante: el final de la ruta se puede subir por encima de él.
+  const [floatingHeight, setFloatingHeight] = useState(140);
 
   return (
     <View style={styles.screen}>
-      <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}>
+      <ScrollView
+        contentContainerStyle={[
+          styles.content,
+          { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md, paddingBottom: floatingHeight + space.xl * 2 },
+        ]}
+      >
         {/* Racha, monedas y meta diaria */}
         <View style={styles.statsRow}>
           <View style={styles.stat} accessibilityLabel={`Racha de ${streak} días`}>
@@ -86,8 +93,8 @@ export function HomeScreen({ onStartLesson }: Props) {
 
       {/* Botón flotante con la lección sugerida */}
       {suggested && (
-        <View style={styles.floating}>
-          <Text style={styles.floatingCaption} numberOfLines={1}>
+        <View style={styles.floating} onLayout={(e) => setFloatingHeight(e.nativeEvent.layout.height)}>
+          <Text style={styles.floatingCaption} numberOfLines={2}>
             Lección {suggested.order} · {suggested.title}
           </Text>
           <Button3D
@@ -231,7 +238,8 @@ function UnitPath({
                 />
                 <Text
                   style={[styles.nodeLabel, states[i] === 'locked' && { color: colors.textMuted }]}
-                  numberOfLines={2}
+                  numberOfLines={3}
+                  maxFontSizeMultiplier={1.3}
                 >
                   {lesson.title}
                 </Text>
@@ -246,7 +254,7 @@ function UnitPath({
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
-  content: { paddingHorizontal: space.lg, paddingBottom: 140 }, // deja lugar al botón flotante
+  content: { paddingHorizontal: space.lg },
   statsRow: { flexDirection: 'row', gap: space.lg },
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   statText: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.gold },
@@ -274,7 +282,18 @@ const styles = StyleSheet.create({
   },
   unitTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: '#FFFFFF' },
   nodeWrap: { position: 'absolute', width: 160, alignItems: 'center' },
-  nodeLabel: { fontFamily: fonts.bold, fontSize: 13, color: colors.text, textAlign: 'center', marginTop: space.xs },
+  // Fondo del color de la pantalla: la línea que une los nodos pasa por detrás del título sin cortarlo.
+  nodeLabel: {
+    fontFamily: fonts.bold,
+    fontSize: 13,
+    color: colors.text,
+    textAlign: 'center',
+    marginTop: space.xs,
+    backgroundColor: colors.bg,
+    paddingHorizontal: 6,
+    borderRadius: 6,
+    overflow: 'hidden',
+  },
   floating: {
     position: 'absolute',
     left: space.lg,

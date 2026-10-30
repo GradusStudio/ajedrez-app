@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { ActivityIndicator, AppState, Platform, View } from 'react-native';
 import { Stack } from 'expo-router';
 import * as NavigationBar from 'expo-navigation-bar';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import {
   useFonts,
@@ -14,9 +15,19 @@ import { PieceSetProvider, usePieceSet } from '../settings/PieceSetContext';
 import { SettingsProvider, useSettings } from '../settings/SettingsContext';
 import { colors } from '../theme';
 
+// La pantalla de carga sigue visible hasta que AppStack termina de cargar fuentes y datos.
+SplashScreen.preventAutoHideAsync().catch(() => {});
+// Por si algo nunca termina de cargar (por ejemplo, una fuente), no dejar la pantalla de carga para siempre.
+const SPLASH_MAX_MS = 8000;
+
 // Navegación: pestañas en (tabs); la lección y el resultado se abren encima, a pantalla completa.
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({ Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold });
+
+  useEffect(() => {
+    const t = setTimeout(() => SplashScreen.hideAsync().catch(() => {}), SPLASH_MAX_MS);
+    return () => clearTimeout(t);
+  }, []);
 
   // Oculta la barra de navegación de Android (se muestra al deslizar desde abajo y vuelve a ocultarse).
   useEffect(() => {
@@ -47,7 +58,14 @@ function AppStack() {
   const { loaded } = useProgress();
   const { loaded: piecesLoaded } = usePieceSet();
   const { loaded: settingsLoaded } = useSettings();
-  if (!loaded || !piecesLoaded || !settingsLoaded) return <Loading />;
+  const ready = loaded && piecesLoaded && settingsLoaded;
+
+  // La pantalla de carga (el caballo) se va cuando el progreso y los ajustes ya están listos.
+  useEffect(() => {
+    if (ready) SplashScreen.hideAsync().catch(() => {});
+  }, [ready]);
+
+  if (!ready) return <Loading />;
   return (
     // Las pantallas entran deslizándose desde la derecha, con la de abajo corriéndose un poco (más suave
     // que la animación por defecto de Android). La bienvenida y el resultado aparecen con un fundido.

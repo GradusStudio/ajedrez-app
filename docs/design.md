@@ -229,7 +229,7 @@ Para las pestañas sin contenido: título de pantalla y una tarjeta con "Próxim
   - `android-icon-foreground.png`: 1024 px, transparente, figura con radio del 29 % (el círculo seguro de Android mide 30,5 %; lo que queda afuera puede recortarse).
   - `android-icon-monochrome.png`: igual, en blanco y con el ojo hueco (iconos temáticos de Android 13 en adelante).
   - `android-icon-background.png`: liso #262421 (y `backgroundColor` en app.json).
-  - `splash-icon.png`: transparente, figura casi a tamaño completo.
+  - `splash-icon.png`: transparente, figura casi a tamaño completo. Pantalla de carga con el plugin `expo-splash-screen` (app.json): fondo #262421 y la figura a 160 dp de ancho. La app la mantiene visible hasta cargar fuentes, progreso y ajustes (`src/app/_layout.tsx`, con un tope de 8 s).
   - `favicon.png` (48 px) y `assets/tienda/icono-512.png` (ficha de Google Play).
 - En Expo Go se ve el icono de Expo Go: el propio aparece al instalar la versión de prueba.
 

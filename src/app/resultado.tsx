@@ -9,7 +9,7 @@ import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { ensureReminderPermission } from '../settings/reminders';import { useSettings } from '../settings/SettingsContext';
 
 export default function ResultRoute() {
-  const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; meta?: string; recuperada?: string; fallos?: string; modo?: string }>();
+  const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; premio?: string; recuperada?: string; fallos?: string; modo?: string }>();
   const { progress } = useProgress();
   const { settings, update } = useSettings();
   const lesson = findLesson(params.id);
@@ -50,7 +50,7 @@ export default function ResultRoute() {
       mode={params.modo === 'repaso' ? 'review' : params.monedas === '0' ? 'replay' : 'lesson'}
       errors={Number(params.errors) || 0}
       coinsEarned={Number(params.monedas) || 0}
-      goalBonus={Number(params.meta) || 0}
+      dailyBonus={Number(params.premio) || 0}
       streak={currentStreak(progress)}
       streakRecovered={params.recuperada === '1'}
       onContinue={() => router.back()}

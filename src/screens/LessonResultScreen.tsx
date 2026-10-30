@@ -11,8 +11,8 @@ type Props = {
   mode: 'lesson' | 'replay' | 'review';
   errors: number;
   coinsEarned: number;
-  /** Premio de la meta diaria, si se cumplió al terminar esta lección. */
-  goalBonus: number;
+  /** Premio del día, si esta lección fue la primera acción de hoy. */
+  dailyBonus: number;
   streak: number;
   /** Con esta lección se completó la recuperación de la racha. */
   streakRecovered: boolean;
@@ -25,7 +25,7 @@ type Props = {
 
 const HEADINGS = { lesson: 'Lección completada', replay: 'Repaso completado', review: 'Errores repasados' } as const;
 
-export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer }: Props) {
+export function LessonResultScreen({ title, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer }: Props) {
   return (
     <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.xxl }]}>
       <Text style={styles.heading}>{HEADINGS[mode]}</Text>
@@ -52,8 +52,8 @@ export function LessonResultScreen({ title, mode, errors, coinsEarned, goalBonus
       {mode === 'replay' && (
         <Text style={styles.note}>Las monedas de cada lección se ganan solo la primera vez que la terminas.</Text>
       )}
-      {goalBonus > 0 && (
-        <Text style={[styles.note, { color: colors.gold }]}>Cumpliste tu meta diaria: +{goalBonus} monedas.</Text>
+      {dailyBonus > 0 && (
+        <Text style={[styles.note, { color: colors.gold }]}>Premio del día: +{dailyBonus} monedas.</Text>
       )}
       {streakRecovered && <Text style={[styles.note, { color: colors.gold }]}>Recuperaste tu racha.</Text>}
       {mode === 'review' && errors === 0 && (

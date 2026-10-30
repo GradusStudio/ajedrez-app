@@ -32,7 +32,7 @@ const MAX_SESSION_SECONDS = 30 * 60;
 /** Texto de las monedas ganadas, para sumar al mensaje del panel. */
 const coinsMessage = (e: Earned | null) =>
   (e?.coins ? ` +${e.coins} ${e.coins === 1 ? 'moneda' : 'monedas'}.` : '') +
-  (e?.goalBonus ? ` Cumpliste tu meta diaria: +${e.goalBonus} monedas.` : '') +
+  (e?.dailyBonus ? ` Premio del día: +${e.dailyBonus} monedas.` : '') +
   (e?.streakRecovered ? ' Recuperaste tu racha.' : '');
 
 const toSquares = (uci: string): SquareMove => ({ from: uci.slice(0, 2) as Square, to: uci.slice(2, 4) as Square });

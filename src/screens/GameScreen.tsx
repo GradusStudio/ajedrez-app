@@ -30,8 +30,8 @@ type Props = {
 };
 
 type Result = { kind: 'win' | 'loss' | 'draw'; reason: string };
-// Resultado ya guardado, con las monedas ganadas (victoria), el premio de la meta diaria y si se recuperó la racha.
-type Finished = Result & { coins: number; goalBonus: number; streakRecovered: boolean };
+// Resultado ya guardado, con las monedas ganadas (victoria), el premio del día y si se recuperó la racha.
+type Finished = Result & { coins: number; dailyBonus: number; streakRecovered: boolean };
 
 // Tope del tiempo de práctica por partida, por si la app queda abierta sin usar.
 const MAX_SESSION_SECONDS = 30 * 60;
@@ -331,8 +331,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           {result.kind === 'win' && result.coins === 0 && !practiceCourse && (
             <Text style={styles.coinsNote}>Las monedas por ganarle a cada bot se dan una vez por día.</Text>
           )}
-          {result.goalBonus > 0 && (
-            <Text style={styles.coinsText}>Cumpliste tu meta diaria: +{result.goalBonus} monedas.</Text>
+          {result.dailyBonus > 0 && (
+            <Text style={styles.coinsText}>Premio del día: +{result.dailyBonus} monedas.</Text>
           )}
           {result.streakRecovered && <Text style={styles.coinsText}>Recuperaste tu racha.</Text>}
           <Button3D

@@ -3,14 +3,13 @@ import { Alert, Modal, Pressable, ScrollView, StatusBar as RNStatusBar, StyleShe
 import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
 import { LessonNode, NODE_BOX } from '../components/LessonNode';
-import { ProgressBar } from '../components/ProgressBar';
 import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
 import { Lesson, Unit } from '../data/lessonTypes';
 import { units } from '../data/units';
 import { lessonStates, suggestedLesson } from '../progress/path';
 import { useProgress } from '../progress/ProgressContext';
-import { currentStreak, minutesToday, streakStatusNow } from '../progress/progressStore';
+import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -22,7 +21,7 @@ type Props = {
 const ROW = 150; // deja lugar a títulos de hasta 3 renglones
 const ZIGZAG = [0, 56, 0, -56];
 
-// Pestaña Aprender: barra de racha y meta, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
+// Pestaña Aprender: barra de racha y monedas, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
 export function HomeScreen({ onStartLesson }: Props) {
   const { progress, setLastUnit } = useProgress();
   // Unidad elegida en el menú. Sin elegir, se muestra la de la última lección empezada
@@ -50,8 +49,6 @@ export function HomeScreen({ onStartLesson }: Props) {
   const today = useTodayKey();
   const streak = currentStreak(progress, today);
   const status = streakStatusNow(progress, today);
-  const minutes = minutesToday(progress, today);
-  const goal = progress.profile.dailyGoalMin;
   // Alto del botón flotante: el final de la ruta se puede subir por encima de él.
   const [floatingHeight, setFloatingHeight] = useState(140);
 
@@ -63,7 +60,7 @@ export function HomeScreen({ onStartLesson }: Props) {
           { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md, paddingBottom: floatingHeight + space.xl * 2 },
         ]}
       >
-        {/* Racha, monedas y meta diaria */}
+        {/* Racha y monedas */}
         <View style={styles.statsRow}>
           <View style={styles.stat} accessibilityLabel={`Racha de ${streak} días`}>
             <StatIcon name="streak" />
@@ -75,13 +72,6 @@ export function HomeScreen({ onStartLesson }: Props) {
           </View>
         </View>
         {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
-        <View style={styles.goalRow}>
-          <Text style={styles.goalLabel}>Meta diaria</Text>
-          <ProgressBar value={minutes / goal} />
-          <Text style={styles.goalLabel}>
-            {Math.min(minutes, goal)}/{goal} min
-          </Text>
-        </View>
 
         <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
       </ScrollView>
@@ -263,8 +253,6 @@ const styles = StyleSheet.create({
   statsRow: { flexDirection: 'row', gap: space.lg },
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   statText: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.gold },
-  goalRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md },
-  goalLabel: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted },
   unitCard: {
     marginTop: space.lg,
     backgroundColor: colors.primary,

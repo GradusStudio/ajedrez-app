@@ -43,14 +43,14 @@ export type GameRecord = {
 
 export type Progress = {
   version: 3;
-  /** Se elige en la bienvenida (y la meta, también en Ajustes). */
-  profile: { dailyGoalMin: number; level?: PlayerLevel; onboarded?: boolean };
+  /** Se elige en la bienvenida. */
+  profile: { level?: PlayerLevel; onboarded?: boolean };
   lessons: Record<string, LessonProgress>;
   drafts: Record<string, LessonDraft>;
   streak: Streak;
   /** Monedas para gastar en la tienda (reemplazaron a la XP en la versión 3). */
   coins: number;
-  /** Para no pagar dos veces el mismo premio: día del premio de la meta y, por bot, día de la última victoria premiada. */
+  /** Para no pagar dos veces el mismo premio: día del premio diario (`goalDate`, nombre histórico) y, por bot, día de la última victoria premiada. */
   rewards: { goalDate: string | null; botWins: Record<string, string> };
   /** Sets de piezas comprados (los gratis no se guardan). */
   pieceSets: string[];
@@ -68,13 +68,13 @@ const MAX_GAMES = 50;
 // ---------- Monedas ----------
 // Lecciones: el valor `xp` de cada lección (nombre histórico del campo en los JSON), solo la primera vez.
 export const PUZZLE_COINS: Record<PuzzleResult, number> = { clean: 2, solved: 1, failed: 0 };
-export const GOAL_BONUS_COINS = 10;
+export const DAILY_BONUS_COINS = 10;
 /** Victoria contra un bot (no en práctica): una vez por día y por bot, según su nivel (Pipo 500 → 5, Ada 2200 → 22). */
 export const botWinCoins = (elo: number) => Math.round(elo / 100);
 
 export const emptyProgress: Progress = {
   version: 3,
-  profile: { dailyGoalMin: 10 },
+  profile: {},
   lessons: {},
   drafts: {},
   streak: { current: 0, best: 0, lastActiveDate: null },
@@ -99,33 +99,35 @@ export function currentStreak(p: Progress, today = todayKey()): number {
   return streakStatus(p.streak, today).days;
 }
 
-export function minutesToday(p: Progress, today = todayKey()): number {
-  return p.practice.date === today ? Math.floor(p.practice.seconds / 60) : 0;
-}
-
 // ---------- Cambios ----------
 
 function withCoins(p: Progress, amount: number): Progress {
   return amount ? { ...p, coins: p.coins + amount } : p;
 }
 
-/** Suma tiempo de práctica. El día que se llega a la meta diaria, da el premio (una sola vez por día). */
+/** Suma tiempo de práctica (ya no se muestra, pero se sigue guardando). */
 export function withPractice(p: Progress, seconds: number, today = todayKey()): Progress {
   const base = p.practice.date === today ? p.practice.seconds : 0;
-  const next: Progress = { ...p, practice: { seconds: base + Math.max(0, Math.round(seconds)), date: today } };
-  const goalReached = next.practice.seconds >= p.profile.dailyGoalMin * 60;
-  if (!goalReached || p.rewards.goalDate === today) return next;
-  return withCoins({ ...next, rewards: { ...next.rewards, goalDate: today } }, GOAL_BONUS_COINS);
+  return { ...p, practice: { seconds: base + Math.max(0, Math.round(seconds)), date: today } };
 }
 
-/** Registra una acción del día en la racha; `streakRecovered` es true si con ella se completó una recuperación. */
+/**
+ * Registra una acción del día en la racha y paga el premio del día con la primera de cada día.
+ * `streakRecovered` es true si con ella se completó una recuperación.
+ */
 function withStreak(
   p: Progress,
   action: StreakAction,
   today: string
-): { progress: Progress; streakRecovered: boolean } {
+): { progress: Progress; dailyBonus: number; streakRecovered: boolean } {
   const { streak, recovered } = withStreakAction(p.streak, action, today);
-  return { progress: { ...p, streak }, streakRecovered: recovered };
+  const next: Progress = { ...p, streak };
+  if (p.rewards.goalDate === today) return { progress: next, dailyBonus: 0, streakRecovered: recovered };
+  return {
+    progress: withCoins({ ...next, rewards: { ...next.rewards, goalDate: today } }, DAILY_BONUS_COINS),
+    dailyBonus: DAILY_BONUS_COINS,
+    streakRecovered: recovered,
+  };
 }
 
 export function withDraft(p: Progress, lessonId: string, draft: LessonDraft | null): Progress {
@@ -160,13 +162,13 @@ export type LessonFinish = {
 /**
  * Registra una lección terminada. Las monedas de la lección se suman solo la primera vez;
  * repetir una lección sirve de repaso, cuenta para la racha y mejora el récord de errores.
- * Devuelve las monedas de la lección y, aparte, el premio de la meta diaria si se cumplió con ella.
+ * Devuelve las monedas de la lección y, aparte, el premio del día si fue la primera acción de hoy.
  */
 export function withLessonFinished(
   p: Progress,
   f: LessonFinish,
   now = new Date()
-): { progress: Progress; coinsEarned: number; goalBonus: number; streakRecovered: boolean } {
+): { progress: Progress; coinsEarned: number; dailyBonus: number; streakRecovered: boolean } {
   const today = todayKey(now);
   const iso = now.toISOString();
   const prev = p.lessons[f.lessonId];
@@ -178,12 +180,10 @@ export function withLessonFinished(
   let next: Progress = { ...p, lessons: { ...p.lessons, [f.lessonId]: entry } };
   next = withDraft(next, f.lessonId, null);
   next = withCoins(next, coinsEarned);
-  const beforeGoal = next.coins;
   next = withPractice(next, f.seconds, today);
-  const goalBonus = next.coins - beforeGoal;
   const streak = withStreak(next, 'lesson', today);
   next = withMistakes(streak.progress, f.lessonId, f.mistakes, iso);
-  return { progress: next, coinsEarned, goalBonus, streakRecovered: streak.streakRecovered };
+  return { progress: next, coinsEarned, dailyBonus: streak.dailyBonus, streakRecovered: streak.streakRecovered };
 }
 
 export type ReviewFinish = {
@@ -198,7 +198,7 @@ export function withReviewFinished(
   p: Progress,
   r: ReviewFinish,
   now = new Date()
-): { progress: Progress; streakRecovered: boolean } {
+): { progress: Progress; dailyBonus: number; streakRecovered: boolean } {
   const today = todayKey(now);
   const solved = r.stepIds.filter((id) => !r.failed.includes(id));
   let next: Progress = { ...p, mistakes: p.mistakes.filter((m) => !solved.includes(m.stepId)) };
@@ -208,7 +208,7 @@ export function withReviewFinished(
 }
 
 /**
- * Partida terminada: se guarda y cuenta para la meta diaria. Cuenta para la racha solo si `countsForStreak`
+ * Partida terminada: se guarda y cuenta para la racha solo si `countsForStreak`
  * (una partida abandonada con menos de 10 jugadas no cuenta). Ganarle a un bot (fuera del modo
  * práctica) da monedas según su nivel, una vez por día y por bot, para que no convenga repetir contra el más fácil.
  */
@@ -246,7 +246,7 @@ export function withProfile(p: Progress, patch: Partial<Progress['profile']>): P
 const PUZZLE_RANK: Record<PuzzleResult, number> = { failed: 0, solved: 1, clean: 2 };
 
 /**
- * Puzzle terminado: guarda el mejor resultado y cuenta para la meta diaria. Cuenta para la racha salvo
+ * Puzzle terminado: guarda el mejor resultado y cuenta para la racha salvo
  * que se haya mirado la solución (`failed`).
  * Da monedas solo la primera vez que se resuelve (si antes se había mirado la solución, todavía cuenta).
  */

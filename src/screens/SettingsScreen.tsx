@@ -17,7 +17,7 @@ const REMINDER_HOURS = [9, 13, 19, 21];
 // Ajustes (mapa-de-pantallas.md, 2.12). Cada cambio se guarda al instante.
 export function SettingsScreen({ onBack, onOpenPieces }: Props) {
   const { settings, update } = useSettings();
-  const { progress, updateProfile, resetProgress } = useProgress();
+  const { resetProgress } = useProgress();
   const { pieceSet } = usePieceSet();
   const pieceName = PIECE_SET_META.find((m) => m.id === pieceSet)?.name ?? '';
 
@@ -65,13 +65,6 @@ export function SettingsScreen({ onBack, onOpenPieces }: Props) {
 
       {/* Práctica */}
       <Text style={styles.section}>Práctica</Text>
-      <Text style={styles.label}>Meta diaria</Text>
-      <Segmented
-        options={[5, 10, 15].map((m) => ({ value: m, label: `${m} min` }))}
-        value={progress.profile.dailyGoalMin}
-        onChange={(m) => updateProfile({ dailyGoalMin: m })}
-      />
-      <View style={{ height: space.md }} />
       <SettingRow
         label="Recordatorio diario"
         description={settings.reminder.enabled ? `Todos los días a las ${settings.reminder.hour}:00` : 'Un aviso para practicar'}

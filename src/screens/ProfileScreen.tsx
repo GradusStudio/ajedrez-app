@@ -98,7 +98,7 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
         />
       )}
       <SettingRow label="Piezas" description="Elige tu set o compra sets nuevos con monedas" onPress={onOpenPieces} />
-      <SettingRow label="Ajustes" description="Meta diaria, recordatorio, tablero, piezas, sonido" onPress={onOpenSettings} />
+      <SettingRow label="Ajustes" description="Recordatorio, tablero, piezas, sonido" onPress={onOpenSettings} />
       <SettingRow label="Créditos y licencias" onPress={onOpenCredits} />
     </ScrollView>
   );

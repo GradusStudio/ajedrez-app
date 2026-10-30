@@ -21,16 +21,16 @@ import {
   withReviewFinished,
 } from './progressStore';
 
-/** Monedas ganadas por algo terminado, y aparte el premio de la meta diaria si se cumplió en ese momento. */
-export type Earned = { coins: number; goalBonus: number; streakRecovered: boolean };
+/** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
+export type Earned = { coins: number; dailyBonus: number; streakRecovered: boolean };
 
 type ProgressValue = {
   progress: Progress;
   loaded: boolean;
   /** Guarda la lección como terminada y devuelve las monedas ganadas (0 si ya estaba hecha). */
   finishLesson: (f: LessonFinish) => Earned;
-  /** Guarda el repaso y devuelve si con él se recuperó la racha. */
-  finishReview: (r: ReviewFinish) => boolean;
+  /** Guarda el repaso y devuelve el premio del día y si con él se recuperó la racha. */
+  finishReview: (r: ReviewFinish) => Earned;
   /** Guarda (o borra, con null) el avance de una lección a medio hacer. */
   saveDraft: (lessonId: string, draft: LessonDraft | null) => void;
   /** Recuerda la unidad de la última lección empezada en Aprender. */
@@ -46,7 +46,7 @@ type ProgressValue = {
   /** Compra un set de piezas: devuelve false si no alcanzan las monedas. */
   buyPieceSet: (id: string, price: number) => boolean;
   updateProfile: (patch: Partial<Progress['profile']>) => void;
-  /** Borra todo el progreso. Conserva la bienvenida ya hecha y la meta diaria. */
+  /** Borra todo el progreso. Conserva la bienvenida ya hecha y el nivel. */
   resetProgress: () => void;
 };
 
@@ -78,7 +78,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     (f: LessonFinish) => {
       const result = withLessonFinished(current.current, f);
       commit(result.progress);
-      return { coins: result.coinsEarned, goalBonus: result.goalBonus, streakRecovered: result.streakRecovered };
+      return { coins: result.coinsEarned, dailyBonus: result.dailyBonus, streakRecovered: result.streakRecovered };
     },
     [commit]
   );
@@ -87,7 +87,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     (r: ReviewFinish) => {
       const result = withReviewFinished(current.current, r);
       commit(result.progress);
-      return result.streakRecovered;
+      return { coins: 0, dailyBonus: result.dailyBonus, streakRecovered: result.streakRecovered };
     },
     [commit]
   );
@@ -101,13 +101,13 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
 
   const addPractice = useCallback((seconds: number) => commit(withPractice(current.current, seconds)), [commit]);
 
-  /** Guarda el resultado y separa las monedas propias del premio de la meta diaria. */
+  /** Guarda el resultado y separa las monedas propias del premio del día. */
   const commitEarned = useCallback(
     (before: Progress, r: { progress: Progress; coinsEarned: number; streakRecovered: boolean }): Earned => {
       commit(r.progress);
       return {
         coins: r.coinsEarned,
-        goalBonus: r.progress.coins - before.coins - r.coinsEarned,
+        dailyBonus: r.progress.coins - before.coins - r.coinsEarned,
         streakRecovered: r.streakRecovered,
       };
     },

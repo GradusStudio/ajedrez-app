@@ -8,8 +8,8 @@ export default function WelcomeRoute() {
   const { updateProfile } = useProgress();
   return (
     <OnboardingScreen
-      onFinish={({ level, dailyGoalMin }) => {
-        updateProfile({ onboarded: true, ...(level ? { level } : {}), ...(dailyGoalMin ? { dailyGoalMin } : {}) });
+      onFinish={({ level }) => {
+        updateProfile({ onboarded: true, ...(level ? { level } : {}) });
         router.replace('/');
       }}
     />

@@ -460,5 +460,557 @@
         }
       }
     }
+  },
+  "sicilian": {
+    "name": "Difesa Siciliana (Najdorf)",
+    "summary": "La risposta più combattiva a 1.e4: struttura asimmetrica e gioco per vincere col Nero.",
+    "lessons": {
+      "sicilian-l01": {
+        "title": "L'idea della Siciliana",
+        "summary": "Asimmetria e lotta per d4",
+        "steps": {
+          "sicilian-l01-s01": {
+            "text": "Con ...c5 non copi il Bianco: lotti per la casella d4 dall'ala."
+          },
+          "sicilian-l01-s02": {
+            "text": "Cambi il tuo pedone c col pedone centrale bianco. Dopo hai più pedoni al centro e il Bianco ne ha di più sull'ala di donna."
+          },
+          "sicilian-l01-s03": {
+            "text": "Posizione tipica: hai un centro comodo con ...e5 e il Bianco attacca il tuo re con f3, Dd2 e arrocco lungo. Il tuo gioco è sull'ala di donna."
+          },
+          "sicilian-l01-s04": {
+            "prompt": "Che cosa cambi nella Siciliana?",
+            "explanation": "Il cambio ...cxd4 elimina il pedone centrale bianco e ti lascia più pedoni centrali.",
+            "options": [
+              "Il tuo pedone c col pedone d bianco",
+              "Il tuo pedone e col pedone d bianco",
+              "Il tuo pedone a col pedone e bianco"
+            ]
+          },
+          "sicilian-l01-s05": {
+            "prompt": "A che cosa serve ...a6 nella Najdorf?",
+            "explanation": "Impedisce a un alfiere o a un cavallo bianco di arrivare in b5 e prepara l'avanzata sull'ala di donna.",
+            "options": [
+              "Protegge il pedone in e5",
+              "Controlla b5 e prepara ...b5",
+              "Attacca il cavallo in d4"
+            ]
+          }
+        }
+      },
+      "sicilian-l02": {
+        "title": "Linea principale",
+        "summary": "La Najdorf con l'attacco inglese",
+        "steps": {
+          "sicilian-l02-s01": {
+            "prompt": "Gioca la linea principale della Siciliana Najdorf.",
+            "notes": [
+              "",
+              "Risposta asimmetrica: lotti per d4 senza imitare il Bianco.",
+              "",
+              "Prepara ...Cf6 e mantiene solido il centro.",
+              "",
+              "Cambi il tuo pedone c col pedone centrale bianco.",
+              "",
+              "Sviluppa e attacca il pedone in e4.",
+              "",
+              "Najdorf: controlli b5 e prepari ...b5.",
+              "",
+              "Occupi il centro e respingi il cavallo in d4.",
+              "",
+              "L'alfiere preme sul cavallo in b3.",
+              "",
+              "Sviluppa e prepara l'arrocco.",
+              "",
+              "Re al sicuro prima che arrivino gli attacchi.",
+              "",
+              "Completa lo sviluppo. Poi ...b5 e attacco sull'ala di donna."
+            ]
+          }
+        }
+      },
+      "sicilian-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Cambio in d4 e piano contro l'arrocco lungo",
+        "steps": {
+          "sicilian-l03-s01": {
+            "prompt": "Cambia il tuo pedone c col pedone centrale bianco.",
+            "hint": "Cattura in d4.",
+            "success": "Corretto"
+          },
+          "sicilian-l03-s02": {
+            "prompt": "Sviluppa il cavallo attaccando e4.",
+            "hint": "Il cavallo in g8 attacca il pedone in e4.",
+            "success": "Corretto"
+          },
+          "sicilian-l03-s03": {
+            "prompt": "Il Bianco ha arroccato lungo. Quale piano ti conviene?",
+            "explanation": "Con arrocchi opposti vince chi attacca per primo: i tuoi pedoni a e b avanzano contro il suo re.",
+            "options": [
+              "Arroccare lungo anche tu",
+              "Cambiare le donne il prima possibile",
+              "Attaccare in fretta sull'ala di donna con ...b5"
+            ]
+          }
+        }
+      },
+      "sicilian-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "sicilian-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "sicilian-l04-s02": {
+            "prompt": "Quale cavallo bianco si ritira in b3 dopo ...e5?",
+            "explanation": "Il pedone in e5 attacca il cavallo in d4, che si ritira in b3.",
+            "options": [
+              "Quello in d4",
+              "Quello in c3",
+              "Quello in f3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "dragon": {
+    "name": "Siciliana Dragone",
+    "summary": "Fianchetto con l'alfiere in g7: una struttura molto tagliente in cui entrambi i campi attaccano.",
+    "lessons": {
+      "dragon-l01": {
+        "title": "L'idea del Dragone",
+        "summary": "L'alfiere in g7 e l'attacco jugoslavo",
+        "steps": {
+          "dragon-l01-s01": {
+            "text": "Con ...g6 e ...Ag7 metti l'alfiere del Dragone sulla diagonale lunga, puntato verso a1."
+          },
+          "dragon-l01-s02": {
+            "text": "Contro il Dragone, il Bianco gioca di solito l'attacco jugoslavo: Ae3, f3, Dd2, arrocco lungo e avanzata dei pedoni g e h."
+          },
+          "dragon-l01-s03": {
+            "text": "Il tuo contrattacco: torre in c8, cavallo in e5 e sacrifici in c3. È una corsa all'attacco con arrocchi opposti."
+          },
+          "dragon-l01-s04": {
+            "prompt": "Qual è il pezzo chiave del Dragone?",
+            "explanation": "Se il Bianco lo cambia, il tuo re diventa più debole; per questo lo difendi.",
+            "options": [
+              "L'alfiere in g7",
+              "Il cavallo in b8",
+              "La donna"
+            ]
+          },
+          "dragon-l01-s05": {
+            "prompt": "Il Bianco arrocca lungo. Su quale colonna attacchi?",
+            "explanation": "La torre in c8 punta al suo re, che è in c1.",
+            "options": [
+              "Sulla colonna h",
+              "Sulla colonna c",
+              "Sulla colonna e"
+            ]
+          }
+        }
+      },
+      "dragon-l02": {
+        "title": "Linea principale",
+        "summary": "L'attacco jugoslavo",
+        "steps": {
+          "dragon-l02-s01": {
+            "prompt": "Gioca la linea principale del Dragone.",
+            "notes": [
+              "",
+              "Risposta asimmetrica: lotti per d4.",
+              "",
+              "Prepara ...Cf6 e mantiene solido il centro.",
+              "",
+              "Cambi il tuo pedone c col pedone centrale.",
+              "",
+              "Sviluppi e attacchi e4.",
+              "",
+              "Dragone: prepari il fianchetto in g7.",
+              "",
+              "L'alfiere del Dragone punta lungo tutta la diagonale lunga.",
+              "",
+              "Re al sicuro; ora arriverà l'attacco jugoslavo.",
+              "",
+              "Premi su d4.",
+              "",
+              "Prepara ...Tc8 e ...Ce5, e difende il cavallo.",
+              "",
+              "La torre va sulla colonna c: è il tuo piano di contrattacco."
+            ]
+          }
+        }
+      },
+      "dragon-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Fianchetto, arrocco e piano d'attacco",
+        "steps": {
+          "dragon-l03-s01": {
+            "prompt": "Prepara il fianchetto del tuo alfiere.",
+            "hint": "Un pedone apre la diagonale per l'alfiere.",
+            "success": "Corretto"
+          },
+          "dragon-l03-s02": {
+            "prompt": "Metti al sicuro il tuo re.",
+            "hint": "L'alfiere in g7 protegge già il tuo arrocco.",
+            "success": "Corretto"
+          },
+          "dragon-l03-s03": {
+            "prompt": "Qual è la prima cosa da fare dopo l'arrocco per attaccare?",
+            "explanation": "L'attacco nero arriva dalla colonna c, non dall'ala di re.",
+            "options": [
+              "Avanzare i pedoni dell'ala di re",
+              "Cambiare l'alfiere in g7",
+              "Portare il cavallo in c6 e preparare la torre in c8"
+            ]
+          }
+        }
+      },
+      "dragon-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "dragon-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "dragon-l04-s02": {
+            "prompt": "Quale diagonale controlla il tuo alfiere in g7?",
+            "explanation": "Quella diagonale punta verso l'arrocco lungo del Bianco.",
+            "options": [
+              "La diagonale lunga a1–h8",
+              "La diagonale e1–h4",
+              "La diagonale a2–g8"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "kia": {
+    "name": "Attacco Est-Indiano",
+    "summary": "Un sistema: la stessa struttura (g3, Ag2, d3, e4) contro quasi ogni difesa.",
+    "lessons": {
+      "kia-l01": {
+        "title": "L'idea dell'Attacco Est-Indiano",
+        "summary": "Un sistema per molte difese",
+        "steps": {
+          "kia-l01-s01": {
+            "text": "Metti l'alfiere in g2 e punti lungo la diagonale lunga fino ad a8."
+          },
+          "kia-l01-s02": {
+            "text": "Struttura tipica: pedoni in g3, d3 ed e4, alfiere in g2 e cavalli in f3 e d2."
+          },
+          "kia-l01-s03": {
+            "text": "Il piano: avanzare e5 e attaccare sull'ala di re con i tuoi pezzi e pedoni."
+          },
+          "kia-l01-s04": {
+            "prompt": "Quale diagonale controlla il tuo alfiere in g2?",
+            "explanation": "Quella diagonale punta verso l'ala di donna del Nero.",
+            "options": [
+              "La diagonale lunga a8–h1",
+              "La diagonale e1–h4",
+              "La diagonale a2–g8"
+            ]
+          },
+          "kia-l01-s05": {
+            "prompt": "Perché si chiama sistema?",
+            "explanation": "Così la teoria da ricordare si riduce molto.",
+            "options": [
+              "Serve solo contro ...d5",
+              "Giochi la stessa struttura contro molte difese",
+              "È una trappola fissa"
+            ]
+          }
+        }
+      },
+      "kia-l02": {
+        "title": "Linea principale",
+        "summary": "Struttura contro ...d5",
+        "steps": {
+          "kia-l02-s01": {
+            "prompt": "Gioca la linea principale dell'Attacco Est-Indiano.",
+            "notes": [
+              "Sviluppa e prepara g3 senza impegnare il centro.",
+              "",
+              "Prepara l'alfiere in g2.",
+              "",
+              "L'alfiere domina la diagonale lunga.",
+              "",
+              "Re presto al sicuro.",
+              "",
+              "Sostiene e4 e libera l'alfiere in c1.",
+              "",
+              "Sviluppa il cavallo e prepara e4.",
+              "",
+              "Occupi il centro: è il piano dell'Attacco Est-Indiano.",
+              "",
+              "La torre sostiene e4 e prepara e5."
+            ]
+          }
+        }
+      },
+      "kia-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Fianchetto, arrocco e centro",
+        "steps": {
+          "kia-l03-s01": {
+            "prompt": "Sviluppa l'alfiere sulla diagonale lunga.",
+            "hint": "Un alfiere va in g2.",
+            "success": "Corretto"
+          },
+          "kia-l03-s02": {
+            "prompt": "Metti il tuo re al sicuro.",
+            "hint": "Il fianchetto protegge già l'arrocco corto.",
+            "success": "Corretto"
+          },
+          "kia-l03-s03": {
+            "prompt": "Quale pedone avanzi per occupare il centro?",
+            "explanation": "Con e4 completi la struttura del sistema.",
+            "options": [
+              "e4",
+              "h4",
+              "a4"
+            ]
+          }
+        }
+      },
+      "kia-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "kia-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "kia-l04-s02": {
+            "prompt": "Che cosa fa la torre in e1?",
+            "explanation": "La torre sulla colonna e sostiene l'avanzata centrale.",
+            "options": [
+              "Sostiene e4 e prepara e5",
+              "Attacca l'ala di donna",
+              "Protegge l'alfiere in g2"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "kings-indian": {
+    "name": "Difesa Est-Indiana",
+    "summary": "Lasci il centro al Bianco per attaccarlo dopo, con un attacco contro il suo re.",
+    "lessons": {
+      "kings-indian-l01": {
+        "title": "L'idea dell'Est-Indiana",
+        "summary": "Centro ceduto e attacco con ...f5",
+        "steps": {
+          "kings-indian-l01-s01": {
+            "text": "Il Nero non occupa il centro: lascia che il Bianco costruisca un grande centro di pedoni per attaccarlo più tardi."
+          },
+          "kings-indian-l01-s02": {
+            "text": "L'alfiere in g7 domina la diagonale lunga e fa pressione sul centro bianco."
+          },
+          "kings-indian-l01-s03": {
+            "text": "Quando il centro si chiude con d5, il tuo piano è attaccare l'ala di re con ...f5."
+          },
+          "kings-indian-l01-s04": {
+            "prompt": "Qual è il piano principale del Nero?",
+            "explanation": "Il Bianco attacca sull'ala di donna e tu su quella di re.",
+            "options": [
+              "Attaccare l'ala di re con ...f5",
+              "Cambiare presto le donne",
+              "Giocare ...a6 e ...b5"
+            ]
+          },
+          "kings-indian-l01-s05": {
+            "prompt": "Che cosa fa l'alfiere in g7?",
+            "explanation": "È il pezzo che dà senso a tutta l'apertura.",
+            "options": [
+              "Protegge il pedone in h7",
+              "Preme sul centro lungo la diagonale lunga",
+              "Attacca il cavallo in f3"
+            ]
+          }
+        }
+      },
+      "kings-indian-l02": {
+        "title": "Linea principale",
+        "summary": "La variante classica",
+        "steps": {
+          "kings-indian-l02-s01": {
+            "prompt": "Gioca la linea principale dell'Est-Indiana.",
+            "notes": [
+              "",
+              "Sviluppi e controlli e4 e d5.",
+              "",
+              "Prepara l'alfiere in g7.",
+              "",
+              "Fianchetto: l'alfiere domina la diagonale lunga.",
+              "",
+              "Controlli e5 e prepari ...e5.",
+              "",
+              "Re al sicuro.",
+              "",
+              "Contrattacco al centro.",
+              "",
+              "Premi su d4.",
+              "",
+              "Il Bianco ha chiuso il centro: ritiri il cavallo in e7 e prepari l'attacco con ...f5.",
+              "",
+              "Il cavallo in f6 libera il pedone f.",
+              "",
+              "Attacco sull'ala di re: è il piano principale del Nero."
+            ]
+          }
+        }
+      },
+      "kings-indian-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Fianchetto, arrocco e avanzata",
+        "steps": {
+          "kings-indian-l03-s01": {
+            "prompt": "Metti l'alfiere in fianchetto sulla diagonale lunga.",
+            "hint": "L'alfiere di re va in g7.",
+            "success": "Corretto"
+          },
+          "kings-indian-l03-s02": {
+            "prompt": "Metti il tuo re al sicuro.",
+            "hint": "È il momento di arroccare.",
+            "success": "Corretto"
+          },
+          "kings-indian-l03-s03": {
+            "prompt": "Dopo ...Ce7, quale pedone avanzi per attaccare?",
+            "explanation": "Con ...f5 apri linee verso il re bianco.",
+            "options": [
+              "Il pedone h",
+              "Il pedone f",
+              "Il pedone a"
+            ]
+          }
+        }
+      },
+      "kings-indian-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "kings-indian-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "kings-indian-l04-s02": {
+            "prompt": "Quali pezzi neri puntano di solito verso il re bianco?",
+            "explanation": "L'attacco sull'ala di re si fa con pedoni e pezzi insieme.",
+            "options": [
+              "L'alfiere in g7 e i pedoni f e g",
+              "La torre in a8",
+              "La donna da sola"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "modern": {
+    "name": "Difesa Moderna",
+    "summary": "Una difesa ipermoderna: lasci il centro al Bianco e lo pressi da lontano.",
+    "lessons": {
+      "modern-l01": {
+        "title": "L'idea della Moderna",
+        "summary": "Premere sul centro da lontano",
+        "steps": {
+          "modern-l01-s01": {
+            "text": "Non occupi il centro con i pedoni: lo pressi a distanza con l'alfiere in g7."
+          },
+          "modern-l01-s02": {
+            "text": "Lasci che il Bianco costruisca un grande centro e poi lo attacchi con ...c5, ...e5 o ...b5."
+          },
+          "modern-l01-s03": {
+            "text": "Con ...a6 e ...b5 guadagni spazio sull'ala di donna mantenendo solida la tua struttura."
+          },
+          "modern-l01-s04": {
+            "prompt": "Che cosa distingue la Moderna dalla Pirc?",
+            "explanation": "Entrambe usano ...g6 e ...Ag7, ma l'ordine dei pezzi è più flessibile nella Moderna.",
+            "options": [
+              "Il cavallo in g8 di solito aspetta di vedere che cosa fa il Bianco",
+              "Non c'è nessuna differenza",
+              "Nella Moderna non si gioca ...g6"
+            ]
+          },
+          "modern-l01-s05": {
+            "prompt": "Quale casella controlla l'alfiere in g7?",
+            "explanation": "Da g7 preme sul pedone in d4 lungo la diagonale lunga.",
+            "options": [
+              "h3",
+              "c6",
+              "d4"
+            ]
+          }
+        }
+      },
+      "modern-l02": {
+        "title": "Linea principale",
+        "summary": "Sistema con ...a6 e ...b5",
+        "steps": {
+          "modern-l02-s01": {
+            "prompt": "Gioca la linea principale della Moderna.",
+            "notes": [
+              "",
+              "Prepari il fianchetto senza occupare il centro.",
+              "",
+              "L'alfiere preme sul centro da lontano.",
+              "",
+              "Controlli e5 e limiti il pedone in e4.",
+              "",
+              "Prepara ...b5 e guadagna spazio sull'ala di donna.",
+              "",
+              "Espansione sull'ala di donna.",
+              "",
+              "Sviluppi il cavallo e sostieni ...e5 o ...c5."
+            ]
+          }
+        }
+      },
+      "modern-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Ordine delle mosse",
+        "steps": {
+          "modern-l03-s01": {
+            "prompt": "Rispondi a 1.e4 preparando il fianchetto.",
+            "hint": "Un pedone apre la diagonale dell'alfiere.",
+            "success": "Corretto"
+          },
+          "modern-l03-s02": {
+            "prompt": "Metti l'alfiere sulla diagonale lunga.",
+            "hint": "L'alfiere di re va in g7.",
+            "success": "Corretto"
+          },
+          "modern-l03-s03": {
+            "prompt": "Che cosa prepara la mossa ...a6?",
+            "explanation": "Con ...a6 impedisci a un pezzo bianco di arrivare in b5.",
+            "options": [
+              "L'arrocco",
+              "L'avanzata ...b5",
+              "Un cambio di donne"
+            ]
+          }
+        }
+      },
+      "modern-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "modern-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "modern-l04-s02": {
+            "prompt": "Che cosa cerchi con ...b5?",
+            "explanation": "La Moderna usa l'ala di donna per bilanciare lo spazio del centro bianco.",
+            "options": [
+              "Guadagnare spazio sull'ala di donna",
+              "Attaccare il re",
+              "Cambiare le donne"
+            ]
+          }
+        }
+      }
+    }
   }
 }

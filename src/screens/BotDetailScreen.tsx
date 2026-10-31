@@ -4,7 +4,7 @@ import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { Bot } from '../data/bots';
-import { findOpening } from '../data/openings';
+import { useContent } from '../data/useContent';
 import { colors, fonts, radius, space } from '../theme';
 
 export type ColorChoice = 'w' | 'b' | 'random';
@@ -21,11 +21,12 @@ const CHOICES: { value: ColorChoice; label: string }[] = [
   { value: 'random', label: 'Al azar' },
 ];
 
-const openingNames = (ids: string[]) =>
+const openingNames = (ids: string[], findOpening: (id: string) => { name: string } | undefined) =>
   ids.length === 0 ? 'Sin libro: juega por principios' : ids.map((id) => findOpening(id)?.name ?? id).join(', ');
 
 // Ficha del bot: personalidad, aperturas y elección de color (mapa-de-pantallas.md, 2.9).
 export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
+  const { findOpening } = useContent();
   const [choice, setChoice] = useState<ColorChoice>('w');
 
   const play = () => onPlay(choice === 'random' ? (Math.random() < 0.5 ? 'w' : 'b') : choice);
@@ -59,9 +60,9 @@ export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
       <Text style={styles.label}>Te enseña</Text>
       <Text style={styles.body}>{bot.teaches}</Text>
       <Text style={styles.label}>Con blancas juega</Text>
-      <Text style={styles.body}>{openingNames(bot.repertoire.white)}</Text>
+      <Text style={styles.body}>{openingNames(bot.repertoire.white, findOpening)}</Text>
       <Text style={styles.label}>Con negras juega</Text>
-      <Text style={styles.body}>{openingNames(bot.repertoire.black)}</Text>
+      <Text style={styles.body}>{openingNames(bot.repertoire.black, findOpening)}</Text>
 
       <Text style={styles.label}>Tú juegas con</Text>
       <View style={styles.segmented}>

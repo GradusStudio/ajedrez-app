@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { Lesson } from '../../data/lessonTypes';
-import { findLesson } from '../../data/units';
+import { useContent } from '../../data/useContent';
 import { LessonPlayer } from '../../lesson/LessonPlayer';
 import { useProgress } from '../../progress/ProgressContext';
 
@@ -20,6 +20,7 @@ export default function LessonRoute() {
   useEffect(() => {
     startedAt.current = Date.now();
   }, []);
+  const { findLesson } = useContent();
   const base = findLesson(id);
 
   const reviewIds = useMemo(() => (repaso ? repaso.split(',').filter(Boolean) : []), [repaso]);

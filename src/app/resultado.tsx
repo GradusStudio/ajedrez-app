@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { pickPhrase, teacherForLesson } from '../data/teachers';
-import { findLesson } from '../data/units';
+import { useContent } from '../data/useContent';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak } from '../progress/progressStore';
 import { LessonResultScreen } from '../screens/LessonResultScreen';
@@ -13,11 +13,12 @@ export default function ResultRoute() {
   const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; premio?: string; recuperada?: string; fallos?: string; modo?: string }>();
   const { progress } = useProgress();
   const { settings, update } = useSettings();
+  const { findLesson, findBot } = useContent();
   const lesson = findLesson(params.id);
   const failed = params.fallos ?? '';
   // La frase se elige una vez: cambia solo al abrir otra vez.
   const [teacher] = useState(() => {
-    const bot = teacherForLesson(params.id);
+    const bot = findBot(teacherForLesson(params.id).id) ?? teacherForLesson(params.id);
     return { bot, phrase: pickPhrase(bot.teaching.close) };
   });
 

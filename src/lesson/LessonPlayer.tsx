@@ -5,6 +5,7 @@ import { useFeedback } from '../feedback/feedback';
 import { ProgressBar } from '../components/ProgressBar';
 import { Lesson, Step } from '../data/lessonTypes';
 import { pickPhrase, teacherForLesson } from '../data/teachers';
+import { useContent } from '../data/useContent';
 import { ExplainStep } from './steps/ExplainStep';
 import { LineStep } from './steps/LineStep';
 import { MoveStep } from './steps/MoveStep';
@@ -50,9 +51,10 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
   const total = lesson.steps.length;
   const isLast = index === total - 1;
 
+  const { findBot } = useContent();
   // Se elige una vez al abrir. Una lección retomada no repite la bienvenida.
   const [opening] = useState(() => {
-    const bot = teacherForLesson(lessonId);
+    const bot = findBot(teacherForLesson(lessonId).id) ?? teacherForLesson(lessonId);
     return { bot, welcome: start || noWelcome ? undefined : pickPhrase(bot.teaching.welcome) };
   });
   const guided = step.type === 'line' && step.mode === 'guided';

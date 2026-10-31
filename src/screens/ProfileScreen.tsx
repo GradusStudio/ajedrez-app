@@ -4,9 +4,7 @@ import { BotAvatar } from '../components/BotAvatar';
 import { ProgressBar } from '../components/ProgressBar';
 import { SettingRow } from '../components/SettingRow';
 import { StatIcon } from '../components/StatIcon';
-import { bots } from '../data/bots';
-import { openings } from '../data/openings';
-import { findLesson, units } from '../data/units';
+import { useContent } from '../data/useContent';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, isPuzzleSolved, recordAgainst } from '../progress/progressStore';
 import { puzzles } from '../puzzles/puzzles';
@@ -24,6 +22,7 @@ type Props = {
 // Perfil: racha, monedas, lecciones, aperturas, puzzles y bots; acceso a Ajustes y Créditos (mapa-de-pantallas.md, 2.11).
 export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onOpenReview }: Props) {
   const { progress } = useProgress();
+  const { bots, openings, units, findLesson } = useContent();
   const today = useTodayKey();
   // Errores que se pueden repasar (un paso pudo desaparecer si cambió el contenido de la lección).
   const reviewable = progress.mistakes.filter((m) => findLesson(m.lessonId)?.steps.some((s) => s.id === m.stepId));

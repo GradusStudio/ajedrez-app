@@ -6,7 +6,7 @@ import { LessonNode, NODE_BOX } from '../components/LessonNode';
 import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
 import { Lesson, Unit } from '../data/lessonTypes';
-import { units } from '../data/units';
+import { useContent } from '../data/useContent';
 import { lessonStates, suggestedLesson } from '../progress/path';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
@@ -24,6 +24,7 @@ const ZIGZAG = [0, 56, 0, -56];
 // Pestaña Aprender: barra de racha y monedas, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
 export function HomeScreen({ onStartLesson }: Props) {
   const { progress, setLastUnit } = useProgress();
+  const { units } = useContent();
   // Unidad elegida en el menú. Sin elegir, se muestra la de la última lección empezada
   // (guardada en el progreso) o, la primera vez, la de la lección sugerida.
   const [chosen, setChosen] = useState<number | null>(null);
@@ -125,6 +126,7 @@ function UnitMenu({
   onClose: () => void;
 }) {
   const { progress } = useProgress();
+  const { units } = useContent();
   return (
     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} accessibilityLabel="Cerrar menú">

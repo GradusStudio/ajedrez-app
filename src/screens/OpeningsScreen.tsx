@@ -3,7 +3,7 @@ import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View
 import { Chip } from '../components/Chip';
 import { ProgressBar } from '../components/ProgressBar';
 import { OpeningCourse } from '../data/lessonTypes';
-import { openings } from '../data/openings';
+import { useContent } from '../data/useContent';
 import { useProgress } from '../progress/ProgressContext';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -14,6 +14,7 @@ const COLOR_LABEL = { w: 'Blancas', b: 'Negras' } as const;
 // Pestaña Aperturas: selector Blancas / Negras y una tarjeta por curso (mapa-de-pantallas.md, 2.6).
 export function OpeningsScreen({ onOpenCourse }: Props) {
   const { progress } = useProgress();
+  const { openings } = useContent();
   const [color, setColor] = useState<'w' | 'b'>('w');
   const list = openings.filter((o) => o.color === color);
 

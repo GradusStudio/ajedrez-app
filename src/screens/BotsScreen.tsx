@@ -2,7 +2,8 @@ import React from 'react';
 import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { BotAvatar } from '../components/BotAvatar';
 import { Chip } from '../components/Chip';
-import { Bot, bots } from '../data/bots';
+import { Bot } from '../data/bots';
+import { useContent } from '../data/useContent';
 import { useProgress } from '../progress/ProgressContext';
 import { recordAgainst } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
@@ -12,6 +13,7 @@ type Props = { onOpenBot: (bot: Bot) => void };
 // Pestaña Bots: los 10 bots, de menor a mayor nivel (mapa-de-pantallas.md, 2.9).
 export function BotsScreen({ onOpenBot }: Props) {
   const { progress } = useProgress();
+  const { bots } = useContent();
 
   return (
     <ScrollView

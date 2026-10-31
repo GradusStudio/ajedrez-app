@@ -1,0 +1,577 @@
+{
+  "london": {
+    "name": "London System",
+    "summary": "An easy setup to remember: you play nearly the same moves almost every time, whatever your opponent does.",
+    "lessons": {
+      "london-l01": {
+        "title": "The idea of the London System",
+        "summary": "Structure, plan and move order",
+        "steps": {
+          "london-l01-s01": {
+            "text": "As White, you almost always play the same structure: pawns on d4, e3 and c3, with the dark-squared bishop outside the chain on f4."
+          },
+          "london-l01-s02": {
+            "text": "This is the full setup. The bishop comes out before you close the pawn chain with e3."
+          },
+          "london-l01-s03": {
+            "text": "The plan: bring out the bishop, close with e3, develop the knights, castle and aim the knight at e5."
+          },
+          "london-l01-s04": {
+            "prompt": "Which bishop should you bring out before playing e3?",
+            "explanation": "If you play e3 first, the c1 bishop gets shut in behind your own pawns.",
+            "options": [
+              "The c1 bishop, on the dark squares",
+              "The f1 bishop, on the light squares"
+            ]
+          },
+          "london-l01-s05": {
+            "prompt": "What is the correct order of the first moves?",
+            "explanation": "First the queen's pawn, then the bishop out, and finally e3.",
+            "options": [
+              "d4, Bf4, e3",
+              "d4, e3, Bf4",
+              "e3, d4, Bf4"
+            ]
+          }
+        }
+      },
+      "london-l02": {
+        "title": "Main line",
+        "summary": "Play the setup step by step",
+        "steps": {
+          "london-l02-s01": {
+            "prompt": "Play the main line of the London System.",
+            "notes": [
+              "Takes the center and opens the diagonal for the c1 bishop.",
+              "",
+              "Brings out the bishop before closing the pawn chain.",
+              "",
+              "Supports d4 and frees the f1 bishop.",
+              "",
+              "Develops the knight and watches the e5 square.",
+              "",
+              "You keep your bishop. If it gets traded, you recapture with the h-pawn and gain the h-file.",
+              "",
+              "Develops without blocking the f1 bishop or the c-pawn.",
+              "",
+              "Reinforces d4: the d4, c3 and e3 pawns form a pyramid.",
+              "",
+              "The bishop aims toward h7 and clears f1 so you can castle.",
+              "",
+              "King safe. The setup is complete."
+            ]
+          }
+        }
+      },
+      "london-l03": {
+        "title": "Traps and common mistakes",
+        "summary": "What to watch for during the game",
+        "steps": {
+          "london-l03-s01": {
+            "prompt": "Black threatens to take the b2-pawn. Defend it.",
+            "hint": "A queen move can protect b2.",
+            "success": "Correct"
+          },
+          "london-l03-s02": {
+            "prompt": "What goes wrong if you play 2.e3 before bringing out the bishop?",
+            "explanation": "That's why the bishop goes to f4 before you play e3.",
+            "options": [
+              "The c1 bishop gets shut in by the e3-pawn",
+              "You lose the d4-pawn",
+              "You can't castle"
+            ]
+          },
+          "london-l03-s03": {
+            "prompt": "Your bishop is attacked by Black's bishop. Keep your bishop without trading it.",
+            "hint": "There's a safe square that stays on the diagonal.",
+            "success": "Correct"
+          },
+          "london-l03-s04": {
+            "text": "If the bishops get traded, recapture with the h-pawn. Your rook gains a semi-open file and the trade doesn't hurt you."
+          }
+        }
+      },
+      "london-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "london-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "london-l04-s02": {
+            "prompt": "Now against ...c5: play the London setup."
+          },
+          "london-l04-s03": {
+            "prompt": "Which central square does your f3 knight aim at?",
+            "explanation": "The f3 knight watches e5, the square you most want to control.",
+            "options": [
+              "e5",
+              "g5",
+              "d5"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "italian": {
+    "name": "Italian Game",
+    "summary": "Quick development, a bishop aimed at f7 and a clear plan: castle and take the center.",
+    "lessons": {
+      "italian-l01": {
+        "title": "The idea of the Italian",
+        "summary": "Bishop to c4 and solid play",
+        "steps": {
+          "italian-l01-s01": {
+            "text": "The c4 bishop aims at f7, the weakest point in Black's camp: at first, only the king protects it."
+          },
+          "italian-l01-s02": {
+            "text": "In the quiet version, c3 and d3 form a solid base. Then you castle and choose between d4 or regrouping your knights."
+          },
+          "italian-l01-s03": {
+            "prompt": "Which point does the c4 bishop attack?",
+            "explanation": "The f7-pawn is protected only by the king.",
+            "options": [
+              "f7",
+              "h7",
+              "f6"
+            ]
+          },
+          "italian-l01-s04": {
+            "prompt": "What does the move c3 prepare?",
+            "explanation": "With c3, the d4-pawn will have support when you play it.",
+            "options": [
+              "The d4 advance to take the center",
+              "A capture on b4",
+              "Castling"
+            ]
+          }
+        }
+      },
+      "italian-l02": {
+        "title": "Main line",
+        "summary": "The quiet version: Giuoco Pianissimo",
+        "steps": {
+          "italian-l02-s01": {
+            "prompt": "Play the main line of the Italian Game.",
+            "notes": [
+              "Takes the center and opens lines for the queen and bishop.",
+              "",
+              "Develops the knight and attacks the e5-pawn.",
+              "",
+              "The bishop aims at f7, Black's weakest square.",
+              "",
+              "Prepares the d4 advance to take the center.",
+              "",
+              "A quiet move: it supports e4 and opens the c1 bishop.",
+              "",
+              "King safe and rook toward the center.",
+              "",
+              "The rook supports e4 and watches the e-file.",
+              "",
+              "Anticipates ...b5 and keeps the diagonal toward f7.",
+              "",
+              "Develops the last knight; later it can go to f1 and g3."
+            ]
+          }
+        }
+      },
+      "italian-l03": {
+        "title": "Traps and common mistakes",
+        "summary": "Légal's Mate and the sacrifice on f7",
+        "steps": {
+          "italian-l03-s01": {
+            "prompt": "Play the Légal Trap.",
+            "notes": [
+              "Takes the center.",
+              "",
+              "Attacks the e5-pawn.",
+              "",
+              "The bishop aims at f7.",
+              "",
+              "Develops; the pin from Black's bishop doesn't worry you.",
+              "",
+              "You sacrifice your queen: if ...Bxd1, mate follows.",
+              "",
+              "Check; the king can't capture because the knight protects f7.",
+              "",
+              "Checkmate: the bishop and the two knights cover every square."
+            ]
+          },
+          "italian-l03-s02": {
+            "prompt": "Black captured on d5. Attack the weak point with a sacrifice.",
+            "hint": "The knight can capture the pawn that only the king protects.",
+            "success": "Correct"
+          },
+          "italian-l03-s03": {
+            "prompt": "Why is it dangerous to leave f7 protected only by the king?",
+            "explanation": "Attacking f7 with bishop and knight is often the basis of combinations in this opening.",
+            "options": [
+              "Because the c4 bishop and a knight can attack it twice",
+              "Because the king loses the right to castle",
+              "It isn't dangerous"
+            ]
+          }
+        }
+      },
+      "italian-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "italian-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "italian-l04-s02": {
+            "prompt": "Repeat the Légal Trap without help."
+          },
+          "italian-l04-s03": {
+            "prompt": "Which pawn do you play to support e4 in a quiet way?",
+            "explanation": "The d3-pawn supports e4 and opens the c1 bishop.",
+            "options": [
+              "d3",
+              "h3",
+              "a3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "vienna": {
+    "name": "Vienna Game",
+    "summary": "A flexible opening: you can attack with the f4 gambit or pressure f7 with your bishop.",
+    "lessons": {
+      "vienna-l01": {
+        "title": "The idea of the Vienna",
+        "summary": "Knight to c3 and two plans",
+        "steps": {
+          "vienna-l01-s01": {
+            "text": "With 2.Nc3 you develop a piece, protect e4 and keep the choice between two plans open: the gambit with f4 or Bc4."
+          },
+          "vienna-l01-s02": {
+            "text": "With f4 you attack Black's center and open the f-file. The cost: you weaken the diagonal from e1 to h4."
+          },
+          "vienna-l01-s03": {
+            "prompt": "Which pawn do you sacrifice in the Vienna Gambit?",
+            "explanation": "You offer the f4-pawn to open lines and attack the center.",
+            "options": [
+              "The f-pawn",
+              "The d-pawn",
+              "The a-pawn"
+            ]
+          },
+          "vienna-l01-s04": {
+            "prompt": "Which diagonal does the move f4 weaken?",
+            "explanation": "A queen check on h4 can come along that diagonal.",
+            "options": [
+              "The one from e1 to h4",
+              "The one from a1 to h8",
+              "The one from a2 to g8"
+            ]
+          }
+        }
+      },
+      "vienna-l02": {
+        "title": "Main line",
+        "summary": "The Vienna Gambit",
+        "steps": {
+          "vienna-l02-s01": {
+            "prompt": "Play the main line of the Vienna Gambit.",
+            "notes": [
+              "Takes the center.",
+              "",
+              "Develops, supports e4 and prepares f4.",
+              "",
+              "Vienna Gambit: you attack Black's center.",
+              "",
+              "You capture and open the f-file.",
+              "",
+              "Develops the knight and protects the e5-pawn.",
+              "",
+              "You take the center with a pawn.",
+              "",
+              "The bishop pressures Black's knight on e4.",
+              "",
+              "En passant: the black pawn advanced two squares and you capture it as if it had advanced one.",
+              "",
+              "King safe and rook in play."
+            ]
+          }
+        }
+      },
+      "vienna-l03": {
+        "title": "Traps and common mistakes",
+        "summary": "Queen threats and pawn threats",
+        "steps": {
+          "vienna-l03-s01": {
+            "prompt": "Play the line with the queen on h5.",
+            "notes": [
+              "Takes the center.",
+              "",
+              "Develops and supports e4.",
+              "",
+              "The bishop aims at f7.",
+              "",
+              "Threatens Qxf7# and Qxe5+.",
+              "",
+              "Pulls the bishop back and keeps the pressure on f7.",
+              "",
+              "Attacks e5 a second time.",
+              "",
+              "You win a pawn."
+            ]
+          },
+          "vienna-l03-s02": {
+            "prompt": "What does the queen on h5 threaten?",
+            "explanation": "The queen and bishop attack f7, which only the king protects.",
+            "options": [
+              "Mate on f7",
+              "Capturing the black queen",
+              "Castling"
+            ]
+          },
+          "vienna-l03-s03": {
+            "prompt": "Black captured on f4. Gain time by attacking the knight.",
+            "hint": "A pawn can attack the knight.",
+            "success": "Correct"
+          }
+        }
+      },
+      "vienna-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "vienna-l04-s01": {
+            "prompt": "Repeat the Vienna Gambit without help."
+          },
+          "vienna-l04-s02": {
+            "prompt": "Repeat the line with the queen on h5 without help."
+          },
+          "vienna-l04-s03": {
+            "prompt": "Which diagonal is left weak after f4?",
+            "explanation": "Watch out for queen checks on h4.",
+            "options": [
+              "The one from e1 to h4",
+              "The one from b1 to h7"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "scandinavian": {
+    "name": "Scandinavian Defense",
+    "summary": "You challenge White's center from the very first move, with a simple plan and few lines to memorize.",
+    "lessons": {
+      "scandinavian-l01": {
+        "title": "The idea of the Scandinavian",
+        "summary": "Attacking the center from the start",
+        "steps": {
+          "scandinavian-l01-s01": {
+            "text": "With ...d5 you attack White's center right away and force White to decide."
+          },
+          "scandinavian-l01-s02": {
+            "text": "The queen comes out early, but it retreats to a5 with tempo and pins the c3 knight when the diagonal opens."
+          },
+          "scandinavian-l01-s03": {
+            "text": "The plan: ...c6 to support the center, the bishop out before ...e6, the knight to f6 and kingside castling."
+          },
+          "scandinavian-l01-s04": {
+            "prompt": "Which bishop should you bring out before playing ...e6?",
+            "explanation": "If you play ...e6 first, the c8 bishop gets shut in behind your pawns.",
+            "options": [
+              "The c8 bishop, on the light squares",
+              "The f8 bishop, on the dark squares"
+            ]
+          }
+        }
+      },
+      "scandinavian-l02": {
+        "title": "Main line",
+        "summary": "The queen's retreat to a5",
+        "steps": {
+          "scandinavian-l02-s01": {
+            "prompt": "Play the main line of the Scandinavian.",
+            "notes": [
+              "",
+              "You attack White's center right away.",
+              "",
+              "You recapture with the queen: it comes out early, but that's the plan in this opening.",
+              "",
+              "You retreat with tempo and pin the knight if the diagonal opens.",
+              "",
+              "You develop the knight and pressure d4.",
+              "",
+              "You support the center and prepare your bishop.",
+              "",
+              "You bring out the bishop before closing with ...e6.",
+              "",
+              "Now you close the chain: the bishop is already outside."
+            ]
+          }
+        }
+      },
+      "scandinavian-l03": {
+        "title": "Traps and common mistakes",
+        "summary": "Where to retreat the queen and when to bring out the bishop",
+        "steps": {
+          "scandinavian-l03-s01": {
+            "prompt": "The knight attacks your queen. Retreat it to a safe, active square.",
+            "hint": "The most common squares are a5 and d6.",
+            "success": "Correct"
+          },
+          "scandinavian-l03-s02": {
+            "prompt": "Bring out the c8 bishop before closing with ...e6.",
+            "hint": "Choose a square outside the pawn chain.",
+            "success": "Correct"
+          },
+          "scandinavian-l03-s03": {
+            "prompt": "What does your queen on a5 do after White plays d4?",
+            "explanation": "The knight can't move without leaving the king in check.",
+            "options": [
+              "Pins the c3 knight to the king",
+              "Attacks the d4-pawn",
+              "Protects your d5-pawn"
+            ]
+          }
+        }
+      },
+      "scandinavian-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "scandinavian-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "scandinavian-l04-s02": {
+            "prompt": "Support the center and prepare your bishop: play ...c6.",
+            "hint": "A pawn can support d5 and leave room for your bishop.",
+            "success": "Correct"
+          },
+          "scandinavian-l04-s03": {
+            "prompt": "What does the f6 knight do?",
+            "explanation": "Developing with pressure on d4 is the idea behind every move.",
+            "options": [
+              "Develops and pressures the center",
+              "Blocks your queen",
+              "Attacks the white queen"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "sicilian": {
+    "name": "Sicilian Defense (Najdorf)",
+    "summary": "The most combative answer to 1.e4: an unbalanced structure and playing to win with Black.",
+    "lessons": {
+      "sicilian-l01": {
+        "title": "The idea of the Sicilian",
+        "summary": "Imbalance and the fight for d4",
+        "steps": {
+          "sicilian-l01-s01": {
+            "text": "With ...c5 you don't copy White: you fight for the d4 square from the side."
+          },
+          "sicilian-l01-s02": {
+            "text": "You trade your c-pawn for White's central pawn. After that, you have more pawns in the center and White has more on the queenside."
+          },
+          "sicilian-l01-s03": {
+            "text": "A typical position: you have a comfortable center with ...e5, and White attacks your king with f3, Qd2 and queenside castling. Your play is on the queenside."
+          },
+          "sicilian-l01-s04": {
+            "prompt": "What do you trade in the Sicilian?",
+            "explanation": "The trade ...cxd4 draws away White's central pawn and leaves you with more central pawns.",
+            "options": [
+              "Your c-pawn for White's d-pawn",
+              "Your e-pawn for White's d-pawn",
+              "Your a-pawn for White's e-pawn"
+            ]
+          },
+          "sicilian-l01-s05": {
+            "prompt": "What is ...a6 for in the Najdorf?",
+            "explanation": "It stops a white bishop or knight from reaching b5 and prepares the queenside advance.",
+            "options": [
+              "Protects the e5-pawn",
+              "Controls b5 and prepares ...b5",
+              "Attacks the d4 knight"
+            ]
+          }
+        }
+      },
+      "sicilian-l02": {
+        "title": "Main line",
+        "summary": "The Najdorf with the English Attack",
+        "steps": {
+          "sicilian-l02-s01": {
+            "prompt": "Play the main line of the Najdorf Sicilian.",
+            "notes": [
+              "",
+              "An unbalanced reply: you fight for d4 without imitating White.",
+              "",
+              "Prepares ...Nf6 and keeps the center solid.",
+              "",
+              "You trade your c-pawn for White's central pawn.",
+              "",
+              "Develops and attacks the e4-pawn.",
+              "",
+              "Najdorf: you watch b5 and prepare ...b5.",
+              "",
+              "You take the center and push back the d4 knight.",
+              "",
+              "The bishop pressures the b3 knight.",
+              "",
+              "Develops and prepares castling.",
+              "",
+              "King safe before the attacks arrive.",
+              "",
+              "Completes development. Next comes ...b5 and an attack on the queenside."
+            ]
+          }
+        }
+      },
+      "sicilian-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "The trade on d4 and the plan against queenside castling",
+        "steps": {
+          "sicilian-l03-s01": {
+            "prompt": "Trade your c-pawn for White's central pawn.",
+            "hint": "Capture on d4.",
+            "success": "Correct"
+          },
+          "sicilian-l03-s02": {
+            "prompt": "Develop the knight, attacking e4.",
+            "hint": "The g8 knight attacks the e4-pawn.",
+            "success": "Correct"
+          },
+          "sicilian-l03-s03": {
+            "prompt": "White castled queenside. What plan suits you?",
+            "explanation": "With opposite-side castling, whoever attacks first wins: your a- and b-pawns advance against the enemy king.",
+            "options": [
+              "Castle queenside too",
+              "Trade queens as soon as possible",
+              "Attack fast on the queenside with ...b5"
+            ]
+          }
+        }
+      },
+      "sicilian-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "sicilian-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "sicilian-l04-s02": {
+            "prompt": "Which white knight retreats to b3 after ...e5?",
+            "explanation": "The e5-pawn attacks the d4 knight, which retreats to b3.",
+            "options": [
+              "The d4 knight",
+              "The c3 knight",
+              "The f3 knight"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,12 +1,16 @@
 import React from 'react';
-import { StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { StatIcon } from '../components/StatIcon';
+import { Bot } from '../data/bots';
+import { BubbleRow } from '../lesson/TeacherBubble';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = {
   title: string;
+  /** Profesor de la lección y su frase de cierre. */
+  teacher?: { bot: Bot; phrase: string };
   /** lesson: primera vez · replay: lección ya terminada antes · review: repaso de errores */
   mode: 'lesson' | 'replay' | 'review';
   errors: number;
@@ -25,11 +29,21 @@ type Props = {
 
 const HEADINGS = { lesson: 'Lección completada', replay: 'Repaso completado', review: 'Errores repasados' } as const;
 
-export function LessonResultScreen({ title, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer }: Props) {
+export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer }: Props) {
   return (
-    <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.xxl }]}>
+    // Con scroll: en un teléfono chico con letra grande, «Continuar» no puede quedar afuera.
+    <ScrollView
+      style={styles.screen}
+      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.xxl }]}
+    >
       <Text style={styles.heading}>{HEADINGS[mode]}</Text>
       <Text style={styles.lesson}>{title}</Text>
+
+      {teacher && (
+        <View style={styles.teacher} accessible accessibilityLabel={`${teacher.bot.name}: ${teacher.phrase}`}>
+          <BubbleRow bot={teacher.bot} expression="acierto" text={teacher.phrase} />
+        </View>
+      )}
 
       <View style={styles.row}>
         <View style={styles.stat}>
@@ -76,14 +90,16 @@ export function LessonResultScreen({ title, mode, errors, coinsEarned, dailyBonu
       {onReviewMistakes && (
         <Button3D label="Repasar errores" onPress={onReviewMistakes} style={{ marginTop: space.md }} />
       )}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg, paddingHorizontal: space.lg, paddingBottom: space.xxl },
+  screen: { flex: 1, backgroundColor: colors.bg },
+  content: { flexGrow: 1, paddingHorizontal: space.lg, paddingBottom: space.xxl },
   heading: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   lesson: { fontFamily: fonts.bold, fontSize: 16, color: colors.textMuted, marginTop: 4 },
+  teacher: { marginTop: space.xl },
   row: { flexDirection: 'row', gap: space.sm, marginTop: space.xxl },
   stat: {
     flex: 1,

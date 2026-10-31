@@ -8,6 +8,7 @@ import { EngineView } from '../../engine/EngineView';
 import { UciEngine } from '../../engine/uci';
 import { PracticeStep as PracticeStepData } from '../../data/lessonTypes';
 import { StepCallbacks } from '../stepTypes';
+import { TeacherBubble } from '../TeacherBubble';
 import { colors, fonts, space } from '../../theme';
 
 type Props = { step: PracticeStepData } & StepCallbacks;
@@ -171,7 +172,7 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
       />
       <View style={{ height: space.lg }} />
       <FadeIn>
-        <Text style={styles.prompt}>{step.prompt}</Text>
+        <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
       <Text style={styles.turn}>
         {status} · {step.side === 'w' ? 'juegas con blancas' : 'juegas con negras'}
@@ -201,7 +202,6 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
 }
 
 const styles = StyleSheet.create({
-  prompt: { fontFamily: fonts.bold, fontSize: 18, color: colors.text, lineHeight: 26 },
   turn: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: space.xs },
   errorCard: { marginTop: space.md },
   errorText: { fontFamily: fonts.bold, fontSize: 14, color: colors.danger, lineHeight: 20 },

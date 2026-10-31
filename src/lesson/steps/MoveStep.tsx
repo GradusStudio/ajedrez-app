@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { Board, BoardMove } from '../../components/Board';
 import { FadeIn } from '../../components/FadeIn';
 import { MoveStep as MoveStepData } from '../../data/lessonTypes';
 import { StepCallbacks } from '../stepTypes';
-import { colors, fonts, space } from '../../theme';
+import { TeacherBubble } from '../TeacherBubble';
+import { space } from '../../theme';
 
 type Props = { step: MoveStepData } & StepCallbacks;
 
@@ -52,7 +53,7 @@ export function MoveStep({ step, onCorrect, onWrong, locked }: Props) {
       />
       <View style={{ height: space.lg }} />
       <FadeIn>
-        <Text style={{ fontFamily: fonts.bold, fontSize: 18, color: colors.text, lineHeight: 26 }}>{step.prompt}</Text>
+        <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
     </View>
   );

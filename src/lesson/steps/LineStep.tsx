@@ -7,6 +7,7 @@ import { FadeIn } from '../../components/FadeIn';
 import { useSettings } from '../../settings/SettingsContext';
 import { LineStep as LineStepData } from '../../data/lessonTypes';
 import { StepCallbacks } from '../stepTypes';
+import { TeacherBubble } from '../TeacherBubble';
 import { colors, fonts, radius, space } from '../../theme';
 
 type Props = { step: LineStepData } & StepCallbacks;
@@ -111,7 +112,7 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
       />
       <View style={{ height: space.lg }} />
       <FadeIn>
-        <Text style={styles.prompt}>{step.prompt}</Text>
+        <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
       <Text style={styles.turn}>
         {rivalLast && userTurn ? `El rival jugó ${san(rivalLast.san)} · ` : ''}
@@ -171,7 +172,6 @@ function notation(step: LineStepData, ply: number, san: (s: string) => string): 
 }
 
 const styles = StyleSheet.create({
-  prompt: { fontFamily: fonts.bold, fontSize: 18, color: colors.text, lineHeight: 26 },
   turn: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: space.xs },
   noteCard: {
     marginTop: space.md,

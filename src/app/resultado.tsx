@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
+import { pickPhrase, teacherForLesson } from '../data/teachers';
 import { findLesson } from '../data/units';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak } from '../progress/progressStore';
@@ -14,6 +15,11 @@ export default function ResultRoute() {
   const { settings, update } = useSettings();
   const lesson = findLesson(params.id);
   const failed = params.fallos ?? '';
+  // La frase se elige una vez: cambia solo al abrir otra vez.
+  const [teacher] = useState(() => {
+    const bot = teacherForLesson(params.id);
+    return { bot, phrase: pickPhrase(bot.teaching.close) };
+  });
 
   // Se decide una vez al abrir la pantalla: la oferta sigue visible en esta visita aunque
   // `reminderOffered` pase a true al mostrarla.
@@ -47,6 +53,7 @@ export default function ResultRoute() {
   return (
     <LessonResultScreen
       title={lesson?.title ?? ''}
+      teacher={teacher}
       mode={params.modo === 'repaso' ? 'review' : params.monedas === '0' ? 'replay' : 'lesson'}
       errors={Number(params.errors) || 0}
       coinsEarned={Number(params.monedas) || 0}

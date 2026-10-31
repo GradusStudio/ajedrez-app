@@ -1,15 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { FeedbackPanel } from '../components/FeedbackPanel';
 import { useFeedback } from '../feedback/feedback';
 import { ProgressBar } from '../components/ProgressBar';
 import { Lesson, Step } from '../data/lessonTypes';
+import { pickPhrase, teacherForLesson } from '../data/teachers';
 import { ExplainStep } from './steps/ExplainStep';
 import { LineStep } from './steps/LineStep';
 import { MoveStep } from './steps/MoveStep';
 import { PracticeStep } from './steps/PracticeStep';
 import { QuizStep } from './steps/QuizStep';
 import { SelectSquaresStep } from './steps/SelectSquaresStep';
+import { TeacherContext } from './TeacherContext';
+import { teacherExpression } from './teacherExpression';
 import { colors, fonts, space } from '../theme';
 
 export type LessonResult = { errors: number; xp: number; mistakes: string[] }; // xp: monedas de la lección
@@ -19,6 +22,8 @@ export type LessonState = { stepIndex: number; errors: number; mistakes: string[
 
 type Props = {
   lesson: Lesson;
+  /** Id de la lección original, el que define al profesor (también en un repaso de errores). */
+  lessonId: string;
   /** Avance guardado desde donde retomar. */
   initial?: LessonState;
   /** Texto del aviso al salir con la ✕ o el botón "atrás". */
@@ -31,7 +36,7 @@ type Props = {
 
 type Status = 'idle' | 'correct' | 'wrong';
 
-export function LessonPlayer({ lesson, initial, exitMessage, onExit, onAdvance, onFinish }: Props) {
+export function LessonPlayer({ lesson, lessonId, initial, exitMessage, onExit, onAdvance, onFinish }: Props) {
   const start = initial && initial.stepIndex < lesson.steps.length ? initial : undefined;
   const [index, setIndex] = useState(start?.stepIndex ?? 0);
   const [status, setStatus] = useState<Status>('idle');
@@ -42,6 +47,21 @@ export function LessonPlayer({ lesson, initial, exitMessage, onExit, onAdvance, 
   const step: Step = lesson.steps[index];
   const total = lesson.steps.length;
   const isLast = index === total - 1;
+
+  // Se elige una vez al abrir. Una lección retomada no repite la bienvenida.
+  const [opening] = useState(() => {
+    const bot = teacherForLesson(lessonId);
+    return { bot, welcome: start ? undefined : pickPhrase(bot.teaching.welcome) };
+  });
+  const guided = step.type === 'line' && step.mode === 'guided';
+  const teacher = useMemo(
+    () => ({
+      bot: opening.bot,
+      expression: teacherExpression(step.type, status, guided),
+      welcome: index === 0 ? opening.welcome : undefined,
+    }),
+    [opening, step.type, status, guided, index]
+  );
 
   const feedback = useFeedback();
 
@@ -143,10 +163,12 @@ export function LessonPlayer({ lesson, initial, exitMessage, onExit, onAdvance, 
         <ProgressBar value={progress} />
       </View>
 
-      {/* key = id del paso: cada paso empieza con su estado limpio */}
-      <ScrollView contentContainerStyle={styles.content}>
-        <View key={step.id}>{renderStep()}</View>
-      </ScrollView>
+      <TeacherContext.Provider value={teacher}>
+        {/* key = id del paso: cada paso empieza con su estado limpio y con el tablero a la vista */}
+        <ScrollView key={step.id} contentContainerStyle={styles.content}>
+          {renderStep()}
+        </ScrollView>
+      </TeacherContext.Provider>
 
       {step.type === 'explain' && <FeedbackPanel kind="neutral" buttonLabel={continueLabel} onButton={next} />}
       {step.type !== 'explain' && status === 'correct' && (

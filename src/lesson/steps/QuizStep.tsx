@@ -4,6 +4,7 @@ import { Board } from '../../components/Board';
 import { FadeIn } from '../../components/FadeIn';
 import { QuizStep as QuizStepData } from '../../data/lessonTypes';
 import { StepCallbacks } from '../stepTypes';
+import { TeacherBubble } from '../TeacherBubble';
 import { colors, fonts, radius, space } from '../../theme';
 
 type Props = { step: QuizStepData } & StepCallbacks;
@@ -29,7 +30,7 @@ export function QuizStep({ step, onCorrect, onWrong, locked }: Props) {
       <Board fen={step.fen} orientation={step.orientation ?? 'w'} interactive={false} highlight={step.highlight} />
       <View style={{ height: space.lg }} />
       <FadeIn>
-        <Text style={{ fontFamily: fonts.bold, fontSize: 18, color: colors.text, lineHeight: 26 }}>{step.prompt}</Text>
+        <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
       <View style={{ height: space.md }} />
       {/* Las opciones aparecen una tras otra, después del enunciado */}

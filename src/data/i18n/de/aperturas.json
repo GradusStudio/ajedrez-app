@@ -2029,7 +2029,7 @@
           },
           "kings-gambit-l01-s04": {
             "prompt": "Was verhinderst du mit 3.Sf3?",
-            "explanation": "Der Springer behält von f3 aus h4 im Blick.",
+            "explanation": "Der Springer behält h4 von f3 aus im Blick.",
             "options": [
               "Ein Damenschach auf h4",
               "Einen Damentausch",

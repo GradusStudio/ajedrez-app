@@ -2681,5 +2681,458 @@
         }
       }
     }
+  },
+  "nimzo-indian": {
+    "name": "Difesa Nimzo-Indiana",
+    "summary": "Inchiodi il cavallo in c3 e lotti per il centro con i pezzi.",
+    "lessons": {
+      "nimzo-indian-l01": {
+        "title": "L'idea della Nimzo-Indiana",
+        "summary": "Inchiodatura in c3 e pedoni doppiati",
+        "steps": {
+          "nimzo-indian-l01-s01": {
+            "text": "Con ...Ab4 inchiodi il cavallo in c3 e impedisci al Bianco di occupare e4."
+          },
+          "nimzo-indian-l01-s02": {
+            "text": "Spesso cambi l'alfiere con il cavallo e lasci al Bianco pedoni doppiati."
+          },
+          "nimzo-indian-l01-s03": {
+            "text": "Perdi la coppia degli alfieri in cambio di una struttura migliore e di una forte pressione sul centro."
+          },
+          "nimzo-indian-l01-s04": {
+            "prompt": "Che cosa ottieni con ...Ab4?",
+            "explanation": "È la mossa che definisce l'apertura.",
+            "options": [
+              "Inchiodi il cavallo in c3 e sorvegli e4",
+              "Attacchi la donna",
+              "Prepari l'arrocco lungo"
+            ]
+          },
+          "nimzo-indian-l01-s05": {
+            "prompt": "Che cosa lasci al Bianco dopo ...Axc3 e bxc3?",
+            "explanation": "È il compenso che ottieni con il cambio.",
+            "options": [
+              "Un pedone isolato sulla colonna h",
+              "Pedoni doppiati sulla colonna c",
+              "Niente di speciale"
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l02": {
+        "title": "Linea principale",
+        "summary": "La variante Rubinstein",
+        "steps": {
+          "nimzo-indian-l02-s01": {
+            "prompt": "Gioca la linea principale della Nimzo-Indiana.",
+            "notes": [
+              "",
+              "Sviluppi e controlli e4.",
+              "",
+              "Prepara ...d5.",
+              "",
+              "Nimzo-Indiana: inchiodi il cavallo.",
+              "",
+              "Re al sicuro.",
+              "",
+              "Occupi il centro.",
+              "",
+              "Attacchi il centro con un pedone.",
+              "",
+              "Sviluppi e premi su d4.",
+              "",
+              "Cedi l'alfiere per doppiare i pedoni.",
+              "",
+              "Catturi in c4 e l'alfiere in d3 riprende.",
+              "",
+              "La donna va sulla colonna c e punta su c3, per quando si aprirà."
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Inchiodatura e cambio",
+        "steps": {
+          "nimzo-indian-l03-s01": {
+            "prompt": "Inchioda il cavallo in c3.",
+            "hint": "L'alfiere esce in b4.",
+            "success": "Corretto"
+          },
+          "nimzo-indian-l03-s02": {
+            "prompt": "Metti il re al sicuro.",
+            "hint": "L'arrocco corto.",
+            "success": "Corretto"
+          },
+          "nimzo-indian-l03-s03": {
+            "prompt": "Che cosa fai se il Bianco gioca a3?",
+            "explanation": "Cambiare in c3 danneggia la struttura bianca.",
+            "options": [
+              "Cambi l'alfiere in c3",
+              "Ritiri l'alfiere in e7",
+              "Perdi l'alfiere"
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "nimzo-indian-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "nimzo-indian-l04-s02": {
+            "prompt": "Su quale colonna preme la tua donna?",
+            "explanation": "Il suo obiettivo è il pedone debole in c3.",
+            "options": [
+              "La colonna c",
+              "La colonna h",
+              "La colonna a"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "petrov": {
+    "name": "Difesa Petrov",
+    "summary": "Copi l'attacco del Bianco invece di difenderti: solida, simmetrica e difficile da battere.",
+    "lessons": {
+      "petrov-l01": {
+        "title": "L'idea della Petrov",
+        "summary": "Contrattacco simmetrico",
+        "steps": {
+          "petrov-l01-s01": {
+            "text": "Rispondi all'attacco con un attacco tuo: ...Cf6 minaccia il pedone in e4."
+          },
+          "petrov-l01-s02": {
+            "text": "Prima scacci il cavallo con ...d6 e solo dopo catturi e4. L'ordine conta."
+          },
+          "petrov-l01-s03": {
+            "text": "Dopo ...Cxe4 e ...d5, hai un centro saldo e pezzi attivi."
+          },
+          "petrov-l01-s04": {
+            "prompt": "Che cosa fai prima di catturare in e4?",
+            "explanation": "Se catturi subito, De2 lascia il Nero in una posizione scomoda e con il rischio di perdere materiale.",
+            "options": [
+              "Scacci il cavallo in e5 con ...d6",
+              "Arrocchi",
+              "Cambi le donne"
+            ]
+          },
+          "petrov-l01-s05": {
+            "prompt": "Perché non subito 3...Cxe4?",
+            "explanation": "Con il cavallo ancora in e5, De2 attacca il tuo cavallo e minaccia uno scacco di scoperta.",
+            "options": [
+              "Perché perdi l'alfiere",
+              "Perché De2 ti lascia in una posizione molto scomoda",
+              "Perché è illegale"
+            ]
+          }
+        }
+      },
+      "petrov-l02": {
+        "title": "Linea principale",
+        "summary": "La variante classica",
+        "steps": {
+          "petrov-l02-s01": {
+            "prompt": "Gioca la linea principale della Petrov.",
+            "notes": [
+              "",
+              "Rispondi in modo simmetrico.",
+              "",
+              "Contrattacco: minacci e4.",
+              "",
+              "Prima scacci il cavallo.",
+              "",
+              "Adesso sì, catturi il pedone.",
+              "",
+              "Occupi il centro e proteggi il tuo cavallo.",
+              "",
+              "Sviluppi e premi su d4.",
+              "",
+              "Sviluppi l'alfiere.",
+              "",
+              "Attacchi l'alfiere e guadagni spazio.",
+              "",
+              "Re al sicuro.",
+              "",
+              "L'alfiere esce e protegge il cavallo in e4."
+            ]
+          }
+        }
+      },
+      "petrov-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "L'ordine delle mosse",
+        "steps": {
+          "petrov-l03-s01": {
+            "prompt": "Contrattacca il pedone in e4.",
+            "hint": "Il cavallo attacca e4.",
+            "success": "Corretto"
+          },
+          "petrov-l03-s02": {
+            "prompt": "Scaccia il cavallo in e5.",
+            "hint": "Un pedone attacca il cavallo.",
+            "success": "Corretto"
+          },
+          "petrov-l03-s03": {
+            "prompt": "Il Bianco ritira il cavallo in f3. Che cosa fai?",
+            "explanation": "Adesso sì, è sicuro.",
+            "options": [
+              "Catturi e4 con il cavallo",
+              "Arrocchi",
+              "Cambi le donne"
+            ]
+          }
+        }
+      },
+      "petrov-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "petrov-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "petrov-l04-s02": {
+            "prompt": "Quale posizione cerchi?",
+            "explanation": "La Petrov è solida e simmetrica.",
+            "options": [
+              "Centro saldo e pezzi attivi",
+              "Pedoni doppiati",
+              "Un attacco rapido"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit-declined": {
+    "name": "Gambetto di Donna Rifiutato",
+    "summary": "Difendi il centro con ...e6 e giochi con solidità: la risposta classica al gambetto.",
+    "lessons": {
+      "queens-gambit-declined-l01": {
+        "title": "L'idea del Gambetto Rifiutato",
+        "summary": "Solidità al centro",
+        "steps": {
+          "queens-gambit-declined-l01-s01": {
+            "text": "Con ...e6 difendi d5 e mantieni il tuo centro senza entrare in complicazioni."
+          },
+          "queens-gambit-declined-l01-s02": {
+            "text": "L'alfiere in c8 resta chiuso, ma nella variante Tartakower gli trovi un'uscita con ...b6."
+          },
+          "queens-gambit-declined-l01-s03": {
+            "text": "Cambi i pezzi per liberare la tua posizione ed equilibrare il gioco."
+          },
+          "queens-gambit-declined-l01-s04": {
+            "prompt": "Perché ...e6?",
+            "explanation": "È il modo più solido di mantenere il centro.",
+            "options": [
+              "Difende d5 con un pedone",
+              "Attacca la donna",
+              "Prepara l'arrocco lungo"
+            ]
+          },
+          "queens-gambit-declined-l01-s05": {
+            "prompt": "Che problema ha l'alfiere in c8?",
+            "explanation": "Con ...b6 e ...Ab7 (o ...Ae6) si libera.",
+            "options": [
+              "Non ha problemi",
+              "Resta chiuso dietro i pedoni",
+              "È inchiodato"
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l02": {
+        "title": "Linea principale",
+        "summary": "La variante Tartakower",
+        "steps": {
+          "queens-gambit-declined-l02-s01": {
+            "prompt": "Gioca la linea principale del Gambetto di Donna Rifiutato.",
+            "notes": [
+              "",
+              "Occupi il centro.",
+              "",
+              "Difendi d5.",
+              "",
+              "Sviluppi e proteggi d5.",
+              "",
+              "Prepari l'arrocco.",
+              "",
+              "Re al sicuro.",
+              "",
+              "Interroghi l'alfiere.",
+              "",
+              "Apri la diagonale dell'alfiere in c8.",
+              "",
+              "Recuperi il pedone con il cavallo.",
+              "",
+              "Riprendi con la donna.",
+              "",
+              "Recuperi il pezzo con il tuo pedone.",
+              "",
+              "Il tuo alfiere esce attivo."
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Solidità prima dell'ambizione",
+        "steps": {
+          "queens-gambit-declined-l03-s01": {
+            "prompt": "Occupa il centro.",
+            "hint": "Il pedone centrale avanza.",
+            "success": "Corretto"
+          },
+          "queens-gambit-declined-l03-s02": {
+            "prompt": "Difendi d5 con un pedone.",
+            "hint": "Il pedone e difende il centro.",
+            "success": "Corretto"
+          },
+          "queens-gambit-declined-l03-s03": {
+            "prompt": "Che cosa fai con l'alfiere in c8?",
+            "explanation": "Con ...b6 apri la diagonale.",
+            "options": [
+              "Lo liberi con ...b6",
+              "Lo muovi in h3",
+              "Lo cambi con il cavallo"
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "queens-gambit-declined-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "queens-gambit-declined-l04-s02": {
+            "prompt": "Quale struttura hai alla fine?",
+            "explanation": "La posizione è salda e comoda per il Nero.",
+            "options": [
+              "Pedone centrale in d5 e alfiere libero",
+              "Pedoni doppiati",
+              "Senza pedoni centrali"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit-accepted": {
+    "name": "Gambetto di Donna Accettato",
+    "summary": "Quando il Nero cattura in c4, recuperi il pedone sviluppando e controllando il centro.",
+    "lessons": {
+      "queens-gambit-accepted-l01": {
+        "title": "L'idea del Gambetto Accettato",
+        "summary": "Recuperare il pedone con vantaggio",
+        "steps": {
+          "queens-gambit-accepted-l01-s01": {
+            "text": "Se il Nero cattura in c4, non ti preoccupare: il pedone si recupera quasi sempre."
+          },
+          "queens-gambit-accepted-l01-s02": {
+            "text": "Sviluppi con e3 e Axc4, e hai un vantaggio di spazio al centro."
+          },
+          "queens-gambit-accepted-l01-s03": {
+            "text": "Poi arrocco, Dc2 o De2 e l'espansione al centro. Il Nero deve difendere la sua ala di donna."
+          },
+          "queens-gambit-accepted-l01-s04": {
+            "prompt": "Che cosa fai quando il Nero cattura in c4?",
+            "explanation": "Il pedone in c4 si recupera con Axc4 dopo e3.",
+            "options": [
+              "Sviluppi e recuperi il pedone",
+              "Lo perdi per sempre",
+              "Cambi le donne"
+            ]
+          },
+          "queens-gambit-accepted-l01-s05": {
+            "prompt": "Quale pezzo recupera il pedone?",
+            "explanation": "Dopo e3, l'alfiere in f1 cattura in c4.",
+            "options": [
+              "La donna",
+              "L'alfiere in f1",
+              "Il cavallo in b1"
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l02": {
+        "title": "Linea principale",
+        "summary": "Sviluppo e pressione",
+        "steps": {
+          "queens-gambit-accepted-l02-s01": {
+            "prompt": "Gioca la linea principale del Gambetto di Donna Accettato.",
+            "notes": [
+              "Occupi il centro.",
+              "",
+              "Offri il gambetto.",
+              "",
+              "Sviluppi e controlli e5.",
+              "",
+              "Liberi l'alfiere in f1.",
+              "",
+              "Recuperi il pedone.",
+              "",
+              "Re al sicuro.",
+              "",
+              "La donna sostiene il centro e la colonna e.",
+              "",
+              "L'alfiere si ritira e mantiene la pressione.",
+              "",
+              "La torre prende la colonna d.",
+              "",
+              "Completi lo sviluppo."
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Recupera con calma",
+        "steps": {
+          "queens-gambit-accepted-l03-s01": {
+            "prompt": "Offri il gambetto.",
+            "hint": "Avanza un pedone dell'ala di donna.",
+            "success": "Corretto"
+          },
+          "queens-gambit-accepted-l03-s02": {
+            "prompt": "Sviluppa e segui il piano.",
+            "hint": "Il cavallo esce in f3.",
+            "success": "Corretto"
+          },
+          "queens-gambit-accepted-l03-s03": {
+            "prompt": "Come recuperi il pedone in c4?",
+            "explanation": "L'alfiere in f1 cattura il pedone e resta attivo.",
+            "options": [
+              "Con Axc4",
+              "Con b3",
+              "Con a4"
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "queens-gambit-accepted-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "queens-gambit-accepted-l04-s02": {
+            "prompt": "Che cosa fa la torre in d1?",
+            "explanation": "È la colonna del pedone in d4.",
+            "options": [
+              "Occupa la colonna d",
+              "Attacca il re",
+              "Difende il pedone in a2"
+            ]
+          }
+        }
+      }
+    }
   }
 }

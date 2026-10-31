@@ -209,7 +209,7 @@ Nombre oficial inglés de cada curso. Dentro de una frase, «la Italiana» se di
 | queens-gambit-declined | Gambito de dama declinado | Queen's Gambit Declined |
 | queens-gambit-accepted | Gambito de dama aceptado | Queen's Gambit Accepted |
 
-Otros nombres: trampa / mate de Légal *Légal Trap* / *Légal's Mate*; ataque inglés *English Attack*; ataque yugoslavo *Yugoslav Attack*; ataque austriaco *Austrian Attack*; Gambito Vienés *Vienna Gambit*; variante Mieses *Mieses Variation*; variante clásica *Classical Variation*; cadena de peones *pawn chain*; esquema *setup*; enroques opuestos *opposite-side castling*; «sin ayudas» *without help*.
+Otros nombres: trampa / mate de Légal *Légal Trap* / *Légal's Mate*; ataque inglés *English Attack*; ataque yugoslavo *Yugoslav Attack*; ataque austriaco *Austrian Attack*; Gambito Vienés *Vienna Gambit*; variante Mieses *Mieses Variation*; variante clásica *Classical Variation*; cadena de peones *pawn chain*; esquema *setup*; enroques opuestos *opposite-side castling*; «sin ayudas» *without help*; trampa del Arca de Noé *Noah's Ark Trap*; Siciliana invertida *Reversed Sicilian*; Siciliana abierta *Open Sicilian*; Catalana abierta *Open Catalan*; Inglesa con cuatro caballos *Four Knights English*; Danés aceptado *Danish Gambit Accepted*; variante cerrada *Closed Variation*; variantes Kieseritzky, Rubinstein y Tartakower *Kieseritzky / Rubinstein / Tartakower Variation*; «preguntar al alfil» *put the question to the bishop*; «con tempo» *with tempo*.
 
 Títulos fijos de cada curso: «La idea de…» *The idea of the…*; «Línea principal» *Main line*; «Trampas y errores típicos» *Traps and common mistakes*; «Claves y errores típicos» *Key ideas and common mistakes*; «Repaso» *Review*.
 

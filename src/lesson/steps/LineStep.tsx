@@ -15,6 +15,8 @@ type Props = { step: LineStepData } & StepCallbacks;
 
 // Pausa antes de que el rival juegue solo (y antes de la primera jugada blanca si juegas con negras).
 const REPLY_DELAY_MS = 700;
+// Marca para partir un texto traducido y poner la jugada con otro color en el medio.
+const SAN_MARK = '\u0001';
 
 /**
  * Línea de apertura: el usuario juega las jugadas de su color (`side`) y la app juega las del rival.
@@ -24,7 +26,7 @@ const REPLY_DELAY_MS = 700;
  */
 export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
   const { notation: notationSetting } = useSettings().settings;
-  const { language } = useI18n();
+  const { language, t } = useI18n();
   // Las jugadas de los datos están en español; se muestran en la notación elegida en Ajustes.
   const san = (s: string) => sanFromSpanish(s, resolveNotation(notationSetting, language));
   const [chess] = useState(() => new Chess(step.fen));
@@ -62,12 +64,12 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
   // Turno del rival: juega solo. Al terminar la línea, el paso queda resuelto.
   useEffect(() => {
     if (finished) {
-      onCorrect(step.success ?? (guided ? 'Completaste la línea.' : 'Completaste la línea de memoria.'));
+      onCorrect(step.success ?? t(guided ? 'lesson.line.successGuided' : 'lesson.line.successDrill'));
       return;
     }
     if (chess.turn() === step.side) return;
-    const t = setTimeout(() => play(ply), REPLY_DELAY_MS);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => play(ply), REPLY_DELAY_MS);
+    return () => clearTimeout(timer);
     // play y onCorrect cambian en cada render; el efecto solo depende de la jugada actual.
   }, [ply]);
 
@@ -90,15 +92,14 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
       if (guided) setShowHint(true);
       onWrong(
         step.hint ??
-          (guided
-            ? `En esta línea se juega ${san(expected.san)}. Al reintentar, la flecha te la marca.`
-            : 'Esa no es la jugada de la línea.'),
+          (guided ? t('lesson.line.wrongGuided', { san: san(expected.san) }) : t('lesson.line.wrongDrill')),
         () => setWrong(null)
       );
     }
   };
 
   const rivalLast = ply > 0 && !isUserMove(step, ply - 1) ? step.moves[ply - 1] : undefined;
+  const [cardBefore, cardAfter] = t(cardPlayed ? 'lesson.line.played' : 'lesson.line.yourMove', { san: SAN_MARK }).split(SAN_MARK);
 
   return (
     <View>
@@ -117,24 +118,28 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
         <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
       <Text style={styles.turn}>
-        {rivalLast && userTurn ? `El rival jugó ${san(rivalLast.san)} · ` : ''}
-        {finished ? 'Línea completa' : userTurn ? 'Tu turno' : 'Juega el rival…'}
-        {' · '}
-        {step.side === 'w' ? 'juegas con blancas' : 'juegas con negras'}
+        {[
+          rivalLast && userTurn ? t('lesson.line.rivalPlayed', { san: san(rivalLast.san) }) : null,
+          finished ? t('lesson.line.complete') : userTurn ? t('common.yourTurn') : t('lesson.line.rivalToPlay'),
+          step.side === 'w' ? t('common.youPlayWhite') : t('common.youPlayBlack'),
+        ]
+          .filter(Boolean)
+          .join(' · ')}
       </Text>
 
       {/* key = jugada explicada: cada explicación nueva aparece con su animación */}
       {card && (
         <FadeIn key={cardIndex} delay={80} style={[styles.noteCard, !cardPlayed && styles.noteCardActive]}>
           <Text style={styles.noteTitle}>
-            {cardPlayed ? 'Jugaste ' : 'Tu jugada: '}
+            {cardBefore}
             <Text style={{ color: cardPlayed ? colors.text : colors.primary }}>{san(card.san)}</Text>
+            {cardAfter}
           </Text>
           {!!card.note && <Text style={styles.noteText}>{card.note}</Text>}
         </FadeIn>
       )}
 
-      <Text style={styles.notation}>{notation(step, ply, san)}</Text>
+      <Text style={styles.notation}>{ply === 0 ? t('lesson.line.noMoves') : notation(step, ply, san)}</Text>
     </View>
   );
 }
@@ -158,7 +163,6 @@ function lastUserMoveBefore(step: LineStepData, ply: number): number {
  * "23… Cxe5 24. Dxe5" si empieza a mitad de partida con las negras. `san` convierte a la notación elegida.
  */
 function notation(step: LineStepData, ply: number, san: (s: string) => string): string {
-  if (ply === 0) return 'Aún no hay jugadas';
   const [, turn, , , , full] = step.fen.split(' ');
   let moveNo = Number(full) || 1;
   let white = turn !== 'b';

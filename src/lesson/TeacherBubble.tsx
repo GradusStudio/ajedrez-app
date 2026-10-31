@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { BotAvatar } from '../components/BotAvatar';
 import { BotExpression } from '../components/botFace';
 import { Bot } from '../data/bots';
+import { useI18n } from '../i18n/I18nContext';
 import { colors, fonts, radius, space } from '../theme';
 import { useTeacher } from './TeacherContext';
 
@@ -23,7 +24,8 @@ export function BubbleRow({ bot, expression, text }: { bot: Bot; expression: Bot
 /** Texto de un paso dicho por el profesor. Se lee como un solo bloque, con el nombre del bot. */
 export function TeacherBubble({ children }: { children: string }) {
   const { bot, expression, welcome } = useTeacher();
-  const label = `${bot.name}: ${welcome ? `${welcome} ` : ''}${children}`;
+  const { t } = useI18n();
+  const label = t('lesson.teacherSays', { name: bot.name, text: welcome ? `${welcome} ${children}` : children });
   return (
     <View accessible accessibilityLabel={label}>
       {!!welcome && (

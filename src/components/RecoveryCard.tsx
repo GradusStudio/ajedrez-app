@@ -1,30 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useI18n } from '../i18n/I18nContext';
 import { StreakAction } from '../progress/streak';
 import { colors, fonts, radius, space } from '../theme';
 
-const ITEMS: { action: StreakAction; label: string }[] = [
-  { action: 'puzzle', label: 'Puzzle' },
-  { action: 'lesson', label: 'Lección' },
-  { action: 'bot', label: 'Bot' },
-];
+const ITEMS: StreakAction[] = ['puzzle', 'lesson', 'bot'];
 
 /** Tarjeta de Aprender cuando la racha se puede recuperar: pide las tres acciones el mismo día. */
 export function RecoveryCard({ days, done }: { days: number; done: Record<StreakAction, boolean> }) {
+  const { t } = useI18n();
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>Recupera tu racha de {days} días hoy</Text>
+      <Text style={styles.title}>{t('recovery.title', { n: days })}</Text>
       <View style={styles.row}>
-        {ITEMS.map(({ action, label }) => (
+        {ITEMS.map((action) => (
           <View
             key={action}
             accessible
             style={[styles.item, done[action] && styles.itemDone]}
-            accessibilityLabel={`${label}: ${done[action] ? 'hecho' : 'pendiente'}`}
+            accessibilityLabel={t(done[action] ? 'recovery.itemDone' : 'recovery.itemPending', { label: t(`recovery.${action}`) })}
           >
             <Text style={[styles.itemText, done[action] && styles.itemTextDone]}>
               {done[action] ? '✓ ' : ''}
-              {label}
+              {t(`recovery.${action}`)}
             </Text>
           </View>
         ))}

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { Lesson } from '../../data/lessonTypes';
 import { useContent } from '../../data/useContent';
+import { useI18n } from '../../i18n/I18nContext';
 import { LessonPlayer } from '../../lesson/LessonPlayer';
 import { useProgress } from '../../progress/ProgressContext';
 
@@ -21,14 +22,15 @@ export default function LessonRoute() {
     startedAt.current = Date.now();
   }, []);
   const { findLesson } = useContent();
+  const { t } = useI18n();
   const base = findLesson(id);
 
   const reviewIds = useMemo(() => (repaso ? repaso.split(',').filter(Boolean) : []), [repaso]);
   const isReview = reviewIds.length > 0;
   const lesson: Lesson | undefined = useMemo(() => {
     if (!base || !isReview) return base;
-    return { ...base, title: `Repaso: ${base.title}`, steps: base.steps.filter((s) => reviewIds.includes(s.id)) };
-  }, [base, isReview, reviewIds]);
+    return { ...base, title: t('lesson.reviewTitle', { title: base.title }), steps: base.steps.filter((s) => reviewIds.includes(s.id)) };
+  }, [base, isReview, reviewIds, t]);
 
   // El avance guardado se lee una sola vez, al abrir.
   const [initial] = useState(() => (isReview ? undefined : progress.drafts[id]));
@@ -44,7 +46,7 @@ export default function LessonRoute() {
       lessonId={base.id}
       noWelcome={isReview}
       initial={initial}
-      exitMessage={isReview ? 'Los errores siguen guardados para repasarlos después.' : 'Tu avance queda guardado.'}
+      exitMessage={isReview ? t('lesson.exitReviewMessage') : t('lesson.exitMessage')}
       onAdvance={isReview ? undefined : (state) => saveDraft(base.id, state)}
       onExit={(state) => {
         if (!isReview) saveDraft(base.id, state);

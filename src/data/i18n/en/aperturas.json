@@ -2117,5 +2117,569 @@
         }
       }
     }
+  },
+  "albin": {
+    "name": "Albin Countergambit",
+    "summary": "You answer the Queen's Gambit with a pawn on d4 that bothers White for the whole game.",
+    "lessons": {
+      "albin-l01": {
+        "title": "The idea of the Albin",
+        "summary": "An advanced pawn that cramps White",
+        "steps": {
+          "albin-l01-s01": {
+            "text": "After 1.d4 d5 2.c4, you attack the center with ...e5. It's a countergambit: you offer a pawn in exchange for activity."
+          },
+          "albin-l01-s02": {
+            "text": "After ...d4 your pawn sits in the center, takes space from White and limits the b1 knight."
+          },
+          "albin-l01-s03": {
+            "text": "White is a pawn up, but your development is fast and your d4-pawn isn't easy to attack."
+          },
+          "albin-l01-s04": {
+            "prompt": "What do you offer with 2...e5?",
+            "explanation": "It's a countergambit: you sacrifice material for initiative.",
+            "options": [
+              "A pawn in exchange for activity",
+              "The queen in exchange for a rook",
+              "Castling"
+            ]
+          },
+          "albin-l01-s05": {
+            "prompt": "What does your d4-pawn do?",
+            "explanation": "It's the reason for the whole structure.",
+            "options": [
+              "It protects your castled king",
+              "It takes space and limits White's pieces",
+              "It attacks the king"
+            ]
+          }
+        }
+      },
+      "albin-l02": {
+        "title": "Main line",
+        "summary": "The variation with Nf3 and g3",
+        "steps": {
+          "albin-l02-s01": {
+            "prompt": "Play the main line of the Albin.",
+            "notes": [
+              "",
+              "You take the center from the very start.",
+              "",
+              "Albin Countergambit: you attack White's center with a pawn.",
+              "",
+              "The pawn advances and stays as a thorn in the center.",
+              "",
+              "You develop and watch e5 and d4.",
+              "",
+              "The c8 bishop comes out and pressures c4.",
+              "",
+              "The queen comes out to connect the rooks.",
+              "",
+              "Queenside castling: the rook reaches the d-file, next to your pawn.",
+              "",
+              "The other knight finishes coming out."
+            ]
+          }
+        }
+      },
+      "albin-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Keep the d4-pawn",
+        "steps": {
+          "albin-l03-s01": {
+            "prompt": "Counterattack the center with a pawn.",
+            "hint": "The e-pawn reaches e5.",
+            "success": "Correct"
+          },
+          "albin-l03-s02": {
+            "prompt": "Advance the pawn to leave it in the center.",
+            "hint": "The pawn stays on d4.",
+            "success": "Correct"
+          },
+          "albin-l03-s03": {
+            "prompt": "Which piece do you bring out first after ...d4?",
+            "explanation": "The c6 knight supports ...d4 and watches e5.",
+            "options": [
+              "The b8 knight",
+              "The queen",
+              "The f8 bishop"
+            ]
+          }
+        }
+      },
+      "albin-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "albin-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "albin-l04-s02": {
+            "prompt": "Which knight goes to c6?",
+            "explanation": "It's the piece that supports the central advance.",
+            "options": [
+              "The g8 knight",
+              "The b8 knight",
+              "Neither"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "catalan": {
+    "name": "Catalan Opening",
+    "summary": "The g2 bishop presses along the long diagonal: an elegant opening full of pressure.",
+    "lessons": {
+      "catalan-l01": {
+        "title": "The idea of the Catalan",
+        "summary": "Constant pressure with the g2 bishop",
+        "steps": {
+          "catalan-l01-s01": {
+            "text": "You combine the Queen's Gambit with a fianchetto: g3 and Bg2 aim at c6, b7 and the c-file."
+          },
+          "catalan-l01-s02": {
+            "text": "Black often captures on c4, and you win the pawn back with the queen or with Ne5."
+          },
+          "catalan-l01-s03": {
+            "text": "The g2 bishop stays active: with no pawns blocking it, it pressures the whole diagonal."
+          },
+          "catalan-l01-s04": {
+            "prompt": "Which diagonal does the g2 bishop control?",
+            "explanation": "That diagonal points at Black's queenside.",
+            "options": [
+              "The long a8–h1 diagonal",
+              "The e1–h4 diagonal",
+              "The a2–g8 diagonal"
+            ]
+          },
+          "catalan-l01-s05": {
+            "prompt": "What do you do if Black captures on c4?",
+            "explanation": "You have positional compensation, and you almost always win the pawn back.",
+            "options": [
+              "You give up the pawn for good",
+              "You win the pawn back with the queen or with Ne5",
+              "You trade the bishop"
+            ]
+          }
+        }
+      },
+      "catalan-l02": {
+        "title": "Main line",
+        "summary": "The Open Catalan",
+        "steps": {
+          "catalan-l02-s01": {
+            "prompt": "Play the main line of the Catalan.",
+            "notes": [
+              "You take the center.",
+              "",
+              "You pressure the center from the queenside.",
+              "",
+              "Catalan: you prepare the fianchetto.",
+              "",
+              "The bishop dominates the long diagonal.",
+              "",
+              "Develops and supports d4.",
+              "",
+              "King safe.",
+              "",
+              "You prepare to win back the c4-pawn.",
+              "",
+              "Supports b5 and pressures a6 and b7.",
+              "",
+              "You win back the c4-pawn.",
+              "",
+              "You develop the bishop and pin the knight."
+            ]
+          }
+        }
+      },
+      "catalan-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Fianchetto and pawn",
+        "steps": {
+          "catalan-l03-s01": {
+            "prompt": "Prepare your bishop's fianchetto.",
+            "hint": "A pawn opens the bishop's diagonal.",
+            "success": "Correct"
+          },
+          "catalan-l03-s02": {
+            "prompt": "Place the bishop on the long diagonal.",
+            "hint": "The bishop goes to g2.",
+            "success": "Correct"
+          },
+          "catalan-l03-s03": {
+            "prompt": "Black captured on c4. How do you win the pawn back?",
+            "explanation": "The queen on c2 attacks c4 together with the bishop.",
+            "options": [
+              "With h4",
+              "With the queen, after Qc2",
+              "With a3"
+            ]
+          }
+        }
+      },
+      "catalan-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "catalan-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "catalan-l04-s02": {
+            "prompt": "What does your g2 bishop pressure?",
+            "explanation": "It's the piece that gives the Catalan its meaning.",
+            "options": [
+              "The long diagonal toward c6 and b7",
+              "The h-file",
+              "The a2-pawn"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "english": {
+    "name": "English Opening",
+    "summary": "You control the center with a flank pawn and play calmly and flexibly.",
+    "lessons": {
+      "english-l01": {
+        "title": "The idea of the English",
+        "summary": "The center from the flank",
+        "steps": {
+          "english-l01-s01": {
+            "text": "With 1.c4 you control d5 without committing in the center. It's a flexible opening: it can transpose to others."
+          },
+          "english-l01-s02": {
+            "text": "Against ...e5 you play a “Reversed Sicilian” with an extra tempo."
+          },
+          "english-l01-s03": {
+            "text": "Plan: fianchetto on g2, trade on d5, and queenside expansion with a3 and b4."
+          },
+          "english-l01-s04": {
+            "prompt": "Which square does the c4-pawn control?",
+            "explanation": "From c4 the pawn watches d5 without occupying the center.",
+            "options": [
+              "d5",
+              "e5",
+              "b5"
+            ]
+          },
+          "english-l01-s05": {
+            "prompt": "What do you play against ...e5?",
+            "explanation": "It's a Sicilian with an extra tempo for White.",
+            "options": [
+              "A French",
+              "A Reversed Sicilian",
+              "A gambit"
+            ]
+          }
+        }
+      },
+      "english-l02": {
+        "title": "Main line",
+        "summary": "The Four Knights English",
+        "steps": {
+          "english-l02-s01": {
+            "prompt": "Play the main line of the English.",
+            "notes": [
+              "You control the center without occupying it.",
+              "",
+              "Develops and watches e4.",
+              "",
+              "Develops the second knight.",
+              "",
+              "You prepare the fianchetto.",
+              "",
+              "You trade to open the game.",
+              "",
+              "Bishop to the long diagonal.",
+              "",
+              "King safe.",
+              "",
+              "You prepare the expansion.",
+              "",
+              "You gain space on the queenside."
+            ]
+          }
+        }
+      },
+      "english-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Trade and fianchetto",
+        "steps": {
+          "english-l03-s01": {
+            "prompt": "Control d5 with a flank pawn.",
+            "hint": "A queenside pawn advances.",
+            "success": "Correct"
+          },
+          "english-l03-s02": {
+            "prompt": "Prepare the bishop's fianchetto.",
+            "hint": "A pawn opens the diagonal.",
+            "success": "Correct"
+          },
+          "english-l03-s03": {
+            "prompt": "Trade on d5 to open the position.",
+            "hint": "The pawn captures on d5.",
+            "success": "Correct"
+          },
+          "english-l03-s04": {
+            "prompt": "What comes after the trade on d5?",
+            "explanation": "The fianchetto completes the plan.",
+            "options": [
+              "Bishop to g2",
+              "Trading queens",
+              "Moving the king"
+            ]
+          }
+        }
+      },
+      "english-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "english-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "english-l04-s02": {
+            "prompt": "What are you after with a3 and b4?",
+            "explanation": "Expansion is White's plan.",
+            "options": [
+              "Attacking the king",
+              "Gaining space on the queenside",
+              "Trading queens"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "danish": {
+    "name": "Danish Gambit",
+    "summary": "You sacrifice one or two pawns to launch your bishops at the castled king.",
+    "lessons": {
+      "danish-l01": {
+        "title": "The idea of the Danish Gambit",
+        "summary": "Bishops against the castled king",
+        "steps": {
+          "danish-l01-s01": {
+            "text": "With c3 you offer pawns to open the position and aim with both bishops."
+          },
+          "danish-l01-s02": {
+            "text": "When the pawns fall, your bishops land on c4 and b2, aiming at f7 and g7."
+          },
+          "danish-l01-s03": {
+            "text": "Black is up pawns, but your development is far ahead."
+          },
+          "danish-l01-s04": {
+            "prompt": "What do you offer with c3?",
+            "explanation": "It's a double gambit.",
+            "options": [
+              "More pawns in exchange for development",
+              "The queen",
+              "Castling"
+            ]
+          },
+          "danish-l01-s05": {
+            "prompt": "What do your bishops aim at?",
+            "explanation": "They aim at f7 and g7, the weak points around the castled king.",
+            "options": [
+              "At your own king",
+              "At Black's kingside",
+              "At the white queen"
+            ]
+          }
+        }
+      },
+      "danish-l02": {
+        "title": "Main line",
+        "summary": "Danish Gambit Accepted",
+        "steps": {
+          "danish-l02-s01": {
+            "prompt": "Play the main line of the Danish Gambit.",
+            "notes": [
+              "You take the center.",
+              "",
+              "You open the center.",
+              "",
+              "Danish Gambit: you offer a pawn.",
+              "",
+              "You gain time and develop.",
+              "",
+              "You win back a pawn with an attack.",
+              "",
+              "You win back another pawn. Your b2 bishop aims at g7 and your d5 bishop at f7.",
+              "",
+              "You sacrifice the bishop with check. If the king captures it, it stops protecting its queen on d8.",
+              "",
+              "The d-file is open: you capture the black queen.",
+              "",
+              "You block the check with the queen. If it's traded, you recapture with the knight.",
+              "",
+              "Even endgame: material is level and the black king can no longer castle."
+            ]
+          }
+        }
+      },
+      "danish-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Development before material",
+        "steps": {
+          "danish-l03-s01": {
+            "prompt": "Offer the gambit.",
+            "hint": "A pawn advances one square.",
+            "success": "Correct"
+          },
+          "danish-l03-s02": {
+            "prompt": "Develop the bishop with an attack.",
+            "hint": "The bishop aims at f7.",
+            "success": "Correct"
+          },
+          "danish-l03-s03": {
+            "prompt": "Win back a pawn with the bishop.",
+            "hint": "The long diagonal is open.",
+            "success": "Correct"
+          },
+          "danish-l03-s04": {
+            "prompt": "What does the c4 bishop do after ...d5?",
+            "explanation": "You win back another pawn, with active play.",
+            "options": [
+              "It captures on d5",
+              "It retreats to e2",
+              "It trades queens"
+            ]
+          }
+        }
+      },
+      "danish-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "danish-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "danish-l04-s02": {
+            "prompt": "What are you after with the gambit?",
+            "explanation": "You make up for the material with active pieces.",
+            "options": [
+              "Queen trades",
+              "Development, time and attack",
+              "An even endgame"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "french": {
+    "name": "French Defense",
+    "summary": "A solid defense: you give up some space in exchange for a firm structure and counterattack.",
+    "lessons": {
+      "french-l01": {
+        "title": "The idea of the French",
+        "summary": "Firm structure and counterattack on c5",
+        "steps": {
+          "french-l01-s01": {
+            "text": "With ...e6 you prepare ...d5 to challenge White's center."
+          },
+          "french-l01-s02": {
+            "text": "Your c8 bishop stays behind the pawns: it's the “bad” piece of the French."
+          },
+          "french-l01-s03": {
+            "text": "Your plan is to attack the base of White's chain with ...c5 and ...Nc6."
+          },
+          "french-l01-s04": {
+            "prompt": "What's the problem with the French?",
+            "explanation": "You have to find it a good way out in time.",
+            "options": [
+              "The c8 bishop gets shut in",
+              "The king can't castle",
+              "You lose a pawn"
+            ]
+          },
+          "french-l01-s05": {
+            "prompt": "What do you attack with ...c5?",
+            "explanation": "If d4 falls, the e5-pawn loses its support.",
+            "options": [
+              "The f4-pawn",
+              "The base of White's chain on d4",
+              "The queen"
+            ]
+          }
+        }
+      },
+      "french-l02": {
+        "title": "Main line",
+        "summary": "The Classical Variation",
+        "steps": {
+          "french-l02-s01": {
+            "prompt": "Play the main line of the French.",
+            "notes": [
+              "",
+              "You prepare ...d5 with a firm pawn.",
+              "",
+              "You challenge the center.",
+              "",
+              "You develop and attack e4.",
+              "",
+              "You attack the e4-pawn and pin the knight.",
+              "",
+              "The knight gives up its square for ...f6 and avoids the pin.",
+              "",
+              "You recapture with the queen.",
+              "",
+              "King safe.",
+              "",
+              "An attack on the base of the chain.",
+              "",
+              "You develop with pressure on d4."
+            ]
+          }
+        }
+      },
+      "french-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Pawn chain",
+        "steps": {
+          "french-l03-s01": {
+            "prompt": "Prepare the central advance.",
+            "hint": "A firm pawn supports ...d5.",
+            "success": "Correct"
+          },
+          "french-l03-s02": {
+            "prompt": "Challenge the center with a pawn.",
+            "hint": "The central pawn advances.",
+            "success": "Correct"
+          },
+          "french-l03-s03": {
+            "prompt": "White plays e5. Where does the knight retreat?",
+            "explanation": "It's the classic retreat, and it supports your center.",
+            "options": [
+              "To d7",
+              "To g8",
+              "To h5"
+            ]
+          }
+        }
+      },
+      "french-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "french-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "french-l04-s02": {
+            "prompt": "What does ...Nc6 do?",
+            "explanation": "It's part of the attack on the base of the chain.",
+            "options": [
+              "It pressures d4",
+              "It protects the king",
+              "It attacks the queen"
+            ]
+          }
+        }
+      }
+    }
   }
 }

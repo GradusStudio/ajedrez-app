@@ -149,9 +149,9 @@ test('español devuelve los datos originales', () => {
 });
 
 test('un idioma sin archivos devuelve el español, con memoria', () => {
-  const en = localizedContent('en');
+  const en = localizedContent('de');
   assert.equal(en.units, units);
-  assert.equal(localizedContent('en'), en);
+  assert.equal(localizedContent('de'), en);
 });
 
 test('feedback acepta "" donde el español lo tiene y lo rechaza donde hay texto', () => {

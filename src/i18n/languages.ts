@@ -3,7 +3,7 @@
 export type Language = 'es' | 'en' | 'de' | 'it' | 'fr';
 
 /** Idiomas completos: solo estos aparecen en Ajustes y en la elección automática. */
-export const AVAILABLE_LANGUAGES: Language[] = ['es'];
+export const AVAILABLE_LANGUAGES: Language[] = ['es', 'en'];
 
 /** Cada idioma escrito en su propio idioma. */
 export const LANGUAGE_NAMES: Record<Language, string> = {

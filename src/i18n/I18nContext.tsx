@@ -1,6 +1,8 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { AppState } from 'react-native';
 import { getLocales } from 'expo-localization';
 import { useSettings } from '../settings/SettingsContext';
+import { en } from './en';
 import { es, MessageKey, PluralKey } from './es';
 import { format } from './format';
 import { Language, resolveLanguage } from './languages';
@@ -18,7 +20,7 @@ type I18n = {
 };
 
 // Catálogos por idioma. Cada uno tiene que traer todas las claves de es.ts (lo exige TypeScript).
-const catalogs: Partial<Record<Language, Record<MessageKey, string>>> = { es };
+const catalogs: Partial<Record<Language, Record<MessageKey, string>>> = { es, en };
 
 function build(language: Language): I18n {
   const catalog = catalogs[language] ?? es;
@@ -34,16 +36,26 @@ function build(language: Language): I18n {
 // Sin Provider (por ejemplo en pruebas) se usa el español.
 const I18nContext = createContext<I18n>(build('es'));
 
+function readDeviceLanguage(): string | null {
+  try {
+    return getLocales()[0]?.languageCode ?? null;
+  } catch {
+    return null;
+  }
+}
+
 /** Da el idioma elegido (Ajustes, o el del teléfono) y la función t() para los textos de pantallas. */
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const { settings } = useSettings();
-  const value = useMemo(() => {
-    let device: string | null = null;
-    try {
-      device = getLocales()[0]?.languageCode ?? null;
-    } catch {}
-    return build(resolveLanguage(settings.language, device));
-  }, [settings.language]);
+  // El idioma del teléfono puede cambiar con la app abierta: se vuelve a leer al volver a primer plano.
+  const [device, setDevice] = useState<string | null>(readDeviceLanguage);
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') setDevice(readDeviceLanguage());
+    });
+    return () => sub.remove();
+  }, []);
+  const value = useMemo(() => build(resolveLanguage(settings.language, device)), [settings.language, device]);
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 

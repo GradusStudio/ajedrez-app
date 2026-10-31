@@ -10,11 +10,13 @@ const spanish: Content = { units, openings, bots };
 
 /**
  * Archivos de texto de un idioma. Cada caso lleva su propio `require` estático (Metro lo empaqueta)
- * y solo se ejecuta si ese idioma se elige. Aún no hay traducciones: todo idioma da el español.
- * Para sumar uno: `case 'en': return require('./i18n/en') as LanguageFiles;`
+ * y solo se ejecuta si ese idioma se elige. Un idioma sin archivos da el español.
  */
 export function languageFiles(language: Language): LanguageFiles | undefined {
   switch (language) {
+    case 'en':
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./i18n/en') as { files: LanguageFiles }).files;
     default:
       return undefined;
   }

@@ -1,0 +1,190 @@
+{
+  "title": "Advanced concepts",
+  "lessons": {
+    "u6-l01": {
+      "title": "Zugzwang",
+      "summary": "When moving means losing",
+      "steps": {
+        "u6-l01-s01": { "text": "In chess you can't pass your turn: you always have to move. Sometimes every move makes your position worse. That's called zugzwang, a German word meaning “compulsion to move.”" },
+        "u6-l01-s02": { "text": "Look at this position. Each king defends its own pawn and attacks the enemy pawn. The king that has to move stops defending its pawn: it loses the pawn, and the game with it. The side that doesn't have to move wins." },
+        "u6-l01-s03": {
+          "prompt": "White to move. What happens?",
+          "options": ["White loses the pawn and the game", "White wins the black pawn", "It's a draw: nobody can win"],
+          "explanation": "White is in zugzwang: any king move leaves the pawn on d4 undefended. The black king captures it and the black pawn promotes.",
+          "feedback": ["", "To win the black pawn, Black would have to move first. With White to move, White is the one who loses.", "The side to move loses its pawn, and then the other pawn promotes."]
+        },
+        "u6-l01-s04": { "text": "Zugzwang can also help you deliver mate. Here Black can only move the king and the pawn on g7. If you block the pawn, the king will have to move, and it has no good square." },
+        "u6-l01-s05": {
+          "prompt": "Mate in 2: make a quiet move, not a check, that leaves Black with no good moves.",
+          "success": "Correct. With Rg6 the pawn was blocked, the king had to go to a8, and Ra6 is mate.",
+          "hint": "Put the rook in front of the pawn on g7: that way it can't advance and the black king is forced to move.",
+          "notes": ["", "", ""]
+        },
+        "u6-l01-s06": { "text": "Here you'd win if it were Black's turn: the black king would have to step aside. But it's your move. The solution is to “pass the turn” with your king: take three steps in a triangle (e4, d3 and d4) and return to the same square. The black king can only go there and back, and now it has to move in the same position. This technique is called triangulation." },
+        "u6-l01-s07": {
+          "prompt": "Start the triangle: move your king to a square from which you can return to d4 in two steps.",
+          "hint": "Advancing the pawn or going to c3 lets the win slip away. Move along the squares next to you (e4, e3 or d3) and keep protecting your pawn on c4.",
+          "success": "Correct. From there, in two more steps you return to d4 and it's Black's turn."
+        },
+        "u6-l01-s08": {
+          "prompt": "Win the endgame: promote a pawn. If the black king blocks you, triangulate to put it in zugzwang. Stockfish defends with Black.",
+          "success": "Correct. You used zugzwang to win the endgame.",
+          "hint": "That move lets the win slip away. Find the position where the black king has to step aside, and reach it when it's Black's turn."
+        },
+        "u6-l01-s09": {
+          "prompt": "White to move. Use zugzwang to win the endgame.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Move your king so the enemy king has to step aside and leave its pawns undefended.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l01-s10": {
+          "prompt": "White to move. Use zugzwang to win the endgame.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Move your king so the enemy king has to step aside and leave its pawns undefended.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l01-s11": {
+          "prompt": "Black to move. Use zugzwang to win the endgame.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Move your king so the enemy king has to step aside and leave its pawns undefended.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u6-l02": {
+      "title": "Prophylaxis",
+      "summary": "Anticipate your opponent's plan",
+      "steps": {
+        "u6-l02-s01": { "text": "Before each move, ask yourself: what does my opponent want to do? Stopping that plan before it happens is called prophylaxis. In this Italian, the black bishop wants to go to g4 to pin your knight to the queen." },
+        "u6-l02-s02": {
+          "prompt": "If the bishop reaches g4, why is that annoying?",
+          "options": ["It pins the knight on f3: if the knight moves, the bishop captures the queen", "It threatens checkmate", "It attacks the pawn on e4"],
+          "explanation": "With the bishop on g4, the knight on f3 is pinned to the queen on d1: if the knight moves, the bishop captures the queen. The knight loses its freedom just when it has to defend the center.",
+          "feedback": ["", "There's no mate in sight: the problem is the pin on the knight.", "From g4 the bishop doesn't attack the pawn on e4. The problem is the pin."]
+        },
+        "u6-l02-s03": {
+          "prompt": "Play the move that stops the bishop from going to g4.",
+          "hint": "A pawn can control the g4 square before the bishop gets there.",
+          "success": "Correct. With h3, the pawn controls g4 and the bishop can't go there anymore."
+        },
+        "u6-l02-s04": { "text": "Your rook on the seventh rank attacks pawns, but before you capture, look at Black's threat: the rook on e8 wants to drop down to e1. Your king has no free square, because its own pawns shut it in." },
+        "u6-l02-s05": {
+          "prompt": "Tap the square where the black rook would give checkmate.",
+          "hint": "The rook on e8 comes down the e-file to your first rank."
+        },
+        "u6-l02-s06": {
+          "prompt": "Prevent the back-rank mate before capturing pawns.",
+          "hint": "If you capture on b7, Re1 is mate. Open an escape square for your king by moving a pawn, or bring it closer to the e-file.",
+          "success": "Correct. The back-rank mate doesn't work anymore. Now you can think about capturing pawns."
+        },
+        "u6-l02-s07": { "text": "Here the black queen and bishop point at the same square, next to your king. If you do nothing, Black has mate in one." },
+        "u6-l02-s08": {
+          "prompt": "Tap the square where Black would give checkmate.",
+          "hint": "The queen on h4 and the bishop on d6 attack the same square, next to your king."
+        },
+        "u6-l02-s09": {
+          "prompt": "Stop the mate.",
+          "hint": "Use a pawn near your king: block the bishop's diagonal with the pawn on g2, or push the pawn on h2 so the queen has nowhere to deliver mate. After f4 the bishop captures and your king is exposed.",
+          "success": "Correct. The mate doesn't work anymore and your position holds."
+        },
+        "u6-l02-s10": { "text": "To sum up: before you move, look at what your opponent threatens and wants to do in the next few moves. A quiet move in time, like h3 or opening an escape square for your king, avoids much bigger problems." }
+      }
+    },
+    "u6-l03": {
+      "title": "The exchange sacrifice",
+      "summary": "Rook for bishop or knight",
+      "steps": {
+        "u6-l03-s01": { "text": "Remember the values: a rook is worth 5, and a bishop or knight 3. Trading a rook for a bishop or knight is called “losing the exchange.” Sometimes it pays to do it on purpose: that's an exchange sacrifice." },
+        "u6-l03-s02": {
+          "prompt": "If you trade your rook for a knight, about how many points of material do you give up?",
+          "options": ["2", "1", "3"],
+          "explanation": "A rook is worth 5 and a knight 3: you give up about 2 points. That's why the sacrifice has to give you something in return.",
+          "feedback": ["", "Rook 5 minus knight 3 is 2 points, not 1.", "Rook 5 minus knight 3 is 2 points, not 3."]
+        },
+        "u6-l03-s03": { "text": "There are three typical reasons to give up the exchange: to create a passed pawn nobody can stop, to break open the enemy king's defense, or to remove a piece that defends something important. Here, the knight on d6 is the only thing stopping your pawn on c6." },
+        "u6-l03-s04": {
+          "prompt": "White to move. Give up the exchange so your pawn can promote.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "The knight on d6 stops your c-pawn. What happens if you remove it, even if it costs you the rook?",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l03-s05": {
+          "prompt": "White to move. Once again: the exchange for an unstoppable pawn.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Which black piece stops your b-pawn? Remove it with the rook.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l03-s06": { "text": "The second reason: exposing the king. If your rook captures a piece that protects the enemy king, your other pieces can come in and attack it." },
+        "u6-l03-s07": {
+          "prompt": "White to move. Give up the exchange to attack the king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "The bishop on g7 protects the black king. Capture it with the rook, then come in with the queen.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l03-s08": {
+          "prompt": "White to move. Remove the defender: the exchange in return for winning more material.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "The knight on f6 defends the rook on d5. If the knight disappears, the rook is left undefended.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l03-s09": { "text": "To sum up: the exchange is worth about 2 points, but a pawn that promotes, an attack on the king or winning another piece are worth more. Before giving it up, calculate what you get in return." }
+      }
+    },
+    "u6-l04": {
+      "title": "Final review",
+      "summary": "Puzzles from the whole path",
+      "steps": {
+        "u6-l04-s01": { "text": "Final review: eight puzzles from real games, with themes from the whole path. Before you move, go over checks, captures and threats. If you make a mistake, the hint tells you which theme to look for." },
+        "u6-l04-s02": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: discovered attack. If the knight moves with check, your queen wins the black queen.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s03": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: fork. Your knight can give check and attack the rook at the same time.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s04": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: skewer. A bishop check forces the king to move and leaves the rook unprotected.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s05": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: deflection. A check on the first rank pulls away the rook that defends the queen.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s06": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: mate in 2. Capture the defending piece and follow up with a queen check.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s07": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: zugzwang. Bring your king closer to the white pawns: the enemy king can't defend them without stepping aside.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s08": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: pin. Trade the rooks, then pin the queen to its king with the bishop.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s09": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: promotion. Your pawn on d7 is one step away: promote it even if the rook can capture it.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s10": { "text": "You've finished the Learn path. From here, the best thing is to practice: puzzles every day, openings in their tab and games against the bots to use everything you've learned." }
+      }
+    }
+  }
+}

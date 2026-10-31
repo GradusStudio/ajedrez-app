@@ -611,7 +611,7 @@
         {
           "type": "quiz",
           "prompt": "¿Qué jugada es e8=C+?",
-          "fen": "8/4P3/8/8/8/k7/8/4K3 w - - 0 1",
+          "fen": "8/4P1k1/8/8/8/8/8/4K3 w - - 0 1",
           "options": [
             "Un peón corona caballo en e8 y da jaque",
             "Un caballo va a e8 y da jaque",

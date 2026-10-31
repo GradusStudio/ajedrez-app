@@ -8173,7 +8173,7 @@
             {
               "type": "explain",
               "text": "A menudo cambias el alfil por el caballo y dejas peones doblados a las blancas.",
-              "fen": "r1bq1rk1/pp3ppp/2n1pn2/2p5/2pP4/P1PBPN2/5PPP/R1BQ1RK1 w - - 0 1",
+              "fen": "r1bq1rk1/pp3ppp/2n1pn2/2pp4/2PP4/P1PBPN2/5PPP/R1BQ1RK1 b - - 0 1",
               "orientation": "b",
               "highlight": [
                 "c3",
@@ -8210,7 +8210,7 @@
             {
               "type": "quiz",
               "prompt": "¿Qué dejas a las blancas tras ...Axc3 y bxc3?",
-              "fen": "r1bq1rk1/pp3ppp/2n1pn2/2p5/2pP4/P1PBPN2/5PPP/R1BQ1RK1 w - - 0 1",
+              "fen": "r1bq1rk1/pp3ppp/2n1pn2/2pp4/2PP4/P1PBPN2/5PPP/R1BQ1RK1 b - - 0 1",
               "options": [
                 "Un peón aislado en h",
                 "Peones doblados en la columna c",

@@ -76,6 +76,8 @@ Letras: K Q R B N. El peón no lleva letra. Enroque `O-O` y `O-O-O`. Captura `x`
 | pieza sobrecargada | overloaded piece |
 | enfilada, ensartada | skewer |
 | ataque a la descubierta | discovered attack |
+| descubrir (una pieza) | uncover (no *unveil*) |
+| jaque a la descubierta | discovered check |
 | jaque doble | double check |
 | ataque doble | double attack |
 | eliminar al defensor | remove the defender |
@@ -124,6 +126,7 @@ Letras: K Q R B N. El peón no lleva letra. Enroque `O-O` y `O-O-O`. Captura `x`
 | peón doblado | doubled pawn |
 | oposición | opposition |
 | regla del cuadrado | rule of the square |
+| cuadrado (de la regla del cuadrado) | big square (no *square* a secas, que choca con *casilla*) |
 | posición de Lucena | Lucena position |
 | zugzwang | zugzwang |
 | triangulación | triangulation |
@@ -138,6 +141,8 @@ Letras: K Q R B N. El peón no lleva letra. Enroque `O-O` y `O-O-O`. Captura `x`
 | profilaxis | prophylaxis |
 | línea (de apertura) | line |
 | línea principal | main line |
+| liberar (una pieza o un peón) | free, *frees the c1 bishop* (no *open the bishop*) |
+| evitar (que el rival haga algo) | prevent (*avoid* solo para lo que uno mismo esquiva) |
 | libro (de aperturas) | book |
 | «sin libro» | «no book» |
 | motor | engine |

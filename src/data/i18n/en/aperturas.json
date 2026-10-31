@@ -126,7 +126,7 @@
             "text": "The c4 bishop aims at f7, the weakest point in Black's camp: at first, only the king protects it."
           },
           "italian-l01-s02": {
-            "text": "In the quiet version, c3 and d3 form a solid base. Then you castle and choose between d4 or regrouping your knights."
+            "text": "In the quiet version, c3 and d3 form a solid base. Then you castle and choose between d4 and regrouping your knights."
           },
           "italian-l01-s03": {
             "prompt": "Which point does the c4 bishop attack?",
@@ -163,7 +163,7 @@
               "",
               "Prepares the d4 advance to take the center.",
               "",
-              "A quiet move: it supports e4 and opens the c1 bishop.",
+              "A quiet move: it supports e4 and frees the c1 bishop.",
               "",
               "King safe and rook toward the center.",
               "",
@@ -226,7 +226,7 @@
           },
           "italian-l04-s03": {
             "prompt": "Which pawn do you play to support e4 in a quiet way?",
-            "explanation": "The d3-pawn supports e4 and opens the c1 bishop.",
+            "explanation": "The d3-pawn supports e4 and frees the c1 bishop.",
             "options": [
               "d3",
               "h3",
@@ -586,7 +586,7 @@
             "text": "With ...g6 and ...Bg7 you place the “dragon” bishop on the long diagonal, aiming at a1."
           },
           "dragon-l01-s02": {
-            "text": "Against the Dragon, White usually plays the Yugoslav Attack: Be3, f3, Qd2, queenside castling and a g- and h-pawn advance."
+            "text": "Against the Dragon, White usually plays the Yugoslav Attack: Be3, f3, Qd2, queenside castling and advancing the g- and h-pawns."
           },
           "dragon-l01-s03": {
             "text": "Your counterattack: a rook on c8, the knight on e5 and sacrifices on c3. It's a race of attacks with opposite-side castling."
@@ -653,7 +653,7 @@
           },
           "dragon-l03-s02": {
             "prompt": "Get your king to safety.",
-            "hint": "The g7 bishop already protects your castled king.",
+            "hint": "The g7 bishop already protects your kingside.",
             "success": "Correct"
           },
           "dragon-l03-s03": {
@@ -676,7 +676,7 @@
           },
           "dragon-l04-s02": {
             "prompt": "Which diagonal does your g7 bishop control?",
-            "explanation": "That diagonal points at White's queenside castled position.",
+            "explanation": "That diagonal points at White's king after queenside castling.",
             "options": [
               "The long diagonal a1–h8",
               "The e1–h4 diagonal",
@@ -731,15 +731,15 @@
           "kia-l02-s01": {
             "prompt": "Play the main line of the King's Indian Attack.",
             "notes": [
-              "Develops and prepares g3 without committing the center.",
+              "Develops and prepares g3 without committing in the center.",
               "",
-              "Prepares the bishop on g2.",
+              "Prepares the bishop's move to g2.",
               "",
               "The bishop dominates the long diagonal.",
               "",
               "King safe early.",
               "",
-              "Supports e4 and opens the c1 bishop.",
+              "Supports e4 and frees the c1 bishop.",
               "",
               "Develops the knight and prepares e4.",
               "",
@@ -761,7 +761,7 @@
           },
           "kia-l03-s02": {
             "prompt": "Get your king to safety.",
-            "hint": "The fianchetto already protects kingside castling.",
+            "hint": "The fianchetto already makes kingside castling safe.",
             "success": "Correct"
           },
           "kia-l03-s03": {
@@ -823,7 +823,7 @@
           },
           "kings-indian-l01-s05": {
             "prompt": "What does the g7 bishop do?",
-            "explanation": "It's the piece that gives meaning to the whole opening.",
+            "explanation": "It's the piece the whole opening is built around.",
             "options": [
               "Protects the h7-pawn",
               "Pressures the center along the long diagonal",
@@ -842,7 +842,7 @@
               "",
               "You develop and control e4 and d5.",
               "",
-              "Prepares the bishop on g7.",
+              "Prepares the bishop's move to g7.",
               "",
               "Fianchetto: the bishop dominates the long diagonal.",
               "",
@@ -927,7 +927,7 @@
           },
           "modern-l01-s04": {
             "prompt": "What sets the Modern apart from the Pirc?",
-            "explanation": "Both use ...g6 and ...Bg7, but the piece order is more flexible in the Modern.",
+            "explanation": "Both use ...g6 and ...Bg7, but the order you develop your pieces in is more flexible in the Modern.",
             "options": [
               "The g8 knight usually waits to see what White does",
               "There's no difference",
@@ -1668,7 +1668,7 @@
             "prompt": "Repeat the main line without help."
           },
           "ruy-lopez-l04-s02": {
-            "prompt": "What do you avoid with h3?",
+            "prompt": "What do you prevent with h3?",
             "explanation": "The ...Bg4 pin on your f3 knight is the typical nuisance.",
             "options": [
               "The black bishop or knight landing on g4",
@@ -1732,7 +1732,7 @@
               "",
               "You damage the structure: doubled c-pawns.",
               "",
-              "Solid: supports e4 and opens the c1 bishop.",
+              "Solid: supports e4 and frees the c1 bishop.",
               "",
               "Prevents ...Bg4 and ...Ng4.",
               "",
@@ -1751,7 +1751,7 @@
             "success": "Correct"
           },
           "rossolimo-l03-s02": {
-            "prompt": "Trade the bishop for the knight to double their pawns.",
+            "prompt": "Trade the bishop for the knight to double Black's pawns.",
             "hint": "Capture on c6.",
             "success": "Correct"
           },
@@ -1775,7 +1775,7 @@
           },
           "rossolimo-l04-s02": {
             "prompt": "What plan do you follow next?",
-            "explanation": "The Rossolimo aims for a comfortable position without risks.",
+            "explanation": "The Rossolimo aims for a comfortable position without risk.",
             "options": [
               "Attack the king right away",
               "Play solidly and wait for a mistake",
@@ -1951,7 +1951,7 @@
               "",
               "You pin the f6 knight to the queen.",
               "",
-              "You support d4 and open the f1 bishop.",
+              "You support d4 and free the f1 bishop.",
               "",
               "Develops and protects d4.",
               "",
@@ -1998,7 +1998,7 @@
             "prompt": "Repeat the main line without help."
           },
           "queens-gambit-l04-s02": {
-            "prompt": "Which file does your rook take?",
+            "prompt": "Which file does your rook occupy?",
             "explanation": "The rook on c1 pressures Black's queenside.",
             "options": [
               "The c-file",
@@ -2022,13 +2022,13 @@
             "text": "With f4 you offer a pawn to open the f-file and dominate the center."
           },
           "kings-gambit-l01-s02": {
-            "text": "With Nf3 you develop and avoid a queen check on h4."
+            "text": "With Nf3 you develop and prevent a queen check on h4."
           },
           "kings-gambit-l01-s03": {
             "text": "In the Kieseritzky Variation, the knight jumps to e5 when ...g4 attacks it."
           },
           "kings-gambit-l01-s04": {
-            "prompt": "What do you avoid with 3.Nf3?",
+            "prompt": "What do you prevent with 3.Nf3?",
             "explanation": "The knight watches h4 from f3.",
             "options": [
               "A queen check on h4",
@@ -2058,7 +2058,7 @@
               "",
               "King's Gambit: you offer a pawn to open the f-file.",
               "",
-              "Develops and avoids ...Qh4+.",
+              "Develops and prevents ...Qh4+.",
               "",
               "You attack the g5-pawn.",
               "",
@@ -2078,8 +2078,8 @@
         "summary": "Development and attack",
         "steps": {
           "kings-gambit-l03-s01": {
-            "prompt": "Develop the knight and avoid ...Qh4+.",
-            "hint": "The kingside knight goes to f3.",
+            "prompt": "Develop the knight and prevent ...Qh4+.",
+            "hint": "The king's knight goes to f3.",
             "success": "Correct"
           },
           "kings-gambit-l03-s02": {
@@ -2177,7 +2177,7 @@
               "",
               "Queenside castling: the rook reaches the d-file, behind your pawn.",
               "",
-              "The other knight finishes coming out."
+              "The other knight comes out too."
             ]
           }
         }
@@ -2198,7 +2198,7 @@
           },
           "albin-l03-s03": {
             "prompt": "Which piece do you bring out first after ...d4?",
-            "explanation": "The c6 knight supports ...d4 and watches e5.",
+            "explanation": "The c6 knight supports the d4-pawn and watches e5.",
             "options": [
               "The b8 knight",
               "The queen",
@@ -2328,7 +2328,7 @@
           },
           "catalan-l04-s02": {
             "prompt": "What does your g2 bishop pressure?",
-            "explanation": "It's the piece that gives the Catalan its meaning.",
+            "explanation": "It's the piece the whole Catalan is built around.",
             "options": [
               "The long diagonal toward c6 and b7",
               "The h-file",
@@ -2463,7 +2463,7 @@
         "summary": "Bishops against the castled king",
         "steps": {
           "danish-l01-s01": {
-            "text": "With c3 you offer pawns to open the position and aim with both bishops."
+            "text": "With c3 you offer pawns to open the position for both bishops."
           },
           "danish-l01-s02": {
             "text": "When the pawns fall, your bishops land on c4 and b2, aiming at f7 and g7."
@@ -2583,14 +2583,14 @@
             "text": "With ...e6 you prepare ...d5 to challenge White's center."
           },
           "french-l01-s02": {
-            "text": "Your c8 bishop stays behind the pawns: it's the “bad” piece of the French."
+            "text": "Your c8 bishop stays behind the pawns: it's the “bad” bishop of the French."
           },
           "french-l01-s03": {
             "text": "Your plan is to attack the base of White's chain with ...c5 and ...Nc6."
           },
           "french-l01-s04": {
             "prompt": "What's the problem with the French?",
-            "explanation": "You have to find it a good way out in time.",
+            "explanation": "Sooner or later, you have to find it a good way out.",
             "options": [
               "The c8 bishop gets shut in",
               "The king can't castle",
@@ -2616,7 +2616,7 @@
             "prompt": "Play the main line of the French.",
             "notes": [
               "",
-              "You prepare ...d5 with a firm pawn.",
+              "You prepare ...d5 with solid pawn support.",
               "",
               "You challenge the center.",
               "",
@@ -2643,7 +2643,7 @@
         "steps": {
           "french-l03-s01": {
             "prompt": "Prepare the central advance.",
-            "hint": "A firm pawn supports ...d5.",
+            "hint": "A pawn move supports ...d5.",
             "success": "Correct"
           },
           "french-l03-s02": {
@@ -2710,7 +2710,7 @@
           },
           "nimzo-indian-l01-s05": {
             "prompt": "What do you leave White with after ...Bxc3 and bxc3?",
-            "explanation": "That's the positive compensation for the trade.",
+            "explanation": "That's what you get in return for the trade.",
             "options": [
               "An isolated h-pawn",
               "Doubled pawns on the c-file",
@@ -3073,7 +3073,7 @@
               "",
               "You develop and control e5.",
               "",
-              "You open the f1 bishop.",
+              "You free the f1 bishop.",
               "",
               "You win back the pawn.",
               "",
@@ -3124,7 +3124,7 @@
           },
           "queens-gambit-accepted-l04-s02": {
             "prompt": "What does the rook on d1 do?",
-            "explanation": "It's the file of the d4-pawn.",
+            "explanation": "It's the file your d4-pawn is on.",
             "options": [
               "It takes the d-file",
               "It attacks the king",

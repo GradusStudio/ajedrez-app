@@ -37,7 +37,7 @@
         "u3-l01-s08": {
           "prompt": "From which square does the knight attack both black rooks?",
           "options": ["f7", "e6", "g6"],
-          "explanation": "From f7, the knight attacks d8 and h8: that's a fork on both rooks.",
+          "explanation": "From f7, the knight attacks d8 and h8: that forks both rooks.",
           "feedback": ["", "From e6 the knight attacks d8, but not h8.", "From g6 the knight attacks h8, but not d8."]
         },
         "u3-l01-s09": {
@@ -104,16 +104,16 @@
     },
     "u3-l03": {
       "title": "The discovered attack",
-      "summary": "One piece steps aside and unveils another",
+      "summary": "One piece steps aside and uncovers another",
       "steps": {
-        "u3-l03-s01": { "text": "In a discovered attack, one piece moves and unveils the attack of the piece behind it. Here the bishop gives check and, at the same time, the rook attacks the queen." },
+        "u3-l03-s01": { "text": "In a discovered attack, one piece moves and uncovers the attack of the piece behind it. Here the bishop gives check and, at the same time, the rook attacks the queen." },
         "u3-l03-s02": {
           "prompt": "Move the knight with check and win the queen.",
           "hint": "If the knight leaves e4 with check, the rook attacks the queen and there's no time to save it.",
-          "success": "Correct. Nf6+ gives check and unveils the rook's attack on the queen."
+          "success": "Correct. Nf6+ gives check and uncovers the rook's attack on the queen."
         },
         "u3-l03-s03": {
-          "prompt": "Advance a pawn with check: as it moves, it unveils your bishop's attack.",
+          "prompt": "Advance a pawn with check: as it moves, it uncovers your bishop's attack.",
           "success": "Well solved: this position comes from a real game.",
           "hint": "The pawn in front of your bishop can give check by advancing.",
           "notes": ["", "", "", ""]
@@ -157,11 +157,11 @@
         "u3-l04-s02": {
           "prompt": "Give double check with the knight and the bishop.",
           "hint": "If the knight leaves the bishop's diagonal with check, that's two checks at once.",
-          "success": "Correct. The knight gives check and unveils the bishop's check: the king has to move."
+          "success": "Correct. The knight gives check and uncovers the bishop's check: the king has to move."
         },
         "u3-l04-s03": {
           "prompt": "Give double check: it's mate.",
-          "hint": "The knight can give check and unveil the rook's check. The king is surrounded by its own pieces.",
+          "hint": "The knight can give check and uncover the rook's check. The king is surrounded by its own pieces.",
           "success": "Correct. Double check and mate: the king has nowhere to go."
         },
         "u3-l04-s04": { "text": "The queen is an expert at double attacks: it can attack two loose pieces at once, on different lines." },

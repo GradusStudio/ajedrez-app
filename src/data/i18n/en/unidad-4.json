@@ -107,13 +107,13 @@
         "u4-l03-s09": {
           "prompt": "Promote your passed pawn.",
           "success": "Well solved: this position comes from a real game.",
-          "hint": "Advance the pawn: count whether it promotes before your opponent's.",
+          "hint": "Advance the pawn: count to see if it promotes before your opponent's pawn.",
           "notes": ["", "", "", ""]
         },
         "u4-l03-s10": {
           "prompt": "Promote your passed pawn.",
           "success": "Well solved: this position comes from a real game.",
-          "hint": "Advance the pawn: count whether it promotes before your opponent's.",
+          "hint": "Advance the pawn: count to see if it promotes before your opponent's pawn.",
           "notes": ["", "", "", ""]
         }
       }
@@ -155,7 +155,7 @@
         "u4-l05-s01": { "text": "A weak square is one that no enemy pawn can defend, now or later. Here Black played e5 with no pawn on the c-file: no black pawn can guard d5." },
         "u4-l05-s02": {
           "prompt": "Tap the weak center square on Black's side: no black pawn can defend it.",
-          "hint": "The black pawns on d5 and f5 have already gone past: the square between them, in front of e6, has no defense."
+          "hint": "The black pawns on d5 and f5 have already moved past it: the square between them, in front of e6, is undefended."
         },
         "u4-l05-s03": { "text": "An outpost is a weak square in the opponent's position where your piece, almost always a knight, is protected by one of your pawns. From there, nobody can chase it away." },
         "u4-l05-s04": {

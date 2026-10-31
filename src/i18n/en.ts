@@ -79,7 +79,7 @@ export const en: Record<MessageKey, string> = {
   'lesson.line.noMoves': 'No moves yet',
   'lesson.practice.stalemate': 'You stalemated the king: the game ends in a draw. Always leave a free square.',
   'lesson.practice.drawn': 'Played this way, the game ends in a draw.',
-  'lesson.practice.outOfMoves': 'All {n} moves are used up. Try again from the start.',
+  'lesson.practice.outOfMoves': "You've used all {n} moves. Try again from the start.",
   'lesson.practice.engineDown': 'Stockfish is not responding',
   'lesson.practice.preparing': 'Getting Stockfish ready…',
   'lesson.practice.done': 'Goal reached',
@@ -112,7 +112,7 @@ export const en: Record<MessageKey, string> = {
   'settings.reminder': 'Daily reminder',
   'settings.reminder.on': 'Every day at {hour}:00',
   'settings.reminder.off': 'A reminder to practice',
-  'settings.noPermission.title': 'No permission to notify you',
+  'settings.noPermission.title': 'Notifications not allowed',
   'settings.noPermission.message': "To get the reminder, allow notifications for this app in your phone's settings.",
   'settings.reminderFailed.title': 'Could not schedule the reminder',
   'settings.reminderFailed.message': 'Try again in a few minutes.',
@@ -175,7 +175,7 @@ export const en: Record<MessageKey, string> = {
 
   // Aperturas
   'openings.title': 'Openings',
-  'openings.subtitle': 'Choose which color you want to study',
+  'openings.subtitle': 'Choose a color to study with',
   'openings.tabWhite': 'Openings for White',
   'openings.tabBlack': 'Openings for Black',
   'openings.cardLabel': '{name}, {done} of {total} lessons',
@@ -227,7 +227,7 @@ export const en: Record<MessageKey, string> = {
   'puzzles.earnedCoins.other': '+{n} coins.',
   'puzzles.next': 'Next puzzle',
   'puzzles.solution': 'Solution',
-  'puzzles.solutionMessage': 'See how it was solved. This puzzle stays open for another time.',
+  'puzzles.solutionMessage': "Here's how to solve it. This puzzle stays open for another try.",
 
   // Bots
   'bots.title': 'Bots',

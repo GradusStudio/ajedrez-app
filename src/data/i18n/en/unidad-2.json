@@ -37,7 +37,7 @@
       "title": "En passant",
       "summary": "A special pawn capture",
       "steps": {
-        "u2-l02-s01": { "text": "If a pawn advances two squares and lands next to an enemy pawn, that pawn can capture it as if it had advanced only one. This is called en passant." },
+        "u2-l02-s01": { "text": "If a pawn advances two squares and lands next to an enemy pawn, the enemy pawn can capture it as if it had advanced only one square. This is called en passant." },
         "u2-l02-s02": { "text": "You can only do it on the very next move. If you play something else, you lose the right." },
         "u2-l02-s03": {
           "prompt": "Black just played f5. Capture en passant.",
@@ -80,7 +80,7 @@
         "u2-l03-s03": { "text": "Watch out for stalemate. If you promote to a queen here, the black king has no squares and isn't in check: that's stalemate and the game ends in a draw." },
         "u2-l03-s04": {
           "prompt": "Promote without stalemating the black king, and keep enough material to deliver mate.",
-          "hint": "A queen gives stalemate. Try a rook: it leaves the square a6 free.",
+          "hint": "A queen would stalemate. Try a rook: it leaves the square a6 free.",
           "success": "Correct. With a rook, the black king has a6, and after Ka6 comes Ra8 mate."
         },
         "u2-l03-s05": {
@@ -192,7 +192,7 @@
           "feedback": ["", "Kingside castling has two Os: O-O.", "Mate is shown with #."]
         },
         "u2-l06-s08": {
-          "prompt": "What move is e8=N+?",
+          "prompt": "What does e8=N+ mean?",
           "options": ["A pawn promotes to a knight on e8 and gives check", "A knight goes to e8 and gives check", "A pawn promotes to a queen on e8"],
           "explanation": "e8 is the square, =N the piece it promotes to, and + the check.",
           "feedback": ["", "If it were a knight, it would start with N: Ne8+.", "=N means knight, not queen."]

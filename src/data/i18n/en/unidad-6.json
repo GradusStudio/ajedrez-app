@@ -11,7 +11,7 @@
           "prompt": "White to move. What happens?",
           "options": ["White loses the pawn and the game", "White wins the black pawn", "It's a draw: nobody can win"],
           "explanation": "White is in zugzwang: any king move leaves the pawn on d4 undefended. The black king captures it and the black pawn promotes.",
-          "feedback": ["", "To win the black pawn, Black would have to move first. With White to move, White is the one who loses.", "The side to move loses its pawn, and then the other pawn promotes."]
+          "feedback": ["", "For White to win the black pawn, Black would have to move first. With White to move, White is the one who loses.", "The side to move loses its pawn, and then the other pawn promotes."]
         },
         "u6-l01-s04": { "text": "Zugzwang can also help you deliver mate. Here Black can only move the king and the pawn on g7. If you block the pawn, the king will have to move, and it has no good square." },
         "u6-l01-s05": {
@@ -87,7 +87,7 @@
           "hint": "Use a pawn near your king: block the bishop's diagonal with the pawn on g2, or push the pawn on h2 so the queen has nowhere to deliver mate. After f4 the bishop captures and your king is exposed.",
           "success": "Correct. The mate doesn't work anymore and your position holds."
         },
-        "u6-l02-s10": { "text": "To sum up: before you move, look at what your opponent threatens and wants to do in the next few moves. A quiet move in time, like h3 or opening an escape square for your king, avoids much bigger problems." }
+        "u6-l02-s10": { "text": "To sum up: before you move, look at what your opponent threatens and wants to do in the next few moves. A quiet move played in time, like h3 or opening an escape square for your king, avoids much bigger problems." }
       }
     },
     "u6-l03": {

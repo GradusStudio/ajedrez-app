@@ -56,7 +56,7 @@
         "u5-l02-s06": {
           "prompt": "Why do you want the kings facing each other to deliver mate?",
           "options": ["Your king covers the escape squares on the next rank", "That way the black king can't capture the rook", "It's a rule: no facing kings, no mate"],
-          "explanation": "The rook gives check along the back rank and your king, opposite, takes away the three squares on the next rank from the black king. There's no way out.",
+          "explanation": "The rook gives check along the back rank and your king, directly opposite, takes the three squares on the next rank away from the black king. There's no way out.",
           "feedback": ["", "The rook is far from the black king: the problem isn't capture, it's the escape squares.", "It isn't a rule: it's how you leave the black king no way out."]
         },
         "u5-l02-s07": {
@@ -111,7 +111,7 @@
       "title": "The rule of the square",
       "summary": "Can the king catch the pawn?",
       "steps": {
-        "u5-l04-s01": { "text": "To tell if a king can catch a pawn, imagine a square from the pawn to the promotion rank. If it's the king's turn and it can step into the square, it catches the pawn. If not, the pawn promotes." },
+        "u5-l04-s01": { "text": "To tell if a king can catch a pawn, picture a big square on the board, with one side running from the pawn to the promotion rank. If it's the king's turn and it can step inside that big square, it catches the pawn. If not, the pawn promotes." },
         "u5-l04-s02": {
           "prompt": "Black to move. Can the black king catch the pawn?",
           "options": ["Yes, it enters the square", "No, the pawn promotes"],
@@ -139,13 +139,13 @@
         "u5-l04-s07": {
           "prompt": "Win the pawn race.",
           "success": "Well solved: this position comes from a real game.",
-          "hint": "Count the squares: the enemy king can't get into your pawn's square.",
+          "hint": "Count the moves: the enemy king can't get inside your pawn's big square.",
           "notes": ["", "", "", ""]
         },
         "u5-l04-s08": {
           "prompt": "Win the pawn race.",
           "success": "Well solved: this position comes from a real game.",
-          "hint": "Count the squares: the enemy king can't get into your pawn's square.",
+          "hint": "Count the moves: the enemy king can't get inside your pawn's big square.",
           "notes": ["", "", "", ""]
         }
       }

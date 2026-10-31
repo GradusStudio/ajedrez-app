@@ -62,7 +62,7 @@
   "tomas": {
     "name": "Tomás",
     "tagline": "The Trickster",
-    "trait": "Hunts for traps from the opening and goes after f7. If you don't fall for them, he runs out of plans.",
+    "trait": "Sets traps from the opening on and goes after f7. If you don't fall for them, he runs out of plans.",
     "teaches": "Defending against early threats and recognizing well-known traps.",
     "lines": {
       "greeting": "I'm going to show you a trick.",
@@ -173,7 +173,7 @@
         "Lesson finished. It came together nicely."
       ],
       "reminder": {
-        "risk": "Streak days: {n}. One activity today is enough to sustain it.",
+        "risk": "Streak days: {n}. One activity today is enough to keep it going.",
         "recovery": "To recover your streak: a lesson, a puzzle and a game against a bot, today.",
         "general": "When you can, a short lesson will do you good."
       }
@@ -193,7 +193,7 @@
     },
     "teaching": {
       "welcome": [
-        "Hi. Here we go steady, with no hurry.",
+        "Hi. Here we move steadily, with no hurry.",
         "Hi. We lay a firm base before moving on.",
         "Come in. This lesson is built slowly."
       ],
@@ -263,7 +263,7 @@
         "Well done. Detail makes the difference."
       ],
       "reminder": {
-        "risk": "Streak days: {n}. One activity today and you sustain it.",
+        "risk": "Streak days: {n}. One activity today and you keep it alive.",
         "recovery": "To recover your streak: a lesson, a puzzle and a game against a bot, today.",
         "general": "A little practice today goes a long way. I'll be expecting you."
       }

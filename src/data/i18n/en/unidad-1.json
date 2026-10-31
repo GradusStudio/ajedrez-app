@@ -54,7 +54,7 @@
         "u1-l04-s02": { "text": "The white queen starts on a light square and the black queen on a dark one. Take good care of it: losing your queen often decides the game." },
         "u1-l04-s03": { "prompt": "Move the queen to g7.", "hint": "Move it diagonally.", "success": "Correct" },
         "u1-l04-s04": { "prompt": "Move the queen to a4.", "hint": "Move it in a straight line along rank 4.", "success": "Correct" },
-        "u1-l04-s05": { "prompt": "Capture the black pawn with the queen.", "hint": "It's right next to it, on the right.", "success": "Correct" }
+        "u1-l04-s05": { "prompt": "Capture the black pawn with the queen.", "hint": "It's right next to the queen, on the right.", "success": "Correct" }
       }
     },
     "u1-l05": {
@@ -183,7 +183,7 @@
         "u1-l11-s02": { "text": "Second way: block the attack by putting a piece in between." },
         "u1-l11-s03": { "text": "Third way: capture the piece giving check." },
         "u1-l11-s04": { "prompt": "Block the check with the knight.", "hint": "Put the knight on the e-file, between the rook and the king.", "success": "Correct" },
-        "u1-l11-s05": { "prompt": "Capture the piece giving check with the bishop.", "hint": "The attacker is the white knight.", "success": "Correct" },
+        "u1-l11-s05": { "prompt": "With the bishop, capture the piece giving check.", "hint": "The attacker is the white knight.", "success": "Correct" },
         "u1-l11-s06": { "prompt": "Move the king to a safe square.", "hint": "The rook controls all of rank 8.", "success": "Correct" },
         "u1-l11-s07": { "text": "If none of the three options works, there's no way out: that's checkmate. We'll look at it in the next lesson." }
       }

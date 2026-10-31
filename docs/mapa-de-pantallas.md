@@ -306,7 +306,7 @@ Se agregan a `design.md` cuando se construyan:
 Decidido el 31-10-2026. La prioridad es que nada interrumpa el aprendizaje, y casi no hay gastos que cubrir: la app no usa servidor.
 
 - La app es gratis, sin anuncios, compras, vidas ni contenido bloqueado.
-- El apoyo es voluntario, con un enlace de PayPal en el `README.md`. La app no enlaza a PayPal ni a otro medio de pago, porque la política de pagos de Google Play lo prohíbe fuera de sus excepciones.
+- Por ahora no hay enlace de apoyo. Si se agrega uno, va en el `README.md` y con un nombre visible que no sea el personal. La app no enlaza a PayPal ni a otro medio de pago, porque la política de pagos de Google Play lo prohíbe fuera de sus excepciones.
 - Si algún día se agrega un botón de apoyo, va con Google Play Billing: hace falta compilar la app, porque no funciona en Expo Go, y crear el perfil de comerciante, cuyo país no se puede cambiar.
 - Si aparecen gastos reales, se puede sumar un anuncio voluntario con premio al terminar una lección, nunca en medio de una lección, un puzzle o una partida. Antes hay que revisar si el código cerrado de los anuncios es compatible con la GPL.
 

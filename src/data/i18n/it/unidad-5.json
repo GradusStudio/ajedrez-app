@@ -152,10 +152,10 @@
       "summary": "Torre e pedone contro torre",
       "steps": {
         "u5-l05-s01": { "text": "Questa è la posizione di Lucena, il finale di torri più importante. Il tuo pedone è in settima e il tuo re davanti, sulla casella di promozione. La tua torre taglia fuori il re nero lungo la colonna e, e la torre nera sorveglia la colonna c perché il tuo re non esca da lì." },
-        "u5-l05-s02": { "text": "Il piano ha due passi. Prima, uno scacco allontana ancora un po' il re nero. Poi la tua torre va in quarta traversa. Quando il tuo re uscirà, la torre nera darà scacchi, e la tua torre si interporrà all'ultimo. Questo si chiama costruire il ponte." },
+        "u5-l05-s02": { "text": "Il piano ha due passi. Prima, uno scacco allontana ancora un po' il re nero. Poi la tua torre va in quarta traversa. Quando il tuo re uscirà, la torre nera darà scacchi, e la tua torre parerà l'ultimo scacco. Questo si chiama costruire il ponte." },
         "u5-l05-s03": {
           "prompt": "Primo passo: dai scacco dalla colonna f per allontanare il re nero.",
-          "hint": "Porta la torre in e1 sulla colonna del re nero.",
+          "hint": "Porta sulla colonna del re nero la torre in e1.",
           "success": "Corretto. Il re nero deve allontanarsi."
         },
         "u5-l05-s04": {
@@ -163,23 +163,23 @@
           "notes": [
             "Scacco dalla colonna f: il re nero si allontana ancora un po'.",
             "",
-            "La tua torre va in quarta traversa. Da lì si interporrà agli scacchi più avanti.",
+            "La tua torre va in quarta traversa. Da lì parerà gli scacchi più avanti.",
             "",
             "Il tuo re esce da davanti al pedone. Ora la torre nera può solo dare scacchi.",
             "",
             "Il re si avvicina alla tua torre, continuando a proteggere il pedone.",
             "",
-            "Si sposta dallo scacco continuando a proteggere il pedone.",
+            "Esce dallo scacco continuando a proteggere il pedone.",
             "",
-            "Un passo in più: ora la torre può interporsi allo scacco.",
+            "Ancora un passo: ora la torre può parare lo scacco.",
             "",
-            "Il ponte: la tua torre si interpone allo scacco e la torre nera non può più continuare. Il pedone promuove."
+            "Il ponte: la tua torre para lo scacco e la torre nera non può più continuare. Il pedone promuove."
           ],
           "success": "Hai costruito il ponte. Il pedone promuove alla mossa successiva."
         },
         "u5-l05-s05": {
           "prompt": "Perché la torre va in quarta traversa?",
-          "options": ["Per interporla agli scacchi della torre nera", "Per attaccare il re nero", "Per proteggere il pedone da dietro"],
+          "options": ["Per parare gli scacchi della torre nera", "Per attaccare il re nero", "Per proteggere il pedone da dietro"],
           "explanation": "Quando il tuo re esce, la torre nera lo insegue con gli scacchi. La tua torre in quarta traversa si interpone al momento giusto: questo è il ponte.",
           "feedback": ["", "Il re nero è tagliato fuori e lontano: la torre non cerca di attaccarlo.", "Il pedone lo protegge già il tuo re. La torre serve a fermare gli scacchi."]
         },
@@ -188,7 +188,7 @@
           "success": "Corretto. Hai vinto la posizione di Lucena.",
           "hint": "Con quella mossa la vittoria sfugge. Ricorda il piano: scacco per allontanare il re, torre in quarta traversa e poi fai uscire il tuo re."
         },
-        "u5-l05-s07": { "text": "Riassunto: allontana il re avversario, porta la torre in quarta traversa, fai uscire il tuo re e interponi la torre agli scacchi. Se il re di chi difende arriva davanti al pedone, la difesa è un'altra: la posizione di Philidor, che porta alla patta." }
+        "u5-l05-s07": { "text": "Riassunto: allontana il re avversario, porta la torre in quarta traversa, fai uscire il tuo re e para gli scacchi con la torre. Se il re di chi difende arriva davanti al pedone, la difesa è un'altra: la posizione di Philidor, che porta alla patta." }
       }
     }
   }

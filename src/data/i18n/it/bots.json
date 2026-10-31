@@ -198,8 +198,8 @@
         "Vieni. Questa lezione si costruisce piano."
       ],
       "close": [
-        "Abbiamo finito. È solido.",
-        "Lezione conclusa. Buona base per ciò che viene.",
+        "Abbiamo finito. Tutto solido.",
+        "Lezione conclusa. Buona base per il seguito.",
         "Bene. Con la pazienza si arriva lontano."
       ],
       "reminder": {
@@ -217,7 +217,7 @@
     "lines": {
       "greeting": "Calcolo ogni mossa. Che vinca il migliore.",
       "onGoodMove": "Bella tattica. L'ho vista tardi.",
-      "onBlunder": "C'era una combinazione e non l'hai vista.",
+      "onBlunder": "C'era una combinazione nascosta.",
       "onWin": "La tattica ha deciso la partita.",
       "onLose": "Mi hai battuta con una tattica pulita."
     },
@@ -258,7 +258,7 @@
         "Vieni. Oggi lavoriamo con precisione."
       ],
       "close": [
-        "Abbiamo finito. Un lavoro molto fine.",
+        "Abbiamo finito. Un vero lavoro di fino.",
         "Lezione conclusa. Si nota la pazienza.",
         "Ben fatto. Il dettaglio fa la differenza."
       ],
@@ -275,8 +275,8 @@
     "trait": "Gioca con una precisione quasi totale e usa tutto il suo repertorio. È la sfida finale.",
     "teaches": "Giocare senza errori contro un avversario molto preciso.",
     "lines": {
-      "greeting": "Gioco al meglio che so. Che la partita abbia inizio.",
-      "onGoodMove": "Precisa. Era la mossa migliore.",
+      "greeting": "Gioco al meglio. Che la partita abbia inizio.",
+      "onGoodMove": "Mossa precisa. Era la migliore.",
       "onBlunder": "Errore. Lo sfrutto.",
       "onWin": "Rivedi la partita: imparerai molto.",
       "onLose": "Impressionante. Mi hai battuta."
@@ -290,7 +290,7 @@
       "close": [
         "Abbiamo finito. Buon risultato.",
         "Completo. Puoi passare a ciò che viene dopo.",
-        "Abbiamo finito. Hai fatto bene."
+        "Abbiamo finito. Ben fatto."
       ],
       "reminder": {
         "risk": "Giorni di serie: {n}. Un'attività oggi e si conserva.",

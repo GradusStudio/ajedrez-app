@@ -41,8 +41,8 @@
       "steps": {
         "u1-l03-s01": { "text": "L'alfiere si muove in diagonale, di quante caselle vuole, senza saltare i pezzi." },
         "u1-l03-s02": { "text": "Ogni alfiere resta sempre su caselle dello stesso colore. Per questo ne hai due all'inizio: uno delle caselle chiare e uno delle caselle scure." },
-        "u1-l03-s03": { "prompt": "Porta l'alfiere in g7.", "hint": "Sali in diagonale verso destra.", "success": "Corretto" },
-        "u1-l03-s04": { "prompt": "Porta l'alfiere in a1.", "hint": "Scendi in diagonale verso sinistra.", "success": "Corretto" },
+        "u1-l03-s03": { "prompt": "Porta l'alfiere in g7.", "hint": "Sale in diagonale verso destra.", "success": "Corretto" },
+        "u1-l03-s04": { "prompt": "Porta l'alfiere in a1.", "hint": "Scende in diagonale verso sinistra.", "success": "Corretto" },
         "u1-l03-s05": { "prompt": "Cattura il pedone nero con l'alfiere.", "hint": "È sulla diagonale, una casella più su a destra.", "success": "Corretto" }
       }
     },

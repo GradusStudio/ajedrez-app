@@ -11,7 +11,7 @@
           "prompt": "Muove il Bianco. Che cosa succede?",
           "options": ["Il Bianco perde il suo pedone e la partita", "Il Bianco vince il pedone nero", "È patta: nessuno può vincere"],
           "explanation": "Il Bianco è in zugzwang: qualsiasi mossa del re lascia senza difesa il pedone in d4. Il re nero lo cattura e il suo pedone promuove.",
-          "feedback": ["", "Per vincere il pedone nero, dovrebbe muovere prima il Nero. Con il tratto, a perdere è il Bianco.", "Chi muove perde il suo pedone, e poi l'altro pedone promuove."]
+          "feedback": ["", "Perché il Bianco vinca il pedone nero, dovrebbe muovere prima il Nero. Con il tratto, a perdere è il Bianco.", "Chi muove perde il suo pedone, e poi l'altro pedone promuove."]
         },
         "u6-l01-s04": { "text": "Lo zugzwang serve anche per dare matto. Qui il Nero può muovere solo il re e il pedone in g7. Se blocchi il pedone, il re dovrà muoversi, e non ha nessuna casella buona." },
         "u6-l01-s05": {
@@ -80,7 +80,7 @@
         },
         "u6-l02-s09": {
           "prompt": "Impedisci il matto.",
-          "hint": "Usa un pedone vicino al tuo re: chiudi la diagonale dell'alfiere con il pedone in g2, o avanza il pedone in h2 perché la donna non abbia dove dare matto. Con f4 l'alfiere cattura e il tuo re resta esposto.",
+          "hint": "Usa un pedone vicino al tuo re: chiudi la diagonale dell'alfiere con il pedone in g2, o spingi il pedone h2 perché la donna non abbia dove dare matto. Con f4 l'alfiere cattura e il tuo re resta esposto.",
           "success": "Corretto. Il matto non funziona più e la tua posizione regge."
         },
         "u6-l02-s10": { "text": "Riassunto: prima di muovere, guarda che cosa minaccia l'avversario e che cosa vuole fare nelle prossime mosse. Una mossa tranquilla al momento giusto, come h3 o aprire una via d'uscita al re, evita problemi molto più grandi." }

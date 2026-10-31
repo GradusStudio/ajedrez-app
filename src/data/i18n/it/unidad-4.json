@@ -28,7 +28,7 @@
           "feedback": ["", "h4 non fa uscire nessun pezzo e non occupa il centro.", "La donna esce troppo presto: l'avversario la attaccherà sviluppando i suoi pezzi."]
         },
         "u4-l01-s07": {
-          "prompt": "Hai già sviluppato i pezzi sul lato del re. Arrocca.",
+          "prompt": "Hai già sviluppato i pezzi sull'ala di re. Arrocca.",
           "hint": "Muovi il re di due caselle verso la torre in h1.",
           "success": "Corretto. Il re è al sicuro e la torre è pronta a giocare."
         },
@@ -56,7 +56,7 @@
           "hint": "Un cavallo può attaccare la donna in d5.",
           "success": "Corretto. Hai sviluppato guadagnando un tempo."
         },
-        "u4-l02-s04": { "text": "Muovere lo stesso pezzo più volte in apertura lascia fermi gli altri. Qui il Bianco ha mosso il cavallo tre volte ed è tornato in f3; il Nero, invece, ha già fatto uscire tre pezzi." },
+        "u4-l02-s04": { "text": "Muovere lo stesso pezzo più volte in apertura lascia fermi gli altri. Qui il Bianco ha mosso il cavallo tre volte e l'ha riportato in f3; il Nero, invece, ha già fatto uscire tre pezzi." },
         "u4-l02-s05": {
           "prompt": "Quale di queste mosse perde tempo?",
           "options": ["Cg1", "Ac4", "d4"],
@@ -107,12 +107,12 @@
         "u4-l03-s09": {
           "prompt": "Promuovi il tuo pedone passato.",
           "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Avanza il pedone: conta se arriva alla promozione prima di quello dell'avversario."
+          "hint": "Avanza il pedone: conta le mosse per vedere se arriva alla promozione prima di quello dell'avversario."
         },
         "u4-l03-s10": {
           "prompt": "Promuovi il tuo pedone passato.",
           "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Avanza il pedone: conta se arriva alla promozione prima di quello dell'avversario."
+          "hint": "Avanza il pedone: conta le mosse per vedere se arriva alla promozione prima di quello dell'avversario."
         }
       }
     },
@@ -135,7 +135,7 @@
         "u4-l04-s04": { "text": "Due torri sulla stessa colonna sono raddoppiate: si proteggono a vicenda e premono il doppio." },
         "u4-l04-s05": {
           "prompt": "Raddoppia le torri sulla colonna d.",
-          "hint": "Porta la torre in e2 sulla colonna d, davanti all'altra.",
+          "hint": "Porta sulla colonna d la torre in e2, davanti all'altra.",
           "success": "Corretto. Le torri sono raddoppiate."
         },
         "u4-l04-s06": { "text": "Una torre in settima traversa attacca i pedoni che non si sono ancora mossi e chiude il re avversario sull'ultima traversa." },

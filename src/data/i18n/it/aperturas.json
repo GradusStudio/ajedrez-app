@@ -126,7 +126,7 @@
             "text": "L'alfiere in c4 punta a f7, il punto più debole del campo nero: all'inizio lo protegge solo il re."
           },
           "italian-l01-s02": {
-            "text": "Nella versione tranquilla, c3 e d3 formano una base solida. Poi arrocchi e scegli tra d4 o riorganizzare i cavalli."
+            "text": "Nella versione tranquilla, c3 e d3 formano una base solida. Poi arrocchi e scegli tra giocare d4 e riorganizzare i cavalli."
           },
           "italian-l01-s03": {
             "prompt": "Quale punto attacca l'alfiere in c4?",
@@ -169,7 +169,7 @@
               "",
               "La torre sostiene e4 e controlla la colonna e.",
               "",
-              "Previene ...b5 e conserva la diagonale verso f7.",
+              "Anticipa ...b5 e conserva la diagonale verso f7.",
               "",
               "Sviluppa l'ultimo cavallo; poi può andare in f1 e g3."
             ]
@@ -516,7 +516,7 @@
               "",
               "Najdorf: controlli b5 e prepari ...b5.",
               "",
-              "Occupi il centro e respingi il cavallo in d4.",
+              "Occupi il centro e scacci il cavallo da d4.",
               "",
               "L'alfiere preme sul cavallo in b3.",
               "",
@@ -576,7 +576,7 @@
   },
   "dragon": {
     "name": "Siciliana Dragone",
-    "summary": "Fianchetto con l'alfiere in g7: una struttura molto tagliente in cui entrambi i campi attaccano.",
+    "summary": "Fianchetto con l'alfiere in g7: una struttura molto tagliente in cui attaccano entrambi i giocatori.",
     "lessons": {
       "dragon-l01": {
         "title": "L'idea del Dragone",
@@ -731,7 +731,7 @@
           "kia-l02-s01": {
             "prompt": "Gioca la linea principale dell'Attacco Est-Indiano.",
             "notes": [
-              "Sviluppa e prepara g3 senza impegnare il centro.",
+              "Sviluppa e prepara g3 senza impegnarsi al centro.",
               "",
               "Prepara l'alfiere in g2.",
               "",
@@ -910,14 +910,14 @@
   },
   "modern": {
     "name": "Difesa Moderna",
-    "summary": "Una difesa ipermoderna: lasci il centro al Bianco e lo pressi da lontano.",
+    "summary": "Una difesa ipermoderna: lasci il centro al Bianco e premi su di esso da lontano.",
     "lessons": {
       "modern-l01": {
         "title": "L'idea della Moderna",
         "summary": "Premere sul centro da lontano",
         "steps": {
           "modern-l01-s01": {
-            "text": "Non occupi il centro con i pedoni: lo pressi a distanza con l'alfiere in g7."
+            "text": "Non occupi il centro con i pedoni: premi su di esso a distanza con l'alfiere in g7."
           },
           "modern-l01-s02": {
             "text": "Lasci che il Bianco costruisca un grande centro e poi lo attacchi con ...c5, ...e5 o ...b5."
@@ -988,7 +988,7 @@
             "options": [
               "L'arrocco",
               "L'avanzata ...b5",
-              "Un cambio di donne"
+              "Un cambio delle donne"
             ]
           }
         }
@@ -1146,7 +1146,7 @@
           },
           "scotch-l01-s05": {
             "prompt": "Che cosa apre l'avanzata d4?",
-            "explanation": "La partita si apre e i tuoi pezzi ottengono linee.",
+            "explanation": "La partita si apre e i tuoi pezzi hanno più linee aperte.",
             "options": [
               "L'ala di donna",
               "Il centro e la colonna d",
@@ -1240,7 +1240,7 @@
     "lessons": {
       "evans-l01": {
         "title": "L'idea del Gambetto Evans",
-        "summary": "Un pedone per tempo e centro",
+        "summary": "Un pedone in cambio di tempo e centro",
         "steps": {
           "evans-l01-s01": {
             "text": "Con b4 offri un pedone per attaccare l'alfiere e guadagnare tempo."
@@ -1692,7 +1692,7 @@
             "text": "Invece di aprire il centro con d4, premi con l'alfiere sul cavallo in c6."
           },
           "rossolimo-l01-s02": {
-            "text": "Se cambi in c6, doppi i pedoni c del Nero."
+            "text": "Se cambi in c6, i pedoni c del Nero restano doppiati."
           },
           "rossolimo-l01-s03": {
             "text": "Piano: d3, h3 e Cc3 per giocare con solidità e aspettare che il Nero si indebolisca."
@@ -1710,7 +1710,7 @@
             "prompt": "Quale struttura cerchi cambiando in c6?",
             "explanation": "I pedoni in c6 e c5 restano doppiati.",
             "options": [
-              "Pedoni isolati tuoi",
+              "I tuoi pedoni isolati",
               "Pedoni doppiati dell'avversario",
               "Una colonna aperta"
             ]
@@ -1757,7 +1757,7 @@
           },
           "rossolimo-l03-s03": {
             "prompt": "Perché h3?",
-            "explanation": "Ti toglie i problemi in g4 senza spendere tempo su altre caselle.",
+            "explanation": "Ti evita problemi in g4 senza perdere tempo su altre caselle.",
             "options": [
               "Impedisce ...Ag4 e ...Cg4",
               "Prepara g4",
@@ -1814,7 +1814,7 @@
           },
           "alapin-l01-s05": {
             "prompt": "Che cosa eviti con 2.c3?",
-            "explanation": "Giocare c3 evita linee come la Najdorf e la Dragone.",
+            "explanation": "Giocare c3 evita linee come la Najdorf e il Dragone.",
             "options": [
               "Il pedone in d5",
               "La teoria della Siciliana aperta",
@@ -1844,7 +1844,7 @@
               "",
               "Re al sicuro.",
               "",
-              "Completi lo sviluppo e sostieni d4."
+              "Continui lo sviluppo e sostieni d4."
             ]
           }
         }
@@ -1887,8 +1887,8 @@
             "prompt": "Ripeti la linea principale senza aiuti."
           },
           "alapin-l04-s02": {
-            "prompt": "Quale pezzo completa il tuo sviluppo?",
-            "explanation": "L'alfiere in e3 sostiene d4 e chiude il tuo sviluppo.",
+            "prompt": "Quale pezzo sviluppi per sostenere d4?",
+            "explanation": "L'alfiere in e3 sostiene d4 e continua il tuo sviluppo.",
             "options": [
               "La donna in h5",
               "Il re in f1",
@@ -1911,7 +1911,7 @@
             "text": "Con c4 attacchi il pedone in d5. Se il Nero lo cattura, lo recuperi con facilità."
           },
           "queens-gambit-l01-s02": {
-            "text": "Se non cattura, mantieni la pressione su d5 e sviluppi con calma."
+            "text": "Se il Nero non cattura, mantieni la pressione su d5 e sviluppi con calma."
           },
           "queens-gambit-l01-s03": {
             "text": "Struttura tipica: pedoni in d4 ed e3, cavalli sviluppati e la torre sulla colonna c."
@@ -1999,7 +1999,7 @@
           },
           "queens-gambit-l04-s02": {
             "prompt": "Quale colonna occupa la tua torre?",
-            "explanation": "La torre in c1 preme sull'ala di donna nera.",
+            "explanation": "La torre in c1 preme sull'ala di donna del Nero.",
             "options": [
               "La colonna c",
               "La colonna h",
@@ -2012,7 +2012,7 @@
   },
   "kings-gambit": {
     "name": "Gambetto di Re",
-    "summary": "L'apertura romantica: sacrifichi subito un pedone e attacchi con tutto.",
+    "summary": "L'apertura romantica: sacrifichi subito un pedone e attacchi con tutte le forze.",
     "lessons": {
       "kings-gambit-l01": {
         "title": "L'idea del Gambetto di Re",
@@ -2032,7 +2032,7 @@
             "explanation": "Il cavallo sorveglia h4 da f3.",
             "options": [
               "Uno scacco di donna in h4",
-              "Un cambio di donne",
+              "Un cambio delle donne",
               "La cattura in e4"
             ]
           },
@@ -2242,11 +2242,11 @@
             "text": "Il Nero cattura spesso in c4, e tu recuperi il pedone con la donna o con Ce5."
           },
           "catalan-l01-s03": {
-            "text": "L'alfiere in g2 resta attivo: senza pedoni a coprirlo, preme su tutta la diagonale."
+            "text": "L'alfiere in g2 resta attivo: senza pedoni a ostacolarlo, preme su tutta la diagonale."
           },
           "catalan-l01-s04": {
             "prompt": "Quale diagonale controlla l'alfiere in g2?",
-            "explanation": "Quella diagonale punta sull'ala di donna nera.",
+            "explanation": "Quella diagonale punta verso l'ala di donna del Nero.",
             "options": [
               "La lunga a8–h1",
               "La diagonale e1–h4",
@@ -2348,7 +2348,7 @@
         "summary": "Il centro dall'ala",
         "steps": {
           "english-l01-s01": {
-            "text": "Con 1.c4 controlli d5 senza impegnare il centro. È un'apertura flessibile: può trasporsi in altre."
+            "text": "Con 1.c4 controlli d5 senza impegnarti al centro. È un'apertura flessibile: può trasporsi in altre."
           },
           "english-l01-s02": {
             "text": "Contro ...e5 giochi una «Siciliana invertita» con un tempo in più."
@@ -2485,7 +2485,7 @@
             "explanation": "Puntano su f7 e g7, i punti deboli dell'arrocco.",
             "options": [
               "Sul tuo stesso re",
-              "Sull'ala di re nera",
+              "Sull'ala di re del Nero",
               "Sulla donna bianca"
             ]
           }
@@ -2506,7 +2506,7 @@
               "",
               "Guadagni tempo e sviluppi.",
               "",
-              "Recuperi un pedone con attacco.",
+              "Recuperi un pedone attaccando.",
               "",
               "Recuperi un altro pedone. Il tuo alfiere in b2 punta su g7 e quello in d5 su f7.",
               "",
@@ -2562,7 +2562,7 @@
             "prompt": "Che cosa cerchi con il gambetto?",
             "explanation": "Compensi il materiale con pezzi attivi.",
             "options": [
-              "Cambi di donne",
+              "Il cambio delle donne",
               "Sviluppo, tempo e attacco",
               "Un finale pari"
             ]
@@ -2618,7 +2618,7 @@
               "",
               "Prepari ...d5 e gli dai sostegno.",
               "",
-              "Contendi il centro.",
+              "Contendi il centro al Bianco.",
               "",
               "Sviluppi e attacchi e4.",
               "",
@@ -2647,7 +2647,7 @@
             "success": "Corretto"
           },
           "french-l03-s02": {
-            "prompt": "Contendi il centro con un pedone.",
+            "prompt": "Contendi il centro al Bianco con un pedone.",
             "hint": "Il pedone centrale avanza.",
             "success": "Corretto"
           },
@@ -2703,9 +2703,9 @@
             "prompt": "Che cosa ottieni con ...Ab4?",
             "explanation": "È la mossa che definisce l'apertura.",
             "options": [
-              "Inchiodi il cavallo in c3 e sorvegli e4",
-              "Attacchi la donna",
-              "Prepari l'arrocco lungo"
+              "Inchiodare il cavallo in c3 e sorvegliare e4",
+              "Attaccare la donna",
+              "Preparare l'arrocco lungo"
             ]
           },
           "nimzo-indian-l01-s05": {
@@ -2816,7 +2816,7 @@
             "prompt": "Che cosa fai prima di catturare in e4?",
             "explanation": "Se catturi subito, De2 lascia il Nero in una posizione scomoda e con il rischio di perdere materiale.",
             "options": [
-              "Scacci il cavallo in e5 con ...d6",
+              "Scacci il cavallo da e5 con ...d6",
               "Arrocchi",
               "Cambi le donne"
             ]
@@ -2873,7 +2873,7 @@
             "success": "Corretto"
           },
           "petrov-l03-s02": {
-            "prompt": "Scaccia il cavallo in e5.",
+            "prompt": "Scaccia il cavallo da e5.",
             "hint": "Un pedone attacca il cavallo.",
             "success": "Corretto"
           },
@@ -3083,9 +3083,9 @@
               "",
               "L'alfiere si ritira e mantiene la pressione.",
               "",
-              "La torre prende la colonna d.",
+              "La torre occupa la colonna d.",
               "",
-              "Completi lo sviluppo."
+              "Sviluppi l'ultimo cavallo."
             ]
           }
         }

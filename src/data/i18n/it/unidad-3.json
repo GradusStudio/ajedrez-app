@@ -75,7 +75,7 @@
         "u3-l02-s06": {
           "prompt": "Il cavallo in f6 è inchiodato alla donna. Attaccalo con un pedone.",
           "hint": "Un pedone può attaccare il cavallo: essendo inchiodato, non gli conviene muoversi.",
-          "success": "Corretto. Il cavallo non può fuggire senza lasciare la donna: vinci un pezzo."
+          "success": "Corretto. Il cavallo non può fuggire senza lasciare scoperta la donna: vinci un pezzo."
         },
         "u3-l02-s07": {
           "prompt": "Questa inchiodatura è assoluta o relativa?",
@@ -104,7 +104,7 @@
         "u3-l03-s02": {
           "prompt": "Muovi il cavallo con scacco e vinci la donna.",
           "hint": "Se il cavallo lascia e4 dando scacco, la torre attacca la donna e non c'è tempo per salvarla.",
-          "success": "Corretto. Cf6+ dà scacco e scopre la torre sulla donna."
+          "success": "Corretto. Cf6+ dà scacco e scopre l'attacco della torre alla donna."
         },
         "u3-l03-s03": {
           "prompt": "Avanza un pedone con scacco: muovendosi, scopre l'attacco del tuo alfiere.",
@@ -126,7 +126,7 @@
           "hint": "L'alfiere può spostarsi scoprendo lo scacco e, nello stesso momento, attaccare la donna in c8.",
           "success": "Corretto. Af5+ e poi Axc8: lo scacco della torre non ha lasciato il tempo di salvare la donna."
         },
-        "u3-l03-s07": { "text": "Per trovare gli attacchi di scoperta, cerca tuoi pezzi allineati con il re o la donna dell'avversario, con un altro tuo pezzo in mezzo. Se il pezzo in mezzo si muove con una minaccia, l'avversario non può occuparsi di entrambe." },
+        "u3-l03-s07": { "text": "Per trovare gli attacchi di scoperta, cerca tuoi pezzi allineati con il re o la donna dell'avversario, con un altro tuo pezzo in mezzo. Se il pezzo in mezzo si muove con una minaccia, l'avversario non può parare entrambe le minacce." },
         "u3-l03-s08": {
           "prompt": "Trova l'attacco di scoperta.",
           "hint": "Muovi il pezzo che copre un altro tuo pezzo: così attacchi due cose insieme.",
@@ -143,7 +143,7 @@
       "title": "Scacco doppio e attacco doppio",
       "summary": "Due minacce in una mossa",
       "steps": {
-        "u3-l04-s01": { "text": "Nello scacco doppio, due pezzi danno scacco insieme. Non si possono né coprire né catturare entrambi: resta solo da muovere il re. Qui la donna nera potrebbe catturare il cavallo, ma lo scacco della torre resterebbe." },
+        "u3-l04-s01": { "text": "Nello scacco doppio, due pezzi danno scacco insieme. Non si può interporre un pezzo né catturarli entrambi: resta solo da muovere il re. Qui la donna nera potrebbe catturare il cavallo, ma lo scacco della torre resterebbe." },
         "u3-l04-s02": {
           "prompt": "Dai scacco doppio con il cavallo e l'alfiere.",
           "hint": "Se il cavallo lascia la diagonale dell'alfiere dando scacco, sono due scacchi insieme.",
@@ -167,8 +167,8 @@
         },
         "u3-l04-s07": {
           "prompt": "Perché lo scacco doppio è così forte?",
-          "options": ["Si risponde solo muovendo il re", "È sempre matto", "Vince sempre la donna"],
-          "explanation": "Con due scacchi insieme non basta coprire o catturare un pezzo: il re deve muoversi.",
+          "options": ["Si risponde solo muovendo il re", "È sempre matto", "Guadagna sempre la donna"],
+          "explanation": "Con due scacchi insieme non basta interporre un pezzo o catturarne uno: il re deve muoversi.",
           "feedback": ["", "Non è sempre matto: a volte il re ha una casella libera.", "Dipende dalla posizione: di sicuro il re deve muoversi."]
         },
         "u3-l04-s08": {
@@ -210,7 +210,7 @@
         "u3-l05-s06": {
           "prompt": "Quale mossa vince più materiale?",
           "options": ["Axf6+ e poi Cxd5", "Cxd5 subito", "Ah4"],
-          "explanation": "Cxd5 Cxd5 cambia la torre con un cavallo. Axf6+ per prima vince la torre intera: il difensore non c'è più.",
+          "explanation": "Cxd5 Cxd5 cambia la torre con un cavallo. Giocando prima Axf6+ vinci la torre intera: il difensore non c'è più.",
           "feedback": ["", "Cxd5 guadagna qualcosa, ma il cavallo in f6 riprende. Prima elimina il difensore.", "Ah4 non vince nulla."]
         },
         "u3-l05-s07": { "text": "Prima di attaccare un pezzo, guarda chi lo difende. Se puoi catturare o cambiare il difensore, il pezzo resta in presa." },
@@ -232,7 +232,7 @@
       "steps": {
         "u3-l06-s01": { "text": "La deviazione obbliga un pezzo a smettere di difendere una casella. Qui la torre in d8 difende la donna e l'ultima traversa. Se la donna bianca cattura, la torre deve riprendere e lascia libera e8." },
         "u3-l06-s02": {
-          "prompt": "Tocca il pezzo nero che ha due compiti insieme.",
+          "prompt": "Tocca il pezzo nero che ha due compiti allo stesso tempo.",
           "hint": "Un pezzo difende la donna e anche la casella e8."
         },
         "u3-l06-s03": {
@@ -254,7 +254,7 @@
           "prompt": "Quale pezzo nero è sovraccarico?",
           "options": ["La torre in c8", "L'alfiere in c6", "Il re"],
           "explanation": "La torre in c8 difende l'alfiere e anche l'ultima traversa: non può fare entrambe le cose.",
-          "feedback": ["", "L'alfiere non difende nulla di importante: è la torre a difenderlo.", "Il re non può uscire dai suoi pedoni, ma non difende nulla."]
+          "feedback": ["", "L'alfiere non difende nulla di importante: è la torre a difenderlo.", "Il re è chiuso dai suoi pedoni, ma non difende nulla."]
         },
         "u3-l06-s07": { "text": "Un pezzo che difende due cose insieme è sovraccarico. Se lo obblighi a occuparsi di una, l'altra resta senza difesa." },
         "u3-l06-s08": {
@@ -295,7 +295,7 @@
         "u3-l07-s07": {
           "prompt": "Giochi col Nero. La donna e l'alfiere minacciano Dxf7 matto. Difenditi.",
           "hint": "Difendi f7 con la donna o il cavallo, oppure attacca la donna bianca con un pedone.",
-          "success": "Corretto. Ormai non c'è più matto in f7."
+          "success": "Corretto. Ora non c'è più matto in f7."
         },
         "u3-l07-s08": {
           "prompt": "Quale casella attaccano insieme la donna e l'alfiere bianchi?",

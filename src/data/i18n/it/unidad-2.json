@@ -18,7 +18,7 @@
           "success": "Corretto. Il re è andato in c8 e la torre in d8."
         },
         "u2-l01-s05": { "text": "Per arroccare, il re e quella torre non devono essersi mai mossi in tutta la partita, e le caselle tra loro devono essere vuote." },
-        "u2-l01-s06": { "text": "Non si può arroccare nemmeno se il re è sotto scacco, se passa su una casella attaccata o se finisce su una. Qui l'alfiere nero attacca f1: niente arrocco corto, ma quello lungo sì." },
+        "u2-l01-s06": { "text": "Non si può arroccare nemmeno se il re è sotto scacco, se passa per una casella attaccata o se finisce su una casella attaccata. Qui l'alfiere nero attacca f1: niente arrocco corto, ma quello lungo sì." },
         "u2-l01-s07": {
           "prompt": "Il Bianco può arroccare corto?",
           "options": ["Sì", "No, il re finirebbe su una casella attaccata", "No, la torre è attaccata"],
@@ -37,7 +37,7 @@
       "title": "La presa en passant",
       "summary": "Una cattura speciale del pedone",
       "steps": {
-        "u2-l02-s01": { "text": "Se un pedone avanza di due caselle e si ferma accanto a un pedone avversario, quel pedone può catturarlo come se fosse avanzato di una sola. Si chiama presa en passant." },
+        "u2-l02-s01": { "text": "Se un pedone avanza di due caselle e si ferma accanto a un pedone avversario, il pedone avversario può catturarlo come se fosse avanzato di una sola casella. Si chiama presa en passant." },
         "u2-l02-s02": { "text": "Si può fare solo alla mossa successiva. Se giochi altro, il diritto si perde." },
         "u2-l02-s03": {
           "prompt": "Il Nero ha appena giocato f5. Cattura en passant.",
@@ -63,7 +63,7 @@
         },
         "u2-l02-s07": {
           "prompt": "Il Nero ha appena giocato e5, avanzando di due caselle. Tocca il pedone che puoi catturare en passant.",
-          "hint": "È il pedone che ha appena avanzato di due caselle."
+          "hint": "È il pedone che è appena avanzato di due caselle."
         }
       }
     },
@@ -80,11 +80,11 @@
         "u2-l03-s03": { "text": "Attenzione allo stallo. Se qui promuovi a donna, il re nero non ha caselle e non è sotto scacco: è stallo e la partita finisce patta." },
         "u2-l03-s04": {
           "prompt": "Promuovi senza mettere in stallo il re nero, tenendo il materiale per dare matto.",
-          "hint": "La donna dà stallo. Prova con la torre: lascia libera la casella a6.",
+          "hint": "La donna mette in stallo. Prova con la torre: lascia libera la casella a6.",
           "success": "Corretto. Con la torre il re nero ha a6, e dopo Ra6 arriva Ta8 matto."
         },
         "u2-l03-s05": {
-          "prompt": "Il Nero minaccia Df1 matto. In quale pezzo conviene promuovere?",
+          "prompt": "Il Nero minaccia Df1 matto. A quale pezzo conviene promuovere?",
           "options": ["Donna", "Cavallo", "Torre"],
           "explanation": "Un cavallo in d8 dà scacco al re e attacca la donna allo stesso tempo. Con donna o torre, il Nero dà matto con Df1.",
           "feedback": ["Con la donna, il Nero gioca Df1 ed è matto.", "", "Con la torre, il Nero gioca Df1 ed è matto."]
@@ -134,7 +134,7 @@
       "summary": "Ripetizione, materiale e 50 mosse",
       "steps": {
         "u2-l05-s01": { "text": "Il Nero ha più materiale e minaccia matto, ma il Bianco dà uno scacco dopo l'altro. Se la stessa posizione si ripete tre volte, la partita è patta." },
-        "u2-l05-s02": { "text": "Questo si chiama scacco perpetuo: scacchi senza fine che l'avversario non può evitare. È il modo più comune di salvare una partita persa con la ripetizione." },
+        "u2-l05-s02": { "text": "Questo si chiama scacco perpetuo: scacchi senza fine che l'avversario non può evitare. È il modo più comune di salvare con la ripetizione una partita persa." },
         "u2-l05-s03": {
           "prompt": "Stai perdendo e il Nero minaccia matto. Dai scacco per iniziare il perpetuo.",
           "hint": "Cerca uno scacco di donna in cui non possano catturarla.",
@@ -153,7 +153,7 @@
           "explanation": "No: con un solo cavallo non si può forzare il matto. È patta per materiale insufficiente.",
           "feedback": ["Un cavallo da solo non basta per dare matto.", ""]
         },
-        "u2-l05-s07": { "text": "Regola delle 50 mosse: se passano 50 mosse per parte senza catture né mosse di pedone, la partita è patta. Inoltre i giocatori possono accordarsi per la patta: nei Bot puoi offrirla all'avversario." },
+        "u2-l05-s07": { "text": "Regola delle 50 mosse: se passano 50 mosse per parte senza catture né mosse di pedone, la partita è patta. Inoltre i giocatori possono accordarsi per la patta: nella scheda Bot puoi offrirla all'avversario." },
         "u2-l05-s08": {
           "prompt": "Quale di queste situazioni non è patta?",
           "options": ["Stallo", "Scacco matto", "Triplice ripetizione"],
@@ -167,7 +167,7 @@
       "summary": "Leggere e annotare le mosse",
       "steps": {
         "u2-l06-s01": { "text": "Ogni mossa si scrive con la lettera del pezzo e la casella di arrivo. Le lettere sono le iniziali dei nomi: R per Re, D per Donna, T per Torre, A per Alfiere e C per Cavallo. Questa mossa è Cf3. I pedoni non hanno lettera: e4." },
-        "u2-l06-s02": { "text": "Se la mossa è una cattura, si aggiunge una x: Axf7. Quando cattura un pedone, si scrive la colonna da cui parte: exd5." },
+        "u2-l06-s02": { "text": "Se la mossa è una cattura, si aggiunge una x: Axd5. Quando a catturare è un pedone, si scrive la colonna da cui parte: exd5." },
         "u2-l06-s03": { "text": "Altri segni: + è scacco e # è matto, come Dxf7# in questa posizione. O-O è l'arrocco corto, O-O-O quello lungo, e =D indica la promozione: e8=D." },
         "u2-l06-s04": {
           "prompt": "Come si scrive la mossa del cavallo da g1 a f3?",

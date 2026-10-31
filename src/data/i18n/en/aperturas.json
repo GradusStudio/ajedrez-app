@@ -573,5 +573,1003 @@
         }
       }
     }
+  },
+  "dragon": {
+    "name": "Sicilian Dragon",
+    "summary": "A fianchetto with the g7 bishop: a very sharp structure where both sides attack.",
+    "lessons": {
+      "dragon-l01": {
+        "title": "The idea of the Dragon",
+        "summary": "The g7 bishop and the Yugoslav Attack",
+        "steps": {
+          "dragon-l01-s01": {
+            "text": "With ...g6 and ...Bg7 you place the “dragon” bishop on the long diagonal, aiming at a1."
+          },
+          "dragon-l01-s02": {
+            "text": "Against the Dragon, White usually plays the Yugoslav Attack: Be3, f3, Qd2, queenside castling and a g- and h-pawn advance."
+          },
+          "dragon-l01-s03": {
+            "text": "Your counterattack: a rook on c8, the knight on e5 and sacrifices on c3. It's a race of attacks with opposite-side castling."
+          },
+          "dragon-l01-s04": {
+            "prompt": "Which piece is the key to the Dragon?",
+            "explanation": "If White trades it, your king gets weaker; that's why you defend it.",
+            "options": [
+              "The g7 bishop",
+              "The b8 knight",
+              "The queen"
+            ]
+          },
+          "dragon-l01-s05": {
+            "prompt": "White castles queenside. Which file do you attack on?",
+            "explanation": "The rook on c8 aims at White's king, which is on c1.",
+            "options": [
+              "The h-file",
+              "The c-file",
+              "The e-file"
+            ]
+          }
+        }
+      },
+      "dragon-l02": {
+        "title": "Main line",
+        "summary": "The Yugoslav Attack",
+        "steps": {
+          "dragon-l02-s01": {
+            "prompt": "Play the main line of the Dragon.",
+            "notes": [
+              "",
+              "An unbalanced reply: you fight for d4.",
+              "",
+              "Prepares ...Nf6 and keeps the center solid.",
+              "",
+              "You trade your c-pawn for the central pawn.",
+              "",
+              "You develop and attack e4.",
+              "",
+              "Dragon: you prepare the fianchetto on g7.",
+              "",
+              "The dragon bishop aims along the whole long diagonal.",
+              "",
+              "King safe; the Yugoslav Attack comes next.",
+              "",
+              "You pressure d4.",
+              "",
+              "Prepares ...Rc8 and ...Ne5, and defends the knight.",
+              "",
+              "The rook goes to the c-file: that's your counterattacking plan."
+            ]
+          }
+        }
+      },
+      "dragon-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Fianchetto, castling and the attacking plan",
+        "steps": {
+          "dragon-l03-s01": {
+            "prompt": "Prepare the fianchetto of your bishop.",
+            "hint": "A pawn opens the diagonal for the bishop.",
+            "success": "Correct"
+          },
+          "dragon-l03-s02": {
+            "prompt": "Get your king to safety.",
+            "hint": "The g7 bishop already protects your castled king.",
+            "success": "Correct"
+          },
+          "dragon-l03-s03": {
+            "prompt": "What's the first thing you do to attack after castling?",
+            "explanation": "Black's attack comes down the c-file, not on the kingside.",
+            "options": [
+              "Advance the kingside pawns",
+              "Trade the g7 bishop",
+              "Bring the knight to c6 and prepare the rook on c8"
+            ]
+          }
+        }
+      },
+      "dragon-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "dragon-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "dragon-l04-s02": {
+            "prompt": "Which diagonal does your g7 bishop control?",
+            "explanation": "That diagonal points at White's queenside castled position.",
+            "options": [
+              "The long diagonal a1–h8",
+              "The e1–h4 diagonal",
+              "The a2–g8 diagonal"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "kia": {
+    "name": "King's Indian Attack",
+    "summary": "A system: the same structure (g3, Bg2, d3, e4) against almost any defense.",
+    "lessons": {
+      "kia-l01": {
+        "title": "The idea of the King's Indian Attack",
+        "summary": "One system for many defenses",
+        "steps": {
+          "kia-l01-s01": {
+            "text": "You place the bishop on g2 and aim down the long diagonal all the way to a8."
+          },
+          "kia-l01-s02": {
+            "text": "Typical structure: pawns on g3, d3 and e4, bishop on g2 and knights on f3 and d2."
+          },
+          "kia-l01-s03": {
+            "text": "The plan: push e5 and attack on the kingside with your pieces and pawns."
+          },
+          "kia-l01-s04": {
+            "prompt": "Which diagonal does your g2 bishop control?",
+            "explanation": "That diagonal points at Black's queenside.",
+            "options": [
+              "The long diagonal a8–h1",
+              "The e1–h4 diagonal",
+              "The a2–g8 diagonal"
+            ]
+          },
+          "kia-l01-s05": {
+            "prompt": "Why is it called a system?",
+            "explanation": "That greatly reduces the theory you need to memorize.",
+            "options": [
+              "It only works against ...d5",
+              "You play the same structure against many defenses",
+              "It's a fixed trap"
+            ]
+          }
+        }
+      },
+      "kia-l02": {
+        "title": "Main line",
+        "summary": "The structure against ...d5",
+        "steps": {
+          "kia-l02-s01": {
+            "prompt": "Play the main line of the King's Indian Attack.",
+            "notes": [
+              "Develops and prepares g3 without committing the center.",
+              "",
+              "Prepares the bishop on g2.",
+              "",
+              "The bishop dominates the long diagonal.",
+              "",
+              "King safe early.",
+              "",
+              "Supports e4 and opens the c1 bishop.",
+              "",
+              "Prepares e4 without blocking anything.",
+              "",
+              "You take the center: that's the plan of the King's Indian Attack.",
+              "",
+              "The rook supports e4 and prepares e5."
+            ]
+          }
+        }
+      },
+      "kia-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Fianchetto, castling and center",
+        "steps": {
+          "kia-l03-s01": {
+            "prompt": "Develop the bishop on the long diagonal.",
+            "hint": "A bishop comes out to g2.",
+            "success": "Correct"
+          },
+          "kia-l03-s02": {
+            "prompt": "Get your king to safety.",
+            "hint": "The fianchetto already protects kingside castling.",
+            "success": "Correct"
+          },
+          "kia-l03-s03": {
+            "prompt": "Which pawn do you advance to take the center?",
+            "explanation": "With e4 you complete the system's structure.",
+            "options": [
+              "e4",
+              "h4",
+              "a4"
+            ]
+          }
+        }
+      },
+      "kia-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "kia-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "kia-l04-s02": {
+            "prompt": "What does the rook on e1 do?",
+            "explanation": "The rook on the e-file backs up the central advance.",
+            "options": [
+              "Supports e4 and prepares e5",
+              "Attacks the queenside",
+              "Protects the g2 bishop"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "kings-indian": {
+    "name": "King's Indian Defense",
+    "summary": "You give White the center so you can attack it later, along with an attack on the king.",
+    "lessons": {
+      "kings-indian-l01": {
+        "title": "The idea of the King's Indian",
+        "summary": "Giving up the center and attacking with ...f5",
+        "steps": {
+          "kings-indian-l01-s01": {
+            "text": "Black doesn't occupy the center: White gets to build a big pawn center, and Black attacks it later."
+          },
+          "kings-indian-l01-s02": {
+            "text": "The g7 bishop dominates the long diagonal and puts pressure on White's center."
+          },
+          "kings-indian-l01-s03": {
+            "text": "When the center closes with d5, your plan is to attack on the kingside with ...f5."
+          },
+          "kings-indian-l01-s04": {
+            "prompt": "What is Black's main plan?",
+            "explanation": "White attacks on the queenside and you attack on the kingside.",
+            "options": [
+              "Attack on the kingside with ...f5",
+              "Trade queens early",
+              "Play ...a6 and ...b5"
+            ]
+          },
+          "kings-indian-l01-s05": {
+            "prompt": "What does the g7 bishop do?",
+            "explanation": "It's the piece that gives meaning to the whole opening.",
+            "options": [
+              "Protects the h7-pawn",
+              "Pressures the center along the long diagonal",
+              "Attacks the f3 knight"
+            ]
+          }
+        }
+      },
+      "kings-indian-l02": {
+        "title": "Main line",
+        "summary": "The Classical Variation",
+        "steps": {
+          "kings-indian-l02-s01": {
+            "prompt": "Play the main line of the King's Indian.",
+            "notes": [
+              "",
+              "You develop and control e4 and d5.",
+              "",
+              "Prepares the bishop on g7.",
+              "",
+              "Fianchetto: the bishop dominates the long diagonal.",
+              "",
+              "You support e5 and prepare ...e5.",
+              "",
+              "King safe.",
+              "",
+              "A counterattack in the center.",
+              "",
+              "You pressure d4.",
+              "",
+              "You close the center and prepare the attack with ...f5.",
+              "",
+              "The f6 knight frees the f-pawn.",
+              "",
+              "Attack on the kingside: that's Black's main plan."
+            ]
+          }
+        }
+      },
+      "kings-indian-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Fianchetto, castling and the pawn push",
+        "steps": {
+          "kings-indian-l03-s01": {
+            "prompt": "Fianchetto the bishop on the long diagonal.",
+            "hint": "The king's bishop comes out to g7.",
+            "success": "Correct"
+          },
+          "kings-indian-l03-s02": {
+            "prompt": "Get your king to safety.",
+            "hint": "It's time to castle.",
+            "success": "Correct"
+          },
+          "kings-indian-l03-s03": {
+            "prompt": "After ...Ne7, which pawn do you advance to attack?",
+            "explanation": "With ...f5 you open lines toward White's king.",
+            "options": [
+              "The h-pawn",
+              "The f-pawn",
+              "The a-pawn"
+            ]
+          }
+        }
+      },
+      "kings-indian-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "kings-indian-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "kings-indian-l04-s02": {
+            "prompt": "Which black pieces usually aim at White's king?",
+            "explanation": "The kingside attack is carried out by pawns and pieces together.",
+            "options": [
+              "The g7 bishop and the f- and g-pawns",
+              "The a8 rook",
+              "The queen alone"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "modern": {
+    "name": "Modern Defense",
+    "summary": "A hypermodern defense: you give White the center and pressure it from a distance.",
+    "lessons": {
+      "modern-l01": {
+        "title": "The idea of the Modern",
+        "summary": "Pressuring the center from a distance",
+        "steps": {
+          "modern-l01-s01": {
+            "text": "You don't occupy the center with pawns: you pressure it from a distance with the g7 bishop."
+          },
+          "modern-l01-s02": {
+            "text": "You let White build a big center and then attack it with ...c5, ...e5 or ...b5."
+          },
+          "modern-l01-s03": {
+            "text": "With ...a6 and ...b5 you gain space on the queenside while keeping your structure solid."
+          },
+          "modern-l01-s04": {
+            "prompt": "What sets the Modern apart from the Pirc?",
+            "explanation": "Both use ...g6 and ...Bg7, but the piece order is more flexible in the Modern.",
+            "options": [
+              "The g8 knight usually waits to see what White does",
+              "There's no difference",
+              "In the Modern you don't play ...g6"
+            ]
+          },
+          "modern-l01-s05": {
+            "prompt": "Which square does the g7 bishop watch?",
+            "explanation": "From g7 it pressures the d4-pawn along the long diagonal.",
+            "options": [
+              "h3",
+              "c6",
+              "d4"
+            ]
+          }
+        }
+      },
+      "modern-l02": {
+        "title": "Main line",
+        "summary": "The system with ...a6 and ...b5",
+        "steps": {
+          "modern-l02-s01": {
+            "prompt": "Play the main line of the Modern.",
+            "notes": [
+              "",
+              "You prepare the fianchetto without occupying the center.",
+              "",
+              "The bishop pressures the center from a distance.",
+              "",
+              "You support e5 and restrain the e4-pawn.",
+              "",
+              "Prepares ...b5 and gains space on the queenside.",
+              "",
+              "Expansion on the queenside.",
+              "",
+              "You develop the knight and support ...e5 or ...c5."
+            ]
+          }
+        }
+      },
+      "modern-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Move order",
+        "steps": {
+          "modern-l03-s01": {
+            "prompt": "Answer 1.e4 by preparing the fianchetto.",
+            "hint": "A pawn opens the bishop's diagonal.",
+            "success": "Correct"
+          },
+          "modern-l03-s02": {
+            "prompt": "Place the bishop on the long diagonal.",
+            "hint": "The king's bishop comes out to g7.",
+            "success": "Correct"
+          },
+          "modern-l03-s03": {
+            "prompt": "What does the move ...a6 prepare?",
+            "explanation": "With ...a6 you stop a white piece from reaching b5.",
+            "options": [
+              "Castling",
+              "The ...b5 advance",
+              "A queen trade"
+            ]
+          }
+        }
+      },
+      "modern-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "modern-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "modern-l04-s02": {
+            "prompt": "What are you after with ...b5?",
+            "explanation": "The Modern uses the queenside to balance White's space in the center.",
+            "options": [
+              "Gaining space on the queenside",
+              "Attacking the king",
+              "Trading queens"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "pirc": {
+    "name": "Pirc Defense",
+    "summary": "Flexible and solid: you allow a big center and attack it with your pieces.",
+    "lessons": {
+      "pirc-l01": {
+        "title": "The idea of the Pirc",
+        "summary": "White's center, attack with pieces",
+        "steps": {
+          "pirc-l01-s01": {
+            "text": "You attack the e4-pawn with the knight without occupying the center with pawns."
+          },
+          "pirc-l01-s02": {
+            "text": "The g7 bishop completes the setup: it pressures d4 and supports your castled king."
+          },
+          "pirc-l01-s03": {
+            "text": "With ...c6 you prepare ...b5 or ...e5. You attack White's center calmly."
+          },
+          "pirc-l01-s04": {
+            "prompt": "Which black piece pressures e4 at the start?",
+            "explanation": "It's the piece that forces White to defend e4.",
+            "options": [
+              "The f6 knight",
+              "The c8 bishop",
+              "The queen"
+            ]
+          },
+          "pirc-l01-s05": {
+            "prompt": "Which white attack is worth knowing?",
+            "explanation": "With f4, White builds a huge center and attacks quickly.",
+            "options": [
+              "The Queen's Gambit",
+              "The Austrian Attack with f4",
+              "The Italian"
+            ]
+          }
+        }
+      },
+      "pirc-l02": {
+        "title": "Main line",
+        "summary": "The Classical Variation",
+        "steps": {
+          "pirc-l02-s01": {
+            "prompt": "Play the main line of the Pirc.",
+            "notes": [
+              "",
+              "Flexible: you allow White to occupy the center.",
+              "",
+              "You attack e4 and develop.",
+              "",
+              "You prepare the fianchetto.",
+              "",
+              "The bishop pressures White's center.",
+              "",
+              "King safe before attacking the center.",
+              "",
+              "Prepares ...Nbd7 and ...e5 or ...b5."
+            ]
+          }
+        }
+      },
+      "pirc-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Move order",
+        "steps": {
+          "pirc-l03-s01": {
+            "prompt": "Attack e4 with the knight.",
+            "hint": "The king's knight comes out to f6.",
+            "success": "Correct"
+          },
+          "pirc-l03-s02": {
+            "prompt": "Prepare the fianchetto of your bishop.",
+            "hint": "A pawn opens the diagonal.",
+            "success": "Correct"
+          },
+          "pirc-l03-s03": {
+            "prompt": "When do you castle?",
+            "explanation": "The g7 bishop protects your castled king, so you don't need to wait.",
+            "options": [
+              "Soon, with the bishop already on g7",
+              "Never",
+              "After trading queens"
+            ]
+          }
+        }
+      },
+      "pirc-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "pirc-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "pirc-l04-s02": {
+            "prompt": "What does ...c6 prepare?",
+            "explanation": "With c6 you reinforce the center without spending your knight.",
+            "options": [
+              "Queenside castling",
+              "A check to the queen",
+              "The ...b5 or ...e5 advances"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "scotch": {
+    "name": "Scotch Game",
+    "summary": "You open the center right away: more direct than the Italian, with active play.",
+    "lessons": {
+      "scotch-l01": {
+        "title": "The idea of the Scotch",
+        "summary": "Opening the center early",
+        "steps": {
+          "scotch-l01-s01": {
+            "text": "With d4 you open the center right away. White's pieces gain space and activity."
+          },
+          "scotch-l01-s02": {
+            "text": "You recapture with the knight, which ends up centralized on d4."
+          },
+          "scotch-l01-s03": {
+            "text": "With e5 you gain space; c4 and b3 reinforce the center."
+          },
+          "scotch-l01-s04": {
+            "prompt": "Which piece do you recapture with on d4?",
+            "explanation": "It's the recapture that centralizes a piece and develops.",
+            "options": [
+              "The f3 knight",
+              "The queen",
+              "The bishop"
+            ]
+          },
+          "scotch-l01-s05": {
+            "prompt": "What does the d4 advance open?",
+            "explanation": "The game opens up and your pieces gain lines.",
+            "options": [
+              "The queenside",
+              "The center and the d-file",
+              "The h8 diagonal"
+            ]
+          }
+        }
+      },
+      "scotch-l02": {
+        "title": "Main line",
+        "summary": "The Mieses Variation",
+        "steps": {
+          "scotch-l02-s01": {
+            "prompt": "Play the main line of the Scotch.",
+            "notes": [
+              "Takes the center.",
+              "",
+              "Develops and attacks e5.",
+              "",
+              "You open the center: that's the idea of the Scotch.",
+              "",
+              "You recapture and your knight lands in the center.",
+              "",
+              "You damage Black's pawn structure.",
+              "",
+              "You gain space and attack the knight.",
+              "",
+              "Defends e5 and keeps up the pressure.",
+              "",
+              "You attack the d5 knight.",
+              "",
+              "You defend c4 and prepare the bishop on b2.",
+              ""
+            ]
+          }
+        }
+      },
+      "scotch-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Open, recapture and trade",
+        "steps": {
+          "scotch-l03-s01": {
+            "prompt": "Open the center with a pawn.",
+            "hint": "It's the move that gives the opening its name.",
+            "success": "Correct"
+          },
+          "scotch-l03-s02": {
+            "prompt": "Recapture the d4-pawn.",
+            "hint": "Use the f3 knight.",
+            "success": "Correct"
+          },
+          "scotch-l03-s03": {
+            "prompt": "Trade your knight for the one on c6 to damage Black's structure.",
+            "hint": "Capture on c6.",
+            "success": "Correct"
+          },
+          "scotch-l03-s04": {
+            "prompt": "What structure does Black have after the trade?",
+            "explanation": "The c6- and c7-pawns end up doubled and weak.",
+            "options": [
+              "Doubled pawns on the c-file",
+              "Isolated pawns on the h-file",
+              "A hanging pawn on e5"
+            ]
+          }
+        }
+      },
+      "scotch-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "scotch-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "scotch-l04-s02": {
+            "prompt": "What do you achieve with e5?",
+            "explanation": "The pawn advances and forces the knight to move.",
+            "options": [
+              "Castling",
+              "Space and an attack on the f6 knight",
+              "An immediate check"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "evans": {
+    "name": "Evans Gambit",
+    "summary": "You sacrifice a pawn to gain time and the center: a fast attack and lots of tactical play.",
+    "lessons": {
+      "evans-l01": {
+        "title": "The idea of the Evans Gambit",
+        "summary": "A pawn for time and the center",
+        "steps": {
+          "evans-l01-s01": {
+            "text": "With b4 you offer a pawn to attack the bishop and gain time."
+          },
+          "evans-l01-s02": {
+            "text": "With c3 and d4 you build a strong center while Black's bishop loses time."
+          },
+          "evans-l01-s03": {
+            "text": "With the center open and your pieces active, the attack comes naturally: Bg5, Nc3 and pressure on f7."
+          },
+          "evans-l01-s04": {
+            "prompt": "What do you get in exchange for the pawn?",
+            "explanation": "Each Black move with the bishop lets you develop a piece.",
+            "options": [
+              "Time and control of the center",
+              "A piece",
+              "Nothing: it's a mistake"
+            ]
+          },
+          "evans-l01-s05": {
+            "prompt": "What does the b4-pawn attack?",
+            "explanation": "If the bishop captures, you gain time with c3.",
+            "options": [
+              "The c6 knight",
+              "The e5-pawn",
+              "The c5 bishop"
+            ]
+          }
+        }
+      },
+      "evans-l02": {
+        "title": "Main line",
+        "summary": "The Classical Evans",
+        "steps": {
+          "evans-l02-s01": {
+            "prompt": "Play the main line of the Evans Gambit.",
+            "notes": [
+              "Center.",
+              "",
+              "Attacks e5.",
+              "",
+              "The bishop aims at f7.",
+              "",
+              "Evans: you offer a pawn to gain time and the center.",
+              "",
+              "You threaten d4, gaining time on the bishop.",
+              "",
+              "You take the center with tempo.",
+              "",
+              "King safe; the open lines favor your development.",
+              "",
+              "You win back the pawn and keep the center.",
+              "",
+              "You pressure e4 and d5, increasing your activity.",
+              "",
+              "You attack the queen and gain more time."
+            ]
+          }
+        }
+      },
+      "evans-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "How to reach the center",
+        "steps": {
+          "evans-l03-s01": {
+            "prompt": "Offer the gambit to attack the bishop.",
+            "hint": "A queenside pawn advances two squares.",
+            "success": "Correct"
+          },
+          "evans-l03-s02": {
+            "prompt": "Gain time against the bishop and prepare d4.",
+            "hint": "A pawn supports the center.",
+            "success": "Correct"
+          },
+          "evans-l03-s03": {
+            "prompt": "Take the center with tempo.",
+            "hint": "The central pawn advances.",
+            "success": "Correct"
+          },
+          "evans-l03-s04": {
+            "prompt": "What should you do after ...d6?",
+            "explanation": "Recapturing keeps your center and the initiative.",
+            "options": [
+              "Win back the pawn on d4 with the c-pawn",
+              "Play h3",
+              "Trade queens"
+            ]
+          }
+        }
+      },
+      "evans-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "evans-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "evans-l04-s02": {
+            "prompt": "What does Bg5 threaten?",
+            "explanation": "The bishop attacks the queen through f6 and e7.",
+            "options": [
+              "The king",
+              "The black queen",
+              "The a2-pawn"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "bdg": {
+    "name": "Blackmar-Diemer Gambit",
+    "summary": "A pawn for development and attack: a very aggressive opening with lots of traps.",
+    "lessons": {
+      "bdg-l01": {
+        "title": "The idea of the Blackmar-Diemer",
+        "summary": "A pawn for development",
+        "steps": {
+          "bdg-l01-s01": {
+            "text": "With e4 you offer a pawn to open lines and develop quickly."
+          },
+          "bdg-l01-s02": {
+            "text": "With f3 you open the f-file and attack e4. If Black captures, you recapture with the knight."
+          },
+          "bdg-l01-s03": {
+            "text": "Your bishop on d3 aims at h7 and your queen on e2 joins the attack."
+          },
+          "bdg-l01-s04": {
+            "prompt": "Which pawn do you offer?",
+            "explanation": "It's the gambit that gives the opening its name.",
+            "options": [
+              "The e4-pawn",
+              "The a2-pawn",
+              "The h2-pawn"
+            ]
+          },
+          "bdg-l01-s05": {
+            "prompt": "What do you get in exchange?",
+            "explanation": "The compensation is time and initiative, not material.",
+            "options": [
+              "A material advantage",
+              "Quick development and an attack",
+              "A queen trade"
+            ]
+          }
+        }
+      },
+      "bdg-l02": {
+        "title": "Main line",
+        "summary": "The accepted gambit",
+        "steps": {
+          "bdg-l02-s01": {
+            "prompt": "Play the main line of the Blackmar-Diemer.",
+            "notes": [
+              "You take the center.",
+              "",
+              "Blackmar-Diemer Gambit: you offer a pawn.",
+              "",
+              "You develop and prepare f3.",
+              "",
+              "You open the f-file and aim to recapture with a lead in development.",
+              "",
+              "You win back the pawn with development.",
+              "",
+              "The bishop aims toward h7.",
+              "",
+              "King safe.",
+              "",
+              "You connect your pieces; next come Bg5 and Rad1."
+            ]
+          }
+        }
+      },
+      "bdg-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Winning back the pawn with development",
+        "steps": {
+          "bdg-l03-s01": {
+            "prompt": "Attack the e4-pawn while opening the f-file.",
+            "hint": "A pawn advances one square.",
+            "success": "Correct"
+          },
+          "bdg-l03-s02": {
+            "prompt": "Win back the pawn with a piece.",
+            "hint": "The knight captures on f3.",
+            "success": "Correct"
+          },
+          "bdg-l03-s03": {
+            "prompt": "Black played ...e6. Which piece do you develop now?",
+            "explanation": "The bishop on d3 aims at h7 without exposing the queen.",
+            "options": [
+              "The queen to h5",
+              "The f1 bishop to d3",
+              "The king to f2"
+            ]
+          }
+        }
+      },
+      "bdg-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "bdg-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "bdg-l04-s02": {
+            "prompt": "Which file do you open with f3?",
+            "explanation": "Your f1 rook is ready to apply pressure.",
+            "options": [
+              "The f-file",
+              "The a-file",
+              "The c-file"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "caro-kann": {
+    "name": "Caro-Kann Defense",
+    "summary": "A very solid defense: your structure is firm and your bishop stays free.",
+    "lessons": {
+      "caro-kann-l01": {
+        "title": "The idea of the Caro-Kann",
+        "summary": "Solidity and a free bishop",
+        "steps": {
+          "caro-kann-l01-s01": {
+            "text": "With ...c6 you support ...d5 without shutting in the c8 bishop."
+          },
+          "caro-kann-l01-s02": {
+            "text": "After the trade on e4, you bring out the bishop before closing with ...e6."
+          },
+          "caro-kann-l01-s03": {
+            "text": "The result: a solid structure and a c8 bishop that's either traded or active. You have few weak points."
+          },
+          "caro-kann-l01-s04": {
+            "prompt": "Why ...c6 and not ...e6?",
+            "explanation": "In the French, the c8 bishop gets shut in; in the Caro-Kann it doesn't.",
+            "options": [
+              "The c8 bishop stays free",
+              "It protects d4",
+              "It attacks e4"
+            ]
+          },
+          "caro-kann-l01-s05": {
+            "prompt": "What do you do with the c8 bishop before playing ...e6?",
+            "explanation": "If you play ...e6 first, the bishop gets shut in behind your pawns.",
+            "options": [
+              "You leave it at home",
+              "You bring it out",
+              "You trade it for the queen"
+            ]
+          }
+        }
+      },
+      "caro-kann-l02": {
+        "title": "Main line",
+        "summary": "The Classical Variation",
+        "steps": {
+          "caro-kann-l02-s01": {
+            "prompt": "Play the main line of the Caro-Kann.",
+            "notes": [
+              "",
+              "Supports ...d5 without shutting in the c8 bishop.",
+              "",
+              "You attack White's center.",
+              "",
+              "You trade to open the c8 bishop.",
+              "",
+              "You bring out the bishop before closing with ...e6.",
+              "",
+              "You retreat the bishop with tempo and keep it on the diagonal.",
+              "",
+              "Prepares the bishop's retreat to h7.",
+              "",
+              "Develops and supports ...Ngf6.",
+              "",
+              "The bishop escapes from the h5-pawn.",
+              "",
+              "You trade off White's bishop, which is an active piece.",
+              "",
+              "A solid structure, and it develops the f8 bishop."
+            ]
+          }
+        }
+      },
+      "caro-kann-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Trades and the bishop",
+        "steps": {
+          "caro-kann-l03-s01": {
+            "prompt": "Trade your central pawn to open the bishop.",
+            "hint": "Capture on e4.",
+            "success": "Correct"
+          },
+          "caro-kann-l03-s02": {
+            "prompt": "Bring out the bishop before closing with ...e6.",
+            "hint": "Choose a square outside the pawn chain.",
+            "success": "Correct"
+          },
+          "caro-kann-l03-s03": {
+            "prompt": "White played h4. Why ...h6?",
+            "explanation": "With ...h6 the bishop always has a safe square on h7.",
+            "options": [
+              "To retreat the bishop to h7 if it's attacked",
+              "To attack g5",
+              "To castle queenside"
+            ]
+          }
+        }
+      },
+      "caro-kann-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "caro-kann-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "caro-kann-l04-s02": {
+            "prompt": "What do you achieve by trading the d3 bishop?",
+            "explanation": "It's a trade that doesn't hurt you and simplifies your position.",
+            "options": [
+              "You lose your bishop pair for no reason",
+              "You open up your castled position",
+              "You remove one of White's active pieces"
+            ]
+          }
+        }
+      }
+    }
   }
 }

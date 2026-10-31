@@ -2681,5 +2681,458 @@
         }
       }
     }
+  },
+  "nimzo-indian": {
+    "name": "Défense nimzo-indienne",
+    "summary": "Tu cloues le cavalier en c3 et tu luttes pour le centre avec tes pièces.",
+    "lessons": {
+      "nimzo-indian-l01": {
+        "title": "L'idée de la Nimzo-Indienne",
+        "summary": "Clouage en c3 et pions doublés",
+        "steps": {
+          "nimzo-indian-l01-s01": {
+            "text": "Avec ...Fb4, tu cloues le cavalier en c3 et tu empêches les Blancs d'occuper e4."
+          },
+          "nimzo-indian-l01-s02": {
+            "text": "Souvent, tu échanges le fou contre le cavalier et tu laisses des pions doublés aux Blancs."
+          },
+          "nimzo-indian-l01-s03": {
+            "text": "Tu perds la paire de fous en échange d'une meilleure structure et d'une forte pression sur le centre."
+          },
+          "nimzo-indian-l01-s04": {
+            "prompt": "Qu'est-ce que tu obtiens avec ...Fb4 ?",
+            "explanation": "C'est le coup qui définit l'ouverture.",
+            "options": [
+              "Clouer le cavalier en c3 et surveiller e4",
+              "Attaquer la dame",
+              "Préparer le grand roque"
+            ]
+          },
+          "nimzo-indian-l01-s05": {
+            "prompt": "Que laisses-tu aux Blancs après ...Fxc3 et bxc3 ?",
+            "explanation": "C'est le côté positif de l'échange.",
+            "options": [
+              "Un pion isolé sur la colonne h",
+              "Des pions doublés sur la colonne c",
+              "Rien de spécial"
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l02": {
+        "title": "Ligne principale",
+        "summary": "La variante Rubinstein",
+        "steps": {
+          "nimzo-indian-l02-s01": {
+            "prompt": "Joue la ligne principale de la Nimzo-Indienne.",
+            "notes": [
+              "",
+              "Tu développes et tu contrôles e4.",
+              "",
+              "Prépare ...d5.",
+              "",
+              "Nimzo-Indienne : tu cloues le cavalier.",
+              "",
+              "Roi en sécurité.",
+              "",
+              "Tu occupes le centre.",
+              "",
+              "Tu attaques le centre avec un pion.",
+              "",
+              "Tu développes et tu fais pression sur d4.",
+              "",
+              "Tu cèdes le fou pour doubler les pions.",
+              "",
+              "Tu prends en c4 et le fou en d3 reprend.",
+              "",
+              "La dame va sur la colonne c et vise c3 pour le moment où elle s'ouvrira."
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Clouage et échange",
+        "steps": {
+          "nimzo-indian-l03-s01": {
+            "prompt": "Cloue le cavalier en c3.",
+            "hint": "Le fou sort en b4.",
+            "success": "Correct"
+          },
+          "nimzo-indian-l03-s02": {
+            "prompt": "Mets le roi en sécurité.",
+            "hint": "Le petit roque.",
+            "success": "Correct"
+          },
+          "nimzo-indian-l03-s03": {
+            "prompt": "Que fais-tu si les Blancs jouent a3 ?",
+            "explanation": "Échanger en c3 abîme la structure blanche.",
+            "options": [
+              "Tu échanges le fou en c3",
+              "Tu replies le fou en e7",
+              "Tu perds le fou"
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "nimzo-indian-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "nimzo-indian-l04-s02": {
+            "prompt": "Sur quelle colonne ta dame fait-elle pression ?",
+            "explanation": "Le pion faible en c3 est sa cible.",
+            "options": [
+              "La colonne c",
+              "La colonne h",
+              "La colonne a"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "petrov": {
+    "name": "Défense Petrov",
+    "summary": "Tu copies l'attaque blanche au lieu de défendre : solide, symétrique et difficile à battre.",
+    "lessons": {
+      "petrov-l01": {
+        "title": "L'idée de la Petrov",
+        "summary": "Contre-attaque symétrique",
+        "steps": {
+          "petrov-l01-s01": {
+            "text": "Tu réponds à l'attaque par ta propre attaque : ...Cf6 menace le pion e4."
+          },
+          "petrov-l01-s02": {
+            "text": "Tu chasses d'abord le cavalier avec ...d6, et tu prends e4 seulement ensuite. L'ordre compte."
+          },
+          "petrov-l01-s03": {
+            "text": "Après ...Cxe4 et ...d5, tu as un centre ferme et des pièces actives."
+          },
+          "petrov-l01-s04": {
+            "prompt": "Que fais-tu avant de prendre en e4 ?",
+            "explanation": "Si tu prends tout de suite, De2 laisse les Noirs dans une position inconfortable, avec un risque de perdre du matériel.",
+            "options": [
+              "Chasser le cavalier en e5 avec ...d6",
+              "Roquer",
+              "Échanger les dames"
+            ]
+          },
+          "petrov-l01-s05": {
+            "prompt": "Pourquoi pas 3...Cxe4 tout de suite ?",
+            "explanation": "Avec le cavalier encore en e5, De2 attaque ton cavalier et menace un échec à la découverte.",
+            "options": [
+              "Parce que tu perds le fou",
+              "Parce que De2 te laisse dans une position très inconfortable",
+              "Parce que c'est illégal"
+            ]
+          }
+        }
+      },
+      "petrov-l02": {
+        "title": "Ligne principale",
+        "summary": "La variante classique",
+        "steps": {
+          "petrov-l02-s01": {
+            "prompt": "Joue la ligne principale de la Petrov.",
+            "notes": [
+              "",
+              "Tu réponds de façon symétrique.",
+              "",
+              "Contre-attaque : tu menaces e4.",
+              "",
+              "Tu chasses d'abord le cavalier.",
+              "",
+              "Maintenant, tu prends le pion.",
+              "",
+              "Tu occupes le centre et tu protèges ton cavalier.",
+              "",
+              "Tu développes et tu fais pression sur d4.",
+              "",
+              "Tu développes le fou.",
+              "",
+              "Tu attaques le fou et tu gagnes de l'espace.",
+              "",
+              "Roi en sécurité.",
+              "",
+              "Le fou sort et protège le cavalier en e4."
+            ]
+          }
+        }
+      },
+      "petrov-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "L'ordre des coups",
+        "steps": {
+          "petrov-l03-s01": {
+            "prompt": "Contre-attaque le pion e4.",
+            "hint": "Le cavalier attaque e4.",
+            "success": "Correct"
+          },
+          "petrov-l03-s02": {
+            "prompt": "Chasse le cavalier en e5.",
+            "hint": "Un pion attaque le cavalier.",
+            "success": "Correct"
+          },
+          "petrov-l03-s03": {
+            "prompt": "Les Blancs reculent le cavalier en f3. Que fais-tu ?",
+            "explanation": "Maintenant, c'est sans danger.",
+            "options": [
+              "Tu prends e4 avec le cavalier",
+              "Tu roques",
+              "Tu échanges les dames"
+            ]
+          }
+        }
+      },
+      "petrov-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "petrov-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "petrov-l04-s02": {
+            "prompt": "Quelle position cherches-tu ?",
+            "explanation": "La Petrov est solide et symétrique.",
+            "options": [
+              "Un centre ferme et des pièces actives",
+              "Des pions doublés",
+              "Une attaque rapide"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit-declined": {
+    "name": "Gambit dame refusé",
+    "summary": "Tu défends le centre avec ...e6 et tu joues solidement : la réponse classique au gambit.",
+    "lessons": {
+      "queens-gambit-declined-l01": {
+        "title": "L'idée du Gambit refusé",
+        "summary": "La solidité au centre",
+        "steps": {
+          "queens-gambit-declined-l01-s01": {
+            "text": "Avec ...e6, tu défends d5 et tu gardes ton centre sans entrer dans les complications."
+          },
+          "queens-gambit-declined-l01-s02": {
+            "text": "Le fou en c8 reste enfermé, mais dans la variante Tartakover tu lui trouves une sortie avec ...b6."
+          },
+          "queens-gambit-declined-l01-s03": {
+            "text": "Tu échanges des pièces pour libérer ta position et équilibrer le jeu."
+          },
+          "queens-gambit-declined-l01-s04": {
+            "prompt": "Pourquoi ...e6 ?",
+            "explanation": "C'est la façon la plus solide de garder le centre.",
+            "options": [
+              "Il défend d5 avec un pion",
+              "Il attaque la dame",
+              "Il prépare le grand roque"
+            ]
+          },
+          "queens-gambit-declined-l01-s05": {
+            "prompt": "Quel problème a le fou en c8 ?",
+            "explanation": "Avec ...b6 et ...Fb7 (ou ...Fe6), il se libère.",
+            "options": [
+              "Il n'a aucun problème",
+              "Il reste enfermé derrière les pions",
+              "Il est cloué"
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l02": {
+        "title": "Ligne principale",
+        "summary": "La variante Tartakover",
+        "steps": {
+          "queens-gambit-declined-l02-s01": {
+            "prompt": "Joue la ligne principale du Gambit dame refusé.",
+            "notes": [
+              "",
+              "Tu occupes le centre.",
+              "",
+              "Tu défends d5.",
+              "",
+              "Tu développes et tu protèges d5.",
+              "",
+              "Tu prépares le roque.",
+              "",
+              "Roi en sécurité.",
+              "",
+              "Tu questionnes le fou.",
+              "",
+              "Tu ouvres la diagonale du fou en c8.",
+              "",
+              "Tu récupères le pion avec le cavalier.",
+              "",
+              "Tu reprends avec la dame.",
+              "",
+              "Tu récupères la pièce avec ton pion.",
+              "",
+              "Ton fou sort et devient actif."
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "La solidité avant l'ambition",
+        "steps": {
+          "queens-gambit-declined-l03-s01": {
+            "prompt": "Occupe le centre.",
+            "hint": "Le pion central avance.",
+            "success": "Correct"
+          },
+          "queens-gambit-declined-l03-s02": {
+            "prompt": "Défends d5 avec un pion.",
+            "hint": "Le pion e défend le centre.",
+            "success": "Correct"
+          },
+          "queens-gambit-declined-l03-s03": {
+            "prompt": "Que fais-tu avec le fou en c8 ?",
+            "explanation": "Avec ...b6, tu ouvres la diagonale.",
+            "options": [
+              "Tu le libères avec ...b6",
+              "Tu le joues en h3",
+              "Tu l'échanges contre le cavalier"
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "queens-gambit-declined-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "queens-gambit-declined-l04-s02": {
+            "prompt": "Quelle structure as-tu à la fin ?",
+            "explanation": "La position est ferme et confortable pour les Noirs.",
+            "options": [
+              "Un pion central en d5 et un fou libre",
+              "Des pions doublés",
+              "Plus de pions centraux"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit-accepted": {
+    "name": "Gambit dame accepté",
+    "summary": "Quand les Noirs prennent en c4, tu récupères le pion en te développant et en contrôlant le centre.",
+    "lessons": {
+      "queens-gambit-accepted-l01": {
+        "title": "L'idée du Gambit accepté",
+        "summary": "Récupérer le pion avec avantage",
+        "steps": {
+          "queens-gambit-accepted-l01-s01": {
+            "text": "Si les Noirs prennent en c4, ne t'inquiète pas : le pion se récupère presque toujours."
+          },
+          "queens-gambit-accepted-l01-s02": {
+            "text": "Tu développes avec e3 et Fxc4, et tu as un avantage d'espace au centre."
+          },
+          "queens-gambit-accepted-l01-s03": {
+            "text": "Ensuite : le roque, Dc2 ou De2 et l'expansion au centre. Les Noirs doivent défendre leur aile dame."
+          },
+          "queens-gambit-accepted-l01-s04": {
+            "prompt": "Que fais-tu quand les Noirs prennent en c4 ?",
+            "explanation": "Le pion c4 se récupère avec Fxc4 après e3.",
+            "options": [
+              "Tu développes et tu récupères le pion",
+              "Tu le perds pour toujours",
+              "Tu échanges les dames"
+            ]
+          },
+          "queens-gambit-accepted-l01-s05": {
+            "prompt": "Quelle pièce récupère le pion ?",
+            "explanation": "Après e3, le fou en f1 prend en c4.",
+            "options": [
+              "La dame",
+              "Le fou en f1",
+              "Le cavalier en b1"
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l02": {
+        "title": "Ligne principale",
+        "summary": "Développement et pression",
+        "steps": {
+          "queens-gambit-accepted-l02-s01": {
+            "prompt": "Joue la ligne principale du Gambit dame accepté.",
+            "notes": [
+              "Tu occupes le centre.",
+              "",
+              "Tu offres le gambit.",
+              "",
+              "Tu développes et tu contrôles e5.",
+              "",
+              "Tu ouvres la voie au fou en f1.",
+              "",
+              "Tu récupères le pion.",
+              "",
+              "Roi en sécurité.",
+              "",
+              "La dame soutient le centre et la colonne e.",
+              "",
+              "Le fou recule et garde la pression.",
+              "",
+              "La tour prend la colonne d.",
+              "",
+              "Tu développes le dernier cavalier."
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Récupère calmement",
+        "steps": {
+          "queens-gambit-accepted-l03-s01": {
+            "prompt": "Offre le gambit.",
+            "hint": "Un pion de l'aile dame avance.",
+            "success": "Correct"
+          },
+          "queens-gambit-accepted-l03-s02": {
+            "prompt": "Développe et suis le plan.",
+            "hint": "Le cavalier sort en f3.",
+            "success": "Correct"
+          },
+          "queens-gambit-accepted-l03-s03": {
+            "prompt": "Comment récupères-tu le pion c4 ?",
+            "explanation": "Le fou en f1 prend le pion et devient actif.",
+            "options": [
+              "Avec Fxc4",
+              "Avec b3",
+              "Avec a4"
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "queens-gambit-accepted-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "queens-gambit-accepted-l04-s02": {
+            "prompt": "Que fait la tour en d1 ?",
+            "explanation": "C'est la colonne du pion d4.",
+            "options": [
+              "Elle occupe la colonne d",
+              "Elle attaque le roi",
+              "Elle défend le pion a2"
+            ]
+          }
+        }
+      }
+    }
   }
 }

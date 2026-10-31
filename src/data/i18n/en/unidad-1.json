@@ -1,0 +1,208 @@
+{
+  "title": "The basics",
+  "lessons": {
+    "u1-l01": {
+      "title": "The board and coordinates",
+      "summary": "Learn to name every square",
+      "steps": {
+        "u1-l01-s01": { "text": "The board has 64 squares: 8 files and 8 ranks, in alternating colors." },
+        "u1-l01-s02": { "text": "Files are named with letters, from a to h. Ranks are named with numbers, from 1 to 8. White starts at the bottom." },
+        "u1-l01-s03": { "text": "Each square is named by its file and its rank. The highlighted one is e4: file e, rank 4." },
+        "u1-l01-s04": { "text": "A handy trick: the bottom-right corner square, h1, is always light." },
+        "u1-l01-s05": { "prompt": "Tap the square e4.", "hint": "File e, fourth rank counting from the bottom." },
+        "u1-l01-s06": { "prompt": "Tap the square c7.", "hint": "File c, seventh rank." },
+        "u1-l01-s07": { "prompt": "Tap the square g2.", "hint": "File g, second rank." },
+        "u1-l01-s08": {
+          "prompt": "What is the highlighted square called?",
+          "options": ["f3", "c3", "f6", "g3"],
+          "explanation": "It's on file f and rank 3: f3."
+        },
+        "u1-l01-s09": {
+          "prompt": "What is the highlighted square called?",
+          "options": ["a6", "f2", "b6", "b5"],
+          "explanation": "It's on file b and rank 6: b6."
+        }
+      }
+    },
+    "u1-l02": {
+      "title": "The rook",
+      "summary": "Moves in straight lines",
+      "steps": {
+        "u1-l02-s01": { "text": "The rook moves in straight lines: along files and ranks, as many squares as it likes." },
+        "u1-l02-s02": { "text": "It can't jump over other pieces. If it runs into an enemy piece, it can capture it and stops there." },
+        "u1-l02-s03": { "prompt": "Move the rook to h4.", "hint": "Move it to the right along rank 4.", "success": "Correct" },
+        "u1-l02-s04": { "prompt": "Move the rook to d1.", "hint": "Move it down the d-file.", "success": "Correct" },
+        "u1-l02-s05": { "prompt": "Capture the black pawn with the rook.", "hint": "It's on the same file as your rook.", "success": "Correct" }
+      }
+    },
+    "u1-l03": {
+      "title": "The bishop",
+      "summary": "Moves diagonally",
+      "steps": {
+        "u1-l03-s01": { "text": "The bishop moves diagonally, as many squares as it likes, without jumping over pieces." },
+        "u1-l03-s02": { "text": "Each bishop always stays on squares of the same color. That's why you start with two: one on light squares and one on dark squares." },
+        "u1-l03-s03": { "prompt": "Move the bishop to g7.", "hint": "Go up the diagonal to the right.", "success": "Correct" },
+        "u1-l03-s04": { "prompt": "Move the bishop to a1.", "hint": "Go down the diagonal to the left.", "success": "Correct" },
+        "u1-l03-s05": { "prompt": "Capture the black pawn with the bishop.", "hint": "It's on the diagonal, one square up and to the right.", "success": "Correct" }
+      }
+    },
+    "u1-l04": {
+      "title": "The queen",
+      "summary": "A rook and a bishop in one piece",
+      "steps": {
+        "u1-l04-s01": { "text": "The queen moves like a rook and a bishop combined. It's the most powerful piece." },
+        "u1-l04-s02": { "text": "The white queen starts on a light square and the black queen on a dark one. Take good care of it: losing your queen often decides the game." },
+        "u1-l04-s03": { "prompt": "Move the queen to g7.", "hint": "Move it diagonally.", "success": "Correct" },
+        "u1-l04-s04": { "prompt": "Move the queen to a4.", "hint": "Move it in a straight line along rank 4.", "success": "Correct" },
+        "u1-l04-s05": { "prompt": "Capture the black pawn with the queen.", "hint": "It's right next to it, on the right.", "success": "Correct" }
+      }
+    },
+    "u1-l05": {
+      "title": "The king",
+      "summary": "One square, carefully",
+      "steps": {
+        "u1-l05-s01": { "text": "The king moves one square in any direction. It's the most important piece: if you lose it, you lose the game." },
+        "u1-l05-s02": { "text": "The king can never move to a square attacked by the opponent. Here the black rook controls the d-file and rank 2." },
+        "u1-l05-s03": { "prompt": "Move the king to e5.", "hint": "One square forward.", "success": "Correct" },
+        "u1-l05-s04": { "prompt": "Move the king to a safe square.", "hint": "Stay away from the d-file.", "success": "Correct" },
+        "u1-l05-s05": {
+          "prompt": "Can the king go to d3?",
+          "options": ["Yes", "No, the rook attacks that square"],
+          "explanation": "The black rook controls the whole d-file."
+        }
+      }
+    },
+    "u1-l06": {
+      "title": "The knight",
+      "summary": "Jumps in an L shape",
+      "steps": {
+        "u1-l06-s01": { "text": "The knight moves in an L shape: two squares in one direction and one to the side." },
+        "u1-l06-s02": { "text": "It's the only piece that jumps over others. Here it's surrounded by pawns and it can still move." },
+        "u1-l06-s03": { "prompt": "Move the knight to f5.", "hint": "Two squares to the right and one up.", "success": "Correct" },
+        "u1-l06-s04": { "prompt": "Move the knight to c2.", "hint": "Two squares down and one to the left.", "success": "Correct" },
+        "u1-l06-s05": { "prompt": "Capture the black pawn with the knight.", "hint": "Two to the right and one up.", "success": "Correct" }
+      }
+    },
+    "u1-l07": {
+      "title": "The pawn",
+      "summary": "Moves straight, captures diagonally and promotes",
+      "steps": {
+        "u1-l07-s01": { "text": "The pawn moves one square forward. On its first move it can advance two." },
+        "u1-l07-s02": { "text": "After that first move, it can only advance one square." },
+        "u1-l07-s03": { "text": "The pawn captures diagonally, one square forward." },
+        "u1-l07-s04": { "text": "It doesn't capture straight ahead: if a piece is in front of it, the pawn is blocked." },
+        "u1-l07-s05": { "prompt": "Advance the pawn two squares.", "hint": "This is its first move.", "success": "Correct" },
+        "u1-l07-s06": { "prompt": "Capture one of the black pawns.", "hint": "Pawns capture diagonally.", "success": "Correct" },
+        "u1-l07-s07": {
+          "prompt": "Can the white pawn advance?",
+          "options": ["Yes", "No, there's a piece in front of it"],
+          "explanation": "The pawn can't advance or capture straight ahead."
+        },
+        "u1-l07-s08": { "text": "When a pawn reaches the last rank, it promotes: it turns into a queen, rook, bishop or knight, whichever you choose. The queen, the strongest piece, is almost always the right choice." },
+        "u1-l07-s09": {
+          "prompt": "Promote the pawn and choose the queen.",
+          "hint": "Advance the pawn to d8 and tap the queen in the selector.",
+          "success": "Correct. The pawn is now a queen."
+        },
+        "u1-l07-s10": { "text": "The queen isn't always best. Here, if you promote to a queen, Black plays Qc1+: your new queen has to block on e1, it gets captured, and it's mate." },
+        "u1-l07-s11": {
+          "prompt": "Promote the pawn in a way that wins the black queen.",
+          "hint": "A knight on e8 would check the king and attack the queen at the same time.",
+          "success": "Correct. The knight checks the king and attacks the queen: after the check, you capture it."
+        },
+        "u1-l07-s12": { "text": "The king steps aside and the knight captures the queen. Promoting to a piece other than a queen is called underpromotion." }
+      }
+    },
+    "u1-l08": {
+      "title": "Protecting pieces",
+      "summary": "Avoid giving away material",
+      "steps": {
+        "u1-l08-s01": { "text": "The knight is protected by the pawn: if the bishop captures it, the pawn recaptures. That's what protecting means." },
+        "u1-l08-s02": { "text": "Now nothing protects the knight. If the bishop captures it, you lose it for nothing. A piece like that is called hanging." },
+        "u1-l08-s03": {
+          "prompt": "Is the white knight protected?",
+          "options": ["Yes", "No"],
+          "explanation": "No white piece defends it, so the bishop captures it for free."
+        },
+        "u1-l08-s04": { "prompt": "Protect the knight with the rook.", "hint": "Move the rook so that it sees the square d4.", "success": "Correct" },
+        "u1-l08-s05": { "prompt": "Capture the black piece that isn't protected.", "hint": "The bishop is protected by a pawn.", "success": "Correct" }
+      }
+    },
+    "u1-l09": {
+      "title": "Trades",
+      "summary": "When capturing is worth it",
+      "steps": {
+        "u1-l09-s01": { "text": "A trade happens when you capture and your opponent recaptures. To decide if it's worth it, add up the points: pawn 1, knight 3, bishop 3, rook 5, queen 9." },
+        "u1-l09-s02": { "text": "If the rook captures this pawn, the pawn on c6 recaptures. You win 1 point and lose 5: that's a bad trade." },
+        "u1-l09-s03": { "text": "Here your pawn captures a knight. If the pawn on c6 recaptures, you've won 3 points and lost 1: that's a good trade." },
+        "u1-l09-s04": {
+          "prompt": "Is it worth capturing the pawn with the rook?",
+          "options": ["Yes, I win a pawn", "No, I lose the rook for a pawn"],
+          "explanation": "You win 1 point and lose 5."
+        },
+        "u1-l09-s05": {
+          "prompt": "Is it worth capturing the knight with your pawn?",
+          "options": ["Yes, I win a knight for a pawn", "No, my pawn gets recaptured"],
+          "explanation": "You win 3 points and, even if they recapture, you only lose 1.",
+          "feedback": ["", "True, they can recapture, but the knight is worth more than the pawn."]
+        },
+        "u1-l09-s06": {
+          "prompt": "There's a black pawn on d5. Which piece should capture it?",
+          "options": ["The pawn on e4", "The queen"],
+          "explanation": "The pawn: if the black queen recaptures, your queen takes it.",
+          "feedback": ["", "With the queen, the queens get traded. There's a better option."]
+        },
+        "u1-l09-s07": { "text": "Look at the sequence: the pawn captures, the black queen recaptures, and your queen takes the black queen. You win 9 points for a pawn." }
+      }
+    },
+    "u1-l10": {
+      "title": "Check",
+      "summary": "When the king is under attack",
+      "steps": {
+        "u1-l10-s01": { "text": "Check means the king is attacked by an enemy piece. Here the white rook gives check to the black king." },
+        "u1-l10-s02": { "text": "The king is never captured. If it's in check, its owner has to get out of check on the very next move." },
+        "u1-l10-s03": { "prompt": "Give check to the black king with the rook.", "hint": "Reach rank 8 along the a-file.", "success": "Correct" },
+        "u1-l10-s04": { "prompt": "Give check to the black king with the knight.", "hint": "Find a square from which the knight attacks e8.", "success": "Correct" },
+        "u1-l10-s05": {
+          "prompt": "Is the black king in check?",
+          "options": ["Yes", "No"],
+          "explanation": "The rook attacks rank 2 and the a-file, not the king."
+        },
+        "u1-l10-s06": {
+          "prompt": "Is the black king in check?",
+          "options": ["Yes", "No"],
+          "explanation": "The rook attacks along the e-file and nothing stands in between."
+        }
+      }
+    },
+    "u1-l11": {
+      "title": "Getting out of check",
+      "summary": "Three ways to save the king",
+      "steps": {
+        "u1-l11-s01": { "text": "If your king is in check, you have to get out of it. First way: move the king to a square that isn't attacked." },
+        "u1-l11-s02": { "text": "Second way: block the attack by putting a piece in between." },
+        "u1-l11-s03": { "text": "Third way: capture the piece giving check." },
+        "u1-l11-s04": { "prompt": "Block the check with the knight.", "hint": "Put the knight on the e-file, between the rook and the king.", "success": "Correct" },
+        "u1-l11-s05": { "prompt": "Capture the piece giving check with the bishop.", "hint": "The attacker is the white knight.", "success": "Correct" },
+        "u1-l11-s06": { "prompt": "Move the king to a safe square.", "hint": "The rook controls all of rank 8.", "success": "Correct" },
+        "u1-l11-s07": { "text": "If none of the three options works, there's no way out: that's checkmate. We'll look at it in the next lesson." }
+      }
+    },
+    "u1-l12": {
+      "title": "Checkmate in one move",
+      "summary": "How the game ends",
+      "steps": {
+        "u1-l12-s01": { "text": "Checkmate: the king is in check and has no way out. The game ends and whoever gave mate wins. Here the black king is boxed in by its own pawns." },
+        "u1-l12-s02": { "text": "The queen gives check and the white king protects it, so the black king can't capture it or escape." },
+        "u1-l12-s03": { "prompt": "Checkmate in one move.", "hint": "The rook goes up the a-file.", "success": "Correct" },
+        "u1-l12-s04": { "prompt": "Checkmate in one move.", "hint": "Put the queen where your king protects it.", "success": "Correct" },
+        "u1-l12-s05": { "prompt": "Checkmate with the two rooks.", "hint": "One rook seals off rank 7; the other gives check on rank 8.", "success": "Correct" },
+        "u1-l12-s06": {
+          "prompt": "Is it checkmate?",
+          "options": ["Yes", "No, the king can escape"],
+          "explanation": "The king can go to d7, e7 or f7."
+        }
+      }
+    }
+  }
+}

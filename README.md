@@ -23,17 +23,13 @@ Los archivos generados ya están en el repositorio. Para volver a crearlos:
 - `npm run build:puzzles -- <ruta a lichess_db_puzzle.csv.zst>`: elige los puzzles de la base de Lichess (ver `docs/puzzles.md`).
 - `npm run build:sounds`: genera los sonidos.
 
-## Apoyar a Gradus
-
-Gradus es gratis y no tiene anuncios ni compras. Si quieres apoyar el proyecto, puedes hacer un aporte voluntario por [PayPal].
-
 ## Documentación
 
 En `docs/`: diseño, formato de las lecciones, mapa de pantallas, bots, motor y puzzles.
 
 ## Licencia
 
-Copyright (C) 2026 Gradus Studio
+Copyright (C) 2026 Gradus Chess
 
 Este programa es software libre: puedes redistribuirlo y modificarlo según los términos de la Licencia Pública General GNU (GNU GPL) publicada por la Free Software Foundation, versión 3 o, a tu elección, cualquier versión posterior.
 

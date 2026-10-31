@@ -1,0 +1,214 @@
+{
+  "title": "Opening and strategy",
+  "lessons": {
+    "u4-l01": {
+      "title": "Opening principles",
+      "summary": "Center, development and castling",
+      "steps": {
+        "u4-l01-s01": { "text": "The opening has three ideas: take the center with pawns, bring out your pieces (develop them) and castle to get your king to safety." },
+        "u4-l01-s02": {
+          "prompt": "Tap the 4 center squares.",
+          "hint": "They're the 4 squares in the middle of the board."
+        },
+        "u4-l01-s03": {
+          "prompt": "First move: take the center with a pawn.",
+          "hint": "Advance the e-pawn or the d-pawn two squares.",
+          "success": "Correct. The pawn takes the center and clears the way for your pieces."
+        },
+        "u4-l01-s04": { "text": "Next, develop: knights and bishops first, toward the center. The rooks and queen come out later, once the way is open." },
+        "u4-l01-s05": {
+          "prompt": "Develop a knight or a bishop toward the center.",
+          "hint": "Bring out a knight or a bishop to a square where it looks at the center.",
+          "success": "Correct. One more piece in play."
+        },
+        "u4-l01-s06": {
+          "prompt": "Which move follows the opening principles?",
+          "options": ["Nf3", "h4", "Qh5"],
+          "explanation": "Nf3 develops a knight and attacks the pawn on e5. h4 develops nothing, and Qh5 brings the queen out so early that your opponent can attack it and gain time.",
+          "feedback": ["", "h4 doesn't bring out a piece or take the center.", "The queen comes out too early: your opponent will attack it while developing."]
+        },
+        "u4-l01-s07": {
+          "prompt": "You've developed your kingside pieces. Castle.",
+          "hint": "Move the king two squares toward the rook on h1.",
+          "success": "Correct. The king is safe and the rook is ready to play."
+        },
+        "u4-l01-s08": {
+          "prompt": "Why castle early?",
+          "options": ["It gets the king to safety and connects the rooks", "It attacks the enemy king", "It wins a pawn"],
+          "explanation": "The king leaves the center, where files open up, and the rook comes toward the middle.",
+          "feedback": ["", "Castling is a move of defense and development, not attack.", "Castling doesn't capture anything."]
+        }
+      }
+    },
+    "u4-l02": {
+      "title": "Common opening mistakes",
+      "summary": "What to avoid",
+      "steps": {
+        "u4-l02-s01": { "text": "If you bring your queen out early, your opponent attacks it while developing, and you lose time moving it again." },
+        "u4-l02-s02": {
+          "prompt": "Black brought the queen out to d5. Which move attacks it and also develops a piece?",
+          "options": ["Nc3", "Qg4", "h3"],
+          "explanation": "Nc3 brings out a knight and attacks the queen: Black has to move it again.",
+          "feedback": ["", "Qg4 brings your queen out early and also loses it: the bishop on c8 captures it.", "h3 doesn't develop anything or attack the queen."]
+        },
+        "u4-l02-s03": {
+          "prompt": "Attack the black queen while developing a piece.",
+          "hint": "A knight can attack the queen on d5.",
+          "success": "Correct. You developed and gained time."
+        },
+        "u4-l02-s04": { "text": "Moving the same piece several times in the opening keeps the others at home. Here White moved the knight three times and it's back on f3, while Black has already brought out three pieces." },
+        "u4-l02-s05": {
+          "prompt": "Which of these moves loses time?",
+          "options": ["Ng1", "Bc4", "d4"],
+          "explanation": "Ng1 sends the knight back to its starting square: it undoes a developing move.",
+          "feedback": ["", "Bc4 develops a bishop toward the center: it's a good move.", "d4 attacks the center: it's a good move."]
+        },
+        "u4-l02-s06": { "text": "Leaving your king in the center is dangerous when the e-file opens. Here the black bishop on e7 is pinned: if it moves, the rook gives check." },
+        "u4-l02-s07": {
+          "prompt": "Black hasn't castled and the e-file is open. Put a major piece there, facing the black king.",
+          "hint": "A rook or the queen on the e-file points at the black king.",
+          "success": "Correct. Now the bishop on e7 is pinned and the black king is uncomfortable."
+        },
+        "u4-l02-s08": { "text": "To sum up: don't bring your queen out too early, don't move the same piece many times, and don't leave your king in the center." }
+      }
+    },
+    "u4-l03": {
+      "title": "Pawn structure",
+      "summary": "Isolated, doubled and passed pawns",
+      "steps": {
+        "u4-l03-s01": { "text": "An isolated pawn has no friendly pawns on the files next to it, so no pawn can defend it. Here the white pawn on d4 is isolated." },
+        "u4-l03-s02": {
+          "prompt": "Tap the isolated black pawn.",
+          "hint": "Look for a black pawn with no black pawns on the files next to it."
+        },
+        "u4-l03-s03": { "text": "Doubled pawns are on the same file, one in front of the other. They get in each other's way as they advance, and they can't defend each other." },
+        "u4-l03-s04": {
+          "prompt": "On how many files does White have doubled pawns?",
+          "options": ["None", "One", "Two"],
+          "explanation": "On two: the c-file (c2 and c3) and the f-file (f2 and f3).",
+          "feedback": ["Look at the c-file and the f-file.", "There's more than one: check the f-file too.", ""]
+        },
+        "u4-l03-s05": { "text": "A passed pawn has no enemy pawns ahead of it, on its own file or the files next to it: nobody stops it from advancing. It's a big advantage in the endgame." },
+        "u4-l03-s06": {
+          "prompt": "Tap White's passed pawn.",
+          "hint": "Look for a white pawn with no black pawns ahead of it, on its own file or the files next to it."
+        },
+        "u4-l03-s07": {
+          "prompt": "The black king is coming. Advance your passed pawn without wasting time.",
+          "hint": "If you don't advance now, the black king gets there in time to stop the pawn.",
+          "success": "Correct. The black king can't catch the pawn anymore: it's going to promote."
+        },
+        "u4-l03-s08": {
+          "prompt": "What's the weakness of an isolated pawn?",
+          "options": ["No pawn can defend it", "It can't advance", "It's always lost"],
+          "explanation": "Only pieces can defend it, and that ties them to guarding it. But an isolated pawn isn't always lost.",
+          "feedback": ["", "It can advance if the square in front of it is free.", "Not always: it's a weakness, not a sure loss."]
+        },
+        "u4-l03-s09": {
+          "prompt": "Promote your passed pawn.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Advance the pawn: count whether it promotes before your opponent's.",
+          "notes": ["", "", "", ""]
+        },
+        "u4-l03-s10": {
+          "prompt": "Promote your passed pawn.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Advance the pawn: count whether it promotes before your opponent's.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u4-l04": {
+      "title": "Open files and active rooks",
+      "summary": "Where rooks play best",
+      "steps": {
+        "u4-l04-s01": { "text": "An open file is a file with no pawns. Rooks are much stronger on open files: from there they can enter the opponent's side of the board." },
+        "u4-l04-s02": {
+          "prompt": "Which file is open?",
+          "options": ["The d-file", "The e-file", "The c-file"],
+          "explanation": "There are no pawns on the d-file.",
+          "feedback": ["", "The e-file has pawns from both sides.", "The c-file has pawns from both sides."]
+        },
+        "u4-l04-s03": {
+          "prompt": "Put a rook on the open file.",
+          "hint": "Either of your rooks can go to d1.",
+          "success": "Correct. The rook controls the open file."
+        },
+        "u4-l04-s04": { "text": "Two rooks on the same file are doubled: they protect each other and put on twice the pressure." },
+        "u4-l04-s05": {
+          "prompt": "Double your rooks on the d-file.",
+          "hint": "Bring the rook from e2 to the d-file, in front of the other one.",
+          "success": "Correct. Your rooks are doubled."
+        },
+        "u4-l04-s06": { "text": "A rook on the seventh rank attacks pawns that haven't moved yet and shuts the enemy king in on the back rank." },
+        "u4-l04-s07": {
+          "prompt": "Bring your rook to the seventh rank.",
+          "hint": "The d-file is open: the rook can reach d7.",
+          "success": "Correct. The rook attacks the pawns on b7 and f7."
+        }
+      }
+    },
+    "u4-l05": {
+      "title": "Weak squares and outposts",
+      "summary": "Squares pawns no longer cover",
+      "steps": {
+        "u4-l05-s01": { "text": "A weak square is one that no enemy pawn can defend, now or later. Here Black played e5 with no pawn on the c-file: no black pawn can guard d5." },
+        "u4-l05-s02": {
+          "prompt": "Tap the weak center square on Black's side: no black pawn can defend it.",
+          "hint": "The black pawns on d5 and f5 have already gone past: the square between them, in front of e6, has no defense."
+        },
+        "u4-l05-s03": { "text": "An outpost is a weak square in the opponent's position where your piece, almost always a knight, is protected by one of your pawns. From there, nobody can chase it away." },
+        "u4-l05-s04": {
+          "prompt": "Bring the knight to the outpost.",
+          "hint": "Black's weak square is in the center, and your pawn on d4 protects it.",
+          "success": "Correct. The knight on e5 is protected and no black pawn can chase it away."
+        },
+        "u4-l05-s05": {
+          "prompt": "Why is the knight on d5 so strong?",
+          "options": ["No black pawn can chase it away", "It gives check to the king", "It attacks the queen"],
+          "explanation": "It's on a weak square: to get rid of it, Black would have to trade a piece for it.",
+          "feedback": ["", "The knight on d5 doesn't give check.", "It doesn't attack the queen: its strength is that nobody can chase it away."]
+        },
+        "u4-l05-s06": {
+          "prompt": "Which of these squares is a good outpost for your knight?",
+          "options": ["e5", "c5", "g5"],
+          "explanation": "e5 is protected by your pawn on d4 and no black pawn can attack it.",
+          "feedback": ["", "The pawn on b7 can advance to b6 and chase the knight away.", "None of your pawns protects g5, and the pawn on h7 can chase the knight away."]
+        },
+        "u4-l05-s07": { "text": "Before you move a pawn, think about which squares it stops defending: a pawn can't go back, so those squares stay weak forever." }
+      }
+    },
+    "u4-l06": {
+      "title": "The bishop pair",
+      "summary": "Two bishops together are worth more",
+      "steps": {
+        "u4-l06-s01": { "text": "Two bishops together cover squares of both colors. In open positions, the bishop pair is usually worth more than a bishop and a knight." },
+        "u4-l06-s02": {
+          "prompt": "Which side has the bishop pair?",
+          "options": ["White", "Black", "Neither"],
+          "explanation": "Black has both bishops. White has a bishop and a knight.",
+          "feedback": ["White has a bishop and a knight.", "", "One side has both its bishops."]
+        },
+        "u4-l06-s03": { "text": "When the center is closed by pawn chains, bishops run into them, and knights, which jump, are usually better. When the center opens, bishops win out." },
+        "u4-l06-s04": {
+          "prompt": "The center is closed by pawns. Which piece is usually better in positions like this?",
+          "options": ["The knight", "The bishop"],
+          "explanation": "In general, with a blocked center, knights jump over pawns and bishops get shut in.",
+          "feedback": ["", "Bishops need open diagonals: here they run into the pawns."]
+        },
+        "u4-l06-s05": {
+          "prompt": "You have the bishop pair. Strike in the center with a pawn to open the position.",
+          "hint": "A center pawn can advance and hit the pawn on e5.",
+          "success": "Correct. If pawns get traded, diagonals open up for your bishops."
+        },
+        "u4-l06-s06": {
+          "prompt": "In an open position, should you trade one of your bishops for your opponent's knight?",
+          "options": ["No, unless it wins something: you'd lose the bishop pair", "Yes, it's always good"],
+          "explanation": "Without a concrete reason, it's best to keep the bishop pair, especially if the position is going to open up.",
+          "feedback": ["", "Not always: the bishop pair is an advantage worth keeping."]
+        },
+        "u4-l06-s07": { "text": "To sum up: if you have the bishop pair, try to open the position. If your opponent has it, try to keep the position closed." }
+      }
+    }
+  }
+}

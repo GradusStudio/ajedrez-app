@@ -3,7 +3,7 @@ import { Alert, BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, St
 import { Chess, Square } from 'chess.js';
 import { detectOpening } from '../bots/book';
 import { thinkMove } from '../bots/brain';
-import { movesText } from '../chess/notation';
+import { movesText, resolveNotation } from '../chess/notation';
 import { Board, BoardMove } from '../components/Board';
 import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
@@ -16,6 +16,7 @@ import { UciEngine } from '../engine/uci';
 import { useFeedback } from '../feedback/feedback';
 import { useProgress } from '../progress/ProgressContext';
 import { gameCountsForStreak } from '../progress/streak';
+import { useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -45,6 +46,7 @@ const GOOD_MOVE_DELTA = 150;
 export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, onOtherBot }: Props) {
   const { finishGame } = useProgress();
   const { settings } = useSettings();
+  const { language } = useI18n();
   const feedback = useFeedback();
   const [chess] = useState(() => new Chess());
   const [fen, setFen] = useState(chess.fen());
@@ -280,7 +282,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           <Text style={styles.playerMeta}>{userColor === 'w' ? 'blancas' : 'negras'}</Text>
           {opening && <Text style={styles.opening}>Apertura: {opening.name}</Text>}
         </View>
-        <Text style={styles.notation}>{movesText(sans, 8, settings.notation)}</Text>
+        <Text style={styles.notation}>{movesText(sans, 8, resolveNotation(settings.notation, language))}</Text>
 
         {engineError && (
           <View style={styles.errorCard}>

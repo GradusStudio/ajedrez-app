@@ -13,7 +13,8 @@ import {
 } from 'react-native';
 import { useIsFocused } from 'expo-router';
 import { Chess, Square } from 'chess.js';
-import { movesText, Notation, sanFromEnglish } from '../chess/notation';
+import { movesText, Notation, resolveNotation, sanFromEnglish } from '../chess/notation';
+import { useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
 import { Board, BoardMove } from '../components/Board';
 import { Button3D } from '../components/Button3D';
@@ -107,6 +108,8 @@ function EvalBar({ score }: { score: number | null }) {
 
 export function FreePlayScreen() {
   const { settings } = useSettings();
+  const { language } = useI18n();
+  const notation = resolveNotation(settings.notation, language);
   // La partida vive aquí; el tablero solo recibe la posición (FEN).
   const [chess] = useState(() => new Chess());
   const [fen, setFen] = useState(chess.fen());
@@ -238,7 +241,7 @@ export function FreePlayScreen() {
 
           {engineOn && !engineError && !gameOver &&
             (current?.lines ?? []).map((line) => {
-              const text = pvText(fen, line.pv, settings.notation);
+              const text = pvText(fen, line.pv, notation);
               return (
                 <Pressable
                   key={line.rank}
@@ -264,7 +267,7 @@ export function FreePlayScreen() {
         <View style={{ height: space.md }} />
         <View style={styles.card}>
           <Text style={styles.question}>{statusText(chess)}</Text>
-          <Text style={styles.notation}>{movesText(chess.history(), 8, settings.notation)}</Text>
+          <Text style={styles.notation}>{movesText(chess.history(), 8, notation)}</Text>
         </View>
 
         <View style={{ height: space.lg }} />

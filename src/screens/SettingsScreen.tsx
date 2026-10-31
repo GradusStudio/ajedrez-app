@@ -3,6 +3,9 @@ import { Alert, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Tex
 import { Button3D } from '../components/Button3D';
 import { Segmented } from '../components/Segmented';
 import { SettingRow } from '../components/SettingRow';
+import { useI18n } from '../i18n/I18nContext';
+import { AVAILABLE_LANGUAGES, LANGUAGE_NAMES, Language } from '../i18n/languages';
+import { resolveNotation, sanFromEnglish } from '../chess/notation';
 import { PIECE_SET_META } from '../pieces/pieceSets';
 import { useProgress } from '../progress/ProgressContext';
 import { usePieceSet } from '../settings/PieceSetContext';
@@ -17,6 +20,7 @@ const REMINDER_HOURS = [9, 13, 19, 21];
 // Ajustes (mapa-de-pantallas.md, 2.12). Cada cambio se guarda al instante.
 export function SettingsScreen({ onBack, onOpenPieces }: Props) {
   const { settings, update } = useSettings();
+  const { language, t } = useI18n();
   const { resetProgress } = useProgress();
   const { pieceSet } = usePieceSet();
   const pieceName = PIECE_SET_META.find((m) => m.id === pieceSet)?.name ?? '';
@@ -107,11 +111,20 @@ export function SettingsScreen({ onBack, onOpenPieces }: Props) {
       </View>
       <View style={{ height: space.md }} />
       <SettingRow label="Piezas" detail={pieceName} onPress={onOpenPieces} />
-      <Text style={styles.label}>Notación de las jugadas</Text>
+      <Text style={styles.label}>{t('settings.language')}</Text>
       <Segmented
         options={[
-          { value: 'es', label: 'Española', sub: 'Cf3, Axf7+' },
-          { value: 'en', label: 'Inglesa', sub: 'Nf3, Bxf7+' },
+          { value: 'auto' as 'auto' | Language, label: t('settings.language.auto') },
+          ...AVAILABLE_LANGUAGES.map((l) => ({ value: l as 'auto' | Language, label: LANGUAGE_NAMES[l] })),
+        ]}
+        value={settings.language}
+        onChange={(l) => update({ language: l })}
+      />
+      <Text style={styles.label}>{t('settings.notation')}</Text>
+      <Segmented
+        options={[
+          { value: 'auto' as const, label: t('settings.notation.auto'), sub: sanFromEnglish('Nf3, Bxf7+', resolveNotation('auto', language)) },
+          { value: 'en' as const, label: t('settings.notation.english'), sub: 'Nf3, Bxf7+' },
         ]}
         value={settings.notation}
         onChange={(n) => update({ notation: n })}

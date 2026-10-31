@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
-import { sanFromSpanish } from '../../chess/notation';
+import { resolveNotation, sanFromSpanish } from '../../chess/notation';
 import { Board, BoardMove } from '../../components/Board';
 import { FadeIn } from '../../components/FadeIn';
+import { useI18n } from '../../i18n/I18nContext';
 import { useSettings } from '../../settings/SettingsContext';
 import { LineStep as LineStepData } from '../../data/lessonTypes';
 import { StepCallbacks } from '../stepTypes';
@@ -23,8 +24,9 @@ const REPLY_DELAY_MS = 700;
  */
 export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
   const { notation: notationSetting } = useSettings().settings;
+  const { language } = useI18n();
   // Las jugadas de los datos están en español; se muestran en la notación elegida en Ajustes.
-  const san = (s: string) => sanFromSpanish(s, notationSetting);
+  const san = (s: string) => sanFromSpanish(s, resolveNotation(notationSetting, language));
   const [chess] = useState(() => new Chess(step.fen));
   const [ply, setPly] = useState(0); // jugadas ya hechas
   const [fen, setFen] = useState(step.fen);

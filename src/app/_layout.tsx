@@ -10,6 +10,7 @@ import {
   Nunito_700Bold,
   Nunito_800ExtraBold,
 } from '@expo-google-fonts/nunito';
+import { I18nProvider } from '../i18n/I18nContext';
 import { ProgressProvider, useProgress } from '../progress/ProgressContext';
 import { PieceSetProvider, usePieceSet } from '../settings/PieceSetContext';
 import { SettingsProvider, useSettings } from '../settings/SettingsContext';
@@ -46,10 +47,12 @@ export default function RootLayout() {
   return (
     <ProgressProvider>
       <SettingsProvider>
-        <PieceSetProvider>
-          <StatusBar style="light" />
-          {fontsLoaded ? <AppStack /> : <Loading />}
-        </PieceSetProvider>
+        <I18nProvider>
+          <PieceSetProvider>
+            <StatusBar style="light" />
+            {fontsLoaded ? <AppStack /> : <Loading />}
+          </PieceSetProvider>
+        </I18nProvider>
       </SettingsProvider>
     </ProgressProvider>
   );

@@ -85,7 +85,7 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
         </View>
       )}
 
-      <View style={{ flex: 1 }} />
+      <View style={{ flex: 1, minHeight: space.lg }} />
       <Button3D label="Continuar" variant="primary" onPress={onContinue} />
       {onReviewMistakes && (
         <Button3D label="Repasar errores" onPress={onReviewMistakes} style={{ marginTop: space.md }} />

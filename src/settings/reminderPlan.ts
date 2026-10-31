@@ -33,7 +33,7 @@ export function planReminders(s: Streak, hour: number, now: Date): PlannedRemind
       st.kind === 'recovering'
         ? recovery
         : st.kind === 'active' && st.days >= 2
-          ? risk.replaceAll('{n}', String(st.days))
+          ? risk.replace(/{n}/g, String(st.days))
           : general;
     plan.push({ date, title: bot.name, body });
   }

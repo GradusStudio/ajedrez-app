@@ -43,6 +43,7 @@ export function BotAvatar({ bot, size = 48, expression }: { bot: Bot; size?: num
           <Image
             source={expressionSource(BOT_EXPRESSIONS, bot.id, expression, avatar.source)}
             style={{ position: 'absolute', width: image, height: image, left: (size - image) / 2, top: size - image }}
+            fadeDuration={0}
             accessibilityElementsHidden
             importantForAccessibility="no"
           />

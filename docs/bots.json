@@ -71,7 +71,7 @@
         "welcome": [
           "Hola. Hoy aprendemos juntos y yo también me sumo.",
           "Qué bueno que viniste. Vamos con calma, paso a paso.",
-          "Hola otra vez. Yo te acompaño en esta lección."
+          "Hola. Soy Pipo y hoy te acompaño en esta lección."
         ],
         "close": [
           "Terminamos. Fue lindo aprender contigo.",
@@ -79,9 +79,9 @@
           "Bien hecho. Me alegra que hayas llegado hasta el final."
         ],
         "reminder": {
-          "risk": "Hola, soy Pipo. Días de racha: {n}. Hoy con una sola acción la sigues cuidando.",
-          "recovery": "Soy Pipo. Perdiste un día, pero se arregla: hoy haz un puzzle, una lección y una partida contra un bot, las tres.",
-          "general": "Soy Pipo. Tengo ganas de jugar contigo un rato. Entra cuando puedas."
+          "risk": "Días de racha: {n}. Hoy con una sola acción la sigues cuidando.",
+          "recovery": "Hoy se recupera con un puzzle, una lección y una partida contra un bot. Yo te acompaño.",
+          "general": "Tengo ganas de jugar contigo un rato. Entra cuando puedas."
         }
       }
     },
@@ -124,7 +124,7 @@
       "teaching": {
         "welcome": [
           "Con calma. Esta lección no tiene apuro.",
-          "Bienvenido. Vamos a ir despacio y con cuidado.",
+          "Hola. Vamos a ir despacio y con cuidado.",
           "Hola. Nos tomamos el tiempo que haga falta."
         ],
         "close": [
@@ -133,9 +133,9 @@
           "Buen trabajo. Todo en orden por hoy."
         ],
         "reminder": {
-          "risk": "Soy Lola. Días de racha: {n}. Con una acción tranquila hoy queda a salvo.",
-          "recovery": "Soy Lola. Se cortó la racha, pero hay arreglo: hoy un puzzle, una lección y una partida con un bot. Sin apuro, pero las tres.",
-          "general": "Soy Lola. Cuando tengas un rato tranquilo, aquí te espero."
+          "risk": "Días de racha: {n}. Con una acción tranquila hoy queda a salvo.",
+          "recovery": "Aún se puede recuperar la racha: hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Cuando tengas un rato tranquilo, aquí te espero."
         }
       }
     },
@@ -181,17 +181,17 @@
         "welcome": [
           "Mira bien, que te voy a mostrar un truco.",
           "Pasa, pasa. Hoy hay algo escondido en esta lección.",
-          "Hola. Atento, que a veces las cosas no son lo que parecen."
+          "Hola. Ojo, que a veces las cosas no son lo que parecen."
         ],
         "close": [
           "Y ese era el truco. Ahora lo conoces.",
-          "Listo. Ya sabes lo que yo sé.",
+          "Terminamos. Ya sabes lo que yo sé.",
           "Terminamos. Cuéntaselo a alguien, pero con cuidado."
         ],
         "reminder": {
-          "risk": "Soy Tomás. Días de racha: {n}. Qué lástima sería perderla justo hoy.",
-          "recovery": "Soy Tomás. Hay un truco para recuperar la racha: hoy un puzzle, una lección y una partida contra un bot. Las tres, sin saltear ninguna.",
-          "general": "Soy Tomás. Tengo algo nuevo preparado para ti. Entra a verlo."
+          "risk": "Días de racha: {n}. Una acción hoy y sigue a salvo.",
+          "recovery": "Hay un truco para recuperar la racha: un puzzle, una lección y una partida contra un bot hoy.",
+          "general": "Tengo algo nuevo preparado para ti. Entra a verlo."
         }
       }
     },
@@ -241,14 +241,14 @@
           "Hola. Sin vueltas, a trabajar."
         ],
         "close": [
-          "Listo. Esa fue rápida y buena.",
+          "Terminamos. Esa fue rápida y buena.",
           "Bien jugado. Ya estás para la próxima.",
           "Terminamos. Se nota el ritmo que traes."
         ],
         "reminder": {
-          "risk": "Soy Valentina. Días de racha: {n}. Una acción hoy y sigues adelante.",
-          "recovery": "Soy Valentina. Para recuperar la racha hoy toca todo: un puzzle, una lección y una partida contra un bot. Las tres.",
-          "general": "Soy Valentina. Es buen momento para jugar. Entra y vamos."
+          "risk": "Días de racha: {n}. Una acción hoy y sigues adelante.",
+          "recovery": "Hoy toca todo: un puzzle, una lección y una partida contra un bot, para recuperar la racha.",
+          "general": "Es buen momento para jugar. Entra y vamos."
         }
       }
     },
@@ -289,8 +289,8 @@
       },
       "teaching": {
         "welcome": [
-          "Bienvenido. Empecemos la clase con orden.",
-          "Buenos días de estudio. Abre bien los ojos y las ideas.",
+          "Hola. Empecemos la clase con orden.",
+          "Hola. Abre bien los ojos y las ideas.",
           "Hola. Hoy toca aprender con método."
         ],
         "close": [
@@ -299,9 +299,9 @@
           "Muy bien. Así se estudia, con constancia."
         ],
         "reminder": {
-          "risk": "Soy Don Ramiro. Días de racha: {n}. La constancia se cuida con una práctica hoy.",
-          "recovery": "Soy Don Ramiro. Para retomar la racha, hoy corresponde un puzzle, una lección y una partida contra un bot. Las tres.",
-          "general": "Soy Don Ramiro. La clase de hoy está lista. Te espero."
+          "risk": "Días de racha: {n}. La constancia se cuida con una práctica hoy.",
+          "recovery": "Para retomar la racha, hoy corresponde un puzzle, una lección y una partida contra un bot.",
+          "general": "La clase de hoy está preparada. Te espero."
         }
       }
     },
@@ -344,7 +344,7 @@
       "teaching": {
         "welcome": [
           "Hola. Vamos a trabajar esta lección con paciencia.",
-          "Bienvenido. Un paso bien dado vale más que muchos apurados.",
+          "Hola. Un paso bien dado vale más que muchos apurados.",
           "Qué bueno verte. Empecemos con serenidad."
         ],
         "close": [
@@ -353,9 +353,9 @@
           "Lección cerrada. Quedó bien armada."
         ],
         "reminder": {
-          "risk": "Soy Camila. Días de racha: {n}. Una acción hoy alcanza para sostenerla.",
-          "recovery": "Soy Camila. Para recuperar la racha hay que sumar hoy un puzzle, una lección y una partida contra un bot. Las tres, con tranquilidad.",
-          "general": "Soy Camila. Cuando puedas, una lección corta te hace bien."
+          "risk": "Días de racha: {n}. Una acción hoy alcanza para sostenerla.",
+          "recovery": "Para recuperar la racha, hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Cuando puedas, una lección corta te hace bien."
         }
       }
     },
@@ -397,7 +397,7 @@
       "teaching": {
         "welcome": [
           "Hola. Aquí vamos firmes y sin prisa.",
-          "Bienvenido. Asentamos bien las bases antes de seguir.",
+          "Hola. Asentamos bien las bases antes de seguir.",
           "Pasa. Esta lección se construye despacio."
         ],
         "close": [
@@ -406,9 +406,9 @@
           "Bien. Con paciencia se llega lejos."
         ],
         "reminder": {
-          "risk": "Soy Bruno. Días de racha: {n}. Una acción hoy y se mantiene en pie.",
-          "recovery": "Soy Bruno. Para levantar la racha de nuevo hoy hace falta un puzzle, una lección y una partida contra un bot. Las tres.",
-          "general": "Soy Bruno. Aquí sigo, sin apuro. Entra cuando quieras."
+          "risk": "Días de racha: {n}. Una acción hoy y se mantiene en pie.",
+          "recovery": "Para levantar la racha hoy hace falta un puzzle, una lección y una partida contra un bot.",
+          "general": "Aquí sigo, sin apuro. Entra cuando quieras."
         }
       }
     },
@@ -450,19 +450,19 @@
       },
       "teaching": {
         "welcome": [
-          "Hola. Atento, que esta lección pide ojos despiertos.",
-          "Bienvenido. Vamos a pensar con la cabeza fría.",
+          "Hola. Esta lección pide ojos despiertos.",
+          "Hola. Vamos a pensar con la cabeza fría.",
           "Empecemos. Hoy se mira todo dos veces."
         ],
         "close": [
           "Terminamos. Lo hiciste con buena cabeza.",
           "Lección cerrada. Eso estuvo muy bien pensado.",
-          "Listo. Ya tienes una herramienta más."
+          "Terminamos. Ya tienes una herramienta más."
         ],
         "reminder": {
-          "risk": "Soy Sofía. Días de racha: {n}. Una acción hoy y no pierdes lo ganado.",
-          "recovery": "Soy Sofía. Para recuperar la racha el plan de hoy es un puzzle, una lección y una partida contra un bot. Las tres.",
-          "general": "Soy Sofía. Tengo un buen desafío para hoy. Entra a verlo."
+          "risk": "Días de racha: {n}. Una acción hoy y no pierdes lo ganado.",
+          "recovery": "Para recuperar la racha, hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Tengo un buen desafío para hoy. Entra a verlo."
         }
       }
     },
@@ -504,7 +504,7 @@
       },
       "teaching": {
         "welcome": [
-          "Bienvenido. Vamos a mirar esto con calma y detalle.",
+          "Hola. Vamos a mirar esto con calma y detalle.",
           "Hola. Aquí cada detalle cuenta.",
           "Pasa. Hoy trabajamos con precisión."
         ],
@@ -514,9 +514,9 @@
           "Bien hecho. El detalle hace la diferencia."
         ],
         "reminder": {
-          "risk": "Soy Maestro Ivo. Días de racha: {n}. Una acción hoy y la sostienes.",
-          "recovery": "Soy Maestro Ivo. Para recuperar la racha hoy se necesitan un puzzle, una lección y una partida contra un bot. Las tres.",
-          "general": "Soy Maestro Ivo. Un rato de práctica hoy vale mucho. Te espero."
+          "risk": "Días de racha: {n}. Una acción hoy y la sostienes.",
+          "recovery": "Para recuperar la racha, hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Un rato de práctica hoy vale mucho. Te espero."
         }
       }
     },
@@ -563,18 +563,18 @@
       "teaching": {
         "welcome": [
           "Hola. Empecemos.",
-          "Bienvenido a la última etapa. Vamos.",
+          "Esta es la última etapa. Vamos.",
           "Hola. Veamos cómo lo haces hoy."
         ],
         "close": [
           "Terminamos. Buen resultado.",
-          "Completo. Ya estás listo para lo que sigue.",
-          "Listo. Lo hiciste bien."
+          "Completo. Ya puedes seguir con lo que viene.",
+          "Terminamos. Lo hiciste bien."
         ],
         "reminder": {
-          "risk": "Soy Ada. Días de racha: {n}. Una acción hoy y se conserva.",
-          "recovery": "Soy Ada. Para recuperar la racha hoy hay que completar un puzzle, una lección y una partida contra un bot. Las tres.",
-          "general": "Soy Ada. Es un buen momento para practicar. Entra."
+          "risk": "Días de racha: {n}. Una acción hoy y se conserva.",
+          "recovery": "Para recuperar la racha, hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Es un buen momento para practicar. Entra."
         }
       }
     }

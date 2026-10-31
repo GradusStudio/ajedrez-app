@@ -2,7 +2,8 @@
 //   assets/fuente/expresiones/<id>-<expresion>.{png,webp}  (originales, cuadradas, fondo transparente)
 //   → assets/bots/expresiones/<id>-<expresion>.webp (256 × 256, calidad 80)
 //   → src/components/botExpressions.generated.ts (mapa que usa BotAvatar)
-// Un nombre que no corresponda a un bot o a una expresión detiene el script.
+// Un nombre que no corresponda a un bot o a una expresión, o no tener imágenes, detiene el script sin tocar nada.
+// Las imágenes se convierten en una carpeta temporal y reemplazan a las anteriores solo si todas salieron bien.
 /* global __dirname, process */
 const fs = require('fs');
 const path = require('path');
@@ -11,6 +12,7 @@ const sharp = require('sharp');
 const root = path.join(__dirname, '..');
 const srcDir = path.join(root, 'assets', 'fuente', 'expresiones');
 const outDir = path.join(root, 'assets', 'bots', 'expresiones');
+const tmpDir = outDir + '.tmp';
 const mapFile = path.join(root, 'src', 'components', 'botExpressions.generated.ts');
 const EXPRESSIONS = ['explica', 'piensa', 'acierto', 'pista'];
 const SIZE = 256;
@@ -24,6 +26,7 @@ function fail(msg) {
 
 async function main() {
   const files = (fs.existsSync(srcDir) ? fs.readdirSync(srcDir) : []).filter((f) => /\.(png|webp)$/i.test(f)).sort();
+  if (!files.length) fail(`no hay imágenes en ${path.relative(root, srcDir)}. No se cambió nada.`);
   const map = {};
   for (const file of files) {
     const m = /^([a-z]+)-([a-z]+)\.(png|webp)$/.exec(file);
@@ -35,17 +38,24 @@ async function main() {
     (map[id] ??= {})[expression] = file;
   }
 
-  // Si hay imágenes, la carpeta de salida se arma de cero para que no queden caras viejas.
-  fs.rmSync(outDir, { recursive: true, force: true });
-  if (files.length) fs.mkdirSync(outDir, { recursive: true });
-  for (const id of Object.keys(map)) {
-    for (const expression of Object.keys(map[id])) {
-      await sharp(path.join(srcDir, map[id][expression]))
-        .resize(SIZE, SIZE, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-        .webp({ quality: 80 })
-        .toFile(path.join(outDir, `${id}-${expression}.webp`));
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+  fs.mkdirSync(tmpDir, { recursive: true });
+  try {
+    for (const id of Object.keys(map)) {
+      for (const expression of Object.keys(map[id])) {
+        await sharp(path.join(srcDir, map[id][expression]))
+          .resize(SIZE, SIZE, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+          .webp({ quality: 80 })
+          .toFile(path.join(tmpDir, `${id}-${expression}.webp`));
+      }
     }
+  } catch (e) {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+    fail(`no se pudo convertir una imagen (${e.message}). No se cambió nada.`);
   }
+  // Todas salieron bien: la carpeta nueva reemplaza a la vieja para que no queden caras viejas.
+  fs.rmSync(outDir, { recursive: true, force: true });
+  fs.renameSync(tmpDir, outDir);
 
   // Los require tienen que ser textos fijos: Metro no resuelve rutas armadas al vuelo.
   const ids = Object.keys(map).sort();

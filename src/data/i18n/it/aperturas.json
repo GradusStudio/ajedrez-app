@@ -1012,5 +1012,564 @@
         }
       }
     }
+  },
+  "pirc": {
+    "name": "Difesa Pirc",
+    "summary": "Flessibile e solida: permetti un grande centro e lo attacchi con i pezzi.",
+    "lessons": {
+      "pirc-l01": {
+        "title": "L'idea della Pirc",
+        "summary": "Centro bianco, attacco con i pezzi",
+        "steps": {
+          "pirc-l01-s01": {
+            "text": "Attacchi il pedone in e4 col cavallo senza occupare il centro con i pedoni."
+          },
+          "pirc-l01-s02": {
+            "text": "L'alfiere in g7 completa lo schema: preme su d4 e sostiene l'arrocco."
+          },
+          "pirc-l01-s03": {
+            "text": "Con ...c6 prepari ...b5 o ...e5. Il centro bianco si attacca con calma."
+          },
+          "pirc-l01-s04": {
+            "prompt": "Quale pezzo nero preme su e4 all'inizio?",
+            "explanation": "È il pezzo che costringe il Bianco a difendere e4.",
+            "options": [
+              "Il cavallo in f6",
+              "L'alfiere in c8",
+              "La donna"
+            ]
+          },
+          "pirc-l01-s05": {
+            "prompt": "Quale attacco del Bianco conviene conoscere?",
+            "explanation": "Con f4 il Bianco costruisce un centro enorme e attacca in fretta.",
+            "options": [
+              "Il Gambetto di Donna",
+              "L'attacco austriaco con f4",
+              "L'Italiana"
+            ]
+          }
+        }
+      },
+      "pirc-l02": {
+        "title": "Linea principale",
+        "summary": "La variante classica",
+        "steps": {
+          "pirc-l02-s01": {
+            "prompt": "Gioca la linea principale della Pirc.",
+            "notes": [
+              "",
+              "Flessibile: permetti al Bianco di occupare il centro.",
+              "",
+              "Attacchi e4 e sviluppi.",
+              "",
+              "Prepari il fianchetto.",
+              "",
+              "L'alfiere preme sul centro bianco.",
+              "",
+              "Re al sicuro prima di attaccare il centro.",
+              "",
+              "Prepara ...Cbd7 e ...e5 o ...b5."
+            ]
+          }
+        }
+      },
+      "pirc-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Ordine delle mosse",
+        "steps": {
+          "pirc-l03-s01": {
+            "prompt": "Attacca e4 col cavallo.",
+            "hint": "Il cavallo di re va in f6.",
+            "success": "Corretto"
+          },
+          "pirc-l03-s02": {
+            "prompt": "Prepara il fianchetto del tuo alfiere.",
+            "hint": "Un pedone apre la diagonale.",
+            "success": "Corretto"
+          },
+          "pirc-l03-s03": {
+            "prompt": "Quando arrocchi?",
+            "explanation": "L'alfiere in g7 protegge il tuo arrocco, quindi non serve aspettare.",
+            "options": [
+              "Presto, con l'alfiere già in g7",
+              "Mai",
+              "Dopo aver cambiato le donne"
+            ]
+          }
+        }
+      },
+      "pirc-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "pirc-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "pirc-l04-s02": {
+            "prompt": "Che cosa prepara ...c6?",
+            "explanation": "Con ...c6 controlli d5 e b5 senza usare il cavallo.",
+            "options": [
+              "L'arrocco lungo",
+              "Un attacco alla donna",
+              "Le avanzate ...b5 o ...e5"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "scotch": {
+    "name": "Partita Scozzese",
+    "summary": "Apri subito il centro: più diretta dell'Italiana e con gioco attivo.",
+    "lessons": {
+      "scotch-l01": {
+        "title": "L'idea della Scozzese",
+        "summary": "Aprire presto il centro",
+        "steps": {
+          "scotch-l01-s01": {
+            "text": "Con d4 apri subito il centro. I pezzi bianchi guadagnano spazio e attività."
+          },
+          "scotch-l01-s02": {
+            "text": "Riprendi col cavallo, che resta centralizzato in d4."
+          },
+          "scotch-l01-s03": {
+            "text": "Con e5 guadagni spazio; c4 e b3 rinforzano il centro."
+          },
+          "scotch-l01-s04": {
+            "prompt": "Con quale pezzo riprendi in d4?",
+            "explanation": "È la ripresa che centralizza un pezzo e sviluppa.",
+            "options": [
+              "Col cavallo in f3",
+              "Con la donna",
+              "Con l'alfiere"
+            ]
+          },
+          "scotch-l01-s05": {
+            "prompt": "Che cosa apre l'avanzata d4?",
+            "explanation": "La partita si apre e i tuoi pezzi ottengono linee.",
+            "options": [
+              "L'ala di donna",
+              "Il centro e la colonna d",
+              "La diagonale di h8"
+            ]
+          }
+        }
+      },
+      "scotch-l02": {
+        "title": "Linea principale",
+        "summary": "La variante Mieses",
+        "steps": {
+          "scotch-l02-s01": {
+            "prompt": "Gioca la linea principale della Scozzese.",
+            "notes": [
+              "Occupa il centro.",
+              "",
+              "Sviluppa e attacca e5.",
+              "",
+              "Apri il centro: è l'idea della Scozzese.",
+              "",
+              "Riprendi e il tuo cavallo resta al centro.",
+              "",
+              "Rovini la struttura pedonale del Nero.",
+              "",
+              "Guadagni spazio e attacchi il cavallo.",
+              "",
+              "Difende e5 e mantiene la pressione.",
+              "",
+              "Attacchi il cavallo in d5.",
+              "",
+              "Difendi c4 e prepari l'alfiere in b2.",
+              ""
+            ]
+          }
+        }
+      },
+      "scotch-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Aprire, riprendere e cambiare",
+        "steps": {
+          "scotch-l03-s01": {
+            "prompt": "Apri il centro con un pedone.",
+            "hint": "È la mossa che definisce l'apertura.",
+            "success": "Corretto"
+          },
+          "scotch-l03-s02": {
+            "prompt": "Riprendi il pedone in d4.",
+            "hint": "Usa il cavallo in f3.",
+            "success": "Corretto"
+          },
+          "scotch-l03-s03": {
+            "prompt": "Cambia il tuo cavallo con quello in c6 per rovinare la sua struttura.",
+            "hint": "Cattura in c6.",
+            "success": "Corretto"
+          },
+          "scotch-l03-s04": {
+            "prompt": "Quale struttura lasci al Nero dopo il cambio?",
+            "explanation": "I pedoni in c6 e c7 restano doppiati e deboli.",
+            "options": [
+              "Pedoni doppiati sulla colonna c",
+              "Pedoni isolati sulla colonna h",
+              "Un pedone in presa in e5"
+            ]
+          }
+        }
+      },
+      "scotch-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "scotch-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "scotch-l04-s02": {
+            "prompt": "Che cosa ottieni con e5?",
+            "explanation": "Il pedone avanza e costringe il cavallo a muoversi.",
+            "options": [
+              "L'arrocco",
+              "Spazio e attacco al cavallo in f6",
+              "Uno scacco immediato"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "evans": {
+    "name": "Gambetto Evans",
+    "summary": "Sacrifichi un pedone per guadagnare tempo e centro: attacco rapido e molto gioco tattico.",
+    "lessons": {
+      "evans-l01": {
+        "title": "L'idea del Gambetto Evans",
+        "summary": "Un pedone per tempo e centro",
+        "steps": {
+          "evans-l01-s01": {
+            "text": "Con b4 offri un pedone per attaccare l'alfiere e guadagnare tempo."
+          },
+          "evans-l01-s02": {
+            "text": "Con c3 e d4 costruisci un centro forte mentre l'alfiere nero perde tempo."
+          },
+          "evans-l01-s03": {
+            "text": "Con il centro aperto e i pezzi attivi, l'attacco viene naturale: Ag5, Cc3 e pressione su f7."
+          },
+          "evans-l01-s04": {
+            "prompt": "Che cosa ottieni in cambio del pedone?",
+            "explanation": "Ogni mossa nera con l'alfiere ti permette di sviluppare un pezzo.",
+            "options": [
+              "Tempo e controllo del centro",
+              "Un pezzo",
+              "Niente: è un errore"
+            ]
+          },
+          "evans-l01-s05": {
+            "prompt": "Che cosa attacca il pedone in b4?",
+            "explanation": "Se l'alfiere cattura, guadagni tempo con c3.",
+            "options": [
+              "Il cavallo in c6",
+              "Il pedone in e5",
+              "L'alfiere in c5"
+            ]
+          }
+        }
+      },
+      "evans-l02": {
+        "title": "Linea principale",
+        "summary": "L'Evans classico",
+        "steps": {
+          "evans-l02-s01": {
+            "prompt": "Gioca la linea principale del Gambetto Evans.",
+            "notes": [
+              "Centro.",
+              "",
+              "Attacca e5.",
+              "",
+              "L'alfiere punta a f7.",
+              "",
+              "Evans: offri un pedone per guadagnare tempo e centro.",
+              "",
+              "Attacchi l'alfiere e prepari d4.",
+              "",
+              "Occupi il centro guadagnando un tempo.",
+              "",
+              "Re al sicuro; le linee aperte favoriscono il tuo sviluppo.",
+              "",
+              "Recuperi un pedone e mantieni il centro.",
+              "",
+              "Proteggi e4, controlli d5 e guadagni attività.",
+              "",
+              "Attacchi la donna e guadagni un altro tempo."
+            ]
+          }
+        }
+      },
+      "evans-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Come arrivare al centro",
+        "steps": {
+          "evans-l03-s01": {
+            "prompt": "Offri il gambetto per attaccare l'alfiere.",
+            "hint": "Un pedone dell'ala di donna avanza di due caselle.",
+            "success": "Corretto"
+          },
+          "evans-l03-s02": {
+            "prompt": "Guadagna tempo contro l'alfiere e prepara d4.",
+            "hint": "Un pedone sostiene il centro.",
+            "success": "Corretto"
+          },
+          "evans-l03-s03": {
+            "prompt": "Occupa il centro guadagnando un tempo.",
+            "hint": "Il pedone centrale avanza.",
+            "success": "Corretto"
+          },
+          "evans-l03-s04": {
+            "prompt": "Che cosa devi fare dopo ...d6?",
+            "explanation": "Riprendere mantiene il tuo centro e l'iniziativa.",
+            "options": [
+              "Recuperare il pedone in d4 col pedone c",
+              "Giocare h3",
+              "Cambiare le donne"
+            ]
+          }
+        }
+      },
+      "evans-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "evans-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "evans-l04-s02": {
+            "prompt": "Che cosa minaccia Ag5?",
+            "explanation": "L'alfiere attacca la donna attraverso f6 ed e7.",
+            "options": [
+              "Il re",
+              "La donna nera",
+              "Il pedone in a2"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "bdg": {
+    "name": "Gambetto Blackmar-Diemer",
+    "summary": "Pedone in cambio di sviluppo e attacco: un'apertura molto aggressiva con molte trappole.",
+    "lessons": {
+      "bdg-l01": {
+        "title": "L'idea del Blackmar-Diemer",
+        "summary": "Pedone in cambio di sviluppo",
+        "steps": {
+          "bdg-l01-s01": {
+            "text": "Con e4 offri un pedone per aprire linee e sviluppare in fretta."
+          },
+          "bdg-l01-s02": {
+            "text": "Con f3 apri la colonna f e attacchi e4. Se catturano, riprendi col cavallo."
+          },
+          "bdg-l01-s03": {
+            "text": "Il tuo alfiere in d3 punta a h7 e la tua donna in e2 si unisce all'attacco."
+          },
+          "bdg-l01-s04": {
+            "prompt": "Quale pedone offri?",
+            "explanation": "È il gambetto che dà il nome all'apertura.",
+            "options": [
+              "Il pedone in e4",
+              "Il pedone in a2",
+              "Il pedone in h2"
+            ]
+          },
+          "bdg-l01-s05": {
+            "prompt": "Che cosa ottieni in cambio?",
+            "explanation": "Il compenso è in tempo e iniziativa, non in materiale.",
+            "options": [
+              "Vantaggio di materiale",
+              "Sviluppo rapido e attacco",
+              "Cambio delle donne"
+            ]
+          }
+        }
+      },
+      "bdg-l02": {
+        "title": "Linea principale",
+        "summary": "Il gambetto accettato",
+        "steps": {
+          "bdg-l02-s01": {
+            "prompt": "Gioca la linea principale del Blackmar-Diemer.",
+            "notes": [
+              "Occupi il centro.",
+              "",
+              "Gambetto Blackmar-Diemer: offri un pedone.",
+              "",
+              "Sviluppi e prepari f3.",
+              "",
+              "Apri la colonna f e cerchi un vantaggio di sviluppo.",
+              "",
+              "Riprendi e sviluppi: resti con un pedone in meno, ma avanti nello sviluppo.",
+              "",
+              "L'alfiere punta verso h7.",
+              "",
+              "Re al sicuro.",
+              "",
+              "Fai uscire la donna; poi Ag5 e Tad1."
+            ]
+          }
+        }
+      },
+      "bdg-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Riprendere sviluppando",
+        "steps": {
+          "bdg-l03-s01": {
+            "prompt": "Attacca il pedone in e4 aprendo la colonna f.",
+            "hint": "Un pedone avanza di una casella.",
+            "success": "Corretto"
+          },
+          "bdg-l03-s02": {
+            "prompt": "Riprendi in f3 con un pezzo.",
+            "hint": "Il cavallo cattura in f3.",
+            "success": "Corretto"
+          },
+          "bdg-l03-s03": {
+            "prompt": "Il Nero ha giocato ...e6. Quale pezzo sviluppi ora?",
+            "explanation": "L'alfiere in d3 punta a h7 senza esporre la donna.",
+            "options": [
+              "La donna in h5",
+              "L'alfiere da f1 a d3",
+              "Il re in f2"
+            ]
+          }
+        }
+      },
+      "bdg-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "bdg-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "bdg-l04-s02": {
+            "prompt": "Quale colonna apri con f3?",
+            "explanation": "Dopo l'arrocco, la tua torre preme su quella colonna.",
+            "options": [
+              "La colonna f",
+              "La colonna a",
+              "La colonna c"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "caro-kann": {
+    "name": "Difesa Caro-Kann",
+    "summary": "Una difesa molto solida: la tua struttura è compatta e il tuo alfiere resta libero.",
+    "lessons": {
+      "caro-kann-l01": {
+        "title": "L'idea della Caro-Kann",
+        "summary": "Solidità e alfiere libero",
+        "steps": {
+          "caro-kann-l01-s01": {
+            "text": "Con ...c6 sostieni ...d5 senza chiudere l'alfiere in c8."
+          },
+          "caro-kann-l01-s02": {
+            "text": "Dopo il cambio in e4, fai uscire l'alfiere prima di chiudere con ...e6."
+          },
+          "caro-kann-l01-s03": {
+            "text": "Risultato: struttura solida e alfiere in c8 cambiato o attivo. Hai pochi punti deboli."
+          },
+          "caro-kann-l01-s04": {
+            "prompt": "Perché ...c6 e non ...e6?",
+            "explanation": "Nella Francese l'alfiere in c8 resta chiuso; nella Caro-Kann no.",
+            "options": [
+              "L'alfiere in c8 resta libero",
+              "Protegge d4",
+              "Attacca e4"
+            ]
+          },
+          "caro-kann-l01-s05": {
+            "prompt": "Che cosa fai con l'alfiere in c8 prima di giocare ...e6?",
+            "explanation": "Se giochi prima ...e6, l'alfiere resta chiuso dietro i tuoi pedoni.",
+            "options": [
+              "Lo lasci dov'è",
+              "Lo fai uscire",
+              "Lo cambi con la donna"
+            ]
+          }
+        }
+      },
+      "caro-kann-l02": {
+        "title": "Linea principale",
+        "summary": "La variante classica",
+        "steps": {
+          "caro-kann-l02-s01": {
+            "prompt": "Gioca la linea principale della Caro-Kann.",
+            "notes": [
+              "",
+              "Sostiene ...d5 senza chiudere l'alfiere in c8.",
+              "",
+              "Attacchi il centro bianco.",
+              "",
+              "Cambi perché l'alfiere in c8 possa uscire in f5.",
+              "",
+              "Fai uscire l'alfiere prima di chiudere con ...e6.",
+              "",
+              "Il cavallo attacca il tuo alfiere: lo ritiri in g6 e lo mantieni sulla diagonale.",
+              "",
+              "Prepara la ritirata dell'alfiere in h7.",
+              "",
+              "Sviluppa e sostiene ...Cgf6.",
+              "",
+              "L'alfiere sfugge al pedone in h5.",
+              "",
+              "Cambi l'alfiere bianco, che è un pezzo attivo.",
+              "",
+              "Struttura solida, e apri la strada all'alfiere in f8."
+            ]
+          }
+        }
+      },
+      "caro-kann-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Cambi e alfiere",
+        "steps": {
+          "caro-kann-l03-s01": {
+            "prompt": "Cambia il tuo pedone centrale perché l'alfiere possa uscire in f5.",
+            "hint": "Cattura in e4.",
+            "success": "Corretto"
+          },
+          "caro-kann-l03-s02": {
+            "prompt": "Fai uscire l'alfiere prima di chiudere con ...e6.",
+            "hint": "Scegli una casella fuori dalla catena di pedoni.",
+            "success": "Corretto"
+          },
+          "caro-kann-l03-s03": {
+            "prompt": "Il Bianco ha giocato h4. Perché ...h6?",
+            "explanation": "Con ...h6 l'alfiere ha sempre una casella sicura in h7.",
+            "options": [
+              "Per ritirare l'alfiere in h7 se viene attaccato",
+              "Per attaccare g5",
+              "Per arroccare lungo"
+            ]
+          }
+        }
+      },
+      "caro-kann-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "caro-kann-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "caro-kann-l04-s02": {
+            "prompt": "Che cosa ottieni cambiando l'alfiere in d3?",
+            "explanation": "È un cambio che non ti danneggia e semplifica la tua posizione.",
+            "options": [
+              "Perdi la coppia degli alfieri senza motivo",
+              "Apri il tuo arrocco",
+              "Elimini un pezzo attivo del Bianco"
+            ]
+          }
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,214 @@
+{
+  "title": "Eröffnung und Strategie",
+  "lessons": {
+    "u4-l01": {
+      "title": "Eröffnungsprinzipien",
+      "summary": "Zentrum, Entwicklung und Rochade",
+      "steps": {
+        "u4-l01-s01": { "text": "In der Eröffnung zählen drei Ideen: Besetze das Zentrum mit Bauern, bringe deine Figuren heraus (entwickle sie) und rochiere, damit dein König in Sicherheit ist." },
+        "u4-l01-s02": {
+          "prompt": "Tippe auf die 4 Felder im Zentrum.",
+          "hint": "Das sind die 4 Felder in der Mitte des Bretts."
+        },
+        "u4-l01-s03": {
+          "prompt": "Erster Zug: Besetze das Zentrum mit einem Bauern.",
+          "hint": "Ziehe den Bauern auf der e-Linie oder auf der d-Linie zwei Felder vor.",
+          "success": "Richtig. Der Bauer besetzt das Zentrum und macht deinen Figuren den Weg frei."
+        },
+        "u4-l01-s04": { "text": "Dann entwickelst du: zuerst die Springer und Läufer, in Richtung Zentrum. Die Türme und die Dame kommen später, wenn der Weg frei ist." },
+        "u4-l01-s05": {
+          "prompt": "Entwickle einen Springer oder einen Läufer in Richtung Zentrum.",
+          "hint": "Ziehe einen Springer oder einen Läufer auf ein Feld, von dem aus er aufs Zentrum zielt.",
+          "success": "Richtig. Eine Figur mehr ist im Spiel."
+        },
+        "u4-l01-s06": {
+          "prompt": "Welcher Zug folgt den Eröffnungsprinzipien?",
+          "options": ["Sf3", "h4", "Dh5"],
+          "explanation": "Sf3 entwickelt einen Springer und greift den Bauern auf e5 an. h4 entwickelt nichts, und Dh5 bringt die Dame so früh heraus, dass der Gegner sie mit Tempogewinn angreifen kann.",
+          "feedback": ["", "h4 entwickelt keine Figur und besetzt auch nicht das Zentrum.", "Die Dame kommt zu früh heraus: Der Gegner wird sie angreifen und dabei seine Figuren entwickeln."]
+        },
+        "u4-l01-s07": {
+          "prompt": "Du hast deine Figuren auf dem Königsflügel entwickelt. Rochiere.",
+          "hint": "Ziehe den König zwei Felder in Richtung des Turms auf h1.",
+          "success": "Richtig. Der König ist in Sicherheit und der Turm ist bereit fürs Spiel."
+        },
+        "u4-l01-s08": {
+          "prompt": "Wozu dient eine frühe Rochade?",
+          "options": ["Sie bringt den König in Sicherheit und verbindet die Türme", "Sie greift den gegnerischen König an", "Sie gewinnt einen Bauern"],
+          "explanation": "Der König verlässt das Zentrum, wo sich Linien öffnen, und der Turm kommt zur Mitte.",
+          "feedback": ["", "Die Rochade ist ein Zug zur Verteidigung und Entwicklung, kein Angriffszug.", "Bei der Rochade wird nichts geschlagen."]
+        }
+      }
+    },
+    "u4-l02": {
+      "title": "Typische Eröffnungsfehler",
+      "summary": "Was du besser vermeidest",
+      "steps": {
+        "u4-l02-s01": { "text": "Bringst du die Dame früh heraus, greift der Gegner sie an, während er seine Figuren entwickelt, und du verlierst Zeit, weil du sie wieder ziehen musst." },
+        "u4-l02-s02": {
+          "prompt": "Schwarz hat die Dame nach d5 gebracht. Welcher Zug greift sie an und entwickelt dabei eine Figur?",
+          "options": ["Sc3", "Dg4", "h3"],
+          "explanation": "Sc3 entwickelt einen Springer und greift die Dame an: Schwarz muss sie noch einmal ziehen.",
+          "feedback": ["", "Dg4 bringt deine Dame früh heraus und verliert sie auch noch: Der Läufer auf c8 schlägt sie.", "h3 entwickelt nichts und greift die Dame nicht an."]
+        },
+        "u4-l02-s03": {
+          "prompt": "Greife die schwarze Dame an und entwickle dabei eine Figur.",
+          "hint": "Ein Springer kann die Dame auf d5 angreifen.",
+          "success": "Richtig. Du hast mit Tempogewinn entwickelt."
+        },
+        "u4-l02-s04": { "text": "Wenn du in der Eröffnung dieselbe Figur mehrmals ziehst, bleiben die anderen stehen. Hier hat Weiß den Springer dreimal gezogen, und er steht wieder auf f3. Schwarz dagegen hat schon drei Figuren entwickelt." },
+        "u4-l02-s05": {
+          "prompt": "Welcher dieser Züge verliert Zeit?",
+          "options": ["Sg1", "Lc4", "d4"],
+          "explanation": "Sg1 bringt den Springer auf sein Ausgangsfeld zurück: Das macht einen Entwicklungszug rückgängig.",
+          "feedback": ["", "Lc4 entwickelt einen Läufer in Richtung Zentrum: Das ist ein guter Zug.", "d4 greift das Zentrum an: Das ist ein guter Zug."]
+        },
+        "u4-l02-s06": { "text": "Den König im Zentrum zu lassen ist gefährlich, wenn sich die e-Linie öffnet. Hier ist der schwarze Läufer auf e7 gefesselt: Zieht er, gibt der Turm Schach." },
+        "u4-l02-s07": {
+          "prompt": "Schwarz hat nicht rochiert und die e-Linie ist offen. Stelle dort eine Schwerfigur gegen seinen König auf.",
+          "hint": "Ein Turm oder die Dame auf der e-Linie zielen auf den schwarzen König.",
+          "success": "Richtig. Jetzt ist der Läufer auf e7 gefesselt und der schwarze König steht unbequem."
+        },
+        "u4-l02-s08": { "text": "Zusammenfassung: Bringe die Dame nicht zu früh heraus, ziehe nicht mehrmals dieselbe Figur und lass den König nicht im Zentrum." }
+      }
+    },
+    "u4-l03": {
+      "title": "Bauernstruktur",
+      "summary": "Isolierte Bauern, Doppelbauern und Freibauern",
+      "steps": {
+        "u4-l03-s01": { "text": "Ein isolierter Bauer hat keine eigenen Bauern auf den Nachbarlinien: Kein Bauer kann ihn decken. Hier ist der weiße Bauer auf d4 isoliert." },
+        "u4-l03-s02": {
+          "prompt": "Tippe auf den isolierten schwarzen Bauern.",
+          "hint": "Suche einen schwarzen Bauern ohne schwarze Bauern auf den Nachbarlinien."
+        },
+        "u4-l03-s03": { "text": "Doppelbauern stehen auf derselben Linie hintereinander. Sie behindern sich beim Vorrücken und können sich nicht gegenseitig decken." },
+        "u4-l03-s04": {
+          "prompt": "Auf wie vielen Linien hat Weiß Doppelbauern?",
+          "options": ["Auf keiner", "Auf einer", "Auf zwei"],
+          "explanation": "Auf zwei: auf der c-Linie (c2 und c3) und auf der f-Linie (f2 und f3).",
+          "feedback": ["Schau dir die c-Linie und die f-Linie an.", "Es ist mehr als eine: Prüfe auch die f-Linie.", ""]
+        },
+        "u4-l03-s05": { "text": "Vor einem Freibauern stehen keine gegnerischen Bauern, weder auf seiner Linie noch auf den Nachbarlinien: Kein Bauer hält ihn auf. Im Endspiel ist das ein großer Vorteil." },
+        "u4-l03-s06": {
+          "prompt": "Tippe auf den Freibauern von Weiß.",
+          "hint": "Suche einen weißen Bauern, vor dem keine schwarzen Bauern stehen, weder auf seiner Linie noch auf den Nachbarlinien."
+        },
+        "u4-l03-s07": {
+          "prompt": "Der schwarze König kommt näher. Ziehe deinen Freibauern ohne Zeitverlust vor.",
+          "hint": "Wenn du jetzt nicht vorrückst, kommt der schwarze König rechtzeitig, um den Bauern zu stoppen.",
+          "success": "Richtig. Der schwarze König holt den Bauern nicht mehr ein: Er wird sich umwandeln."
+        },
+        "u4-l03-s08": {
+          "prompt": "Was ist die Schwäche eines isolierten Bauern?",
+          "options": ["Kein Bauer kann ihn decken", "Er kann nicht vorrücken", "Er geht immer verloren"],
+          "explanation": "Nur Figuren können ihn decken, und die sind dann daran gebunden, auf ihn aufzupassen. Aber ein isolierter Bauer geht nicht immer verloren.",
+          "feedback": ["", "Er kann vorrücken, wenn das Feld vor ihm frei ist.", "Nicht immer: Er ist eine Schwäche, kein sicherer Verlust."]
+        },
+        "u4-l03-s09": {
+          "prompt": "Wandle deinen Freibauern um.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Ziehe den Bauern vor: Zähle, ob er sich vor dem Bauern des Gegners umwandelt.",
+          "notes": ["", "", "", ""]
+        },
+        "u4-l03-s10": {
+          "prompt": "Wandle deinen Freibauern um.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Ziehe den Bauern vor: Zähle, ob er sich vor dem Bauern des Gegners umwandelt.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u4-l04": {
+      "title": "Offene Linien und aktive Türme",
+      "summary": "Wo Türme am besten stehen",
+      "steps": {
+        "u4-l04-s01": { "text": "Eine offene Linie ist eine Linie ohne Bauern. Türme sind auf offenen Linien viel stärker: Von dort können sie ins gegnerische Lager eindringen." },
+        "u4-l04-s02": {
+          "prompt": "Welche Linie ist offen?",
+          "options": ["Die d-Linie", "Die e-Linie", "Die c-Linie"],
+          "explanation": "Auf der d-Linie steht kein einziger Bauer.",
+          "feedback": ["", "Auf der e-Linie stehen Bauern beider Seiten.", "Auf der c-Linie stehen Bauern beider Seiten."]
+        },
+        "u4-l04-s03": {
+          "prompt": "Stelle einen Turm auf die offene Linie.",
+          "hint": "Jeder deiner beiden Türme kann nach d1 ziehen.",
+          "success": "Richtig. Der Turm kontrolliert die offene Linie."
+        },
+        "u4-l04-s04": { "text": "Zwei Türme auf derselben Linie sind verdoppelt: Sie decken sich gegenseitig und üben doppelten Druck aus." },
+        "u4-l04-s05": {
+          "prompt": "Verdopple die Türme auf der d-Linie.",
+          "hint": "Bringe den Turm von e2 auf die d-Linie, vor den anderen.",
+          "success": "Richtig. Die Türme sind verdoppelt."
+        },
+        "u4-l04-s06": { "text": "Ein Turm auf der siebten Reihe greift die Bauern an, die noch nicht gezogen haben, und sperrt den gegnerischen König auf der Grundreihe ein." },
+        "u4-l04-s07": {
+          "prompt": "Bringe deinen Turm auf die siebte Reihe.",
+          "hint": "Die d-Linie ist offen: Der Turm kommt bis d7.",
+          "success": "Richtig. Der Turm greift die Bauern auf b7 und f7 an."
+        }
+      }
+    },
+    "u4-l05": {
+      "title": "Schwache Felder und Vorposten",
+      "summary": "Felder, die Bauern nicht mehr decken",
+      "steps": {
+        "u4-l05-s01": { "text": "Ein schwaches Feld kann kein Bauer des Gegners decken, weder jetzt noch später. Hier hat Schwarz e5 gespielt und hat keinen Bauern auf der c-Linie: Kein schwarzer Bauer kann d5 decken." },
+        "u4-l05-s02": {
+          "prompt": "Tippe auf das schwache Feld im Zentrum, auf der Seite von Schwarz: Kein schwarzer Bauer kann es decken.",
+          "hint": "Die schwarzen Bauern auf d5 und f5 sind schon vorbeigezogen: Das Feld dazwischen, vor e6, ist ungedeckt."
+        },
+        "u4-l05-s03": { "text": "Ein Vorposten ist ein schwaches Feld des Gegners, auf dem deine Figur, fast immer ein Springer, von einem eigenen Bauern gedeckt wird. Von dort kann sie niemand vertreiben." },
+        "u4-l05-s04": {
+          "prompt": "Bringe den Springer auf den Vorposten.",
+          "hint": "Das schwache Feld von Schwarz liegt im Zentrum, und dein Bauer auf d4 deckt es.",
+          "success": "Richtig. Der Springer auf e5 ist gedeckt und kein schwarzer Bauer kann ihn vertreiben."
+        },
+        "u4-l05-s05": {
+          "prompt": "Warum ist der Springer auf d5 so stark?",
+          "options": ["Kein schwarzer Bauer kann ihn vertreiben", "Er gibt dem König Schach", "Er greift die Dame an"],
+          "explanation": "Er steht auf einem schwachen Feld: Um ihn loszuwerden, müsste Schwarz ihn gegen eine Figur tauschen.",
+          "feedback": ["", "Der Springer auf d5 gibt kein Schach.", "Er greift die Dame nicht an: Seine Stärke ist, dass ihn niemand vertreiben kann."]
+        },
+        "u4-l05-s06": {
+          "prompt": "Welches dieser Felder ist ein guter Vorposten für deinen Springer?",
+          "options": ["e5", "c5", "g5"],
+          "explanation": "e5 wird von deinem Bauern auf d4 gedeckt, und kein schwarzer Bauer kann es angreifen.",
+          "feedback": ["", "Der Bauer auf b7 kann nach b6 ziehen und den Springer vertreiben.", "Kein Bauer von dir deckt g5, und der Bauer auf h7 kann den Springer vertreiben."]
+        },
+        "u4-l05-s07": { "text": "Bevor du einen Bauern ziehst, überlege, welche Felder er nicht mehr decken wird: Ein Bauer kann nicht zurück, und diese Felder bleiben für immer schwach." }
+      }
+    },
+    "u4-l06": {
+      "title": "Das Läuferpaar",
+      "summary": "Zwei Läufer zusammen sind mehr wert",
+      "steps": {
+        "u4-l06-s01": { "text": "Zwei Läufer zusammen decken Felder beider Farben. In offenen Stellungen ist das Läuferpaar meist mehr wert als Läufer und Springer." },
+        "u4-l06-s02": {
+          "prompt": "Welche Seite hat das Läuferpaar?",
+          "options": ["Weiß", "Schwarz", "Keine"],
+          "explanation": "Schwarz hat beide Läufer. Weiß hat Läufer und Springer.",
+          "feedback": ["Weiß hat einen Läufer und einen Springer.", "", "Eine Seite hat ihre beiden Läufer."]
+        },
+        "u4-l06-s03": { "text": "Wenn Bauernketten das Zentrum schließen, stoßen die Läufer gegen sie, und die Springer, die springen können, stehen meist besser. Öffnet sich das Zentrum, sind die Läufer im Vorteil." },
+        "u4-l06-s04": {
+          "prompt": "Das Zentrum ist durch Bauern geschlossen. Welche Figur steht in solchen Stellungen meist besser?",
+          "options": ["Der Springer", "Der Läufer"],
+          "explanation": "Im Allgemeinen springen die Springer bei blockiertem Zentrum über die Bauern, und die Läufer bleiben eingesperrt.",
+          "feedback": ["", "Läufer brauchen offene Diagonalen: Hier stoßen sie gegen die Bauern."]
+        },
+        "u4-l06-s05": {
+          "prompt": "Du hast das Läuferpaar. Brich im Zentrum mit einem Bauern durch, um die Stellung zu öffnen.",
+          "hint": "Ein Zentrumsbauer kann vorrücken und auf den Bauern auf e5 treffen.",
+          "success": "Richtig. Wenn Bauern getauscht werden, öffnen sich Diagonalen für deine Läufer."
+        },
+        "u4-l06-s06": {
+          "prompt": "Solltest du in einer offenen Stellung einen deiner Läufer gegen den gegnerischen Springer tauschen?",
+          "options": ["Nein, außer du gewinnst etwas: Du würdest das Läuferpaar verlieren", "Ja, das lohnt sich immer"],
+          "explanation": "Ohne konkreten Grund behältst du das Läuferpaar besser, vor allem wenn sich die Stellung öffnen wird.",
+          "feedback": ["", "Nicht immer: Das Läuferpaar ist ein Vorteil, den du besser behältst."]
+        },
+        "u4-l06-s07": { "text": "Zusammenfassung: Hast du das Läuferpaar, versuche die Stellung zu öffnen. Hat es der Gegner, versuche sie geschlossen zu halten." }
+      }
+    }
+  }
+}

@@ -2,19 +2,21 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Chip } from '../components/Chip';
 import { ProgressBar } from '../components/ProgressBar';
+import { BotStyle } from '../data/bots';
 import { OpeningCourse } from '../data/lessonTypes';
 import { useContent } from '../data/useContent';
+import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = { onOpenCourse: (course: OpeningCourse) => void };
 
-const COLOR_LABEL = { w: 'Blancas', b: 'Negras' } as const;
 
 // Pestaña Aperturas: selector Blancas / Negras y una tarjeta por curso (mapa-de-pantallas.md, 2.6).
 export function OpeningsScreen({ onOpenCourse }: Props) {
   const { progress } = useProgress();
   const { openings } = useContent();
+  const { t } = useI18n();
   const [color, setColor] = useState<'w' | 'b'>('w');
   const list = openings.filter((o) => o.color === color);
 
@@ -23,8 +25,8 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}
     >
-      <Text style={styles.title}>Aperturas</Text>
-      <Text style={styles.subtitle}>Elige con qué color quieres estudiar</Text>
+      <Text style={styles.title}>{t('openings.title')}</Text>
+      <Text style={styles.subtitle}>{t('openings.subtitle')}</Text>
 
       <View style={styles.segmented}>
         {(['w', 'b'] as const).map((c) => {
@@ -35,11 +37,11 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
               onPress={() => setColor(c)}
               accessibilityRole="tab"
               accessibilityState={{ selected }}
-              accessibilityLabel={`Aperturas con ${COLOR_LABEL[c].toLowerCase()}`}
+              accessibilityLabel={t(c === 'w' ? 'openings.tabWhite' : 'openings.tabBlack')}
               style={[styles.segment, selected && styles.segmentSelected]}
             >
               <Text style={[styles.segmentText, selected && { color: colors.text }]}>
-                {COLOR_LABEL[c]} · {openings.filter((o) => o.color === c).length}
+                {t(c === 'w' ? 'common.white' : 'common.black')} · {openings.filter((o) => o.color === c).length}
               </Text>
             </Pressable>
           );
@@ -53,7 +55,7 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
             key={course.id}
             onPress={() => onOpenCourse(course)}
             accessibilityRole="button"
-            accessibilityLabel={`${course.name}, ${done} de ${course.lessons.length} lecciones`}
+            accessibilityLabel={t('openings.cardLabel', { name: course.name, done, total: course.lessons.length })}
             style={({ pressed }) => [styles.card, pressed && { transform: [{ translateY: 2 }], borderBottomWidth: 2 }]}
           >
             <Text style={styles.cardTitle}>{course.name}</Text>
@@ -68,7 +70,7 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
             </View>
             <View style={styles.chips}>
               {course.botStyles.map((s) => (
-                <Chip key={s} label={`Bot ${s}`} />
+                <Chip key={s} label={t('openings.botChip', { style: t(`botStyle.${s as BotStyle}`) })} />
               ))}
             </View>
           </Pressable>

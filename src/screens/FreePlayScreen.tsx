@@ -14,7 +14,7 @@ import {
 import { useIsFocused } from 'expo-router';
 import { Chess, Square } from 'chess.js';
 import { movesText, Notation, resolveNotation, sanFromEnglish } from '../chess/notation';
-import { useI18n } from '../i18n/I18nContext';
+import { MessageKey, useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
 import { Board, BoardMove } from '../components/Board';
 import { Button3D } from '../components/Button3D';
@@ -23,20 +23,19 @@ import { AnalysisUpdate, EngineLine, UciEngine } from '../engine/uci';
 import { colors, fonts, radius, space } from '../theme';
 
 type LastMove = { from: Square; to: Square } | null;
+type Translate = (key: MessageKey, values?: Record<string, string | number>) => string;
 
 const ANALYSIS_DEPTH = 20; // profundidad máxima del análisis en vivo (después el motor descansa)
 const TOP_LINES = 3; // mejores jugadas que se muestran
 const PV_SHOWN = 6; // jugadas de cada variante que se muestran
 
-function statusText(chess: Chess): string {
-  const side = chess.turn() === 'w' ? 'blancas' : 'negras';
-  if (chess.isCheckmate()) {
-    return `Jaque mate · ganan las ${chess.turn() === 'w' ? 'negras' : 'blancas'}`;
-  }
-  if (chess.isStalemate()) return 'Tablas por rey ahogado';
-  if (chess.isDraw()) return 'Tablas';
-  if (chess.isCheck()) return `Jaque · juegan las ${side}`;
-  return `Juegan las ${side}`;
+function statusText(chess: Chess, t: Translate): string {
+  const white = chess.turn() === 'w';
+  if (chess.isCheckmate()) return t(white ? 'analysis.mateBlackWins' : 'analysis.mateWhiteWins');
+  if (chess.isStalemate()) return t('analysis.stalemate');
+  if (chess.isDraw()) return t('analysis.draw');
+  if (chess.isCheck()) return t(white ? 'analysis.checkWhite' : 'analysis.checkBlack');
+  return t(white ? 'common.whiteToMove' : 'common.blackToMove');
 }
 
 /** Evaluación desde el punto de vista de las blancas (el motor la da para el bando que mueve). */
@@ -44,11 +43,11 @@ const whiteScore = (line: EngineLine, turn: 'w' | 'b') => (turn === 'w' ? line.s
 
 const isMate = (score: number) => Math.abs(score) >= 9000;
 
-/** "+1,3", "−0,4", "M3" (mate de las blancas en 3), "−M2" (mate de las negras en 2). */
-function formatScore(score: number): string {
+/** "+1,3", "−0,4", "M3" (mate de las blancas en 3), "−M2" (mate de las negras en 2). `decimal` es el separador del idioma. */
+function formatScore(score: number, decimal: string): string {
   if (isMate(score)) return `${score > 0 ? '' : '−'}M${10000 - Math.abs(score)}`;
-  const pawns = (Math.abs(score) / 100).toFixed(1).replace('.', ',');
-  return score > 0 ? `+${pawns}` : score < 0 ? `−${pawns}` : '0,0';
+  const pawns = (Math.abs(score) / 100).toFixed(1).replace('.', decimal);
+  return score > 0 ? `+${pawns}` : score < 0 ? `−${pawns}` : `0${decimal}0`;
 }
 
 /** Parte de la barra que es blanca (0 a 1). Misma curva que Lichess: ±4 peones ≈ 90 %. */
@@ -81,19 +80,20 @@ function pvText(fen: string, pv: string[], notation: Notation): { first: string;
 }
 
 /** Barra de evaluación: blanco a la izquierda, negro a la derecha; se desliza al cambiar. */
-function EvalBar({ score }: { score: number | null }) {
+function EvalBar({ score, decimal }: { score: number | null; decimal: string }) {
+  const { t } = useI18n();
   const share = score === null ? 0.5 : whiteShare(score);
   const [w] = useState(() => new Animated.Value(share));
   useEffect(() => {
     Animated.timing(w, { toValue: share, duration: 350, easing: Easing.out(Easing.cubic), useNativeDriver: false }).start();
   }, [w, share]);
-  const label = score === null ? '' : formatScore(score);
+  const label = score === null ? '' : formatScore(score, decimal);
   const whiteAhead = score === null || score >= 0;
   // Mismo ancho que el tablero (Board calcula su tamaño igual).
   const { width } = useWindowDimensions();
   const boardPx = Math.floor(Math.min(width - 32, 480) / 8) * 8;
   return (
-    <View style={[styles.bar, { width: boardPx }]} accessibilityLabel={`Evaluación ${label || 'pendiente'}`}>
+    <View style={[styles.bar, { width: boardPx }]} accessibilityLabel={label ? t('analysis.evalLabel', { score: label }) : t('analysis.evalPending')}>
       <Animated.View
         style={[styles.barWhite, { width: w.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }) }]}
       />
@@ -108,8 +108,10 @@ function EvalBar({ score }: { score: number | null }) {
 
 export function FreePlayScreen() {
   const { settings } = useSettings();
-  const { language } = useI18n();
+  const { language, t } = useI18n();
   const notation = resolveNotation(settings.notation, language);
+  // Separador decimal del idioma (en español, la coma).
+  const decimal = language === 'en' ? '.' : ',';
   // La partida vive aquí; el tablero solo recibe la posición (FEN).
   const [chess] = useState(() => new Chess());
   const [fen, setFen] = useState(chess.fen());
@@ -194,11 +196,11 @@ export function FreePlayScreen() {
       {engineOn && !engineError && <EngineView key={engineKey} onReady={setEngine} onError={setEngineError} />}
 
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
-        <Text style={styles.title}>Análisis</Text>
-        <Text style={styles.subtitle}>Tablero libre: mueve las piezas y Stockfish analiza la posición</Text>
+        <Text style={styles.title}>{t('analysis.title')}</Text>
+        <Text style={styles.subtitle}>{t('analysis.subtitle')}</Text>
 
         <View style={{ height: space.lg }} />
-        {engineOn && <EvalBar score={barScore} />}
+        {engineOn && <EvalBar score={barScore} decimal={decimal} />}
         <Board
           fen={fen}
           orientation={orientation}
@@ -214,16 +216,16 @@ export function FreePlayScreen() {
               <Text style={styles.question}>Stockfish</Text>
               <Text style={styles.engineMeta}>
                 {!engineOn
-                  ? 'Apagado'
+                  ? t('analysis.engineOff')
                   : engineError
-                    ? 'No responde'
+                    ? t('analysis.engineDown')
                     : !engine
-                      ? 'Iniciando…'
+                      ? t('analysis.starting')
                       : gameOver
-                        ? 'Partida terminada'
+                        ? t('analysis.over')
                         : current
-                          ? `Profundidad ${current.depth}${current.done ? '' : '…'}`
-                          : 'Pensando…'}
+                          ? t(current.done ? 'analysis.depth' : 'analysis.depthRunning', { n: current.depth })
+                          : t('analysis.thinking')}
               </Text>
             </View>
             <Switch
@@ -231,12 +233,12 @@ export function FreePlayScreen() {
               onValueChange={toggleEngine}
               trackColor={{ false: colors.surfaceRaised, true: colors.primaryShadow }}
               thumbColor={engineOn ? colors.primary : colors.textMuted}
-              accessibilityLabel="Motor de análisis"
+              accessibilityLabel={t('analysis.switchLabel')}
             />
           </View>
 
           {engineOn && engineError && (
-            <Button3D label="Reintentar" variant="danger" onPress={retryEngine} style={{ marginTop: space.md }} />
+            <Button3D label={t('common.retry')} variant="danger" onPress={retryEngine} style={{ marginTop: space.md }} />
           )}
 
           {engineOn && !engineError && !gameOver &&
@@ -247,12 +249,12 @@ export function FreePlayScreen() {
                   key={line.rank}
                   onPress={() => playUci(line.move)}
                   accessibilityRole="button"
-                  accessibilityLabel={`Jugar ${text.first}`}
+                  accessibilityLabel={t('analysis.playLabel', { move: text.first })}
                   style={({ pressed }) => [styles.line, pressed && { backgroundColor: colors.surfaceRaised }]}
                 >
                   <View style={[styles.scoreChip, whiteScore(line, turn) < 0 && styles.scoreChipBlack]}>
                     <Text style={[styles.scoreText, whiteScore(line, turn) < 0 && { color: colors.text }]}>
-                      {formatScore(whiteScore(line, turn))}
+                      {formatScore(whiteScore(line, turn), decimal)}
                     </Text>
                   </View>
                   <Text style={styles.pv} numberOfLines={1}>
@@ -266,16 +268,16 @@ export function FreePlayScreen() {
 
         <View style={{ height: space.md }} />
         <View style={styles.card}>
-          <Text style={styles.question}>{statusText(chess)}</Text>
+          <Text style={styles.question}>{statusText(chess, t)}</Text>
           <Text style={styles.notation}>{movesText(chess.history(), 8, notation)}</Text>
         </View>
 
         <View style={{ height: space.lg }} />
         <View style={styles.row}>
-          {gameOver && <Button3D label="Nueva partida" variant="primary" onPress={reset} />}
-          <Button3D label="Deshacer" onPress={undo} />
-          <Button3D label="Voltear" onPress={() => setOrientation((o) => (o === 'w' ? 'b' : 'w'))} />
-          {!gameOver && <Button3D label="Reiniciar" variant="destructive" onPress={reset} />}
+          {gameOver && <Button3D label={t('analysis.newGame')} variant="primary" onPress={reset} />}
+          <Button3D label={t('analysis.undo')} onPress={undo} />
+          <Button3D label={t('analysis.flip')} onPress={() => setOrientation((o) => (o === 'w' ? 'b' : 'w'))} />
+          {!gameOver && <Button3D label={t('analysis.reset')} variant="destructive" onPress={reset} />}
         </View>
       </ScrollView>
     </View>

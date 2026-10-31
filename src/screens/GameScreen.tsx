@@ -17,6 +17,7 @@ import { useFeedback } from '../feedback/feedback';
 import { useProgress } from '../progress/ProgressContext';
 import { gameCountsForStreak } from '../progress/streak';
 import { useI18n } from '../i18n/I18nContext';
+import { es, MessageKey } from '../i18n/es';
 import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -30,7 +31,8 @@ type Props = {
   onOtherBot: () => void;
 };
 
-type Result = { kind: 'win' | 'loss' | 'draw'; reason: string };
+// `reason` es una clave de es.ts; en el historial se guarda su texto en español, como antes.
+type Result = { kind: 'win' | 'loss' | 'draw'; reason: MessageKey };
 // Resultado ya guardado, con las monedas ganadas (victoria), el premio del día y si se recuperó la racha.
 type Finished = Result & { coins: number; dailyBonus: number; streakRecovered: boolean };
 
@@ -46,7 +48,7 @@ const GOOD_MOVE_DELTA = 150;
 export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, onOtherBot }: Props) {
   const { finishGame } = useProgress();
   const { settings } = useSettings();
-  const { language } = useI18n();
+  const { language, t } = useI18n();
   const feedback = useFeedback();
   const [chess] = useState(() => new Chess());
   const [fen, setFen] = useState(chess.fen());
@@ -55,7 +57,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const [engineError, setEngineError] = useState<string | null>(null);
   const [engineKey, setEngineKey] = useState(0);
   const [speech, setSpeech] = useState(
-    practiceCourse ? `Practiquemos la ${practiceCourse.name}. Sigue la línea que aprendiste.` : bot.lines.greeting
+    practiceCourse ? t('game.practiceSpeech', { name: practiceCourse.name }) : bot.lines.greeting
   );
   const [result, setResult] = useState<Finished | null>(null);
 
@@ -92,13 +94,13 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
       finished.current = true;
       if (r.kind === 'win') feedback.correct();
       else if (r.kind === 'loss') feedback.wrong();
-      setSpeech(r.kind === 'win' ? bot.lines.onLose : r.kind === 'loss' ? bot.lines.onWin : 'Tablas. Buena partida.');
+      setSpeech(r.kind === 'win' ? bot.lines.onLose : r.kind === 'loss' ? bot.lines.onWin : t('game.drawSpeech'));
       const earned = finishGame(
         {
           botId: bot.id,
           userColor,
           result: r.kind,
-          reason: r.reason,
+          reason: es[r.reason],
           moves: chess.history({ verbose: true }).map((m) => m.from + m.to + (m.promotion ?? '')),
           practiceCourseId: practiceCourse?.id,
         },
@@ -108,21 +110,21 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
       );
       setResult({ ...r, ...earned });
     },
-    [bot, chess, finishGame, practiceCourse, userColor, feedback]
+    [bot, chess, finishGame, practiceCourse, userColor, feedback, t]
   );
 
   /** Revisa si la partida terminó después de una jugada. */
   const checkEnd = () => {
     if (chess.isCheckmate()) {
-      end({ kind: chess.turn() === userColor ? 'loss' : 'win', reason: 'Jaque mate' });
+      end({ kind: chess.turn() === userColor ? 'loss' : 'win', reason: 'game.reason.checkmate' });
     } else if (chess.isStalemate()) {
-      end({ kind: 'draw', reason: 'Rey ahogado' });
+      end({ kind: 'draw', reason: 'game.reason.stalemate' });
     } else if (chess.isInsufficientMaterial()) {
-      end({ kind: 'draw', reason: 'Material insuficiente' });
+      end({ kind: 'draw', reason: 'game.reason.insufficient' });
     } else if (chess.isThreefoldRepetition()) {
-      end({ kind: 'draw', reason: 'Triple repetición' });
+      end({ kind: 'draw', reason: 'game.reason.threefold' });
     } else if (chess.isDraw()) {
-      end({ kind: 'draw', reason: 'Regla de las 50 jugadas' });
+      end({ kind: 'draw', reason: 'game.reason.fifty' });
     }
   };
 
@@ -135,7 +137,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
         if (cancelled || !alive.current) return;
         if (!move.fromBook && inBook.current) {
           inBook.current = false;
-          if (practiceCourse) setSpeech('Salimos de la línea. Desde aquí jugamos libre.');
+          if (practiceCourse) setSpeech(t('game.leftBook'));
         }
         // Frases según cómo cambió la evaluación desde su jugada anterior.
         if (!move.fromBook && move.score !== undefined) {
@@ -180,18 +182,18 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   };
 
   const resign = () =>
-    Alert.alert('¿Rendirte?', 'La partida cuenta como derrota.', [
-      { text: 'Seguir jugando', style: 'cancel' },
-      { text: 'Rendirme', style: 'destructive', onPress: () => end({ kind: 'loss', reason: 'Te rendiste' }, true) },
+    Alert.alert(t('game.resign.title'), t('game.resign.message'), [
+      { text: t('game.keepPlaying'), style: 'cancel' },
+      { text: t('game.resign.confirm'), style: 'destructive', onPress: () => end({ kind: 'loss', reason: 'game.reason.resigned' }, true) },
     ]);
 
   const offerDraw = () => {
     // Acepta si no está ganando y ya se jugó un buen rato, o si está claramente perdido.
     const score = prevScore.current ?? 0;
     if ((score <= 50 && chess.moveNumber() >= 20) || score <= -300) {
-      end({ kind: 'draw', reason: 'Tablas de mutuo acuerdo' });
+      end({ kind: 'draw', reason: 'game.reason.agreed' });
     } else {
-      setSpeech(`${bot.name} no acepta las tablas. Sigamos jugando.`);
+      setSpeech(t('game.drawRefused', { name: bot.name }));
     }
   };
 
@@ -200,13 +202,13 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
       onExit();
       return;
     }
-    Alert.alert('¿Abandonar la partida?', 'Cuenta como derrota.', [
-      { text: 'Seguir jugando', style: 'cancel' },
+    Alert.alert(t('game.abandon.title'), t('game.abandon.message'), [
+      { text: t('game.keepPlaying'), style: 'cancel' },
       {
-        text: 'Abandonar',
+        text: t('game.abandon.confirm'),
         style: 'destructive',
         onPress: () => {
-          end({ kind: 'loss', reason: 'Abandonaste la partida' }, true);
+          end({ kind: 'loss', reason: 'game.reason.abandoned' }, true);
           onExit();
         },
       },
@@ -225,14 +227,14 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const userTurn = !!engine && !result && chess.turn() === userColor;
   const thinking = !!engine && !result && chess.turn() === botColor;
   const status = engineError
-    ? 'El motor no responde'
+    ? t('game.status.engineDown')
     : !engine
-      ? `Preparando a ${bot.name}…`
+      ? t('game.status.preparing', { name: bot.name })
       : result
-        ? 'Partida terminada'
+        ? t('game.status.over')
         : thinking
-          ? 'Pensando…'
-          : 'Te toca';
+          ? t('game.status.thinking')
+          : t('game.status.yourTurn');
 
   return (
     <View style={styles.screen}>
@@ -249,10 +251,10 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
 
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
         <View style={styles.topRow}>
-          <Pressable onPress={exit} accessibilityRole="button" accessibilityLabel="Salir de la partida" hitSlop={12}>
+          <Pressable onPress={exit} accessibilityRole="button" accessibilityLabel={t('game.exitLabel')} hitSlop={12}>
             <Text style={styles.close}>✕</Text>
           </Pressable>
-          {practiceCourse && <Chip label={`Práctica: ${practiceCourse.name}`} />}
+          {practiceCourse && <Chip label={t('game.practiceChip', { name: practiceCourse.name })} />}
         </View>
 
         {/* El bot: arriba, como en un tablero real */}
@@ -278,17 +280,17 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
         />
 
         <View style={styles.youRow}>
-          <Text style={styles.playerName}>Tú</Text>
-          <Text style={styles.playerMeta}>{userColor === 'w' ? 'blancas' : 'negras'}</Text>
-          {opening && <Text style={styles.opening}>Apertura: {opening.name}</Text>}
+          <Text style={styles.playerName}>{t('game.you')}</Text>
+          <Text style={styles.playerMeta}>{userColor === 'w' ? t('game.colorWhite') : t('game.colorBlack')}</Text>
+          {opening && <Text style={styles.opening}>{t('game.opening', { name: opening.name })}</Text>}
         </View>
         <Text style={styles.notation}>{movesText(sans, 8, resolveNotation(settings.notation, language))}</Text>
 
         {engineError && (
           <View style={styles.errorCard}>
-            <Text style={styles.errorText}>El motor de ajedrez no responde. Prueba otra vez: la partida sigue donde estaba.</Text>
+            <Text style={styles.errorText}>{t('game.engineError')}</Text>
             <Button3D
-              label="Reintentar"
+              label={t('common.retry')}
               variant="danger"
               onPress={() => {
                 setEngineError(null);
@@ -302,8 +304,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
 
         {!result && !engineError && (
           <View style={styles.actions}>
-            <Button3D label="Ofrecer tablas" onPress={offerDraw} style={{ flex: 1 }} />
-            <Button3D label="Rendirse" variant="destructive" onPress={resign} style={{ flex: 1 }} />
+            <Button3D label={t('game.offerDraw')} onPress={offerDraw} style={{ flex: 1 }} />
+            <Button3D label={t('game.resignButton')} variant="destructive" onPress={resign} style={{ flex: 1 }} />
           </View>
         )}
       </ScrollView>
@@ -321,30 +323,30 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
               { color: result.kind === 'win' ? colors.primary : result.kind === 'loss' ? colors.danger : colors.text },
             ]}
           >
-            {result.kind === 'win' ? 'Ganaste' : result.kind === 'loss' ? 'Perdiste' : 'Tablas'}
+            {result.kind === 'win' ? t('game.win') : result.kind === 'loss' ? t('game.loss') : t('game.draw')}
           </Text>
-          <Text style={styles.resultReason}>{result.reason}</Text>
+          <Text style={styles.resultReason}>{t(result.reason)}</Text>
           {result.coins > 0 && (
             <View style={styles.coinsRow}>
               <StatIcon name="coin" size={18} />
-              <Text style={[styles.coinsText, { marginTop: 0 }]}>+{result.coins} monedas</Text>
+              <Text style={[styles.coinsText, { marginTop: 0 }]}>{t('game.coins', { n: result.coins })}</Text>
             </View>
           )}
           {result.kind === 'win' && result.coins === 0 && !practiceCourse && (
-            <Text style={styles.coinsNote}>Las monedas por ganarle a cada bot se dan una vez por día.</Text>
+            <Text style={styles.coinsNote}>{t('game.coinsNote')}</Text>
           )}
           {result.dailyBonus > 0 && (
-            <Text style={styles.coinsText}>Premio del día: +{result.dailyBonus} monedas.</Text>
+            <Text style={styles.coinsText}>{t('common.dailyBonus', { n: result.dailyBonus })}</Text>
           )}
-          {result.streakRecovered && <Text style={styles.coinsText}>Recuperaste tu racha.</Text>}
+          {result.streakRecovered && <Text style={styles.coinsText}>{t('common.streakRecovered')}</Text>}
           <Button3D
-            label={practiceCourse ? 'Practicar otra vez' : 'Revancha'}
+            label={practiceCourse ? t('game.rematchPractice') : t('game.rematch')}
             variant="primary"
             onPress={onRematch}
             style={{ marginTop: space.md }}
           />
           <Button3D
-            label={practiceCourse ? 'Volver a la apertura' : 'Elegir otro bot'}
+            label={practiceCourse ? t('game.backToOpening') : t('game.otherBot')}
             onPress={onOtherBot}
             style={{ marginTop: space.sm }}
           />

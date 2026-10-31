@@ -1,0 +1,148 @@
+{
+  "title": "Ouverture et stratégie",
+  "lessons": {
+    "u4-l01": {
+      "title": "Principes d'ouverture",
+      "summary": "Centre, développement et roque",
+      "steps": {
+        "u4-l01-s01": { "text": "Dans l'ouverture, il y a trois idées : occuper le centre avec des pions, sortir les pièces (les développer) et roquer pour mettre le roi à l'abri." },
+        "u4-l01-s02": { "prompt": "Touche les 4 cases du centre.", "hint": "Ce sont les 4 cases du milieu de l'échiquier." },
+        "u4-l01-s03": { "prompt": "Premier coup : occupe le centre avec un pion.", "hint": "Avance de deux cases le pion de la colonne e ou celui de la colonne d.", "success": "Correct. Le pion occupe le centre et ouvre la voie à tes pièces." },
+        "u4-l01-s04": { "text": "Ensuite, développe : d'abord les cavaliers et les fous, vers le centre. Les tours et la dame sortent plus tard, quand la voie est libre." },
+        "u4-l01-s05": { "prompt": "Développe un cavalier ou un fou vers le centre.", "hint": "Sors un cavalier ou un fou sur une case d'où il regarde le centre.", "success": "Correct. Une pièce de plus en jeu." },
+        "u4-l01-s06": {
+          "prompt": "Quel coup suit les principes d'ouverture ?",
+          "options": ["Cf3", "h4", "Dh5"],
+          "explanation": "Cf3 développe un cavalier et attaque le pion e5. h4 ne développe rien, et Dh5 sort la dame si tôt que l'adversaire peut l'attaquer en gagnant du temps.",
+          "feedback": ["", "h4 ne sort aucune pièce et n'occupe pas le centre.", "La dame sort trop tôt : l'adversaire l'attaquera en développant ses pièces."]
+        },
+        "u4-l01-s07": { "prompt": "Tu as développé tes pièces du côté du roi. Roque.", "hint": "Déplace le roi de deux cases vers la tour en h1.", "success": "Correct. Le roi est à l'abri et la tour est prête à jouer." },
+        "u4-l01-s08": {
+          "prompt": "À quoi sert de roquer tôt ?",
+          "options": ["Mettre le roi à l'abri et relier les tours", "Attaquer le roi adverse", "Gagner un pion"],
+          "explanation": "Le roi quitte le centre, où les colonnes s'ouvrent, et la tour vient vers le milieu.",
+          "feedback": ["", "Le roque est un coup de défense et de développement, pas d'attaque.", "Le roque ne prend rien."]
+        }
+      }
+    },
+    "u4-l02": {
+      "title": "Erreurs typiques d'ouverture",
+      "summary": "Ce qu'il vaut mieux éviter",
+      "steps": {
+        "u4-l02-s01": { "text": "Si tu sors la dame tôt, l'adversaire l'attaque tout en développant ses pièces, et tu perds du temps à la déplacer encore." },
+        "u4-l02-s02": {
+          "prompt": "Les Noirs ont sorti la dame en d5. Quel coup l'attaque tout en développant une pièce ?",
+          "options": ["Cc3", "Dg4", "h3"],
+          "explanation": "Cc3 sort un cavalier et attaque la dame : les Noirs doivent la déplacer de nouveau.",
+          "feedback": ["", "Dg4 sort ta dame tôt, et en plus la perd : le fou en c8 la prend.", "h3 ne développe rien et n'attaque pas la dame."]
+        },
+        "u4-l02-s03": { "prompt": "Attaque la dame noire en développant une pièce.", "hint": "Un cavalier peut attaquer la dame en d5.", "success": "Correct. Tu as développé avec gain de temps." },
+        "u4-l02-s04": { "text": "Déplacer plusieurs fois la même pièce dans l'ouverture empêche les autres de sortir. Ici, les Blancs ont bougé le cavalier trois fois et il est revenu en f3 ; les Noirs, eux, ont déjà sorti trois pièces." },
+        "u4-l02-s05": {
+          "prompt": "Lequel de ces coups perd du temps ?",
+          "options": ["Cg1", "Fc4", "d4"],
+          "explanation": "Cg1 ramène le cavalier sur sa case : c'est défaire un coup de développement.",
+          "feedback": ["", "Fc4 développe un fou vers le centre : c'est un bon coup.", "d4 attaque le centre : c'est un bon coup."]
+        },
+        "u4-l02-s06": { "text": "Laisser le roi au centre est dangereux quand la colonne e s'ouvre. Ici, le fou noir en e7 est cloué : s'il bouge, la tour fait échec." },
+        "u4-l02-s07": { "prompt": "Les Noirs n'ont pas roqué et la colonne e est ouverte. Places-y une pièce majeure, face à leur roi.", "hint": "Une tour ou la dame sur la colonne e visent le roi noir.", "success": "Correct. Le fou en e7 est maintenant cloué et le roi noir est mal à l'aise." },
+        "u4-l02-s08": { "text": "En résumé : ne sors pas la dame trop tôt, ne déplace pas plusieurs fois la même pièce et ne laisse pas le roi au centre." }
+      }
+    },
+    "u4-l03": {
+      "title": "Structure de pions",
+      "summary": "Pions isolés, doublés et passés",
+      "steps": {
+        "u4-l03-s01": { "text": "Un pion isolé n'a aucun pion de son camp sur les colonnes voisines : aucun pion ne peut le défendre. Ici, le pion blanc en d4 est isolé." },
+        "u4-l03-s02": { "prompt": "Touche le pion noir isolé.", "hint": "Cherche un pion noir sans pion noir sur les colonnes voisines." },
+        "u4-l03-s03": { "text": "Les pions doublés sont sur la même colonne, l'un devant l'autre. Ils se gênent pour avancer et ne peuvent pas se défendre entre eux." },
+        "u4-l03-s04": {
+          "prompt": "Sur combien de colonnes les Blancs ont-ils des pions doublés ?",
+          "options": ["Aucune", "Une", "Deux"],
+          "explanation": "Sur deux : la colonne c (c2 et c3) et la colonne f (f2 et f3).",
+          "feedback": ["Regarde les colonnes c et f.", "Il y en a plus d'une : regarde aussi la colonne f.", ""]
+        },
+        "u4-l03-s05": { "text": "Un pion passé n'a aucun pion adverse devant lui, ni sur sa colonne ni sur les colonnes voisines : rien ne l'empêche d'avancer. C'est un gros avantage en finale." },
+        "u4-l03-s06": { "prompt": "Touche le pion passé des Blancs.", "hint": "Cherche un pion blanc sans pion noir devant lui, ni sur sa colonne ni sur les colonnes voisines." },
+        "u4-l03-s07": { "prompt": "Le roi noir se rapproche. Avance ton pion passé sans perdre de temps.", "hint": "Si tu n'avances pas maintenant, le roi noir arrive à temps pour arrêter le pion.", "success": "Correct. Le roi noir ne rattrape plus le pion : il va atteindre la promotion." },
+        "u4-l03-s08": {
+          "prompt": "Quelle est la faiblesse d'un pion isolé ?",
+          "options": ["Aucun pion ne peut le défendre", "Il ne peut pas avancer", "Il est toujours perdu"],
+          "explanation": "Seules les pièces peuvent le défendre, et elles restent alors attachées à sa garde. Mais un pion isolé n'est pas toujours perdu.",
+          "feedback": ["", "Il peut avancer si la case devant lui est libre.", "Pas toujours : c'est une faiblesse, pas une perte assurée."]
+        },
+        "u4-l03-s09": { "prompt": "Promeus ton pion passé.", "hint": "Avance le pion : compte s'il arrive à la promotion avant celui de l'adversaire.", "success": "Bien résolu : cette position vient d'une vraie partie." },
+        "u4-l03-s10": { "prompt": "Promeus ton pion passé.", "hint": "Avance le pion : compte s'il arrive à la promotion avant celui de l'adversaire.", "success": "Bien résolu : cette position vient d'une vraie partie." }
+      }
+    },
+    "u4-l04": {
+      "title": "Colonnes ouvertes et tours actives",
+      "summary": "Là où les tours jouent le mieux",
+      "steps": {
+        "u4-l04-s01": { "text": "Une colonne ouverte est une colonne sans pions. Les tours sont bien plus fortes sur les colonnes ouvertes : de là, elles peuvent entrer dans le camp adverse." },
+        "u4-l04-s02": {
+          "prompt": "Quelle colonne est ouverte ?",
+          "options": ["La colonne d", "La colonne e", "La colonne c"],
+          "explanation": "Sur la colonne d, il n'y a aucun pion.",
+          "feedback": ["", "Sur la colonne e, il y a des pions des deux camps.", "Sur la colonne c, il y a des pions des deux camps."]
+        },
+        "u4-l04-s03": { "prompt": "Place une tour sur la colonne ouverte.", "hint": "N'importe laquelle de tes deux tours peut aller en d1.", "success": "Correct. La tour contrôle la colonne ouverte." },
+        "u4-l04-s04": { "text": "Deux tours sur la même colonne sont doublées : elles se protègent entre elles et font deux fois plus pression." },
+        "u4-l04-s05": { "prompt": "Double les tours sur la colonne d.", "hint": "Amène la tour en e2 sur la colonne d, devant l'autre.", "success": "Correct. Les tours sont doublées." },
+        "u4-l04-s06": { "text": "Une tour sur la septième rangée attaque les pions qui n'ont pas encore bougé et enferme le roi adverse sur la dernière rangée." },
+        "u4-l04-s07": { "prompt": "Amène ta tour sur la septième rangée.", "hint": "La colonne d est ouverte : la tour va jusqu'en d7.", "success": "Correct. La tour attaque les pions b7 et f7." }
+      }
+    },
+    "u4-l05": {
+      "title": "Cases faibles et avant-postes",
+      "summary": "Des cases que les pions ne couvrent plus",
+      "steps": {
+        "u4-l05-s01": { "text": "Une case faible est une case qu'aucun pion adverse ne peut défendre, ni maintenant ni plus tard. Ici, les Noirs ont joué e5 sans pion sur la colonne c : aucun pion noir ne peut garder d5." },
+        "u4-l05-s02": { "prompt": "Touche la case faible du centre, du côté des Noirs : aucun pion noir ne peut la défendre.", "hint": "Les pions noirs d5 et f5 l'ont déjà dépassée : la case entre les deux, devant e6, est restée sans défense." },
+        "u4-l05-s03": { "text": "Un avant-poste est une case faible de l'adversaire où ta pièce, presque toujours un cavalier, est protégée par un de tes pions. De là, personne ne peut la chasser." },
+        "u4-l05-s04": { "prompt": "Amène le cavalier sur l'avant-poste.", "hint": "La case faible des Noirs est au centre, et ton pion d4 la protège.", "success": "Correct. Le cavalier en e5 est protégé et aucun pion noir ne peut le chasser." },
+        "u4-l05-s05": {
+          "prompt": "Pourquoi le cavalier en d5 est-il si fort ?",
+          "options": ["Aucun pion noir ne peut le chasser", "Il fait échec au roi", "Il attaque la dame"],
+          "explanation": "Il est sur une case faible : pour s'en débarrasser, les Noirs devraient l'échanger contre une pièce.",
+          "feedback": ["", "Le cavalier en d5 ne fait pas échec.", "Il n'attaque pas la dame : sa force, c'est que personne ne peut le chasser."]
+        },
+        "u4-l05-s06": {
+          "prompt": "Laquelle de ces cases est un bon avant-poste pour ton cavalier ?",
+          "options": ["e5", "c5", "g5"],
+          "explanation": "e5 est protégée par ton pion d4 et aucun pion noir ne peut l'attaquer.",
+          "feedback": ["", "Le pion b7 peut avancer en b6 et chasser le cavalier.", "Aucun de tes pions ne protège g5, et le pion h7 peut chasser le cavalier."]
+        },
+        "u4-l05-s07": { "text": "Avant de bouger un pion, pense aux cases qu'il cesse de défendre : un pion ne peut pas reculer, et ces cases restent faibles pour toujours." }
+      }
+    },
+    "u4-l06": {
+      "title": "La paire de fous",
+      "summary": "Deux fous ensemble valent plus",
+      "steps": {
+        "u4-l06-s01": { "text": "Les deux fous ensemble couvrent des cases des deux couleurs. Dans les positions ouvertes, la paire de fous vaut souvent plus qu'un fou et un cavalier." },
+        "u4-l06-s02": {
+          "prompt": "Quel camp a la paire de fous ?",
+          "options": ["Les Blancs", "Les Noirs", "Aucun"],
+          "explanation": "Les Noirs ont les deux fous. Les Blancs ont un fou et un cavalier.",
+          "feedback": ["Les Blancs ont un fou et un cavalier.", "", "Un des camps a ses deux fous."]
+        },
+        "u4-l06-s03": { "text": "Quand le centre est fermé par des chaînes de pions, les fous butent contre elles et les cavaliers, qui sautent, sont souvent mieux placés. Quand le centre s'ouvre, les fous prennent le dessus." },
+        "u4-l06-s04": {
+          "prompt": "Le centre est fermé par des pions. Quelle pièce est souvent la meilleure dans ce genre de position ?",
+          "options": ["Le cavalier", "Le fou"],
+          "explanation": "En général, avec le centre bloqué, les cavaliers sautent par-dessus les pions et les fous restent enfermés.",
+          "feedback": ["", "Les fous ont besoin de diagonales ouvertes : ici, ils butent contre les pions."]
+        },
+        "u4-l06-s05": { "prompt": "Tu as la paire de fous. Fais une percée au centre avec un pion pour ouvrir la position.", "hint": "Un pion du centre peut avancer au contact du pion e5.", "success": "Correct. Si des pions s'échangent, des diagonales s'ouvrent pour tes fous." },
+        "u4-l06-s06": {
+          "prompt": "Dans une position ouverte, vaut-il la peine d'échanger un de tes fous contre le cavalier adverse ?",
+          "options": ["Non, sauf pour gagner quelque chose : tu perdrais la paire de fous", "Oui, c'est toujours bon"],
+          "explanation": "Sans raison concrète, il vaut mieux garder la paire de fous, surtout si la position va s'ouvrir.",
+          "feedback": ["", "Pas toujours : la paire de fous est un avantage qu'il vaut mieux garder."]
+        },
+        "u4-l06-s07": { "text": "En résumé : si tu as la paire de fous, cherche à ouvrir la position. Si c'est l'adversaire qui l'a, essaie de la garder fermée." }
+      }
+    }
+  }
+}

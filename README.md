@@ -29,7 +29,7 @@ En `docs/`: diseño, formato de las lecciones, mapa de pantallas, bots, motor y 
 
 ## Licencia
 
-Copyright (C) 2026 Gradus Chess
+Copyright (C) 2026 Gradus Studio
 
 Este programa es software libre: puedes redistribuirlo y modificarlo según los términos de la Licencia Pública General GNU (GNU GPL) publicada por la Free Software Foundation, versión 3 o, a tu elección, cualquier versión posterior.
 

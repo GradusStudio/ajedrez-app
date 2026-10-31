@@ -2,7 +2,7 @@
   "pipo": {
     "name": "Pipo",
     "tagline": "Der Neugierige",
-    "trait": "Zieht die Figuren in bester Absicht, vergisst aber, sie zu decken. Schnappt sich alles, was du ungedeckt lässt, und läuft in einfache Mattbilder.",
+    "trait": "Zieht die Figuren in bester Absicht, vergisst aber, sie zu decken. Schnappt sich alles, was du ungedeckt lässt, und läuft in einfache Matts.",
     "teaches": "Ungedeckte Figuren schlagen und einfache Matts setzen.",
     "lines": {
       "greeting": "Hallo. Ich lerne noch, aber ich spiele total gern.",
@@ -23,7 +23,7 @@
         "Gut gemacht. Ich freue mich, dass du bis zum Ende dabei warst."
       ],
       "reminder": {
-        "risk": "Serientage: {n}. Eine Aktivität heute reicht, damit sie weitergeht.",
+        "risk": "Serientage: {n}. Eine Aktivität heute reicht, damit deine Serie weitergeht.",
         "recovery": "Du kannst sie dir heute zurückholen: mit einer Lektion, einem Puzzle und einer Partie gegen einen Bot. Ich bin dabei.",
         "general": "Ich hätte Lust, ein bisschen mit dir zu spielen. Komm vorbei, wenn du kannst."
       }
@@ -53,7 +53,7 @@
         "Gute Arbeit. Für heute ist alles in Ordnung."
       ],
       "reminder": {
-        "risk": "Serientage: {n}. Eine ruhige Aktivität heute, und sie ist in Sicherheit.",
+        "risk": "Serientage: {n}. Eine ruhige Aktivität heute, und deine Serie ist in Sicherheit.",
         "recovery": "Deine Serie lässt sich noch retten: eine Lektion, ein Puzzle und eine Partie gegen einen Bot, heute.",
         "general": "Wenn du einen ruhigen Moment hast, bin ich hier."
       }
@@ -83,7 +83,7 @@
         "Fertig. Erzähl es ruhig weiter, aber nur heimlich."
       ],
       "reminder": {
-        "risk": "Serientage: {n}. Eine Aktivität heute, und sie bleibt sicher.",
+        "risk": "Serientage: {n}. Eine Aktivität heute, und deine Serie bleibt sicher.",
         "recovery": "Es gibt einen Trick, um deine Serie zurückzuholen: eine Lektion, ein Puzzle und eine Partie gegen einen Bot, heute.",
         "general": "Ich habe etwas Neues für dich vorbereitet. Schau mal rein."
       }
@@ -173,7 +173,7 @@
         "Lektion beendet. Das hat sich gut gefügt."
       ],
       "reminder": {
-        "risk": "Serientage: {n}. Eine Aktivität heute genügt, damit sie weitergeht.",
+        "risk": "Serientage: {n}. Eine Aktivität heute genügt, damit deine Serie weitergeht.",
         "recovery": "So holst du deine Serie zurück: eine Lektion, ein Puzzle und eine Partie gegen einen Bot, heute.",
         "general": "Wenn du Zeit hast, tut dir eine kurze Lektion gut."
       }
@@ -198,12 +198,12 @@
         "Komm rein. Diese Lektion wird langsam aufgebaut."
       ],
       "close": [
-        "Fertig. Das steht fest.",
+        "Fertig. Das steht.",
         "Lektion beendet. Ein gutes Fundament für das, was kommt.",
         "Gut. Geduld bringt dich weit."
       ],
       "reminder": {
-        "risk": "Serientage: {n}. Eine Aktivität heute, und sie bleibt stehen.",
+        "risk": "Serientage: {n}. Eine Aktivität heute, und deine Serie steht.",
         "recovery": "Um deine Serie heute wieder aufzubauen, brauchst du eine Lektion, ein Puzzle und eine Partie gegen einen Bot.",
         "general": "Ich bin noch hier, ohne Eile. Komm, wann du willst."
       }
@@ -263,7 +263,7 @@
         "Gut gemacht. Das Detail macht den Unterschied."
       ],
       "reminder": {
-        "risk": "Serientage: {n}. Eine Aktivität heute, und sie bleibt lebendig.",
+        "risk": "Serientage: {n}. Eine Aktivität heute, und deine Serie bleibt lebendig.",
         "recovery": "So holst du deine Serie zurück: eine Lektion, ein Puzzle und eine Partie gegen einen Bot, heute.",
         "general": "Ein wenig Übung heute bringt viel. Ich erwarte dich."
       }
@@ -293,7 +293,7 @@
         "Fertig. Das war gut."
       ],
       "reminder": {
-        "risk": "Serientage: {n}. Eine Aktivität heute, und sie bleibt erhalten.",
+        "risk": "Serientage: {n}. Eine Aktivität heute, und deine Serie bleibt erhalten.",
         "recovery": "So holst du deine Serie zurück: eine Lektion, ein Puzzle und eine Partie gegen einen Bot, heute.",
         "general": "Jetzt ist eine gute Zeit zum Üben. Komm rein."
       }

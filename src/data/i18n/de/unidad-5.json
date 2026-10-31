@@ -20,7 +20,7 @@
         "u5-l01-s05": {
           "prompt": "Welcher dieser Züge setzt den schwarzen König patt?",
           "options": ["Dg6", "Dg7", "Dh2+"],
-          "explanation": "Nach Dg6 steht der schwarze König nicht im Schach, hat aber kein Feld mehr: Das ist Patt, und die Partie endet remis. Dg7 ist Matt, weil dein König die Dame deckt.",
+          "explanation": "Nach Dg6 steht der schwarze König nicht im Schach, hat aber kein Feld mehr: Das ist Patt, und die Partie endet remis. Dg7 ist matt, weil dein König die Dame deckt.",
           "feedback": ["", "Dg7 ist Schachmatt: Dein König auf f6 deckt die Dame.", "Dh2+ ist Schach, und der schwarze König entkommt nach g8."]
         },
         "u5-l01-s06": {
@@ -41,7 +41,7 @@
       "summary": "König und Turm gegen König",
       "steps": {
         "u5-l02-s01": { "text": "Der Turm schneidet den gegnerischen König ab: Hier lässt er ihn von der e-Linie aus nicht auf die andere Seite. Dein König kommt näher, und gemeinsam drängen sie ihn an den Rand." },
-        "u5-l02-s02": { "text": "Das Matt fällt am Rand, wenn sich die Könige gegenüberstehen: Dein König deckt die Felder auf der Reihe davor, und der Turm gibt auf der Grundreihe Schach." },
+        "u5-l02-s02": { "text": "Mattgesetzt wird am Rand, wenn sich die Könige gegenüberstehen: Dein König deckt die Felder auf der Reihe davor, und der Turm gibt auf der Grundreihe Schach." },
         "u5-l02-s03": {
           "prompt": "Die Könige stehen sich gegenüber. Setze mit dem Turm matt.",
           "hint": "Bringe den Turm auf die Grundreihe.",
@@ -57,7 +57,7 @@
           "prompt": "Warum sollen sich die Könige fürs Matt gegenüberstehen?",
           "options": ["Dein König deckt die Fluchtfelder auf der Reihe davor", "So kann der schwarze König den Turm nicht schlagen", "Das ist eine Regel: Ohne gegenüberstehende Könige kein Matt"],
           "explanation": "Der Turm gibt auf der Grundreihe Schach, und dein König nimmt dem schwarzen König von gegenüber die drei Felder auf der Reihe davor. Es bleibt kein Ausweg.",
-          "feedback": ["", "Der Turm steht weit weg vom schwarzen König: Es geht nicht ums Schlagen, sondern um die Fluchtfelder.", "Das ist keine Regel: So hat der schwarze König nur keinen Ausweg."]
+          "feedback": ["", "Der Turm steht weit weg vom schwarzen König: Es geht nicht ums Schlagen, sondern um die Fluchtfelder.", "Das ist keine Regel: So nimmst du dem schwarzen König jeden Ausweg."]
         },
         "u5-l02-s07": {
           "prompt": "Setze matt mit König und Turm. Stockfish verteidigt den schwarzen König.",
@@ -167,7 +167,7 @@
           "notes": [
             "Schach von der f-Linie: Der schwarze König entfernt sich noch etwas weiter.",
             "",
-            "Dein Turm geht auf die vierte Reihe. Von dort zieht er später gegen die Schachgebote dazwischen.",
+            "Dein Turm geht auf die vierte Reihe. Von dort zieht er später bei den Schachgeboten dazwischen.",
             "",
             "Dein König gibt das Feld vor dem Bauern frei. Jetzt kann der schwarze Turm nur noch Schach geben.",
             "",
@@ -182,7 +182,7 @@
         },
         "u5-l05-s05": {
           "prompt": "Wozu geht der Turm auf die vierte Reihe?",
-          "options": ["Um gegen die Schachgebote des schwarzen Turms dazwischenzuziehen", "Um den schwarzen König anzugreifen", "Um den Bauern von hinten zu decken"],
+          "options": ["Um bei den Schachgeboten des schwarzen Turms dazwischenzuziehen", "Um den schwarzen König anzugreifen", "Um den Bauern von hinten zu decken"],
           "explanation": "Wenn dein König herauskommt, verfolgt ihn der schwarze Turm mit Schachgeboten. Dein Turm auf der vierten Reihe zieht im richtigen Moment dazwischen: Das ist die Brücke.",
           "feedback": ["", "Der schwarze König ist abgeschnitten und weit weg: Der Turm will ihn nicht angreifen.", "Den Bauern deckt schon dein König. Der Turm ist dazu da, die Schachgebote zu stoppen."]
         },
@@ -191,7 +191,7 @@
           "success": "Richtig. Du hast die Lucena-Stellung gewonnen.",
           "hint": "Mit diesem Zug entgleitet dir der Sieg. Denk an den Plan: Schach, um den König zu vertreiben, Turm auf die vierte Reihe, und dann bringst du deinen König heraus."
         },
-        "u5-l05-s07": { "text": "Zusammenfassung: Vertreibe den gegnerischen König, bringe den Turm auf die vierte Reihe, hol deinen König heraus und ziehe bei den Schachgeboten mit dem Turm dazwischen. Kommt der König der verteidigenden Seite vor den Bauern, ist die Verteidigung eine andere: die Philidor-Stellung, die remis hält." }
+        "u5-l05-s07": { "text": "Zusammenfassung: Vertreibe den gegnerischen König, bringe den Turm auf die vierte Reihe, hol deinen König heraus und ziehe bei den Schachgeboten mit dem Turm dazwischen. Kommt der König der verteidigenden Seite vor den Bauern, ist die Verteidigung eine andere: die Philidor-Stellung, die zum Remis führt." }
       }
     }
   }

@@ -166,7 +166,7 @@
       "title": "Wie man Züge schreibt",
       "summary": "Züge lesen und notieren",
       "steps": {
-        "u2-l06-s01": { "text": "Jeder Zug wird mit dem Buchstaben der Figur und dem Zielfeld geschrieben. Die Buchstaben sind die Anfänge der Namen: K für König, D für Dame, T für Turm, L für Läufer und S für Springer. Dieser Zug ist Sf3. Bauern haben keinen Buchstaben: e4." },
+        "u2-l06-s01": { "text": "Jeder Zug wird mit dem Buchstaben der Figur und dem Zielfeld geschrieben. Es sind die Anfangsbuchstaben der Namen: K für König, D für Dame, T für Turm, L für Läufer und S für Springer. Dieser Zug ist Sf3. Bauern haben keinen Buchstaben: e4." },
         "u2-l06-s02": { "text": "Schlägt die Figur, kommt ein x dazu: Lxf7. Schlägt ein Bauer, schreibt man die Linie, von der er kommt: exd5." },
         "u2-l06-s03": { "text": "Weitere Zeichen: + ist Schach und # ist Matt, wie Dxf7# in dieser Stellung. O-O ist die kurze Rochade, O-O-O die lange, und =D zeigt die Umwandlung an: e8=D." },
         "u2-l06-s04": {

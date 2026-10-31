@@ -26,9 +26,9 @@
     },
     "u1-l02": {
       "title": "Der Turm",
-      "summary": "Zieht in gerader Richtung",
+      "summary": "Zieht waagerecht und senkrecht",
       "steps": {
-        "u1-l02-s01": { "text": "Der Turm zieht geradeaus: über Linien und Reihen, so viele Felder er will." },
+        "u1-l02-s01": { "text": "Der Turm zieht waagerecht und senkrecht: über Linien und Reihen, so viele Felder er will." },
         "u1-l02-s02": { "text": "Er kann nicht über andere Figuren springen. Trifft er auf eine gegnerische Figur, kann er sie schlagen und bleibt dort stehen." },
         "u1-l02-s03": { "prompt": "Ziehe den Turm nach h4.", "hint": "Ziehe ihn auf der 4. Reihe nach rechts.", "success": "Richtig" },
         "u1-l02-s04": { "prompt": "Ziehe den Turm nach d1.", "hint": "Ziehe ihn auf der d-Linie nach unten.", "success": "Richtig" },
@@ -53,7 +53,7 @@
         "u1-l04-s01": { "text": "Die Dame zieht wie ein Turm und wie ein Läufer zugleich. Sie ist die stärkste Figur." },
         "u1-l04-s02": { "text": "Die weiße Dame beginnt auf einem hellen Feld, die schwarze auf einem dunklen. Pass gut auf sie auf: Ihr Verlust entscheidet oft die Partie." },
         "u1-l04-s03": { "prompt": "Ziehe die Dame nach g7.", "hint": "Ziehe sie diagonal.", "success": "Richtig" },
-        "u1-l04-s04": { "prompt": "Ziehe die Dame nach a4.", "hint": "Ziehe sie geradeaus über die 4. Reihe.", "success": "Richtig" },
+        "u1-l04-s04": { "prompt": "Ziehe die Dame nach a4.", "hint": "Ziehe sie waagerecht über die 4. Reihe.", "success": "Richtig" },
         "u1-l04-s05": { "prompt": "Schlage den schwarzen Bauern mit der Dame.", "hint": "Er steht direkt rechts neben ihr.", "success": "Richtig" }
       }
     },
@@ -160,7 +160,7 @@
       "summary": "Wenn der König angegriffen wird",
       "steps": {
         "u1-l10-s01": { "text": "Schach bedeutet, dass der König von einer gegnerischen Figur angegriffen wird. Hier gibt der weiße Turm dem schwarzen König Schach." },
-        "u1-l10-s02": { "text": "Der König wird nie geschlagen. Steht er im Schach, muss das Schach im nächsten Zug beendet werden." },
+        "u1-l10-s02": { "text": "Der König wird nie geschlagen. Steht er im Schach, muss das Schach im nächsten Zug abgewehrt werden." },
         "u1-l10-s03": { "prompt": "Gib dem schwarzen König mit dem Turm Schach.", "hint": "Erreiche die 8. Reihe über die a-Linie.", "success": "Richtig" },
         "u1-l10-s04": { "prompt": "Gib dem schwarzen König mit dem Springer Schach.", "hint": "Suche ein Feld, von dem aus der Springer e8 angreift.", "success": "Richtig" },
         "u1-l10-s05": {
@@ -176,10 +176,10 @@
       }
     },
     "u1-l11": {
-      "title": "Raus aus dem Schach",
+      "title": "Schach abwehren",
       "summary": "Drei Wege, den König zu retten",
       "steps": {
-        "u1-l11-s01": { "text": "Steht dein König im Schach, musst du das beenden. Erster Weg: Ziehe den König auf ein Feld, das nicht angegriffen wird." },
+        "u1-l11-s01": { "text": "Steht dein König im Schach, musst du es abwehren. Erster Weg: Ziehe den König auf ein Feld, das nicht angegriffen wird." },
         "u1-l11-s02": { "text": "Zweiter Weg: Blockiere den Angriff, indem du eine Figur dazwischenziehst." },
         "u1-l11-s03": { "text": "Dritter Weg: Schlage die Figur, die Schach gibt." },
         "u1-l11-s04": { "prompt": "Blockiere das Schach mit dem Springer.", "hint": "Stelle den Springer auf die e-Linie, zwischen Turm und König.", "success": "Richtig" },

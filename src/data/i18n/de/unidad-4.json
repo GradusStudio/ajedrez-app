@@ -66,7 +66,7 @@
         "u4-l02-s06": { "text": "Den König im Zentrum zu lassen ist gefährlich, wenn sich die e-Linie öffnet. Hier ist der schwarze Läufer auf e7 gefesselt: Zieht er, gibt der Turm Schach." },
         "u4-l02-s07": {
           "prompt": "Schwarz hat nicht rochiert und die e-Linie ist offen. Stelle dort eine Schwerfigur gegen seinen König auf.",
-          "hint": "Ein Turm oder die Dame auf der e-Linie zielen auf den schwarzen König.",
+          "hint": "Ein Turm oder die Dame auf der e-Linie zielt auf den schwarzen König.",
           "success": "Richtig. Jetzt ist der Läufer auf e7 gefesselt und der schwarze König steht unbequem."
         },
         "u4-l02-s08": { "text": "Zusammenfassung: Bringe die Dame nicht zu früh heraus, ziehe nicht mehrmals dieselbe Figur und lass den König nicht im Zentrum." }
@@ -152,7 +152,7 @@
       "title": "Schwache Felder und Vorposten",
       "summary": "Felder, die Bauern nicht mehr decken",
       "steps": {
-        "u4-l05-s01": { "text": "Ein schwaches Feld kann kein Bauer des Gegners decken, weder jetzt noch später. Hier hat Schwarz e5 gespielt und hat keinen Bauern auf der c-Linie: Kein schwarzer Bauer kann d5 decken." },
+        "u4-l05-s01": { "text": "Ein schwaches Feld ist ein Feld, das kein gegnerischer Bauer decken kann, weder jetzt noch später. Hier hat Schwarz e5 gespielt und hat keinen Bauern auf der c-Linie: Kein schwarzer Bauer kann d5 decken." },
         "u4-l05-s02": {
           "prompt": "Tippe auf das schwache Feld im Zentrum, auf der Seite von Schwarz: Kein schwarzer Bauer kann es decken.",
           "hint": "Die schwarzen Bauern auf d5 und f5 sind schon vorbeigezogen: Das Feld dazwischen, vor e6, ist ungedeckt."

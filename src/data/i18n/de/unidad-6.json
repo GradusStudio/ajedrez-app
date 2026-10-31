@@ -3,7 +3,7 @@
   "lessons": {
     "u6-l01": {
       "title": "Zugzwang",
-      "summary": "Wenn ziehen verlieren heißt",
+      "summary": "Wenn Ziehen Verlieren heißt",
       "steps": {
         "u6-l01-s01": { "text": "Im Schach darfst du nicht passen: Du musst immer ziehen. Manchmal verschlechtert jeder Zug die Stellung. Das nennt man Zugzwang: den Zwang, ziehen zu müssen." },
         "u6-l01-s02": { "text": "Schau dir diese Stellung an. Jeder König deckt seinen Bauern und greift den gegnerischen an. Der König, der ziehen muss, deckt seinen Bauern nicht mehr: Er verliert ihn und damit die Partie. Es gewinnt, wer nicht ziehen muss." },
@@ -16,7 +16,7 @@
         "u6-l01-s04": { "text": "Zugzwang hilft auch beim Mattsetzen. Hier kann Schwarz nur den König und den Bauern auf g7 ziehen. Blockierst du den Bauern, muss der König ziehen, und er hat kein gutes Feld." },
         "u6-l01-s05": {
           "prompt": "Matt in 2: Spiele einen stillen Zug ohne Schach, nach dem Schwarz keine guten Züge mehr hat.",
-          "success": "Richtig. Mit Tg6 ist der Bauer blockiert, der König musste nach a8, und Ta6 ist Matt.",
+          "success": "Richtig. Mit Tg6 ist der Bauer blockiert, der König musste nach a8, und Ta6 ist matt.",
           "hint": "Stelle den Turm vor den Bauern auf g7: So kann er nicht vorrücken, und der schwarze König muss ziehen.",
           "notes": ["", "", ""]
         },
@@ -67,14 +67,14 @@
           "hint": "Ein Bauer kann das Feld g4 kontrollieren, bevor der Läufer dort ankommt.",
           "success": "Richtig. Mit h3 kontrolliert der Bauer g4, und der Läufer kann nicht mehr dorthin."
         },
-        "u6-l02-s04": { "text": "Dein Turm auf der siebten Reihe greift Bauern an, aber achte vor dem Schlagen auf die schwarze Drohung: Der Turm auf e8 will nach e1. Dein König hat kein freies Feld, weil ihn seine eigenen Bauern einsperren." },
+        "u6-l02-s04": { "text": "Dein Turm auf der siebten Reihe greift Bauern an, aber achte vor dem Schlagen auf die schwarze Drohung: Der Turm auf e8 will nach e1. Dein König kommt nicht von der Grundreihe weg, weil ihn seine eigenen Bauern einsperren." },
         "u6-l02-s05": {
           "prompt": "Tippe auf das Feld, auf dem der schwarze Turm Schachmatt geben würde.",
           "hint": "Der Turm auf e8 zieht über die e-Linie bis auf deine Grundreihe."
         },
         "u6-l02-s06": {
           "prompt": "Verhindere das Grundreihenmatt, bevor du Bauern schlägst.",
-          "hint": "Wenn du auf b7 schlägst, ist Te1 Matt. Öffne deinem König mit einem Bauernzug einen Fluchtweg oder bringe ihn näher an die e-Linie.",
+          "hint": "Wenn du auf b7 schlägst, ist Te1 matt. Öffne deinem König mit einem Bauernzug einen Fluchtweg oder bringe ihn näher an die e-Linie.",
           "success": "Richtig. Das Grundreihenmatt funktioniert nicht mehr. Jetzt kannst du ans Schlagen der Bauern denken."
         },
         "u6-l02-s07": { "text": "Hier zielen die schwarze Dame und der schwarze Läufer auf dasselbe Feld neben deinem König. Wenn du nichts tust, setzt Schwarz in einem Zug matt." },
@@ -131,10 +131,10 @@
       }
     },
     "u6-l04": {
-      "title": "Letzte Wiederholung",
+      "title": "Abschlusswiederholung",
       "summary": "Puzzles aus allen Einheiten",
       "steps": {
-        "u6-l04-s01": { "text": "Letzte Wiederholung: acht Puzzles aus echten Partien mit Themen aus allen Einheiten. Prüfe vor jedem Zug Schachgebote, Schlagzüge und Drohungen. Geht etwas schief, sagt dir der Tipp, welches Thema du suchen sollst." },
+        "u6-l04-s01": { "text": "Abschlusswiederholung: acht Puzzles aus echten Partien mit Themen aus allen Einheiten. Prüfe vor jedem Zug Schachgebote, Schlagzüge und Drohungen. Geht etwas schief, sagt dir der Tipp, welches Thema du suchen sollst." },
         "u6-l04-s02": {
           "prompt": "Weiß am Zug. Finde den besten Zug.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",

@@ -5,7 +5,8 @@
 - Usuario: hispanohablante (Argentina), primera vez que desarrolla una app. PC con Windows 11 (PowerShell), prueba en un Redmi Note 13 con Expo Go.
 - Explicar los pasos con claridad y en español. Pedir confirmación antes de cambios grandes.
 - Objetivo: app gratuita para Android con lecciones de aperturas, ejercicios, puzzles y bots con personalidad que juegan las aperturas enseñadas.
-- Por ahora la app es 100% gratis: si el usuario falla, se muestra una pista y puede reintentar al instante. Sin vidas. Dentro de cada unidad, las lecciones se desbloquean de a una; las unidades están todas abiertas para que cada uno elija su nivel (`LOCK_LESSONS` en `src/progress/path.ts`). Monetización: decidir más adelante.
+- La app es 100% gratis: si el usuario falla, se muestra una pista y puede reintentar al instante. Sin vidas. Dentro de cada unidad, las lecciones se desbloquean de a una; las unidades están todas abiertas para que cada uno elija su nivel (`LOCK_LESSONS` en `src/progress/path.ts`).
+- Monetización (decidido el 31-10-2026): sin anuncios ni pagos en la app, para no interrumpir el aprendizaje. El apoyo es voluntario, por PayPal, solo desde el README. La app no debe enlazar a PayPal ni a otro medio de pago: la política de Google Play lo prohíbe fuera de sus excepciones. Si algún día hay botón de apoyo, va con Google Play Billing (Argentina está habilitada; hace falta compilar la app y crear el perfil de comerciante). Detalle en `mapa-de-pantallas.md`, sección 8.
 
 ## Tecnología
 - Expo (blank-typescript) + React Native + TypeScript, solo Android.

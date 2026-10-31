@@ -1,7 +1,7 @@
 # Mapa de pantallas y navegación
 
 Estilo visual: ver `design.md`. Formato de contenido: ver `formato-lecciones.md`.
-Alcance: versión 1 para Android, sin cuentas ni servidor (todo se guarda en el dispositivo). La monetización queda fuera por ahora, con puntos de enganche previstos (sección 8).
+Alcance: versión 1 para Android, sin cuentas ni servidor (todo se guarda en el dispositivo). Sin anuncios ni pagos en la app (sección 8).
 
 ---
 
@@ -301,12 +301,14 @@ Se agregan a `design.md` cuando se construyan:
 
 ---
 
-## 8. Enganches previstos para monetización (sin implementar)
+## 8. Monetización
 
-- Un componente `AdSlot` vacío al final del Resultado de lección.
-- Un archivo `limits.ts` con las reglas de uso gratuito (hoy, sin límites).
-- Un servicio `entitlements` con `isPremium()` que hoy siempre devuelve `false`.
-- Una pantalla "Premium" oculta, que se activa cuando se defina qué incluye.
+Decidido el 31-10-2026. La prioridad es que nada interrumpa el aprendizaje, y casi no hay gastos que cubrir: la app no usa servidor.
+
+- La app es gratis, sin anuncios, compras, vidas ni contenido bloqueado.
+- El apoyo es voluntario, con un enlace de PayPal en el `README.md`. La app no enlaza a PayPal ni a otro medio de pago, porque la política de pagos de Google Play lo prohíbe fuera de sus excepciones.
+- Si algún día se agrega un botón de apoyo, va con Google Play Billing: hace falta compilar la app, porque no funciona en Expo Go, y crear el perfil de comerciante, cuyo país no se puede cambiar.
+- Si aparecen gastos reales, se puede sumar un anuncio voluntario con premio al terminar una lección, nunca en medio de una lección, un puzzle o una partida. Antes hay que revisar si el código cerrado de los anuncios es compatible con la GPL.
 
 ---
 

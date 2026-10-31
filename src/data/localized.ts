@@ -20,6 +20,9 @@ export function languageFiles(language: Language): LanguageFiles | undefined {
     case 'de':
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       return (require('./i18n/de') as { files: LanguageFiles }).files;
+    case 'it':
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./i18n/it') as { files: LanguageFiles }).files;
     default:
       return undefined;
   }

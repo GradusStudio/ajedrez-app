@@ -2681,5 +2681,458 @@
         }
       }
     }
+  },
+  "nimzo-indian": {
+    "name": "Nimzo-Indian Defense",
+    "summary": "You pin the c3 knight and fight for the center with your pieces.",
+    "lessons": {
+      "nimzo-indian-l01": {
+        "title": "The idea of the Nimzo-Indian",
+        "summary": "Pin on c3 and doubled pawns",
+        "steps": {
+          "nimzo-indian-l01-s01": {
+            "text": "With ...Bb4 you pin the c3 knight and stop White from occupying e4."
+          },
+          "nimzo-indian-l01-s02": {
+            "text": "You often trade the bishop for the knight and leave White with doubled pawns."
+          },
+          "nimzo-indian-l01-s03": {
+            "text": "You give up the bishop pair in exchange for a better structure and good pressure on the center."
+          },
+          "nimzo-indian-l01-s04": {
+            "prompt": "What do you achieve with ...Bb4?",
+            "explanation": "It's the move that defines the opening.",
+            "options": [
+              "You pin the c3 knight and watch e4",
+              "You attack the queen",
+              "You prepare queenside castling"
+            ]
+          },
+          "nimzo-indian-l01-s05": {
+            "prompt": "What do you leave White with after ...Bxc3 and bxc3?",
+            "explanation": "That's the positive compensation for the trade.",
+            "options": [
+              "An isolated h-pawn",
+              "Doubled pawns on the c-file",
+              "Nothing special"
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l02": {
+        "title": "Main line",
+        "summary": "The Rubinstein Variation",
+        "steps": {
+          "nimzo-indian-l02-s01": {
+            "prompt": "Play the main line of the Nimzo-Indian.",
+            "notes": [
+              "",
+              "You develop and control e4.",
+              "",
+              "Prepares ...d5.",
+              "",
+              "Nimzo-Indian: you pin the knight.",
+              "",
+              "King safe.",
+              "",
+              "You take the center.",
+              "",
+              "You attack the center with a pawn.",
+              "",
+              "You develop and pressure d4.",
+              "",
+              "You give up the bishop to double the pawns.",
+              "",
+              "You restore the balance with a capture.",
+              "",
+              "The queen pressures down the c-file."
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Pin and trade",
+        "steps": {
+          "nimzo-indian-l03-s01": {
+            "prompt": "Pin the c3 knight.",
+            "hint": "The bishop goes to b4.",
+            "success": "Correct"
+          },
+          "nimzo-indian-l03-s02": {
+            "prompt": "Get your king to safety.",
+            "hint": "Kingside castling.",
+            "success": "Correct"
+          },
+          "nimzo-indian-l03-s03": {
+            "prompt": "What do you do if White plays a3?",
+            "explanation": "Trading on c3 damages White's structure.",
+            "options": [
+              "You trade the bishop on c3",
+              "You retreat the bishop to e7",
+              "You lose the bishop"
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "nimzo-indian-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "nimzo-indian-l04-s02": {
+            "prompt": "Which file does your queen pressure?",
+            "explanation": "The doubled pawns are its target.",
+            "options": [
+              "The c-file",
+              "The h-file",
+              "The a-file"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "petrov": {
+    "name": "Petrov Defense",
+    "summary": "You mirror White's attack instead of defending: solid, symmetrical and hard to beat.",
+    "lessons": {
+      "petrov-l01": {
+        "title": "The idea of the Petrov",
+        "summary": "Symmetrical counterattack",
+        "steps": {
+          "petrov-l01-s01": {
+            "text": "You answer the attack with an attack of your own: ...Nf6 threatens the e4-pawn."
+          },
+          "petrov-l01-s02": {
+            "text": "First you drive the knight away with ...d6, and only then do you capture e4. The order matters."
+          },
+          "petrov-l01-s03": {
+            "text": "After ...Nxe4 and ...d5, you have a firm center and active pieces."
+          },
+          "petrov-l01-s04": {
+            "prompt": "What do you do before capturing on e4?",
+            "explanation": "If you capture right away, Qe2 leaves Black in an awkward position, at risk of losing material.",
+            "options": [
+              "Drive the e5 knight away with ...d6",
+              "Castle",
+              "Trade queens"
+            ]
+          },
+          "petrov-l01-s05": {
+            "prompt": "Why not 3...Nxe4 right away?",
+            "explanation": "With the knight still on e5, Qe2 pins your knight and White has the initiative.",
+            "options": [
+              "Because you lose the bishop",
+              "Because Qe2 leaves you in a very awkward position",
+              "Because it's illegal"
+            ]
+          }
+        }
+      },
+      "petrov-l02": {
+        "title": "Main line",
+        "summary": "The Classical Variation",
+        "steps": {
+          "petrov-l02-s01": {
+            "prompt": "Play the main line of the Petrov.",
+            "notes": [
+              "",
+              "You answer symmetrically.",
+              "",
+              "Counterattack: you threaten e4.",
+              "",
+              "First you drive the knight away.",
+              "",
+              "Now you capture the pawn.",
+              "",
+              "You take the center and protect your knight.",
+              "",
+              "You develop and pressure d4.",
+              "",
+              "You develop the bishop.",
+              "",
+              "You attack the bishop and gain space.",
+              "",
+              "King safe.",
+              "",
+              "The bishop comes out with tempo."
+            ]
+          }
+        }
+      },
+      "petrov-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Move order",
+        "steps": {
+          "petrov-l03-s01": {
+            "prompt": "Counterattack the e4-pawn.",
+            "hint": "The knight attacks e4.",
+            "success": "Correct"
+          },
+          "petrov-l03-s02": {
+            "prompt": "Drive away the e5 knight.",
+            "hint": "A pawn attacks the knight.",
+            "success": "Correct"
+          },
+          "petrov-l03-s03": {
+            "prompt": "White retreats the knight to f3. What do you do?",
+            "explanation": "Now it's safe.",
+            "options": [
+              "You capture e4 with the knight",
+              "You castle",
+              "You trade queens"
+            ]
+          }
+        }
+      },
+      "petrov-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "petrov-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "petrov-l04-s02": {
+            "prompt": "What kind of position do you want?",
+            "explanation": "The Petrov is solid and symmetrical.",
+            "options": [
+              "Firm center and active pieces",
+              "Doubled pawns",
+              "A quick attack"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit-declined": {
+    "name": "Queen's Gambit Declined",
+    "summary": "You defend the center with ...e6 and play solidly: the classical answer to the gambit.",
+    "lessons": {
+      "queens-gambit-declined-l01": {
+        "title": "The idea of the Queen's Gambit Declined",
+        "summary": "Solidity in the center",
+        "steps": {
+          "queens-gambit-declined-l01-s01": {
+            "text": "With ...e6 you defend d5 and hold your center without getting into complications."
+          },
+          "queens-gambit-declined-l01-s02": {
+            "text": "The c8 bishop gets shut in, but in the Tartakower Variation you find it a way out with ...b6."
+          },
+          "queens-gambit-declined-l01-s03": {
+            "text": "You trade pieces to free your position and balance the game."
+          },
+          "queens-gambit-declined-l01-s04": {
+            "prompt": "Why ...e6?",
+            "explanation": "It's the most solid way to hold the center.",
+            "options": [
+              "It defends d5 with a pawn",
+              "It attacks the queen",
+              "It prepares queenside castling"
+            ]
+          },
+          "queens-gambit-declined-l01-s05": {
+            "prompt": "What's the problem with the c8 bishop?",
+            "explanation": "With ...b6 and ...Bb7 (or ...Be6) it gets free.",
+            "options": [
+              "It has no problems",
+              "It's shut in behind the pawns",
+              "It's pinned"
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l02": {
+        "title": "Main line",
+        "summary": "The Tartakower Variation",
+        "steps": {
+          "queens-gambit-declined-l02-s01": {
+            "prompt": "Play the main line of the Queen's Gambit Declined.",
+            "notes": [
+              "",
+              "You take the center.",
+              "",
+              "You defend d5.",
+              "",
+              "You develop and pressure d5.",
+              "",
+              "You prepare castling.",
+              "",
+              "King safe.",
+              "",
+              "You put the question to the bishop.",
+              "",
+              "You open the c8 bishop's diagonal.",
+              "",
+              "You win back the pawn with the knight.",
+              "",
+              "You recapture with the queen.",
+              "",
+              "You win back the piece with your pawn.",
+              "",
+              "Your bishop comes out active."
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Solidity before ambition",
+        "steps": {
+          "queens-gambit-declined-l03-s01": {
+            "prompt": "Take the center.",
+            "hint": "The central pawn advances.",
+            "success": "Correct"
+          },
+          "queens-gambit-declined-l03-s02": {
+            "prompt": "Defend d5 with a pawn.",
+            "hint": "The e-pawn defends the center.",
+            "success": "Correct"
+          },
+          "queens-gambit-declined-l03-s03": {
+            "prompt": "What do you do with the c8 bishop?",
+            "explanation": "With ...b6 you open the diagonal.",
+            "options": [
+              "You free it with ...b6",
+              "You move it to h3",
+              "You trade it for the knight"
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "queens-gambit-declined-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "queens-gambit-declined-l04-s02": {
+            "prompt": "What structure do you have at the end?",
+            "explanation": "The position is firm and comfortable for Black.",
+            "options": [
+              "Central pawn on d5 and a free bishop",
+              "Doubled pawns",
+              "No central pawns"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit-accepted": {
+    "name": "Queen's Gambit Accepted",
+    "summary": "When Black captures on c4, you win back the pawn with development and control of the center.",
+    "lessons": {
+      "queens-gambit-accepted-l01": {
+        "title": "The idea of the Queen's Gambit Accepted",
+        "summary": "Winning back the pawn with an advantage",
+        "steps": {
+          "queens-gambit-accepted-l01-s01": {
+            "text": "If Black captures on c4, don't worry: you almost always win the pawn back."
+          },
+          "queens-gambit-accepted-l01-s02": {
+            "text": "You develop with e3 and Bxc4, and you have more space in the center."
+          },
+          "queens-gambit-accepted-l01-s03": {
+            "text": "Next come castling, Qc2 or Qe2, and expanding in the center. Black has to defend the queenside."
+          },
+          "queens-gambit-accepted-l01-s04": {
+            "prompt": "What do you do when Black captures on c4?",
+            "explanation": "You win back the c4-pawn with Bxc4 after e3.",
+            "options": [
+              "You develop and win back the pawn",
+              "You lose it for good",
+              "You trade queens"
+            ]
+          },
+          "queens-gambit-accepted-l01-s05": {
+            "prompt": "Which piece wins back the pawn?",
+            "explanation": "After e3, the f1 bishop captures on c4.",
+            "options": [
+              "The queen",
+              "The f1 bishop",
+              "The b1 knight"
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l02": {
+        "title": "Main line",
+        "summary": "Development and pressure",
+        "steps": {
+          "queens-gambit-accepted-l02-s01": {
+            "prompt": "Play the main line of the Queen's Gambit Accepted.",
+            "notes": [
+              "You take the center.",
+              "",
+              "You offer the gambit.",
+              "",
+              "You develop and control e5.",
+              "",
+              "You open the f1 bishop.",
+              "",
+              "You win back the pawn.",
+              "",
+              "King safe.",
+              "",
+              "The queen supports the center and the e-file.",
+              "",
+              "The bishop retreats and keeps the pressure.",
+              "",
+              "The rook takes the d-file.",
+              "",
+              "You complete your development."
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Win it back calmly",
+        "steps": {
+          "queens-gambit-accepted-l03-s01": {
+            "prompt": "Offer the gambit.",
+            "hint": "A queenside pawn advances.",
+            "success": "Correct"
+          },
+          "queens-gambit-accepted-l03-s02": {
+            "prompt": "Develop and follow the plan.",
+            "hint": "The knight goes to f3.",
+            "success": "Correct"
+          },
+          "queens-gambit-accepted-l03-s03": {
+            "prompt": "How do you win back the c4-pawn?",
+            "explanation": "The f1 bishop captures the pawn and stays active.",
+            "options": [
+              "With Bxc4",
+              "With b3",
+              "With a4"
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "queens-gambit-accepted-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "queens-gambit-accepted-l04-s02": {
+            "prompt": "What does the rook on d1 do?",
+            "explanation": "It's the file of the d4-pawn.",
+            "options": [
+              "It takes the d-file",
+              "It attacks the king",
+              "It defends the a2-pawn"
+            ]
+          }
+        }
+      }
+    }
   }
 }

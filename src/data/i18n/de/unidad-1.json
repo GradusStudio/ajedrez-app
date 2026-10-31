@@ -1,0 +1,208 @@
+{
+  "title": "Die Grundlagen",
+  "lessons": {
+    "u1-l01": {
+      "title": "Das Brett und die Koordinaten",
+      "summary": "Lerne, jedes Feld zu benennen",
+      "steps": {
+        "u1-l01-s01": { "text": "Das Brett hat 64 Felder: 8 Linien (senkrecht) und 8 Reihen (waagerecht), in abwechselnden Farben." },
+        "u1-l01-s02": { "text": "Die Linien werden mit Buchstaben benannt, von a bis h. Die Reihen mit Zahlen, von 1 bis 8. Weiß beginnt unten." },
+        "u1-l01-s03": { "text": "Jedes Feld wird nach seiner Linie und seiner Reihe benannt. Das markierte Feld ist e4: Linie e, Reihe 4." },
+        "u1-l01-s04": { "text": "Ein Trick: Das Feld in der Ecke unten rechts, h1, ist immer hell." },
+        "u1-l01-s05": { "prompt": "Tippe auf das Feld e4.", "hint": "Linie e, vierte Reihe von unten gezählt." },
+        "u1-l01-s06": { "prompt": "Tippe auf das Feld c7.", "hint": "Linie c, siebte Reihe." },
+        "u1-l01-s07": { "prompt": "Tippe auf das Feld g2.", "hint": "Linie g, zweite Reihe." },
+        "u1-l01-s08": {
+          "prompt": "Wie heißt das markierte Feld?",
+          "options": ["f3", "c3", "f6", "g3"],
+          "explanation": "Es liegt auf der Linie f und der Reihe 3: f3."
+        },
+        "u1-l01-s09": {
+          "prompt": "Wie heißt das markierte Feld?",
+          "options": ["a6", "f2", "b6", "b5"],
+          "explanation": "Es liegt auf der Linie b und der Reihe 6: b6."
+        }
+      }
+    },
+    "u1-l02": {
+      "title": "Der Turm",
+      "summary": "Zieht waagerecht und senkrecht",
+      "steps": {
+        "u1-l02-s01": { "text": "Der Turm zieht waagerecht und senkrecht: über Linien und Reihen, so viele Felder er will." },
+        "u1-l02-s02": { "text": "Er kann nicht über andere Figuren springen. Trifft er auf eine gegnerische Figur, kann er sie schlagen und bleibt dort stehen." },
+        "u1-l02-s03": { "prompt": "Ziehe den Turm nach h4.", "hint": "Ziehe ihn auf der 4. Reihe nach rechts.", "success": "Richtig" },
+        "u1-l02-s04": { "prompt": "Ziehe den Turm nach d1.", "hint": "Ziehe ihn auf der d-Linie nach unten.", "success": "Richtig" },
+        "u1-l02-s05": { "prompt": "Schlage den schwarzen Bauern mit dem Turm.", "hint": "Er steht auf derselben Linie wie dein Turm.", "success": "Richtig" }
+      }
+    },
+    "u1-l03": {
+      "title": "Der Läufer",
+      "summary": "Zieht diagonal",
+      "steps": {
+        "u1-l03-s01": { "text": "Der Läufer zieht diagonal, so viele Felder er will, ohne über Figuren zu springen." },
+        "u1-l03-s02": { "text": "Jeder Läufer bleibt immer auf Feldern derselben Farbe. Deshalb beginnst du mit zwei: einem auf hellen und einem auf dunklen Feldern." },
+        "u1-l03-s03": { "prompt": "Ziehe den Läufer nach g7.", "hint": "Ziehe diagonal nach rechts oben.", "success": "Richtig" },
+        "u1-l03-s04": { "prompt": "Ziehe den Läufer nach a1.", "hint": "Ziehe diagonal nach links unten.", "success": "Richtig" },
+        "u1-l03-s05": { "prompt": "Schlage den schwarzen Bauern mit dem Läufer.", "hint": "Er steht auf der Diagonale, ein Feld rechts oben.", "success": "Richtig" }
+      }
+    },
+    "u1-l04": {
+      "title": "Die Dame",
+      "summary": "Turm und Läufer in einer Figur",
+      "steps": {
+        "u1-l04-s01": { "text": "Die Dame zieht wie ein Turm und wie ein Läufer zugleich. Sie ist die stärkste Figur." },
+        "u1-l04-s02": { "text": "Die weiße Dame beginnt auf einem hellen Feld, die schwarze auf einem dunklen. Pass gut auf sie auf: Ihr Verlust entscheidet oft die Partie." },
+        "u1-l04-s03": { "prompt": "Ziehe die Dame nach g7.", "hint": "Ziehe sie diagonal.", "success": "Richtig" },
+        "u1-l04-s04": { "prompt": "Ziehe die Dame nach a4.", "hint": "Ziehe sie waagerecht über die 4. Reihe.", "success": "Richtig" },
+        "u1-l04-s05": { "prompt": "Schlage den schwarzen Bauern mit der Dame.", "hint": "Er steht direkt rechts neben ihr.", "success": "Richtig" }
+      }
+    },
+    "u1-l05": {
+      "title": "Der König",
+      "summary": "Ein Feld, mit Vorsicht",
+      "steps": {
+        "u1-l05-s01": { "text": "Der König zieht ein Feld in jede Richtung. Er ist die wichtigste Figur: Verlierst du ihn, verlierst du die Partie." },
+        "u1-l05-s02": { "text": "Der König darf nie auf ein Feld ziehen, das der Gegner angreift. Hier kontrolliert der schwarze Turm die d-Linie und die 2. Reihe." },
+        "u1-l05-s03": { "prompt": "Ziehe den König nach e5.", "hint": "Ein Feld nach vorn.", "success": "Richtig" },
+        "u1-l05-s04": { "prompt": "Ziehe den König auf ein sicheres Feld.", "hint": "Meide die d-Linie.", "success": "Richtig" },
+        "u1-l05-s05": {
+          "prompt": "Darf der König nach d3 ziehen?",
+          "options": ["Ja", "Nein, der Turm greift dieses Feld an"],
+          "explanation": "Der schwarze Turm kontrolliert die ganze d-Linie."
+        }
+      }
+    },
+    "u1-l06": {
+      "title": "Der Springer",
+      "summary": "Springt in L-Form",
+      "steps": {
+        "u1-l06-s01": { "text": "Der Springer zieht in L-Form: zwei Felder in eine Richtung und eines im rechten Winkel dazu." },
+        "u1-l06-s02": { "text": "Er ist die einzige Figur, die über andere springt. Hier ist er von Bauern umringt und kann trotzdem ziehen." },
+        "u1-l06-s03": { "prompt": "Ziehe den Springer nach f5.", "hint": "Zwei Felder nach rechts und eines nach oben.", "success": "Richtig" },
+        "u1-l06-s04": { "prompt": "Ziehe den Springer nach c2.", "hint": "Zwei Felder nach unten und eines nach links.", "success": "Richtig" },
+        "u1-l06-s05": { "prompt": "Schlage den schwarzen Bauern mit dem Springer.", "hint": "Zwei nach rechts und eines nach oben.", "success": "Richtig" }
+      }
+    },
+    "u1-l07": {
+      "title": "Der Bauer",
+      "summary": "Zieht geradeaus, schlägt diagonal und wandelt sich um",
+      "steps": {
+        "u1-l07-s01": { "text": "Der Bauer zieht ein Feld nach vorn. Bei seinem ersten Zug darf er zwei Felder ziehen." },
+        "u1-l07-s02": { "text": "Danach darf er nur noch ein Feld ziehen." },
+        "u1-l07-s03": { "text": "Der Bauer schlägt diagonal, ein Feld nach vorn." },
+        "u1-l07-s04": { "text": "Geradeaus schlägt er nicht: Steht direkt vor ihm etwas, ist der Bauer blockiert." },
+        "u1-l07-s05": { "prompt": "Ziehe den Bauern zwei Felder vor.", "hint": "Es ist sein erster Zug.", "success": "Richtig" },
+        "u1-l07-s06": { "prompt": "Schlage einen der schwarzen Bauern.", "hint": "Bauern schlagen diagonal.", "success": "Richtig" },
+        "u1-l07-s07": {
+          "prompt": "Kann der weiße Bauer ziehen?",
+          "options": ["Ja", "Nein, direkt vor ihm steht ein Bauer"],
+          "explanation": "Der Bauer kann geradeaus weder ziehen noch schlagen."
+        },
+        "u1-l07-s08": { "text": "Erreicht der Bauer die gegnerische Grundreihe, wandelt er sich um: Er wird zu einer Dame, einem Turm, einem Läufer oder einem Springer, ganz wie du willst. Fast immer ist die Dame am besten, die stärkste Figur." },
+        "u1-l07-s09": {
+          "prompt": "Wandle den Bauern um und wähle die Dame.",
+          "hint": "Ziehe den Bauern nach d8 und tippe in der Auswahl auf die Dame.",
+          "success": "Richtig. Der Bauer ist jetzt eine Dame."
+        },
+        "u1-l07-s10": { "text": "Die Dame ist nicht immer das Beste. Wandelst du hier in eine Dame um, spielt Schwarz Dc1+: Deine neue Dame muss auf e1 dazwischenziehen, wird geschlagen und es ist matt." },
+        "u1-l07-s11": {
+          "prompt": "Wandle den Bauern so um, dass du die schwarze Dame gewinnst.",
+          "hint": "Ein Springer auf e8 würde dem König Schach geben und gleichzeitig die Dame angreifen.",
+          "success": "Richtig. Der Springer gibt Schach und greift die Dame an: Nach dem Schach schlägst du sie."
+        },
+        "u1-l07-s12": { "text": "Der König weicht aus und der Springer schlägt die Dame. Die Umwandlung in eine andere Figur als die Dame heißt Unterverwandlung." }
+      }
+    },
+    "u1-l08": {
+      "title": "Figuren decken",
+      "summary": "Verschenke kein Material",
+      "steps": {
+        "u1-l08-s01": { "text": "Der Springer ist durch den Bauern gedeckt: Schlägt der Läufer ihn, schlägt der Bauer zurück. Das nennt man decken." },
+        "u1-l08-s02": { "text": "Jetzt deckt niemand den Springer. Schlägt der Läufer ihn, verlierst du ihn ohne Gegenwert. Eine solche Figur nennt man hängend." },
+        "u1-l08-s03": {
+          "prompt": "Ist der weiße Springer gedeckt?",
+          "options": ["Ja", "Nein"],
+          "explanation": "Keine weiße Figur deckt ihn, also schlägt der Läufer ihn umsonst."
+        },
+        "u1-l08-s04": { "prompt": "Decke den Springer mit dem Turm.", "hint": "Ziehe den Turm so, dass er das Feld d4 sieht.", "success": "Richtig" },
+        "u1-l08-s05": { "prompt": "Schlage die schwarze Figur, die nicht gedeckt ist.", "hint": "Der Läufer ist durch einen Bauern gedeckt.", "success": "Richtig" }
+      }
+    },
+    "u1-l09": {
+      "title": "Der Abtausch",
+      "summary": "Wann sich Schlagen lohnt",
+      "steps": {
+        "u1-l09-s01": { "text": "Ein Abtausch entsteht, wenn du schlägst und der Gegner zurückschlägt. Um zu entscheiden, ob er sich lohnt, zähle die Punkte: Bauer 1, Springer 3, Läufer 3, Turm 5, Dame 9." },
+        "u1-l09-s02": { "text": "Schlägt der Turm diesen Bauern, schlägt der Bauer auf c6 zurück. Du gewinnst 1 Punkt und verlierst 5: ein schlechter Abtausch." },
+        "u1-l09-s03": { "text": "Hier schlägt dein Bauer einen Springer. Schlägt der Bauer auf c6 zurück, hast du 3 Punkte gewonnen und 1 verloren: ein guter Abtausch." },
+        "u1-l09-s04": {
+          "prompt": "Lohnt es sich, den Bauern mit dem Turm zu schlagen?",
+          "options": ["Ja, ich gewinne einen Bauern", "Nein, ich verliere den Turm für einen Bauern"],
+          "explanation": "Du gewinnst 1 Punkt und verlierst 5."
+        },
+        "u1-l09-s05": {
+          "prompt": "Lohnt es sich, den Springer mit deinem Bauern zu schlagen?",
+          "options": ["Ja, ich gewinne einen Springer für einen Bauern", "Nein, mein Bauer wird zurückgeschlagen"],
+          "explanation": "Du gewinnst 3 Punkte und verlierst, auch wenn zurückgeschlagen wird, nur 1.",
+          "feedback": ["", "Stimmt, es kann zurückgeschlagen werden, aber der Springer ist mehr wert als der Bauer."]
+        },
+        "u1-l09-s06": {
+          "prompt": "Auf d5 steht ein schwarzer Bauer. Womit schlägst du ihn am besten?",
+          "options": ["Mit dem Bauern auf e4", "Mit der Dame"],
+          "explanation": "Mit dem Bauern: Schlägt die schwarze Dame zurück, schlägt deine Dame sie.",
+          "feedback": ["", "Mit der Dame werden die Damen getauscht. Es gibt etwas Besseres."]
+        },
+        "u1-l09-s07": { "text": "Sieh dir die Folge an: Der Bauer schlägt, die schwarze Dame schlägt zurück und deine Dame schlägt die schwarze Dame. Du gewinnst 9 Punkte für einen Bauern." }
+      }
+    },
+    "u1-l10": {
+      "title": "Das Schach",
+      "summary": "Wenn der König angegriffen wird",
+      "steps": {
+        "u1-l10-s01": { "text": "Schach bedeutet, dass der König von einer gegnerischen Figur angegriffen wird. Hier gibt der weiße Turm dem schwarzen König Schach." },
+        "u1-l10-s02": { "text": "Der König wird nie geschlagen. Steht er im Schach, muss das Schach im nächsten Zug abgewehrt werden." },
+        "u1-l10-s03": { "prompt": "Gib dem schwarzen König mit dem Turm Schach.", "hint": "Erreiche die 8. Reihe über die a-Linie.", "success": "Richtig" },
+        "u1-l10-s04": { "prompt": "Gib dem schwarzen König mit dem Springer Schach.", "hint": "Suche ein Feld, von dem aus der Springer e8 angreift.", "success": "Richtig" },
+        "u1-l10-s05": {
+          "prompt": "Steht der schwarze König im Schach?",
+          "options": ["Ja", "Nein"],
+          "explanation": "Der Turm greift die 2. Reihe und die a-Linie an, nicht den König."
+        },
+        "u1-l10-s06": {
+          "prompt": "Steht der schwarze König im Schach?",
+          "options": ["Ja", "Nein"],
+          "explanation": "Der Turm greift über die e-Linie an, und nichts steht dazwischen."
+        }
+      }
+    },
+    "u1-l11": {
+      "title": "Schach abwehren",
+      "summary": "Drei Wege, den König zu retten",
+      "steps": {
+        "u1-l11-s01": { "text": "Steht dein König im Schach, musst du es abwehren. Erster Weg: Ziehe den König auf ein Feld, das nicht angegriffen wird." },
+        "u1-l11-s02": { "text": "Zweiter Weg: Blockiere den Angriff, indem du eine Figur dazwischenziehst." },
+        "u1-l11-s03": { "text": "Dritter Weg: Schlage die Figur, die Schach gibt." },
+        "u1-l11-s04": { "prompt": "Blockiere das Schach mit dem Springer.", "hint": "Stelle den Springer auf die e-Linie, zwischen Turm und König.", "success": "Richtig" },
+        "u1-l11-s05": { "prompt": "Schlage die Figur, die Schach gibt, mit dem Läufer.", "hint": "Der Angreifer ist der weiße Springer.", "success": "Richtig" },
+        "u1-l11-s06": { "prompt": "Ziehe den König auf ein sicheres Feld.", "hint": "Der Turm kontrolliert die ganze 8. Reihe.", "success": "Richtig" },
+        "u1-l11-s07": { "text": "Funktioniert keiner der drei Wege, gibt es keinen Ausweg: Das ist Schachmatt. Das sehen wir in der nächsten Lektion." }
+      }
+    },
+    "u1-l12": {
+      "title": "Matt in einem Zug",
+      "summary": "So endet die Partie",
+      "steps": {
+        "u1-l12-s01": { "text": "Schachmatt: Der König steht im Schach und hat keinen Ausweg. Die Partie ist zu Ende, und wer mattsetzt, gewinnt. Hier ist der schwarze König von seinen eigenen Bauern eingesperrt." },
+        "u1-l12-s02": { "text": "Die Dame gibt Schach und der weiße König deckt sie, also kann der schwarze König sie weder schlagen noch fliehen." },
+        "u1-l12-s03": { "prompt": "Setze in einem Zug matt.", "hint": "Der Turm zieht über die a-Linie nach oben.", "success": "Richtig" },
+        "u1-l12-s04": { "prompt": "Setze in einem Zug matt.", "hint": "Stelle die Dame dorthin, wo dein König sie deckt.", "success": "Richtig" },
+        "u1-l12-s05": { "prompt": "Setze mit den beiden Türmen matt.", "hint": "Ein Turm sperrt die 7. Reihe, der andere gibt auf der 8. Reihe Schach.", "success": "Richtig" },
+        "u1-l12-s06": {
+          "prompt": "Ist das Schachmatt?",
+          "options": ["Ja", "Nein, der König kann fliehen"],
+          "explanation": "Der König kann nach d7, e7 oder f7 ziehen."
+        }
+      }
+    }
+  }
+}

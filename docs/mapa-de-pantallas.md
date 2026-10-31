@@ -153,7 +153,8 @@ Pantalla `ajustes`. Cada cambio se guarda al instante, en `@ajedrez/settings`, s
 - **Tablero:**
   - Tema: Verde, Madera, Azul, Gris o Morado.
   - Piezas (abre la pantalla Piezas).
-  - Notación: española (Cf3) o inglesa (Nf3). Se aplica en partidas, Análisis y líneas de apertura.
+  - Notación: automática (según el idioma: Cf3, Nf3, Sf3, Cf3, Cf3) o siempre inglesa (Nf3). Ajuste `notation`: `auto` | `en`. Se aplica en partidas, Análisis y líneas de apertura.
+- **Idioma:** fila con Automático (sigue el idioma del teléfono; si no está soportado, inglés), Español, English, Deutsch, Italiano y Français. Se guarda en `@ajedrez/settings`. Cambiarlo con una lección a medias no pierde el avance.
 - **Sonido y vibración:** dos interruptores.
   - El sonido respeta el modo silencio del teléfono.
   - La vibración usa la respuesta háptica de Android: "Confirmar" al acertar y "Rechazar" al fallar.

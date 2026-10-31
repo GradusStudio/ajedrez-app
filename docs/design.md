@@ -224,6 +224,7 @@ Para las pestañas sin contenido: título de pantalla y una tarjeta con "Próxim
 - Español, sentence case, tuteo ("Aprende", "Practica").
 - Botones de 1 a 3 palabras, verbo primero: "Continuar", "Practicar", "Reintentar".
 - Errores: qué pasó y qué hacer, en una frase. Sin "por favor" ni signos de exclamación en mensajes del sistema.
+- Textos largos (alemán y francés): las etiquetas de pestañas y de `Segmented` se achican para entrar en una línea (ajuste de fuente), nunca se cortan. En francés las monedas se llaman *jetons*.
 - Los bots pueden tener tono propio, pero siempre dentro de la paleta y tipografía de la app.
 
 ## Icono de la app

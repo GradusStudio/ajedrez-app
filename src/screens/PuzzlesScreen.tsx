@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
+import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { isPuzzleSolved } from '../progress/progressStore';
 import {
@@ -23,6 +24,7 @@ type Props = {
 // Pestaña Puzzles: puzzle del día y práctica por nivel y tema (mapa-de-pantallas.md, 2.8).
 export function PuzzlesScreen({ onOpenDaily, onPractice }: Props) {
   const { progress } = useProgress();
+  const { t, number } = useI18n();
   // Dificultad inicial según el nivel elegido en la bienvenida.
   const [level, setLevel] = useState<Level>(progress.profile.level === 'casual' ? 'medio' : 'facil');
   const [theme, setTheme] = useState<string | null>(null);
@@ -37,21 +39,20 @@ export function PuzzlesScreen({ onOpenDaily, onPractice }: Props) {
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}
     >
-      <Text style={styles.title}>Puzzles</Text>
-      <Text style={styles.subtitle}>
-        {solvedTotal} de {puzzles.length.toLocaleString('es')} resueltos · de la base abierta de Lichess
-      </Text>
+      <Text style={styles.title}>{t('puzzles.title')}</Text>
+      <Text style={styles.subtitle}>{t('puzzles.subtitle', { solved: solvedTotal, total: number(puzzles.length) })}</Text>
 
       {/* Puzzle del día */}
       <View style={[styles.card, styles.dailyCard]}>
-        <Text style={styles.caption}>Puzzle del día</Text>
-        <Text style={styles.cardTitle}>{puzzleGoal(daily)}</Text>
+        <Text style={styles.caption}>{t('puzzles.daily')}</Text>
+        <Text style={styles.cardTitle}>{puzzleGoal(daily, t)}</Text>
         <Text style={styles.cardText}>
-          Nivel {daily.rating}
-          {dailyDone ? (dailyDone.result === 'failed' ? ' · viste la solución' : ' · resuelto ✓') : ''}
+          {dailyDone
+            ? t(dailyDone.result === 'failed' ? 'puzzles.dailyFailed' : 'puzzles.dailySolved', { n: daily.rating })
+            : t('common.level', { n: daily.rating })}
         </Text>
         <Button3D
-          label={dailyDone ? 'Ver otra vez' : 'Resolver'}
+          label={dailyDone ? t('puzzles.seeAgain') : t('puzzles.solve')}
           variant={dailyDone ? 'secondary' : 'primary'}
           onPress={() => onOpenDaily(daily.id)}
           style={{ marginTop: space.md }}
@@ -59,8 +60,8 @@ export function PuzzlesScreen({ onOpenDaily, onPractice }: Props) {
       </View>
 
       {/* Práctica */}
-      <Text style={styles.section}>Práctica</Text>
-      <Text style={styles.label}>Dificultad</Text>
+      <Text style={styles.section}>{t('puzzles.practice')}</Text>
+      <Text style={styles.label}>{t('puzzles.difficulty')}</Text>
       <View style={styles.segmented}>
         {(Object.keys(LEVELS) as Level[]).map((l) => {
           const selected = l === level;
@@ -70,10 +71,10 @@ export function PuzzlesScreen({ onOpenDaily, onPractice }: Props) {
               onPress={() => setLevel(l)}
               accessibilityRole="radio"
               accessibilityState={{ selected }}
-              accessibilityLabel={`${LEVELS[l].label}, nivel ${LEVELS[l].min} a ${LEVELS[l].max}`}
+              accessibilityLabel={t('puzzles.levelLabel', { label: t(`puzzles.level.${l}`), min: LEVELS[l].min, max: LEVELS[l].max })}
               style={[styles.segment, selected && styles.segmentSelected]}
             >
-              <Text style={[styles.segmentText, selected && { color: colors.text }]}>{LEVELS[l].label}</Text>
+              <Text style={[styles.segmentText, selected && { color: colors.text }]}>{t(`puzzles.level.${l}`)}</Text>
               <Text style={styles.segmentSub}>
                 {LEVELS[l].min}–{LEVELS[l].max}
               </Text>
@@ -82,26 +83,26 @@ export function PuzzlesScreen({ onOpenDaily, onPractice }: Props) {
         })}
       </View>
 
-      <Text style={styles.label}>Tema</Text>
+      <Text style={styles.label}>{t('puzzles.theme')}</Text>
       <View style={styles.themes}>
-        {[null, ...PRACTICE_THEMES].map((t) => {
-          const selected = t === theme;
+        {[null, ...PRACTICE_THEMES].map((key) => {
+          const selected = key === theme;
           return (
             <Pressable
-              key={t ?? 'todos'}
-              onPress={() => setTheme(t)}
+              key={key ?? 'todos'}
+              onPress={() => setTheme(key)}
               accessibilityRole="radio"
               accessibilityState={{ selected }}
               style={[styles.theme, selected && styles.themeSelected]}
             >
-              <Text style={[styles.themeText, selected && { color: colors.text }]}>{t ? themeName(t) : 'Todos'}</Text>
+              <Text style={[styles.themeText, selected && { color: colors.text }]}>{key ? themeName(key, t) : t('puzzles.themeAll')}</Text>
             </Pressable>
           );
         })}
       </View>
 
-      <Button3D label="Practicar" variant="primary" onPress={() => onPractice(level, theme)} style={{ marginTop: space.lg }} />
-      <Text style={styles.count}>{available} puzzles con esta elección</Text>
+      <Button3D label={t('puzzles.practiceButton')} variant="primary" onPress={() => onPractice(level, theme)} style={{ marginTop: space.lg }} />
+      <Text style={styles.count}>{t('puzzles.count', { n: available })}</Text>
     </ScrollView>
   );
 }

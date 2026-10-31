@@ -81,7 +81,7 @@
                 "e3, d4, Af4"
               ],
               "answer": 0,
-              "explanation": "Primero el peón de rey de dama, luego el alfil afuera y por último e3.",
+              "explanation": "Primero el peón de dama, luego el alfil afuera y por último e3.",
               "id": "london-l01-s05"
             }
           ]
@@ -220,7 +220,7 @@
             },
             {
               "type": "move",
-              "prompt": "Tu alfil está atacado por el alfil negro. Conserva tu alfil sin cambiarlo.",
+              "prompt": "Tu alfil está atacado por el alfil negro. Retíralo sin salir de la diagonal.",
               "fen": "rnbqk2r/ppp2ppp/3bpn2/3p4/3P1B2/4PN2/PPP2PPP/RN1QKB1R w KQkq - 0 1",
               "solutions": [
                 "f4g3"
@@ -1089,7 +1089,7 @@
                 {
                   "uci": "f3e5",
                   "san": "Cxe5",
-                  "note": "Ganas un peón."
+                  "note": "Recuperas el peón."
                 }
               ],
               "id": "vienna-l03-s01"
@@ -1322,7 +1322,7 @@
             },
             {
               "type": "explain",
-              "text": "La dama sale pronto, pero se retira a a5 con tempo y clava el caballo de c3 cuando se abre la diagonal.",
+              "text": "La dama sale pronto, pero se retira a a5, una casilla activa, y clava el caballo de c3 cuando se abre la diagonal.",
               "fen": "rnb1kbnr/ppp1pppp/8/q7/3P4/2N5/PPP2PPP/R1BQKBNR b KQkq d3 0 1",
               "orientation": "b",
               "highlight": [
@@ -1333,7 +1333,7 @@
             },
             {
               "type": "explain",
-              "text": "El plan: ...c6 para sostener el centro, el alfil afuera antes de ...e6, el caballo a f6 y enroque corto.",
+              "text": "El plan: ...c6 para controlar d5 y b5, el alfil afuera antes de ...e6, el caballo a f6 y enroque corto.",
               "fen": "rn2kb1r/pp3ppp/2p1pn2/q4b2/2BP4/2N2N2/PPPB1PPP/R2QK2R w KQkq - 0 1",
               "orientation": "b",
               "highlight": [
@@ -1401,7 +1401,7 @@
                 {
                   "uci": "d5a5",
                   "san": "Da5",
-                  "note": "Te retiras con tempo y clavas el caballo si se abre la diagonal."
+                  "note": "Te retiras a una casilla activa y clavas el caballo si se abre la diagonal."
                 },
                 {
                   "uci": "d2d4",
@@ -1419,7 +1419,7 @@
                 {
                   "uci": "c7c6",
                   "san": "c6",
-                  "note": "Sostienes el centro y preparas el alfil."
+                  "note": "Controlas d5 y b5, y le das a la dama la casilla c7."
                 },
                 {
                   "uci": "f1c4",
@@ -1572,12 +1572,12 @@
             },
             {
               "type": "move",
-              "prompt": "Sostén el centro y prepara el alfil: juega ...c6.",
+              "prompt": "Controla d5 y b5: juega ...c6.",
               "fen": "rnb1kb1r/ppp1pppp/5n2/q7/3P4/2N2N2/PPP2PPP/R1BQKB1R b KQkq - 0 1",
               "solutions": [
                 "c7c6"
               ],
-              "hint": "Un peón puede apoyar d5 y dejar espacio para tu alfil.",
+              "hint": "Un peón puede controlar d5 y b5.",
               "success": "Correcto",
               "orientation": "b",
               "id": "scandinavian-l04-s02"
@@ -1665,7 +1665,7 @@
                 "Tu peón de a por el peón de e blanco"
               ],
               "answer": 0,
-              "explanation": "El cambio ...cxd4 desvía el peón central blanco y te deja con más peones centrales.",
+              "explanation": "El cambio ...cxd4 elimina el peón central blanco y te deja con más peones centrales.",
               "orientation": "b",
               "id": "sicilian-l01-s04"
             },
@@ -1820,7 +1820,7 @@
               "solutions": [
                 "g8f6"
               ],
-              "hint": "El caballo de g8 ataca el peón de e4.",
+              "hint": "Desde f6, el caballo ataca el peón de e4.",
               "success": "Correcto",
               "orientation": "b",
               "id": "sicilian-l03-s02"
@@ -2460,7 +2460,7 @@
                 {
                   "uci": "b1d2",
                   "san": "Cbd2",
-                  "note": "Prepara e4 sin bloquear nada."
+                  "note": "Desarrolla el caballo y prepara e4."
                 },
                 {
                   "uci": "c7c5",
@@ -2763,7 +2763,7 @@
                 {
                   "uci": "d7d6",
                   "san": "d6",
-                  "note": "Sostienes e5 y preparas ...e5."
+                  "note": "Controlas e5 y preparas ...e5."
                 },
                 {
                   "uci": "g1f3",
@@ -2799,7 +2799,7 @@
                 {
                   "uci": "c6e7",
                   "san": "Ce7",
-                  "note": "Cierras el centro y preparas el ataque con ...f5."
+                  "note": "Las blancas cerraron el centro: retiras el caballo a e7 y preparas el ataque con ...f5."
                 },
                 {
                   "uci": "f3e1",
@@ -3109,7 +3109,7 @@
                 {
                   "uci": "d7d6",
                   "san": "d6",
-                  "note": "Sostienes e5 y limitas el peón de e4."
+                  "note": "Controlas e5 y limitas el peón de e4."
                 },
                 {
                   "uci": "c1e3",
@@ -3549,11 +3549,11 @@
               "fen": "rnbq1rk1/pp2ppbp/2pp1np1/8/3PP3/2N2N2/PPP1BPPP/R1BQ1RK1 w - - 0 1",
               "options": [
                 "El enroque largo",
-                "Un jaque a la dama",
+                "Un ataque a la dama",
                 "Los avances ...b5 o ...e5"
               ],
               "answer": 2,
-              "explanation": "Con c6 refuerzas el centro sin gastar el caballo.",
+              "explanation": "Con ...c6 controlas d5 y b5 sin usar el caballo.",
               "orientation": "b",
               "id": "pirc-l04-s02"
             }
@@ -3751,7 +3751,7 @@
               "solutions": [
                 "d2d4"
               ],
-              "hint": "Es la jugada que da nombre a la apertura.",
+              "hint": "Es la jugada que define la apertura.",
               "success": "Correcto",
               "id": "scotch-l03-s01"
             },
@@ -4031,7 +4031,7 @@
                 {
                   "uci": "c2c3",
                   "san": "c3",
-                  "note": "Amenazas d4 ganando tiempo sobre el alfil."
+                  "note": "Atacas el alfil y preparas d4."
                 },
                 {
                   "uci": "b4a5",
@@ -4058,7 +4058,7 @@
                 {
                   "uci": "c3d4",
                   "san": "cxd4",
-                  "note": "Recuperas el peón y mantienes el centro."
+                  "note": "Recuperas un peón y mantienes el centro."
                 },
                 {
                   "uci": "a5b6",
@@ -4067,7 +4067,7 @@
                 {
                   "uci": "b1c3",
                   "san": "Cc3",
-                  "note": "Presionas e4 y d5, aumentando la actividad."
+                  "note": "Proteges e4 y vigilas d5, y ganas actividad."
                 },
                 {
                   "uci": "c6a5",
@@ -4281,7 +4281,7 @@
             },
             {
               "type": "explain",
-              "text": "Con f3 abres la columna f y atacas e4. Si capturan, recuperas con el caballo.",
+              "text": "Con f3 abres la columna f y atacas e4. Si capturan, recapturas con el caballo.",
               "fen": "rnbqkb1r/ppp1pppp/5n2/8/3Pp3/2N2P2/PPP3PP/R1BQKBNR b KQkq - 0 1",
               "highlight": [
                 "f3"
@@ -4373,7 +4373,7 @@
                 {
                   "uci": "f2f3",
                   "san": "f3",
-                  "note": "Abres la columna f y buscas recuperar con ventaja de desarrollo."
+                  "note": "Abres la columna f y buscas ventaja de desarrollo."
                 },
                 {
                   "uci": "e4f3",
@@ -4382,7 +4382,7 @@
                 {
                   "uci": "g1f3",
                   "san": "Cxf3",
-                  "note": "Recuperas el peón con desarrollo."
+                  "note": "Recapturas y desarrollas: sigues con un peón menos, pero adelante en desarrollo."
                 },
                 {
                   "uci": "e7e6",
@@ -4409,7 +4409,7 @@
                 {
                   "uci": "d1e2",
                   "san": "De2",
-                  "note": "Conectas las piezas; luego Ag5 y Tad1."
+                  "note": "Sacas la dama; luego Ag5 y Tad1."
                 }
               ],
               "id": "bdg-l02-s01"
@@ -4420,7 +4420,7 @@
           "id": "bdg-l03",
           "order": 3,
           "title": "Claves y errores típicos",
-          "summary": "Recuperar el peón con desarrollo",
+          "summary": "Recapturar con desarrollo",
           "xp": 20,
           "steps": [
             {
@@ -4436,7 +4436,7 @@
             },
             {
               "type": "move",
-              "prompt": "Recupera el peón con una pieza.",
+              "prompt": "Recaptura en f3 con una pieza.",
               "fen": "rnbqkb1r/ppp1pppp/5n2/8/3P4/2N2p2/PPP3PP/R1BQKBNR w KQkq - 0 1",
               "solutions": [
                 "g1f3"
@@ -4547,7 +4547,7 @@
                 "La columna c"
               ],
               "answer": 0,
-              "explanation": "Tu torre de f1 queda lista para presionar.",
+              "explanation": "Después de enrocar, tu torre presiona por esa columna.",
               "id": "bdg-l04-s02"
             }
           ]
@@ -4673,7 +4673,7 @@
                 {
                   "uci": "d5e4",
                   "san": "dxe4",
-                  "note": "Cambias para abrir el alfil de c8."
+                  "note": "Cambias para que el alfil de c8 pueda salir a f5."
                 },
                 {
                   "uci": "c3e4",
@@ -4691,7 +4691,7 @@
                 {
                   "uci": "f5g6",
                   "san": "Ag6",
-                  "note": "Retiras el alfil con tempo y lo mantienes en la diagonal."
+                  "note": "El caballo ataca tu alfil: lo retiras a g6 y lo mantienes en la diagonal."
                 },
                 {
                   "uci": "h2h4",
@@ -4736,7 +4736,7 @@
                 {
                   "uci": "e7e6",
                   "san": "e6",
-                  "note": "Estructura sólida y desarrolla el alfil de f8."
+                  "note": "Estructura sólida, y le abres paso al alfil de f8."
                 }
               ],
               "id": "caro-kann-l02-s01"
@@ -4752,7 +4752,7 @@
           "steps": [
             {
               "type": "move",
-              "prompt": "Cambia tu peón central para abrir el alfil.",
+              "prompt": "Cambia tu peón central para que el alfil pueda salir a f5.",
               "fen": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq - 0 1",
               "solutions": [
                 "d5e4"
@@ -4937,7 +4937,7 @@
             },
             {
               "type": "explain",
-              "text": "Después de ...a6, retrocedes a a4 y mantienes la clavada sin cambiar el alfil sin necesidad.",
+              "text": "Después de ...a6, retrocedes a a4 y mantienes la presión sobre el caballo, sin cambiar el alfil sin necesidad.",
               "fen": "r1bqkbnr/1ppp1ppp/p1n5/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 0 1",
               "highlight": [
                 "a4"
@@ -5027,7 +5027,7 @@
                 {
                   "uci": "b5a4",
                   "san": "Aa4",
-                  "note": "Mantienes la clavada sin cambiar el alfil."
+                  "note": "Mantienes la presión sobre el caballo sin cambiar el alfil."
                 },
                 {
                   "uci": "g8f6",
@@ -5088,7 +5088,7 @@
           "steps": [
             {
               "type": "explain",
-              "text": "Esta es la trampa del Arca de Noé: los peones a6, b5, c4 y d6 atrapan al alfil de b3. Ocurre si juegas d4 demasiado pronto contra ...d6.",
+              "text": "Esta es la trampa del Arca de Noé: los peones a6, b5 y c4 atrapan al alfil de b3. Ocurre si juegas d4 demasiado pronto contra ...d6.",
               "fen": "r2qkbnr/3b1ppp/p2p4/1p1Q4/2p1P3/1B6/PPP2PPP/RNB1K2R w KQkq - 0 1",
               "highlight": [
                 "b3",
@@ -5543,7 +5543,7 @@
             },
             {
               "type": "explain",
-              "text": "Si las negras juegan ...d5, cambias y después ocupas el centro con tempo.",
+              "text": "Si las negras juegan ...d5, cambias y después ocupas el centro con un peón.",
               "fen": "rnb1kbnr/pp2pppp/8/2pq4/3P4/2P5/PP3PPP/RNBQKBNR b KQkq d3 0 1",
               "highlight": [
                 "d4"
@@ -5581,7 +5581,7 @@
               "options": [
                 "El peón de d5",
                 "La teoría de la Siciliana abierta",
-                "El jaque a la dama"
+                "Un ataque a la dama"
               ],
               "answer": 1,
               "explanation": "Jugar c3 evita líneas como la Najdorf y el Dragón.",
@@ -5633,7 +5633,7 @@
                 {
                   "uci": "d2d4",
                   "san": "d4",
-                  "note": "Ocupas el centro y ganas tiempo."
+                  "note": "Ocupas el centro con un peón."
                 },
                 {
                   "uci": "g8f6",
@@ -5669,7 +5669,7 @@
                 {
                   "uci": "c1e3",
                   "san": "Ae3",
-                  "note": "Terminas el desarrollo y apoyas d4."
+                  "note": "Sigues desarrollando y apoyas d4."
                 }
               ],
               "id": "alapin-l02-s01"
@@ -5707,7 +5707,7 @@
             },
             {
               "type": "move",
-              "prompt": "Ocupa el centro con tempo.",
+              "prompt": "Ocupa el centro con un peón.",
               "fen": "rnb1kbnr/pp2pppp/8/2pq4/8/2P5/PP1P1PPP/RNBQKBNR w KQkq - 0 1",
               "solutions": [
                 "d2d4"
@@ -5810,7 +5810,7 @@
             },
             {
               "type": "quiz",
-              "prompt": "¿Qué pieza completa tu desarrollo?",
+              "prompt": "¿Qué pieza desarrollas para apoyar d4?",
               "fen": "r3kb1r/pp3ppp/2n1pn2/2pq4/3P2b1/2P1BN2/PP2BPPP/RN1Q1RK1 b kq - 0 1",
               "options": [
                 "La dama a h5",
@@ -5818,7 +5818,7 @@
                 "El alfil de c1 a e3"
               ],
               "answer": 2,
-              "explanation": "El alfil en e3 apoya d4 y cierra tu desarrollo.",
+              "explanation": "El alfil en e3 apoya d4 y continúa tu desarrollo.",
               "id": "alapin-l04-s02"
             }
           ]
@@ -6613,7 +6613,7 @@
                 {
                   "uci": "d8d7",
                   "san": "Dd7",
-                  "note": "La dama sale para conectar torres."
+                  "note": "La dama sale y prepara el enroque largo."
                 },
                 {
                   "uci": "f1g2",
@@ -6622,7 +6622,7 @@
                 {
                   "uci": "e8c8",
                   "san": "O-O-O",
-                  "note": "Enroque largo: la torre llega a la columna d, junto a tu peón."
+                  "note": "Enroque largo: la torre llega a la columna d, detrás de tu peón."
                 },
                 {
                   "uci": "e1g1",
@@ -6679,7 +6679,7 @@
                 "El alfil de f8"
               ],
               "answer": 0,
-              "explanation": "El caballo de c6 apoya ...d4 y vigila e5.",
+              "explanation": "El caballo de c6 apoya el peón de d4 y vigila e5.",
               "orientation": "b",
               "id": "albin-l03-s03"
             }
@@ -6802,7 +6802,7 @@
           "steps": [
             {
               "type": "explain",
-              "text": "Combinas el Gambito de dama con un fianchetto: g3 y Ag2 apuntan a c6, b7 y la columna c.",
+              "text": "Combinas el Gambito de dama con un fianchetto: g3 y Ag2 apuntan a d5, c6 y b7.",
               "fen": "rnbqkb1r/ppp2ppp/4pn2/3p4/2PP4/6P1/PP2PPBP/RNBQK1NR b KQkq - 0 1",
               "highlight": [
                 "g2"
@@ -6943,7 +6943,7 @@
                 {
                   "uci": "a2a4",
                   "san": "a4",
-                  "note": "Apoya b5 y presiona a6 y b7."
+                  "note": "Impide ...b5, que defendería el peón de c4."
                 },
                 {
                   "uci": "c8d7",
@@ -6961,7 +6961,7 @@
                 {
                   "uci": "c1g5",
                   "san": "Ag5",
-                  "note": "Desarrollas el alfil y clavas el caballo."
+                  "note": "Desarrollas el alfil y presionas el caballo de f6."
                 }
               ],
               "id": "catalan-l02-s01"
@@ -6999,7 +6999,7 @@
             },
             {
               "type": "quiz",
-              "prompt": "Las negras capturaron c4. ¿Cómo recuperas el peón?",
+              "prompt": "Las negras capturaron en c4. ¿Cómo recuperas el peón?",
               "fen": "rnbq1rk1/ppp1bppp/4pn2/8/2pP4/5NP1/PP2PPBP/RNBQ1RK1 w - - 0 1",
               "options": [
                 "Con h4",
@@ -7007,7 +7007,7 @@
                 "Con a3"
               ],
               "answer": 1,
-              "explanation": "La dama en c2 ataca c4 junto al alfil.",
+              "explanation": "La dama en c2 ataca el peón de c4 y lo recupera.",
               "id": "catalan-l03-s03"
             }
           ]
@@ -7178,7 +7178,7 @@
               "options": [
                 "d5",
                 "e5",
-                "b5"
+                "c5"
               ],
               "answer": 0,
               "explanation": "Desde c4 el peón vigila d5 sin ocupar el centro.",
@@ -7520,7 +7520,7 @@
             },
             {
               "type": "quiz",
-              "prompt": "¿Qué apuntan tus alfiles?",
+              "prompt": "¿A qué apuntan tus alfiles?",
               "fen": "rnbqkbnr/pppp1ppp/8/8/2B1P3/8/PB3PPP/RN1QK1NR b KQkq - 0 1",
               "options": [
                 "A tu propio rey",
@@ -7907,7 +7907,7 @@
                 {
                   "uci": "e7e6",
                   "san": "e6",
-                  "note": "Preparas ...d5 con un peón firme."
+                  "note": "Preparas ...d5 y le das apoyo."
                 },
                 {
                   "uci": "d2d4",
@@ -7934,7 +7934,7 @@
                 {
                   "uci": "f8e7",
                   "san": "Ae7",
-                  "note": "Atacas el peón de e4 y clavas el caballo."
+                  "note": "Desarrollas el alfil y rompes la clavada sobre el caballo de f6."
                 },
                 {
                   "uci": "e4e5",
@@ -7943,7 +7943,7 @@
                 {
                   "uci": "f6d7",
                   "san": "Cfd7",
-                  "note": "El caballo cede su casilla a ...f6 y evita la clavada."
+                  "note": "Atacado por e5, el caballo se retira y deja libre el peón de f para ...f6."
                 },
                 {
                   "uci": "g5e7",
@@ -8000,7 +8000,7 @@
               "solutions": [
                 "e7e6"
               ],
-              "hint": "Un peón firme apoya ...d5.",
+              "hint": "Una jugada de peón apoya ...d5.",
               "success": "Correcto",
               "orientation": "b",
               "id": "french-l03-s01"
@@ -8019,7 +8019,7 @@
             },
             {
               "type": "quiz",
-              "prompt": "Las blancas avanzan e5. ¿Dónde retira el caballo?",
+              "prompt": "Las blancas avanzan e5. ¿Dónde retiras el caballo?",
               "fen": "rnbqk2r/ppp1bppp/4pn2/3pP1B1/3P4/2N5/PPP2PPP/R2QKBNR b KQkq - 0 1",
               "options": [
                 "A d7",
@@ -8173,11 +8173,11 @@
             {
               "type": "explain",
               "text": "A menudo cambias el alfil por el caballo y dejas peones doblados a las blancas.",
-              "fen": "r1bq1rk1/pp3ppp/2n1pn2/2p5/2pP4/P1PBPN2/5PPP/R1BQ1RK1 w - - 0 1",
+              "fen": "r1bq1rk1/pp3ppp/2n1pn2/2pp4/2PP4/P1PBPN2/5PPP/R1BQ1RK1 b - - 0 1",
               "orientation": "b",
               "highlight": [
                 "c3",
-                "a3"
+                "c4"
               ],
               "id": "nimzo-indian-l01-s02"
             },
@@ -8200,7 +8200,7 @@
               "options": [
                 "Clavar el caballo de c3 y vigilar e4",
                 "Atacar la dama",
-                "Prepara el enroque largo"
+                "Preparar el enroque largo"
               ],
               "answer": 0,
               "explanation": "Es la jugada que define la apertura.",
@@ -8210,7 +8210,7 @@
             {
               "type": "quiz",
               "prompt": "¿Qué dejas a las blancas tras ...Axc3 y bxc3?",
-              "fen": "r1bq1rk1/pp3ppp/2n1pn2/2p5/2pP4/P1PBPN2/5PPP/R1BQ1RK1 w - - 0 1",
+              "fen": "r1bq1rk1/pp3ppp/2n1pn2/2pp4/2PP4/P1PBPN2/5PPP/R1BQ1RK1 b - - 0 1",
               "options": [
                 "Un peón aislado en h",
                 "Peones doblados en la columna c",
@@ -8316,7 +8316,7 @@
                 {
                   "uci": "d5c4",
                   "san": "dxc4",
-                  "note": "Recuperas el equilibrio capturando."
+                  "note": "Capturas en c4 y el alfil de d3 recaptura."
                 },
                 {
                   "uci": "d3c4",
@@ -8325,7 +8325,7 @@
                 {
                   "uci": "d8c7",
                   "san": "Dc7",
-                  "note": "La dama presiona por la columna c."
+                  "note": "La dama va a la columna c y apunta a c3 para cuando se abra."
                 }
               ],
               "id": "nimzo-indian-l02-s01"
@@ -8486,7 +8486,7 @@
                 "La columna a"
               ],
               "answer": 0,
-              "explanation": "Los peones doblados son su objetivo.",
+              "explanation": "El peón débil de c3 es su objetivo.",
               "orientation": "b",
               "id": "nimzo-indian-l04-s02"
             }
@@ -8571,7 +8571,7 @@
                 "Porque es ilegal"
               ],
               "answer": 1,
-              "explanation": "Con el caballo todavía en e5, De2 clava tu caballo y las blancas llevan la iniciativa.",
+              "explanation": "Con el caballo todavía en e5, De2 ataca tu caballo y amenaza un jaque a la descubierta.",
               "orientation": "b",
               "id": "petrov-l01-s05"
             }
@@ -8679,7 +8679,7 @@
                 {
                   "uci": "c8f5",
                   "san": "Af5",
-                  "note": "El alfil sale con tempo."
+                  "note": "El alfil sale y protege el caballo de e4."
                 }
               ],
               "id": "petrov-l02-s01"
@@ -8966,7 +8966,7 @@
                 {
                   "uci": "g8f6",
                   "san": "Cf6",
-                  "note": "Desarrollas y presionas d5."
+                  "note": "Desarrollas y proteges d5."
                 },
                 {
                   "uci": "c1g5",
@@ -9270,7 +9270,7 @@
               "fen": "rnbqkbnr/ppp1pppp/8/8/2pP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 1",
               "options": [
                 "Desarrollas y recuperas el peón",
-                "Lo pierdes por siempre",
+                "Lo pierdes para siempre",
                 "Cambias las damas"
               ],
               "answer": 0,
@@ -9390,7 +9390,7 @@
                 {
                   "uci": "b1c3",
                   "san": "Cc3",
-                  "note": "Completas el desarrollo."
+                  "note": "Desarrollas el último caballo."
                 }
               ],
               "id": "queens-gambit-accepted-l02-s01"

@@ -1,72 +1,60 @@
 import React from 'react';
 import { Linking, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { useI18n } from '../i18n/I18nContext';
 import { STOCKFISH_VERSION } from '../engine/stockfish/stockfishAssets';
 import { colors, fonts, radius, space } from '../theme';
 
 type Credit = { name: string; what: string; license: string; links?: { label: string; url: string }[] };
 
+type Translate = ReturnType<typeof useI18n>['t'];
+
 // Licencias revisadas en el package.json de cada paquete (ver docs/motor.md y docs/puzzles.md).
-const CREDITS: Credit[] = [
+// Los nombres de licencias y de paquetes de terceros se dejan tal cual; se traduce solo el texto propio de la app.
+const credits = (t: Translate): Credit[] => [
   {
-    name: 'Esta app',
-    what: 'Es software libre: puedes usarla, estudiar su código, modificarla y compartirla según la GPL v3 o posterior. Se ofrece sin ninguna garantía.',
-    license: 'GNU GPL v3 o posterior',
+    name: t('credits.app.name'),
+    what: t('credits.app.what'),
+    license: t('credits.license.gplOrLater'),
     links: [
-      { label: 'Código de la app', url: 'https://github.com/GradusStudio/ajedrez-app' },
-      { label: 'Texto de la licencia GPL v3', url: 'https://www.gnu.org/licenses/gpl-3.0.html' },
+      { label: t('credits.app.code'), url: 'https://github.com/GradusStudio/ajedrez-app' },
+      { label: t('credits.gplText'), url: 'https://www.gnu.org/licenses/gpl-3.0.html' },
     ],
   },
   {
     name: `Stockfish 19 · Stockfish.js ${STOCKFISH_VERSION.split(' ')[0]}`,
-    what: 'Motor de ajedrez de la app. Se incluye sin modificar y la app le habla solo por el protocolo UCI.',
+    what: t('credits.stockfish.what'),
     license: 'GNU GPL v3',
     links: [
-      { label: 'Código de Stockfish', url: 'https://github.com/official-stockfish/Stockfish' },
-      { label: 'Código de Stockfish.js', url: 'https://github.com/nmrugg/stockfish.js' },
-      { label: 'Texto de la licencia GPL v3', url: 'https://www.gnu.org/licenses/gpl-3.0.html' },
+      { label: t('credits.stockfish.code'), url: 'https://github.com/official-stockfish/Stockfish' },
+      { label: t('credits.stockfishJs.code'), url: 'https://github.com/nmrugg/stockfish.js' },
+      { label: t('credits.gplText'), url: 'https://www.gnu.org/licenses/gpl-3.0.html' },
     ],
   },
   {
-    name: 'Puzzles de Lichess',
-    what: '50.000 puzzles de la base abierta de lichess.org.',
-    license: 'CC0 (dominio público)',
+    name: t('credits.lichess.name'),
+    what: t('credits.lichess.what'),
+    license: t('credits.license.cc0'),
     links: [{ label: 'database.lichess.org', url: 'https://database.lichess.org/#puzzles' }],
   },
   {
     name: 'chess.js',
-    what: 'Reglas del ajedrez: jugadas legales, jaque, mate y tablas.',
+    what: t('credits.chessjs.what'),
     license: 'BSD-2-Clause',
     links: [{ label: 'github.com/jhlywa/chess.js', url: 'https://github.com/jhlywa/chess.js' }],
   },
   {
-    name: 'Fuente Nunito',
-    what: 'La tipografía de toda la app.',
+    name: t('credits.font.name'),
+    what: t('credits.font.what'),
     license: 'SIL Open Font License 1.1',
     links: [{ label: 'Google Fonts', url: 'https://fonts.google.com/specimen/Nunito' }],
   },
+  { name: t('credits.pieces.name'), what: t('credits.pieces.what'), license: t('credits.license.sameAsApp') },
+  { name: t('credits.bots.name'), what: t('credits.bots.what'), license: t('credits.license.sameAsApp') },
+  { name: t('credits.icon.name'), what: t('credits.icon.what'), license: t('credits.license.sameAsApp') },
+  { name: t('credits.sounds.name'), what: t('credits.sounds.what'), license: t('credits.license.sameAsApp') },
   {
-    name: 'Piezas',
-    what: 'Los 5 sets de piezas se generaron a partir de imágenes creadas con ChatGPT (OpenAI) y se pasaron a dibujos vectoriales.',
-    license: 'GNU GPL v3 o posterior, como la app',
-  },
-  {
-    name: 'Personajes de los bots',
-    what: 'Los avatares de los bots y sus caras de la lección (explica, piensa, acierto y pista) se crearon con ChatGPT (OpenAI).',
-    license: 'GNU GPL v3 o posterior, como la app',
-  },
-  {
-    name: 'Icono',
-    what: 'El icono de la app (el caballo que sube la escalera) se creó con ChatGPT (OpenAI).',
-    license: 'GNU GPL v3 o posterior, como la app',
-  },
-  {
-    name: 'Sonidos',
-    what: 'Generados por la propia app (síntesis de sonido).',
-    license: 'GNU GPL v3 o posterior, como la app',
-  },
-  {
-    name: 'Expo, React Native y React',
-    what: 'La base de la app, más Expo Router, react-native-svg, react-native-webview, AsyncStorage, expo-audio, expo-haptics y expo-notifications.',
+    name: t('credits.expo.name'),
+    what: t('credits.expo.what'),
     license: 'MIT',
     links: [{ label: 'expo.dev', url: 'https://expo.dev' }],
   },
@@ -74,18 +62,20 @@ const CREDITS: Credit[] = [
 
 // Créditos y licencias (mapa-de-pantallas.md, 2.13). Obligatoria para cumplir la GPL de Stockfish.
 export function CreditsScreen({ onBack }: { onBack: () => void }) {
+  const { t } = useI18n();
   return (
     <ScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel="Volver a Perfil" hitSlop={12}>
-        <Text style={styles.back}>‹ Perfil</Text>
+      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('common.backToProfile')} hitSlop={12}>
+        <Text style={styles.back}>{t('common.backProfile')}</Text>
       </Pressable>
-      <Text style={styles.title}>Créditos y licencias</Text>
-      <Text style={styles.subtitle}>Esta app usa trabajo de otras personas y proyectos. Gracias.</Text>
+      <Text style={styles.title}>{t('credits.title')}</Text>
+      <Text style={styles.subtitle}>{t('credits.subtitle')}</Text>
+      <Text style={styles.note}>{t('credits.translationsNote')}</Text>
 
-      {CREDITS.map((c) => (
+      {credits(t).map((c) => (
         <View key={c.name} style={styles.card}>
           <Text style={styles.name}>{c.name}</Text>
           <Text style={styles.license}>{c.license}</Text>
@@ -107,6 +97,7 @@ const styles = StyleSheet.create({
   back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
+  note: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted, marginBottom: space.lg },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,

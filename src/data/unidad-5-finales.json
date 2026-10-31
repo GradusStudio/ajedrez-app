@@ -479,7 +479,7 @@
             }
           ],
           "success": "Correcto. El peón de a ya no se puede parar: el rey negro está fuera del cuadrado.",
-          "hint": "Empieza con b6. Después avanza el peón que quedó sin peón negro delante.",
+          "hint": "Empieza con b6. Después de la captura juega c6: cuando el peón de b capture, tu peón de a tiene el camino libre.",
           "id": "u5-l04-s06"
         },
         {
@@ -627,7 +627,7 @@
             {
               "uci": "d6e6",
               "san": "Re6",
-              "note": "Sigue bajando hacia la torre."
+              "note": "Se aparta del jaque sin dejar de proteger el peón."
             },
             {
               "uci": "d1e1",
@@ -682,7 +682,7 @@
         },
         {
           "type": "explain",
-          "text": "Resumen: aleja al rey rival, lleva la torre a la cuarta fila, saca tu rey y tapa los jaques con la torre. Si el rey del bando que defiende llega delante del peón, la defensa es otra: la posición de Philidor, que da tablas. La verás más adelante.",
+          "text": "Resumen: aleja al rey rival, lleva la torre a la cuarta fila, saca tu rey y tapa los jaques con la torre. Si el rey del bando que defiende llega delante del peón, la defensa es otra: la posición de Philidor, que da tablas.",
           "fen": "3K4/3P1k2/8/8/8/8/2r5/4R3 w - - 0 1",
           "play": [
             "e1f1",

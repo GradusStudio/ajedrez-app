@@ -1,0 +1,157 @@
+{
+  "title": "Règles spéciales",
+  "lessons": {
+    "u2-l01": {
+      "title": "Le roque",
+      "summary": "Le roi et la tour en un seul coup",
+      "steps": {
+        "u2-l01-s01": { "text": "Le roque déplace le roi et une tour en un seul coup. Le roi se déplace de deux cases vers la tour, et la tour saute de l'autre côté du roi. Voici le petit roque : O-O." },
+        "u2-l01-s02": { "text": "Le grand roque se fait vers la tour en a1 : le roi va en c1 et la tour en d1. Il s'écrit O-O-O." },
+        "u2-l01-s03": { "prompt": "Fais le petit roque.", "hint": "Touche le roi, puis g1 : le roi se déplace de deux cases vers la tour.", "success": "Correct. Le roi est en g1, à l'abri, et la tour est passée en f1." },
+        "u2-l01-s04": { "prompt": "Tu joues les Noirs. Fais le grand roque.", "hint": "Déplace le roi de deux cases vers la tour en a8.", "success": "Correct. Le roi est allé en c8 et la tour en d8." },
+        "u2-l01-s05": { "text": "Pour roquer, ni le roi ni cette tour ne doivent avoir bougé de toute la partie, et les cases entre eux doivent être vides." },
+        "u2-l01-s06": { "text": "On ne peut pas non plus roquer si le roi est en échec, s'il passe par une case attaquée ou s'il arrive sur une case attaquée. Ici, le fou noir attaque f1 : pas de petit roque, mais le grand roque est possible." },
+        "u2-l01-s07": {
+          "prompt": "Les Blancs peuvent-ils faire le petit roque ?",
+          "options": ["Oui", "Non, le roi arriverait sur une case attaquée", "Non, la tour est attaquée"],
+          "explanation": "Le cavalier attaque g1, la case où arriverait le roi. Le petit roque n'est donc pas permis.",
+          "feedback": ["Regarde quelles cases le cavalier en h3 attaque.", "", "La tour en h1 n'est pas attaquée et, même si elle l'était, cela n'empêcherait pas de roquer."]
+        },
+        "u2-l01-s08": {
+          "prompt": "Et peuvent-ils faire le grand roque ?",
+          "options": ["Oui", "Non"],
+          "explanation": "Du côté de la dame, rien n'est attaqué : le roi passe par d1 et arrive en c1 sans problème.",
+          "feedback": ["", "Vérifie d1 et c1 : aucune de ces cases n'est attaquée."]
+        }
+      }
+    },
+    "u2-l02": {
+      "title": "La prise en passant",
+      "summary": "Une prise spéciale du pion",
+      "steps": {
+        "u2-l02-s01": { "text": "Si un pion avance de deux cases (un double pas) et arrive à côté d'un pion adverse, ce pion peut le prendre comme s'il n'avait avancé que d'une case. C'est la prise en passant." },
+        "u2-l02-s02": { "text": "Elle n'est possible qu'au coup suivant. Si tu joues autre chose, tu perds ce droit." },
+        "u2-l02-s03": { "prompt": "Les Noirs viennent de jouer f5. Prends en passant.", "hint": "Le pion f a avancé de deux cases et se trouve à côté du tien. Prends-le en allant en f6.", "success": "Correct. Ton pion est en f6 et le pion f5 a quitté l'échiquier." },
+        "u2-l02-s04": { "prompt": "Tu joues les Noirs. Les Blancs viennent de jouer b4. Prends en passant.", "hint": "Le pion b a avancé de deux cases et se trouve à côté de ton pion en c4.", "success": "Correct. Ton pion est en b3 et le pion b4 a quitté l'échiquier." },
+        "u2-l02-s05": {
+          "prompt": "Les Noirs viennent de jouer d5. Où arrive ton pion s'il prend en passant ?",
+          "options": ["d6", "d5", "e6"],
+          "explanation": "Il arrive en d6, la case que le pion noir a sautée. Le pion d5 quitte l'échiquier.",
+          "feedback": ["", "Il prend comme si le pion n'avait avancé que d'une case.", "Le pion prend en diagonale."]
+        },
+        "u2-l02-s06": {
+          "prompt": "Les Noirs ont joué d5 il y a deux coups. Peux-tu encore prendre en passant ?",
+          "options": ["Oui", "Non, le moment est passé"],
+          "explanation": "La prise en passant n'est possible qu'au coup qui suit le double pas.",
+          "feedback": ["Elle n'est possible qu'au coup suivant.", ""]
+        },
+        "u2-l02-s07": { "prompt": "Les Noirs viennent de jouer e5, en avançant de deux cases. Touche le pion que tu peux prendre en passant.", "hint": "C'est le pion qui vient d'avancer de deux cases." }
+      }
+    },
+    "u2-l03": {
+      "title": "Bien promouvoir",
+      "summary": "Choisir la bonne pièce à la promotion",
+      "steps": {
+        "u2-l03-s01": { "text": "Révision : quand le pion atteint la dernière rangée, tu choisis en quelle pièce il se transforme. La dame est presque toujours le meilleur choix." },
+        "u2-l03-s02": { "prompt": "Fais la promotion en prenant la tour.", "hint": "Le pion prend aussi en diagonale à la promotion. S'il avance en d8, la tour le prend.", "success": "Correct. Tu as pris la tour et promu ton pion en même temps." },
+        "u2-l03-s03": { "text": "Attention au pat. Ici, si tu choisis la dame, le roi noir n'a plus de case et n'est pas en échec : c'est pat et la partie est nulle." },
+        "u2-l03-s04": { "prompt": "Fais la promotion sans mettre le roi noir pat, en gardant de quoi donner mat.", "hint": "La dame met pat. Essaie la tour : elle laisse libre la case a6.", "success": "Correct. Avec une tour, le roi noir a la case a6, et après Ra6 vient Ta8 mat." },
+        "u2-l03-s05": {
+          "prompt": "Les Noirs menacent Df1 mat. En quelle pièce vaut-il mieux promouvoir ?",
+          "options": ["Dame", "Cavalier", "Tour"],
+          "explanation": "Un cavalier en d8 fait échec au roi et attaque la dame en même temps. Avec une dame ou une tour, les Noirs donnent mat par Df1.",
+          "feedback": ["Avec une dame, les Noirs jouent Df1 et c'est mat.", "", "Avec une tour, les Noirs jouent Df1 et c'est mat."]
+        },
+        "u2-l03-s06": { "prompt": "Fais la promotion de façon à empêcher les Noirs de donner mat.", "hint": "Choisis le cavalier : il fait échec et attaque la dame.", "success": "Correct. Après l'échec, le cavalier prend la dame." },
+        "u2-l03-s07": { "text": "Avant de promouvoir, vérifie deux choses : si la dame mettrait le roi adverse pat, et si l'adversaire peut ensuite te donner mat. C'est presque toujours la dame ; parfois, une autre pièce." }
+      }
+    },
+    "u2-l04": {
+      "title": "Le pat",
+      "summary": "Aucun coup et pas d'échec : nulle",
+      "steps": {
+        "u2-l04-s01": { "text": "C'est aux Noirs de jouer, mais le roi n'a aucune case sûre et il n'est pas en échec. C'est pat : la partie est nulle." },
+        "u2-l04-s02": { "text": "Ici, au contraire, le roi est en échec et ne peut pas s'échapper : c'est mat. La différence entre le mat et le pat, c'est l'échec." },
+        "u2-l04-s03": {
+          "prompt": "Les Noirs jouent. Mat ou pat ?",
+          "options": ["Mat", "Pat"],
+          "explanation": "Le roi noir n'a plus de case, mais il n'est pas en échec : c'est pat, la partie est nulle.",
+          "feedback": ["Le roi est-il en échec ?", ""]
+        },
+        "u2-l04-s04": {
+          "prompt": "Les Noirs jouent. Mat ou pat ?",
+          "options": ["Mat", "Pat"],
+          "explanation": "La dame fait échec et le roi ne peut ni s'échapper ni la prendre, car le roi blanc la protège : c'est mat.",
+          "feedback": ["", "Regarde si la dame fait échec."]
+        },
+        "u2-l04-s05": {
+          "prompt": "Les Blancs jouent. Lequel de ces coups met le roi noir pat ?",
+          "options": ["Dg6", "Dh3", "Dd8"],
+          "explanation": "Après Dg6, le roi noir n'a plus de case et n'est pas en échec : c'est pat. En revanche, Dh3 est mat.",
+          "feedback": ["", "Dh3 fait échec : ce n'est pas pat. C'est même mat.", "Dd8 fait échec et le roi s'échappe en h7."]
+        },
+        "u2-l04-s06": { "prompt": "Maintenant, donne mat sans mettre pat.", "hint": "Ton roi contrôle déjà g7 et g8. Fais échec sur la colonne h.", "success": "Correct. Dh3 est mat : le roi noir est en échec et n'a nulle part où aller." },
+        "u2-l04-s07": { "text": "Si tu es en train de perdre, le pat peut te sauver. Ici, les Noirs ont une dame, mais les Blancs n'ont aucun coup et ne sont pas en échec : la partie est nulle." }
+      }
+    },
+    "u2-l05": {
+      "title": "Les autres nulles",
+      "summary": "Répétition, matériel et 50 coups",
+      "steps": {
+        "u2-l05-s01": { "text": "Les Noirs ont plus de matériel et menacent de mat, mais les Blancs font échec sur échec. Si la même position se répète trois fois, la partie est nulle." },
+        "u2-l05-s02": { "text": "C'est ce qu'on appelle l'échec perpétuel : des échecs sans fin que l'adversaire ne peut pas éviter. C'est la façon la plus courante de sauver par répétition une partie perdue." },
+        "u2-l05-s03": { "prompt": "Tu es en train de perdre et les Noirs menacent de mat. Fais échec pour commencer l'échec perpétuel.", "hint": "Cherche un échec avec la dame où on ne peut pas la prendre.", "success": "Correct. Avec des échecs sans fin, les Noirs ne peuvent pas empêcher la nulle." },
+        "u2-l05-s04": { "text": "La partie est aussi nulle quand aucun des deux n'a assez de matériel pour donner mat : roi contre roi, roi et fou contre roi, ou roi et cavalier contre roi." },
+        "u2-l05-s05": {
+          "prompt": "Roi et tour contre roi. Est-ce suffisant pour donner mat ?",
+          "options": ["Oui", "Non"],
+          "explanation": "Oui : avec un roi et une tour, on peut donner mat. Tu le verras dans l'unité sur les finales.",
+          "feedback": ["", "La tour, avec l'aide du roi, peut donner mat."]
+        },
+        "u2-l05-s06": {
+          "prompt": "Roi et cavalier contre roi. Est-ce suffisant pour donner mat ?",
+          "options": ["Oui", "Non"],
+          "explanation": "Non : avec un seul cavalier, on ne peut pas forcer le mat. La partie est nulle par matériel insuffisant.",
+          "feedback": ["Un cavalier seul ne suffit pas pour donner mat.", ""]
+        },
+        "u2-l05-s07": { "text": "Règle des 50 coups : si 50 coups de chaque camp sont joués sans prise ni coup de pion, la partie est nulle. Les joueurs peuvent aussi se mettre d'accord sur la nulle : dans l'onglet Bots, tu peux la proposer à l'adversaire." },
+        "u2-l05-s08": {
+          "prompt": "Dans laquelle de ces situations la partie n'est-elle pas nulle ?",
+          "options": ["Pat", "Échec et mat", "Triple répétition"],
+          "explanation": "L'échec et mat termine la partie avec un gagnant. Les deux autres donnent une partie nulle.",
+          "feedback": ["Le pat, c'est une nulle.", "", "La triple répétition, c'est une nulle."]
+        }
+      }
+    },
+    "u2-l06": {
+      "title": "Comment noter les coups",
+      "summary": "Lire et noter les coups",
+      "steps": {
+        "u2-l06-s01": { "text": "Chaque coup s'écrit avec la lettre de la pièce et sa case d'arrivée. Les lettres sont les initiales des noms : R pour Roi, D pour Dame, T pour Tour, F pour Fou et C pour Cavalier. Ce coup est Cf3. Les pions n'ont pas de lettre : e4." },
+        "u2-l06-s02": { "text": "Si le coup est une prise, on ajoute un x : Fxd5. Quand c'est un pion qui prend, on écrit sa colonne de départ : exd5." },
+        "u2-l06-s03": { "text": "Autres signes : + indique l'échec et # le mat, comme Dxf7# dans cette position. O-O est le petit roque, O-O-O le grand roque, et =D indique la promotion : e8=D." },
+        "u2-l06-s04": {
+          "prompt": "Comment s'écrit le coup du cavalier de g1 à f3 ?",
+          "options": ["Cf3", "Rf3", "Ff3"],
+          "explanation": "C, c'est le cavalier : Cf3.",
+          "feedback": ["", "R, c'est le roi.", "F, c'est le fou."]
+        },
+        "u2-l06-s05": { "prompt": "Joue Fc4.", "hint": "F, c'est le fou : amène le fou de f1 à c4.", "success": "Correct. Fc4 : le fou est allé en c4." },
+        "u2-l06-s06": { "prompt": "Joue exd5.", "hint": "Le pion de la colonne e prend en d5.", "success": "Correct. exd5 : le pion e a pris en d5." },
+        "u2-l06-s07": {
+          "prompt": "Que signifie O-O-O ?",
+          "options": ["Grand roque", "Petit roque", "Échec et mat"],
+          "explanation": "O-O-O est le grand roque, du côté de la tour de la colonne a. O-O est le petit roque.",
+          "feedback": ["", "Le petit roque a deux O : O-O.", "Le mat s'indique par #."]
+        },
+        "u2-l06-s08": {
+          "prompt": "Que signifie e8=C+ ?",
+          "options": ["Un pion est promu en cavalier en e8 et fait échec", "Un cavalier va en e8 et fait échec", "Un pion est promu en dame en e8"],
+          "explanation": "e8 est la case, =C la pièce choisie à la promotion et + l'échec.",
+          "feedback": ["", "Si c'était un cavalier, le coup commencerait par C : Ce8+.", "=C indique un cavalier, pas une dame."]
+        },
+        "u2-l06-s09": { "text": "En anglais, les lettres sont K (roi), Q (dame), R (tour), B (fou) et N (cavalier) : Cf3 s'écrit Nf3. Attention : le R anglais, c'est la tour, pas le roi. Les leçons utilisent la notation française ; dans Réglages > Notation des coups, tu choisis celle à afficher dans les parties, les ouvertures et l'analyse." }
+      }
+    }
+  }
+}

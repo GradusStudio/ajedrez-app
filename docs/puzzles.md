@@ -37,7 +37,7 @@ El script lee el archivo descomprimiéndolo sobre la marcha (con `fzstd`), sin d
   - `failed`: se miró la solución; el puzzle sigue pendiente en Práctica.
 
   Se guarda el mejor resultado de cada puzzle. Cada puzzle cuenta para la racha salvo que se haya mirado la solución. La primera vez que se resuelve da monedas: 2 sin errores ni pista, 1 con errores o pista (mirar la solución no da, pero el puzzle puede dar monedas después, al resolverlo).
-- **Temas en español:** `src/puzzles/themes.json`. Los nombres son traducciones propias, no copiadas de Lichess.
+- **Temas:** `src/puzzles/themes.json` (claves de Lichess y orden de la práctica). Los nombres en español son traducciones propias, no copiadas de Lichess, y están en `src/i18n/es.ts` (claves `puzzleTheme.<tema>`).
 
 ## Pendiente
 - Rating de puzzles del usuario: hoy no hay puntuación, solo resuelto o no resuelto, como pedía el mapa.

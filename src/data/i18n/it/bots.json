@@ -1,0 +1,302 @@
+{
+  "pipo": {
+    "name": "Pipo",
+    "tagline": "Il Curioso",
+    "trait": "Muove i pezzi con le migliori intenzioni, ma si dimentica di proteggerli. Prende ciò che lasci indifeso e cade in matti semplici.",
+    "teaches": "Catturare pezzi non protetti e dare matti semplici.",
+    "lines": {
+      "greeting": "Ciao. Sto ancora imparando, ma giocare mi piace tanto.",
+      "onGoodMove": "Bella mossa. Non l'avevo vista arrivare.",
+      "onBlunder": "Quello era indifeso. Grazie.",
+      "onWin": "Ho vinto. Non so come, ma ho vinto.",
+      "onLose": "Mi hai battuto. Voglio vedere come hai fatto."
+    },
+    "teaching": {
+      "welcome": [
+        "Ciao. Oggi impariamo insieme, ci sono anch'io.",
+        "Che bello che sei qui. Andiamo con calma, passo dopo passo.",
+        "Ciao. Sono Pipo e oggi ti accompagno in questa lezione."
+      ],
+      "close": [
+        "Abbiamo finito. È stato bello imparare con te.",
+        "Fatto. Anch'io ho imparato qualcosa oggi.",
+        "Ben fatto. Sono contento che tu abbia finito tutta la lezione."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. Oggi basta una sola attività per continuarla.",
+        "recovery": "Oggi puoi recuperare la tua serie con una lezione, un puzzle e una partita contro un bot. Ti accompagno io.",
+        "general": "Ho voglia di giocare un po' con te. Entra quando puoi."
+      }
+    }
+  },
+  "lola": {
+    "name": "Lola",
+    "tagline": "La Prudente",
+    "trait": "Protegge tutto e non attacca quasi mai. Cambia i pezzi quando può e aspetta un tuo errore.",
+    "teaches": "Pazienza: come scardinare una posizione solida senza rischiare troppo.",
+    "lines": {
+      "greeting": "Con calma. Qui non c'è fretta.",
+      "onGoodMove": "Ben giocato. Dovrò stare attenta.",
+      "onBlunder": "Attenzione: quel pezzo è rimasto senza protezione.",
+      "onWin": "Anche vincere con calma è vincere.",
+      "onLose": "Molto bene. Hai rotto la mia difesa."
+    },
+    "teaching": {
+      "welcome": [
+        "Con calma. Questa lezione non ha fretta.",
+        "Ciao. Andiamo piano e con attenzione.",
+        "Ciao. Ci prendiamo tutto il tempo che serve."
+      ],
+      "close": [
+        "Abbiamo finito con tranquillità. Molto bene.",
+        "Lezione conclusa. Riposati un po', se vuoi.",
+        "Buon lavoro. Per oggi è tutto in ordine."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. Con un'attività tranquilla oggi resta al sicuro.",
+        "recovery": "Puoi ancora recuperare la serie: oggi una lezione, un puzzle e una partita contro un bot.",
+        "general": "Quando hai un momento tranquillo, ti aspetto qui."
+      }
+    }
+  },
+  "tomas": {
+    "name": "Tomás",
+    "tagline": "Il Furbo",
+    "trait": "Cerca trappole fin dall'apertura e attacca f7. Se non ci caschi, resta senza piano.",
+    "teaches": "Difendersi dalle minacce iniziali e riconoscere le trappole più note.",
+    "lines": {
+      "greeting": "Ti insegno un trucco.",
+      "onGoodMove": "Mmm, la trappola non ha funzionato. Per poco.",
+      "onBlunder": "Proprio quello che aspettavo.",
+      "onWin": "Te l'avevo detto che c'era un trucco.",
+      "onLose": "Mi hai scoperto. Ben visto."
+    },
+    "teaching": {
+      "welcome": [
+        "Guarda bene, che ti mostro un trucco.",
+        "Vieni, vieni. Oggi in questa lezione c'è qualcosa di nascosto.",
+        "Ciao. Occhio, a volte le cose non sono come sembrano."
+      ],
+      "close": [
+        "Ed ecco il trucco. Ora lo conosci.",
+        "Abbiamo finito. Adesso sai quello che so io.",
+        "Abbiamo finito. Raccontalo a qualcuno, ma con cautela."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. Un'attività oggi e resta al sicuro.",
+        "recovery": "C'è un trucco per recuperare la serie: una lezione, un puzzle e una partita contro un bot, oggi.",
+        "general": "Ho preparato qualcosa di nuovo per te. Entra a vederlo."
+      }
+    }
+  },
+  "valentina": {
+    "name": "Valentina",
+    "tagline": "L'Attaccante",
+    "trait": "Sacrifica pedoni per l'iniziativa e attacca il re. Perde forza se ti difendi con calma.",
+    "teaches": "Difendersi sotto pressione e contrattaccare.",
+    "lines": {
+      "greeting": "Giochiamo veloce e all'attacco.",
+      "onGoodMove": "Buona difesa. Passo da un'altra parte.",
+      "onBlunder": "Questo apre il mio attacco.",
+      "onWin": "L'attacco ha funzionato.",
+      "onLose": "Difesa davvero ottima."
+    },
+    "teaching": {
+      "welcome": [
+        "Dritti al punto. Cominciamo.",
+        "Oggi si gioca con energia. Avanti.",
+        "Ciao. Niente giri di parole, al lavoro."
+      ],
+      "close": [
+        "Abbiamo finito. Veloce e fatta bene.",
+        "Ben giocato. Ora avanti con la prossima.",
+        "Abbiamo finito. Si vede che hai ritmo."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. Un'attività oggi e vai avanti.",
+        "recovery": "Oggi tutto insieme: una lezione, un puzzle e una partita contro un bot, per recuperare la serie.",
+        "general": "È un buon momento per giocare. Entra e via."
+      }
+    }
+  },
+  "ramiro": {
+    "name": "Don Ramiro",
+    "tagline": "Il Professore",
+    "trait": "Gioca le aperture come sui libri e punisce ogni errore di principio.",
+    "teaches": "I principi dell'apertura: centro, sviluppo e arrocco.",
+    "lines": {
+      "greeting": "Cominciamo dai principi: centro, sviluppo e arrocco.",
+      "onGoodMove": "È ciò che dice il libro.",
+      "onBlunder": "Questa mossa infrange un principio di apertura.",
+      "onWin": "Ripassa i principi e prova di nuovo.",
+      "onLose": "Eccellente. Hai imparato bene."
+    },
+    "teaching": {
+      "welcome": [
+        "Buongiorno. Iniziamo la lezione con ordine.",
+        "Buongiorno. Apri bene gli occhi e la mente.",
+        "Buongiorno. Oggi si impara con metodo."
+      ],
+      "close": [
+        "Con questo concludiamo la lezione. Buon lavoro.",
+        "Lezione completa. Ripassala quando vuoi.",
+        "Molto bene. Così si studia, con costanza."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. La costanza si coltiva con un esercizio oggi.",
+        "recovery": "Per riprendere la serie, oggi occorrono una lezione, un puzzle e una partita contro un bot.",
+        "general": "La lezione di oggi è pronta. Ti aspetto."
+      }
+    }
+  },
+  "camila": {
+    "name": "Camila",
+    "tagline": "La Stratega",
+    "trait": "Evita la tattica, migliora i suoi pezzi e cerca finali con un piccolo vantaggio.",
+    "teaches": "Struttura pedonale, caselle deboli e piani a lungo termine.",
+    "lines": {
+      "greeting": "Preferisco vincere lentamente.",
+      "onGoodMove": "Un miglioramento di posizione molto sensato.",
+      "onBlunder": "Questa debolezza la sfrutterò.",
+      "onWin": "I piccoli vantaggi sommati fanno una vittoria.",
+      "onLose": "La tua struttura era migliore. Complimenti."
+    },
+    "teaching": {
+      "welcome": [
+        "Ciao. Lavoriamo su questa lezione con pazienza.",
+        "Ciao. Un passo ben fatto vale più di tanti affrettati.",
+        "Che piacere vederti. Cominciamo con serenità."
+      ],
+      "close": [
+        "Abbiamo finito. Ogni lezione aggiunge qualcosa.",
+        "Buon lavoro. Si avanza meglio poco a poco.",
+        "Lezione conclusa. È venuta bene."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. Un'attività oggi basta per mantenerla.",
+        "recovery": "Per recuperare la serie, oggi una lezione, un puzzle e una partita contro un bot.",
+        "general": "Quando puoi, una lezione breve ti fa bene."
+      }
+    }
+  },
+  "bruno": {
+    "name": "Bruno",
+    "tagline": "Il Muro",
+    "trait": "Difesa solida e pazienza infinita. Concede spazio, ma non lascia quasi debolezze.",
+    "teaches": "Attaccare una posizione solida con pazienza e buoni cambi.",
+    "lines": {
+      "greeting": "Prova a rompere il mio muro.",
+      "onGoodMove": "Hai aperto una crepa. Occhio.",
+      "onBlunder": "Hai lasciato un buco nella tua difesa.",
+      "onWin": "Il mio muro ha retto.",
+      "onLose": "Il muro è crollato. Buona tecnica."
+    },
+    "teaching": {
+      "welcome": [
+        "Ciao. Qui si va saldi e senza fretta.",
+        "Ciao. Prima gettiamo bene le basi.",
+        "Vieni. Questa lezione si costruisce piano."
+      ],
+      "close": [
+        "Abbiamo finito. Tutto solido.",
+        "Lezione conclusa. Buona base per il seguito.",
+        "Bene. Con la pazienza si arriva lontano."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. Un'attività oggi e resta in piedi.",
+        "recovery": "Per rimettere in piedi la serie, oggi servono una lezione, un puzzle e una partita contro un bot.",
+        "general": "Sono sempre qui, senza fretta. Entra quando vuoi."
+      }
+    }
+  },
+  "sofia": {
+    "name": "Sofía",
+    "tagline": "La Tattica",
+    "trait": "Calcola parecchie mosse in anticipo. Punisce qualsiasi pezzo non protetto.",
+    "teaches": "Vedere la tattica in arrivo: forchette, inchiodature e attacchi doppi.",
+    "lines": {
+      "greeting": "Calcolo ogni mossa. Che vinca il migliore.",
+      "onGoodMove": "Bella tattica. L'ho vista tardi.",
+      "onBlunder": "C'era una combinazione nascosta.",
+      "onWin": "La tattica ha deciso la partita.",
+      "onLose": "Mi hai battuta con una tattica pulita."
+    },
+    "teaching": {
+      "welcome": [
+        "Ciao. Questa lezione chiede occhi svegli.",
+        "Ciao. Ragioniamo a mente fredda.",
+        "Cominciamo. Oggi si guarda tutto due volte."
+      ],
+      "close": [
+        "Abbiamo finito. Hai usato bene la testa.",
+        "Lezione conclusa. Ragionamento davvero ottimo.",
+        "Abbiamo finito. Ora hai uno strumento in più."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. Un'attività oggi e non perdi ciò che hai guadagnato.",
+        "recovery": "Per recuperare la serie, oggi una lezione, un puzzle e una partita contro un bot.",
+        "general": "Ho una bella sfida per oggi. Entra a vederla."
+      }
+    }
+  },
+  "ivo": {
+    "name": "Maestro Ivo",
+    "tagline": "L'Esperto di Finali",
+    "trait": "Cambia i pezzi con precisione e gioca i finali con una tecnica finissima.",
+    "teaches": "Tecnica dei finali e come convertire piccoli vantaggi.",
+    "lines": {
+      "greeting": "I finali mostrano la verità di una partita.",
+      "onGoodMove": "Questa è la mossa di chi sa avere pazienza.",
+      "onBlunder": "Nel finale, questo errore costa caro.",
+      "onWin": "Ha deciso il finale. Rivedi l'attività del tuo re.",
+      "onLose": "Grande tecnica di finale."
+    },
+    "teaching": {
+      "welcome": [
+        "Ciao. Guardiamo tutto con calma e attenzione al dettaglio.",
+        "Ciao. Qui ogni dettaglio conta.",
+        "Vieni. Oggi lavoriamo con precisione."
+      ],
+      "close": [
+        "Abbiamo finito. Un vero lavoro di fino.",
+        "Lezione conclusa. Si nota la pazienza.",
+        "Ben fatto. Il dettaglio fa la differenza."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. Un'attività oggi e la mantieni.",
+        "recovery": "Per recuperare la serie, oggi una lezione, un puzzle e una partita contro un bot.",
+        "general": "Un momento di allenamento oggi vale molto. Ti aspetto."
+      }
+    }
+  },
+  "ada": {
+    "name": "Ada",
+    "tagline": "La Macchina",
+    "trait": "Gioca con una precisione quasi totale e usa tutto il suo repertorio. È la sfida finale.",
+    "teaches": "Giocare senza errori contro un avversario molto preciso.",
+    "lines": {
+      "greeting": "Gioco al meglio. Che la partita abbia inizio.",
+      "onGoodMove": "Mossa precisa. Era la migliore.",
+      "onBlunder": "Errore. Lo sfrutto.",
+      "onWin": "Rivedi la partita: imparerai molto.",
+      "onLose": "Impressionante. Mi hai battuta."
+    },
+    "teaching": {
+      "welcome": [
+        "Ciao. Cominciamo.",
+        "Questa è l'ultima tappa. Andiamo.",
+        "Ciao. Vediamo come va oggi."
+      ],
+      "close": [
+        "Abbiamo finito. Buon risultato.",
+        "Completo. Puoi passare a ciò che viene dopo.",
+        "Abbiamo finito. Ben fatto."
+      ],
+      "reminder": {
+        "risk": "Giorni di serie: {n}. Un'attività oggi e si conserva.",
+        "recovery": "Per recuperare la serie, oggi una lezione, un puzzle e una partita contro un bot.",
+        "general": "È un buon momento per allenarti. Entra."
+      }
+    }
+  }
+}

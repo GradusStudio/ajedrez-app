@@ -12,6 +12,7 @@ import {
 import Svg, { Line, Polygon } from 'react-native-svg';
 import { Chess, Square } from 'chess.js';
 import { useFeedback } from '../feedback/feedback';
+import { useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
 import { boardHighlight, boardThemes, colors } from '../theme';
 import { Captured, computeMove, Offsets } from './boardAnimation';import Piece, { PieceColor, PieceType } from './Piece';
@@ -541,21 +542,21 @@ function PromotionPicker({
   const col = orientation === 'w' ? file : 7 - file;
   const row = orientation === 'w' ? 8 - rank : rank - 1;
   const dir = row === 0 ? 1 : -1;
-  const names: Record<PromotionPiece, string> = { q: 'dama', n: 'caballo', r: 'torre', b: 'alfil' };
+  const { t } = useI18n();
   return (
     <View style={[StyleSheet.absoluteFill, { zIndex: 40 }]}>
       <Pressable
         style={[StyleSheet.absoluteFill, styles.promoShade]}
         onPress={() => onChoose(null)}
         accessibilityRole="button"
-        accessibilityLabel="Cancelar coronación"
+        accessibilityLabel={t('board.cancelPromotion')}
       />
       {PROMOTION_PIECES.map((p, i) => (
         <Pressable
           key={p}
           onPress={() => onChoose(p)}
           accessibilityRole="button"
-          accessibilityLabel={`Coronar ${names[p]}`}
+          accessibilityLabel={t(`board.promote.${p}`)}
           style={({ pressed }) => [
             styles.promoOption,
             {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
-import { findBot } from '../data/bots';
-import { findOpening } from '../data/openings';
+import { useContent } from '../data/useContent';
 import { GameScreen } from '../screens/GameScreen';
 
 /**
@@ -10,6 +9,7 @@ import { GameScreen } from '../screens/GameScreen';
  */
 export default function GameRoute() {
   const params = useLocalSearchParams<{ bot: string; color: string; curso?: string; n?: string }>();
+  const { findBot, findOpening } = useContent();
   const bot = findBot(params.bot);
   if (!bot) return <Redirect href="/bots" />;
   const userColor = params.color === 'b' ? 'b' : 'w';

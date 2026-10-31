@@ -1,11 +1,12 @@
 import React from 'react';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { botForOpening } from '../../data/bots';
-import { findOpening } from '../../data/openings';
+import { useContent } from '../../data/useContent';
 import { OpeningDetailScreen } from '../../screens/OpeningDetailScreen';
 
 export default function OpeningRoute() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { findOpening } = useContent();
   const course = findOpening(id);
   if (!course) return <Redirect href="/aperturas" />;
 

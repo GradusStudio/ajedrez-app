@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Board } from '../../components/Board';
 import { FadeIn } from '../../components/FadeIn';
 import { QuizStep as QuizStepData } from '../../data/lessonTypes';
+import { useI18n } from '../../i18n/I18nContext';
 import { StepCallbacks } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
 import { colors, fonts, radius, space } from '../../theme';
@@ -10,6 +11,7 @@ import { colors, fonts, radius, space } from '../../theme';
 type Props = { step: QuizStepData } & StepCallbacks;
 
 export function QuizStep({ step, onCorrect, onWrong, locked }: Props) {
+  const { t } = useI18n();
   const [wrong, setWrong] = useState<number[]>([]);
   const [solved, setSolved] = useState(false);
 
@@ -21,7 +23,7 @@ export function QuizStep({ step, onCorrect, onWrong, locked }: Props) {
       onCorrect(step.explanation);
     } else {
       setWrong((w) => [...w, i]);
-      onWrong(step.feedback?.[i] ?? 'Esa no es. Prueba con otra opción.');
+      onWrong(step.feedback?.[i] ?? t('lesson.quizWrong'));
     }
   };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
+import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { isPuzzleSolved } from '../progress/progressStore';
 import { findPuzzle, Level, LEVELS, nextPuzzle, themeName } from '../puzzles/puzzles';
@@ -15,6 +16,7 @@ import { colors } from '../theme';
 export default function PuzzleRoute() {
   const params = useLocalSearchParams<{ modo?: string; id?: string; nivel?: string; tema?: string }>();
   const { progress } = useProgress();
+  const { t } = useI18n();
   const practice = params.modo === 'practica';
   const level: Level = params.nivel && params.nivel in LEVELS ? (params.nivel as Level) : 'facil';
   const theme = params.tema ?? null;
@@ -26,8 +28,8 @@ export default function PuzzleRoute() {
   if (!puzzle) return <Redirect href="/puzzles" />;
 
   const label = practice
-    ? ['Práctica', LEVELS[level].label, theme ? themeName(theme) : null].filter(Boolean).join(' · ')
-    : 'Puzzle del día';
+    ? [t('puzzles.practice'), t(`puzzles.level.${level}`), theme ? themeName(theme, t) : null].filter(Boolean).join(' · ')
+    : t('puzzles.daily');
 
   return (
     // Fondo oscuro debajo del fundido de entrada de cada puzzle.

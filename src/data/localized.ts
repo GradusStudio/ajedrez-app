@@ -1,0 +1,45 @@
+import type { Language } from '../i18n/languages';
+import { bots } from './bots';
+import { openings } from './openings';
+import { units } from './units';
+import { buildContent, type Content, type LanguageFiles } from './translate';
+
+// Contenido (unidades, aperturas y bots) en el idioma elegido. Sin imports de React Native.
+
+const spanish: Content = { units, openings, bots };
+
+/**
+ * Archivos de texto de un idioma. Cada caso lleva su propio `require` estático (Metro lo empaqueta)
+ * y solo se ejecuta si ese idioma se elige. Un idioma sin archivos da el español.
+ */
+export function languageFiles(language: Language): LanguageFiles | undefined {
+  switch (language) {
+    case 'en':
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./i18n/en') as { files: LanguageFiles }).files;
+    case 'de':
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./i18n/de') as { files: LanguageFiles }).files;
+    case 'it':
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./i18n/it') as { files: LanguageFiles }).files;
+    case 'fr':
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./i18n/fr') as { files: LanguageFiles }).files;
+    default:
+      return undefined;
+  }
+}
+
+const cache = new Map<Language, Content>();
+
+/** Contenido del idioma, con memoria. En español devuelve los mismos objetos originales. */
+export function localizedContent(language: Language): Content {
+  if (language === 'es') return spanish;
+  let content = cache.get(language);
+  if (!content) {
+    content = buildContent(spanish, languageFiles(language));
+    cache.set(language, content);
+  }
+  return content;
+}

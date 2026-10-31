@@ -1,0 +1,204 @@
+{
+  "title": "Sonderregeln",
+  "lessons": {
+    "u2-l01": {
+      "title": "Die Rochade",
+      "summary": "König und Turm in einem Zug",
+      "steps": {
+        "u2-l01-s01": { "text": "Bei der Rochade ziehen König und ein Turm im selben Zug. Der König geht zwei Felder auf den Turm zu, und der Turm springt auf die andere Seite des Königs. Das ist die kurze Rochade: O-O." },
+        "u2-l01-s02": { "text": "Die lange Rochade geht zum Turm auf a1: Der König zieht nach c1 und der Turm nach d1. Man schreibt sie O-O-O." },
+        "u2-l01-s03": {
+          "prompt": "Rochiere kurz.",
+          "hint": "Tippe auf den König und dann auf g1: Der König zieht zwei Felder auf den Turm zu.",
+          "success": "Richtig. Der König steht geschützt auf g1, und der Turm ist nach f1 gezogen."
+        },
+        "u2-l01-s04": {
+          "prompt": "Du spielst Schwarz. Rochiere lang.",
+          "hint": "Ziehe den König zwei Felder auf den Turm auf a8 zu.",
+          "success": "Richtig. Der König ist nach c8 gezogen und der Turm nach d8."
+        },
+        "u2-l01-s05": { "text": "Für die Rochade dürfen sich der König und dieser Turm in der ganzen Partie noch nicht bewegt haben, und die Felder zwischen ihnen müssen frei sein." },
+        "u2-l01-s06": { "text": "Du darfst auch nicht rochieren, wenn der König im Schach steht oder über ein angegriffenes Feld zieht oder darauf landet. Hier greift der schwarze Läufer f1 an: Die kurze Rochade geht nicht, die lange schon." },
+        "u2-l01-s07": {
+          "prompt": "Kann Weiß kurz rochieren?",
+          "options": ["Ja", "Nein, der König würde auf einem angegriffenen Feld landen", "Nein, der Turm wird angegriffen"],
+          "explanation": "Der Springer greift g1 an, das Feld, auf dem der König landen würde. Deshalb ist die kurze Rochade nicht erlaubt.",
+          "feedback": ["Schau, welche Felder der Springer auf h3 angreift.", "", "Der Turm auf h1 wird nicht angegriffen, und selbst dann dürfte man rochieren."]
+        },
+        "u2-l01-s08": {
+          "prompt": "Und kann Weiß lang rochieren?",
+          "options": ["Ja", "Nein"],
+          "explanation": "Auf dem Damenflügel wird nichts angegriffen: Der König zieht über d1 und landet ohne Problem auf c1.",
+          "feedback": ["", "Prüfe d1 und c1: Keines der Felder wird angegriffen."]
+        }
+      }
+    },
+    "u2-l02": {
+      "title": "Schlagen en passant",
+      "summary": "Ein besonderer Schlagzug des Bauern",
+      "steps": {
+        "u2-l02-s01": { "text": "Zieht ein Bauer zwei Felder vor und landet neben einem gegnerischen Bauern, kann dieser ihn schlagen, als wäre er nur ein Feld gezogen. Das nennt man Schlagen en passant." },
+        "u2-l02-s02": { "text": "Das geht nur im direkt folgenden Zug. Spielst du etwas anderes, verfällt das Recht." },
+        "u2-l02-s03": {
+          "prompt": "Schwarz hat gerade f5 gespielt. Schlage en passant.",
+          "hint": "Der f-Bauer ist zwei Felder vorgerückt und steht neben deinem. Schlage ihn, indem du nach f6 ziehst.",
+          "success": "Richtig. Dein Bauer steht auf f6, und der Bauer auf f5 hat das Brett verlassen."
+        },
+        "u2-l02-s04": {
+          "prompt": "Du spielst Schwarz. Weiß hat gerade b4 gespielt. Schlage en passant.",
+          "hint": "Der b-Bauer ist zwei Felder vorgerückt und steht neben deinem Bauern auf c4.",
+          "success": "Richtig. Dein Bauer steht auf b3, und der Bauer auf b4 hat das Brett verlassen."
+        },
+        "u2-l02-s05": {
+          "prompt": "Schwarz hat gerade d5 gespielt. Wo landet dein Bauer, wenn er en passant schlägt?",
+          "options": ["d6", "d5", "e6"],
+          "explanation": "Er landet auf d6, dem Feld, das der schwarze Bauer übersprungen hat. Der Bauer auf d5 verlässt das Brett.",
+          "feedback": ["", "Du schlägst, als wäre der Bauer nur ein Feld gezogen.", "Der Bauer schlägt diagonal."]
+        },
+        "u2-l02-s06": {
+          "prompt": "Schwarz hat d5 vor zwei Zügen gespielt. Kannst du noch en passant schlagen?",
+          "options": ["Ja", "Nein, der Moment ist vorbei"],
+          "explanation": "Schlagen en passant ist nur im Zug direkt nach dem Doppelschritt erlaubt.",
+          "feedback": ["Das geht nur im direkt folgenden Zug.", ""]
+        },
+        "u2-l02-s07": {
+          "prompt": "Schwarz hat gerade e5 gespielt und ist dabei zwei Felder vorgerückt. Tippe auf den Bauern, den du en passant schlagen kannst.",
+          "hint": "Es ist der Bauer, der gerade zwei Felder vorgerückt ist."
+        }
+      }
+    },
+    "u2-l03": {
+      "title": "Richtig umwandeln",
+      "summary": "Die passende Figur wählen",
+      "steps": {
+        "u2-l03-s01": { "text": "Wiederholung: Erreicht der Bauer die gegnerische Grundreihe, wählst du, zu welcher Figur er wird. Fast immer ist die Dame am besten." },
+        "u2-l03-s02": {
+          "prompt": "Wandle um, indem du den Turm schlägst.",
+          "hint": "Der Bauer kann auch beim Umwandeln diagonal schlagen. Zieht er nach d8, schlägt ihn der Turm.",
+          "success": "Richtig. Du hast den Turm geschlagen und zugleich umgewandelt."
+        },
+        "u2-l03-s03": { "text": "Vorsicht vor dem Patt. Wandelst du hier in eine Dame um, hat der schwarze König kein Feld und steht nicht im Schach: Das ist Patt, und die Partie endet remis." },
+        "u2-l03-s04": {
+          "prompt": "Wandle um, ohne den schwarzen König patt zu setzen, und behalte genug Material zum Mattsetzen.",
+          "hint": "Die Dame setzt patt. Versuche es mit dem Turm: Er lässt das Feld a6 frei.",
+          "success": "Richtig. Mit dem Turm hat der schwarze König a6, und nach Ka6 folgt Ta8 matt."
+        },
+        "u2-l03-s05": {
+          "prompt": "Schwarz droht Df1 matt. In welche Figur wandelst du am besten um?",
+          "options": ["Dame", "Springer", "Turm"],
+          "explanation": "Ein Springer auf d8 gibt dem König Schach und greift gleichzeitig die Dame an. Bei Dame oder Turm setzt Schwarz mit Df1 matt.",
+          "feedback": ["Bei einer Dame spielt Schwarz Df1, und es ist matt.", "", "Bei einem Turm spielt Schwarz Df1, und es ist matt."]
+        },
+        "u2-l03-s06": {
+          "prompt": "Wandle so um, dass Schwarz nicht mattsetzen kann.",
+          "hint": "Wandle in einen Springer um: Er gibt Schach und greift die Dame an.",
+          "success": "Richtig. Nach dem Schach schlägt der Springer die Dame."
+        },
+        "u2-l03-s07": { "text": "Prüfe vor dem Umwandeln zwei Dinge: ob die Dame den gegnerischen König patt setzen würde und ob du danach mattgesetzt werden kannst. Fast immer ist es die Dame, manchmal eine andere Figur." }
+      }
+    },
+    "u2-l04": {
+      "title": "Das Patt",
+      "summary": "Kein Zug und kein Schach: remis",
+      "steps": {
+        "u2-l04-s01": { "text": "Schwarz ist am Zug, aber der König hat kein sicheres Feld und steht nicht im Schach. Das ist Patt: Die Partie endet remis." },
+        "u2-l04-s02": { "text": "Hier dagegen steht der König im Schach und kann nicht entkommen: Das ist Matt. Der Unterschied zwischen Matt und Patt ist das Schach." },
+        "u2-l04-s03": {
+          "prompt": "Schwarz am Zug. Matt oder Patt?",
+          "options": ["Matt", "Patt"],
+          "explanation": "Der schwarze König hat kein Feld, steht aber nicht im Schach: Patt, also remis.",
+          "feedback": ["Steht der König im Schach?", ""]
+        },
+        "u2-l04-s04": {
+          "prompt": "Schwarz am Zug. Matt oder Patt?",
+          "options": ["Matt", "Patt"],
+          "explanation": "Die Dame gibt Schach, und der König kann weder fliehen noch sie schlagen, weil der weiße König sie deckt: Das ist Matt.",
+          "feedback": ["", "Schau, ob die Dame Schach gibt."]
+        },
+        "u2-l04-s05": {
+          "prompt": "Weiß am Zug. Welcher dieser Züge setzt den schwarzen König patt?",
+          "options": ["Dg6", "Dh3", "Dd8"],
+          "explanation": "Nach Dg6 hat der schwarze König kein Feld und steht nicht im Schach: Patt. Dh3 dagegen ist matt.",
+          "feedback": ["", "Dh3 gibt Schach: Das ist kein Patt. Es ist sogar matt.", "Dd8 gibt Schach, und der König entkommt nach h7."]
+        },
+        "u2-l04-s06": {
+          "prompt": "Setze jetzt matt, ohne patt zu setzen.",
+          "hint": "Dein König kontrolliert schon g7 und g8. Gib Schach über die h-Linie.",
+          "success": "Richtig. Dh3 ist matt: Der schwarze König steht im Schach und kann nirgendwohin."
+        },
+        "u2-l04-s07": { "text": "Stehst du auf Verlust, kann dich das Patt retten. Hier hat Schwarz eine Dame, aber Weiß hat keinen Zug und steht nicht im Schach: remis." }
+      }
+    },
+    "u2-l05": {
+      "title": "Weitere Remisarten",
+      "summary": "Wiederholung, Material und 50 Züge",
+      "steps": {
+        "u2-l05-s01": { "text": "Schwarz hat mehr Material und droht matt, aber Weiß gibt ein Schach nach dem anderen. Kommt dieselbe Stellung dreimal vor, ist die Partie remis." },
+        "u2-l05-s02": { "text": "Das nennt man Dauerschach: endlose Schachgebote, die der Gegner nicht vermeiden kann. Es ist der häufigste Weg, eine verlorene Partie durch Wiederholung zu retten." },
+        "u2-l05-s03": {
+          "prompt": "Du stehst auf Verlust und Schwarz droht matt. Gib Schach, um das Dauerschach zu beginnen.",
+          "hint": "Suche ein Schach mit der Dame, bei dem sie nicht geschlagen werden kann.",
+          "success": "Richtig. Mit endlosen Schachgeboten kann Schwarz das Remis nicht verhindern."
+        },
+        "u2-l05-s04": { "text": "Remis ist es auch, wenn keine Seite genug Material zum Mattsetzen hat: König gegen König, König und Läufer gegen König oder König und Springer gegen König." },
+        "u2-l05-s05": {
+          "prompt": "König und Turm gegen König. Reicht das zum Mattsetzen?",
+          "options": ["Ja", "Nein"],
+          "explanation": "Ja: Mit König und Turm kann man mattsetzen. Das siehst du in der Einheit über Endspiele.",
+          "feedback": ["", "Der Turm kann mit Hilfe des Königs mattsetzen."]
+        },
+        "u2-l05-s06": {
+          "prompt": "König und Springer gegen König. Reicht das zum Mattsetzen?",
+          "options": ["Ja", "Nein"],
+          "explanation": "Nein: Mit einem einzelnen Springer lässt sich kein Matt erzwingen. Das ist Remis wegen ungenügenden Materials.",
+          "feedback": ["Ein einzelner Springer reicht nicht zum Mattsetzen.", ""]
+        },
+        "u2-l05-s07": { "text": "50-Züge-Regel: Vergehen 50 Züge jeder Seite ohne Schlagzug und ohne Bauernzug, ist die Partie remis. Außerdem kann man sich auf Remis einigen: Bei den Bots kannst du es dem Gegner anbieten." },
+        "u2-l05-s08": {
+          "prompt": "Welche dieser Situationen ist kein Remis?",
+          "options": ["Patt", "Schachmatt", "Dreifache Stellungswiederholung"],
+          "explanation": "Schachmatt beendet die Partie mit einem Sieg. Die anderen beiden sind remis.",
+          "feedback": ["Patt ist remis.", "", "Die dreifache Stellungswiederholung ist remis."]
+        }
+      }
+    },
+    "u2-l06": {
+      "title": "Wie man Züge schreibt",
+      "summary": "Züge lesen und notieren",
+      "steps": {
+        "u2-l06-s01": { "text": "Jeder Zug wird mit dem Buchstaben der Figur und dem Zielfeld geschrieben. Es sind die Anfangsbuchstaben der Namen: K für König, D für Dame, T für Turm, L für Läufer und S für Springer. Dieser Zug ist Sf3. Bauern haben keinen Buchstaben: e4." },
+        "u2-l06-s02": { "text": "Schlägt die Figur, kommt ein x dazu: Lxd5. Schlägt ein Bauer, schreibt man die Linie, von der er kommt: exd5." },
+        "u2-l06-s03": { "text": "Weitere Zeichen: + ist Schach und # ist Matt, wie Dxf7# in dieser Stellung. O-O ist die kurze Rochade, O-O-O die lange, und =D zeigt die Umwandlung an: e8=D." },
+        "u2-l06-s04": {
+          "prompt": "Wie schreibt man den Springerzug von g1 nach f3?",
+          "options": ["Sf3", "Kf3", "Lf3"],
+          "explanation": "S steht für Springer: Sf3.",
+          "feedback": ["", "K steht für König.", "L steht für Läufer."]
+        },
+        "u2-l06-s05": {
+          "prompt": "Spiele Lc4.",
+          "hint": "L steht für Läufer: Ziehe den Läufer von f1 nach c4.",
+          "success": "Richtig. Lc4: Der Läufer ist nach c4 gezogen."
+        },
+        "u2-l06-s06": {
+          "prompt": "Spiele exd5.",
+          "hint": "Der Bauer auf der e-Linie schlägt auf d5.",
+          "success": "Richtig. exd5: Der e-Bauer hat auf d5 geschlagen."
+        },
+        "u2-l06-s07": {
+          "prompt": "Was bedeutet O-O-O?",
+          "options": ["Lange Rochade", "Kurze Rochade", "Schachmatt"],
+          "explanation": "O-O-O ist die lange Rochade, zum Turm auf der a-Linie. O-O ist die kurze.",
+          "feedback": ["", "Die kurze hat zwei O: O-O.", "Matt wird mit # angezeigt."]
+        },
+        "u2-l06-s08": {
+          "prompt": "Was für ein Zug ist e8=S+?",
+          "options": ["Ein Bauer wandelt sich auf e8 in einen Springer um und gibt Schach", "Ein Springer zieht nach e8 und gibt Schach", "Ein Bauer wandelt sich auf e8 in eine Dame um"],
+          "explanation": "e8 ist das Feld, =S die neue Figur und + das Schach.",
+          "feedback": ["", "Wäre es ein Springer, begänne der Zug mit S: Se8+.", "=S bedeutet Springer, nicht Dame."]
+        },
+        "u2-l06-s09": { "text": "Auf Englisch heißen die Buchstaben K (König), Q (Dame), R (Turm), B (Läufer) und N (Springer): Sf3 schreibt man dort Nf3. Die Lektionen verwenden die deutsche Notation. Unter Einstellungen > Notation der Züge wählst du, welche du in Partien, Eröffnungen und Analyse siehst." }
+      }
+    }
+  }
+}

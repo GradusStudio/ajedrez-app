@@ -5,6 +5,7 @@ import { Board, BoardMove } from '../../components/Board';
 import { Button3D } from '../../components/Button3D';
 import { FadeIn } from '../../components/FadeIn';
 import { EngineView } from '../../engine/EngineView';
+import { useI18n } from '../../i18n/I18nContext';
 import { UciEngine } from '../../engine/uci';
 import { PracticeStep as PracticeStepData } from '../../data/lessonTypes';
 import { StepCallbacks } from '../stepTypes';
@@ -29,6 +30,7 @@ type Move = { from: Square; to: Square };
  * (y con esa misma búsqueda elige su respuesta). Solo es error una jugada que deja escapar el resultado.
  */
 export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
+  const { t } = useI18n();
   const [engine, setEngine] = useState<UciEngine | null>(null);
   const [engineError, setEngineError] = useState(false);
   const [engineKey, setEngineKey] = useState(0);
@@ -88,7 +90,7 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
       return fail(
         probe,
         move,
-        probe.isStalemate() ? 'Ahogaste al rey: la partida termina en tablas. Deja siempre una casilla libre.' : 'Así la partida termina en tablas.'
+        t(probe.isStalemate() ? 'lesson.practice.stalemate' : 'lesson.practice.drawn')
       );
     }
 
@@ -122,7 +124,7 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
     if (count >= step.maxMoves) {
       setFen(chess.fen());
       setLastMove(move);
-      onWrong(`Se terminaron las ${step.maxMoves} jugadas. Prueba de nuevo desde el principio.`, restart);
+      onWrong(t('lesson.practice.outOfMoves', { n: step.maxMoves }), restart);
       return;
     }
 
@@ -147,16 +149,16 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
   };
 
   const status = engineError
-    ? 'Stockfish no responde'
+    ? t('lesson.practice.engineDown')
     : !engine
-      ? 'Preparando a Stockfish…'
+      ? t('lesson.practice.preparing')
       : done
-        ? 'Objetivo cumplido'
+        ? t('lesson.practice.done')
         : thinking
-          ? 'Stockfish piensa…'
+          ? t('lesson.practice.thinking')
           : draw
-            ? `Tu turno · aguanta ${step.maxMoves - moves} jugadas más`
-            : `Tu turno · jugada ${moves + 1} de ${step.maxMoves}`;
+            ? t('lesson.practice.holdOn', { n: step.maxMoves - moves })
+            : t('lesson.practice.moveOf', { n: moves + 1, total: step.maxMoves });
 
   return (
     <View>
@@ -175,14 +177,14 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
         <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
       <Text style={styles.turn}>
-        {status} · {step.side === 'w' ? 'juegas con blancas' : 'juegas con negras'}
+        {status} · {step.side === 'w' ? t('common.youPlayWhite') : t('common.youPlayBlack')}
       </Text>
 
       {engineError && (
         <View style={styles.errorCard}>
-          <Text style={styles.errorText}>El motor de ajedrez no responde. Prueba otra vez.</Text>
+          <Text style={styles.errorText}>{t('lesson.practice.engineError')}</Text>
           <Button3D
-            label="Reintentar"
+            label={t('common.retry')}
             variant="danger"
             onPress={() => {
               setEngineError(false);
@@ -195,7 +197,7 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
       )}
 
       {!!engine && moves > 0 && !done && !thinking && !locked && (
-        <Button3D label="Empezar de nuevo" onPress={restart} style={{ marginTop: space.md }} />
+        <Button3D label={t('lesson.practice.restart')} onPress={restart} style={{ marginTop: space.md }} />
       )}
     </View>
   );

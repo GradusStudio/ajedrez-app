@@ -5,6 +5,7 @@ import { Board } from '../../components/Board';
 import { Button3D } from '../../components/Button3D';
 import { FadeIn } from '../../components/FadeIn';
 import { SelectSquaresStep as SelectSquaresStepData } from '../../data/lessonTypes';
+import { useI18n } from '../../i18n/I18nContext';
 import { StepCallbacks } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
 import { space } from '../../theme';
@@ -12,6 +13,7 @@ import { space } from '../../theme';
 type Props = { step: SelectSquaresStepData } & StepCallbacks;
 
 export function SelectSquaresStep({ step, onCorrect, onWrong, locked }: Props) {
+  const { t } = useI18n();
   const [picked, setPicked] = useState<string[]>([]);
   const [solved, setSolved] = useState(false);
 
@@ -28,7 +30,7 @@ export function SelectSquaresStep({ step, onCorrect, onWrong, locked }: Props) {
     const ok = picked.length === step.squares.length && step.squares.every((s) => picked.includes(s));
     if (ok) {
       setSolved(true);
-      onCorrect('Correcto');
+      onCorrect(t('lesson.correct'));
     } else {
       onWrong(step.hint);
     }
@@ -50,7 +52,7 @@ export function SelectSquaresStep({ step, onCorrect, onWrong, locked }: Props) {
       </FadeIn>
       {!solved && !locked && (
         <View style={{ marginTop: space.lg }}>
-          <Button3D label="Comprobar" variant={picked.length > 0 ? 'primary' : 'secondary'} onPress={check} />
+          <Button3D label={t('lesson.check')} variant={picked.length > 0 ? 'primary' : 'secondary'} onPress={check} />
         </View>
       )}
     </View>

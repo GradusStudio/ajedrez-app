@@ -2,7 +2,9 @@ import React from 'react';
 import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { BotAvatar } from '../components/BotAvatar';
 import { Chip } from '../components/Chip';
-import { Bot, bots } from '../data/bots';
+import { Bot } from '../data/bots';
+import { useContent } from '../data/useContent';
+import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { recordAgainst } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
@@ -12,14 +14,15 @@ type Props = { onOpenBot: (bot: Bot) => void };
 // Pestaña Bots: los 10 bots, de menor a mayor nivel (mapa-de-pantallas.md, 2.9).
 export function BotsScreen({ onOpenBot }: Props) {
   const { progress } = useProgress();
-
+  const { bots } = useContent();
+  const { t } = useI18n();
   return (
     <ScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}
     >
-      <Text style={styles.title}>Bots</Text>
-      <Text style={styles.subtitle}>Cada bot juega las aperturas que aprendes</Text>
+      <Text style={styles.title}>{t('bots.title')}</Text>
+      <Text style={styles.subtitle}>{t('bots.subtitle')}</Text>
       <View style={{ height: space.lg }} />
 
       {bots.map((bot) => {
@@ -30,7 +33,7 @@ export function BotsScreen({ onOpenBot }: Props) {
             key={bot.id}
             onPress={() => onOpenBot(bot)}
             accessibilityRole="button"
-            accessibilityLabel={`${bot.name}, ${bot.tagline}, nivel ${bot.elo}`}
+            accessibilityLabel={t('bots.cardLabel', { name: bot.name, tagline: bot.tagline, elo: bot.elo })}
             style={({ pressed }) => [styles.card, pressed && { transform: [{ translateY: 2 }], borderBottomWidth: 2 }]}
           >
             <BotAvatar bot={bot} />
@@ -42,9 +45,9 @@ export function BotsScreen({ onOpenBot }: Props) {
                 {bot.trait}
               </Text>
               <View style={styles.chips}>
-                <Chip label={`Nivel ${bot.elo}`} />
-                <Chip label={bot.style} />
-                {played > 0 && <Chip label={`Le ganaste ${r.wins} de ${played}`} />}
+                <Chip label={t('common.level', { n: bot.elo })} />
+                <Chip label={t(`botStyle.${bot.style}`)} />
+                {played > 0 && <Chip label={t('bots.record', { wins: r.wins, played })} />}
               </View>
             </View>
           </Pressable>

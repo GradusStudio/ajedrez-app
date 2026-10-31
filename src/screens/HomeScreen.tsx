@@ -6,7 +6,8 @@ import { LessonNode, NODE_BOX } from '../components/LessonNode';
 import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
 import { Lesson, Unit } from '../data/lessonTypes';
-import { units } from '../data/units';
+import { useContent } from '../data/useContent';
+import { useI18n } from '../i18n/I18nContext';
 import { lessonStates, suggestedLesson } from '../progress/path';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
@@ -24,6 +25,8 @@ const ZIGZAG = [0, 56, 0, -56];
 // Pestaña Aprender: barra de racha y monedas, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
 export function HomeScreen({ onStartLesson }: Props) {
   const { progress, setLastUnit } = useProgress();
+  const { units } = useContent();
+  const { t } = useI18n();
   // Unidad elegida en el menú. Sin elegir, se muestra la de la última lección empezada
   // (guardada en el progreso) o, la primera vez, la de la lección sugerida.
   const [chosen, setChosen] = useState<number | null>(null);
@@ -62,11 +65,11 @@ export function HomeScreen({ onStartLesson }: Props) {
       >
         {/* Racha y monedas */}
         <View style={styles.statsRow}>
-          <View style={styles.stat} accessibilityLabel={`Racha de ${streak} días`}>
+          <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
             <StatIcon name="streak" />
             <Text style={styles.statText}>{streak}</Text>
           </View>
-          <View style={styles.stat} accessibilityLabel={`${progress.coins} monedas`}>
+          <View style={styles.stat} accessibilityLabel={t('common.coinsLabel', { n: progress.coins })}>
             <StatIcon name="coin" />
             <Text style={styles.statText}>{progress.coins}</Text>
           </View>
@@ -90,10 +93,10 @@ export function HomeScreen({ onStartLesson }: Props) {
       {suggested && (
         <View style={styles.floating} onLayout={(e) => setFloatingHeight(e.nativeEvent.layout.height)}>
           <Text style={styles.floatingCaption} numberOfLines={2}>
-            Lección {suggested.order} · {suggested.title}
+            {t('home.lessonCaption', { order: suggested.order, title: suggested.title })}
           </Text>
           <Button3D
-            label={progress.drafts[suggested.id] ? 'Continuar' : 'Empezar'}
+            label={progress.drafts[suggested.id] ? t('common.continue') : t('common.start')}
             variant="primary"
             onPress={() => startLesson(suggested)}
           />
@@ -125,12 +128,14 @@ function UnitMenu({
   onClose: () => void;
 }) {
   const { progress } = useProgress();
+  const { units } = useContent();
+  const { t } = useI18n();
   return (
     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={onClose}>
-      <Pressable style={styles.backdrop} onPress={onClose} accessibilityLabel="Cerrar menú">
+      <Pressable style={styles.backdrop} onPress={onClose} accessibilityLabel={t('home.closeMenu')}>
         {/* Tocar dentro del menú (fuera de una unidad) no lo cierra */}
         <View style={[styles.menu, { marginTop: (RNStatusBar.currentHeight ?? 40) + 96 }]} onStartShouldSetResponder={() => true}>
-          <Text style={styles.menuTitle}>Elige una unidad</Text>
+          <Text style={styles.menuTitle}>{t('home.chooseUnit')}</Text>
           <ScrollView>
             {units.map((u) => {
               const done = u.lessons.filter((l) => progress.lessons[l.id]).length;
@@ -144,11 +149,11 @@ function UnitMenu({
                   style={({ pressed }) => [styles.menuItem, active && styles.menuItemActive, pressed && { opacity: 0.7 }]}
                 >
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.menuCaption}>Unidad {u.unit}</Text>
+                    <Text style={styles.menuCaption}>{t('home.unit', { n: u.unit })}</Text>
                     <Text style={styles.menuLabel}>{u.title}</Text>
                   </View>
                   <Text style={[styles.menuCount, done === u.lessons.length && { color: colors.primary }]}>
-                    {done} de {u.lessons.length}
+                    {t('common.xOfY', { n: done, total: u.lessons.length })}
                   </Text>
                 </Pressable>
               );
@@ -171,6 +176,7 @@ function UnitPath({
   onOpenMenu: () => void;
 }) {
   const { progress } = useProgress();
+  const { t } = useI18n();
   const [width, setWidth] = useState(0);
   const lessons = unit.lessons;
   const states = lessonStates(lessons, progress);
@@ -180,7 +186,7 @@ function UnitPath({
 
   const openLesson = (lesson: Lesson, i: number) => {
     if (states[i] === 'locked') {
-      Alert.alert('Lección bloqueada', `Termina «${current?.title}» para seguir avanzando en esta unidad.`);
+      Alert.alert(t('lesson.lockedTitle'), t('home.lockedMessage', { title: current?.title ?? '' }));
       return;
     }
     onStartLesson(lesson);
@@ -191,14 +197,12 @@ function UnitPath({
       <Pressable
         onPress={onOpenMenu}
         accessibilityRole="button"
-        accessibilityLabel={`Unidad ${unit.unit}, ${unit.title}. Cambiar de unidad`}
+        accessibilityLabel={t('home.unitCardLabel', { n: unit.unit, title: unit.title })}
         style={({ pressed }) => [styles.unitCard, pressed && { opacity: 0.85 }]}
       >
         <View style={{ flex: 1 }}>
-          <Text style={styles.unitCaption}>Unidad {unit.unit}</Text>
-          <Text style={styles.unitTitle}>
-            {unit.title} · {doneCount} de {lessons.length}
-          </Text>
+          <Text style={styles.unitCaption}>{t('home.unit', { n: unit.unit })}</Text>
+          <Text style={styles.unitTitle}>{t('home.unitTitle', { title: unit.title, done: doneCount, total: lessons.length })}</Text>
         </View>
         <Chevron />
       </Pressable>

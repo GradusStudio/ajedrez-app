@@ -1,0 +1,174 @@
+{
+  "title": "Concetti avanzati",
+  "lessons": {
+    "u6-l01": {
+      "title": "Zugzwang",
+      "summary": "Quando muovere è perdere",
+      "steps": {
+        "u6-l01-s01": { "text": "Negli scacchi non si può passare il turno: bisogna sempre muovere. A volte qualsiasi mossa peggiora la posizione. Questo si chiama zugzwang, una parola tedesca che significa «obbligo di muovere»." },
+        "u6-l01-s02": { "text": "Guarda questa posizione. Ogni re difende il suo pedone e attacca il pedone avversario. Il re che deve muoversi smette di difendere il suo pedone: lo perde, e con esso la partita. Vince chi non deve muovere." },
+        "u6-l01-s03": {
+          "prompt": "Muove il Bianco. Che cosa succede?",
+          "options": ["Il Bianco perde il suo pedone e la partita", "Il Bianco vince il pedone nero", "È patta: nessuno può vincere"],
+          "explanation": "Il Bianco è in zugzwang: qualsiasi mossa del re lascia senza difesa il pedone in d4. Il re nero lo cattura e il suo pedone promuove.",
+          "feedback": ["", "Perché il Bianco vinca il pedone nero, dovrebbe muovere prima il Nero. Con il tratto, a perdere è il Bianco.", "Chi muove perde il suo pedone, e poi l'altro pedone promuove."]
+        },
+        "u6-l01-s04": { "text": "Lo zugzwang serve anche per dare matto. Qui il Nero può muovere solo il re e il pedone in g7. Se blocchi il pedone, il re dovrà muoversi, e non ha nessuna casella buona." },
+        "u6-l01-s05": {
+          "prompt": "Matto in 2: fai una mossa tranquilla, senza scacco, che lasci il Nero senza buone mosse.",
+          "success": "Corretto. Con Tg6 il pedone è bloccato, il re è dovuto andare in a8 e Ta6 è matto.",
+          "hint": "Metti la torre davanti al pedone in g7: così non può avanzare e il re nero è costretto a muoversi."
+        },
+        "u6-l01-s06": { "text": "Qui vinceresti se toccasse muovere al Nero: il suo re dovrebbe spostarsi. Ma tocca a te. La soluzione è «passare il turno» con il re: fai tre passi a triangolo (e4, d3 e d4) e torni sulla stessa casella. Il re nero può solo andare e tornare, e ora tocca muovere a lui nella stessa posizione. Questa tecnica si chiama triangolazione." },
+        "u6-l01-s07": {
+          "prompt": "Comincia il triangolo: muovi il re su una casella da cui puoi tornare in d4 in due passi.",
+          "hint": "Avanzare il pedone o andare in c3 lascia sfuggire la vittoria. Muoviti sulle caselle accanto (e4, e3 o d3), abbastanza vicino da tornare in tempo a difendere il tuo pedone in c4.",
+          "success": "Corretto. Da lì, in altri due passi torni in d4 e tocca muovere al Nero."
+        },
+        "u6-l01-s08": {
+          "prompt": "Vinci il finale: promuovi un pedone. Se il re nero ti blocca, triangola per metterlo in zugzwang. Stockfish difende col Nero.",
+          "success": "Corretto. Hai usato lo zugzwang per vincere il finale.",
+          "hint": "Con quella mossa la vittoria sfugge. Cerca la posizione in cui il re nero deve spostarsi e raggiungila quando tocca muovere a lui."
+        },
+        "u6-l01-s09": {
+          "prompt": "Muove il Bianco. Usa lo zugzwang per vincere il finale.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Muovi il re in modo che il re avversario debba spostarsi e lasci i suoi pedoni senza difesa."
+        },
+        "u6-l01-s10": {
+          "prompt": "Muove il Bianco. Usa lo zugzwang per vincere il finale.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Muovi il re in modo che il re avversario debba spostarsi e lasci i suoi pedoni senza difesa."
+        },
+        "u6-l01-s11": {
+          "prompt": "Muove il Nero. Usa lo zugzwang per vincere il finale.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Muovi il re in modo che il re avversario debba spostarsi e lasci i suoi pedoni senza difesa."
+        }
+      }
+    },
+    "u6-l02": {
+      "title": "Profilassi",
+      "summary": "Anticipare il piano dell'avversario",
+      "steps": {
+        "u6-l02-s01": { "text": "Prima di ogni mossa, chiediti: che cosa vuole fare il mio avversario? Impedire il suo piano prima che lo realizzi si chiama profilassi. In questa Italiana, l'alfiere nero vuole andare in g4 per inchiodare il tuo cavallo alla donna." },
+        "u6-l02-s02": {
+          "prompt": "Se l'alfiere arriva in g4, perché dà fastidio?",
+          "options": ["Inchioda il cavallo in f3: se si muove, l'alfiere cattura la donna", "Minaccia scacco matto", "Attacca il pedone in e4"],
+          "explanation": "Con l'alfiere in g4, il cavallo in f3 è inchiodato alla donna in d1: se si muove, l'alfiere cattura la donna. Il cavallo perde libertà proprio quando deve difendere il centro.",
+          "feedback": ["", "Non c'è nessun matto in vista: il problema è l'inchiodatura del cavallo.", "Da g4 l'alfiere non attacca il pedone in e4. Il problema è l'inchiodatura."]
+        },
+        "u6-l02-s03": {
+          "prompt": "Gioca la mossa che impedisce all'alfiere di andare in g4.",
+          "hint": "Un pedone può controllare la casella g4 prima che arrivi l'alfiere.",
+          "success": "Corretto. Con h3 il pedone controlla g4 e l'alfiere non può più andarci."
+        },
+        "u6-l02-s04": { "text": "La tua torre in settima attacca i pedoni, ma prima di prendere guarda la minaccia del Nero: la torre in e8 vuole scendere in e1. Il tuo re non può lasciare la prima traversa, perché i suoi stessi pedoni lo chiudono." },
+        "u6-l02-s05": {
+          "prompt": "Tocca la casella dove la torre nera darebbe scacco matto.",
+          "hint": "La torre in e8 scende lungo la colonna e fino alla tua prima traversa."
+        },
+        "u6-l02-s06": {
+          "prompt": "Impedisci il matto sull'ultima traversa prima di prendere i pedoni.",
+          "hint": "Se prendi in b7, Te1 è matto. Apri una via d'uscita al tuo re muovendo un pedone, o avvicinalo alla colonna e.",
+          "success": "Corretto. Il matto sull'ultima traversa non funziona più. Ora sì che puoi pensare a prendere i pedoni."
+        },
+        "u6-l02-s07": { "text": "Qui la donna e l'alfiere neri puntano alla stessa casella, accanto al tuo re. Se non fai nulla, il Nero dà matto in una mossa." },
+        "u6-l02-s08": {
+          "prompt": "Tocca la casella dove il Nero darebbe scacco matto.",
+          "hint": "La donna in h4 e l'alfiere in d6 attaccano la stessa casella, accanto al tuo re."
+        },
+        "u6-l02-s09": {
+          "prompt": "Impedisci il matto.",
+          "hint": "Usa un pedone vicino al tuo re: chiudi la diagonale dell'alfiere con il pedone in g2, o spingi il pedone h2 perché la donna non abbia dove dare matto. Con f4 l'alfiere cattura e il tuo re resta esposto.",
+          "success": "Corretto. Il matto non funziona più e la tua posizione regge."
+        },
+        "u6-l02-s10": { "text": "Riassunto: prima di muovere, guarda che cosa minaccia l'avversario e che cosa vuole fare nelle prossime mosse. Una mossa tranquilla al momento giusto, come h3 o aprire una via d'uscita al re, evita problemi molto più grandi." }
+      }
+    },
+    "u6-l03": {
+      "title": "Sacrificio di qualità",
+      "summary": "Torre per alfiere o cavallo",
+      "steps": {
+        "u6-l03-s01": { "text": "Ricorda i valori: la torre vale 5 e l'alfiere o il cavallo 3. Cambiare una torre con un alfiere o un cavallo si dice «perdere la qualità». A volte conviene farlo apposta: è un sacrificio di qualità." },
+        "u6-l03-s02": {
+          "prompt": "Se cambi la tua torre con un cavallo, quanti punti di materiale cedi, più o meno?",
+          "options": ["2", "1", "3"],
+          "explanation": "La torre vale 5 e il cavallo 3: cedi circa 2 punti. Per questo il sacrificio deve darti qualcosa in cambio.",
+          "feedback": ["", "Torre 5 meno cavallo 3 fa 2 punti, non 1.", "Torre 5 meno cavallo 3 fa 2 punti, non 3."]
+        },
+        "u6-l03-s03": { "text": "Ci sono tre motivi tipici per cedere la qualità: creare un pedone passato che nessuno può fermare, aprire la difesa del re avversario o eliminare un pezzo che difende qualcosa di importante. Qui il cavallo in d6 è l'unica cosa che frena il tuo pedone in c6." },
+        "u6-l03-s04": {
+          "prompt": "Muove il Bianco. Cedi la qualità perché il tuo pedone promuova.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Il cavallo in d6 frena il tuo pedone c. Che cosa succede se lo elimini, anche se ti costa la torre?"
+        },
+        "u6-l03-s05": {
+          "prompt": "Muove il Bianco. Ancora una volta: la qualità in cambio di un pedone inarrestabile.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Quale pezzo nero frena il tuo pedone b? Eliminalo con la torre."
+        },
+        "u6-l03-s06": { "text": "Il secondo motivo: aprire la difesa del re. Se la tua torre cattura un pezzo che protegge il re avversario, gli altri tuoi pezzi possono entrare ad attaccarlo." },
+        "u6-l03-s07": {
+          "prompt": "Muove il Bianco. Cedi la qualità per attaccare il re.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "L'alfiere in g7 protegge il re nero. Catturalo con la torre e poi entra con la donna."
+        },
+        "u6-l03-s08": {
+          "prompt": "Muove il Bianco. Elimina il difensore: la qualità in cambio di più materiale.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Il cavallo in f6 difende la torre in d5. Se sparisce, la torre resta senza difesa."
+        },
+        "u6-l03-s09": { "text": "Riassunto: la qualità vale circa 2 punti, ma un pedone che promuove, un attacco al re o la conquista di un altro pezzo valgono di più. Prima di cederla, calcola che cosa ottieni in cambio." }
+      }
+    },
+    "u6-l04": {
+      "title": "Ripasso finale",
+      "summary": "Puzzle da tutto il percorso",
+      "steps": {
+        "u6-l04-s01": { "text": "Ripasso finale: otto puzzle da partite vere con temi di tutto il percorso. Prima di muovere, controlla scacchi, catture e minacce. Se sbagli, l'indizio ti dice quale tema cercare." },
+        "u6-l04-s02": {
+          "prompt": "Muove il Bianco. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: attacco di scoperta. Se il cavallo si muove con scacco, la tua donna vince la donna nera."
+        },
+        "u6-l04-s03": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: forchetta. Il tuo cavallo può dare scacco e attaccare la torre insieme."
+        },
+        "u6-l04-s04": {
+          "prompt": "Muove il Bianco. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: infilata. Uno scacco dell'alfiere obbliga il re a muoversi e lascia la torre senza protezione."
+        },
+        "u6-l04-s05": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: deviazione. Uno scacco sulla prima traversa allontana la torre che difende la donna."
+        },
+        "u6-l04-s06": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: matto in 2. Cattura il pezzo che difende e continua con uno scacco di donna."
+        },
+        "u6-l04-s07": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: zugzwang. Avvicina il tuo re ai pedoni bianchi: il re avversario non può difenderli senza spostarsi."
+        },
+        "u6-l04-s08": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: inchiodatura. Cambia le torri e poi inchioda la donna al suo re con l'alfiere."
+        },
+        "u6-l04-s09": {
+          "prompt": "Muove il Bianco. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: promozione. Il tuo pedone in d7 è a un passo: promuovi anche se la torre può catturarlo."
+        },
+        "u6-l04-s10": { "text": "Hai finito il percorso di Impara. Da qui, la cosa migliore è allenarsi: puzzle ogni giorno, aperture nella loro scheda e partite contro i bot per usare tutto ciò che hai imparato." }
+      }
+    }
+  }
+}

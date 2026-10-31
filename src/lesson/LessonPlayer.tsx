@@ -5,6 +5,8 @@ import { useFeedback } from '../feedback/feedback';
 import { ProgressBar } from '../components/ProgressBar';
 import { Lesson, Step } from '../data/lessonTypes';
 import { pickPhrase, teacherForLesson } from '../data/teachers';
+import { useContent } from '../data/useContent';
+import { useI18n } from '../i18n/I18nContext';
 import { ExplainStep } from './steps/ExplainStep';
 import { LineStep } from './steps/LineStep';
 import { MoveStep } from './steps/MoveStep';
@@ -50,9 +52,11 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
   const total = lesson.steps.length;
   const isLast = index === total - 1;
 
+  const { findBot } = useContent();
+  const { t } = useI18n();
   // Se elige una vez al abrir. Una lección retomada no repite la bienvenida.
   const [opening] = useState(() => {
-    const bot = teacherForLesson(lessonId);
+    const bot = findBot(teacherForLesson(lessonId).id) ?? teacherForLesson(lessonId);
     return { bot, welcome: start || noWelcome ? undefined : pickPhrase(bot.teaching.welcome) };
   });
   const guided = step.type === 'line' && step.mode === 'guided';
@@ -120,9 +124,9 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
   };
 
   const confirmExit = () => {
-    Alert.alert('¿Salir de la lección?', exitMessage, [
-      { text: 'Seguir', style: 'cancel' },
-      { text: 'Salir', style: 'destructive', onPress: () => onExit({ stepIndex: index, errors, mistakes }) },
+    Alert.alert(t('lesson.exitTitle'), exitMessage, [
+      { text: t('lesson.keepGoing'), style: 'cancel' },
+      { text: t('common.exit'), style: 'destructive', onPress: () => onExit({ stepIndex: index, errors, mistakes }) },
     ]);
   };
 
@@ -153,13 +157,13 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
     }
   };
 
-  const continueLabel = isLast ? 'Terminar' : 'Continuar';
+  const continueLabel = isLast ? t('lesson.finish') : t('common.continue');
   const progress = (index + (status === 'correct' ? 1 : 0)) / total;
 
   return (
     <View style={styles.screen}>
       <View style={[styles.header, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
-        <Pressable onPress={confirmExit} accessibilityRole="button" accessibilityLabel="Salir" hitSlop={12}>
+        <Pressable onPress={confirmExit} accessibilityRole="button" accessibilityLabel={t('common.exit')} hitSlop={12}>
           <Text style={styles.close}>✕</Text>
         </Pressable>
         <ProgressBar value={progress} />
@@ -174,10 +178,10 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
 
       {step.type === 'explain' && <FeedbackPanel kind="neutral" buttonLabel={continueLabel} onButton={next} />}
       {step.type !== 'explain' && status === 'correct' && (
-        <FeedbackPanel kind="correct" title="Correcto" message={message} buttonLabel={continueLabel} onButton={next} />
+        <FeedbackPanel kind="correct" title={t('lesson.correct')} message={message} buttonLabel={continueLabel} onButton={next} />
       )}
       {step.type !== 'explain' && status === 'wrong' && (
-        <FeedbackPanel kind="wrong" title="Incorrecto" message={message} buttonLabel="Reintentar" onButton={retry} />
+        <FeedbackPanel kind="wrong" title={t('common.incorrect')} message={message} buttonLabel={t('common.retry')} onButton={retry} />
       )}
     </View>
   );

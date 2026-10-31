@@ -1,0 +1,302 @@
+{
+  "pipo": {
+    "name": "Pipo",
+    "tagline": "The Curious One",
+    "trait": "Moves the pieces with good intentions but forgets to protect them. Grabs whatever you leave loose and falls for simple mates.",
+    "teaches": "Capturing unprotected pieces and giving basic mates.",
+    "lines": {
+      "greeting": "Hi. I'm still learning, but I like to play.",
+      "onGoodMove": "Good move. I didn't see that coming.",
+      "onBlunder": "That was loose. Thanks.",
+      "onWin": "I won. I don't know how, but I won.",
+      "onLose": "You beat me. I want to see how you did it."
+    },
+    "teaching": {
+      "welcome": [
+        "Hi. Today we learn together, and I'm joining in too.",
+        "I'm so glad you came. Let's take it easy, one step at a time.",
+        "Hi. I'm Pipo, and I'll be with you for this lesson."
+      ],
+      "close": [
+        "All done. It was nice learning with you.",
+        "There we go. I learned something today too.",
+        "Well done. I'm glad you made it to the end."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. Just one activity today keeps it going.",
+        "recovery": "You can recover it today with a lesson, a puzzle and a game against a bot. I'll be right there with you.",
+        "general": "I feel like playing with you for a while. Come in when you can."
+      }
+    }
+  },
+  "lola": {
+    "name": "Lola",
+    "tagline": "The Careful One",
+    "trait": "Protects everything and hardly ever attacks. Trades pieces when she can and waits for your mistake.",
+    "teaches": "Patience: how to break down a solid position without taking too many risks.",
+    "lines": {
+      "greeting": "Nice and calm. There's no rush here.",
+      "onGoodMove": "Well played. I'll have to be careful.",
+      "onBlunder": "Careful: that piece was left unprotected.",
+      "onWin": "Winning calmly is still winning.",
+      "onLose": "Very good. You broke through my defense."
+    },
+    "teaching": {
+      "welcome": [
+        "Nice and calm. There's no rush in this lesson.",
+        "Hi. We'll go slowly and carefully.",
+        "Hi. We'll take all the time we need."
+      ],
+      "close": [
+        "All done, nice and easy. Very good.",
+        "Lesson finished. Take a little rest if you like.",
+        "Good work. Everything's in order for today."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. One calm activity today keeps it safe.",
+        "recovery": "Your streak can still be recovered: a lesson, a puzzle and a game against a bot, today.",
+        "general": "Whenever you have a quiet moment, I'll be here."
+      }
+    }
+  },
+  "tomas": {
+    "name": "Tomás",
+    "tagline": "The Trickster",
+    "trait": "Sets traps from the opening on and goes after f7. If you don't fall for them, he runs out of plans.",
+    "teaches": "Defending against early threats and recognizing well-known traps.",
+    "lines": {
+      "greeting": "I'm going to show you a trick.",
+      "onGoodMove": "Hmm, you didn't fall for it. So close.",
+      "onBlunder": "Just what I was hoping for.",
+      "onWin": "I told you there was a trick.",
+      "onLose": "You caught me. Well spotted."
+    },
+    "teaching": {
+      "welcome": [
+        "Watch closely, I'm going to show you a trick.",
+        "Come in, come in. There's something hidden in today's lesson.",
+        "Hi. Careful, things aren't always what they seem."
+      ],
+      "close": [
+        "And that was the trick. Now you know it.",
+        "All done. Now you know what I know.",
+        "All done. Tell someone about it, but carefully."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. One activity today and it stays safe.",
+        "recovery": "There's a trick to recover your streak: a lesson, a puzzle and a game against a bot, today.",
+        "general": "I have something new ready for you. Come take a look."
+      }
+    }
+  },
+  "valentina": {
+    "name": "Valentina",
+    "tagline": "The Attacker",
+    "trait": "Sacrifices pawns for the initiative and attacks the king. She fades if you defend calmly.",
+    "teaches": "Defending under pressure and counterattacking.",
+    "lines": {
+      "greeting": "Let's play fast and attack.",
+      "onGoodMove": "Good defense. I'll try another way in.",
+      "onBlunder": "That opens up my attack.",
+      "onWin": "The attack worked.",
+      "onLose": "You defended very well."
+    },
+    "teaching": {
+      "welcome": [
+        "Straight to the point. Let's begin.",
+        "Today we play with energy. Let's go.",
+        "Hi. No detours, let's get to work."
+      ],
+      "close": [
+        "All done. That was quick and good.",
+        "Well played. You're ready for the next one.",
+        "All done. I can feel the pace you're setting."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. One activity today and you keep going.",
+        "recovery": "Today it's all three: a lesson, a puzzle and a game against a bot, to recover your streak.",
+        "general": "It's a good time to play. Come in and let's go."
+      }
+    }
+  },
+  "ramiro": {
+    "name": "Don Ramiro",
+    "tagline": "The Professor",
+    "trait": "Plays the openings by the book and punishes every error of principle.",
+    "teaches": "The principles of the opening: center, development and castling.",
+    "lines": {
+      "greeting": "Let's begin with the principles: center, development and castling.",
+      "onGoodMove": "That is what the book says.",
+      "onBlunder": "That move breaks an opening principle.",
+      "onWin": "Review the principles and try again.",
+      "onLose": "Excellent. You have learned well."
+    },
+    "teaching": {
+      "welcome": [
+        "Hello. Let's begin the class in good order.",
+        "Hello. Open your eyes and your mind.",
+        "Hello. Today we learn with method."
+      ],
+      "close": [
+        "That concludes our class. Good work.",
+        "Lesson complete. Review it whenever you like.",
+        "Very good. Steady work is how one studies."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. A little practice today keeps your steady work going.",
+        "recovery": "To resume your streak, today calls for a lesson, a puzzle and a game against a bot.",
+        "general": "Today's class is ready. I'll be expecting you."
+      }
+    }
+  },
+  "camila": {
+    "name": "Camila",
+    "tagline": "The Strategist",
+    "trait": "Avoids tactics, improves her pieces and looks for endgames with a small edge.",
+    "teaches": "Pawn structure, weak squares and long-term plans.",
+    "lines": {
+      "greeting": "I prefer to win slowly.",
+      "onGoodMove": "A very sensible improvement of your position.",
+      "onBlunder": "I'm going to make use of that weakness.",
+      "onWin": "Small advantages add up to a win.",
+      "onLose": "Your structure was better. Congratulations."
+    },
+    "teaching": {
+      "welcome": [
+        "Hi. Let's work through this lesson with patience.",
+        "Hi. One well-placed step is worth more than many rushed ones.",
+        "So good to see you. Let's begin calmly."
+      ],
+      "close": [
+        "All done. Every lesson adds a little.",
+        "Good work. Little by little is the better way forward.",
+        "Lesson finished. It came together nicely."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. One activity today is enough to keep it going.",
+        "recovery": "To recover your streak: a lesson, a puzzle and a game against a bot, today.",
+        "general": "When you can, a short lesson will do you good."
+      }
+    }
+  },
+  "bruno": {
+    "name": "Bruno",
+    "tagline": "The Wall",
+    "trait": "Solid defense and endless patience. Gives up space but leaves almost no weaknesses.",
+    "teaches": "Attacking a solid position with patience and good trades.",
+    "lines": {
+      "greeting": "Try to break through my wall.",
+      "onGoodMove": "You found a crack. Stay alert.",
+      "onBlunder": "You left a gap in your defense.",
+      "onWin": "My wall held.",
+      "onLose": "The wall came down. Good technique."
+    },
+    "teaching": {
+      "welcome": [
+        "Hi. Here we move steadily, with no hurry.",
+        "Hi. We lay a firm base before moving on.",
+        "Come in. This lesson is built slowly."
+      ],
+      "close": [
+        "All done. It stands firm.",
+        "Lesson finished. A good base for what comes next.",
+        "Good. Patience takes you far."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. One activity today and it stays standing.",
+        "recovery": "To rebuild your streak today, you need a lesson, a puzzle and a game against a bot.",
+        "general": "I'm still here, in no hurry. Come in whenever you like."
+      }
+    }
+  },
+  "sofia": {
+    "name": "Sofía",
+    "tagline": "The Tactician",
+    "trait": "Calculates several moves ahead. Punishes any unprotected piece.",
+    "teaches": "Seeing tactics before they land: forks, pins and double attacks.",
+    "lines": {
+      "greeting": "I calculate every move. May the best player win.",
+      "onGoodMove": "Good tactic. I saw it too late.",
+      "onBlunder": "There was a combination hiding there.",
+      "onWin": "Tactics decided the game.",
+      "onLose": "You beat me with a clean tactic."
+    },
+    "teaching": {
+      "welcome": [
+        "Hi. This lesson calls for sharp eyes.",
+        "Hi. Let's think with a cool head.",
+        "Let's begin. Today we look at everything twice."
+      ],
+      "close": [
+        "All done. You used your head well.",
+        "Lesson finished. That was very well thought out.",
+        "All done. Now you have one more tool."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. One activity today and you keep what you've earned.",
+        "recovery": "To recover your streak: a lesson, a puzzle and a game against a bot, today.",
+        "general": "I have a good challenge for today. Come take a look."
+      }
+    }
+  },
+  "ivo": {
+    "name": "Maestro Ivo",
+    "tagline": "The Endgame Expert",
+    "trait": "Trades pieces with precision and plays endgames with very fine technique.",
+    "teaches": "Endgame technique and converting small advantages.",
+    "lines": {
+      "greeting": "Endgames show the truth of a game.",
+      "onGoodMove": "That is the move of a patient player.",
+      "onBlunder": "In the endgame, that mistake costs dearly.",
+      "onWin": "The endgame decided it. Take another look at how active your king was.",
+      "onLose": "Great endgame technique."
+    },
+    "teaching": {
+      "welcome": [
+        "Hello. Let's look at this calmly and in detail.",
+        "Hello. Here every detail counts.",
+        "Come in. Today we work with precision."
+      ],
+      "close": [
+        "All done. Very fine work.",
+        "Lesson finished. Your patience shows.",
+        "Well done. Detail makes the difference."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. One activity today and you keep it alive.",
+        "recovery": "To recover your streak: a lesson, a puzzle and a game against a bot, today.",
+        "general": "A little practice today goes a long way. I'll be expecting you."
+      }
+    }
+  },
+  "ada": {
+    "name": "Ada",
+    "tagline": "The Machine",
+    "trait": "Plays with near-total precision and uses her whole repertoire. She is the final challenge.",
+    "teaches": "Playing without mistakes against a very exact opponent.",
+    "lines": {
+      "greeting": "I play the best I know how. Let the game begin.",
+      "onGoodMove": "Precise. That was the best move.",
+      "onBlunder": "A mistake. I will use it.",
+      "onWin": "Go over the game: you will learn a lot.",
+      "onLose": "Impressive. You beat me."
+    },
+    "teaching": {
+      "welcome": [
+        "Hello. Let's begin.",
+        "This is the last stage. Let's go.",
+        "Hello. Let's see how you do today."
+      ],
+      "close": [
+        "All done. A good result.",
+        "Complete. You can move on to what comes next.",
+        "All done. You did well."
+      ],
+      "reminder": {
+        "risk": "Streak days: {n}. One activity today and it is preserved.",
+        "recovery": "To recover your streak: a lesson, a puzzle and a game against a bot, today.",
+        "general": "This is a good time to practice. Come in."
+      }
+    }
+  }
+}

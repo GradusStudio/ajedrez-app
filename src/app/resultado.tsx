@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { pickPhrase, teacherForLesson } from '../data/teachers';
-import { findLesson } from '../data/units';
+import { useContent } from '../data/useContent';
+import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak } from '../progress/progressStore';
 import { LessonResultScreen } from '../screens/LessonResultScreen';
@@ -13,11 +14,13 @@ export default function ResultRoute() {
   const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; premio?: string; recuperada?: string; fallos?: string; modo?: string }>();
   const { progress } = useProgress();
   const { settings, update } = useSettings();
+  const { findLesson, findBot } = useContent();
+  const { t } = useI18n();
   const lesson = findLesson(params.id);
   const failed = params.fallos ?? '';
   // La frase se elige una vez: cambia solo al abrir otra vez.
   const [teacher] = useState(() => {
-    const bot = teacherForLesson(params.id);
+    const bot = findBot(teacherForLesson(params.id).id) ?? teacherForLesson(params.id);
     return { bot, phrase: pickPhrase(bot.teaching.close) };
   });
 
@@ -38,15 +41,12 @@ export default function ResultRoute() {
     accepting.current = true;
     setShowOffer(false);
     try {
-      if (await ensureReminderPermission()) {
+      if (await ensureReminderPermission(t('settings.reminder'))) {
         update({ reminder: { enabled: true, hour: OFFER_REMINDER_HOUR } });
         return;
       }
     } catch {}
-    Alert.alert(
-      'Sin permiso para avisarte',
-      'Para recibir el recordatorio, permite las notificaciones de esta app en los ajustes del teléfono.'
-    );
+    Alert.alert(t('settings.noPermission.title'), t('settings.noPermission.message'));
   };
   const offer = showOffer ? { onAccept: accept, onDecline: () => setShowOffer(false) } : undefined;
 

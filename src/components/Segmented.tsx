@@ -25,8 +25,8 @@ export function Segmented<T extends string | number>({ options, value, onChange 
             accessibilityLabel={o.sub ? `${o.label}, ${o.sub}` : o.label}
             style={[styles.segment, selected && styles.selected]}
           >
-            <Text style={[styles.label, selected && { color: colors.text }]}>{o.label}</Text>
-            {!!o.sub && <Text style={styles.sub}>{o.sub}</Text>}
+            <Text numberOfLines={1} adjustsFontSizeToFit style={[styles.label, selected && { color: colors.text }]}>{o.label}</Text>
+            {!!o.sub && <Text numberOfLines={1} adjustsFontSizeToFit style={styles.sub}>{o.sub}</Text>}
           </Pressable>
         );
       })}

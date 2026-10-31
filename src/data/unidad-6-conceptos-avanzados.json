@@ -96,7 +96,7 @@
             "d4e3",
             "d4d3"
           ],
-          "hint": "Avanzar el peón o ir a c3 deja escapar la victoria. Muévete por las casillas de al lado (e4, e3 o d3) sin dejar de proteger tu peón de c4.",
+          "hint": "Avanzar el peón o ir a c3 deja escapar la victoria. Muévete por las casillas de al lado (e4, e3 o d3), lo bastante cerca para volver a defender tu peón de c4 a tiempo.",
           "success": "Correcto. Desde ahí, en dos pasos más vuelves a d4 y le toca mover a las negras.",
           "id": "u6-l01-s07"
         },
@@ -248,7 +248,7 @@
         },
         {
           "type": "explain",
-          "text": "Tu torre en séptima ataca peones, pero antes de comer mira la amenaza negra: la torre de e8 quiere bajar a e1. Tu rey no tiene ninguna casilla libre, porque sus propios peones lo encierran.",
+          "text": "Tu torre en séptima ataca peones, pero antes de comer mira la amenaza negra: la torre de e8 quiere bajar a e1. Tu rey no puede salir de la primera fila, porque sus propios peones lo encierran.",
           "fen": "4r1k1/ppR2ppp/8/8/8/8/PP3PPP/6K1 w - - 0 1",
           "arrows": [
             "e8e1"

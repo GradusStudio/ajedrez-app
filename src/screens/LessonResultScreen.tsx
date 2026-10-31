@@ -3,6 +3,7 @@ import { ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 're
 import { Button3D } from '../components/Button3D';
 import { StatIcon } from '../components/StatIcon';
 import { Bot } from '../data/bots';
+import { useI18n } from '../i18n/I18nContext';
 import { BubbleRow } from '../lesson/TeacherBubble';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { colors, fonts, radius, space } from '../theme';
@@ -27,20 +28,19 @@ type Props = {
   reminderOffer?: { onAccept: () => void; onDecline: () => void };
 };
 
-const HEADINGS = { lesson: 'Lección completada', replay: 'Repaso completado', review: 'Errores repasados' } as const;
-
 export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer }: Props) {
+  const { t, tn } = useI18n();
   return (
     // Con scroll: en un teléfono chico con letra grande, «Continuar» no puede quedar afuera.
     <ScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.xxl }]}
     >
-      <Text style={styles.heading}>{HEADINGS[mode]}</Text>
+      <Text style={styles.heading}>{t(`lessonResult.heading.${mode}`)}</Text>
       <Text style={styles.lesson}>{title}</Text>
 
       {teacher && (
-        <View style={styles.teacher} accessible accessibilityLabel={`${teacher.bot.name}: ${teacher.phrase}`}>
+        <View style={styles.teacher} accessible accessibilityLabel={t('lesson.teacherSays', { name: teacher.bot.name, text: teacher.phrase })}>
           <BubbleRow bot={teacher.bot} expression="acierto" text={teacher.phrase} />
         </View>
       )}
@@ -49,46 +49,42 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
         <View style={styles.stat}>
           <StatIcon name="coin" size={22} />
           <Text style={[styles.statValue, { color: colors.gold }]}>+{coinsEarned}</Text>
-          <Text style={styles.statLabel}>{coinsEarned === 1 ? 'moneda' : 'monedas'}</Text>
+          <Text style={styles.statLabel}>{tn('lessonResult.coin', coinsEarned)}</Text>
         </View>
         <View style={styles.stat}>
           <StatIcon name="streak" size={22} />
           <Text style={[styles.statValue, { color: colors.gold }]}>{streak}</Text>
-          <Text style={styles.statLabel}>{streak === 1 ? 'día de racha' : 'días de racha'}</Text>
+          <Text style={styles.statLabel}>{tn('lessonResult.streakDay', streak)}</Text>
         </View>
         <View style={styles.stat}>
           <View style={{ height: 22 }} />
           <Text style={styles.statValue}>{errors}</Text>
-          <Text style={styles.statLabel}>{errors === 1 ? 'error' : 'errores'}</Text>
+          <Text style={styles.statLabel}>{tn('lessonResult.error', errors)}</Text>
         </View>
       </View>
 
       {mode === 'replay' && (
-        <Text style={styles.note}>Las monedas de cada lección se ganan solo la primera vez que la terminas.</Text>
+        <Text style={styles.note}>{t('lessonResult.replayNote')}</Text>
       )}
       {dailyBonus > 0 && (
-        <Text style={[styles.note, { color: colors.gold }]}>Premio del día: +{dailyBonus} monedas.</Text>
+        <Text style={[styles.note, { color: colors.gold }]}>{t('common.dailyBonus', { n: dailyBonus })}</Text>
       )}
-      {streakRecovered && <Text style={[styles.note, { color: colors.gold }]}>Recuperaste tu racha.</Text>}
-      {mode === 'review' && errors === 0 && (
-        <Text style={styles.note}>Resolviste todos los pasos fallados. Salen de tu lista de errores.</Text>
-      )}
-      {mode === 'review' && errors > 0 && (
-        <Text style={styles.note}>Los pasos que volviste a fallar siguen en tu lista de errores.</Text>
-      )}
+      {streakRecovered && <Text style={[styles.note, { color: colors.gold }]}>{t('common.streakRecovered')}</Text>}
+      {mode === 'review' && errors === 0 && <Text style={styles.note}>{t('lessonResult.reviewAllSolved')}</Text>}
+      {mode === 'review' && errors > 0 && <Text style={styles.note}>{t('lessonResult.reviewSomeFailed')}</Text>}
 
       {reminderOffer && (
         <View style={styles.offer}>
-          <Text style={styles.offerTitle}>¿Quieres que te recuerde practicar?</Text>
-          <Button3D label={`Sí, a las ${OFFER_REMINDER_HOUR}:00`} onPress={reminderOffer.onAccept} style={{ marginTop: space.md }} />
-          <Button3D label="Ahora no" onPress={reminderOffer.onDecline} style={{ marginTop: space.sm }} />
+          <Text style={styles.offerTitle}>{t('lessonResult.reminderQuestion')}</Text>
+          <Button3D label={t('lessonResult.reminderYes', { hour: OFFER_REMINDER_HOUR })} onPress={reminderOffer.onAccept} style={{ marginTop: space.md }} />
+          <Button3D label={t('lessonResult.reminderNo')} onPress={reminderOffer.onDecline} style={{ marginTop: space.sm }} />
         </View>
       )}
 
       <View style={{ flex: 1, minHeight: space.lg }} />
-      <Button3D label="Continuar" variant="primary" onPress={onContinue} />
+      <Button3D label={t('common.continue')} variant="primary" onPress={onContinue} />
       {onReviewMistakes && (
-        <Button3D label="Repasar errores" onPress={onReviewMistakes} style={{ marginTop: space.md }} />
+        <Button3D label={t('common.reviewMistakes')} onPress={onReviewMistakes} style={{ marginTop: space.md }} />
       )}
     </ScrollView>
   );

@@ -1,30 +1,56 @@
 // Notación de jugadas. Española: R rey, D dama, T torre, A alfil, C caballo (design.md).
-// Inglesa: K, Q, R, B, N (la de chess.js y Lichess). Se elige en Ajustes > Notación.
+// Inglesa: K, Q, R, B, N (la de chess.js y Lichess). Cada idioma tiene la suya (tabla PIECES).
+// Ajustes > Notación ofrece «Automática» (la del idioma) e «Inglesa»; resolveNotation lo pasa a un idioma.
+import { Language } from '../i18n/languages';
 
-export type Notation = 'es' | 'en';
+export type Notation = Language;
 
-const EN_TO_ES: Record<string, string> = { N: 'C', B: 'A', R: 'T', Q: 'D', K: 'R' };
-const ES_TO_EN: Record<string, string> = { C: 'N', A: 'B', T: 'R', D: 'Q', R: 'K' };
+/** Letra de cada pieza (rey, dama, torre, alfil, caballo), en el orden de PIECE_ORDER. */
+const PIECES: Record<Notation, string> = { es: 'RDTAC', en: 'KQRBN', de: 'KDTLS', it: 'RDTAC', fr: 'RDTFC' };
+const PIECE_ORDER = 'KQRBN';
+
+/** 'auto' sigue el idioma de la app; 'en' fuerza la inglesa. */
+export function resolveNotation(setting: 'auto' | 'en', language: Language): Notation {
+  return setting === 'en' ? 'en' : language;
+}
+
+/** Cambia las letras de pieza de `san`: `from` y `to` son tablas de PIECES. `all`: en todo el texto o solo al principio y en la coronación. */
+function convert(san: string, from: string, to: string, all: boolean): string {
+  const map = (c: string) => to[from.indexOf(c)];
+  if (all) return san.replace(new RegExp(`[${from}]`, 'g'), map);
+  // En español "R" es el rey y "a"-"h" son columnas: solo la letra de pieza del principio y la de coronación.
+  return san.replace(new RegExp(`^[${from}]`), map).replace(new RegExp(`=([${from}])`), (_, c) => '=' + map(c));
+}
 
 /** Convierte una jugada SAN de chess.js (inglés) a español: "Nf3" → "Cf3". */
 export function toSpanishSan(san: string): string {
-  return san.replace(/[NBRQK]/g, (c) => EN_TO_ES[c] ?? c);
+  return convert(san, PIECES.en, PIECES.es, true);
 }
 
 /** Convierte una jugada SAN en español a inglés: "Cf3" → "Nf3", "e8=D" → "e8=Q". */
 export function toEnglishSan(san: string): string {
-  // Solo la letra de pieza del principio y la de coronación: en español "R" es el rey, y "a"-"h" son columnas.
-  return san.replace(/^[CATDR]/, (c) => ES_TO_EN[c]).replace(/=([CATDR])/, (_, c) => '=' + ES_TO_EN[c]);
+  return convert(san, PIECES.es, PIECES.en, false);
 }
 
 /** Jugada SAN de chess.js (inglés) en la notación elegida. */
 export function sanFromEnglish(san: string, notation: Notation): string {
-  return notation === 'es' ? toSpanishSan(san) : san;
+  return notation === 'en' ? san : convert(san, PIECE_ORDER, PIECES[notation], true);
 }
 
 /** Jugada SAN escrita en español (los datos de las lecciones) en la notación elegida. */
 export function sanFromSpanish(san: string, notation: Notation): string {
-  return notation === 'es' ? san : toEnglishSan(san);
+  return notation === 'es' ? san : convert(san, PIECES.es, PIECES[notation], false);
+}
+
+/** ¿La letra de pieza de `san` (al principio y tras "=") es de la tabla de ese idioma? Peones y enroques no llevan letra. */
+export function usesLettersOf(san: string, notation: Notation): boolean {
+  const letters = [san.match(/^[A-Z]/)?.[0], san.match(/=([A-Z])/)?.[1]].filter((c): c is string => !!c && c !== 'O');
+  return letters.every((c) => PIECES[notation].includes(c));
+}
+
+/** Jugada SAN escrita en la notación de un idioma, pasada a las letras españolas: "Lxf7+" (de) → "Axf7+". */
+export function sanToSpanish(san: string, notation: Notation): string {
+  return notation === 'es' ? san : convert(san, PIECES[notation], PIECES.es, false);
 }
 
 /**
@@ -32,7 +58,6 @@ export function sanFromSpanish(san: string, notation: Notation): string {
  * Con `last`, muestra solo las últimas N jugadas completas.
  */
 export function movesText(sans: string[], last?: number, notation: Notation = 'es'): string {
-  if (sans.length === 0) return 'Aún no hay jugadas';
   const s = (x: string) => sanFromEnglish(x, notation);
   const parts: string[] = [];
   for (let i = 0; i < sans.length; i += 2) {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useI18n } from '../i18n/I18nContext';
 import { NodeState } from '../progress/path';
 import { colors, fonts } from '../theme';
 import { Circle3D } from './Circle3D';
@@ -22,6 +23,7 @@ const LOOK: Record<NodeState, { bg: string; edge: string; text: string }> = {
 
 // Nodo circular de la ruta de lecciones, con canto 3D. El actual tiene anillo y late suavemente.
 export function LessonNode({ state, order, label, onPress }: Props) {
+  const { t } = useI18n();
   const [pulse] = useState(() => new Animated.Value(1));
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export function LessonNode({ state, order, label, onPress }: Props) {
   }, [state, pulse]);
 
   const look = LOOK[state];
-  const status = { done: 'completada', current: 'actual', open: 'disponible', locked: 'bloqueada' }[state];
+  const status = t(`lessonNode.${state}`);
 
   return (
     <Animated.View style={[styles.box, { transform: [{ scale: pulse }] }]}>
@@ -45,7 +47,7 @@ export function LessonNode({ state, order, label, onPress }: Props) {
       <Pressable
         onPress={onPress}
         accessibilityRole="button"
-        accessibilityLabel={`Lección ${order}: ${label}, ${status}`}
+        accessibilityLabel={t('lessonNode.label', { order, label, status })}
         style={styles.node}
       >
         {({ pressed }) => (

@@ -1,0 +1,190 @@
+{
+  "title": "Fortgeschrittene Konzepte",
+  "lessons": {
+    "u6-l01": {
+      "title": "Zugzwang",
+      "summary": "Wenn Ziehen Verlieren heißt",
+      "steps": {
+        "u6-l01-s01": { "text": "Im Schach darfst du nicht passen: Du musst immer ziehen. Manchmal verschlechtert jeder Zug die Stellung. Das nennt man Zugzwang: den Zwang, ziehen zu müssen." },
+        "u6-l01-s02": { "text": "Schau dir diese Stellung an. Jeder König deckt seinen Bauern und greift den gegnerischen an. Der König, der ziehen muss, deckt seinen Bauern nicht mehr: Er verliert ihn und damit die Partie. Es gewinnt, wer nicht ziehen muss." },
+        "u6-l01-s03": {
+          "prompt": "Weiß am Zug. Was passiert?",
+          "options": ["Weiß verliert seinen Bauern und die Partie", "Weiß gewinnt den schwarzen Bauern", "Es ist remis: Niemand kann gewinnen"],
+          "explanation": "Weiß steht im Zugzwang: Jeder Königszug lässt den Bauern auf d4 ungedeckt. Der schwarze König schlägt ihn, und sein Bauer wandelt sich um.",
+          "feedback": ["", "Um den schwarzen Bauern zu gewinnen, müsste Schwarz zuerst ziehen. Ist Weiß am Zug, verliert Weiß.", "Wer zieht, verliert seinen Bauern, und danach wandelt sich der andere Bauer um."]
+        },
+        "u6-l01-s04": { "text": "Zugzwang hilft auch beim Mattsetzen. Hier kann Schwarz nur den König und den Bauern auf g7 ziehen. Blockierst du den Bauern, muss der König ziehen, und er hat kein gutes Feld." },
+        "u6-l01-s05": {
+          "prompt": "Matt in 2: Spiele einen stillen Zug ohne Schach, nach dem Schwarz keine guten Züge mehr hat.",
+          "success": "Richtig. Mit Tg6 ist der Bauer blockiert, der König musste nach a8, und Ta6 ist matt.",
+          "hint": "Stelle den Turm vor den Bauern auf g7: So kann er nicht vorrücken, und der schwarze König muss ziehen.",
+          "notes": ["", "", ""]
+        },
+        "u6-l01-s06": { "text": "Hier würdest du gewinnen, wenn Schwarz am Zug wäre: Sein König müsste zur Seite gehen. Aber du bist am Zug. Die Lösung: Du gibst den Zug mit dem König ab. Du machst drei Schritte im Dreieck (e4, d3 und d4) und kommst aufs selbe Feld zurück. Der schwarze König kann nur hin und zurück, und jetzt ist er in derselben Stellung am Zug. Diese Technik heißt Dreiecksmanöver." },
+        "u6-l01-s07": {
+          "prompt": "Beginne das Dreieck: Ziehe den König auf ein Feld, von dem aus du in zwei Schritten nach d4 zurückkommst.",
+          "hint": "Den Bauern vorzuziehen oder nach c3 zu gehen verspielt den Sieg. Bewege dich über die Felder daneben (e4, e3 oder d3), nah genug, um deinen Bauern auf c4 rechtzeitig wieder zu decken.",
+          "success": "Richtig. Von dort kommst du in zwei weiteren Schritten nach d4 zurück, und Schwarz ist am Zug."
+        },
+        "u6-l01-s08": {
+          "prompt": "Gewinne das Endspiel: Wandle einen Bauern um. Blockiert dich der schwarze König, nutze das Dreiecksmanöver, um ihn in Zugzwang zu bringen. Stockfish verteidigt mit Schwarz.",
+          "success": "Richtig. Du hast das Endspiel mit Zugzwang gewonnen.",
+          "hint": "Mit diesem Zug entgleitet dir der Sieg. Suche die Stellung, in der der schwarze König zur Seite gehen muss, und erreiche sie, wenn er am Zug ist."
+        },
+        "u6-l01-s09": {
+          "prompt": "Weiß am Zug. Nutze den Zugzwang, um das Endspiel zu gewinnen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Ziehe den König so, dass der gegnerische König zur Seite gehen muss und seine Bauern ungedeckt lässt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l01-s10": {
+          "prompt": "Weiß am Zug. Nutze den Zugzwang, um das Endspiel zu gewinnen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Ziehe den König so, dass der gegnerische König zur Seite gehen muss und seine Bauern ungedeckt lässt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l01-s11": {
+          "prompt": "Schwarz am Zug. Nutze den Zugzwang, um das Endspiel zu gewinnen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Ziehe den König so, dass der gegnerische König zur Seite gehen muss und seine Bauern ungedeckt lässt.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u6-l02": {
+      "title": "Prophylaxe",
+      "summary": "Den Plan des Gegners vorhersehen",
+      "steps": {
+        "u6-l02-s01": { "text": "Frage dich vor jedem Zug: Was will mein Gegner tun? Seinen Plan zu verhindern, bevor er ihn umsetzt, nennt man Prophylaxe. In dieser Italienischen Partie will der schwarze Läufer nach g4, um deinen Springer an die Dame zu fesseln." },
+        "u6-l02-s02": {
+          "prompt": "Warum stört der Läufer, wenn er nach g4 kommt?",
+          "options": ["Er fesselt den Springer auf f3: Zieht er, schlägt der Läufer die Dame", "Er droht Schachmatt", "Er greift den Bauern auf e4 an"],
+          "explanation": "Mit dem Läufer auf g4 ist der Springer auf f3 an die Dame auf d1 gefesselt: Zieht er, schlägt der Läufer die Dame. Der Springer verliert seine Freiheit, gerade wenn er das Zentrum verteidigen muss.",
+          "feedback": ["", "Es ist kein Matt in Sicht: Das Problem ist die Fesselung des Springers.", "Von g4 aus greift der Läufer den Bauern auf e4 nicht an. Das Problem ist die Fesselung."]
+        },
+        "u6-l02-s03": {
+          "prompt": "Spiele den Zug, der verhindert, dass der Läufer nach g4 kommt.",
+          "hint": "Ein Bauer kann das Feld g4 kontrollieren, bevor der Läufer dort ankommt.",
+          "success": "Richtig. Mit h3 kontrolliert der Bauer g4, und der Läufer kann nicht mehr dorthin."
+        },
+        "u6-l02-s04": { "text": "Dein Turm auf der siebten Reihe greift Bauern an, aber achte vor dem Schlagen auf die schwarze Drohung: Der Turm auf e8 will nach e1. Dein König kommt nicht von der Grundreihe weg, weil ihn seine eigenen Bauern einsperren." },
+        "u6-l02-s05": {
+          "prompt": "Tippe auf das Feld, auf dem der schwarze Turm Schachmatt geben würde.",
+          "hint": "Der Turm auf e8 zieht über die e-Linie bis auf deine Grundreihe."
+        },
+        "u6-l02-s06": {
+          "prompt": "Verhindere das Grundreihenmatt, bevor du Bauern schlägst.",
+          "hint": "Wenn du auf b7 schlägst, ist Te1 matt. Öffne deinem König mit einem Bauernzug einen Fluchtweg oder bringe ihn näher an die e-Linie.",
+          "success": "Richtig. Das Grundreihenmatt funktioniert nicht mehr. Jetzt kannst du ans Schlagen der Bauern denken."
+        },
+        "u6-l02-s07": { "text": "Hier zielen die schwarze Dame und der schwarze Läufer auf dasselbe Feld neben deinem König. Wenn du nichts tust, setzt Schwarz in einem Zug matt." },
+        "u6-l02-s08": {
+          "prompt": "Tippe auf das Feld, auf dem Schwarz Schachmatt geben würde.",
+          "hint": "Die Dame auf h4 und der Läufer auf d6 greifen dasselbe Feld neben deinem König an."
+        },
+        "u6-l02-s09": {
+          "prompt": "Verhindere das Matt.",
+          "hint": "Nutze einen Bauern in der Nähe deines Königs: Versperre mit dem Bauern auf g2 die Diagonale des Läufers, oder ziehe den Bauern auf h2 vor, damit die Dame kein Mattfeld hat. Mit f4 schlägt der Läufer, und dein König steht offen.",
+          "success": "Richtig. Das Matt funktioniert nicht mehr und deine Stellung hält."
+        },
+        "u6-l02-s10": { "text": "Zusammenfassung: Schau vor dem Ziehen, was der Gegner droht und was er in den nächsten Zügen vorhat. Ein stiller Zug zur rechten Zeit, wie h3 oder ein Fluchtweg für den König, verhindert viel größere Probleme." }
+      }
+    },
+    "u6-l03": {
+      "title": "Qualitätsopfer",
+      "summary": "Turm gegen Läufer oder Springer",
+      "steps": {
+        "u6-l03-s01": { "text": "Denk an die Werte: Der Turm ist 5 wert, Läufer und Springer jeweils 3. Einen Turm gegen einen Läufer oder Springer zu tauschen nennt man „die Qualität verlieren“. Manchmal lohnt es sich, das absichtlich zu tun: Das ist ein Qualitätsopfer." },
+        "u6-l03-s02": {
+          "prompt": "Wenn du deinen Turm gegen einen Springer tauschst, wie viele Materialpunkte gibst du ungefähr her?",
+          "options": ["2", "1", "3"],
+          "explanation": "Der Turm ist 5 wert und der Springer 3: Du gibst etwa 2 Punkte her. Darum muss dir das Opfer etwas dafür einbringen.",
+          "feedback": ["", "Turm 5 minus Springer 3 ergibt 2 Punkte, nicht 1.", "Turm 5 minus Springer 3 ergibt 2 Punkte, nicht 3."]
+        },
+        "u6-l03-s03": { "text": "Es gibt drei typische Gründe, die Qualität zu geben: einen Freibauern schaffen, den niemand stoppen kann, die Verteidigung des gegnerischen Königs aufreißen oder eine Figur beseitigen, die etwas Wichtiges deckt. Hier ist der Springer auf d6 das Einzige, was deinen Bauern auf c6 aufhält." },
+        "u6-l03-s04": {
+          "prompt": "Weiß am Zug. Gib die Qualität, damit sich dein Bauer umwandelt.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Der Springer auf d6 hält deinen c-Bauern auf. Was passiert, wenn du ihn beseitigst, auch wenn es dich den Turm kostet?",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l03-s05": {
+          "prompt": "Weiß am Zug. Noch einmal: die Qualität für einen unaufhaltsamen Bauern.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Welche schwarze Figur hält deinen b-Bauern auf? Beseitige sie mit dem Turm.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l03-s06": { "text": "Der zweite Grund: den König freilegen. Schlägt dein Turm eine Figur, die den gegnerischen König schützt, können deine anderen Figuren eindringen und ihn angreifen." },
+        "u6-l03-s07": {
+          "prompt": "Weiß am Zug. Gib die Qualität, um den König anzugreifen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Der Läufer auf g7 schützt den schwarzen König. Schlage ihn mit dem Turm und dringe dann mit der Dame ein.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l03-s08": {
+          "prompt": "Weiß am Zug. Beseitige den Verteidiger: die Qualität für noch mehr Material.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Der Springer auf f6 deckt den Turm auf d5. Verschwindet er, ist der Turm ungedeckt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l03-s09": { "text": "Zusammenfassung: Die Qualität ist etwa 2 Punkte wert, aber ein Bauer, der sich umwandelt, ein Angriff auf den König oder der Gewinn einer weiteren Figur sind mehr wert. Bevor du sie gibst, berechne, was du dafür bekommst." }
+      }
+    },
+    "u6-l04": {
+      "title": "Abschlusswiederholung",
+      "summary": "Puzzles aus allen Einheiten",
+      "steps": {
+        "u6-l04-s01": { "text": "Abschlusswiederholung: acht Puzzles aus echten Partien mit Themen aus allen Einheiten. Prüfe vor jedem Zug Schachgebote, Schlagzüge und Drohungen. Geht etwas schief, sagt dir der Tipp, welches Thema du suchen sollst." },
+        "u6-l04-s02": {
+          "prompt": "Weiß am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Abzugsangriff. Zieht der Springer mit Schach, gewinnt deine Dame die schwarze Dame.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s03": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Gabel. Dein Springer kann Schach geben und gleichzeitig den Turm angreifen.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s04": {
+          "prompt": "Weiß am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Spieß. Ein Läuferschach zwingt den König zum Ziehen und lässt den Turm ungedeckt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s05": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Ablenkung. Ein Schach auf der Grundreihe lenkt den Turm ab, der die Dame deckt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s06": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Matt in 2. Schlage die verteidigende Figur und mache mit einem Damenschach weiter.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s07": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Zugzwang. Bringe deinen König näher an die weißen Bauern: Der gegnerische König kann sie nicht decken, ohne zur Seite zu gehen.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s08": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Fesselung. Tausche die Türme und fessle dann die Dame mit dem Läufer an ihren König.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s09": {
+          "prompt": "Weiß am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Umwandlung. Dein Bauer auf d7 ist einen Schritt entfernt: Wandle ihn um, auch wenn der Turm ihn schlagen kann.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s10": { "text": "Du hast alle Einheiten von Lernen abgeschlossen. Am besten übst du jetzt weiter: jeden Tag Puzzles, Eröffnungen in ihrem eigenen Tab und Partien gegen die Bots, um alles anzuwenden, was du gelernt hast." }
+      }
+    }
+  }
+}

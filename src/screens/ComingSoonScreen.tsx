@@ -1,17 +1,19 @@
 import React from 'react';
 import { StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { useI18n } from '../i18n/I18nContext';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = { title: string; description: string; milestone: number };
 
 // Pestaña que todavía no tiene contenido: explica qué va a tener y en qué hito llega.
 export function ComingSoonScreen({ title, description, milestone }: Props) {
+  const { t } = useI18n();
   return (
     <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}>
       <Text style={styles.title}>{title}</Text>
       <View style={{ height: space.lg }} />
       <View style={styles.card}>
-        <Text style={styles.badge}>Próximamente · hito {milestone}</Text>
+        <Text style={styles.badge}>{t('comingSoon.badge', { n: milestone })}</Text>
         <Text style={styles.description}>{description}</Text>
       </View>
     </View>

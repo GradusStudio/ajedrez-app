@@ -4,7 +4,8 @@ import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { Bot } from '../data/bots';
-import { findOpening } from '../data/openings';
+import { useContent } from '../data/useContent';
+import { useI18n, MessageKey } from '../i18n/I18nContext';
 import { colors, fonts, radius, space } from '../theme';
 
 export type ColorChoice = 'w' | 'b' | 'random';
@@ -15,17 +16,19 @@ type Props = {
   onBack: () => void;
 };
 
-const CHOICES: { value: ColorChoice; label: string }[] = [
-  { value: 'w', label: 'Blancas' },
-  { value: 'b', label: 'Negras' },
-  { value: 'random', label: 'Al azar' },
+const CHOICES: { value: ColorChoice; label: MessageKey }[] = [
+  { value: 'w', label: 'common.white' },
+  { value: 'b', label: 'common.black' },
+  { value: 'random', label: 'bots.random' },
 ];
 
-const openingNames = (ids: string[]) =>
-  ids.length === 0 ? 'Sin libro: juega por principios' : ids.map((id) => findOpening(id)?.name ?? id).join(', ');
+const openingNames = (ids: string[], findOpening: (id: string) => { name: string } | undefined, noBook: string) =>
+  ids.length === 0 ? noBook : ids.map((id) => findOpening(id)?.name ?? id).join(', ');
 
 // Ficha del bot: personalidad, aperturas y elección de color (mapa-de-pantallas.md, 2.9).
 export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
+  const { findOpening } = useContent();
+  const { t } = useI18n();
   const [choice, setChoice] = useState<ColorChoice>('w');
 
   const play = () => onPlay(choice === 'random' ? (Math.random() < 0.5 ? 'w' : 'b') : choice);
@@ -35,8 +38,8 @@ export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel="Volver a Bots" hitSlop={12}>
-        <Text style={styles.back}>‹ Bots</Text>
+      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('bots.backLabel')} hitSlop={12}>
+        <Text style={styles.back}>{t('bots.back')}</Text>
       </Pressable>
 
       <View style={styles.header}>
@@ -45,8 +48,8 @@ export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
           <Text style={styles.title}>{bot.name}</Text>
           <Text style={styles.tagline}>{bot.tagline}</Text>
           <View style={styles.chips}>
-            <Chip label={`Nivel ${bot.elo}`} />
-            <Chip label={bot.style} />
+            <Chip label={t('common.level', { n: bot.elo })} />
+            <Chip label={t(`botStyle.${bot.style}`)} />
           </View>
         </View>
       </View>
@@ -56,14 +59,14 @@ export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
       </View>
 
       <Text style={styles.body}>{bot.trait}</Text>
-      <Text style={styles.label}>Te enseña</Text>
+      <Text style={styles.label}>{t('bots.teaches')}</Text>
       <Text style={styles.body}>{bot.teaches}</Text>
-      <Text style={styles.label}>Con blancas juega</Text>
-      <Text style={styles.body}>{openingNames(bot.repertoire.white)}</Text>
-      <Text style={styles.label}>Con negras juega</Text>
-      <Text style={styles.body}>{openingNames(bot.repertoire.black)}</Text>
+      <Text style={styles.label}>{t('bots.playsWhite')}</Text>
+      <Text style={styles.body}>{openingNames(bot.repertoire.white, findOpening, t('bots.noBook'))}</Text>
+      <Text style={styles.label}>{t('bots.playsBlack')}</Text>
+      <Text style={styles.body}>{openingNames(bot.repertoire.black, findOpening, t('bots.noBook'))}</Text>
 
-      <Text style={styles.label}>Tú juegas con</Text>
+      <Text style={styles.label}>{t('bots.youPlay')}</Text>
       <View style={styles.segmented}>
         {CHOICES.map((c) => {
           const selected = c.value === choice;
@@ -73,16 +76,16 @@ export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
               onPress={() => setChoice(c.value)}
               accessibilityRole="radio"
               accessibilityState={{ selected }}
-              accessibilityLabel={c.label}
+              accessibilityLabel={t(c.label)}
               style={[styles.segment, selected && styles.segmentSelected]}
             >
-              <Text style={[styles.segmentText, selected && { color: colors.text }]}>{c.label}</Text>
+              <Text style={[styles.segmentText, selected && { color: colors.text }]}>{t(c.label)}</Text>
             </Pressable>
           );
         })}
       </View>
 
-      <Button3D label="Jugar" variant="primary" onPress={play} style={{ marginTop: space.lg }} />
+      <Button3D label={t('common.play')} variant="primary" onPress={play} style={{ marginTop: space.lg }} />
     </ScrollView>
   );
 }

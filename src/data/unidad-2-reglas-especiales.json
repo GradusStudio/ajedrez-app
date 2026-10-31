@@ -424,7 +424,7 @@
         },
         {
           "type": "explain",
-          "text": "Esto se llama jaque perpetuo: jaques sin fin que el rival no puede evitar. Es la forma más común de salvar una partida perdida por repetición.",
+          "text": "Esto se llama jaque perpetuo: jaques sin fin que el rival no puede evitar. Es la forma más común de salvar por repetición una partida perdida.",
           "fen": "6k1/6p1/8/2b5/4Q3/8/rr4PP/7K w - - 0 1",
           "arrows": [
             "e4d5",
@@ -529,10 +529,10 @@
         },
         {
           "type": "explain",
-          "text": "Si la jugada captura, se agrega una x: Axf7. Cuando captura un peón, se escribe la columna de donde sale: exd5.",
+          "text": "Si la jugada captura, se agrega una x: Axd5. Cuando captura un peón, se escribe la columna de donde sale: exd5.",
           "fen": "rnbqkbnr/ppp2ppp/8/3pp3/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq d6 0 3",
           "arrows": [
-            "c4f7",
+            "c4d5",
             "e4d5"
           ],
           "id": "u2-l06-s02"
@@ -611,7 +611,7 @@
         {
           "type": "quiz",
           "prompt": "¿Qué jugada es e8=C+?",
-          "fen": "8/4P3/8/8/8/k7/8/4K3 w - - 0 1",
+          "fen": "8/4P1k1/8/8/8/8/8/4K3 w - - 0 1",
           "options": [
             "Un peón corona caballo en e8 y da jaque",
             "Un caballo va a e8 y da jaque",

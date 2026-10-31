@@ -133,7 +133,7 @@
         "u5-l04-s06": {
           "prompt": "Make the breakthrough and create a passed pawn that promotes.",
           "success": "Correct. The a-pawn can't be stopped now: the black king is outside the square.",
-          "hint": "Start with b6. Then advance the pawn that has no black pawn in front of it.",
+          "hint": "Start with b6. After the capture, play c6: once the b-pawn captures, your a-pawn has a clear path.",
           "notes": ["", "", "", "", ""]
         },
         "u5-l04-s07": {
@@ -173,7 +173,7 @@
             "",
             "The king gets closer to your rook and keeps protecting the pawn.",
             "",
-            "It keeps heading down toward the rook.",
+            "It sidesteps the check and keeps protecting the pawn.",
             "",
             "One more step: now the rook can block the check.",
             "",
@@ -191,7 +191,7 @@
           "success": "Correct. You won the Lucena position.",
           "hint": "That move lets the win slip away. Remember the plan: check to drive the king away, rook to the fourth rank, then bring your king out."
         },
-        "u5-l05-s07": { "text": "To sum up: drive the enemy king away, bring your rook to the fourth rank, step out with your king and block the checks with the rook. If the defending king gets in front of the pawn, the defense is different: the Philidor position, which draws. You'll see it later on." }
+        "u5-l05-s07": { "text": "To sum up: drive the enemy king away, bring your rook to the fourth rank, step out with your king and block the checks with the rook. If the defending king gets in front of the pawn, the defense is different: the Philidor position, which draws." }
       }
     }
   }

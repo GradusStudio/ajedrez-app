@@ -96,7 +96,7 @@
             "d4e3",
             "d4d3"
           ],
-          "hint": "Avanzar el peón o ir a c3 deja escapar la victoria. Muévete por las casillas de al lado (e4, e3 o d3) sin dejar de proteger tu peón de c4.",
+          "hint": "Avanzar el peón o ir a c3 deja escapar la victoria. Muévete por las casillas de al lado (e4, e3 o d3), lo bastante cerca para volver a defender tu peón de c4 a tiempo.",
           "success": "Correcto. Desde ahí, en dos pasos más vuelves a d4 y le toca mover a las negras.",
           "id": "u6-l01-s07"
         },

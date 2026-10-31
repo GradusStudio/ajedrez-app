@@ -23,7 +23,7 @@
         "u6-l01-s06": { "text": "Here you'd win if it were Black's turn: the black king would have to step aside. But it's your move. The solution is to “pass the turn” with your king: take three steps in a triangle (e4, d3 and d4) and return to the same square. The black king can only go there and back, and now it has to move in the same position. This technique is called triangulation." },
         "u6-l01-s07": {
           "prompt": "Start the triangle: move your king to a square from which you can return to d4 in two steps.",
-          "hint": "Advancing the pawn or going to c3 lets the win slip away. Move along the squares next to you (e4, e3 or d3) and keep protecting your pawn on c4.",
+          "hint": "Advancing the pawn or going to c3 lets the win slip away. Move along the squares next to you (e4, e3 or d3), staying close enough to get back and defend your pawn on c4 in time.",
           "success": "Correct. From there, in two more steps you return to d4 and it's Black's turn."
         },
         "u6-l01-s08": {

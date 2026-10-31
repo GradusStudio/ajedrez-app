@@ -82,7 +82,7 @@
             ]
           },
           "london-l03-s03": {
-            "prompt": "Your bishop is attacked by Black's bishop. Keep your bishop without trading it.",
+            "prompt": "Your bishop is attacked by Black's bishop. Retreat it without leaving the diagonal.",
             "hint": "There's a safe square that stays on the diagonal.",
             "success": "Correct"
           },
@@ -318,7 +318,7 @@
               "",
               "Attacks e5 a second time.",
               "",
-              "You win a pawn."
+              "You win back the pawn."
             ]
           },
           "vienna-l03-s02": {
@@ -371,7 +371,7 @@
             "text": "With ...d5 you attack White's center right away and force White to decide."
           },
           "scandinavian-l01-s02": {
-            "text": "The queen comes out early, but it retreats to a5 with tempo and pins the c3 knight when the diagonal opens."
+            "text": "The queen comes out early, but it retreats to a5, an active square, and pins the c3 knight when the diagonal opens."
           },
           "scandinavian-l01-s03": {
             "text": "The plan: ...c6 to support the center, the bishop out before ...e6, the knight to f6 and kingside castling."
@@ -398,11 +398,11 @@
               "",
               "You recapture with the queen: it comes out early, but that's the plan in this opening.",
               "",
-              "You retreat with tempo and pin the knight if the diagonal opens.",
+              "You retreat to an active square and pin the knight if the diagonal opens.",
               "",
               "You develop the knight and pressure d4.",
               "",
-              "You support the center and prepare your bishop.",
+              "You control d5 and b5 and give the queen the c7 square.",
               "",
               "You bring out the bishop before closing with ...e6.",
               "",
@@ -444,8 +444,8 @@
             "prompt": "Repeat the main line without help."
           },
           "scandinavian-l04-s02": {
-            "prompt": "Support the center and prepare your bishop: play ...c6.",
-            "hint": "A pawn can support d5 and leave room for your bishop.",
+            "prompt": "Control d5 and b5: play ...c6.",
+            "hint": "A pawn can control d5 and b5.",
             "success": "Correct"
           },
           "scandinavian-l04-s03": {
@@ -741,7 +741,7 @@
               "",
               "Supports e4 and opens the c1 bishop.",
               "",
-              "Prepares e4 without blocking anything.",
+              "Develops the knight and prepares e4.",
               "",
               "You take the center: that's the plan of the King's Indian Attack.",
               "",
@@ -846,7 +846,7 @@
               "",
               "Fianchetto: the bishop dominates the long diagonal.",
               "",
-              "You support e5 and prepare ...e5.",
+              "You control e5 and prepare ...e5.",
               "",
               "King safe.",
               "",
@@ -854,7 +854,7 @@
               "",
               "You pressure d4.",
               "",
-              "You close the center and prepare the attack with ...f5.",
+              "White has closed the center: you retreat the knight to e7 and prepare the attack with ...f5.",
               "",
               "The f6 knight frees the f-pawn.",
               "",
@@ -957,7 +957,7 @@
               "",
               "The bishop pressures the center from a distance.",
               "",
-              "You support e5 and restrain the e4-pawn.",
+              "You control e5 and restrain the e4-pawn.",
               "",
               "Prepares ...b5 and gains space on the queenside.",
               "",
@@ -1107,10 +1107,10 @@
           },
           "pirc-l04-s02": {
             "prompt": "What does ...c6 prepare?",
-            "explanation": "With c6 you reinforce the center without spending your knight.",
+            "explanation": "With ...c6 you control d5 and b5 without using your knight.",
             "options": [
               "Queenside castling",
-              "A check to the queen",
+              "An attack on the queen",
               "The ...b5 or ...e5 advances"
             ]
           }
@@ -1286,15 +1286,15 @@
               "",
               "Evans: you offer a pawn to gain time and the center.",
               "",
-              "You threaten d4, gaining time on the bishop.",
+              "You attack the bishop and prepare d4.",
               "",
               "You take the center with tempo.",
               "",
               "King safe; the open lines favor your development.",
               "",
-              "You win back the pawn and keep the center.",
+              "You win back a pawn and keep the center.",
               "",
-              "You pressure e4 and d5, increasing your activity.",
+              "You protect e4 and watch d5, increasing your activity.",
               "",
               "You attack the queen and gain more time."
             ]
@@ -1401,9 +1401,9 @@
               "",
               "You develop and prepare f3.",
               "",
-              "You open the f-file and aim to recapture with a lead in development.",
+              "You open the f-file and aim for a lead in development.",
               "",
-              "You win back the pawn with development.",
+              "You recapture and develop: you're still a pawn down, but ahead in development.",
               "",
               "The bishop aims toward h7.",
               "",
@@ -1416,7 +1416,7 @@
       },
       "bdg-l03": {
         "title": "Key ideas and common mistakes",
-        "summary": "Winning back the pawn with development",
+        "summary": "Recapturing with development",
         "steps": {
           "bdg-l03-s01": {
             "prompt": "Attack the e4-pawn while opening the f-file.",
@@ -1424,7 +1424,7 @@
             "success": "Correct"
           },
           "bdg-l03-s02": {
-            "prompt": "Win back the pawn with a piece.",
+            "prompt": "Recapture on f3 with a piece.",
             "hint": "The knight captures on f3.",
             "success": "Correct"
           },
@@ -1448,7 +1448,7 @@
           },
           "bdg-l04-s02": {
             "prompt": "Which file do you open with f3?",
-            "explanation": "Your f1 rook is ready to apply pressure.",
+            "explanation": "After you castle, your rook presses down that file.",
             "options": [
               "The f-file",
               "The a-file",
@@ -1508,11 +1508,11 @@
               "",
               "You attack White's center.",
               "",
-              "You trade to open the c8 bishop.",
+              "You trade so the c8 bishop can come out to f5.",
               "",
               "You bring out the bishop before closing with ...e6.",
               "",
-              "You retreat the bishop with tempo and keep it on the diagonal.",
+              "The knight attacks your bishop: you retreat it to g6 and keep it on the diagonal.",
               "",
               "Prepares the bishop's retreat to h7.",
               "",
@@ -1522,7 +1522,7 @@
               "",
               "You trade off White's bishop, which is an active piece.",
               "",
-              "A solid structure, and it develops the f8 bishop."
+              "A solid structure, and it opens the way for the f8 bishop."
             ]
           }
         }
@@ -1532,7 +1532,7 @@
         "summary": "Trades and the bishop",
         "steps": {
           "caro-kann-l03-s01": {
-            "prompt": "Trade your central pawn to open the bishop.",
+            "prompt": "Trade your central pawn so the bishop can come out to f5.",
             "hint": "Capture on e4.",
             "success": "Correct"
           },
@@ -1584,7 +1584,7 @@
             "text": "With Bb5 you pressure the knight that protects e5. You don't capture it right away: you keep the tension."
           },
           "ruy-lopez-l01-s02": {
-            "text": "After ...a6, you retreat to a4 and keep the pin, without trading the bishop for no reason."
+            "text": "After ...a6, you retreat to a4 and keep the pressure on the knight, without trading the bishop for no reason."
           },
           "ruy-lopez-l01-s03": {
             "text": "Typical plan: c3 and d4 to take the center, with your bishop well placed on b3."
@@ -1622,7 +1622,7 @@
               "",
               "You pressure the knight that protects e5.",
               "",
-              "You keep the pin without trading the bishop.",
+              "You keep the pressure on the knight without trading the bishop.",
               "",
               "King safe.",
               "",
@@ -1642,7 +1642,7 @@
         "summary": "The Noah's Ark Trap",
         "steps": {
           "ruy-lopez-l03-s01": {
-            "text": "This is the Noah's Ark Trap: the pawns on a6, b5, c4 and d6 trap the b3 bishop. It happens if you play d4 too early against ...d6."
+            "text": "This is the Noah's Ark Trap: the pawns on a6, b5 and c4 trap the b3 bishop. It happens if you play d4 too early against ...d6."
           },
           "ruy-lopez-l03-s02": {
             "prompt": "Black played ...d6. Prepare d4 without risking the bishop.",
@@ -1798,7 +1798,7 @@
             "text": "With c3 you prepare d4 to take the center, and you avoid the Open Sicilian."
           },
           "alapin-l01-s02": {
-            "text": "If Black plays ...d5, you trade and then take the center with tempo."
+            "text": "If Black plays ...d5, you trade and then take the center with a pawn."
           },
           "alapin-l01-s03": {
             "text": "Plan: develop with Nf3, Be2 and castling, and keep control of the center."
@@ -1818,7 +1818,7 @@
             "options": [
               "The d5-pawn",
               "The theory of the Open Sicilian",
-              "A check to the queen"
+              "An attack on the queen"
             ]
           }
         }
@@ -1836,7 +1836,7 @@
               "",
               "You trade and force Black to bring out the queen.",
               "",
-              "You take the center and gain time.",
+              "You take the center with a pawn.",
               "",
               "Develops.",
               "",
@@ -1864,7 +1864,7 @@
             "success": "Correct"
           },
           "alapin-l03-s03": {
-            "prompt": "Take the center with tempo.",
+            "prompt": "Take the center with a pawn.",
             "hint": "A central pawn advances two squares.",
             "success": "Correct"
           },
@@ -2173,9 +2173,9 @@
               "",
               "The c8 bishop comes out and pressures c4.",
               "",
-              "The queen comes out to connect the rooks.",
+              "The queen comes out and prepares queenside castling.",
               "",
-              "Queenside castling: the rook reaches the d-file, next to your pawn.",
+              "Queenside castling: the rook reaches the d-file, behind your pawn.",
               "",
               "The other knight finishes coming out."
             ]
@@ -2236,7 +2236,7 @@
         "summary": "Constant pressure with the g2 bishop",
         "steps": {
           "catalan-l01-s01": {
-            "text": "You combine the Queen's Gambit with a fianchetto: g3 and Bg2 aim at c6, b7 and the c-file."
+            "text": "You combine the Queen's Gambit with a fianchetto: g3 and Bg2 aim at d5, c6 and b7."
           },
           "catalan-l01-s02": {
             "text": "Black often captures on c4, and you win the pawn back with the queen or with Ne5."
@@ -2285,11 +2285,11 @@
               "",
               "You prepare to win back the c4-pawn.",
               "",
-              "Supports b5 and pressures a6 and b7.",
+              "Stops ...b5, which would protect the c4-pawn.",
               "",
               "You win back the c4-pawn.",
               "",
-              "You develop the bishop and pin the knight."
+              "You develop the bishop and pressure the f6 knight."
             ]
           }
         }
@@ -2310,7 +2310,7 @@
           },
           "catalan-l03-s03": {
             "prompt": "Black captured on c4. How do you win the pawn back?",
-            "explanation": "The queen on c2 attacks c4 together with the bishop.",
+            "explanation": "The queen on c2 attacks the c4-pawn and wins it back.",
             "options": [
               "With h4",
               "With the queen, after Qc2",
@@ -2362,7 +2362,7 @@
             "options": [
               "d5",
               "e5",
-              "b5"
+              "c5"
             ]
           },
           "english-l01-s05": {
@@ -2622,9 +2622,9 @@
               "",
               "You develop and attack e4.",
               "",
-              "You attack the e4-pawn and pin the knight.",
+              "You develop the bishop and break the pin on the f6 knight.",
               "",
-              "The knight gives up its square for ...f6 and avoids the pin.",
+              "Attacked by e5, the knight retreats and frees the f-pawn for ...f6.",
               "",
               "You recapture with the queen.",
               "",
@@ -2823,7 +2823,7 @@
           },
           "petrov-l01-s05": {
             "prompt": "Why not 3...Nxe4 right away?",
-            "explanation": "With the knight still on e5, Qe2 pins your knight and White has the initiative.",
+            "explanation": "With the knight still on e5, Qe2 attacks your knight and threatens a discovered check.",
             "options": [
               "Because you lose the bishop",
               "Because Qe2 leaves you in a very awkward position",
@@ -2957,7 +2957,7 @@
               "",
               "You defend d5.",
               "",
-              "You develop and pressure d5.",
+              "You develop and protect d5.",
               "",
               "You prepare castling.",
               "",

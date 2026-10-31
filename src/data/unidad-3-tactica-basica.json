@@ -301,7 +301,7 @@
         },
         {
           "type": "explain",
-          "text": "Para defenderte de una clavada, protege la pieza clavada o saca de la línea al rey o la dama. Aquí Ae7 corta la diagonal y el caballo vuelve a quedar libre.",
+          "text": "Para defenderte de una clavada, protege la pieza clavada, interpón otra pieza o saca de la línea al rey o la dama. Aquí Ae7 corta la diagonal y el caballo vuelve a quedar libre.",
           "fen": "rnbqkb1r/ppp2ppp/3p1n2/4p1B1/4P3/3P4/PPP2PPP/RN1QKBNR b KQkq - 1 4",
           "play": [
             "f8e7"

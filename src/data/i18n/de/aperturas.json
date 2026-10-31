@@ -2009,5 +2009,677 @@
         }
       }
     }
+  },
+  "kings-gambit": {
+    "name": "Königsgambit",
+    "summary": "Die romantische Eröffnung: Du opferst sofort einen Bauern und greifst mit allem an.",
+    "lessons": {
+      "kings-gambit-l01": {
+        "title": "Die Idee des Königsgambits",
+        "summary": "Bauer für Angriff",
+        "steps": {
+          "kings-gambit-l01-s01": {
+            "text": "Mit f4 bietest du einen Bauern an, um die f-Linie zu öffnen und das Zentrum zu beherrschen."
+          },
+          "kings-gambit-l01-s02": {
+            "text": "Mit Sf3 entwickelst du dich und verhinderst ein Damenschach auf h4."
+          },
+          "kings-gambit-l01-s03": {
+            "text": "In der Kieseritzky-Variante springt der Springer nach e5, wenn er mit ...g4 angegriffen wird."
+          },
+          "kings-gambit-l01-s04": {
+            "prompt": "Was verhinderst du mit 3.Sf3?",
+            "explanation": "Der Springer behält von f3 aus h4 im Blick.",
+            "options": [
+              "Ein Damenschach auf h4",
+              "Einen Damentausch",
+              "Das Schlagen auf e4"
+            ]
+          },
+          "kings-gambit-l01-s05": {
+            "prompt": "Warum ist dein König verwundbar?",
+            "explanation": "Mit f4 öffnest du diese Diagonale für die gegnerische Dame.",
+            "options": [
+              "Der Bauer auf e4 fällt",
+              "Die Diagonale e1–h4 ist offen",
+              "Du kannst nicht rochieren"
+            ]
+          }
+        }
+      },
+      "kings-gambit-l02": {
+        "title": "Hauptvariante",
+        "summary": "Die Kieseritzky-Variante",
+        "steps": {
+          "kings-gambit-l02-s01": {
+            "prompt": "Spiele die Hauptvariante des Königsgambits.",
+            "notes": [
+              "Zentrum.",
+              "",
+              "Königsgambit: Du bietest einen Bauern an, um die f-Linie zu öffnen.",
+              "",
+              "Entwickelt und verhindert ...Dh4+.",
+              "",
+              "Du greifst den Bauern auf g5 an.",
+              "",
+              "Der Springer besetzt auf e5 einen starken Posten.",
+              "",
+              "Zielt auf f7 und entwickelt.",
+              "",
+              "Du öffnest das Zentrum.",
+              "",
+              "Du besetzt das Zentrum und deckst deinen Springer auf e5."
+            ]
+          }
+        }
+      },
+      "kings-gambit-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Entwicklung und Angriff",
+        "steps": {
+          "kings-gambit-l03-s01": {
+            "prompt": "Entwickle den Springer und verhindere ...Dh4+.",
+            "hint": "Der Königsspringer zieht nach f3.",
+            "success": "Richtig"
+          },
+          "kings-gambit-l03-s02": {
+            "prompt": "Greife den Bauern auf g5 mit einem anderen Bauern an.",
+            "hint": "Der h-Bauer zieht vor.",
+            "success": "Richtig"
+          },
+          "kings-gambit-l03-s03": {
+            "prompt": "Wohin springt der Springer, wenn ihn der Bauer auf g4 angreift?",
+            "explanation": "Das ist das aktivste Feld im Zentrum.",
+            "options": [
+              "Nach e5",
+              "Nach g1",
+              "Nach h2"
+            ]
+          }
+        }
+      },
+      "kings-gambit-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "kings-gambit-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "kings-gambit-l04-s02": {
+            "prompt": "Welche Diagonale schwächst du mit f4?",
+            "explanation": "Achte auf Schachgebote der Dame auf h4.",
+            "options": [
+              "Die von e1 nach h4",
+              "Die von a1 nach h8",
+              "Die von a2 nach g8"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "albin": {
+    "name": "Albin-Gegengambit",
+    "summary": "Du antwortest auf das Damengambit mit einem Bauern auf d4, der die ganze Partie über stört.",
+    "lessons": {
+      "albin-l01": {
+        "title": "Die Idee des Albin-Gegengambits",
+        "summary": "Ein vorgerückter Bauer, der Weiß einengt",
+        "steps": {
+          "albin-l01-s01": {
+            "text": "Nach 1.d4 d5 2.c4 greifst du das Zentrum mit ...e5 an. Das ist ein Gegengambit: Du bietest einen Bauern für aktives Spiel an."
+          },
+          "albin-l01-s02": {
+            "text": "Nach ...d4 besetzt dein Bauer das Zentrum, nimmt Weiß Raum und schränkt den Springer auf b1 ein."
+          },
+          "albin-l01-s03": {
+            "text": "Weiß hat einen Bauern mehr, aber du entwickelst dich schnell, und dein Bauer auf d4 lässt sich nicht leicht angreifen."
+          },
+          "albin-l01-s04": {
+            "prompt": "Was bietest du mit 2...e5 an?",
+            "explanation": "Das ist ein Gegengambit: Du opferst Material für Initiative.",
+            "options": [
+              "Einen Bauern für aktives Spiel",
+              "Die Dame für einen Turm",
+              "Die Rochade"
+            ]
+          },
+          "albin-l01-s05": {
+            "prompt": "Was bewirkt dein Bauer auf d4?",
+            "explanation": "Er ist das Leitmotiv der ganzen Struktur.",
+            "options": [
+              "Er schützt die Rochade",
+              "Er nimmt Raum und schränkt die weißen Figuren ein",
+              "Er greift den König an"
+            ]
+          }
+        }
+      },
+      "albin-l02": {
+        "title": "Hauptvariante",
+        "summary": "Die Variante mit Sf3 und g3",
+        "steps": {
+          "albin-l02-s01": {
+            "prompt": "Spiele die Hauptvariante des Albin-Gegengambits.",
+            "notes": [
+              "",
+              "Du besetzt vom ersten Zug an das Zentrum.",
+              "",
+              "Albin-Gegengambit: Du greifst das weiße Zentrum mit einem Bauern an.",
+              "",
+              "Der Bauer rückt vor und bleibt als Stachel im Zentrum.",
+              "",
+              "Du entwickelst dich und behältst e5 und d4 im Blick.",
+              "",
+              "Der c8-Läufer kommt heraus und setzt c4 unter Druck.",
+              "",
+              "Die Dame kommt heraus und bereitet die lange Rochade vor.",
+              "",
+              "Lange Rochade: Der Turm kommt auf die d-Linie, hinter deinen Bauern.",
+              "",
+              "Auch der andere Springer ist jetzt entwickelt."
+            ]
+          }
+        }
+      },
+      "albin-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Behalte den Bauern auf d4",
+        "steps": {
+          "albin-l03-s01": {
+            "prompt": "Greife das Zentrum mit einem Bauern an.",
+            "hint": "Der e-Bauer zieht nach e5.",
+            "success": "Richtig"
+          },
+          "albin-l03-s02": {
+            "prompt": "Ziehe den Bauern vor, damit er im Zentrum bleibt.",
+            "hint": "Der Bauer bleibt auf d4.",
+            "success": "Richtig"
+          },
+          "albin-l03-s03": {
+            "prompt": "Welche Figur entwickelst du nach ...d4 zuerst?",
+            "explanation": "Der Springer auf c6 stützt ...d4 und behält e5 im Blick.",
+            "options": [
+              "Den Springer auf b8",
+              "Die Dame",
+              "Den Läufer auf f8"
+            ]
+          }
+        }
+      },
+      "albin-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "albin-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "albin-l04-s02": {
+            "prompt": "Welcher Springer kommt nach c6?",
+            "explanation": "Das ist die Figur, die den Vorstoß im Zentrum stützt.",
+            "options": [
+              "Der von g8",
+              "Der von b8",
+              "Keiner"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "catalan": {
+    "name": "Katalanische Eröffnung",
+    "summary": "Der g2-Läufer übt Druck auf der langen Diagonale aus: eine elegante Eröffnung mit viel Druck.",
+    "lessons": {
+      "catalan-l01": {
+        "title": "Die Idee der Katalanischen Eröffnung",
+        "summary": "Ständiger Druck mit dem g2-Läufer",
+        "steps": {
+          "catalan-l01-s01": {
+            "text": "Du verbindest das Damengambit mit einem Fianchetto: g3 und Lg2 zielen auf d5, c6 und b7."
+          },
+          "catalan-l01-s02": {
+            "text": "Schwarz schlägt oft auf c4, und du holst den Bauern mit der Dame oder mit Se5 zurück."
+          },
+          "catalan-l01-s03": {
+            "text": "Der g2-Läufer steht aktiv: Ohne Bauern, die ihn blockieren, übt er Druck auf die ganze Diagonale aus."
+          },
+          "catalan-l01-s04": {
+            "prompt": "Welche Diagonale kontrolliert der g2-Läufer?",
+            "explanation": "Diese Diagonale zielt auf den schwarzen Damenflügel.",
+            "options": [
+              "Die lange a8–h1",
+              "Die Diagonale e1–h4",
+              "Die Diagonale a2–g8"
+            ]
+          },
+          "catalan-l01-s05": {
+            "prompt": "Was machst du, wenn Schwarz auf c4 schlägt?",
+            "explanation": "Du hast positionelle Kompensation und holst den Bauern fast immer zurück.",
+            "options": [
+              "Du gibst den Bauern für immer auf",
+              "Du holst den Bauern mit der Dame oder mit Se5 zurück",
+              "Du tauschst den Läufer"
+            ]
+          }
+        }
+      },
+      "catalan-l02": {
+        "title": "Hauptvariante",
+        "summary": "Offenes Katalanisch",
+        "steps": {
+          "catalan-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Katalanischen Eröffnung.",
+            "notes": [
+              "Du besetzt das Zentrum.",
+              "",
+              "Du setzt das Zentrum vom Damenflügel aus unter Druck.",
+              "",
+              "Katalanisch: Du bereitest das Fianchetto vor.",
+              "",
+              "Der Läufer beherrscht die lange Diagonale.",
+              "",
+              "Entwickelt und stützt d4.",
+              "",
+              "Der König ist in Sicherheit.",
+              "",
+              "Du bereitest vor, den Bauern auf c4 zurückzuholen.",
+              "",
+              "Verhindert ...b5, das den Bauern auf c4 decken würde.",
+              "",
+              "Du holst den Bauern auf c4 zurück.",
+              "",
+              "Du entwickelst den Läufer und setzt den Springer auf f6 unter Druck."
+            ]
+          }
+        }
+      },
+      "catalan-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Fianchetto und Bauer",
+        "steps": {
+          "catalan-l03-s01": {
+            "prompt": "Bereite das Fianchetto deines Läufers vor.",
+            "hint": "Ein Bauer öffnet die Diagonale des Läufers.",
+            "success": "Richtig"
+          },
+          "catalan-l03-s02": {
+            "prompt": "Stelle den Läufer auf die lange Diagonale.",
+            "hint": "Der Läufer zieht nach g2.",
+            "success": "Richtig"
+          },
+          "catalan-l03-s03": {
+            "prompt": "Schwarz hat auf c4 geschlagen. Wie holst du den Bauern zurück?",
+            "explanation": "Die Dame auf c2 greift den Bauern auf c4 an und holt ihn zurück.",
+            "options": [
+              "Mit h4",
+              "Mit der Dame, nach Dc2",
+              "Mit a3"
+            ]
+          }
+        }
+      },
+      "catalan-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "catalan-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "catalan-l04-s02": {
+            "prompt": "Worauf übt dein g2-Läufer Druck aus?",
+            "explanation": "Diese Figur macht den Sinn von Katalanisch aus.",
+            "options": [
+              "Auf die lange Diagonale Richtung c6 und b7",
+              "Auf die h-Linie",
+              "Auf den Bauern auf a2"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "english": {
+    "name": "Englische Eröffnung",
+    "summary": "Du kontrollierst das Zentrum mit einem Flügelbauern und spielst ruhig und flexibel.",
+    "lessons": {
+      "english-l01": {
+        "title": "Die Idee der Englischen Eröffnung",
+        "summary": "Das Zentrum vom Flügel aus",
+        "steps": {
+          "english-l01-s01": {
+            "text": "Mit 1.c4 kontrollierst du d5, ohne dich im Zentrum festzulegen. Die Eröffnung ist flexibel: Sie kann in andere übergehen."
+          },
+          "english-l01-s02": {
+            "text": "Gegen ...e5 spielst du einen „umgekehrten Sizilianer“ mit einem Tempo mehr."
+          },
+          "english-l01-s03": {
+            "text": "Plan: Fianchetto auf g2, Tausch auf d5 und Ausdehnung am Damenflügel mit a3 und b4."
+          },
+          "english-l01-s04": {
+            "prompt": "Welches Feld kontrolliert der Bauer auf c4?",
+            "explanation": "Von c4 aus behält der Bauer d5 im Blick, ohne das Zentrum zu besetzen.",
+            "options": [
+              "d5",
+              "e5",
+              "c5"
+            ]
+          },
+          "english-l01-s05": {
+            "prompt": "Was spielst du gegen ...e5?",
+            "explanation": "Das ist ein Sizilianer mit einem Tempo mehr für Weiß.",
+            "options": [
+              "Französisch",
+              "Einen umgekehrten Sizilianer",
+              "Ein Gambit"
+            ]
+          }
+        }
+      },
+      "english-l02": {
+        "title": "Hauptvariante",
+        "summary": "Vierspringerspiel im Englischen",
+        "steps": {
+          "english-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Englischen Eröffnung.",
+            "notes": [
+              "Du kontrollierst das Zentrum, ohne es zu besetzen.",
+              "",
+              "Entwickelt und behält e4 im Blick.",
+              "",
+              "Entwickelt den zweiten Springer.",
+              "",
+              "Du bereitest das Fianchetto vor.",
+              "",
+              "Du tauschst, um das Spiel zu öffnen.",
+              "",
+              "Der Läufer kommt auf die lange Diagonale.",
+              "",
+              "Der König ist in Sicherheit.",
+              "",
+              "Du bereitest die Ausdehnung vor.",
+              "",
+              "Du gewinnst Raum am Damenflügel."
+            ]
+          }
+        }
+      },
+      "english-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Tausch und Fianchetto",
+        "steps": {
+          "english-l03-s01": {
+            "prompt": "Kontrolliere d5 mit einem Flügelbauern.",
+            "hint": "Ein Bauer am Damenflügel zieht vor.",
+            "success": "Richtig"
+          },
+          "english-l03-s02": {
+            "prompt": "Bereite das Fianchetto des Läufers vor.",
+            "hint": "Ein Bauer öffnet die Diagonale.",
+            "success": "Richtig"
+          },
+          "english-l03-s03": {
+            "prompt": "Tausche auf d5, um die Stellung zu öffnen.",
+            "hint": "Der Bauer schlägt auf d5.",
+            "success": "Richtig"
+          },
+          "english-l03-s04": {
+            "prompt": "Was folgt nach dem Tausch auf d5?",
+            "explanation": "Das Fianchetto vervollständigt den Plan.",
+            "options": [
+              "Läufer nach g2",
+              "Damen tauschen",
+              "Den König ziehen"
+            ]
+          }
+        }
+      },
+      "english-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "english-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "english-l04-s02": {
+            "prompt": "Was suchst du mit a3 und b4?",
+            "explanation": "Die Ausdehnung ist der Plan von Weiß.",
+            "options": [
+              "Den König angreifen",
+              "Raum am Damenflügel gewinnen",
+              "Damen tauschen"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "danish": {
+    "name": "Nordisches Gambit",
+    "summary": "Du opferst einen oder zwei Bauern, um deine Läufer gegen die Rochade loszuschicken.",
+    "lessons": {
+      "danish-l01": {
+        "title": "Die Idee des Nordischen Gambits",
+        "summary": "Läufer gegen die Rochade",
+        "steps": {
+          "danish-l01-s01": {
+            "text": "Mit c3 bietest du Bauern an, um die Stellung zu öffnen und mit beiden Läufern zu zielen."
+          },
+          "danish-l01-s02": {
+            "text": "Wenn die Bauern fallen, stehen deine Läufer auf c4 und b2 und zielen auf f7 und g7."
+          },
+          "danish-l01-s03": {
+            "text": "Schwarz hat Bauern mehr, aber deine Entwicklung ist viel besser."
+          },
+          "danish-l01-s04": {
+            "prompt": "Was bietest du mit c3 an?",
+            "explanation": "Das ist ein doppeltes Gambit.",
+            "options": [
+              "Weitere Bauern für Entwicklung",
+              "Die Dame",
+              "Die Rochade"
+            ]
+          },
+          "danish-l01-s05": {
+            "prompt": "Worauf zielen deine Läufer?",
+            "explanation": "Sie zielen auf f7 und g7, die Schwachpunkte der Rochadestellung.",
+            "options": [
+              "Auf deinen eigenen König",
+              "Auf den schwarzen Königsflügel",
+              "Auf die weiße Dame"
+            ]
+          }
+        }
+      },
+      "danish-l02": {
+        "title": "Hauptvariante",
+        "summary": "Das angenommene Nordische Gambit",
+        "steps": {
+          "danish-l02-s01": {
+            "prompt": "Spiele die Hauptvariante des Nordischen Gambits.",
+            "notes": [
+              "Du besetzt das Zentrum.",
+              "",
+              "Du öffnest das Zentrum.",
+              "",
+              "Nordisches Gambit: Du bietest einen Bauern an.",
+              "",
+              "Du gewinnst Zeit und entwickelst dich.",
+              "",
+              "Du holst einen Bauern mit Angriff zurück.",
+              "",
+              "Du holst einen weiteren Bauern zurück. Dein Läufer auf b2 zielt auf g7, der auf d5 auf f7.",
+              "",
+              "Du opferst den Läufer mit Schach. Schlägt ihn der König, deckt er seine Dame auf d8 nicht mehr.",
+              "",
+              "Die d-Linie ist offen: Du schlägst die schwarze Dame.",
+              "",
+              "Du ziehst die Dame dazwischen. Wird sie getauscht, schlägst du mit dem Springer zurück.",
+              "",
+              "Ausgeglichenes Endspiel: Das Material ist gleich, und der schwarze König kann nicht mehr rochieren."
+            ]
+          }
+        }
+      },
+      "danish-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Entwicklung vor Material",
+        "steps": {
+          "danish-l03-s01": {
+            "prompt": "Biete das Gambit an.",
+            "hint": "Ein Bauer zieht ein Feld vor.",
+            "success": "Richtig"
+          },
+          "danish-l03-s02": {
+            "prompt": "Entwickle den Läufer mit Angriff.",
+            "hint": "Der Läufer zielt auf f7.",
+            "success": "Richtig"
+          },
+          "danish-l03-s03": {
+            "prompt": "Hole einen Bauern mit dem Läufer zurück.",
+            "hint": "Die lange Diagonale ist offen.",
+            "success": "Richtig"
+          },
+          "danish-l03-s04": {
+            "prompt": "Was macht der c4-Läufer nach ...d5?",
+            "explanation": "Du holst einen weiteren Bauern zurück und bleibst aktiv.",
+            "options": [
+              "Er schlägt auf d5",
+              "Er zieht sich nach e2 zurück",
+              "Er tauscht die Damen"
+            ]
+          }
+        }
+      },
+      "danish-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "danish-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "danish-l04-s02": {
+            "prompt": "Was suchst du mit dem Gambit?",
+            "explanation": "Du gleichst das Material mit aktiven Figuren aus.",
+            "options": [
+              "Damentausch",
+              "Entwicklung, Zeit und Angriff",
+              "Ein ausgeglichenes Endspiel"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "french": {
+    "name": "Französische Verteidigung",
+    "summary": "Eine solide Verteidigung: Du gibst etwas Raum ab und bekommst dafür eine feste Struktur und Gegenangriff.",
+    "lessons": {
+      "french-l01": {
+        "title": "Die Idee der Französischen Verteidigung",
+        "summary": "Feste Struktur und Gegenangriff mit c5",
+        "steps": {
+          "french-l01-s01": {
+            "text": "Mit ...e6 bereitest du ...d5 vor, um das weiße Zentrum anzufechten."
+          },
+          "french-l01-s02": {
+            "text": "Dein c8-Läufer steht hinter den Bauern: Er ist die „schlechte“ Figur von Französisch."
+          },
+          "french-l01-s03": {
+            "text": "Dein Plan ist, die Basis der weißen Bauernkette mit ...c5 und ...Sc6 anzugreifen."
+          },
+          "french-l01-s04": {
+            "prompt": "Was ist das Problem von Französisch?",
+            "explanation": "Mit der Zeit musst du ihm einen guten Ausweg suchen.",
+            "options": [
+              "Der c8-Läufer ist eingesperrt",
+              "Der König kann nicht rochieren",
+              "Du verlierst einen Bauern"
+            ]
+          },
+          "french-l01-s05": {
+            "prompt": "Was greifst du mit ...c5 an?",
+            "explanation": "Fällt d4, verliert der Bauer auf e5 seine Stütze.",
+            "options": [
+              "Den Bauern auf f4",
+              "Die Basis der weißen Kette auf d4",
+              "Die Dame"
+            ]
+          }
+        }
+      },
+      "french-l02": {
+        "title": "Hauptvariante",
+        "summary": "Die klassische Variante",
+        "steps": {
+          "french-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Französischen Verteidigung.",
+            "notes": [
+              "",
+              "Du bereitest ...d5 mit einem festen Bauern vor.",
+              "",
+              "Du kämpfst um das Zentrum.",
+              "",
+              "Du entwickelst dich und greifst e4 an.",
+              "",
+              "Du entwickelst den Läufer und hebst die Fesselung des Springers auf f6 auf.",
+              "",
+              "Von e5 angegriffen, zieht sich der Springer zurück und gibt dem f-Bauern den Weg für ...f6 frei.",
+              "",
+              "Du schlägst mit der Dame zurück.",
+              "",
+              "Der König ist in Sicherheit.",
+              "",
+              "Angriff auf die Basis der Kette.",
+              "",
+              "Du entwickelst dich mit Druck auf d4."
+            ]
+          }
+        }
+      },
+      "french-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Bauernkette",
+        "steps": {
+          "french-l03-s01": {
+            "prompt": "Bereite den Vorstoß im Zentrum vor.",
+            "hint": "Ein fester Bauer stützt ...d5.",
+            "success": "Richtig"
+          },
+          "french-l03-s02": {
+            "prompt": "Kämpfe mit einem Bauern um das Zentrum.",
+            "hint": "Der Zentrumsbauer zieht vor.",
+            "success": "Richtig"
+          },
+          "french-l03-s03": {
+            "prompt": "Weiß zieht e5. Wohin ziehst du den Springer zurück?",
+            "explanation": "Das ist der klassische Rückzug, und er stützt dein Zentrum.",
+            "options": [
+              "Nach d7",
+              "Nach g8",
+              "Nach h5"
+            ]
+          }
+        }
+      },
+      "french-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "french-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "french-l04-s02": {
+            "prompt": "Was bewirkt ...Sc6?",
+            "explanation": "Das gehört zum Angriff auf die Basis der Kette.",
+            "options": [
+              "Setzt d4 unter Druck",
+              "Schützt den König",
+              "Greift die Dame an"
+            ]
+          }
+        }
+      }
+    }
   }
 }

@@ -1571,5 +1571,551 @@
         }
       }
     }
+  },
+  "ruy-lopez": {
+    "name": "Partie espagnole",
+    "summary": "L'ouverture la plus étudiée : une pression constante sur le centre noir, sans se presser.",
+    "lessons": {
+      "ruy-lopez-l01": {
+        "title": "L'idée de la Partie espagnole",
+        "summary": "Pression sur e5",
+        "steps": {
+          "ruy-lopez-l01-s01": {
+            "text": "Avec Fb5, tu fais pression sur le cavalier qui protège e5. Tu ne le prends pas tout de suite : tu maintiens la tension."
+          },
+          "ruy-lopez-l01-s02": {
+            "text": "Après ...a6, tu recules en a4 et tu gardes la pression sur le cavalier, sans échanger le fou sans nécessité."
+          },
+          "ruy-lopez-l01-s03": {
+            "text": "Plan typique : c3 et d4 pour occuper le centre, avec ton fou bien placé en b3."
+          },
+          "ruy-lopez-l01-s04": {
+            "prompt": "Sur quoi fais-tu pression avec Fb5 ?",
+            "explanation": "Si le cavalier tombe, le pion e5 n'est plus protégé.",
+            "options": [
+              "Le cavalier qui protège e5",
+              "Le pion h7",
+              "La dame noire"
+            ]
+          },
+          "ruy-lopez-l01-s05": {
+            "prompt": "Après ...a6, que fais-tu avec le fou ?",
+            "explanation": "Le replier en a4 conserve le fou et la pression sur le centre.",
+            "options": [
+              "Tu l'échanges toujours en c6",
+              "Tu le replies en a4 et tu maintiens la tension",
+              "Tu le perds"
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l02": {
+        "title": "Ligne principale",
+        "summary": "La variante fermée",
+        "steps": {
+          "ruy-lopez-l02-s01": {
+            "prompt": "Joue la ligne principale de la Partie espagnole.",
+            "notes": [
+              "Centre.",
+              "",
+              "Attaque e5.",
+              "",
+              "Tu fais pression sur le cavalier qui protège e5.",
+              "",
+              "Tu gardes la pression sur le cavalier sans échanger le fou.",
+              "",
+              "Roi en sécurité.",
+              "",
+              "Protège e4 et prépare d4.",
+              "",
+              "Le fou se replie sur une diagonale sûre.",
+              "",
+              "Tu prépares d4.",
+              "",
+              "Tu empêches ...Fg4 et ...Cg4."
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l03": {
+        "title": "Pièges et erreurs typiques",
+        "summary": "Le piège de l'Arche de Noé",
+        "steps": {
+          "ruy-lopez-l03-s01": {
+            "text": "Voici le piège de l'Arche de Noé : les pions a6, b5 et c4 enferment le fou en b3. Cela arrive si tu joues d4 trop tôt contre ...d6."
+          },
+          "ruy-lopez-l03-s02": {
+            "prompt": "Les Noirs ont joué ...d6. Prépare d4 sans risquer le fou.",
+            "hint": "Prépare d4 avec un pion avant d'ouvrir le centre.",
+            "success": "Correct"
+          },
+          "ruy-lopez-l03-s03": {
+            "prompt": "Qu'est-ce que c3 empêche avant d4 ?",
+            "explanation": "Avec c3, ton fou peut se replier en c2 si les Noirs jouent ...b5.",
+            "options": [
+              "Un échec de la dame",
+              "Que ton fou soit piégé par des pions",
+              "La perte du pion e4"
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "ruy-lopez-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "ruy-lopez-l04-s02": {
+            "prompt": "Qu'est-ce que h3 empêche ?",
+            "explanation": "Le clouage ...Fg4 sur ton cavalier en f3 est la gêne typique.",
+            "options": [
+              "L'arrivée du fou ou du cavalier noir en g4",
+              "Le roque noir",
+              "La prise en e5"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "rossolimo": {
+    "name": "Variante Rossolimo",
+    "summary": "Une façon solide de jouer contre la Sicilienne : tu évites les lignes les plus théoriques.",
+    "lessons": {
+      "rossolimo-l01": {
+        "title": "L'idée de la Rossolimo",
+        "summary": "Faire pression sur c6 et éviter la théorie",
+        "steps": {
+          "rossolimo-l01-s01": {
+            "text": "Au lieu d'ouvrir le centre avec d4, tu fais pression sur le cavalier en c6 avec le fou."
+          },
+          "rossolimo-l01-s02": {
+            "text": "Si tu échanges en c6, tu doubles les pions c des Noirs."
+          },
+          "rossolimo-l01-s03": {
+            "text": "Plan : d3, h3 et Cc3 pour jouer solidement et attendre que les Noirs s'affaiblissent."
+          },
+          "rossolimo-l01-s04": {
+            "prompt": "Qu'est-ce que tu évites avec 3.Fb5 ?",
+            "explanation": "C'est une façon de jouer sans mémoriser autant de théorie.",
+            "options": [
+              "Les lignes théoriques de la Sicilienne ouverte",
+              "Le pion e4",
+              "La prise en c5"
+            ]
+          },
+          "rossolimo-l01-s05": {
+            "prompt": "Quelle structure cherches-tu en échangeant en c6 ?",
+            "explanation": "Les pions c6 et c5 sont doublés.",
+            "options": [
+              "Des pions isolés dans ton camp",
+              "Des pions doublés chez l'adversaire",
+              "Une colonne ouverte"
+            ]
+          }
+        }
+      },
+      "rossolimo-l02": {
+        "title": "Ligne principale",
+        "summary": "L'échange en c6",
+        "steps": {
+          "rossolimo-l02-s01": {
+            "prompt": "Joue la ligne principale de la Rossolimo.",
+            "notes": [
+              "Centre.",
+              "",
+              "Tu développes et tu restes flexible.",
+              "",
+              "Rossolimo : tu fais pression sur le cavalier qui contrôle d4 et e5.",
+              "",
+              "Tu abîmes la structure : des pions doublés sur la colonne c.",
+              "",
+              "Solidité : soutient e4 et ouvre la voie au fou en c1.",
+              "",
+              "Empêche ...Fg4 et ...Cg4.",
+              "",
+              "Développe et soutient e4."
+            ]
+          }
+        }
+      },
+      "rossolimo-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Quand échanger",
+        "steps": {
+          "rossolimo-l03-s01": {
+            "prompt": "Fais pression sur le cavalier en c6 avec le fou.",
+            "hint": "Le fou sort en b5.",
+            "success": "Correct"
+          },
+          "rossolimo-l03-s02": {
+            "prompt": "Échange le fou contre le cavalier pour doubler ses pions.",
+            "hint": "Prends en c6.",
+            "success": "Correct"
+          },
+          "rossolimo-l03-s03": {
+            "prompt": "Pourquoi h3 ?",
+            "explanation": "Cela t'enlève les soucis en g4 sans perdre de temps sur d'autres cases.",
+            "options": [
+              "Empêche ...Fg4 et ...Cg4",
+              "Prépare g4",
+              "Attaque le cavalier en f6"
+            ]
+          }
+        }
+      },
+      "rossolimo-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "rossolimo-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "rossolimo-l04-s02": {
+            "prompt": "Quel plan suis-tu ensuite ?",
+            "explanation": "La Rossolimo cherche une position confortable et sans risque.",
+            "options": [
+              "Attaquer le roi tout de suite",
+              "Jouer solidement et attendre une erreur",
+              "Échanger les dames"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "alapin": {
+    "name": "Variante Alapine",
+    "summary": "Contre la Sicilienne : tu prépares d4 avec c3 et tu évites la théorie des lignes ouvertes.",
+    "lessons": {
+      "alapin-l01": {
+        "title": "L'idée de l'Alapine",
+        "summary": "Préparer d4 avec c3",
+        "steps": {
+          "alapin-l01-s01": {
+            "text": "Avec c3, tu prépares d4 pour occuper le centre et tu évites la Sicilienne ouverte."
+          },
+          "alapin-l01-s02": {
+            "text": "Si les Noirs jouent ...d5, tu échanges, puis tu occupes le centre avec un pion."
+          },
+          "alapin-l01-s03": {
+            "text": "Plan : développer avec Cf3, Fe2 et le roque, et garder le contrôle du centre."
+          },
+          "alapin-l01-s04": {
+            "prompt": "Que prépare 2.c3 ?",
+            "explanation": "Avec c3, tu soutiens d4 avant de le jouer.",
+            "options": [
+              "L'avance d4",
+              "L'avance b4",
+              "Le roque"
+            ]
+          },
+          "alapin-l01-s05": {
+            "prompt": "Qu'est-ce que tu évites avec 2.c3 ?",
+            "explanation": "Jouer c3 évite des lignes comme la Najdorf et le Dragon.",
+            "options": [
+              "Le pion d5",
+              "La théorie de la Sicilienne ouverte",
+              "Une attaque sur la dame"
+            ]
+          }
+        }
+      },
+      "alapin-l02": {
+        "title": "Ligne principale",
+        "summary": "La prise en d5",
+        "steps": {
+          "alapin-l02-s01": {
+            "prompt": "Joue la ligne principale de l'Alapine.",
+            "notes": [
+              "Centre.",
+              "",
+              "Alapine : tu prépares d4 et tu évites les Siciliennes ouvertes.",
+              "",
+              "Tu échanges et tu obliges les Noirs à sortir la dame.",
+              "",
+              "Tu occupes le centre avec un pion.",
+              "",
+              "Développe.",
+              "",
+              "Développe et prépare le roque.",
+              "",
+              "Roi en sécurité.",
+              "",
+              "Tu continues à développer et tu soutiens d4."
+            ]
+          }
+        }
+      },
+      "alapin-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Pas à pas",
+        "steps": {
+          "alapin-l03-s01": {
+            "prompt": "Prépare l'avance d4.",
+            "hint": "Un pion de l'aile dame avance.",
+            "success": "Correct"
+          },
+          "alapin-l03-s02": {
+            "prompt": "Échange en d5.",
+            "hint": "Le pion e4 prend.",
+            "success": "Correct"
+          },
+          "alapin-l03-s03": {
+            "prompt": "Occupe le centre avec un pion.",
+            "hint": "Un pion central avance de deux cases.",
+            "success": "Correct"
+          },
+          "alapin-l03-s04": {
+            "prompt": "Que fait ...Fg4 ?",
+            "explanation": "C'est pourquoi il vaut mieux développer avec Fe2 et roquer.",
+            "options": [
+              "Il cloue le cavalier en f3 contre la dame",
+              "Il attaque d4",
+              "Il prépare le roque"
+            ]
+          }
+        }
+      },
+      "alapin-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "alapin-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "alapin-l04-s02": {
+            "prompt": "Quelle pièce développes-tu pour soutenir d4 ?",
+            "explanation": "Le fou en e3 soutient d4 et poursuit ton développement.",
+            "options": [
+              "La dame en h5",
+              "Le roi en f1",
+              "Le fou de c1 en e3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit": {
+    "name": "Gambit dame",
+    "summary": "Une ouverture classique : tu offres un pion que tu récupères presque toujours, et tu contrôles le centre.",
+    "lessons": {
+      "queens-gambit-l01": {
+        "title": "L'idée du Gambit dame",
+        "summary": "Contrôler le centre",
+        "steps": {
+          "queens-gambit-l01-s01": {
+            "text": "Avec c4, tu attaques le pion d5. Si les Noirs prennent, tu le récupères facilement."
+          },
+          "queens-gambit-l01-s02": {
+            "text": "S'ils ne prennent pas, tu gardes la pression sur d5 et tu développes tranquillement."
+          },
+          "queens-gambit-l01-s03": {
+            "text": "Structure typique : des pions en d4 et e3, les cavaliers développés et la tour sur la colonne c."
+          },
+          "queens-gambit-l01-s04": {
+            "prompt": "Est-ce un vrai gambit ?",
+            "explanation": "C'est pourquoi on la considère comme une ouverture très sûre.",
+            "options": [
+              "Non : le pion c4 se récupère presque toujours",
+              "Oui : tu perds du matériel",
+              "C'est un piège"
+            ]
+          },
+          "queens-gambit-l01-s05": {
+            "prompt": "Quel est l'objectif principal ?",
+            "explanation": "Avec c4, tu affaiblis le pion d5, qui soutient le centre noir.",
+            "options": [
+              "Attaquer f7",
+              "Contrôler le centre",
+              "Gagner une pièce"
+            ]
+          }
+        }
+      },
+      "queens-gambit-l02": {
+        "title": "Ligne principale",
+        "summary": "Le gambit refusé",
+        "steps": {
+          "queens-gambit-l02-s01": {
+            "prompt": "Joue la ligne principale du Gambit dame.",
+            "notes": [
+              "Tu occupes le centre.",
+              "",
+              "Le gambit : tu attaques d5 et tu cherches à contrôler le centre.",
+              "",
+              "Tu fais pression sur d5.",
+              "",
+              "Tu cloues le cavalier en f6 contre la dame.",
+              "",
+              "Tu soutiens d4 et tu ouvres la voie au fou en f1.",
+              "",
+              "Développe et protège d4.",
+              "",
+              "La tour surveille la colonne c, qui va s'ouvrir.",
+              "",
+              "Développe et vise h7 ; prépare Fxc4 si les Noirs prennent.",
+              "",
+              "Tu récupères le pion en te développant.",
+              ""
+            ]
+          }
+        }
+      },
+      "queens-gambit-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Récupérer le pion et sortir le fou",
+        "steps": {
+          "queens-gambit-l03-s01": {
+            "prompt": "Récupère le pion avec le fou.",
+            "hint": "Le fou en f1 prend en c4.",
+            "success": "Correct"
+          },
+          "queens-gambit-l03-s02": {
+            "prompt": "Cloue le cavalier en f6 contre la dame.",
+            "hint": "Le fou en c1 sort en g5.",
+            "success": "Correct"
+          },
+          "queens-gambit-l03-s03": {
+            "prompt": "Quel fou reste enfermé si tu joues e3 sans réfléchir ?",
+            "explanation": "C'est pourquoi tu sors le fou en c1 (Fg5) avant de jouer e3.",
+            "options": [
+              "Celui en f1",
+              "Celui en c1",
+              "Aucun"
+            ]
+          }
+        }
+      },
+      "queens-gambit-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "queens-gambit-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "queens-gambit-l04-s02": {
+            "prompt": "Quelle colonne ta tour occupe-t-elle ?",
+            "explanation": "La tour en c1 fait pression sur l'aile dame noire.",
+            "options": [
+              "La colonne c",
+              "La colonne h",
+              "La colonne a"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "kings-gambit": {
+    "name": "Gambit roi",
+    "summary": "L'ouverture romantique : tu sacrifies un pion tout de suite et tu attaques avec tout.",
+    "lessons": {
+      "kings-gambit-l01": {
+        "title": "L'idée du Gambit roi",
+        "summary": "Un pion contre l'attaque",
+        "steps": {
+          "kings-gambit-l01-s01": {
+            "text": "Avec f4, tu offres un pion pour ouvrir la colonne f et dominer le centre."
+          },
+          "kings-gambit-l01-s02": {
+            "text": "Avec Cf3, tu développes et tu évites un échec de la dame en h4."
+          },
+          "kings-gambit-l01-s03": {
+            "text": "Dans la variante Kieseritzky, le cavalier saute en e5 quand il est attaqué par ...g4."
+          },
+          "kings-gambit-l01-s04": {
+            "prompt": "Qu'est-ce que tu évites avec 3.Cf3 ?",
+            "explanation": "Le cavalier surveille h4 depuis f3.",
+            "options": [
+              "Un échec de la dame en h4",
+              "Un échange des dames",
+              "La prise en e4"
+            ]
+          },
+          "kings-gambit-l01-s05": {
+            "prompt": "Pourquoi ton roi est-il vulnérable ?",
+            "explanation": "Avec f4, tu ouvres cette diagonale à la dame adverse.",
+            "options": [
+              "Le pion e4 tombe",
+              "La diagonale e1–h4 est ouverte",
+              "Tu ne peux pas roquer"
+            ]
+          }
+        }
+      },
+      "kings-gambit-l02": {
+        "title": "Ligne principale",
+        "summary": "La variante Kieseritzky",
+        "steps": {
+          "kings-gambit-l02-s01": {
+            "prompt": "Joue la ligne principale du Gambit roi.",
+            "notes": [
+              "Centre.",
+              "",
+              "Gambit roi : tu offres un pion pour ouvrir la colonne f.",
+              "",
+              "Développe et empêche ...Dh4+.",
+              "",
+              "Tu attaques le pion g5.",
+              "",
+              "Le cavalier occupe un poste fort en e5.",
+              "",
+              "Vise f7 et développe.",
+              "",
+              "Tu ouvres le centre.",
+              "",
+              "Tu occupes le centre et tu protèges ton cavalier en e5."
+            ]
+          }
+        }
+      },
+      "kings-gambit-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Développement et attaque",
+        "steps": {
+          "kings-gambit-l03-s01": {
+            "prompt": "Développe le cavalier et empêche ...Dh4+.",
+            "hint": "Le cavalier du roi sort en f3.",
+            "success": "Correct"
+          },
+          "kings-gambit-l03-s02": {
+            "prompt": "Attaque le pion g5 avec un autre pion.",
+            "hint": "Un pion de la colonne h avance.",
+            "success": "Correct"
+          },
+          "kings-gambit-l03-s03": {
+            "prompt": "Où saute le cavalier attaqué par le pion g4 ?",
+            "explanation": "C'est la case centrale la plus active.",
+            "options": [
+              "En e5",
+              "En g1",
+              "En h2"
+            ]
+          }
+        }
+      },
+      "kings-gambit-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "kings-gambit-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "kings-gambit-l04-s02": {
+            "prompt": "Quelle diagonale f4 affaiblit-il ?",
+            "explanation": "Attention aux échecs de la dame en h4.",
+            "options": [
+              "Celle qui va de e1 à h4",
+              "Celle qui va de a1 à h8",
+              "Celle qui va de a2 à g8"
+            ]
+          }
+        }
+      }
+    }
   }
 }

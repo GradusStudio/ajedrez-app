@@ -1,0 +1,464 @@
+{
+  "london": {
+    "name": "Sistema London",
+    "summary": "Uno schema facile da ricordare: giochi quasi sempre le stesse mosse, qualunque cosa faccia l'avversario.",
+    "lessons": {
+      "london-l01": {
+        "title": "L'idea del Sistema London",
+        "summary": "Struttura, piano e ordine delle mosse",
+        "steps": {
+          "london-l01-s01": {
+            "text": "Col Bianco giochi quasi sempre la stessa struttura: pedoni in d4, e3 e c3, e l'alfiere delle caselle scure fuori, in f4."
+          },
+          "london-l01-s02": {
+            "text": "Questo è lo schema completo. L'alfiere esce prima di chiudere la catena di pedoni con e3."
+          },
+          "london-l01-s03": {
+            "text": "Il piano: far uscire l'alfiere, chiudere con e3, sviluppare i cavalli, arroccare e puntare il cavallo verso e5."
+          },
+          "london-l01-s04": {
+            "prompt": "Quale alfiere conviene far uscire prima di giocare e3?",
+            "explanation": "Se giochi prima e3, l'alfiere in c1 resta chiuso dietro i tuoi pedoni.",
+            "options": [
+              "Quello in c1, delle caselle scure",
+              "Quello in f1, delle caselle chiare"
+            ]
+          },
+          "london-l01-s05": {
+            "prompt": "Qual è l'ordine giusto delle prime mosse?",
+            "explanation": "Prima il pedone di donna, poi l'alfiere fuori e infine e3.",
+            "options": [
+              "d4, Af4, e3",
+              "d4, e3, Af4",
+              "e3, d4, Af4"
+            ]
+          }
+        }
+      },
+      "london-l02": {
+        "title": "Linea principale",
+        "summary": "Gioca lo schema passo dopo passo",
+        "steps": {
+          "london-l02-s01": {
+            "prompt": "Gioca la linea principale del Sistema London.",
+            "notes": [
+              "Occupa il centro e apre la diagonale dell'alfiere in c1.",
+              "",
+              "Fa uscire l'alfiere prima di chiudere la catena di pedoni.",
+              "",
+              "Sostiene d4 e libera l'alfiere in f1.",
+              "",
+              "Sviluppa il cavallo e controlla la casella e5.",
+              "",
+              "Conservi l'alfiere. Se lo cambiano, riprendi col pedone h e ottieni la colonna h.",
+              "",
+              "Sviluppa senza bloccare l'alfiere in f1 né il pedone c.",
+              "",
+              "Rinforza d4: i pedoni d4, c3 ed e3 formano una piramide.",
+              "",
+              "L'alfiere punta verso h7 e libera f1 per arroccare.",
+              "",
+              "Re al sicuro. Lo schema è completo."
+            ]
+          }
+        }
+      },
+      "london-l03": {
+        "title": "Trappole ed errori tipici",
+        "summary": "A cosa stare attenti durante la partita",
+        "steps": {
+          "london-l03-s01": {
+            "prompt": "Il Nero minaccia di prendere il pedone in b2. Difendilo.",
+            "hint": "Una mossa di donna può proteggere b2.",
+            "success": "Corretto"
+          },
+          "london-l03-s02": {
+            "prompt": "Che cosa non va se giochi 2.e3 prima di far uscire l'alfiere?",
+            "explanation": "Per questo l'alfiere va in f4 prima che tu giochi e3.",
+            "options": [
+              "L'alfiere in c1 resta chiuso dal pedone e3",
+              "Perdi il pedone in d4",
+              "Non puoi arroccare"
+            ]
+          },
+          "london-l03-s03": {
+            "prompt": "Il tuo alfiere è attaccato dall'alfiere nero. Ritiralo senza uscire dalla diagonale.",
+            "hint": "C'è una casella sicura che mantiene la diagonale.",
+            "success": "Corretto"
+          },
+          "london-l03-s04": {
+            "text": "Se cambiano gli alfieri, riprendi col pedone h. La tua torre ottiene una colonna semiaperta e il cambio non ti danneggia."
+          }
+        }
+      },
+      "london-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "london-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "london-l04-s02": {
+            "prompt": "Ora contro ...c5: gioca lo schema del London."
+          },
+          "london-l04-s03": {
+            "prompt": "Verso quale casella centrale punta il tuo cavallo in f3?",
+            "explanation": "Il cavallo in f3 controlla e5, la casella che più ti interessa dominare.",
+            "options": [
+              "e5",
+              "g5",
+              "d5"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "italian": {
+    "name": "Partita Italiana",
+    "summary": "Sviluppo rapido, l'alfiere punta a f7 e un piano chiaro: arroccare e occupare il centro.",
+    "lessons": {
+      "italian-l01": {
+        "title": "L'idea della Partita Italiana",
+        "summary": "Alfiere in c4 e gioco solido",
+        "steps": {
+          "italian-l01-s01": {
+            "text": "L'alfiere in c4 punta a f7, il punto più debole del campo nero: all'inizio lo protegge solo il re."
+          },
+          "italian-l01-s02": {
+            "text": "Nella versione tranquilla, c3 e d3 formano una base solida. Poi arrocchi e scegli tra d4 o riorganizzare i cavalli."
+          },
+          "italian-l01-s03": {
+            "prompt": "Quale punto attacca l'alfiere in c4?",
+            "explanation": "Il pedone in f7 è protetto solo dal re.",
+            "options": [
+              "f7",
+              "h7",
+              "f6"
+            ]
+          },
+          "italian-l01-s04": {
+            "prompt": "Che cosa prepara la mossa c3?",
+            "explanation": "Con c3 il pedone in d4 sarà sostenuto quando lo giocherai.",
+            "options": [
+              "L'avanzata d4 per occupare il centro",
+              "Una cattura in b4",
+              "L'arrocco"
+            ]
+          }
+        }
+      },
+      "italian-l02": {
+        "title": "Linea principale",
+        "summary": "La versione tranquilla: Giuoco Pianissimo",
+        "steps": {
+          "italian-l02-s01": {
+            "prompt": "Gioca la linea principale della Partita Italiana.",
+            "notes": [
+              "Occupa il centro e apre linee per la donna e l'alfiere.",
+              "",
+              "Sviluppa il cavallo e attacca il pedone in e5.",
+              "",
+              "L'alfiere punta a f7, la casella più debole del Nero.",
+              "",
+              "Prepara l'avanzata d4 per occupare il centro.",
+              "",
+              "Mossa tranquilla: sostiene e4 e libera l'alfiere in c1.",
+              "",
+              "Re al sicuro e torre verso il centro.",
+              "",
+              "La torre sostiene e4 e controlla la colonna e.",
+              "",
+              "Previene ...b5 e conserva la diagonale verso f7.",
+              "",
+              "Sviluppa l'ultimo cavallo; poi può andare in f1 e g3."
+            ]
+          }
+        }
+      },
+      "italian-l03": {
+        "title": "Trappole ed errori tipici",
+        "summary": "Matto di Légal e sacrificio in f7",
+        "steps": {
+          "italian-l03-s01": {
+            "prompt": "Gioca la trappola di Légal.",
+            "notes": [
+              "Occupa il centro.",
+              "",
+              "Attacca il pedone in e5.",
+              "",
+              "L'alfiere punta a f7.",
+              "",
+              "Sviluppa; l'inchiodatura dell'alfiere nero non ti preoccupa.",
+              "",
+              "Sacrifichi la donna: se ...Axd1, arriva il matto.",
+              "",
+              "Scacco; il re non può catturare perché il cavallo protegge f7.",
+              "",
+              "Scacco matto: l'alfiere e i due cavalli coprono tutte le caselle."
+            ]
+          },
+          "italian-l03-s02": {
+            "prompt": "Il Nero ha catturato in d5. Attacca il punto debole con un sacrificio.",
+            "hint": "Il cavallo può catturare il pedone protetto solo dal re.",
+            "success": "Corretto"
+          },
+          "italian-l03-s03": {
+            "prompt": "Perché è pericoloso lasciare f7 protetto solo dal re?",
+            "explanation": "Attaccare f7 con alfiere e cavallo è spesso la base delle combinazioni di questa apertura.",
+            "options": [
+              "Perché l'alfiere in c4 e un cavallo possono attaccarlo due volte",
+              "Perché il re resta senza arrocco",
+              "Non è pericoloso"
+            ]
+          }
+        }
+      },
+      "italian-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "italian-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "italian-l04-s02": {
+            "prompt": "Ripeti la trappola di Légal senza aiuti."
+          },
+          "italian-l04-s03": {
+            "prompt": "Quale pedone giochi per sostenere e4 in modo tranquillo?",
+            "explanation": "Il pedone in d3 sostiene e4 e libera l'alfiere in c1.",
+            "options": [
+              "d3",
+              "h3",
+              "a3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "vienna": {
+    "name": "Partita Viennese",
+    "summary": "Un'apertura flessibile: puoi attaccare col gambetto f4 o premere su f7 con l'alfiere.",
+    "lessons": {
+      "vienna-l01": {
+        "title": "L'idea della Partita Viennese",
+        "summary": "Cavallo in c3 e due piani",
+        "steps": {
+          "vienna-l01-s01": {
+            "text": "Con 2.Cc3 sviluppi un pezzo, proteggi e4 e lasci aperta la scelta tra due piani: il gambetto con f4 o Ac4."
+          },
+          "vienna-l01-s02": {
+            "text": "Con f4 attacchi il centro nero e apri la colonna f. Il prezzo: indebolisci la diagonale che va da e1 a h4."
+          },
+          "vienna-l01-s03": {
+            "prompt": "Quale pedone sacrifichi nel Gambetto Viennese?",
+            "explanation": "Offri il pedone in f4 per aprire linee e attaccare il centro.",
+            "options": [
+              "Il pedone f",
+              "Il pedone d",
+              "Il pedone a"
+            ]
+          },
+          "vienna-l01-s04": {
+            "prompt": "Quale diagonale indebolisce la mossa f4?",
+            "explanation": "Da quella diagonale può arrivare uno scacco di donna in h4.",
+            "options": [
+              "Quella che va da e1 a h4",
+              "Quella che va da a1 a h8",
+              "Quella che va da a2 a g8"
+            ]
+          }
+        }
+      },
+      "vienna-l02": {
+        "title": "Linea principale",
+        "summary": "Il Gambetto Viennese",
+        "steps": {
+          "vienna-l02-s01": {
+            "prompt": "Gioca la linea principale del Gambetto Viennese.",
+            "notes": [
+              "Occupa il centro.",
+              "",
+              "Sviluppa, sostiene e4 e prepara f4.",
+              "",
+              "Gambetto Viennese: attacchi il centro nero.",
+              "",
+              "Catturi e apri la colonna f.",
+              "",
+              "Sviluppa il cavallo e protegge il pedone in e5.",
+              "",
+              "Occupi il centro con un pedone.",
+              "",
+              "L'alfiere preme sul cavallo nero in e4.",
+              "",
+              "Presa en passant: il pedone nero è avanzato di due caselle e lo catturi come se fosse avanzato di una.",
+              "",
+              "Re al sicuro e torre in gioco."
+            ]
+          }
+        }
+      },
+      "vienna-l03": {
+        "title": "Trappole ed errori tipici",
+        "summary": "Minacce di donna e di pedone",
+        "steps": {
+          "vienna-l03-s01": {
+            "prompt": "Gioca la linea della donna in h5.",
+            "notes": [
+              "Occupa il centro.",
+              "",
+              "Sviluppa e sostiene e4.",
+              "",
+              "L'alfiere punta a f7.",
+              "",
+              "Minaccia Dxf7# e Dxe5+.",
+              "",
+              "Ritira l'alfiere e mantiene la pressione su f7.",
+              "",
+              "Attacca e5 per la seconda volta.",
+              "",
+              "Recuperi il pedone."
+            ]
+          },
+          "vienna-l03-s02": {
+            "prompt": "Quale minaccia crea la donna in h5?",
+            "explanation": "La donna e l'alfiere attaccano f7, protetto solo dal re.",
+            "options": [
+              "Matto in f7",
+              "Catturare la donna nera",
+              "Arroccare"
+            ]
+          },
+          "vienna-l03-s03": {
+            "prompt": "Il Nero ha catturato in f4. Guadagna un tempo attaccando il cavallo.",
+            "hint": "Un pedone può attaccare il cavallo.",
+            "success": "Corretto"
+          }
+        }
+      },
+      "vienna-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "vienna-l04-s01": {
+            "prompt": "Ripeti il Gambetto Viennese senza aiuti."
+          },
+          "vienna-l04-s02": {
+            "prompt": "Ripeti la linea della donna in h5 senza aiuti."
+          },
+          "vienna-l04-s03": {
+            "prompt": "Quale diagonale resta debole dopo f4?",
+            "explanation": "Attenzione agli scacchi di donna in h4.",
+            "options": [
+              "Quella che va da e1 a h4",
+              "Quella che va da b1 a h7"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "scandinavian": {
+    "name": "Difesa Scandinava",
+    "summary": "Metti in discussione il centro bianco dalla prima mossa, con un piano semplice e poche linee da ricordare.",
+    "lessons": {
+      "scandinavian-l01": {
+        "title": "L'idea della Scandinava",
+        "summary": "Attaccare il centro fin dall'inizio",
+        "steps": {
+          "scandinavian-l01-s01": {
+            "text": "Con ...d5 attacchi subito il centro bianco e costringi il Bianco a decidere."
+          },
+          "scandinavian-l01-s02": {
+            "text": "La donna esce presto, ma si ritira in a5, una casella attiva, e inchioda il cavallo in c3 quando si apre la diagonale."
+          },
+          "scandinavian-l01-s03": {
+            "text": "Il piano: ...c6 per controllare d5 e b5, l'alfiere fuori prima di ...e6, il cavallo in f6 e arrocco corto."
+          },
+          "scandinavian-l01-s04": {
+            "prompt": "Quale alfiere conviene far uscire prima di giocare ...e6?",
+            "explanation": "Se giochi prima ...e6, l'alfiere in c8 resta chiuso dietro i tuoi pedoni.",
+            "options": [
+              "Quello in c8, delle caselle chiare",
+              "Quello in f8, delle caselle scure"
+            ]
+          }
+        }
+      },
+      "scandinavian-l02": {
+        "title": "Linea principale",
+        "summary": "La ritirata della donna in a5",
+        "steps": {
+          "scandinavian-l02-s01": {
+            "prompt": "Gioca la linea principale della Scandinava.",
+            "notes": [
+              "",
+              "Attacchi subito il centro bianco.",
+              "",
+              "Riprendi con la donna: esce presto, ma è il piano di questa apertura.",
+              "",
+              "Ti ritiri su una casella attiva e inchiodi il cavallo se si apre la diagonale.",
+              "",
+              "Sviluppi il cavallo e premi su d4.",
+              "",
+              "Controlli d5 e b5, e dai alla donna la casella c7.",
+              "",
+              "Fai uscire l'alfiere prima di chiudere con ...e6.",
+              "",
+              "Ora sì, chiudi la catena: l'alfiere è rimasto fuori."
+            ]
+          }
+        }
+      },
+      "scandinavian-l03": {
+        "title": "Trappole ed errori tipici",
+        "summary": "Dove ritirare la donna e quando far uscire l'alfiere",
+        "steps": {
+          "scandinavian-l03-s01": {
+            "prompt": "Il cavallo attacca la tua donna. Ritirala su una casella sicura e attiva.",
+            "hint": "Le più usate sono a5 e d6.",
+            "success": "Corretto"
+          },
+          "scandinavian-l03-s02": {
+            "prompt": "Fai uscire l'alfiere in c8 prima di chiudere con ...e6.",
+            "hint": "Scegli una casella fuori dalla catena di pedoni.",
+            "success": "Corretto"
+          },
+          "scandinavian-l03-s03": {
+            "prompt": "Che cosa fa la tua donna in a5 dopo che il Bianco gioca d4?",
+            "explanation": "Il cavallo non può muoversi senza lasciare il re sotto scacco.",
+            "options": [
+              "Inchioda il cavallo in c3 contro il re",
+              "Attacca il pedone in d4",
+              "Protegge il tuo pedone in d5"
+            ]
+          }
+        }
+      },
+      "scandinavian-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "scandinavian-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "scandinavian-l04-s02": {
+            "prompt": "Controlla d5 e b5: gioca ...c6.",
+            "hint": "Un pedone può controllare d5 e b5.",
+            "success": "Corretto"
+          },
+          "scandinavian-l04-s03": {
+            "prompt": "Che cosa fa il cavallo in f6?",
+            "explanation": "Sviluppare con pressione su d4 è l'idea di ogni mossa.",
+            "options": [
+              "Sviluppa e preme sul centro",
+              "Blocca la tua donna",
+              "Attacca la donna bianca"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

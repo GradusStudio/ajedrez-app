@@ -1,0 +1,464 @@
+{
+  "london": {
+    "name": "London-System",
+    "summary": "Ein Aufbau, den du dir leicht merken kannst: Du spielst fast immer dieselben Züge, egal was der Gegner macht.",
+    "lessons": {
+      "london-l01": {
+        "title": "Die Idee des London-Systems",
+        "summary": "Struktur, Plan und Zugfolge",
+        "steps": {
+          "london-l01-s01": {
+            "text": "Mit Weiß spielst du fast immer dieselbe Struktur: Bauern auf d4, e3 und c3, und der dunkelfeldrige Läufer steht außerhalb der Kette, auf f4."
+          },
+          "london-l01-s02": {
+            "text": "Das ist der vollständige Aufbau. Der Läufer kommt heraus, bevor du die Bauernkette mit e3 schließt."
+          },
+          "london-l01-s03": {
+            "text": "Der Plan: den Läufer herausbringen, mit e3 schließen, die Springer entwickeln, rochieren und den Springer nach e5 richten."
+          },
+          "london-l01-s04": {
+            "prompt": "Welchen Läufer bringst du am besten vor e3 heraus?",
+            "explanation": "Wenn du zuerst e3 spielst, ist der c1-Läufer hinter deinen eigenen Bauern eingesperrt.",
+            "options": [
+              "Den c1-Läufer, den dunkelfeldrigen",
+              "Den f1-Läufer, den hellfeldrigen"
+            ]
+          },
+          "london-l01-s05": {
+            "prompt": "Welche Reihenfolge der ersten Züge ist richtig?",
+            "explanation": "Zuerst der Damenbauer, dann der Läufer nach draußen und zuletzt e3.",
+            "options": [
+              "d4, Lf4, e3",
+              "d4, e3, Lf4",
+              "e3, d4, Lf4"
+            ]
+          }
+        }
+      },
+      "london-l02": {
+        "title": "Hauptvariante",
+        "summary": "Spiele den Aufbau Schritt für Schritt",
+        "steps": {
+          "london-l02-s01": {
+            "prompt": "Spiele die Hauptvariante des London-Systems.",
+            "notes": [
+              "Besetzt das Zentrum und öffnet die Diagonale für den c1-Läufer.",
+              "",
+              "Bringt den Läufer heraus, bevor die Bauernkette geschlossen wird.",
+              "",
+              "Stützt d4 und öffnet dem f1-Läufer den Weg.",
+              "",
+              "Entwickelt den Springer und behält das Feld e5 im Blick.",
+              "",
+              "Du behältst den Läufer. Wird er getauscht, schlägst du mit dem h-Bauern zurück und bekommst die h-Linie.",
+              "",
+              "Entwickelt, ohne den f1-Läufer oder den c-Bauern zu blockieren.",
+              "",
+              "Verstärkt d4: Die Bauern d4, c3 und e3 bilden eine Pyramide.",
+              "",
+              "Der Läufer zielt auf h7 und macht f1 für die Rochade frei.",
+              "",
+              "Der König ist in Sicherheit. Der Aufbau ist fertig."
+            ]
+          }
+        }
+      },
+      "london-l03": {
+        "title": "Fallen und typische Fehler",
+        "summary": "Worauf du in der Partie achten solltest",
+        "steps": {
+          "london-l03-s01": {
+            "prompt": "Schwarz droht, den Bauern auf b2 zu schlagen. Verteidige ihn.",
+            "hint": "Ein Damenzug kann b2 decken.",
+            "success": "Richtig"
+          },
+          "london-l03-s02": {
+            "prompt": "Was geht schief, wenn du 2.e3 spielst, bevor der Läufer draußen ist?",
+            "explanation": "Deshalb geht der Läufer nach f4, bevor du e3 spielst.",
+            "options": [
+              "Der c1-Läufer wird vom Bauern auf e3 eingesperrt",
+              "Du verlierst den Bauern auf d4",
+              "Du kannst nicht rochieren"
+            ]
+          },
+          "london-l03-s03": {
+            "prompt": "Dein Läufer wird vom schwarzen Läufer angegriffen. Ziehe ihn zurück, ohne die Diagonale zu verlassen.",
+            "hint": "Es gibt ein sicheres Feld auf derselben Diagonale.",
+            "success": "Richtig"
+          },
+          "london-l03-s04": {
+            "text": "Wenn die Läufer getauscht werden, schlage mit dem h-Bauern zurück. Dein Turm bekommt eine halboffene Linie, und der Abtausch schadet dir nicht."
+          }
+        }
+      },
+      "london-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "london-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "london-l04-s02": {
+            "prompt": "Jetzt gegen ...c5: Spiele den London-Aufbau."
+          },
+          "london-l04-s03": {
+            "prompt": "Auf welches Zentrumsfeld zielt dein Springer auf f3?",
+            "explanation": "Der Springer auf f3 behält e5 im Blick, das Feld, das du am liebsten beherrschen willst.",
+            "options": [
+              "e5",
+              "g5",
+              "d5"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "italian": {
+    "name": "Italienische Partie",
+    "summary": "Schnelle Entwicklung, der Läufer zielt auf f7, und der Plan ist klar: rochieren und das Zentrum besetzen.",
+    "lessons": {
+      "italian-l01": {
+        "title": "Die Idee der Italienischen Partie",
+        "summary": "Läufer nach c4 und solides Spiel",
+        "steps": {
+          "italian-l01-s01": {
+            "text": "Der Läufer auf c4 zielt auf f7, den schwächsten Punkt im schwarzen Lager: Am Anfang deckt ihn nur der König."
+          },
+          "italian-l01-s02": {
+            "text": "In der ruhigen Version bilden c3 und d3 ein solides Fundament. Danach rochierst du und entscheidest dich zwischen d4 und einer Umgruppierung der Springer."
+          },
+          "italian-l01-s03": {
+            "prompt": "Welchen Punkt greift der Läufer auf c4 an?",
+            "explanation": "Der Bauer auf f7 wird nur vom König gedeckt.",
+            "options": [
+              "f7",
+              "h7",
+              "f6"
+            ]
+          },
+          "italian-l01-s04": {
+            "prompt": "Was bereitet der Zug c3 vor?",
+            "explanation": "Mit c3 ist der Bauer auf d4 gestützt, wenn du ihn spielst.",
+            "options": [
+              "Den Vorstoß d4, um das Zentrum zu besetzen",
+              "Einen Schlagzug auf b4",
+              "Die Rochade"
+            ]
+          }
+        }
+      },
+      "italian-l02": {
+        "title": "Hauptvariante",
+        "summary": "Die ruhige Version: Giuoco Pianissimo",
+        "steps": {
+          "italian-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Italienischen Partie.",
+            "notes": [
+              "Besetzt das Zentrum und öffnet Dame und Läufer den Weg.",
+              "",
+              "Entwickelt den Springer und greift den Bauern auf e5 an.",
+              "",
+              "Der Läufer zielt auf f7, das schwächste Feld von Schwarz.",
+              "",
+              "Bereitet den Vorstoß d4 vor, um das Zentrum zu besetzen.",
+              "",
+              "Stiller Zug: Stützt e4 und öffnet dem c1-Läufer den Weg.",
+              "",
+              "Der König ist in Sicherheit, und der Turm kommt zum Zentrum.",
+              "",
+              "Der Turm stützt e4 und behält die e-Linie im Blick.",
+              "",
+              "Kommt ...b5 zuvor und erhält die Diagonale nach f7.",
+              "",
+              "Entwickelt den letzten Springer; danach kann er über f1 nach g3."
+            ]
+          }
+        }
+      },
+      "italian-l03": {
+        "title": "Fallen und typische Fehler",
+        "summary": "Seekadettenmatt und Opfer auf f7",
+        "steps": {
+          "italian-l03-s01": {
+            "prompt": "Spiele die Légal-Falle.",
+            "notes": [
+              "Besetzt das Zentrum.",
+              "",
+              "Greift den Bauern auf e5 an.",
+              "",
+              "Der Läufer zielt auf f7.",
+              "",
+              "Entwickelt; die Fesselung durch den schwarzen Läufer muss dich nicht beunruhigen.",
+              "",
+              "Du opferst die Dame: Nach ...Lxd1 kommt das Matt.",
+              "",
+              "Schach; der König kann nicht schlagen, weil der Springer f7 deckt.",
+              "",
+              "Schachmatt: Der Läufer und die beiden Springer decken alle Felder."
+            ]
+          },
+          "italian-l03-s02": {
+            "prompt": "Schwarz hat auf d5 geschlagen. Greife den schwachen Punkt mit einem Opfer an.",
+            "hint": "Der Springer kann den Bauern schlagen, den nur der König deckt.",
+            "success": "Richtig"
+          },
+          "italian-l03-s03": {
+            "prompt": "Warum ist es gefährlich, wenn f7 nur vom König gedeckt wird?",
+            "explanation": "Ein Angriff auf f7 mit Läufer und Springer ist oft die Grundlage der Kombinationen in dieser Eröffnung.",
+            "options": [
+              "Weil der c4-Läufer und ein Springer es doppelt angreifen können",
+              "Weil der König nicht mehr rochieren kann",
+              "Es ist nicht gefährlich"
+            ]
+          }
+        }
+      },
+      "italian-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "italian-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "italian-l04-s02": {
+            "prompt": "Wiederhole die Légal-Falle ohne Hilfe."
+          },
+          "italian-l04-s03": {
+            "prompt": "Mit welchem Bauern stützt du e4 auf ruhige Art?",
+            "explanation": "Der Bauer auf d3 stützt e4 und öffnet dem c1-Läufer den Weg.",
+            "options": [
+              "d3",
+              "h3",
+              "a3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "vienna": {
+    "name": "Wiener Partie",
+    "summary": "Eine flexible Eröffnung: Du kannst mit dem f4-Gambit angreifen oder mit dem Läufer Druck auf f7 machen.",
+    "lessons": {
+      "vienna-l01": {
+        "title": "Die Idee der Wiener Partie",
+        "summary": "Springer nach c3 und zwei Pläne",
+        "steps": {
+          "vienna-l01-s01": {
+            "text": "Mit 2.Sc3 entwickelst du eine Figur, deckst e4 und hältst dir zwei Pläne offen: das Gambit mit f4 oder Lc4."
+          },
+          "vienna-l01-s02": {
+            "text": "Mit f4 greifst du das schwarze Zentrum an und öffnest die f-Linie. Der Preis: Du schwächst die Diagonale von e1 nach h4."
+          },
+          "vienna-l01-s03": {
+            "prompt": "Welchen Bauern opferst du im Wiener Gambit?",
+            "explanation": "Du bietest den Bauern auf f4 an, um Wege zu öffnen und das Zentrum anzugreifen.",
+            "options": [
+              "Den f-Bauern",
+              "Den d-Bauern",
+              "Den a-Bauern"
+            ]
+          },
+          "vienna-l01-s04": {
+            "prompt": "Welche Diagonale schwächt der Zug f4?",
+            "explanation": "Über diese Diagonale kann ein Damenschach auf h4 kommen.",
+            "options": [
+              "Die von e1 nach h4",
+              "Die von a1 nach h8",
+              "Die von a2 nach g8"
+            ]
+          }
+        }
+      },
+      "vienna-l02": {
+        "title": "Hauptvariante",
+        "summary": "Das Wiener Gambit",
+        "steps": {
+          "vienna-l02-s01": {
+            "prompt": "Spiele die Hauptvariante des Wiener Gambits.",
+            "notes": [
+              "Besetzt das Zentrum.",
+              "",
+              "Entwickelt, stützt e4 und bereitet f4 vor.",
+              "",
+              "Wiener Gambit: Du greifst das schwarze Zentrum an.",
+              "",
+              "Du schlägst und öffnest die f-Linie.",
+              "",
+              "Entwickelt den Springer und deckt den Bauern auf e5.",
+              "",
+              "Du besetzt das Zentrum mit einem Bauern.",
+              "",
+              "Der Läufer macht Druck auf den schwarzen Springer auf e4.",
+              "",
+              "Schlagen en passant: Der schwarze Bauer hat einen Doppelschritt gemacht, und du schlägst ihn, als wäre er nur ein Feld vorgerückt.",
+              "",
+              "Der König ist in Sicherheit, und der Turm ist im Spiel."
+            ]
+          }
+        }
+      },
+      "vienna-l03": {
+        "title": "Fallen und typische Fehler",
+        "summary": "Drohungen von Dame und Bauer",
+        "steps": {
+          "vienna-l03-s01": {
+            "prompt": "Spiele die Variante mit der Dame auf h5.",
+            "notes": [
+              "Besetzt das Zentrum.",
+              "",
+              "Entwickelt und stützt e4.",
+              "",
+              "Der Läufer zielt auf f7.",
+              "",
+              "Droht Dxf7# und Dxe5+.",
+              "",
+              "Zieht den Läufer zurück und hält den Druck auf f7.",
+              "",
+              "Greift e5 zum zweiten Mal an.",
+              "",
+              "Du holst den Bauern zurück."
+            ]
+          },
+          "vienna-l03-s02": {
+            "prompt": "Was droht die Dame auf h5?",
+            "explanation": "Dame und Läufer greifen f7 an, das nur der König deckt.",
+            "options": [
+              "Matt auf f7",
+              "Die schwarze Dame zu schlagen",
+              "Zu rochieren"
+            ]
+          },
+          "vienna-l03-s03": {
+            "prompt": "Schwarz hat auf f4 geschlagen. Gewinne Zeit, indem du den Springer angreifst.",
+            "hint": "Ein Bauer kann den Springer angreifen.",
+            "success": "Richtig"
+          }
+        }
+      },
+      "vienna-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "vienna-l04-s01": {
+            "prompt": "Wiederhole das Wiener Gambit ohne Hilfe."
+          },
+          "vienna-l04-s02": {
+            "prompt": "Wiederhole die Variante mit der Dame auf h5 ohne Hilfe."
+          },
+          "vienna-l04-s03": {
+            "prompt": "Welche Diagonale ist nach f4 geschwächt?",
+            "explanation": "Achte auf Damenschachs auf h4.",
+            "options": [
+              "Die von e1 nach h4",
+              "Die von b1 nach h7"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "scandinavian": {
+    "name": "Skandinavische Verteidigung",
+    "summary": "Du stellst das weiße Zentrum schon mit dem ersten Zug infrage, mit einem einfachen Plan und wenigen Varianten zum Merken.",
+    "lessons": {
+      "scandinavian-l01": {
+        "title": "Die Idee der Skandinavischen Verteidigung",
+        "summary": "Das Zentrum von Anfang an angreifen",
+        "steps": {
+          "scandinavian-l01-s01": {
+            "text": "Mit ...d5 greifst du das weiße Zentrum sofort an und zwingst Weiß zu einer Entscheidung."
+          },
+          "scandinavian-l01-s02": {
+            "text": "Die Dame kommt früh heraus, zieht sich aber nach a5 zurück, auf ein aktives Feld, und fesselt den Springer auf c3, sobald sich die Diagonale öffnet."
+          },
+          "scandinavian-l01-s03": {
+            "text": "Der Plan: ...c6, um das Zentrum zu stützen, der Läufer nach draußen vor ...e6, der Springer nach f6 und die kurze Rochade."
+          },
+          "scandinavian-l01-s04": {
+            "prompt": "Welchen Läufer bringst du am besten vor ...e6 heraus?",
+            "explanation": "Wenn du zuerst ...e6 spielst, ist der c8-Läufer hinter deinen Bauern eingesperrt.",
+            "options": [
+              "Den c8-Läufer, den hellfeldrigen",
+              "Den f8-Läufer, den dunkelfeldrigen"
+            ]
+          }
+        }
+      },
+      "scandinavian-l02": {
+        "title": "Hauptvariante",
+        "summary": "Der Rückzug der Dame nach a5",
+        "steps": {
+          "scandinavian-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Skandinavischen Verteidigung.",
+            "notes": [
+              "",
+              "Du greifst das weiße Zentrum sofort an.",
+              "",
+              "Du schlägst mit der Dame zurück: Sie kommt früh heraus, aber das ist der Plan dieser Eröffnung.",
+              "",
+              "Du ziehst dich auf ein aktives Feld zurück und fesselst den Springer, wenn sich die Diagonale öffnet.",
+              "",
+              "Du entwickelst den Springer und machst Druck auf d4.",
+              "",
+              "Du kontrollierst d5 und b5 und gibst der Dame das Feld c7.",
+              "",
+              "Du bringst den Läufer heraus, bevor du mit ...e6 schließt.",
+              "",
+              "Jetzt schließt du die Kette: Der Läufer steht draußen."
+            ]
+          }
+        }
+      },
+      "scandinavian-l03": {
+        "title": "Fallen und typische Fehler",
+        "summary": "Wohin die Dame geht und wann der Läufer herauskommt",
+        "steps": {
+          "scandinavian-l03-s01": {
+            "prompt": "Der Springer greift deine Dame an. Ziehe sie auf ein sicheres, aktives Feld zurück.",
+            "hint": "Am häufigsten sind a5 und d6.",
+            "success": "Richtig"
+          },
+          "scandinavian-l03-s02": {
+            "prompt": "Bringe den c8-Läufer heraus, bevor du mit ...e6 schließt.",
+            "hint": "Wähle ein Feld außerhalb der Bauernkette.",
+            "success": "Richtig"
+          },
+          "scandinavian-l03-s03": {
+            "prompt": "Was macht deine Dame auf a5, nachdem Weiß d4 gespielt hat?",
+            "explanation": "Der Springer kann nicht ziehen, ohne den König im Schach zu lassen.",
+            "options": [
+              "Sie fesselt den c3-Springer an den König",
+              "Sie greift den Bauern auf d4 an",
+              "Sie deckt deinen Bauern auf d5"
+            ]
+          }
+        }
+      },
+      "scandinavian-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "scandinavian-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "scandinavian-l04-s02": {
+            "prompt": "Kontrolliere d5 und b5: Spiele ...c6.",
+            "hint": "Ein Bauer kann d5 und b5 kontrollieren.",
+            "success": "Richtig"
+          },
+          "scandinavian-l04-s03": {
+            "prompt": "Was macht der Springer auf f6?",
+            "explanation": "Entwicklung mit Druck auf d4 ist die Idee jedes Zuges.",
+            "options": [
+              "Er entwickelt sich und macht Druck auf das Zentrum",
+              "Er blockiert deine Dame",
+              "Er greift die weiße Dame an"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1571,5 +1571,551 @@
         }
       }
     }
+  },
+  "ruy-lopez": {
+    "name": "Ruy Lopez",
+    "summary": "The most studied opening: steady pressure on Black's center, with no rush.",
+    "lessons": {
+      "ruy-lopez-l01": {
+        "title": "The idea of the Ruy Lopez",
+        "summary": "Pressure on e5",
+        "steps": {
+          "ruy-lopez-l01-s01": {
+            "text": "With Bb5 you pressure the knight that protects e5. You don't capture it right away: you keep the tension."
+          },
+          "ruy-lopez-l01-s02": {
+            "text": "After ...a6, you retreat to a4 and keep the pin, without trading the bishop for no reason."
+          },
+          "ruy-lopez-l01-s03": {
+            "text": "Typical plan: c3 and d4 to take the center, with your bishop well placed on b3."
+          },
+          "ruy-lopez-l01-s04": {
+            "prompt": "What do you pressure with Bb5?",
+            "explanation": "If the knight falls, the e5-pawn is left unprotected.",
+            "options": [
+              "The knight that protects e5",
+              "The h7-pawn",
+              "The black queen"
+            ]
+          },
+          "ruy-lopez-l01-s05": {
+            "prompt": "After ...a6, what do you do with the bishop?",
+            "explanation": "Retreating it to a4 keeps the bishop and the pressure on the center.",
+            "options": [
+              "You always trade it on c6",
+              "You retreat it to a4 and keep the tension",
+              "You lose it"
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l02": {
+        "title": "Main line",
+        "summary": "The Closed Variation",
+        "steps": {
+          "ruy-lopez-l02-s01": {
+            "prompt": "Play the main line of the Ruy Lopez.",
+            "notes": [
+              "Center.",
+              "",
+              "Attacks e5.",
+              "",
+              "You pressure the knight that protects e5.",
+              "",
+              "You keep the pin without trading the bishop.",
+              "",
+              "King safe.",
+              "",
+              "Protects e4 and prepares d4.",
+              "",
+              "The bishop retreats to a safe diagonal.",
+              "",
+              "You prepare d4.",
+              "",
+              "You prevent ...Bg4 and ...Ng4."
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l03": {
+        "title": "Traps and common mistakes",
+        "summary": "The Noah's Ark Trap",
+        "steps": {
+          "ruy-lopez-l03-s01": {
+            "text": "This is the Noah's Ark Trap: the pawns on a6, b5, c4 and d6 trap the b3 bishop. It happens if you play d4 too early against ...d6."
+          },
+          "ruy-lopez-l03-s02": {
+            "prompt": "Black played ...d6. Prepare d4 without risking the bishop.",
+            "hint": "Prepare d4 with a pawn before opening the center.",
+            "success": "Correct"
+          },
+          "ruy-lopez-l03-s03": {
+            "prompt": "What do you avoid by playing c3 before d4?",
+            "explanation": "With c3 your bishop can retreat to c2 if Black plays ...b5.",
+            "options": [
+              "A queen check",
+              "Your bishop getting trapped by pawns",
+              "Losing the e4-pawn"
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "ruy-lopez-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "ruy-lopez-l04-s02": {
+            "prompt": "What do you avoid with h3?",
+            "explanation": "The ...Bg4 pin on your f3 knight is the typical nuisance.",
+            "options": [
+              "The black bishop or knight landing on g4",
+              "Black's castling",
+              "The capture on e5"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "rossolimo": {
+    "name": "Rossolimo Variation",
+    "summary": "A solid way to play against the Sicilian: you avoid the most theoretical lines.",
+    "lessons": {
+      "rossolimo-l01": {
+        "title": "The idea of the Rossolimo",
+        "summary": "Pressuring c6 and avoiding theory",
+        "steps": {
+          "rossolimo-l01-s01": {
+            "text": "Instead of opening the center with d4, you pressure the c6 knight with the bishop."
+          },
+          "rossolimo-l01-s02": {
+            "text": "If you trade on c6, you double Black's c-pawns."
+          },
+          "rossolimo-l01-s03": {
+            "text": "Plan: d3, h3 and Nc3 to play solidly and wait for Black to weaken."
+          },
+          "rossolimo-l01-s04": {
+            "prompt": "What do you avoid with 3.Bb5?",
+            "explanation": "It's a way to play without memorizing so much theory.",
+            "options": [
+              "The theoretical lines of the Open Sicilian",
+              "The e4-pawn",
+              "The capture on c5"
+            ]
+          },
+          "rossolimo-l01-s05": {
+            "prompt": "What structure are you aiming for when you trade on c6?",
+            "explanation": "The pawns on c6 and c5 end up doubled.",
+            "options": [
+              "Isolated pawns of your own",
+              "Doubled pawns for your opponent",
+              "An open file"
+            ]
+          }
+        }
+      },
+      "rossolimo-l02": {
+        "title": "Main line",
+        "summary": "The trade on c6",
+        "steps": {
+          "rossolimo-l02-s01": {
+            "prompt": "Play the main line of the Rossolimo.",
+            "notes": [
+              "Center.",
+              "",
+              "You develop and stay flexible.",
+              "",
+              "Rossolimo: you pressure the knight that controls d4 and e5.",
+              "",
+              "You damage the structure: doubled c-pawns.",
+              "",
+              "Solid: supports e4 and opens the c1 bishop.",
+              "",
+              "Prevents ...Bg4 and ...Ng4.",
+              "",
+              "Develops and supports e4."
+            ]
+          }
+        }
+      },
+      "rossolimo-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "When to trade",
+        "steps": {
+          "rossolimo-l03-s01": {
+            "prompt": "Pressure the c6 knight with the bishop.",
+            "hint": "The bishop goes to b5.",
+            "success": "Correct"
+          },
+          "rossolimo-l03-s02": {
+            "prompt": "Trade the bishop for the knight to double their pawns.",
+            "hint": "Capture on c6.",
+            "success": "Correct"
+          },
+          "rossolimo-l03-s03": {
+            "prompt": "Why h3?",
+            "explanation": "It saves you trouble on g4 without spending time on other squares.",
+            "options": [
+              "It prevents ...Bg4 and ...Ng4",
+              "It prepares g4",
+              "It attacks the f6 knight"
+            ]
+          }
+        }
+      },
+      "rossolimo-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "rossolimo-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "rossolimo-l04-s02": {
+            "prompt": "What plan do you follow next?",
+            "explanation": "The Rossolimo aims for a comfortable position without risks.",
+            "options": [
+              "Attack the king right away",
+              "Play solidly and wait for a mistake",
+              "Trade queens"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "alapin": {
+    "name": "Alapin Variation",
+    "summary": "Against the Sicilian: you prepare d4 with c3 and avoid the theory of the open lines.",
+    "lessons": {
+      "alapin-l01": {
+        "title": "The idea of the Alapin",
+        "summary": "Preparing d4 with c3",
+        "steps": {
+          "alapin-l01-s01": {
+            "text": "With c3 you prepare d4 to take the center, and you avoid the Open Sicilian."
+          },
+          "alapin-l01-s02": {
+            "text": "If Black plays ...d5, you trade and then take the center with tempo."
+          },
+          "alapin-l01-s03": {
+            "text": "Plan: develop with Nf3, Be2 and castling, and keep control of the center."
+          },
+          "alapin-l01-s04": {
+            "prompt": "What does 2.c3 prepare?",
+            "explanation": "With c3 you support d4 before playing it.",
+            "options": [
+              "The d4 advance",
+              "The b4 advance",
+              "Castling"
+            ]
+          },
+          "alapin-l01-s05": {
+            "prompt": "What do you avoid with 2.c3?",
+            "explanation": "Playing c3 avoids lines like the Najdorf and the Dragon.",
+            "options": [
+              "The d5-pawn",
+              "The theory of the Open Sicilian",
+              "A check to the queen"
+            ]
+          }
+        }
+      },
+      "alapin-l02": {
+        "title": "Main line",
+        "summary": "The capture on d5",
+        "steps": {
+          "alapin-l02-s01": {
+            "prompt": "Play the main line of the Alapin.",
+            "notes": [
+              "Center.",
+              "",
+              "Alapin: you prepare d4 and avoid the Open Sicilians.",
+              "",
+              "You trade and force Black to bring out the queen.",
+              "",
+              "You take the center and gain time.",
+              "",
+              "Develops.",
+              "",
+              "Develops and prepares castling.",
+              "",
+              "King safe.",
+              "",
+              "You finish development and support d4."
+            ]
+          }
+        }
+      },
+      "alapin-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Step by step",
+        "steps": {
+          "alapin-l03-s01": {
+            "prompt": "Prepare the d4 advance.",
+            "hint": "A queenside pawn advances.",
+            "success": "Correct"
+          },
+          "alapin-l03-s02": {
+            "prompt": "Trade on d5.",
+            "hint": "The e4-pawn captures.",
+            "success": "Correct"
+          },
+          "alapin-l03-s03": {
+            "prompt": "Take the center with tempo.",
+            "hint": "A central pawn advances two squares.",
+            "success": "Correct"
+          },
+          "alapin-l03-s04": {
+            "prompt": "What does ...Bg4 do?",
+            "explanation": "That's why it's good to develop with Be2 and castle.",
+            "options": [
+              "It pins the f3 knight to the queen",
+              "It attacks d4",
+              "It prepares castling"
+            ]
+          }
+        }
+      },
+      "alapin-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "alapin-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "alapin-l04-s02": {
+            "prompt": "Which piece completes your development?",
+            "explanation": "The bishop on e3 supports d4 and finishes your development.",
+            "options": [
+              "The queen to h5",
+              "The king to f1",
+              "The c1 bishop to e3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit": {
+    "name": "Queen's Gambit",
+    "summary": "A classic opening: you offer a pawn you almost always win back, and you control the center.",
+    "lessons": {
+      "queens-gambit-l01": {
+        "title": "The idea of the Queen's Gambit",
+        "summary": "Controlling the center",
+        "steps": {
+          "queens-gambit-l01-s01": {
+            "text": "With c4 you attack the d5-pawn. If Black captures your pawn, you win it back easily."
+          },
+          "queens-gambit-l01-s02": {
+            "text": "If Black doesn't capture, you keep the pressure on d5 and develop calmly."
+          },
+          "queens-gambit-l01-s03": {
+            "text": "Typical structure: pawns on d4 and e3, knights developed and a rook on the c-file."
+          },
+          "queens-gambit-l01-s04": {
+            "prompt": "Is it a true gambit?",
+            "explanation": "That's why it's considered a very safe opening.",
+            "options": [
+              "No: the c4-pawn can almost always be won back",
+              "Yes: you lose material",
+              "It's a trap"
+            ]
+          },
+          "queens-gambit-l01-s05": {
+            "prompt": "What's the main goal?",
+            "explanation": "With c4 you weaken the d5-pawn, which holds up Black's center.",
+            "options": [
+              "Attacking f7",
+              "Controlling the center",
+              "Winning a piece"
+            ]
+          }
+        }
+      },
+      "queens-gambit-l02": {
+        "title": "Main line",
+        "summary": "The gambit declined",
+        "steps": {
+          "queens-gambit-l02-s01": {
+            "prompt": "Play the main line of the Queen's Gambit.",
+            "notes": [
+              "You take the center.",
+              "",
+              "The gambit: you attack d5 and fight for control of the center.",
+              "",
+              "You pressure d5.",
+              "",
+              "You pin the f6 knight to the queen.",
+              "",
+              "You support d4 and open the f1 bishop.",
+              "",
+              "Develops and protects d4.",
+              "",
+              "The rook watches the c-file, which will open.",
+              "",
+              "Develops and aims at h7; prepares Bxc4 if Black captures.",
+              "",
+              "You win back the pawn with development.",
+              ""
+            ]
+          }
+        }
+      },
+      "queens-gambit-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Winning back the pawn and bringing out the bishop",
+        "steps": {
+          "queens-gambit-l03-s01": {
+            "prompt": "Win back the pawn with the bishop.",
+            "hint": "The f1 bishop captures on c4.",
+            "success": "Correct"
+          },
+          "queens-gambit-l03-s02": {
+            "prompt": "Pin the f6 knight to the queen.",
+            "hint": "The c1 bishop goes to g5.",
+            "success": "Correct"
+          },
+          "queens-gambit-l03-s03": {
+            "prompt": "Which bishop gets shut in if you play e3 without thinking?",
+            "explanation": "That's why you bring out the c1 bishop (Bg5) before playing e3.",
+            "options": [
+              "The f1 bishop",
+              "The c1 bishop",
+              "Neither"
+            ]
+          }
+        }
+      },
+      "queens-gambit-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "queens-gambit-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "queens-gambit-l04-s02": {
+            "prompt": "Which file does your rook take?",
+            "explanation": "The rook on c1 pressures Black's queenside.",
+            "options": [
+              "The c-file",
+              "The h-file",
+              "The a-file"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "kings-gambit": {
+    "name": "King's Gambit",
+    "summary": "The romantic opening: you sacrifice a pawn right away and attack with everything.",
+    "lessons": {
+      "kings-gambit-l01": {
+        "title": "The idea of the King's Gambit",
+        "summary": "A pawn for an attack",
+        "steps": {
+          "kings-gambit-l01-s01": {
+            "text": "With f4 you offer a pawn to open the f-file and dominate the center."
+          },
+          "kings-gambit-l01-s02": {
+            "text": "With Nf3 you develop and avoid a queen check on h4."
+          },
+          "kings-gambit-l01-s03": {
+            "text": "In the Kieseritzky Variation, the knight jumps to e5 when ...g4 attacks it."
+          },
+          "kings-gambit-l01-s04": {
+            "prompt": "What do you avoid with 3.Nf3?",
+            "explanation": "The knight watches h4 from f3.",
+            "options": [
+              "A queen check on h4",
+              "A queen trade",
+              "The capture on e4"
+            ]
+          },
+          "kings-gambit-l01-s05": {
+            "prompt": "Why is your king vulnerable?",
+            "explanation": "With f4 you open that diagonal for the opposing queen.",
+            "options": [
+              "The e4-pawn falls",
+              "The e1–h4 diagonal is open",
+              "You can't castle"
+            ]
+          }
+        }
+      },
+      "kings-gambit-l02": {
+        "title": "Main line",
+        "summary": "The Kieseritzky Variation",
+        "steps": {
+          "kings-gambit-l02-s01": {
+            "prompt": "Play the main line of the King's Gambit.",
+            "notes": [
+              "Center.",
+              "",
+              "King's Gambit: you offer a pawn to open the f-file.",
+              "",
+              "Develops and avoids ...Qh4+.",
+              "",
+              "You attack the g5-pawn.",
+              "",
+              "The knight takes a strong post on e5.",
+              "",
+              "Aims at f7 and develops.",
+              "",
+              "You open the center.",
+              "",
+              "You take the center and protect your e5 knight."
+            ]
+          }
+        }
+      },
+      "kings-gambit-l03": {
+        "title": "Key ideas and common mistakes",
+        "summary": "Development and attack",
+        "steps": {
+          "kings-gambit-l03-s01": {
+            "prompt": "Develop the knight and avoid ...Qh4+.",
+            "hint": "The kingside knight goes to f3.",
+            "success": "Correct"
+          },
+          "kings-gambit-l03-s02": {
+            "prompt": "Attack the g5-pawn with another pawn.",
+            "hint": "A pawn on the h-file advances.",
+            "success": "Correct"
+          },
+          "kings-gambit-l03-s03": {
+            "prompt": "Where does the knight jump when the g4-pawn attacks it?",
+            "explanation": "It's the most active central square.",
+            "options": [
+              "To e5",
+              "To g1",
+              "To h2"
+            ]
+          }
+        }
+      },
+      "kings-gambit-l04": {
+        "title": "Review",
+        "summary": "Practice without help",
+        "steps": {
+          "kings-gambit-l04-s01": {
+            "prompt": "Repeat the main line without help."
+          },
+          "kings-gambit-l04-s02": {
+            "prompt": "Which diagonal does f4 weaken?",
+            "explanation": "Watch out for queen checks on h4.",
+            "options": [
+              "The one from e1 to h4",
+              "The one from a1 to h8",
+              "The one from a2 to g8"
+            ]
+          }
+        }
+      }
+    }
   }
 }

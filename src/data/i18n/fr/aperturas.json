@@ -2117,5 +2117,569 @@
         }
       }
     }
+  },
+  "albin": {
+    "name": "Contre-gambit Albin",
+    "summary": "Tu réponds au Gambit dame avec un pion en d4 qui gêne pendant toute la partie.",
+    "lessons": {
+      "albin-l01": {
+        "title": "L'idée du Contre-gambit Albin",
+        "summary": "Un pion avancé qui étouffe les Blancs",
+        "steps": {
+          "albin-l01-s01": {
+            "text": "Après 1.d4 d5 2.c4, tu attaques le centre avec ...e5. C'est un contre-gambit : tu offres un pion en échange d'activité."
+          },
+          "albin-l01-s02": {
+            "text": "Après ...d4, ton pion occupe le centre, prive les Blancs d'espace et limite leur cavalier en b1."
+          },
+          "albin-l01-s03": {
+            "text": "Les Blancs ont un pion de plus, mais ton développement est rapide et ton pion d4 n'est pas facile à attaquer."
+          },
+          "albin-l01-s04": {
+            "prompt": "Qu'est-ce que tu offres avec 2...e5 ?",
+            "explanation": "C'est un contre-gambit : tu sacrifies du matériel pour l'initiative.",
+            "options": [
+              "Un pion en échange d'activité",
+              "La dame en échange d'une tour",
+              "Le roque"
+            ]
+          },
+          "albin-l01-s05": {
+            "prompt": "Que fait ton pion d4 ?",
+            "explanation": "C'est la raison d'être de toute la structure.",
+            "options": [
+              "Il protège le roque",
+              "Il prend de l'espace et limite les pièces blanches",
+              "Il attaque le roi"
+            ]
+          }
+        }
+      },
+      "albin-l02": {
+        "title": "Ligne principale",
+        "summary": "La variante avec Cf3 et g3",
+        "steps": {
+          "albin-l02-s01": {
+            "prompt": "Joue la ligne principale du Contre-gambit Albin.",
+            "notes": [
+              "",
+              "Tu occupes le centre dès le premier coup.",
+              "",
+              "Contre-gambit Albin : tu attaques le centre blanc avec un pion.",
+              "",
+              "Le pion avance et reste comme une épine au centre.",
+              "",
+              "Tu développes et tu surveilles e5 et d4.",
+              "",
+              "Le fou en c8 sort et fait pression sur c4.",
+              "",
+              "La dame sort et prépare le grand roque.",
+              "",
+              "Grand roque : la tour arrive sur la colonne d, derrière ton pion.",
+              "",
+              "L'autre cavalier finit de sortir."
+            ]
+          }
+        }
+      },
+      "albin-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Garde le pion d4",
+        "steps": {
+          "albin-l03-s01": {
+            "prompt": "Contre-attaque le centre avec un pion.",
+            "hint": "Le pion e arrive en e5.",
+            "success": "Correct"
+          },
+          "albin-l03-s02": {
+            "prompt": "Avance le pion pour le laisser au centre.",
+            "hint": "Le pion reste en d4.",
+            "success": "Correct"
+          },
+          "albin-l03-s03": {
+            "prompt": "Quelle pièce ton camp sort-il en premier après ...d4 ?",
+            "explanation": "Le cavalier en c6 soutient le pion d4 et surveille e5.",
+            "options": [
+              "Le cavalier en b8",
+              "La dame",
+              "Le fou en f8"
+            ]
+          }
+        }
+      },
+      "albin-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "albin-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "albin-l04-s02": {
+            "prompt": "Quel cavalier sort en c6 ?",
+            "explanation": "C'est la pièce qui soutient l'avance centrale.",
+            "options": [
+              "Celui en g8",
+              "Celui en b8",
+              "Aucun"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "catalan": {
+    "name": "Ouverture catalane",
+    "summary": "Le fou en g2 fait pression sur la grande diagonale : une ouverture élégante, avec beaucoup de pression.",
+    "lessons": {
+      "catalan-l01": {
+        "title": "L'idée de la Catalane",
+        "summary": "Une pression constante avec le fou en g2",
+        "steps": {
+          "catalan-l01-s01": {
+            "text": "Tu combines le Gambit dame avec un fianchetto : g3 et Fg2 visent d5, c6 et b7."
+          },
+          "catalan-l01-s02": {
+            "text": "Les Noirs prennent souvent en c4, et tu récupères le pion avec la dame ou avec Ce5."
+          },
+          "catalan-l01-s03": {
+            "text": "Le fou en g2 reste actif : sans pions pour le gêner, il fait pression sur toute la diagonale."
+          },
+          "catalan-l01-s04": {
+            "prompt": "Quelle diagonale le fou en g2 contrôle-t-il ?",
+            "explanation": "Cette diagonale vise l'aile dame noire.",
+            "options": [
+              "La grande diagonale a8–h1",
+              "La diagonale e1–h4",
+              "La diagonale a2–g8"
+            ]
+          },
+          "catalan-l01-s05": {
+            "prompt": "Que fais-tu si les Noirs prennent en c4 ?",
+            "explanation": "Tu as une compensation positionnelle, et tu récupères presque toujours le pion.",
+            "options": [
+              "Tu laisses le pion pour toujours",
+              "Tu récupères le pion avec la dame ou avec Ce5",
+              "Tu échanges le fou"
+            ]
+          }
+        }
+      },
+      "catalan-l02": {
+        "title": "Ligne principale",
+        "summary": "La Catalane ouverte",
+        "steps": {
+          "catalan-l02-s01": {
+            "prompt": "Joue la ligne principale de la Catalane.",
+            "notes": [
+              "Tu occupes le centre.",
+              "",
+              "Tu fais pression sur le centre depuis l'aile dame.",
+              "",
+              "Catalane : tu prépares le fianchetto.",
+              "",
+              "Le fou domine la grande diagonale.",
+              "",
+              "Développe et soutient d4.",
+              "",
+              "Roi en sécurité.",
+              "",
+              "Tu prépares la reprise du pion c4.",
+              "",
+              "Empêche ...b5, qui défendrait le pion c4.",
+              "",
+              "Tu récupères le pion c4.",
+              "",
+              "Tu développes le fou et tu fais pression sur le cavalier en f6."
+            ]
+          }
+        }
+      },
+      "catalan-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Fianchetto et pion",
+        "steps": {
+          "catalan-l03-s01": {
+            "prompt": "Prépare le fianchetto de ton fou.",
+            "hint": "Un pion ouvre la diagonale du fou.",
+            "success": "Correct"
+          },
+          "catalan-l03-s02": {
+            "prompt": "Place le fou sur la grande diagonale.",
+            "hint": "Le fou sort en g2.",
+            "success": "Correct"
+          },
+          "catalan-l03-s03": {
+            "prompt": "Les Noirs ont pris en c4. Comment récupères-tu le pion ?",
+            "explanation": "La dame en c2 attaque le pion c4 et le récupère.",
+            "options": [
+              "Avec h4",
+              "Avec la dame, après Dc2",
+              "Avec a3"
+            ]
+          }
+        }
+      },
+      "catalan-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "catalan-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "catalan-l04-s02": {
+            "prompt": "Sur quoi ton fou en g2 fait-il pression ?",
+            "explanation": "C'est la pièce qui donne son sens à la Catalane.",
+            "options": [
+              "La grande diagonale vers c6 et b7",
+              "La colonne h",
+              "Le pion a2"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "english": {
+    "name": "Ouverture anglaise",
+    "summary": "Tu contrôles le centre avec un pion de l'aile et tu joues calmement, avec souplesse.",
+    "lessons": {
+      "english-l01": {
+        "title": "L'idée de l'Anglaise",
+        "summary": "Le centre depuis l'aile",
+        "steps": {
+          "english-l01-s01": {
+            "text": "Avec 1.c4, tu contrôles d5 sans t'engager au centre. C'est une ouverture souple : elle peut transposer vers d'autres."
+          },
+          "english-l01-s02": {
+            "text": "Contre ...e5, tu joues une « Sicilienne inversée » avec un temps de plus."
+          },
+          "english-l01-s03": {
+            "text": "Plan : fianchetto en g2, échange en d5 et expansion sur l'aile dame avec a3 et b4."
+          },
+          "english-l01-s04": {
+            "prompt": "Quelle case le pion c4 contrôle-t-il ?",
+            "explanation": "Depuis c4, le pion surveille d5 sans occuper le centre.",
+            "options": [
+              "d5",
+              "e5",
+              "c5"
+            ]
+          },
+          "english-l01-s05": {
+            "prompt": "Que joues-tu contre ...e5 ?",
+            "explanation": "C'est une Sicilienne avec un temps de plus pour les Blancs.",
+            "options": [
+              "Une Française",
+              "Une Sicilienne inversée",
+              "Un gambit"
+            ]
+          }
+        }
+      },
+      "english-l02": {
+        "title": "Ligne principale",
+        "summary": "L'Anglaise à quatre cavaliers",
+        "steps": {
+          "english-l02-s01": {
+            "prompt": "Joue la ligne principale de l'Anglaise.",
+            "notes": [
+              "Tu contrôles le centre sans l'occuper.",
+              "",
+              "Développe et surveille e4.",
+              "",
+              "Développe le second cavalier.",
+              "",
+              "Tu prépares le fianchetto.",
+              "",
+              "Tu échanges pour ouvrir le jeu.",
+              "",
+              "Fou sur la grande diagonale.",
+              "",
+              "Roi en sécurité.",
+              "",
+              "Tu prépares l'expansion.",
+              "",
+              "Tu gagnes de l'espace sur l'aile dame."
+            ]
+          }
+        }
+      },
+      "english-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Échange et fianchetto",
+        "steps": {
+          "english-l03-s01": {
+            "prompt": "Contrôle d5 avec un pion de l'aile.",
+            "hint": "Un pion de l'aile dame avance.",
+            "success": "Correct"
+          },
+          "english-l03-s02": {
+            "prompt": "Prépare le fianchetto du fou.",
+            "hint": "Un pion ouvre la diagonale.",
+            "success": "Correct"
+          },
+          "english-l03-s03": {
+            "prompt": "Échange en d5 pour ouvrir la position.",
+            "hint": "Le pion prend en d5.",
+            "success": "Correct"
+          },
+          "english-l03-s04": {
+            "prompt": "Que vient-il après l'échange en d5 ?",
+            "explanation": "Le fianchetto complète le plan.",
+            "options": [
+              "Le fou en g2",
+              "Échanger les dames",
+              "Bouger le roi"
+            ]
+          }
+        }
+      },
+      "english-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "english-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "english-l04-s02": {
+            "prompt": "Que cherches-tu avec a3 et b4 ?",
+            "explanation": "L'expansion est le plan des Blancs.",
+            "options": [
+              "Attaquer le roi",
+              "Gagner de l'espace sur l'aile dame",
+              "Échanger les dames"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "danish": {
+    "name": "Gambit danois",
+    "summary": "Tu sacrifies un ou deux pions pour lancer tes fous contre le roque.",
+    "lessons": {
+      "danish-l01": {
+        "title": "L'idée du Gambit danois",
+        "summary": "Les fous contre le roque",
+        "steps": {
+          "danish-l01-s01": {
+            "text": "Avec c3, tu offres des pions pour ouvrir la position et viser avec les deux fous."
+          },
+          "danish-l01-s02": {
+            "text": "Quand les pions tombent, tes fous se retrouvent en c4 et b2 et visent f7 et g7."
+          },
+          "danish-l01-s03": {
+            "text": "Les Noirs ont des pions de plus, mais ton développement est bien supérieur."
+          },
+          "danish-l01-s04": {
+            "prompt": "Qu'est-ce que tu offres avec c3 ?",
+            "explanation": "C'est un double gambit.",
+            "options": [
+              "D'autres pions en échange de développement",
+              "La dame",
+              "Le roque"
+            ]
+          },
+          "danish-l01-s05": {
+            "prompt": "Que visent tes fous ?",
+            "explanation": "Ils visent f7 et g7, les points faibles du roque.",
+            "options": [
+              "Ton propre roi",
+              "L'aile roi noire",
+              "La dame blanche"
+            ]
+          }
+        }
+      },
+      "danish-l02": {
+        "title": "Ligne principale",
+        "summary": "Le Gambit danois accepté",
+        "steps": {
+          "danish-l02-s01": {
+            "prompt": "Joue la ligne principale du Gambit danois.",
+            "notes": [
+              "Tu occupes le centre.",
+              "",
+              "Tu ouvres le centre.",
+              "",
+              "Gambit danois : tu offres un pion.",
+              "",
+              "Tu gagnes du temps et tu développes.",
+              "",
+              "Tu récupères un pion avec attaque.",
+              "",
+              "Tu récupères un autre pion. Ton fou en b2 vise g7 et celui en d5 vise f7.",
+              "",
+              "Tu sacrifies le fou avec échec. Si le roi le prend, il ne protège plus sa dame en d8.",
+              "",
+              "La colonne d s'est ouverte : tu prends la dame noire.",
+              "",
+              "Tu interposes la dame pour parer l'échec. Si elle est échangée, tu reprends avec le cavalier.",
+              "",
+              "Finale équilibrée : le matériel est égal et le roi noir ne peut plus roquer."
+            ]
+          }
+        }
+      },
+      "danish-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Le développement avant le matériel",
+        "steps": {
+          "danish-l03-s01": {
+            "prompt": "Offre le gambit.",
+            "hint": "Un pion avance d'une case.",
+            "success": "Correct"
+          },
+          "danish-l03-s02": {
+            "prompt": "Développe le fou en attaquant.",
+            "hint": "Le fou vise f7.",
+            "success": "Correct"
+          },
+          "danish-l03-s03": {
+            "prompt": "Récupère un pion avec le fou.",
+            "hint": "La grande diagonale est ouverte.",
+            "success": "Correct"
+          },
+          "danish-l03-s04": {
+            "prompt": "Que fait le fou en c4 après ...d5 ?",
+            "explanation": "Tu récupères un autre pion en restant actif.",
+            "options": [
+              "Il prend en d5",
+              "Il se replie en e2",
+              "Il échange les dames"
+            ]
+          }
+        }
+      },
+      "danish-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "danish-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "danish-l04-s02": {
+            "prompt": "Que cherches-tu avec le gambit ?",
+            "explanation": "Tu compenses le matériel par des pièces actives.",
+            "options": [
+              "Des échanges de dames",
+              "Du développement, du temps et de l'attaque",
+              "Une finale égale"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "french": {
+    "name": "Défense française",
+    "summary": "Une défense solide : tu cèdes un peu d'espace en échange d'une structure ferme et d'une contre-attaque.",
+    "lessons": {
+      "french-l01": {
+        "title": "L'idée de la Française",
+        "summary": "Structure ferme et contre-attaque en c5",
+        "steps": {
+          "french-l01-s01": {
+            "text": "Avec ...e6, tu prépares ...d5 pour disputer le centre blanc."
+          },
+          "french-l01-s02": {
+            "text": "Ton fou en c8 reste derrière les pions : c'est la pièce « mauvaise » de la Française."
+          },
+          "french-l01-s03": {
+            "text": "Ton plan est d'attaquer la base de la chaîne blanche avec ...c5 et ...Cc6."
+          },
+          "french-l01-s04": {
+            "prompt": "Quel est le problème de la Française ?",
+            "explanation": "Avec le temps, il faut lui trouver une bonne sortie.",
+            "options": [
+              "Le fou en c8 reste enfermé",
+              "Le roi ne peut pas roquer",
+              "Tu perds un pion"
+            ]
+          },
+          "french-l01-s05": {
+            "prompt": "Qu'est-ce que tu attaques avec ...c5 ?",
+            "explanation": "Si d4 tombe, le pion e5 perd son soutien.",
+            "options": [
+              "Le pion f4",
+              "La base de la chaîne blanche en d4",
+              "La dame"
+            ]
+          }
+        }
+      },
+      "french-l02": {
+        "title": "Ligne principale",
+        "summary": "La variante classique",
+        "steps": {
+          "french-l02-s01": {
+            "prompt": "Joue la ligne principale de la Française.",
+            "notes": [
+              "",
+              "Tu prépares ...d5 et tu le soutiens.",
+              "",
+              "Tu disputes le centre.",
+              "",
+              "Tu développes et tu attaques e4.",
+              "",
+              "Tu développes le fou et tu romps le clouage sur le cavalier en f6.",
+              "",
+              "Attaqué par e5, le cavalier se replie et libère le pion f pour ...f6.",
+              "",
+              "Tu reprends avec la dame.",
+              "",
+              "Roi en sécurité.",
+              "",
+              "Attaque contre la base de la chaîne.",
+              "",
+              "Tu développes en faisant pression sur d4."
+            ]
+          }
+        }
+      },
+      "french-l03": {
+        "title": "Idées clés et erreurs typiques",
+        "summary": "Chaîne de pions",
+        "steps": {
+          "french-l03-s01": {
+            "prompt": "Prépare l'avance centrale.",
+            "hint": "Un coup de pion soutient ...d5.",
+            "success": "Correct"
+          },
+          "french-l03-s02": {
+            "prompt": "Dispute le centre avec un pion.",
+            "hint": "Le pion central avance.",
+            "success": "Correct"
+          },
+          "french-l03-s03": {
+            "prompt": "Les Blancs avancent e5. Où replies-tu le cavalier ?",
+            "explanation": "C'est le repli classique, et il soutient ton centre.",
+            "options": [
+              "En d7",
+              "En g8",
+              "En h5"
+            ]
+          }
+        }
+      },
+      "french-l04": {
+        "title": "Révision",
+        "summary": "Entraîne-toi sans aide",
+        "steps": {
+          "french-l04-s01": {
+            "prompt": "Rejoue la ligne principale sans aide."
+          },
+          "french-l04-s02": {
+            "prompt": "Que fait ...Cc6 ?",
+            "explanation": "Il participe à l'attaque contre la base de la chaîne.",
+            "options": [
+              "Il fait pression sur d4",
+              "Il protège le roi",
+              "Il attaque la dame"
+            ]
+          }
+        }
+      }
+    }
   }
 }

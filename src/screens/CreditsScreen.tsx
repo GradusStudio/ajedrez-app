@@ -51,7 +51,7 @@ const CREDITS: Credit[] = [
   },
   {
     name: 'Personajes de los bots',
-    what: 'Los avatares de los bots se crearon con ChatGPT (OpenAI).',
+    what: 'Los avatares de los bots y sus caras de la lección (explica, piensa, acierto y pista) se crearon con ChatGPT (OpenAI).',
     license: 'GNU GPL v3 o posterior, como la app',
   },
   {

@@ -90,9 +90,11 @@ Reglas:
 - Panel inferior de feedback: verde (`correctBg`) al acertar, rojo (`incorrectBg`) al fallar, con la pista o explicación.
 - Un error no bloquea: la jugada equivocada se ve en el tablero, el panel rojo muestra la pista y el botón "Reintentar" la deshace. Los pasos fallados se anotan para el repaso.
 - Al salir con la ✕ (o el botón "atrás" de Android) se pide confirmación y se guarda el avance de la lección. El avance también se guarda en cada paso, por si se cierra la app. Al volver, la lección sigue desde el paso donde quedó.
+- Profesor: debajo del tablero, la cara del bot que enseña la lección (52 px) con un globo de diálogo. Cambia según el paso y lo que pasa: explica en los pasos de texto y en las guiadas, piensa en las preguntas, acierto al acertar y pista al fallar. El primer paso de una lección empezada de cero muestra además una bienvenida del bot (no se muestra al retomar ni en el repaso de errores). Quién enseña cada lección está en `src/data/teachers.ts`.
 
 ### 2.5 Resultado de lección
 Monedas ganadas, racha actualizada y errores cometidos (y el premio del día, si es la primera acción válida de hoy). Botones: "Continuar" (primario) y "Repasar errores" (secundario, solo si hubo errores).
+- Arriba de los botones, el bot que enseñó la lección con la cara de acierto y una frase de cierre (elegida al azar).
 - Oferta del recordatorio: la primera vez que se termina una lección (no en repaso de errores) y con el recordatorio apagado, una tarjeta pregunta "¿Quieres que te recuerde practicar?" con "Sí, a las 19:00" y "Ahora no". Se ofrece una sola vez (`reminderOffered`); no bloquea "Continuar". Sin permiso de notificaciones, se avisa y el recordatorio queda apagado.
 - Las monedas de una lección se suman solo la primera vez. Repetirla cuenta para la racha, y guarda el menor número de errores.
 - "Repasar errores" abre solo los pasos fallados de esa pasada. Los que se aciertan salen de la lista de errores; los que se vuelven a fallar siguen y suman un fallo.

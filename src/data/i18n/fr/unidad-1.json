@@ -1,0 +1,200 @@
+{
+  "title": "Les bases",
+  "lessons": {
+    "u1-l01": {
+      "title": "L'échiquier et les coordonnées",
+      "summary": "Apprends à nommer chaque case",
+      "steps": {
+        "u1-l01-s01": { "text": "L'échiquier compte 64 cases : 8 colonnes et 8 rangées, de couleurs alternées." },
+        "u1-l01-s02": { "text": "Les colonnes portent une lettre, de a à h. Les rangées, un chiffre, de 1 à 8. Les Blancs commencent en bas." },
+        "u1-l01-s03": { "text": "Chaque case se nomme par sa colonne et sa rangée. Celle qui est marquée est e4 : colonne e, rangée 4." },
+        "u1-l01-s04": { "text": "Une astuce : la case du coin inférieur droit, h1, est toujours claire." },
+        "u1-l01-s05": { "prompt": "Touche la case e4.", "hint": "Colonne e, quatrième rangée en partant du bas." },
+        "u1-l01-s06": { "prompt": "Touche la case c7.", "hint": "Colonne c, septième rangée." },
+        "u1-l01-s07": { "prompt": "Touche la case g2.", "hint": "Colonne g, deuxième rangée." },
+        "u1-l01-s08": {
+          "prompt": "Comment s'appelle la case marquée ?",
+          "options": ["f3", "c3", "f6", "g3"],
+          "explanation": "Elle est sur la colonne f et la rangée 3 : f3."
+        },
+        "u1-l01-s09": {
+          "prompt": "Comment s'appelle la case marquée ?",
+          "options": ["a6", "f2", "b6", "b5"],
+          "explanation": "Elle est sur la colonne b et la rangée 6 : b6."
+        }
+      }
+    },
+    "u1-l02": {
+      "title": "La tour",
+      "summary": "Elle se déplace en ligne droite",
+      "steps": {
+        "u1-l02-s01": { "text": "La tour se déplace en ligne droite, sur les colonnes et les rangées, d'autant de cases qu'elle veut." },
+        "u1-l02-s02": { "text": "Elle ne peut pas sauter par-dessus les autres pièces. Si elle rencontre une pièce adverse, elle peut la prendre et s'arrête là." },
+        "u1-l02-s03": { "prompt": "Amène la tour en h4.", "hint": "Déplace-la vers la droite sur la rangée 4.", "success": "Correct" },
+        "u1-l02-s04": { "prompt": "Amène la tour en d1.", "hint": "Déplace-la vers le bas sur la colonne d.", "success": "Correct" },
+        "u1-l02-s05": { "prompt": "Prends le pion noir avec la tour.", "hint": "Il est sur la même colonne que ta tour.", "success": "Correct" }
+      }
+    },
+    "u1-l03": {
+      "title": "Le fou",
+      "summary": "Il se déplace en diagonale",
+      "steps": {
+        "u1-l03-s01": { "text": "Le fou se déplace en diagonale, d'autant de cases qu'il veut, sans sauter par-dessus les pièces." },
+        "u1-l03-s02": { "text": "Chaque fou reste toujours sur des cases de la même couleur. C'est pourquoi tu commences avec deux fous : un de cases claires et un de cases sombres." },
+        "u1-l03-s03": { "prompt": "Amène le fou en g7.", "hint": "Monte en diagonale vers la droite.", "success": "Correct" },
+        "u1-l03-s04": { "prompt": "Amène le fou en a1.", "hint": "Descends en diagonale vers la gauche.", "success": "Correct" },
+        "u1-l03-s05": { "prompt": "Prends le pion noir avec le fou.", "hint": "Il est sur la diagonale, une case en haut à droite.", "success": "Correct" }
+      }
+    },
+    "u1-l04": {
+      "title": "La dame",
+      "summary": "Une tour et un fou en une seule pièce",
+      "steps": {
+        "u1-l04-s01": { "text": "La dame se déplace à la fois comme une tour et comme un fou. C'est la pièce la plus puissante." },
+        "u1-l04-s02": { "text": "La dame blanche commence sur une case claire et la noire sur une case sombre. Prends-en soin : la perdre décide souvent de la partie." },
+        "u1-l04-s03": { "prompt": "Amène la dame en g7.", "hint": "Déplace-la en diagonale.", "success": "Correct" },
+        "u1-l04-s04": { "prompt": "Amène la dame en a4.", "hint": "Déplace-la en ligne droite sur la rangée 4.", "success": "Correct" },
+        "u1-l04-s05": { "prompt": "Prends le pion noir avec la dame.", "hint": "Il est juste à sa droite.", "success": "Correct" }
+      }
+    },
+    "u1-l05": {
+      "title": "Le roi",
+      "summary": "Une case, avec prudence",
+      "steps": {
+        "u1-l05-s01": { "text": "Le roi se déplace d'une case dans n'importe quelle direction. C'est la pièce la plus importante : si tu le perds, tu perds la partie." },
+        "u1-l05-s02": { "text": "Le roi ne peut jamais aller sur une case attaquée par l'adversaire. Ici, la tour noire contrôle la colonne d et la rangée 2." },
+        "u1-l05-s03": { "prompt": "Amène le roi en e5.", "hint": "Une case vers l'avant.", "success": "Correct" },
+        "u1-l05-s04": { "prompt": "Déplace le roi sur une case sûre.", "hint": "Évite la colonne d.", "success": "Correct" },
+        "u1-l05-s05": {
+          "prompt": "Le roi peut-il aller en d3 ?",
+          "options": ["Oui", "Non, la tour attaque cette case"],
+          "explanation": "La tour noire contrôle toute la colonne d."
+        }
+      }
+    },
+    "u1-l06": {
+      "title": "Le cavalier",
+      "summary": "Il saute en forme de L",
+      "steps": {
+        "u1-l06-s01": { "text": "Le cavalier se déplace en L : deux cases dans une direction, puis une case à angle droit." },
+        "u1-l06-s02": { "text": "C'est la seule pièce qui saute par-dessus les autres. Ici, il est entouré de pions et peut quand même bouger." },
+        "u1-l06-s03": { "prompt": "Amène le cavalier en f5.", "hint": "Deux cases à droite et une vers le haut.", "success": "Correct" },
+        "u1-l06-s04": { "prompt": "Amène le cavalier en c2.", "hint": "Deux cases vers le bas et une à gauche.", "success": "Correct" },
+        "u1-l06-s05": { "prompt": "Prends le pion noir avec le cavalier.", "hint": "Deux à droite et une vers le haut.", "success": "Correct" }
+      }
+    },
+    "u1-l07": {
+      "title": "Le pion",
+      "summary": "Il avance tout droit, prend en diagonale et se transforme",
+      "steps": {
+        "u1-l07-s01": { "text": "Le pion avance d'une case vers l'avant. À son premier coup, il peut avancer de deux cases." },
+        "u1-l07-s02": { "text": "Une fois qu'il a bougé, il ne peut plus avancer que d'une case." },
+        "u1-l07-s03": { "text": "Le pion prend en diagonale, une case vers l'avant." },
+        "u1-l07-s04": { "text": "Il ne prend pas vers l'avant : si une pièce se trouve devant lui, le pion est bloqué." },
+        "u1-l07-s05": { "prompt": "Avance le pion de deux cases.", "hint": "C'est son premier coup.", "success": "Correct" },
+        "u1-l07-s06": { "prompt": "Prends un des pions noirs.", "hint": "Les pions prennent en diagonale.", "success": "Correct" },
+        "u1-l07-s07": {
+          "prompt": "Le pion blanc peut-il avancer ?",
+          "options": ["Oui", "Non, il a une pièce devant lui"],
+          "explanation": "Le pion ne peut ni avancer ni prendre vers l'avant."
+        },
+        "u1-l07-s08": { "text": "Quand le pion atteint la dernière rangée, c'est la promotion : il se transforme en dame, en tour, en fou ou en cavalier, au choix. La dame est presque toujours le meilleur choix, car c'est la pièce la plus forte." },
+        "u1-l07-s09": { "prompt": "Promeus le pion et choisis la dame.", "hint": "Avance le pion jusqu'en d8 et, dans le sélecteur, touche la dame.", "success": "Correct. Le pion est maintenant une dame." },
+        "u1-l07-s10": { "text": "La dame n'est pas toujours le meilleur choix. Ici, si tu promeus en dame, les Noirs jouent Dc1+ : ta nouvelle dame s'interpose en e1, ils la prennent et c'est mat." },
+        "u1-l07-s11": { "prompt": "Promeus le pion de façon à gagner la dame noire.", "hint": "Un cavalier en e8 ferait échec au roi et attaquerait la dame en même temps.", "success": "Correct. Le cavalier fait échec et attaque la dame : après l'échec, tu la prends." },
+        "u1-l07-s12": { "text": "Le roi s'écarte et le cavalier prend la dame. Promouvoir en une autre pièce que la dame s'appelle une sous-promotion." }
+      }
+    },
+    "u1-l08": {
+      "title": "Protéger ses pièces",
+      "summary": "Évite de donner du matériel",
+      "steps": {
+        "u1-l08-s01": { "text": "Le cavalier est protégé par le pion : si le fou le prend, le pion reprend. C'est ce qu'on appelle protéger une pièce." },
+        "u1-l08-s02": { "text": "Maintenant, personne ne protège le cavalier. Si le fou le prend, tu le perds sans compensation. Une telle pièce est dite en prise." },
+        "u1-l08-s03": {
+          "prompt": "Le cavalier blanc est-il protégé ?",
+          "options": ["Oui", "Non"],
+          "explanation": "Aucune pièce blanche ne le défend, donc le fou le prend gratuitement."
+        },
+        "u1-l08-s04": { "prompt": "Protège le cavalier avec la tour.", "hint": "Déplace la tour pour qu'elle voie la case d4.", "success": "Correct" },
+        "u1-l08-s05": { "prompt": "Prends la pièce noire qui n'est pas protégée.", "hint": "Le fou est protégé par un pion.", "success": "Correct" }
+      }
+    },
+    "u1-l09": {
+      "title": "Les échanges",
+      "summary": "Quand faut-il prendre ?",
+      "steps": {
+        "u1-l09-s01": { "text": "Il y a échange quand tu prends une pièce et que l'adversaire reprend. Pour savoir si c'est intéressant, compte les points : pion 1, cavalier 3, fou 3, tour 5, dame 9." },
+        "u1-l09-s02": { "text": "Si la tour prend ce pion, le pion c6 reprend. Tu gagnes 1 point et tu en perds 5 : c'est un mauvais échange." },
+        "u1-l09-s03": { "text": "Ici, ton pion prend un cavalier. Si le pion c6 reprend, tu as gagné 3 points et perdu 1 : c'est un bon échange." },
+        "u1-l09-s04": {
+          "prompt": "Faut-il prendre le pion avec la tour ?",
+          "options": ["Oui, je gagne un pion", "Non, je perds la tour pour un pion"],
+          "explanation": "Tu gagnes 1 point et tu en perds 5."
+        },
+        "u1-l09-s05": {
+          "prompt": "Faut-il prendre le cavalier avec ton pion ?",
+          "options": ["Oui, je gagne un cavalier pour un pion", "Non, on reprend mon pion"],
+          "explanation": "Tu gagnes 3 points et, même si l'adversaire reprend, tu n'en perds que 1.",
+          "feedback": ["", "L'adversaire peut reprendre, c'est vrai, mais le cavalier vaut plus que le pion."]
+        },
+        "u1-l09-s06": {
+          "prompt": "Il y a un pion noir en d5. Avec quelle pièce vaut-il mieux le prendre ?",
+          "options": ["Avec le pion e4", "Avec la dame"],
+          "explanation": "Avec le pion : si la dame noire reprend, ta dame prend la sienne.",
+          "feedback": ["", "Avec la dame, les dames s'échangent. Il y a mieux."]
+        },
+        "u1-l09-s07": { "text": "Regarde la suite : le pion prend, la dame noire reprend et ta dame prend la dame noire. Tu gagnes 9 points pour un pion." }
+      }
+    },
+    "u1-l10": {
+      "title": "L'échec",
+      "summary": "Quand le roi est attaqué",
+      "steps": {
+        "u1-l10-s01": { "text": "Être en échec signifie que le roi est attaqué par une pièce adverse. Ici, la tour blanche fait échec au roi noir." },
+        "u1-l10-s02": { "text": "Le roi ne se prend jamais. S'il est en échec, le joueur doit parer l'échec au coup suivant." },
+        "u1-l10-s03": { "prompt": "Fais échec au roi noir avec la tour.", "hint": "Va sur la rangée 8 par la colonne a.", "success": "Correct" },
+        "u1-l10-s04": { "prompt": "Fais échec au roi noir avec le cavalier.", "hint": "Cherche une case d'où le cavalier attaque e8.", "success": "Correct" },
+        "u1-l10-s05": {
+          "prompt": "Le roi noir est-il en échec ?",
+          "options": ["Oui", "Non"],
+          "explanation": "La tour attaque la rangée 2 et la colonne a, pas le roi."
+        },
+        "u1-l10-s06": {
+          "prompt": "Le roi noir est-il en échec ?",
+          "options": ["Oui", "Non"],
+          "explanation": "La tour attaque sur la colonne e et rien ne la bloque."
+        }
+      }
+    },
+    "u1-l11": {
+      "title": "Parer l'échec",
+      "summary": "Trois façons de sauver le roi",
+      "steps": {
+        "u1-l11-s01": { "text": "Si ton roi est en échec, tu dois parer l'échec. Première façon : déplacer le roi sur une case qui n'est pas attaquée." },
+        "u1-l11-s02": { "text": "Deuxième façon : bloquer l'attaque en interposant une pièce." },
+        "u1-l11-s03": { "text": "Troisième façon : prendre la pièce qui fait échec." },
+        "u1-l11-s04": { "prompt": "Bloque l'échec avec le cavalier.", "hint": "Place le cavalier sur la colonne e, entre la tour et le roi.", "success": "Correct" },
+        "u1-l11-s05": { "prompt": "Prends avec le fou la pièce qui fait échec.", "hint": "L'attaquant est le cavalier blanc.", "success": "Correct" },
+        "u1-l11-s06": { "prompt": "Déplace le roi sur une case sûre.", "hint": "La tour contrôle toute la rangée 8.", "success": "Correct" },
+        "u1-l11-s07": { "text": "Si aucune des trois solutions ne marche, il n'y a pas d'issue : c'est échec et mat. Nous le verrons dans la prochaine leçon." }
+      }
+    },
+    "u1-l12": {
+      "title": "Échec et mat en un coup",
+      "summary": "Comment la partie se termine",
+      "steps": {
+        "u1-l12-s01": { "text": "Échec et mat : le roi est en échec et n'a aucun moyen d'y échapper. La partie se termine et le joueur qui a donné mat gagne. Ici, le roi noir est enfermé par ses propres pions." },
+        "u1-l12-s02": { "text": "La dame fait échec et le roi blanc la protège : le roi noir ne peut ni la prendre ni s'échapper." },
+        "u1-l12-s03": { "prompt": "Donne échec et mat en un coup.", "hint": "La tour monte par la colonne a.", "success": "Correct" },
+        "u1-l12-s04": { "prompt": "Donne échec et mat en un coup.", "hint": "Place la dame là où ton roi la protège.", "success": "Correct" },
+        "u1-l12-s05": { "prompt": "Donne échec et mat avec les deux tours.", "hint": "Une tour ferme la rangée 7 ; l'autre fait échec sur la rangée 8.", "success": "Correct" },
+        "u1-l12-s06": {
+          "prompt": "Est-ce échec et mat ?",
+          "options": ["Oui", "Non, le roi peut s'échapper"],
+          "explanation": "Le roi peut aller en d7, e7 ou f7."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,386 @@
+{
+  "title": "Basic tactics",
+  "lessons": {
+    "u3-l01": {
+      "title": "The fork",
+      "summary": "One piece attacks two at once",
+      "steps": {
+        "u3-l01-s01": { "text": "A fork is one piece attacking two at once: your opponent can only save one. Here the knight checks the king and attacks the queen." },
+        "u3-l01-s02": { "text": "Pawns can fork too. When it advances, this pawn attacks the rook and the knight: one of them will be lost." },
+        "u3-l01-s03": {
+          "prompt": "Fork with the knight: attack the king and the rook.",
+          "hint": "Find the square from which the knight attacks g8 and e8 at once.",
+          "success": "Correct. Nf6+ gives check and attacks the rook: after the check, you capture it."
+        },
+        "u3-l01-s04": {
+          "prompt": "Knights aren't the only forking pieces: find one with the bishop.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for a bishop check that, on the same diagonal or the other one, attacks a big piece.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l01-s05": {
+          "prompt": "Advance the pawn to attack two pieces at once.",
+          "hint": "Pawns capture diagonally: find where it attacks both pieces.",
+          "success": "Correct. The pawn attacks the rook and the knight."
+        },
+        "u3-l01-s06": {
+          "prompt": "Fork with the queen: check the king and attack the rook.",
+          "hint": "Look for a check on the king's diagonal that also attacks, along a diagonal, the rook on b7.",
+          "success": "Correct. Qd5+ gives check and attacks the rook on b7."
+        },
+        "u3-l01-s07": {
+          "prompt": "Win the queen with a fork. After the check, capture it.",
+          "success": "Correct. Ne7+ and, when the king moves, Nxc8: you won the queen.",
+          "hint": "Look for a knight check that also attacks the queen on c8.",
+          "notes": ["", "", ""]
+        },
+        "u3-l01-s08": {
+          "prompt": "From which square does the knight attack both black rooks?",
+          "options": ["f7", "e6", "g6"],
+          "explanation": "From f7, the knight attacks d8 and h8: that's a fork on both rooks.",
+          "feedback": ["", "From e6 the knight attacks d8, but not h8.", "From g6 the knight attacks h8, but not d8."]
+        },
+        "u3-l01-s09": {
+          "prompt": "Find the fork.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for a move that attacks two pieces at once, ideally with one of them the king.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l01-s10": {
+          "prompt": "Find the fork.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for a move that attacks two pieces at once, ideally with one of them the king.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u3-l02": {
+      "title": "The pin",
+      "summary": "A piece that can't move",
+      "steps": {
+        "u3-l02-s01": { "text": "The knight can't move: if it did, the bishop would be giving check to the king. It's pinned. When the king is behind it, that's an absolute pin." },
+        "u3-l02-s02": { "text": "If the queen is behind it, that's a relative pin: the knight can move, but the bishop would capture the queen." },
+        "u3-l02-s03": {
+          "prompt": "Can the black knight on c6 move?",
+          "options": ["Yes", "No, it's pinned to the king"],
+          "explanation": "The bishop on b5 points at the king on e8 through the knight: if the knight moves, the king is in check.",
+          "feedback": ["Look at the diagonal of the bishop on b5: what's behind the knight?", ""]
+        },
+        "u3-l02-s04": {
+          "prompt": "Pin the knight on c6 to the king with your bishop.",
+          "hint": "The bishop on f1 can get onto the diagonal that connects the knight and the king.",
+          "success": "Correct. Bb5 pins the knight: it can't move without leaving the king in check."
+        },
+        "u3-l02-s05": {
+          "prompt": "Pin the queen to the king and win it.",
+          "hint": "The black queen and king are on the same diagonal. Put your bishop on it, protected by the pawn.",
+          "success": "Correct. Bd4 pins the queen: if it captures the bishop, the pawn captures the queen."
+        },
+        "u3-l02-s06": {
+          "prompt": "The knight on f6 is pinned to the queen. Attack it with a pawn.",
+          "hint": "A pawn can attack the knight: since it's pinned, moving it is a bad idea.",
+          "success": "Correct. The knight can't escape without giving up the queen: you win a piece."
+        },
+        "u3-l02-s07": {
+          "prompt": "Is this pin absolute or relative?",
+          "options": ["Absolute: the king is behind it", "Relative: the queen is behind it"],
+          "explanation": "The queen is behind the knight, not the king: the knight can move, but the queen would be lost.",
+          "feedback": ["Look at which piece is behind the knight, on the bishop's diagonal.", ""]
+        },
+        "u3-l02-s08": { "text": "To defend against a pin, protect the pinned piece or move the king or queen off the line. Here Be7 cuts the diagonal and the knight is free again." },
+        "u3-l02-s09": {
+          "prompt": "Take advantage of the pin.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for a piece that can't move because the king or queen is behind it.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l02-s10": {
+          "prompt": "Take advantage of the pin.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for a piece that can't move because the king or queen is behind it.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u3-l03": {
+      "title": "The discovered attack",
+      "summary": "One piece steps aside and unveils another",
+      "steps": {
+        "u3-l03-s01": { "text": "In a discovered attack, one piece moves and unveils the attack of the piece behind it. Here the bishop gives check and, at the same time, the rook attacks the queen." },
+        "u3-l03-s02": {
+          "prompt": "Move the knight with check and win the queen.",
+          "hint": "If the knight leaves e4 with check, the rook attacks the queen and there's no time to save it.",
+          "success": "Correct. Nf6+ gives check and unveils the rook's attack on the queen."
+        },
+        "u3-l03-s03": {
+          "prompt": "Advance a pawn with check: as it moves, it unveils your bishop's attack.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "The pawn in front of your bishop can give check by advancing.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l03-s04": {
+          "prompt": "Which white piece do you have to move so the rook attacks the queen?",
+          "options": ["The bishop on e4", "The rook on e1", "The king"],
+          "explanation": "The bishop is blocking the e-file: when it moves, the rook attacks the queen.",
+          "feedback": ["", "The rook is already on the file: another piece is blocking it.", "The king isn't on the e-file."]
+        },
+        "u3-l03-s05": {
+          "prompt": "Tap the white piece that, when it moves, discovers an attack on the black queen.",
+          "hint": "Look at the a-file: one of your pieces is between the rook and the queen."
+        },
+        "u3-l03-s06": {
+          "prompt": "Give a discovered check with the bishop and win the queen.",
+          "success": "Correct. Bf5+ and then Bxc8: the rook's check left no time to save the queen.",
+          "hint": "The bishop can move away with a discovered check and attack the queen on c8 at the same time.",
+          "notes": ["", "", ""]
+        },
+        "u3-l03-s07": { "text": "To find discovered attacks, look for your pieces lined up with the enemy king or queen, with another of your pieces in between. If the middle piece moves with a threat, your opponent can't deal with both." },
+        "u3-l03-s08": {
+          "prompt": "Find the discovered attack.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Move the piece that's blocking another of yours: that way you attack two things at once.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l03-s09": {
+          "prompt": "Find the discovered attack.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Move the piece that's blocking another of yours: that way you attack two things at once.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u3-l04": {
+      "title": "Double check and double attack",
+      "summary": "Two threats in one move",
+      "steps": {
+        "u3-l04-s01": { "text": "In a double check, two pieces give check at once. You can't block both or capture both: the only option is to move the king. Here the black queen could capture the knight, but the rook's check would remain." },
+        "u3-l04-s02": {
+          "prompt": "Give double check with the knight and the bishop.",
+          "hint": "If the knight leaves the bishop's diagonal with check, that's two checks at once.",
+          "success": "Correct. The knight gives check and unveils the bishop's check: the king has to move."
+        },
+        "u3-l04-s03": {
+          "prompt": "Give double check: it's mate.",
+          "hint": "The knight can give check and unveil the rook's check. The king is surrounded by its own pieces.",
+          "success": "Correct. Double check and mate: the king has nowhere to go."
+        },
+        "u3-l04-s04": { "text": "The queen is an expert at double attacks: it can attack two loose pieces at once, on different lines." },
+        "u3-l04-s05": {
+          "prompt": "Give check with the queen and attack the rook at the same time.",
+          "hint": "Look for a check on the king's diagonal that also points at the rook on a2.",
+          "success": "Correct. Check and an attack on the rook: after the check, you capture it."
+        },
+        "u3-l04-s06": {
+          "prompt": "Attack the knight and the bishop at once, since both are loose.",
+          "hint": "The knight and the bishop are on the same rank: get onto that rank.",
+          "success": "Correct. The queen attacks both pieces: only one can be saved."
+        },
+        "u3-l04-s07": {
+          "prompt": "Why is double check so strong?",
+          "options": ["The only answer is to move the king", "It's always mate", "It always wins the queen"],
+          "explanation": "With two checks at once, blocking or capturing one piece isn't enough: the king has to move.",
+          "feedback": ["", "It isn't always mate: sometimes the king has a free square.", "That depends on the position: what's certain is that the king has to move."]
+        },
+        "u3-l04-s08": {
+          "prompt": "Give double check.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for a move where two pieces give check at once.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l04-s09": {
+          "prompt": "Give double check.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for a move where two pieces give check at once.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u3-l05": {
+      "title": "Remove the defender",
+      "summary": "Capture the piece doing the defending",
+      "steps": {
+        "u3-l05-s01": { "text": "If one piece defends another, capture or trade the defender: the other piece is left unprotected. Here the knight on f6 defends the rook on d5. If you capture it with check, there's no time to save the rook." },
+        "u3-l05-s02": {
+          "prompt": "Tap the black piece that defends the rook on d5.",
+          "hint": "Look for the black piece that could recapture on d5."
+        },
+        "u3-l05-s03": {
+          "prompt": "Remove the defender with check and win the rook.",
+          "success": "Correct. Bxf6+ and, after Kxf6, Nxd5+: the rook had lost its defender.",
+          "hint": "First capture the piece that defends the rook.",
+          "notes": ["", "", ""]
+        },
+        "u3-l05-s04": {
+          "prompt": "Trade off the defender of the bishop on b4 and win it.",
+          "success": "Correct. You traded your bishop for the knight and won the bishop on b4.",
+          "hint": "The knight on c6 defends the bishop: your bishop can capture it.",
+          "notes": ["", "", ""]
+        },
+        "u3-l05-s05": {
+          "prompt": "The knight on f6 defends h7. Remove it and threaten mate.",
+          "hint": "Your queen and knight attack h7. Only the knight on f6 defends it.",
+          "success": "Correct. Without the knight, Qxh7 is mate."
+        },
+        "u3-l05-s06": {
+          "prompt": "Which move wins more material?",
+          "options": ["Bxf6+ and then Nxd5", "Nxd5 right away", "Bh4"],
+          "explanation": "Nxd5 Nxd5 trades the rook for a knight. Bxf6+ first wins the whole rook: the defender is gone.",
+          "feedback": ["", "Nxd5 wins something, but the knight on f6 recaptures. Remove the defender first.", "Bh4 wins nothing."]
+        },
+        "u3-l05-s07": { "text": "Before attacking a piece, check who defends it. If you can capture or trade the defender, the piece is left hanging." },
+        "u3-l05-s08": {
+          "prompt": "Remove the defender and win material.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Find which piece defends another and capture it or trade it.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l05-s09": {
+          "prompt": "Remove the defender and win material.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Find which piece defends another and capture it or trade it.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u3-l06": {
+      "title": "Deflection",
+      "summary": "Pull the defender out of position",
+      "steps": {
+        "u3-l06-s01": { "text": "A deflection forces a piece to leave the square it's defending. Here the rook on d8 defends the queen and the back rank. If the white queen captures, the rook has to recapture and leaves e8 unguarded." },
+        "u3-l06-s02": {
+          "prompt": "Tap the black piece that has two jobs at once.",
+          "hint": "One piece defends the queen and also the square e8."
+        },
+        "u3-l06-s03": {
+          "prompt": "Deflect the rook that defends the back rank and deliver mate.",
+          "success": "Correct. The rook had to recapture and Re8 was mate.",
+          "hint": "The rook on c8 defends the bishop and the back rank. Capture the bishop.",
+          "notes": ["", "", ""]
+        },
+        "u3-l06-s04": {
+          "prompt": "Give check with the queen: the rook has to capture it and the back rank is left undefended.",
+          "success": "Correct. Qe8+ forces the rook to capture and Rxe8 is mate.",
+          "hint": "Look for a queen check on e8: your rook also points at that square.",
+          "notes": ["", "", ""]
+        },
+        "u3-l06-s05": {
+          "prompt": "The black king defends the bishop on d8. Give check with the pawn to deflect it and win the bishop.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "A pawn check forces the king to capture it and move away from the bishop.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l06-s06": {
+          "prompt": "Which black piece is overloaded?",
+          "options": ["The rook on c8", "The bishop on c6", "The king"],
+          "explanation": "The rook on c8 defends the bishop and also the back rank: it can't do both.",
+          "feedback": ["", "The bishop isn't defending anything important: the rook defends it.", "The king can't get past its pawns, but it isn't defending anything."]
+        },
+        "u3-l06-s07": { "text": "A piece that defends two things at once is overloaded. If you force it to deal with one, the other is left undefended." },
+        "u3-l06-s08": {
+          "prompt": "Deflect the defender.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Force an enemy piece to leave the square it defends, usually with a check.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l06-s09": {
+          "prompt": "Deflect the defender.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Force an enemy piece to leave the square it defends, usually with a check.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u3-l07": {
+      "title": "Back-rank mate and Scholar's Mate",
+      "summary": "Two mates worth knowing",
+      "steps": {
+        "u3-l07-s01": { "text": "In a back-rank mate, the king is shut in on the back rank by its own pawns, and a rook or the queen delivers mate." },
+        "u3-l07-s02": {
+          "prompt": "Deliver a back-rank mate.",
+          "hint": "The black king can't get off the back rank.",
+          "success": "Correct. Rd8 is mate."
+        },
+        "u3-l07-s03": {
+          "prompt": "You're playing Black. Deliver a back-rank mate.",
+          "hint": "The white king is shut in by its pawns.",
+          "success": "Correct. Re1 is mate."
+        },
+        "u3-l07-s04": { "text": "To avoid it, give your king an exit: a pawn move like h3 frees up h2. Having a rook guard the back rank works too." },
+        "u3-l07-s05": {
+          "prompt": "Black threatens Rd1 mate. Which move stops it?",
+          "options": ["h3", "a3", "b4"],
+          "explanation": "With h3, the king has the square h2 to escape to: Rd1+ is no longer mate.",
+          "feedback": ["", "a3 doesn't give the king an exit.", "b4 doesn't give the king an exit."]
+        },
+        "u3-l07-s06": { "text": "Scholar's Mate: the queen and bishop team up on f7, the weak square defended only by the king. If Black doesn't see it, Qxf7 is mate." },
+        "u3-l07-s07": {
+          "prompt": "You're playing Black. The queen and bishop threaten Qxf7 mate. Defend yourself.",
+          "hint": "Defend f7 with your queen or knight, or attack the white queen with a pawn.",
+          "success": "Correct. There's no more mate on f7."
+        },
+        "u3-l07-s08": {
+          "prompt": "Which square do the white queen and bishop attack together?",
+          "options": ["f7", "e5", "h7"],
+          "explanation": "f7: the queen on h5 and the bishop on c4 attack it, and only the king defends it.",
+          "feedback": ["", "e5 is attacked only by the queen.", "h7 is attacked only by the queen, and the rook defends it."]
+        },
+        "u3-l07-s09": {
+          "prompt": "Deliver a back-rank mate.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "The king is shut in on the back rank by its own pawns.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l07-s10": {
+          "prompt": "Deliver a back-rank mate.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "The king is shut in on the back rank by its own pawns.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u3-l08": {
+      "title": "Before you move: checks, captures and threats",
+      "summary": "The routine that keeps your pieces safe",
+      "steps": {
+        "u3-l08-s01": { "text": "Before each move, follow a routine: first, what does your opponent's last move threaten? Then, go through your checks, your captures and your threats." },
+        "u3-l08-s02": {
+          "prompt": "Black just played b5. Tap your piece that's now under attack.",
+          "hint": "The pawn on b5 attacks diagonally."
+        },
+        "u3-l08-s03": {
+          "prompt": "Black just played Nb4. What's the threat?",
+          "options": ["A fork on c2: check to the king and an attack on the rook", "A pin", "A discovered attack"],
+          "explanation": "From c2, the knight would check the king on e1 and attack the rook on a1.",
+          "feedback": ["", "Look at where the knight can jump.", "Look at where the knight can jump."]
+        },
+        "u3-l08-s04": {
+          "prompt": "Stop the knight fork on c2.",
+          "hint": "Cover the square c2, or move the king or the rook out of the way.",
+          "success": "Correct. The fork no longer works."
+        },
+        "u3-l08-s05": {
+          "prompt": "Black left a piece undefended. Capture it.",
+          "hint": "Go through your captures: which black piece has no defender?",
+          "success": "Correct. The bishop on g4 was undefended."
+        },
+        "u3-l08-s06": {
+          "prompt": "Tap all the black pieces you can capture for free.",
+          "hint": "Look for black pieces that your pieces attack and that nothing defends."
+        },
+        "u3-l08-s07": { "text": "The tactics in this unit can be used against you too. Going through checks, captures and threats before you move helps you see them coming." },
+        "u3-l08-s08": {
+          "prompt": "Go through checks, captures and threats.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look at which enemy pieces were left loose after their move.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l08-s09": {
+          "prompt": "Go through checks, captures and threats.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look at which enemy pieces were left loose after their move.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    }
+  }
+}

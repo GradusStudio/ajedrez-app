@@ -2681,5 +2681,458 @@
         }
       }
     }
+  },
+  "nimzo-indian": {
+    "name": "Nimzowitsch-Indische Verteidigung",
+    "summary": "Du fesselst den Springer auf c3 und kämpfst mit Figuren um das Zentrum.",
+    "lessons": {
+      "nimzo-indian-l01": {
+        "title": "Die Idee der Nimzowitsch-Indischen Verteidigung",
+        "summary": "Fesselung auf c3 und Doppelbauern",
+        "steps": {
+          "nimzo-indian-l01-s01": {
+            "text": "Mit ...Lb4 fesselst du den Springer auf c3 und verhinderst, dass Weiß e4 besetzt."
+          },
+          "nimzo-indian-l01-s02": {
+            "text": "Oft tauschst du den Läufer gegen den Springer und hinterlässt Weiß Doppelbauern."
+          },
+          "nimzo-indian-l01-s03": {
+            "text": "Du gibst das Läuferpaar ab und bekommst dafür eine bessere Struktur und Druck auf das Zentrum."
+          },
+          "nimzo-indian-l01-s04": {
+            "prompt": "Was erreichst du mit ...Lb4?",
+            "explanation": "Das ist der Zug, der die Eröffnung ausmacht.",
+            "options": [
+              "Den Springer auf c3 fesseln und e4 im Blick behalten",
+              "Die Dame angreifen",
+              "Die lange Rochade vorbereiten"
+            ]
+          },
+          "nimzo-indian-l01-s05": {
+            "prompt": "Was hinterlässt du Weiß nach ...Lxc3 und bxc3?",
+            "explanation": "Das ist der positive Ausgleich für den Abtausch.",
+            "options": [
+              "Einen isolierten h-Bauern",
+              "Doppelbauern auf der c-Linie",
+              "Nichts Besonderes"
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l02": {
+        "title": "Hauptvariante",
+        "summary": "Die Rubinstein-Variante",
+        "steps": {
+          "nimzo-indian-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Nimzowitsch-Indischen Verteidigung.",
+            "notes": [
+              "",
+              "Du entwickelst dich und kontrollierst e4.",
+              "",
+              "Bereitet ...d5 vor.",
+              "",
+              "Nimzowitsch-Indisch: Du fesselst den Springer.",
+              "",
+              "Der König ist in Sicherheit.",
+              "",
+              "Du besetzt das Zentrum.",
+              "",
+              "Du greifst das Zentrum mit einem Bauern an.",
+              "",
+              "Du entwickelst dich und setzt d4 unter Druck.",
+              "",
+              "Du gibst den Läufer ab, um die Bauern zu verdoppeln.",
+              "",
+              "Du schlägst und stellst das Gleichgewicht wieder her.",
+              "",
+              "Die Dame übt Druck auf der c-Linie aus."
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Fesselung und Tausch",
+        "steps": {
+          "nimzo-indian-l03-s01": {
+            "prompt": "Fessle den Springer auf c3.",
+            "hint": "Der Läufer zieht nach b4.",
+            "success": "Richtig"
+          },
+          "nimzo-indian-l03-s02": {
+            "prompt": "Bringe den König in Sicherheit.",
+            "hint": "Die kurze Rochade.",
+            "success": "Richtig"
+          },
+          "nimzo-indian-l03-s03": {
+            "prompt": "Was machst du, wenn Weiß a3 spielt?",
+            "explanation": "Der Tausch auf c3 beschädigt die weiße Struktur.",
+            "options": [
+              "Du tauschst den Läufer auf c3",
+              "Du ziehst den Läufer nach e7 zurück",
+              "Du verlierst den Läufer"
+            ]
+          }
+        }
+      },
+      "nimzo-indian-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "nimzo-indian-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "nimzo-indian-l04-s02": {
+            "prompt": "Auf welcher Linie übt deine Dame Druck aus?",
+            "explanation": "Die Doppelbauern sind ihr Ziel.",
+            "options": [
+              "Auf der c-Linie",
+              "Auf der h-Linie",
+              "Auf der a-Linie"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "petrov": {
+    "name": "Russische Verteidigung",
+    "summary": "Du kopierst den weißen Angriff, statt dich zu verteidigen: solide, symmetrisch und schwer zu schlagen.",
+    "lessons": {
+      "petrov-l01": {
+        "title": "Die Idee der Russischen Verteidigung",
+        "summary": "Symmetrischer Gegenangriff",
+        "steps": {
+          "petrov-l01-s01": {
+            "text": "Du antwortest auf den Angriff mit einem eigenen Angriff: ...Sf6 bedroht den Bauern auf e4."
+          },
+          "petrov-l01-s02": {
+            "text": "Zuerst vertreibst du den Springer mit ...d6, erst danach schlägst du auf e4. Die Reihenfolge ist wichtig."
+          },
+          "petrov-l01-s03": {
+            "text": "Nach ...Sxe4 und ...d5 hast du ein festes Zentrum und aktive Figuren."
+          },
+          "petrov-l01-s04": {
+            "prompt": "Was machst du, bevor du auf e4 schlägst?",
+            "explanation": "Wenn du sofort schlägst, bringt De2 Schwarz in eine unangenehme Stellung mit dem Risiko, Material zu verlieren.",
+            "options": [
+              "Den Springer auf e5 mit ...d6 vertreiben",
+              "Rochieren",
+              "Damen tauschen"
+            ]
+          },
+          "petrov-l01-s05": {
+            "prompt": "Warum nicht direkt 3...Sxe4?",
+            "explanation": "Mit dem Springer noch auf e5 greift De2 deinen Springer an und droht ein Abzugsschach.",
+            "options": [
+              "Weil du den Läufer verlierst",
+              "Weil De2 dich in eine sehr unangenehme Stellung bringt",
+              "Weil es illegal ist"
+            ]
+          }
+        }
+      },
+      "petrov-l02": {
+        "title": "Hauptvariante",
+        "summary": "Die klassische Variante",
+        "steps": {
+          "petrov-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Russischen Verteidigung.",
+            "notes": [
+              "",
+              "Du antwortest symmetrisch.",
+              "",
+              "Gegenangriff: Du bedrohst e4.",
+              "",
+              "Zuerst vertreibst du den Springer.",
+              "",
+              "Jetzt schlägst du den Bauern.",
+              "",
+              "Du besetzt das Zentrum und deckst deinen Springer.",
+              "",
+              "Du entwickelst dich und setzt d4 unter Druck.",
+              "",
+              "Du entwickelst den Läufer.",
+              "",
+              "Du greifst den Läufer an und gewinnst Raum.",
+              "",
+              "Der König ist in Sicherheit.",
+              "",
+              "Der Läufer kommt mit Tempogewinn heraus."
+            ]
+          }
+        }
+      },
+      "petrov-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Die Zugfolge",
+        "steps": {
+          "petrov-l03-s01": {
+            "prompt": "Greife im Gegenzug den Bauern auf e4 an.",
+            "hint": "Der Springer greift e4 an.",
+            "success": "Richtig"
+          },
+          "petrov-l03-s02": {
+            "prompt": "Vertreibe den Springer von e5.",
+            "hint": "Ein Bauer greift den Springer an.",
+            "success": "Richtig"
+          },
+          "petrov-l03-s03": {
+            "prompt": "Weiß zieht den Springer nach f3 zurück. Was machst du?",
+            "explanation": "Jetzt ist es sicher.",
+            "options": [
+              "Du schlägst auf e4 mit dem Springer",
+              "Du rochierst",
+              "Du tauschst die Damen"
+            ]
+          }
+        }
+      },
+      "petrov-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "petrov-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "petrov-l04-s02": {
+            "prompt": "Welche Stellung suchst du?",
+            "explanation": "Die Russische Verteidigung ist solide und symmetrisch.",
+            "options": [
+              "Festes Zentrum und aktive Figuren",
+              "Doppelbauern",
+              "Einen schnellen Angriff"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit-declined": {
+    "name": "Abgelehntes Damengambit",
+    "summary": "Du deckst das Zentrum mit ...e6 und spielst solide: die klassische Antwort auf das Gambit.",
+    "lessons": {
+      "queens-gambit-declined-l01": {
+        "title": "Die Idee des Abgelehnten Damengambits",
+        "summary": "Solidität im Zentrum",
+        "steps": {
+          "queens-gambit-declined-l01-s01": {
+            "text": "Mit ...e6 deckst du d5 und hältst dein Zentrum, ohne dich auf Komplikationen einzulassen."
+          },
+          "queens-gambit-declined-l01-s02": {
+            "text": "Der c8-Läufer ist eingesperrt, aber in der Tartakower-Variante findest du mit ...b6 einen Ausweg für ihn."
+          },
+          "queens-gambit-declined-l01-s03": {
+            "text": "Du tauschst Figuren, um deine Stellung zu befreien und das Spiel auszugleichen."
+          },
+          "queens-gambit-declined-l01-s04": {
+            "prompt": "Warum ...e6?",
+            "explanation": "Das ist die solideste Art, das Zentrum zu halten.",
+            "options": [
+              "Deckt d5 mit einem Bauern",
+              "Greift die Dame an",
+              "Bereitet die lange Rochade vor"
+            ]
+          },
+          "queens-gambit-declined-l01-s05": {
+            "prompt": "Welches Problem hat der c8-Läufer?",
+            "explanation": "Mit ...b6 und ...Lb7 (oder ...Le6) wird er befreit.",
+            "options": [
+              "Er hat keine Probleme",
+              "Er ist hinter den Bauern eingesperrt",
+              "Er ist gefesselt"
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l02": {
+        "title": "Hauptvariante",
+        "summary": "Die Tartakower-Variante",
+        "steps": {
+          "queens-gambit-declined-l02-s01": {
+            "prompt": "Spiele die Hauptvariante des Abgelehnten Damengambits.",
+            "notes": [
+              "",
+              "Du besetzt das Zentrum.",
+              "",
+              "Du deckst d5.",
+              "",
+              "Du entwickelst dich und deckst d5.",
+              "",
+              "Du bereitest die Rochade vor.",
+              "",
+              "Der König ist in Sicherheit.",
+              "",
+              "Du stellst den Läufer zur Rede.",
+              "",
+              "Du öffnest die Diagonale des c8-Läufers.",
+              "",
+              "Du holst den Bauern mit dem Springer zurück.",
+              "",
+              "Du schlägst mit der Dame zurück.",
+              "",
+              "Du holst die Figur mit deinem Bauern zurück.",
+              "",
+              "Dein Läufer kommt aktiv heraus."
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Solidität vor Ehrgeiz",
+        "steps": {
+          "queens-gambit-declined-l03-s01": {
+            "prompt": "Besetze das Zentrum.",
+            "hint": "Der Zentrumsbauer zieht vor.",
+            "success": "Richtig"
+          },
+          "queens-gambit-declined-l03-s02": {
+            "prompt": "Decke d5 mit einem Bauern.",
+            "hint": "Der e-Bauer verteidigt das Zentrum.",
+            "success": "Richtig"
+          },
+          "queens-gambit-declined-l03-s03": {
+            "prompt": "Was machst du mit dem c8-Läufer?",
+            "explanation": "Mit ...b6 öffnest du die Diagonale.",
+            "options": [
+              "Du befreist ihn mit ...b6",
+              "Du ziehst ihn nach h3",
+              "Du tauschst ihn gegen den Springer"
+            ]
+          }
+        }
+      },
+      "queens-gambit-declined-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "queens-gambit-declined-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "queens-gambit-declined-l04-s02": {
+            "prompt": "Welche Struktur hast du am Ende?",
+            "explanation": "Die Stellung ist fest und bequem für Schwarz.",
+            "options": [
+              "Zentrumsbauer auf d5 und freier Läufer",
+              "Doppelbauern",
+              "Keine Zentrumsbauern"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit-accepted": {
+    "name": "Angenommenes Damengambit",
+    "summary": "Wenn Schwarz auf c4 schlägt, holst du den Bauern mit Entwicklung und Kontrolle über das Zentrum zurück.",
+    "lessons": {
+      "queens-gambit-accepted-l01": {
+        "title": "Die Idee des Angenommenen Damengambits",
+        "summary": "Den Bauern mit Vorteil zurückholen",
+        "steps": {
+          "queens-gambit-accepted-l01-s01": {
+            "text": "Wenn Schwarz auf c4 schlägt, mach dir keine Sorgen: Den Bauern holst du fast immer zurück."
+          },
+          "queens-gambit-accepted-l01-s02": {
+            "text": "Du entwickelst dich mit e3 und Lxc4 und hast Raumvorteil im Zentrum."
+          },
+          "queens-gambit-accepted-l01-s03": {
+            "text": "Danach folgen Rochade, Dc2 oder De2 und die Ausdehnung im Zentrum. Schwarz muss seinen Damenflügel verteidigen."
+          },
+          "queens-gambit-accepted-l01-s04": {
+            "prompt": "Was machst du, wenn Schwarz auf c4 schlägt?",
+            "explanation": "Den Bauern auf c4 holst du mit Lxc4 zurück, nachdem du e3 gespielt hast.",
+            "options": [
+              "Du entwickelst dich und holst den Bauern zurück",
+              "Du gibst ihn für immer verloren",
+              "Du tauschst die Damen"
+            ]
+          },
+          "queens-gambit-accepted-l01-s05": {
+            "prompt": "Welche Figur holt den Bauern zurück?",
+            "explanation": "Nach e3 schlägt der f1-Läufer auf c4.",
+            "options": [
+              "Die Dame",
+              "Der f1-Läufer",
+              "Der b1-Springer"
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l02": {
+        "title": "Hauptvariante",
+        "summary": "Entwicklung und Druck",
+        "steps": {
+          "queens-gambit-accepted-l02-s01": {
+            "prompt": "Spiele die Hauptvariante des Angenommenen Damengambits.",
+            "notes": [
+              "Du besetzt das Zentrum.",
+              "",
+              "Du bietest das Gambit an.",
+              "",
+              "Du entwickelst dich und kontrollierst e5.",
+              "",
+              "Du öffnest dem f1-Läufer den Weg.",
+              "",
+              "Du holst den Bauern zurück.",
+              "",
+              "Der König ist in Sicherheit.",
+              "",
+              "Die Dame stützt das Zentrum und die e-Linie.",
+              "",
+              "Der Läufer zieht sich zurück und hält den Druck.",
+              "",
+              "Der Turm besetzt die d-Linie.",
+              "",
+              "Du schließt die Entwicklung ab."
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Hole ihn in Ruhe zurück",
+        "steps": {
+          "queens-gambit-accepted-l03-s01": {
+            "prompt": "Biete das Gambit an.",
+            "hint": "Ein Bauer am Damenflügel zieht vor.",
+            "success": "Richtig"
+          },
+          "queens-gambit-accepted-l03-s02": {
+            "prompt": "Entwickle dich und folge dem Plan.",
+            "hint": "Der Springer zieht nach f3.",
+            "success": "Richtig"
+          },
+          "queens-gambit-accepted-l03-s03": {
+            "prompt": "Wie holst du den Bauern auf c4 zurück?",
+            "explanation": "Der f1-Läufer schlägt den Bauern und steht aktiv.",
+            "options": [
+              "Mit Lxc4",
+              "Mit b3",
+              "Mit a4"
+            ]
+          }
+        }
+      },
+      "queens-gambit-accepted-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "queens-gambit-accepted-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "queens-gambit-accepted-l04-s02": {
+            "prompt": "Was macht der Turm auf d1?",
+            "explanation": "Das ist die Linie des Bauern auf d4.",
+            "options": [
+              "Er besetzt die d-Linie",
+              "Er greift den König an",
+              "Er deckt den Bauern auf a2"
+            ]
+          }
+        }
+      }
+    }
   }
 }

@@ -151,6 +151,18 @@ Los niveles son objetivos, no medidos: hay que calibrarlos jugando.
   - Si gana: «Revisa la partida: vas a aprender mucho.»
   - Si pierde: «Impresionante. Me ganaste.»
 
+## 2.1 Voces de profesor (`teaching`)
+
+Cada bot enseña lecciones y escribe avisos (ver el diseño de los personajes). Sus frases viven en `teaching`, dentro de cada bot de `bots.json` (y su copia en `src/data/`):
+
+- `welcome`: tres frases de bienvenida al empezar una lección.
+- `close`: tres frases de cierre al terminarla.
+- `reminder.risk`: aviso de racha en juego; lleva `{n}` (días de racha) y está redactado para leerse bien con cualquier número.
+- `reminder.recovery`: aviso de recuperación; nombra puzzle, lección y bot para que queden claras las tres acciones.
+- `reminder.general`: aviso del resto de los días.
+
+Reglas: sin exclamaciones, sin datos de ajedrez y nunca retan. Quién enseña qué está en `src/data/teachers.ts`.
+
 ## 3. Cómo se logra cada nivel
 
 | Tipo | Bots | Cómo funciona |

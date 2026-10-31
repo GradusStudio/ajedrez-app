@@ -7,6 +7,7 @@ import { Chip } from '../components/Chip';
 import { FadeIn } from '../components/FadeIn';
 import { FeedbackPanel } from '../components/FeedbackPanel';
 import { useFeedback } from '../feedback/feedback';
+import { useI18n } from '../i18n/I18nContext';
 import { Earned, useProgress } from '../progress/ProgressContext';
 import { PuzzleResult } from '../progress/progressStore';
 import { displayThemes, Puzzle, puzzleGoal, userColor } from '../puzzles/puzzles';
@@ -29,17 +30,13 @@ const SOLUTION_STEP_MS = 800; // ritmo al mostrar la solución
 const FADE_IN_MS = 220; // entrada suave de cada puzzle
 const MAX_SESSION_SECONDS = 30 * 60;
 
-/** Texto de las monedas ganadas, para sumar al mensaje del panel. */
-const coinsMessage = (e: Earned | null) =>
-  (e?.coins ? ` +${e.coins} ${e.coins === 1 ? 'moneda' : 'monedas'}.` : '') +
-  (e?.dailyBonus ? ` Premio del día: +${e.dailyBonus} monedas.` : '') +
-  (e?.streakRecovered ? ' Recuperaste tu racha.' : '');
 
 const toSquares = (uci: string): SquareMove => ({ from: uci.slice(0, 2) as Square, to: uci.slice(2, 4) as Square });
 
 // Puzzle de Lichess: el rival hace la primera jugada y el usuario busca la solución (mapa-de-pantallas.md, 2.8).
 export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   const { finishPuzzle } = useProgress();
+  const { t, tn } = useI18n();
   const feedback = useFeedback();
   const [chess] = useState(() => new Chess(puzzle.fen));
   const [fen, setFen] = useState(puzzle.fen);
@@ -82,10 +79,10 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   useEffect(() => {
     startedAt.current = Date.now();
     Animated.timing(fade, { toValue: 1, duration: FADE_IN_MS, useNativeDriver: true }).start();
-    const t = setTimeout(() => apply(0), OPPONENT_DELAY_MS);
+    const opponent = setTimeout(() => apply(0), OPPONENT_DELAY_MS);
     const pending = timers.current;
     return () => {
-      clearTimeout(t);
+      clearTimeout(opponent);
       pending.forEach(clearTimeout);
     };
     // Solo al montar: `apply` usa el `chess` de este puzzle.
@@ -154,14 +151,22 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
     }
   };
 
-  const side = me === 'w' ? 'Juegan las blancas' : 'Juegan las negras';
+  const side = me === 'w' ? t('common.whiteToMove') : t('common.blackToMove');
   const done = status !== 'playing';
+
+  /** Frases de las monedas ganadas, para sumar al mensaje del panel. */
+  const coinsMessage = (e: Earned | null) =>
+    [
+      e?.coins ? tn('puzzles.earnedCoins', e.coins) : '',
+      e?.dailyBonus ? t('common.dailyBonus', { n: e.dailyBonus }) : '',
+      e?.streakRecovered ? t('common.streakRecovered') : '',
+    ].filter(Boolean);
 
   return (
     <Animated.View style={[styles.screen, { opacity: fade }]}>
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
         <View style={styles.topRow}>
-          <Pressable onPress={onExit} accessibilityRole="button" accessibilityLabel="Salir del puzzle" hitSlop={12}>
+          <Pressable onPress={onExit} accessibilityRole="button" accessibilityLabel={t('puzzles.exit')} hitSlop={12}>
             <Text style={styles.close}>✕</Text>
           </Pressable>
           <Chip label={label} />
@@ -176,17 +181,15 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
           onMove={handleMove}
         />
 
-        <Text style={styles.prompt}>
-          {side} · {puzzleGoal(puzzle)}
-        </Text>
+        <Text style={styles.prompt}>{t('puzzles.prompt', { side, goal: puzzleGoal(puzzle, t) })}</Text>
         <Text style={styles.meta}>
-          {ply === 0 ? 'El rival está por jugar…' : done ? `Nivel ${puzzle.rating}` : 'Tu turno'}
+          {ply === 0 ? t('puzzles.opponentToPlay') : done ? t('common.level', { n: puzzle.rating }) : t('common.yourTurn')}
         </Text>
 
-        {done && displayThemes(puzzle).length > 0 && (
+        {done && displayThemes(puzzle, t).length > 0 && (
           <View style={styles.chips}>
-            {displayThemes(puzzle).map((t) => (
-              <Chip key={t} label={t} />
+            {displayThemes(puzzle, t).map((name) => (
+              <Chip key={name} label={name} />
             ))}
           </View>
         )}
@@ -195,16 +198,16 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
         {!done && wrongMove && (
           <FadeIn style={styles.wrongCard}>
             <View accessibilityLiveRegion="polite">
-              <Text style={styles.wrongTitle}>Incorrecto</Text>
-              <Text style={styles.wrongText}>Esa no es la jugada. Deshazla y vuelve a intentar.</Text>
-              <Button3D label="Reintentar" variant="danger" onPress={retry} style={{ marginTop: space.md }} />
+              <Text style={styles.wrongTitle}>{t('common.incorrect')}</Text>
+              <Text style={styles.wrongText}>{t('puzzles.wrongText')}</Text>
+              <Button3D label={t('common.retry')} variant="danger" onPress={retry} style={{ marginTop: space.md }} />
             </View>
           </FadeIn>
         )}
         {!done && !wrongMove && (
           <View style={styles.actions}>
-            <Button3D label="Pista" onPress={hint} style={{ flex: 1 }} />
-            <Button3D label="Ver solución" variant="destructive" onPress={showSolution} style={{ flex: 1 }} />
+            <Button3D label={t('puzzles.hint')} onPress={hint} style={{ flex: 1 }} />
+            <Button3D label={t('puzzles.showSolution')} variant="destructive" onPress={showSolution} style={{ flex: 1 }} />
           </View>
         )}
 
@@ -213,21 +216,21 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
       {status === 'solved' && (
         <FeedbackPanel
           kind="correct"
-          title="Resuelto"
-          message={
-            (errors === 0 && !hintUsed ? 'Sin errores.' : errors > 0 ? `Con ${errors} ${errors === 1 ? 'error' : 'errores'}.` : 'Con pista.') +
-            coinsMessage(earned)
-          }
-          buttonLabel={onNext ? 'Siguiente puzzle' : 'Continuar'}
+          title={t('puzzles.solved')}
+          message={[
+            errors === 0 && !hintUsed ? t('puzzles.solvedClean') : errors > 0 ? tn('puzzles.solvedErrors', errors) : t('puzzles.solvedHint'),
+            ...coinsMessage(earned),
+          ].join(' ')}
+          buttonLabel={onNext ? t('puzzles.next') : t('common.continue')}
           onButton={onNext ?? onExit}
         />
       )}
       {status === 'failed' && (
         <FeedbackPanel
           kind="neutral"
-          title="Solución"
-          message={'Mira cómo se resolvía. Este puzzle queda pendiente para otra vez.' + coinsMessage(earned)}
-          buttonLabel={onNext ? 'Siguiente puzzle' : 'Continuar'}
+          title={t('puzzles.solution')}
+          message={[t('puzzles.solutionMessage'), ...coinsMessage(earned)].join(' ')}
+          buttonLabel={onNext ? t('puzzles.next') : t('common.continue')}
           onButton={onNext ?? onExit}
         />
       )}

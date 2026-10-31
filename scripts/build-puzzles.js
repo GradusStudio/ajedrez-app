@@ -155,7 +155,7 @@ function build() {
   chosen.sort((a, b) => a.rating - b.rating);
 
   // Formato compacto: [id, fen, jugadas, rating, temas conocidos]
-  const known = new Set(Object.keys(themes.names));
+  const known = new Set(themes.known);
   const out = {
     source: 'Lichess puzzle database (https://database.lichess.org/#puzzles), CC0',
     generated: new Date().toISOString().slice(0, 10),

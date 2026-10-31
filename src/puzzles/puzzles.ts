@@ -1,6 +1,7 @@
 import { Chess } from 'chess.js';
 import puzzlesRaw from './puzzles.json';
 import themesRaw from './themes.json';
+import { es, MessageKey } from '../i18n/es';
 
 // Puzzles de la base abierta de Lichess (CC0), elegidos por scripts/build-puzzles.js. Ver docs/puzzles.md.
 
@@ -23,15 +24,22 @@ export const puzzles: Puzzle[] = (puzzlesRaw as unknown as { puzzles: Raw[] }).p
 const byId = new Map(puzzles.map((p) => [p.id, p]));
 export const findPuzzle = (id: string) => byId.get(id);
 
-const themeData = themesRaw as { practice: string[]; names: Record<string, string> };
-export const themeName = (t: string) => themeData.names[t] ?? t;
+/** Función de traducción de useI18n().t. Se pasa por parámetro para que este módulo siga siendo puro. */
+export type Translate = (key: MessageKey) => string;
+
+const themeData = themesRaw as { practice: string[] };
+/** Nombre del tema en el idioma de `translate`; un tema sin nombre se muestra con su clave. */
+export const themeName = (t: string, translate: Translate) => {
+  const key = `puzzleTheme.${t}`;
+  return key in es ? translate(key as MessageKey) : t;
+};
 export const PRACTICE_THEMES = themeData.practice;
 
-/** Niveles de la práctica (rating de Lichess). */
+/** Niveles de la práctica (rating de Lichess). El nombre de cada uno es la clave `puzzles.level.<nivel>`. */
 export const LEVELS = {
-  facil: { label: 'Fácil', min: 500, max: 1200 },
-  medio: { label: 'Medio', min: 1200, max: 1800 },
-  dificil: { label: 'Difícil', min: 1800, max: 2500 },
+  facil: { min: 500, max: 1200 },
+  medio: { min: 1200, max: 1800 },
+  dificil: { min: 1800, max: 2500 },
 } as const;
 export type Level = keyof typeof LEVELS;
 
@@ -41,16 +49,15 @@ export function userColor(p: Puzzle): 'w' | 'b' {
 }
 
 /** "Mate en 2" si el puzzle es de mate; si no, "Encuentra la mejor jugada". */
-export function puzzleGoal(p: Puzzle): string {
+export function puzzleGoal(p: Puzzle, translate: Translate): string {
   const mate = p.themes.find((t) => /^mateIn\d$/.test(t));
-  if (mate) return mate === 'mateIn5' ? 'Mate en 5 o más' : themeName(mate);
-  return 'Encuentra la mejor jugada';
+  return mate ? themeName(mate, translate) : translate('puzzles.goal.best');
 }
 
 /** Temas para mostrar después de resolverlo (los tácticos y de mate, sin "corto", "ventaja", etc.). */
-export function displayThemes(p: Puzzle): string[] {
+export function displayThemes(p: Puzzle, translate: Translate): string[] {
   const hide = new Set(['short', 'long', 'veryLong', 'oneMove', 'advantage', 'crushing', 'equality', 'mate', 'middlegame', 'opening']);
-  return p.themes.filter((t) => !hide.has(t)).map(themeName);
+  return p.themes.filter((t) => !hide.has(t)).map((t) => themeName(t, translate));
 }
 
 /** Número de día (días desde 1970, hora local): cambia a medianoche. */

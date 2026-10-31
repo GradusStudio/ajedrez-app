@@ -3,6 +3,8 @@ import { Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native
 import { Bot, BotStyle } from '../data/bots';
 import { boardHighlight, colors, fonts } from '../theme';
 import { Circle3D } from './Circle3D';
+import { BOT_EXPRESSIONS } from './botExpressions.generated';
+import { BotExpression, expressionSource } from './botFace';
 
 // Avatar del bot: su personaje sobre un círculo con el color de su estilo (design.md, sección 8).
 // Un bot sin imagen en AVATARS muestra su inicial.
@@ -29,7 +31,8 @@ const AVATARS: Record<string, { source: ImageSourcePropType; scale: number }> = 
   pipo: { source: require('../../assets/bots/pipo.webp'), scale: 1 },
 };
 
-export function BotAvatar({ bot, size = 48 }: { bot: Bot; size?: number }) {
+// `expression`: cara del bot (explica, piensa, acierto, pista); sin imagen para esa cara, muestra el avatar.
+export function BotAvatar({ bot, size = 48, expression }: { bot: Bot; size?: number; expression?: BotExpression }) {
   const c = STYLE_COLOR[bot.style];
   const avatar = AVATARS[bot.id];
   const image = size * (avatar?.scale ?? 1);
@@ -38,7 +41,7 @@ export function BotAvatar({ bot, size = 48 }: { bot: Bot; size?: number }) {
       {avatar ? (
         <View style={{ width: size, height: size, borderRadius: size / 2, overflow: 'hidden' }}>
           <Image
-            source={avatar.source}
+            source={expressionSource(BOT_EXPRESSIONS, bot.id, expression, avatar.source)}
             style={{ position: 'absolute', width: image, height: image, left: (size - image) / 2, top: size - image }}
             accessibilityElementsHidden
             importantForAccessibility="no"

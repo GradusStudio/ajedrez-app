@@ -13,6 +13,7 @@ import {
 import { ProgressProvider, useProgress } from '../progress/ProgressContext';
 import { PieceSetProvider, usePieceSet } from '../settings/PieceSetContext';
 import { SettingsProvider, useSettings } from '../settings/SettingsContext';
+import { useReminderSync } from '../settings/useReminderSync';
 import { colors } from '../theme';
 
 // La pantalla de carga sigue visible hasta que AppStack termina de cargar fuentes y datos.
@@ -59,6 +60,7 @@ function AppStack() {
   const { loaded: piecesLoaded } = usePieceSet();
   const { loaded: settingsLoaded } = useSettings();
   const ready = loaded && piecesLoaded && settingsLoaded;
+  useReminderSync(ready);
 
   // La pantalla de carga (el caballo) se va cuando el progreso y los ajustes ya están listos.
   useEffect(() => {

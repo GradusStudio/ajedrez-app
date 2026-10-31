@@ -21,26 +21,32 @@ import {
   withReviewFinished,
 } from './progressStore';
 
-/** Monedas ganadas por algo terminado, y aparte el premio de la meta diaria si se cumplió en ese momento. */
-export type Earned = { coins: number; goalBonus: number };
+/** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
+export type Earned = { coins: number; dailyBonus: number; streakRecovered: boolean };
 
 type ProgressValue = {
   progress: Progress;
   loaded: boolean;
   /** Guarda la lección como terminada y devuelve las monedas ganadas (0 si ya estaba hecha). */
   finishLesson: (f: LessonFinish) => Earned;
-  finishReview: (r: ReviewFinish) => void;
+  /** Guarda el repaso y devuelve el premio del día y si con él se recuperó la racha. */
+  finishReview: (r: ReviewFinish) => Earned;
   /** Guarda (o borra, con null) el avance de una lección a medio hacer. */
   saveDraft: (lessonId: string, draft: LessonDraft | null) => void;
   /** Recuerda la unidad de la última lección empezada en Aprender. */
   setLastUnit: (unit: number) => void;
   addPractice: (seconds: number) => void;
-  finishGame: (game: Omit<GameRecord, 'playedAt'>, seconds: number, botElo: number) => Earned;
+  finishGame: (
+    game: Omit<GameRecord, 'playedAt'>,
+    seconds: number,
+    botElo: number,
+    countsForStreak: boolean
+  ) => Earned;
   finishPuzzle: (id: string, result: PuzzleResult, seconds: number) => Earned;
   /** Compra un set de piezas: devuelve false si no alcanzan las monedas. */
   buyPieceSet: (id: string, price: number) => boolean;
   updateProfile: (patch: Partial<Progress['profile']>) => void;
-  /** Borra todo el progreso. Conserva la bienvenida ya hecha y la meta diaria. */
+  /** Borra todo el progreso. Conserva la bienvenida ya hecha y el nivel. */
   resetProgress: () => void;
 };
 
@@ -51,11 +57,13 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   const [loaded, setLoaded] = useState(false);
   // Copia sincrónica del estado, para encadenar cambios y calcular resultados en el mismo toque.
   const current = useRef<Progress>(emptyProgress);
+  const canSave = useRef(true);
 
   useEffect(() => {
-    loadProgress().then((p) => {
-      current.current = p;
-      setProgress(p);
+    loadProgress().then((r) => {
+      current.current = r.progress;
+      canSave.current = r.canSave;
+      setProgress(r.progress);
       setLoaded(true);
     });
   }, []);
@@ -63,19 +71,26 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   const commit = useCallback((next: Progress) => {
     current.current = next;
     setProgress(next);
-    saveProgress(next).catch(() => {});
+    if (canSave.current) saveProgress(next).catch(() => {});
   }, []);
 
   const finishLesson = useCallback(
     (f: LessonFinish) => {
       const result = withLessonFinished(current.current, f);
       commit(result.progress);
-      return { coins: result.coinsEarned, goalBonus: result.goalBonus };
+      return { coins: result.coinsEarned, dailyBonus: result.dailyBonus, streakRecovered: result.streakRecovered };
     },
     [commit]
   );
 
-  const finishReview = useCallback((r: ReviewFinish) => commit(withReviewFinished(current.current, r)), [commit]);
+  const finishReview = useCallback(
+    (r: ReviewFinish) => {
+      const result = withReviewFinished(current.current, r);
+      commit(result.progress);
+      return { coins: 0, dailyBonus: result.dailyBonus, streakRecovered: result.streakRecovered };
+    },
+    [commit]
+  );
 
   const saveDraft = useCallback(
     (lessonId: string, draft: LessonDraft | null) => commit(withDraft(current.current, lessonId, draft)),
@@ -86,18 +101,22 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
 
   const addPractice = useCallback((seconds: number) => commit(withPractice(current.current, seconds)), [commit]);
 
-  /** Guarda el resultado y separa las monedas propias del premio de la meta diaria. */
+  /** Guarda el resultado y separa las monedas propias del premio del día. */
   const commitEarned = useCallback(
-    (before: Progress, r: { progress: Progress; coinsEarned: number }): Earned => {
+    (before: Progress, r: { progress: Progress; coinsEarned: number; streakRecovered: boolean }): Earned => {
       commit(r.progress);
-      return { coins: r.coinsEarned, goalBonus: r.progress.coins - before.coins - r.coinsEarned };
+      return {
+        coins: r.coinsEarned,
+        dailyBonus: r.progress.coins - before.coins - r.coinsEarned,
+        streakRecovered: r.streakRecovered,
+      };
     },
     [commit]
   );
 
   const finishGame = useCallback(
-    (game: Omit<GameRecord, 'playedAt'>, seconds: number, botElo: number) =>
-      commitEarned(current.current, withGameFinished(current.current, game, seconds, botElo)),
+    (game: Omit<GameRecord, 'playedAt'>, seconds: number, botElo: number, countsForStreak: boolean) =>
+      commitEarned(current.current, withGameFinished(current.current, game, seconds, botElo, countsForStreak)),
     [commitEarned]
   );
 

@@ -213,7 +213,7 @@ export function FreePlayScreen() {
                 {!engineOn
                   ? 'Apagado'
                   : engineError
-                    ? 'No se pudo iniciar'
+                    ? 'No responde'
                     : !engine
                       ? 'Iniciando…'
                       : gameOver

@@ -20,7 +20,7 @@ Navegación inferior con 6 pestañas. Las pantallas de acción (lección, partid
 
 ```
 Inicio de la app
- ├─ Primera vez → Bienvenida → Nivel → Meta diaria → Aprender
+ ├─ Primera vez → Bienvenida → Nivel → Aprender
  └─ Siguientes veces → Aprender (pestañas)
 
 Pestañas
@@ -46,12 +46,12 @@ Pantalla `bienvenida`. Se abre sola mientras `profile.onboarded` no sea true (ve
 2. **Tu nivel:** "Nunca jugué", "Sé mover las piezas", "Juego de vez en cuando".
    - Hoy decide la dificultad inicial de los puzzles: Medio para "Juego de vez en cuando" y Fácil para los otros dos.
    - Cuando existan las Unidades 3 y 4, podrá decidir desde dónde empieza la ruta. Por ahora todas las unidades están abiertas.
-3. **Meta diaria:** 5, 10 o 15 minutos. Se cambia después en Ajustes.
 
 Sin registro ni correo. Más adelante, "Guardar mi progreso en la nube" puede aparecer en Perfil.
 
 ### 2.3 Aprender (inicio)
-- Barra superior: racha (en `gold`), saldo de monedas y barra de meta diaria (minutos practicados hoy sobre la meta; hasta que exista la bienvenida, la meta es 10 minutos).
+- Barra superior: racha (en `gold`) y saldo de monedas.
+- Tarjeta de recuperación de racha: si pasó un día sin practicar y la racha era de 2 o más, aparece arriba de la ruta con las tres acciones que faltan (lección, puzzle y partida contra un bot), marcadas a medida que se hacen. Al completarlas se muestra "Recuperaste tu racha" en el resultado.
 - Ruta vertical de lecciones por unidad, como la de Duolingo: nodos circulares en zigzag unidos por una línea (verde hasta la última completada). Estados: completada (verde con ✓), actual (verde, con anillo y pulso suave), bloqueada (gris).
 - Dentro de cada unidad, las lecciones se desbloquean de a una, al terminar la anterior. Entre unidades no hay bloqueo: la primera lección de cada unidad siempre está disponible, para que cada uno empiece por la unidad de su nivel. Se controla con `LOCK_LESSONS` en `src/progress/path.ts`; con `false`, todas quedan abiertas. Tocar una bloqueada avisa qué lección terminar.
 - Se muestra una sola unidad a la vez (`units` en `src/data/units.ts`). Encabezado de unidad con título, progreso ("Lo básico · 4 de 12") y una flecha: al tocarlo se abre un menú con todas las unidades y su progreso, y se elige cuál ver. Al abrir la app se muestra la unidad de la última lección empezada (`lastUnit` en el progreso) y, la primera vez, la de la lección sugerida. Empezar una lección (también con el botón flotante) cambia a su unidad.
@@ -92,8 +92,9 @@ Reglas:
 - Al salir con la ✕ (o el botón "atrás" de Android) se pide confirmación y se guarda el avance de la lección. El avance también se guarda en cada paso, por si se cierra la app. Al volver, la lección sigue desde el paso donde quedó.
 
 ### 2.5 Resultado de lección
-Monedas ganadas, racha actualizada y errores cometidos (y el premio de la meta diaria, si se cumplió con esta lección). Botones: "Continuar" (primario) y "Repasar errores" (secundario, solo si hubo errores).
-- Las monedas de una lección se suman solo la primera vez. Repetirla cuenta para la racha y la meta diaria, y guarda el menor número de errores.
+Monedas ganadas, racha actualizada y errores cometidos (y el premio del día, si es la primera acción válida de hoy). Botones: "Continuar" (primario) y "Repasar errores" (secundario, solo si hubo errores).
+- Oferta del recordatorio: la primera vez que se termina una lección (no en repaso de errores) y con el recordatorio apagado, una tarjeta pregunta "¿Quieres que te recuerde practicar?" con "Sí, a las 19:00" y "Ahora no". Se ofrece una sola vez (`reminderOffered`); no bloquea "Continuar". Sin permiso de notificaciones, se avisa y el recordatorio queda apagado.
+- Las monedas de una lección se suman solo la primera vez. Repetirla cuenta para la racha, y guarda el menor número de errores.
 - "Repasar errores" abre solo los pasos fallados de esa pasada. Los que se aciertan salen de la lista de errores; los que se vuelven a fallar siguen y suman un fallo.
 
 ### 2.5.1 Análisis
@@ -146,8 +147,7 @@ Tablero libre con jugadas legales (chess.js): deshacer, voltear, reiniciar y nue
 ### 2.12 Ajustes · hecha en el hito 6
 Pantalla `ajustes`. Cada cambio se guarda al instante, en `@ajedrez/settings`, separado del progreso.
 - **Práctica:**
-  - Meta diaria (5, 10 o 15 minutos).
-  - Recordatorio diario, con interruptor y hora (9, 13, 19 o 21). Es una notificación local, que funciona en Expo Go. Si no hay permiso, se avisa y el interruptor vuelve a apagado.
+  - Recordatorio diario, con interruptor y hora (9, 13, 19 o 21). Es una notificación local, que funciona en Expo Go. Los avisos dependen de la racha: hoy y los 6 días siguientes, sin aviso en los días en que ya se practicó, con texto distinto si la racha corre peligro o se puede recuperar. Si no hay permiso, se avisa y el interruptor vuelve a apagado.
 - **Tablero:**
   - Tema: Verde, Madera, Azul, Gris o Morado.
   - Piezas (abre la pantalla Piezas).
@@ -155,7 +155,7 @@ Pantalla `ajustes`. Cada cambio se guarda al instante, en `@ajedrez/settings`, s
 - **Sonido y vibración:** dos interruptores.
   - El sonido respeta el modo silencio del teléfono.
   - La vibración usa la respuesta háptica de Android: "Confirmar" al acertar y "Rechazar" al fallar.
-- **Datos:** "Borrar progreso", con confirmación. Borra lecciones, racha, monedas, sets comprados, puzzles y partidas. No borra los ajustes, la meta ni la bienvenida ya hecha.
+- **Datos:** "Borrar progreso", con confirmación. Borra lecciones, racha, monedas, sets comprados, puzzles y partidas. No borra los ajustes ni la bienvenida ya hecha.
 
 ### 2.12.1 Piezas y tienda · hecha
 - Pantalla `piezas`, que se abre desde Perfil y desde Perfil > Ajustes. Arriba, a la derecha del título, el saldo de monedas. Muestra los 5 sets (Clásico, Minimalista, Gótico, Redondeado, Contorneado), cada uno con nombre, descripción y una vista previa de 6 piezas sobre casillas del tablero.
@@ -192,10 +192,10 @@ Lo que ya se guarda (versión 2, `src/progress/progressStore.ts`, clave `ajedrez
 ```json
 {
   "version": 3,
-  "profile": { "dailyGoalMin": 10, "level": "basico", "onboarded": true },
+  "profile": { "level": "basico", "onboarded": true },
   "lessons": { "u1-l01": { "done": true, "errors": 1, "completedAt": "...", "completions": 2 } },
   "drafts": { "u1-l03": { "stepIndex": 2, "errors": 1, "mistakes": ["u1-l03-s03"] } },
-  "streak": { "current": 3, "best": 5, "lastActiveDate": "2026-10-27" },
+  "streak": { "current": 3, "best": 5, "lastActiveDate": "2026-10-27", "actions": { "date": "2026-10-27", "lesson": true, "puzzle": false, "bot": false } },
   "coins": 120,
   "rewards": { "goalDate": "2026-10-27", "botWins": { "lola": "2026-10-27" } },
   "pieceSets": [],
@@ -206,14 +206,14 @@ Lo que ya se guarda (versión 2, `src/progress/progressStore.ts`, clave `ajedrez
 ```
 
 - `puzzles` guarda, por id de Lichess, el mejor resultado: `{ "result": "clean" | "solved" | "failed", "at": "..." }`. Ver `puzzles.md`.
-- `games` guarda las últimas 50 partidas, de la más reciente a la más vieja. Una partida terminada cuenta para la racha y la meta diaria. Ganarle a un bot da monedas (su Elo/100), una vez por día y por bot y nunca en el modo práctica. El registro contra cada bot no cuenta las partidas de práctica.
+- `games` guarda las últimas 50 partidas, de la más reciente a la más vieja. Una partida terminada cuenta para la racha; una abandonada cuenta solo con 10 jugadas o más. Ganarle a un bot da monedas (su Elo/100), una vez por día y por bot y nunca en el modo práctica. El registro contra cada bot no cuenta las partidas de práctica.
 
 - `lessons[].errors` es el menor número de errores en una pasada.
 - `drafts` guarda el avance de las lecciones a medio hacer.
 - `lastUnit` (opcional) es la unidad de la última lección empezada desde Aprender; es la que se muestra al abrir la app. Elegir una unidad en el menú sin empezar una lección no la cambia.
 - `practice.seconds` vale para el día de `date`; al cambiar el día empieza en 0.
-- `coins` es el saldo para gastar. `rewards` evita pagar dos veces un premio: `goalDate` es el día en que ya se pagó la meta diaria y `botWins`, por bot, el día de la última victoria premiada. `pieceSets` guarda los sets comprados (los gratis no se guardan).
-- Monedas (desde el 30-10-2026 reemplazan a la XP): 15 por lección nueva (ruta y aperturas), 2 por puzzle resuelto sin errores y 1 con errores (solo la primera vez), por ganarle a un bot su Elo/100 (una vez por día y por bot, no en práctica) y 10 por cumplir la meta diaria (una vez por día). Se gastan en la tienda de sets de piezas (precios en `src/pieces/shop.ts`).
+- `coins` es el saldo para gastar. `rewards` evita pagar dos veces un premio: `goalDate` es el día en que ya se pagó el premio del día (conserva su nombre viejo) y `botWins`, por bot, el día de la última victoria premiada. `pieceSets` guarda los sets comprados (los gratis no se guardan).
+- Monedas (desde el 30-10-2026 reemplazan a la XP): 15 por lección nueva (ruta y aperturas), 2 por puzzle resuelto sin errores y 1 con errores (solo la primera vez), por ganarle a un bot su Elo/100 (una vez por día y por bot, no en práctica) y 10 por la primera acción válida del día (una vez por día). Se gastan en la tienda de sets de piezas (precios en `src/pieces/shop.ts`).
 - El tiempo de práctica tiene un tope de 30 minutos por sesión, por si la app queda abierta sin usar.
 - Si cambia la forma de los datos, se sube `version` y se migra en `migrate()`; las versiones 1 y 2 se migran solas (en la 2 había XP: pasa a monedas 1 a 1).
 
@@ -247,7 +247,7 @@ src/
     partida.tsx         partida contra un bot (?bot=&color=&curso= para el modo práctica)
     piezas.tsx          elegir el set de piezas (desde Perfil > Ajustes)
     puzzle.tsx          un puzzle (?modo=dia&id= o ?modo=practica&nivel=&tema=)
-    bienvenida.tsx      primera vez: bienvenida, nivel y meta diaria
+    bienvenida.tsx      primera vez: bienvenida y nivel
     ajustes.tsx         Ajustes
     creditos.tsx        Créditos y licencias
     leccion/[id].tsx    lección de unidad o de apertura (con ?repaso=ids para el repaso de errores)

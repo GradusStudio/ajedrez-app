@@ -484,7 +484,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#xW6Ug). Gana la carrera de peones.",
+          "prompt": "Gana la carrera de peones.",
           "fen": "8/8/4k3/5p2/P7/5K2/8/8 b - - 0 62",
           "orientation": "w",
           "side": "w",
@@ -507,13 +507,13 @@
               "san": "a6"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Cuenta las casillas: el rey rival no llega a entrar en el cuadrado de tu peón.",
           "id": "u5-l04-s07"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#VEzBQ). Gana la carrera de peones.",
+          "prompt": "Gana la carrera de peones.",
           "fen": "8/p7/2p5/8/4KP2/8/k7/8 b - - 0 38",
           "orientation": "w",
           "side": "w",
@@ -536,7 +536,7 @@
               "san": "f6"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Cuenta las casillas: el rey rival no llega a entrar en el cuadrado de tu peón.",
           "id": "u5-l04-s08"
         }

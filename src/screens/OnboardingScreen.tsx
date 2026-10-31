@@ -5,7 +5,7 @@ import { PlayerLevel } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = {
-  onFinish: (choice: { level?: PlayerLevel; dailyGoalMin?: number }) => void;
+  onFinish: (choice: { level?: PlayerLevel }) => void;
 };
 
 const LEVELS: { value: PlayerLevel; label: string; description: string }[] = [
@@ -14,26 +14,19 @@ const LEVELS: { value: PlayerLevel; label: string; description: string }[] = [
   { value: 'casual', label: 'Juego de vez en cuando', description: 'Ya jugaste partidas y quieres aprender aperturas y táctica.' },
 ];
 
-const GOALS = [
-  { value: 5, label: '5 minutos', description: 'Una lección corta o un par de puzzles.' },
-  { value: 10, label: '10 minutos', description: 'Lo recomendado para avanzar sin apuro.' },
-  { value: 15, label: '15 minutos', description: 'Para avanzar rápido.' },
-];
-
-// Primera vez que se abre la app: bienvenida, nivel y meta diaria. Todo se puede saltar (mapa-de-pantallas.md, 2.2).
+// Primera vez que se abre la app: bienvenida y nivel. Todo se puede saltar (mapa-de-pantallas.md, 2.2).
 export function OnboardingScreen({ onFinish }: Props) {
   const [step, setStep] = useState(0);
-  const [level, setLevel] = useState<PlayerLevel | undefined>();
 
   return (
     <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.lg }]}>
       <View style={styles.top}>
-        <View style={styles.dots} accessibilityLabel={`Paso ${step + 1} de 3`}>
-          {[0, 1, 2].map((i) => (
+        <View style={styles.dots} accessibilityLabel={`Paso ${step + 1} de 2`}>
+          {[0, 1].map((i) => (
             <View key={i} style={[styles.dot, i <= step && styles.dotOn]} />
           ))}
         </View>
-        <Pressable onPress={() => onFinish({ level })} accessibilityRole="button" hitSlop={12}>
+        <Pressable onPress={() => onFinish({})} accessibilityRole="button" hitSlop={12}>
           <Text style={styles.skip}>Saltar</Text>
         </Pressable>
       </View>
@@ -58,26 +51,7 @@ export function OnboardingScreen({ onFinish }: Props) {
           <Text style={styles.text}>Sirve para elegir la dificultad inicial de los puzzles. Puedes cambiarla cuando quieras.</Text>
           <View style={{ height: space.lg }} />
           {LEVELS.map((l) => (
-            <Choice
-              key={l.value}
-              label={l.label}
-              description={l.description}
-              onPress={() => {
-                setLevel(l.value);
-                setStep(2);
-              }}
-            />
-          ))}
-        </View>
-      )}
-
-      {step === 2 && (
-        <View style={styles.body}>
-          <Text style={styles.title}>¿Cuánto quieres practicar por día?</Text>
-          <Text style={styles.text}>Es tu meta diaria. Se cambia en Perfil &gt; Ajustes.</Text>
-          <View style={{ height: space.lg }} />
-          {GOALS.map((g) => (
-            <Choice key={g.value} label={g.label} description={g.description} onPress={() => onFinish({ level, dailyGoalMin: g.value })} />
+            <Choice key={l.value} label={l.label} description={l.description} onPress={() => onFinish({ level: l.value })} />
           ))}
         </View>
       )}

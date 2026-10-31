@@ -349,7 +349,7 @@
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#naoae). Corona tu peón pasado.",
+          "prompt": "Corona tu peón pasado.",
           "fen": "8/8/8/2k2P2/6K1/P2p4/8/8 w - - 0 54",
           "orientation": "b",
           "side": "b",
@@ -372,13 +372,13 @@
               "san": "d1=D+"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Avanza el peón: cuenta si llega a coronar antes que el del rival.",
           "id": "u4-l03-s09"
         },
         {
           "type": "line",
-          "prompt": "Puzzle real de Lichess (#eh3NH). Corona tu peón pasado.",
+          "prompt": "Corona tu peón pasado.",
           "fen": "8/1N6/8/PKP5/4k3/5p2/8/4b3 w - - 0 54",
           "orientation": "b",
           "side": "b",
@@ -401,7 +401,7 @@
               "san": "f1=D"
             }
           ],
-          "success": "Correcto. Resolviste un puzzle de una partida real de Lichess.",
+          "success": "Bien resuelto: esta posición salió de una partida real.",
           "hint": "Avanza el peón: cuenta si llega a coronar antes que el del rival.",
           "id": "u4-l03-s10"
         }

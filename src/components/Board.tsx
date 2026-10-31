@@ -330,8 +330,12 @@ export function Board({
     onResponderTerminationRequest: () => !gesture.current.dragging,
     onResponderGrant: (e: GestureResponderEvent) => {
       const { locationX: x, locationY: y, pageX, pageY } = e.nativeEvent;
-      gesture.current = { x, y, pageX, pageY, from: squareAt(x, y), over: null, dragging: false };
+      const from = squareAt(x, y);
+      gesture.current = { x, y, pageX, pageY, from, over: null, dragging: false };
       if (dropped) setDropped(null);
+      // Devolver true impide que el ScrollView nativo de Android se quede con el dedo. Solo sobre una pieza
+      // que se puede mover: empezando en otra casilla, la pantalla se sigue pudiendo desplazar.
+      return interactive && !!from && chess.get(from)?.color === turn;
     },
     onResponderMove: (e: GestureResponderEvent) => {
       const g = gesture.current;

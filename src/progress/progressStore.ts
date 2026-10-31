@@ -1,4 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { puzzleCountsForStreak, Streak, streakStatus, StreakStatus, StreakAction, todayKey, withStreakAction } from './streak';
+
+export { todayKey } from './streak';
 
 // Progreso del usuario, guardado en el teléfono con AsyncStorage (mapa-de-pantallas.md, sección 4).
 // Si cambia la forma de los datos, subir `version` y migrar en `migrate`.
@@ -40,14 +43,14 @@ export type GameRecord = {
 
 export type Progress = {
   version: 3;
-  /** Se elige en la bienvenida (y la meta, también en Ajustes). */
-  profile: { dailyGoalMin: number; level?: PlayerLevel; onboarded?: boolean };
+  /** Se elige en la bienvenida. */
+  profile: { level?: PlayerLevel; onboarded?: boolean };
   lessons: Record<string, LessonProgress>;
   drafts: Record<string, LessonDraft>;
-  streak: { current: number; best: number; lastActiveDate: string | null };
+  streak: Streak;
   /** Monedas para gastar en la tienda (reemplazaron a la XP en la versión 3). */
   coins: number;
-  /** Para no pagar dos veces el mismo premio: día del premio de la meta y, por bot, día de la última victoria premiada. */
+  /** Para no pagar dos veces el mismo premio: día del premio diario (`goalDate`, nombre histórico) y, por bot, día de la última victoria premiada. */
   rewards: { goalDate: string | null; botWins: Record<string, string> };
   /** Sets de piezas comprados (los gratis no se guardan). */
   pieceSets: string[];
@@ -59,18 +62,19 @@ export type Progress = {
 };
 
 const KEY = 'ajedrez:progreso';
+const BACKUP_KEY = 'ajedrez:progreso:respaldo'; // copia de datos que no se pudieron interpretar
 const MAX_GAMES = 50;
 
 // ---------- Monedas ----------
 // Lecciones: el valor `xp` de cada lección (nombre histórico del campo en los JSON), solo la primera vez.
 export const PUZZLE_COINS: Record<PuzzleResult, number> = { clean: 2, solved: 1, failed: 0 };
-export const GOAL_BONUS_COINS = 10;
+export const DAILY_BONUS_COINS = 10;
 /** Victoria contra un bot (no en práctica): una vez por día y por bot, según su nivel (Pipo 500 → 5, Ada 2200 → 22). */
 export const botWinCoins = (elo: number) => Math.round(elo / 100);
 
 export const emptyProgress: Progress = {
   version: 3,
-  profile: { dailyGoalMin: 10 },
+  profile: {},
   lessons: {},
   drafts: {},
   streak: { current: 0, best: 0, lastActiveDate: null },
@@ -83,29 +87,16 @@ export const emptyProgress: Progress = {
   puzzles: {},
 };
 
-// ---------- Fechas (día local, formato 2026-10-27) ----------
-
-export function todayKey(now = new Date()): string {
-  const m = String(now.getMonth() + 1).padStart(2, '0');
-  const d = String(now.getDate()).padStart(2, '0');
-  return `${now.getFullYear()}-${m}-${d}`;
-}
-
-function dayBefore(day: string): string {
-  const [y, m, d] = day.split('-').map(Number);
-  return todayKey(new Date(y, m - 1, d - 1));
-}
-
 // ---------- Lectura para mostrar ----------
 
-/** Racha vigente: si el último día activo fue antes de ayer, la racha ya se cortó. */
-export function currentStreak(p: Progress, today = todayKey()): number {
-  const last = p.streak.lastActiveDate;
-  return last === today || last === dayBefore(today) ? p.streak.current : 0;
+/** Estado de la racha hoy (reglas en streak.ts). */
+export function streakStatusNow(p: Progress, today = todayKey()): StreakStatus {
+  return streakStatus(p.streak, today);
 }
 
-export function minutesToday(p: Progress, today = todayKey()): number {
-  return p.practice.date === today ? Math.floor(p.practice.seconds / 60) : 0;
+/** Racha vigente: 0 si ya se cortó. */
+export function currentStreak(p: Progress, today = todayKey()): number {
+  return streakStatus(p.streak, today).days;
 }
 
 // ---------- Cambios ----------
@@ -114,21 +105,29 @@ function withCoins(p: Progress, amount: number): Progress {
   return amount ? { ...p, coins: p.coins + amount } : p;
 }
 
-/** Suma tiempo de práctica. El día que se llega a la meta diaria, da el premio (una sola vez por día). */
+/** Suma tiempo de práctica (ya no se muestra, pero se sigue guardando). */
 export function withPractice(p: Progress, seconds: number, today = todayKey()): Progress {
   const base = p.practice.date === today ? p.practice.seconds : 0;
-  const next: Progress = { ...p, practice: { seconds: base + Math.max(0, Math.round(seconds)), date: today } };
-  const goalReached = next.practice.seconds >= p.profile.dailyGoalMin * 60;
-  if (!goalReached || p.rewards.goalDate === today) return next;
-  return withCoins({ ...next, rewards: { ...next.rewards, goalDate: today } }, GOAL_BONUS_COINS);
+  return { ...p, practice: { seconds: base + Math.max(0, Math.round(seconds)), date: today } };
 }
 
-/** Marca el día como activo y actualiza la racha. */
-function withActiveDay(p: Progress, today: string): Progress {
-  const { lastActiveDate, current, best } = p.streak;
-  if (lastActiveDate === today) return p;
-  const next = lastActiveDate === dayBefore(today) ? current + 1 : 1;
-  return { ...p, streak: { current: next, best: Math.max(best, next), lastActiveDate: today } };
+/**
+ * Registra una acción del día en la racha y paga el premio del día con la primera de cada día.
+ * `streakRecovered` es true si con ella se completó una recuperación.
+ */
+function withStreak(
+  p: Progress,
+  action: StreakAction,
+  today: string
+): { progress: Progress; dailyBonus: number; streakRecovered: boolean } {
+  const { streak, recovered } = withStreakAction(p.streak, action, today);
+  const next: Progress = { ...p, streak };
+  if (p.rewards.goalDate === today) return { progress: next, dailyBonus: 0, streakRecovered: recovered };
+  return {
+    progress: withCoins({ ...next, rewards: { ...next.rewards, goalDate: today } }, DAILY_BONUS_COINS),
+    dailyBonus: DAILY_BONUS_COINS,
+    streakRecovered: recovered,
+  };
 }
 
 export function withDraft(p: Progress, lessonId: string, draft: LessonDraft | null): Progress {
@@ -163,13 +162,13 @@ export type LessonFinish = {
 /**
  * Registra una lección terminada. Las monedas de la lección se suman solo la primera vez;
  * repetir una lección sirve de repaso, cuenta para la racha y mejora el récord de errores.
- * Devuelve las monedas de la lección y, aparte, el premio de la meta diaria si se cumplió con ella.
+ * Devuelve las monedas de la lección y, aparte, el premio del día si fue la primera acción de hoy.
  */
 export function withLessonFinished(
   p: Progress,
   f: LessonFinish,
   now = new Date()
-): { progress: Progress; coinsEarned: number; goalBonus: number } {
+): { progress: Progress; coinsEarned: number; dailyBonus: number; streakRecovered: boolean } {
   const today = todayKey(now);
   const iso = now.toISOString();
   const prev = p.lessons[f.lessonId];
@@ -181,12 +180,10 @@ export function withLessonFinished(
   let next: Progress = { ...p, lessons: { ...p.lessons, [f.lessonId]: entry } };
   next = withDraft(next, f.lessonId, null);
   next = withCoins(next, coinsEarned);
-  const beforeGoal = next.coins;
   next = withPractice(next, f.seconds, today);
-  const goalBonus = next.coins - beforeGoal;
-  next = withActiveDay(next, today);
-  next = withMistakes(next, f.lessonId, f.mistakes, iso);
-  return { progress: next, coinsEarned, goalBonus };
+  const streak = withStreak(next, 'lesson', today);
+  next = withMistakes(streak.progress, f.lessonId, f.mistakes, iso);
+  return { progress: next, coinsEarned, dailyBonus: streak.dailyBonus, streakRecovered: streak.streakRecovered };
 }
 
 export type ReviewFinish = {
@@ -197,18 +194,22 @@ export type ReviewFinish = {
 };
 
 /** Repaso de errores: los pasos acertados salen de la lista; los fallados de nuevo suman un fallo. */
-export function withReviewFinished(p: Progress, r: ReviewFinish, now = new Date()): Progress {
+export function withReviewFinished(
+  p: Progress,
+  r: ReviewFinish,
+  now = new Date()
+): { progress: Progress; dailyBonus: number; streakRecovered: boolean } {
   const today = todayKey(now);
   const solved = r.stepIds.filter((id) => !r.failed.includes(id));
   let next: Progress = { ...p, mistakes: p.mistakes.filter((m) => !solved.includes(m.stepId)) };
   next = withMistakes(next, r.lessonId, r.failed, now.toISOString());
   next = withPractice(next, r.seconds, today);
-  next = withActiveDay(next, today);
-  return next;
+  return withStreak(next, 'lesson', today);
 }
 
 /**
- * Partida terminada: se guarda y cuenta para la racha y la meta diaria. Ganarle a un bot (fuera del modo
+ * Partida terminada: se guarda y cuenta para la racha solo si `countsForStreak`
+ * (una partida abandonada con menos de 10 jugadas no cuenta). Ganarle a un bot (fuera del modo
  * práctica) da monedas según su nivel, una vez por día y por bot, para que no convenga repetir contra el más fácil.
  */
 export function withGameFinished(
@@ -216,8 +217,9 @@ export function withGameFinished(
   game: Omit<GameRecord, 'playedAt'>,
   seconds: number,
   botElo: number,
+  countsForStreak: boolean,
   now = new Date()
-): { progress: Progress; coinsEarned: number } {
+): { progress: Progress; coinsEarned: number; streakRecovered: boolean } {
   const today = todayKey(now);
   let next: Progress = { ...p, games: [{ ...game, playedAt: now.toISOString() }, ...p.games].slice(0, MAX_GAMES) };
   let coinsEarned = 0;
@@ -226,8 +228,9 @@ export function withGameFinished(
     next = withCoins({ ...next, rewards: { ...next.rewards, botWins: { ...next.rewards.botWins, [game.botId]: today } } }, coinsEarned);
   }
   next = withPractice(next, seconds, today);
-  next = withActiveDay(next, today);
-  return { progress: next, coinsEarned };
+  if (!countsForStreak) return { progress: next, coinsEarned, streakRecovered: false };
+  const streak = withStreak(next, 'bot', today);
+  return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered };
 }
 
 /** Compra un set de piezas. Devuelve null si no alcanzan las monedas o si ya era suyo. */
@@ -243,7 +246,8 @@ export function withProfile(p: Progress, patch: Partial<Progress['profile']>): P
 const PUZZLE_RANK: Record<PuzzleResult, number> = { failed: 0, solved: 1, clean: 2 };
 
 /**
- * Puzzle terminado: guarda el mejor resultado y cuenta para la racha y la meta diaria.
+ * Puzzle terminado: guarda el mejor resultado y cuenta para la racha salvo
+ * que se haya mirado la solución (`failed`).
  * Da monedas solo la primera vez que se resuelve (si antes se había mirado la solución, todavía cuenta).
  */
 export function withPuzzleFinished(
@@ -252,7 +256,7 @@ export function withPuzzleFinished(
   result: PuzzleResult,
   seconds: number,
   now = new Date()
-): { progress: Progress; coinsEarned: number } {
+): { progress: Progress; coinsEarned: number; streakRecovered: boolean } {
   const today = todayKey(now);
   const prev = p.puzzles[id];
   const best = prev && PUZZLE_RANK[prev.result] >= PUZZLE_RANK[result] ? prev.result : result;
@@ -260,8 +264,9 @@ export function withPuzzleFinished(
   let next: Progress = { ...p, puzzles: { ...p.puzzles, [id]: { result: best, at: now.toISOString() } } };
   next = withCoins(next, coinsEarned);
   next = withPractice(next, seconds, today);
-  next = withActiveDay(next, today);
-  return { progress: next, coinsEarned };
+  if (!puzzleCountsForStreak(result)) return { progress: next, coinsEarned, streakRecovered: false };
+  const streak = withStreak(next, 'puzzle', today);
+  return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered };
 }
 
 /** true si el puzzle ya se resolvió (con o sin errores). */
@@ -311,14 +316,29 @@ function migrate(data: Progress | ProgressV2 | ProgressV1): Progress {
   return emptyProgress;
 }
 
-export async function loadProgress(): Promise<Progress> {
+/**
+ * Lee el progreso guardado. `canSave` es false si guardar podría pisar datos que no se pudieron leer:
+ * un fallo de lectura puede ser pasajero y el progreso seguiría ahí la próxima vez.
+ */
+export async function loadProgress(): Promise<{ progress: Progress; canSave: boolean }> {
+  let raw: string | null;
   try {
-    const raw = await AsyncStorage.getItem(KEY);
-    if (!raw) return emptyProgress;
-    return migrate(JSON.parse(raw));
+    raw = await AsyncStorage.getItem(KEY);
   } catch {
-    // Datos dañados o ilegibles: se empieza de cero en vez de romper la app.
-    return emptyProgress;
+    return { progress: emptyProgress, canSave: false };
+  }
+  if (!raw) return { progress: emptyProgress, canSave: true };
+  try {
+    const data = JSON.parse(raw);
+    if (![1, 2, 3].includes(data?.version)) throw new Error('versión desconocida');
+    return { progress: migrate(data), canSave: true };
+  } catch {
+    // Datos dañados: se empieza de cero en vez de romper la app, pero antes se guarda una copia.
+    const canSave = await AsyncStorage.setItem(BACKUP_KEY, raw).then(
+      () => true,
+      () => false
+    );
+    return { progress: emptyProgress, canSave };
   }
 }
 

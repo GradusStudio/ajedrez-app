@@ -146,7 +146,7 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
   };
 
   const status = engineError
-    ? 'No se pudo iniciar Stockfish'
+    ? 'Stockfish no responde'
     : !engine
       ? 'Preparando a Stockfish…'
       : done
@@ -179,7 +179,7 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
 
       {engineError && (
         <View style={styles.errorCard}>
-          <Text style={styles.errorText}>No se pudo iniciar el motor de ajedrez. Prueba otra vez.</Text>
+          <Text style={styles.errorText}>El motor de ajedrez no responde. Prueba otra vez.</Text>
           <Button3D
             label="Reintentar"
             variant="danger"

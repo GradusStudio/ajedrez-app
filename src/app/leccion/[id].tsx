@@ -49,9 +49,14 @@ export default function LessonRoute() {
         router.back();
       }}
       onFinish={(result) => {
-        let earned = { coins: 0, goalBonus: 0 };
+        let earned = { coins: 0, dailyBonus: 0, streakRecovered: false };
         if (isReview) {
-          finishReview({ lessonId: base.id, stepIds: reviewIds, failed: result.mistakes, seconds: seconds() });
+          earned = finishReview({
+            lessonId: base.id,
+            stepIds: reviewIds,
+            failed: result.mistakes,
+            seconds: seconds(),
+          });
         } else {
           earned = finishLesson({
             lessonId: base.id,
@@ -68,7 +73,8 @@ export default function LessonRoute() {
             id: base.id,
             errors: String(result.errors),
             monedas: String(earned.coins),
-            meta: String(earned.goalBonus),
+            premio: String(earned.dailyBonus),
+            ...(earned.streakRecovered ? { recuperada: '1' } : {}),
             fallos: result.mistakes.join(','),
             modo: isReview ? 'repaso' : 'leccion',
           },

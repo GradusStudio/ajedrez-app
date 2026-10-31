@@ -15,6 +15,7 @@ import { EngineView } from '../engine/EngineView';
 import { UciEngine } from '../engine/uci';
 import { useFeedback } from '../feedback/feedback';
 import { useProgress } from '../progress/ProgressContext';
+import { gameCountsForStreak } from '../progress/streak';
 import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -29,8 +30,8 @@ type Props = {
 };
 
 type Result = { kind: 'win' | 'loss' | 'draw'; reason: string };
-// Resultado ya guardado, con las monedas ganadas (victoria) y el premio de la meta diaria.
-type Finished = Result & { coins: number; goalBonus: number };
+// Resultado ya guardado, con las monedas ganadas (victoria), el premio del día y si se recuperó la racha.
+type Finished = Result & { coins: number; dailyBonus: number; streakRecovered: boolean };
 
 // Tope del tiempo de práctica por partida, por si la app queda abierta sin usar.
 const MAX_SESSION_SECONDS = 30 * 60;
@@ -62,6 +63,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const prevScore = useRef<number | undefined>(undefined); // evaluación de la última jugada del bot
   const sincePhrase = useRef(0);
   const inBook = useRef(true);
+  const finished = useRef(false); // la partida se guarda una sola vez
 
   useEffect(() => {
     startedAt.current = Date.now();
@@ -82,7 +84,10 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   };
 
   const end = useCallback(
-    (r: Result) => {
+    // quit: se rindió o abandonó (cuenta para la racha solo con 10 jugadas o más).
+    (r: Result, quit = false) => {
+      if (finished.current) return;
+      finished.current = true;
       if (r.kind === 'win') feedback.correct();
       else if (r.kind === 'loss') feedback.wrong();
       setSpeech(r.kind === 'win' ? bot.lines.onLose : r.kind === 'loss' ? bot.lines.onWin : 'Tablas. Buena partida.');
@@ -96,7 +101,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           practiceCourseId: practiceCourse?.id,
         },
         Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS),
-        bot.elo
+        bot.elo,
+        gameCountsForStreak(quit, chess.history().length)
       );
       setResult({ ...r, ...earned });
     },
@@ -151,7 +157,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
         }
         sync();
         checkEnd();
-      }
+      },
+      () => {} // motor caído: se muestra "Reintentar" y este efecto vuelve a correr con el motor nuevo
     );
     return () => {
       cancelled = true;
@@ -173,7 +180,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const resign = () =>
     Alert.alert('¿Rendirte?', 'La partida cuenta como derrota.', [
       { text: 'Seguir jugando', style: 'cancel' },
-      { text: 'Rendirme', style: 'destructive', onPress: () => end({ kind: 'loss', reason: 'Te rendiste' }) },
+      { text: 'Rendirme', style: 'destructive', onPress: () => end({ kind: 'loss', reason: 'Te rendiste' }, true) },
     ]);
 
   const offerDraw = () => {
@@ -197,7 +204,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
         text: 'Abandonar',
         style: 'destructive',
         onPress: () => {
-          end({ kind: 'loss', reason: 'Abandonaste la partida' });
+          end({ kind: 'loss', reason: 'Abandonaste la partida' }, true);
           onExit();
         },
       },
@@ -216,7 +223,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const userTurn = !!engine && !result && chess.turn() === userColor;
   const thinking = !!engine && !result && chess.turn() === botColor;
   const status = engineError
-    ? 'No se pudo iniciar el motor'
+    ? 'El motor no responde'
     : !engine
       ? `Preparando a ${bot.name}…`
       : result
@@ -228,7 +235,14 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   return (
     <View style={styles.screen}>
       {!engineError && (
-        <EngineView key={engineKey} onReady={setEngine} onError={(msg) => setEngineError(msg)} />
+        <EngineView
+          key={engineKey}
+          onReady={setEngine}
+          onError={(msg) => {
+            setEngineError(msg);
+            setEngine(null);
+          }}
+        />
       )}
 
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
@@ -270,7 +284,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
 
         {engineError && (
           <View style={styles.errorCard}>
-            <Text style={styles.errorText}>No se pudo iniciar el motor de ajedrez. Prueba otra vez.</Text>
+            <Text style={styles.errorText}>El motor de ajedrez no responde. Prueba otra vez: la partida sigue donde estaba.</Text>
             <Button3D
               label="Reintentar"
               variant="danger"
@@ -317,9 +331,10 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           {result.kind === 'win' && result.coins === 0 && !practiceCourse && (
             <Text style={styles.coinsNote}>Las monedas por ganarle a cada bot se dan una vez por día.</Text>
           )}
-          {result.goalBonus > 0 && (
-            <Text style={styles.coinsText}>Cumpliste tu meta diaria: +{result.goalBonus} monedas.</Text>
+          {result.dailyBonus > 0 && (
+            <Text style={styles.coinsText}>Premio del día: +{result.dailyBonus} monedas.</Text>
           )}
+          {result.streakRecovered && <Text style={styles.coinsText}>Recuperaste tu racha.</Text>}
           <Button3D
             label={practiceCourse ? 'Practicar otra vez' : 'Revancha'}
             variant="primary"

@@ -3,13 +3,14 @@ import { Alert, Modal, Pressable, ScrollView, StatusBar as RNStatusBar, StyleShe
 import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
 import { LessonNode, NODE_BOX } from '../components/LessonNode';
-import { ProgressBar } from '../components/ProgressBar';
+import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
 import { Lesson, Unit } from '../data/lessonTypes';
 import { units } from '../data/units';
 import { lessonStates, suggestedLesson } from '../progress/path';
 import { useProgress } from '../progress/ProgressContext';
-import { currentStreak, minutesToday } from '../progress/progressStore';
+import { currentStreak, streakStatusNow } from '../progress/progressStore';
+import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = {
@@ -17,10 +18,10 @@ type Props = {
 };
 
 // Alto de cada fila de la ruta (nodo con su anillo + título) y desplazamiento en zigzag.
-const ROW = 124;
+const ROW = 150; // deja lugar a títulos de hasta 3 renglones
 const ZIGZAG = [0, 56, 0, -56];
 
-// Pestaña Aprender: barra de racha y meta, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
+// Pestaña Aprender: barra de racha y monedas, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
 export function HomeScreen({ onStartLesson }: Props) {
   const { progress, setLastUnit } = useProgress();
   // Unidad elegida en el menú. Sin elegir, se muestra la de la última lección empezada
@@ -45,14 +46,21 @@ export function HomeScreen({ onStartLesson }: Props) {
     onStartLesson(lesson);
   };
 
-  const streak = currentStreak(progress);
-  const minutes = minutesToday(progress);
-  const goal = progress.profile.dailyGoalMin;
+  const today = useTodayKey();
+  const streak = currentStreak(progress, today);
+  const status = streakStatusNow(progress, today);
+  // Alto del botón flotante: el final de la ruta se puede subir por encima de él.
+  const [floatingHeight, setFloatingHeight] = useState(140);
 
   return (
     <View style={styles.screen}>
-      <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}>
-        {/* Racha, monedas y meta diaria */}
+      <ScrollView
+        contentContainerStyle={[
+          styles.content,
+          { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md, paddingBottom: floatingHeight + space.xl * 2 },
+        ]}
+      >
+        {/* Racha y monedas */}
         <View style={styles.statsRow}>
           <View style={styles.stat} accessibilityLabel={`Racha de ${streak} días`}>
             <StatIcon name="streak" />
@@ -63,13 +71,7 @@ export function HomeScreen({ onStartLesson }: Props) {
             <Text style={styles.statText}>{progress.coins}</Text>
           </View>
         </View>
-        <View style={styles.goalRow}>
-          <Text style={styles.goalLabel}>Meta diaria</Text>
-          <ProgressBar value={minutes / goal} />
-          <Text style={styles.goalLabel}>
-            {Math.min(minutes, goal)}/{goal} min
-          </Text>
-        </View>
+        {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
 
         <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
       </ScrollView>
@@ -86,8 +88,8 @@ export function HomeScreen({ onStartLesson }: Props) {
 
       {/* Botón flotante con la lección sugerida */}
       {suggested && (
-        <View style={styles.floating}>
-          <Text style={styles.floatingCaption} numberOfLines={1}>
+        <View style={styles.floating} onLayout={(e) => setFloatingHeight(e.nativeEvent.layout.height)}>
+          <Text style={styles.floatingCaption} numberOfLines={2}>
             Lección {suggested.order} · {suggested.title}
           </Text>
           <Button3D
@@ -231,7 +233,8 @@ function UnitPath({
                 />
                 <Text
                   style={[styles.nodeLabel, states[i] === 'locked' && { color: colors.textMuted }]}
-                  numberOfLines={2}
+                  numberOfLines={3}
+                  maxFontSizeMultiplier={1.3}
                 >
                   {lesson.title}
                 </Text>
@@ -246,12 +249,10 @@ function UnitPath({
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
-  content: { paddingHorizontal: space.lg, paddingBottom: 140 }, // deja lugar al botón flotante
+  content: { paddingHorizontal: space.lg },
   statsRow: { flexDirection: 'row', gap: space.lg },
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   statText: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.gold },
-  goalRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md },
-  goalLabel: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted },
   unitCard: {
     marginTop: space.lg,
     backgroundColor: colors.primary,
@@ -274,7 +275,18 @@ const styles = StyleSheet.create({
   },
   unitTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: '#FFFFFF' },
   nodeWrap: { position: 'absolute', width: 160, alignItems: 'center' },
-  nodeLabel: { fontFamily: fonts.bold, fontSize: 13, color: colors.text, textAlign: 'center', marginTop: space.xs },
+  // Fondo del color de la pantalla: la línea que une los nodos pasa por detrás del título sin cortarlo.
+  nodeLabel: {
+    fontFamily: fonts.bold,
+    fontSize: 13,
+    color: colors.text,
+    textAlign: 'center',
+    marginTop: space.xs,
+    backgroundColor: colors.bg,
+    paddingHorizontal: 6,
+    borderRadius: 6,
+    overflow: 'hidden',
+  },
   floating: {
     position: 'absolute',
     left: space.lg,

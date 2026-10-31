@@ -34,7 +34,7 @@ export function PieceSetPicker() {
     if (progress.coins < price) {
       Alert.alert(
         'Te faltan monedas',
-        `Este set cuesta ${price} monedas y tienes ${progress.coins}. Ganas monedas con lecciones nuevas, puzzles, partidas ganadas y la meta diaria.`
+        `Este set cuesta ${price} monedas y tienes ${progress.coins}. Ganas monedas con lecciones nuevas, puzzles, partidas ganadas y el premio del día.`
       );
       return;
     }

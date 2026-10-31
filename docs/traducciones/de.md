@@ -139,6 +139,11 @@ Cuidado: en alemán *Linie* es solo la columna. La «línea» de una apertura es
 | regla del cuadrado | Quadratregel |
 | cuadrado (de la regla del cuadrado) | Quadrat (no choca con *Feld*) |
 | posición de Lucena | Lucena-Stellung |
+| posición de Philidor | Philidor-Stellung |
+| fila de coronación | Umwandlungsreihe |
+| casilla de escape | Fluchtfeld |
+| carrera de peones | Bauernrennen |
+| doblar torres | Türme verdoppeln |
 | zugzwang | Zugzwang |
 | triangulación | Dreiecksmanöver |
 | jugada de espera | Wartezug |

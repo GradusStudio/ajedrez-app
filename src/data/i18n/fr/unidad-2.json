@@ -5,7 +5,7 @@
       "title": "Le roque",
       "summary": "Le roi et la tour en un seul coup",
       "steps": {
-        "u2-l01-s01": { "text": "Le roque déplace le roi et une tour en un seul coup. Le roi va de deux cases vers la tour, et la tour saute de l'autre côté du roi. Voici le petit roque : O-O." },
+        "u2-l01-s01": { "text": "Le roque déplace le roi et une tour en un seul coup. Le roi se déplace de deux cases vers la tour, et la tour saute de l'autre côté du roi. Voici le petit roque : O-O." },
         "u2-l01-s02": { "text": "Le grand roque se fait vers la tour en a1 : le roi va en c1 et la tour en d1. Il s'écrit O-O-O." },
         "u2-l01-s03": { "prompt": "Fais le petit roque.", "hint": "Touche le roi, puis g1 : le roi se déplace de deux cases vers la tour.", "success": "Correct. Le roi est en g1, à l'abri, et la tour est passée en f1." },
         "u2-l01-s04": { "prompt": "Tu joues les Noirs. Fais le grand roque.", "hint": "Déplace le roi de deux cases vers la tour en a8.", "success": "Correct. Le roi est allé en c8 et la tour en d8." },
@@ -29,7 +29,7 @@
       "title": "La prise en passant",
       "summary": "Une prise spéciale du pion",
       "steps": {
-        "u2-l02-s01": { "text": "Si un pion fait un double pas et arrive à côté d'un pion adverse, ce pion peut le prendre comme s'il n'avait avancé que d'une case. C'est la prise en passant." },
+        "u2-l02-s01": { "text": "Si un pion avance de deux cases (un double pas) et arrive à côté d'un pion adverse, ce pion peut le prendre comme s'il n'avait avancé que d'une case. C'est la prise en passant." },
         "u2-l02-s02": { "text": "Elle n'est possible qu'au coup suivant. Si tu joues autre chose, tu perds ce droit." },
         "u2-l02-s03": { "prompt": "Les Noirs viennent de jouer f5. Prends en passant.", "hint": "Le pion f a avancé de deux cases et se trouve à côté du tien. Prends-le en allant en f6.", "success": "Correct. Ton pion est en f6 et le pion f5 a quitté l'échiquier." },
         "u2-l02-s04": { "prompt": "Tu joues les Noirs. Les Blancs viennent de jouer b4. Prends en passant.", "hint": "Le pion b a avancé de deux cases et se trouve à côté de ton pion en c4.", "success": "Correct. Ton pion est en b3 et le pion b4 a quitté l'échiquier." },
@@ -43,7 +43,7 @@
           "prompt": "Les Noirs ont joué d5 il y a deux coups. Peux-tu encore prendre en passant ?",
           "options": ["Oui", "Non, le moment est passé"],
           "explanation": "La prise en passant n'est possible qu'au coup qui suit le double pas.",
-          "feedback": ["Elle n'est possible qu'au coup immédiat.", ""]
+          "feedback": ["Elle n'est possible qu'au coup suivant.", ""]
         },
         "u2-l02-s07": { "prompt": "Les Noirs viennent de jouer e5, en avançant de deux cases. Touche le pion que tu peux prendre en passant.", "hint": "C'est le pion qui vient d'avancer de deux cases." }
       }
@@ -53,16 +53,16 @@
       "summary": "Choisir la bonne pièce à la promotion",
       "steps": {
         "u2-l03-s01": { "text": "Révision : quand le pion atteint la dernière rangée, tu choisis en quelle pièce il se transforme. La dame est presque toujours le meilleur choix." },
-        "u2-l03-s02": { "prompt": "Promeus en prenant la tour.", "hint": "Le pion prend aussi en diagonale à la promotion. S'il avance en d8, la tour le prend.", "success": "Correct. Tu as pris la tour et promu ton pion en même temps." },
-        "u2-l03-s03": { "text": "Attention au pat. Ici, si tu promeus en dame, le roi noir n'a plus de case et n'est pas en échec : c'est pat et la partie est nulle." },
-        "u2-l03-s04": { "prompt": "Promeus sans mettre le roi noir pat, en gardant de quoi donner mat.", "hint": "La dame met pat. Essaie la tour : elle laisse libre la case a6.", "success": "Correct. Avec une tour, le roi noir a a6, et après Ra6 vient Ta8 mat." },
+        "u2-l03-s02": { "prompt": "Fais la promotion en prenant la tour.", "hint": "Le pion prend aussi en diagonale à la promotion. S'il avance en d8, la tour le prend.", "success": "Correct. Tu as pris la tour et promu ton pion en même temps." },
+        "u2-l03-s03": { "text": "Attention au pat. Ici, si tu choisis la dame, le roi noir n'a plus de case et n'est pas en échec : c'est pat et la partie est nulle." },
+        "u2-l03-s04": { "prompt": "Fais la promotion sans mettre le roi noir pat, en gardant de quoi donner mat.", "hint": "La dame met pat. Essaie la tour : elle laisse libre la case a6.", "success": "Correct. Avec une tour, le roi noir a la case a6, et après Ra6 vient Ta8 mat." },
         "u2-l03-s05": {
           "prompt": "Les Noirs menacent Df1 mat. En quelle pièce vaut-il mieux promouvoir ?",
           "options": ["Dame", "Cavalier", "Tour"],
           "explanation": "Un cavalier en d8 fait échec au roi et attaque la dame en même temps. Avec une dame ou une tour, les Noirs donnent mat par Df1.",
           "feedback": ["Avec une dame, les Noirs jouent Df1 et c'est mat.", "", "Avec une tour, les Noirs jouent Df1 et c'est mat."]
         },
-        "u2-l03-s06": { "prompt": "Promeus de façon à empêcher les Noirs de donner mat.", "hint": "Promeus en cavalier : il fait échec et attaque la dame.", "success": "Correct. Après l'échec, le cavalier prend la dame." },
+        "u2-l03-s06": { "prompt": "Fais la promotion de façon à empêcher les Noirs de donner mat.", "hint": "Choisis le cavalier : il fait échec et attaque la dame.", "success": "Correct. Après l'échec, le cavalier prend la dame." },
         "u2-l03-s07": { "text": "Avant de promouvoir, vérifie deux choses : si la dame mettrait le roi adverse pat, et si l'adversaire peut ensuite te donner mat. C'est presque toujours la dame ; parfois, une autre pièce." }
       }
     },
@@ -99,7 +99,7 @@
       "summary": "Répétition, matériel et 50 coups",
       "steps": {
         "u2-l05-s01": { "text": "Les Noirs ont plus de matériel et menacent de mat, mais les Blancs font échec sur échec. Si la même position se répète trois fois, la partie est nulle." },
-        "u2-l05-s02": { "text": "C'est ce qu'on appelle l'échec perpétuel : des échecs sans fin que l'adversaire ne peut pas éviter. C'est la façon la plus courante de sauver une partie perdue par répétition." },
+        "u2-l05-s02": { "text": "C'est ce qu'on appelle l'échec perpétuel : des échecs sans fin que l'adversaire ne peut pas éviter. C'est la façon la plus courante de sauver par répétition une partie perdue." },
         "u2-l05-s03": { "prompt": "Tu es en train de perdre et les Noirs menacent de mat. Fais échec pour commencer l'échec perpétuel.", "hint": "Cherche un échec avec la dame où on ne peut pas la prendre.", "success": "Correct. Avec des échecs sans fin, les Noirs ne peuvent pas empêcher la nulle." },
         "u2-l05-s04": { "text": "La partie est aussi nulle quand aucun des deux n'a assez de matériel pour donner mat : roi contre roi, roi et fou contre roi, ou roi et cavalier contre roi." },
         "u2-l05-s05": {
@@ -114,11 +114,11 @@
           "explanation": "Non : avec un seul cavalier, on ne peut pas forcer le mat. La partie est nulle par matériel insuffisant.",
           "feedback": ["Un cavalier seul ne suffit pas pour donner mat.", ""]
         },
-        "u2-l05-s07": { "text": "Règle des 50 coups : si 50 coups de chaque camp se passent sans prise ni mouvement de pion, la partie est nulle. Les joueurs peuvent aussi se mettre d'accord sur la nulle : dans Bots, tu peux la proposer à l'adversaire." },
+        "u2-l05-s07": { "text": "Règle des 50 coups : si 50 coups de chaque camp sont joués sans prise ni coup de pion, la partie est nulle. Les joueurs peuvent aussi se mettre d'accord sur la nulle : dans l'onglet Bots, tu peux la proposer à l'adversaire." },
         "u2-l05-s08": {
-          "prompt": "Laquelle de ces situations n'est pas nulle ?",
+          "prompt": "Dans laquelle de ces situations la partie n'est-elle pas nulle ?",
           "options": ["Pat", "Échec et mat", "Triple répétition"],
-          "explanation": "L'échec et mat termine la partie avec un gagnant. Les deux autres sont nulles.",
+          "explanation": "L'échec et mat termine la partie avec un gagnant. Les deux autres donnent une partie nulle.",
           "feedback": ["Le pat, c'est une nulle.", "", "La triple répétition, c'est une nulle."]
         }
       }
@@ -145,7 +145,7 @@
           "feedback": ["", "Le petit roque a deux O : O-O.", "Le mat s'indique par #."]
         },
         "u2-l06-s08": {
-          "prompt": "Quel coup est e8=C+ ?",
+          "prompt": "Que signifie e8=C+ ?",
           "options": ["Un pion est promu en cavalier en e8 et fait échec", "Un cavalier va en e8 et fait échec", "Un pion est promu en dame en e8"],
           "explanation": "e8 est la case, =C la pièce choisie à la promotion et + l'échec.",
           "feedback": ["", "Si c'était un cavalier, le coup commencerait par C : Ce8+.", "=C indique un cavalier, pas une dame."]

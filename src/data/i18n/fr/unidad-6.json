@@ -10,14 +10,14 @@
         "u6-l01-s03": {
           "prompt": "Les Blancs jouent. Que se passe-t-il ?",
           "options": ["Les Blancs perdent leur pion et la partie", "Les Blancs gagnent le pion noir", "La partie est nulle : personne ne peut gagner"],
-          "explanation": "Les Blancs sont en zugzwang : n'importe quel coup du roi laisse le pion d4 sans défense. Le roi noir le prend et son pion va à la promotion.",
+          "explanation": "Les Blancs sont en zugzwang : n'importe quel coup du roi laisse le pion d4 sans défense. Le roi noir le prend et son pion est promu.",
           "feedback": ["", "Pour que le pion noir tombe, il faudrait que les Noirs jouent d'abord. Comme c'est aux Blancs de jouer, ce sont eux qui perdent.", "Celui qui joue perd son pion, et ensuite l'autre pion est promu."]
         },
         "u6-l01-s04": { "text": "Le zugzwang sert aussi à donner mat. Ici, les Noirs ne peuvent bouger que le roi et le pion g7. Si tu laisses le pion bloqué, le roi devra bouger, et il n'a aucune bonne case." },
         "u6-l01-s05": { "prompt": "Mat en 2 : joue un coup tranquille, sans échec, qui ne laisse aux Noirs aucun bon coup.", "hint": "Place la tour devant le pion g7 : il ne peut plus avancer et le roi noir est obligé de bouger.", "success": "Correct. Avec Tg6, le pion s'est retrouvé bloqué, le roi a dû aller en a8 et Ta6 est mat." },
         "u6-l01-s06": { "text": "Ici, tu gagnerais si c'était aux Noirs de jouer : leur roi devrait s'écarter. Mais c'est à toi. La solution est de « passer le tour » avec le roi : tu fais trois pas en triangle (e4, d3 et d4) et tu reviens sur la même case. Le roi noir ne peut qu'aller et revenir, et c'est maintenant à lui de jouer dans la même position. Cette technique s'appelle la triangulation." },
         "u6-l01-s07": { "prompt": "Commence le triangle : amène le roi sur une case d'où tu peux revenir en d4 en deux pas.", "hint": "Avancer le pion ou aller en c3 laisse échapper la victoire. Déplace-toi sur les cases voisines (e4, e3 ou d3), assez près pour revenir défendre à temps ton pion c4.", "success": "Correct. De là, en deux pas de plus, tu reviens en d4 et c'est aux Noirs de jouer." },
-        "u6-l01-s08": { "prompt": "Gagne la finale : promeus un pion. Si le roi noir te bloque, fais une triangulation pour le mettre en zugzwang. Stockfish défend avec les Noirs.", "hint": "Avec ce coup, la victoire t'échappe. Cherche la position où le roi noir doit s'écarter et atteins-la quand c'est à lui de jouer.", "success": "Correct. Tu as utilisé le zugzwang pour gagner la finale." },
+        "u6-l01-s08": { "prompt": "Gagne la finale : fais la promotion d'un pion. Si le roi noir te bloque, fais une triangulation pour le mettre en zugzwang. Stockfish défend avec les Noirs.", "hint": "Avec ce coup, la victoire t'échappe. Cherche la position où le roi noir doit s'écarter et atteins-la quand c'est à lui de jouer.", "success": "Correct. Tu as utilisé le zugzwang pour gagner la finale." },
         "u6-l01-s09": { "prompt": "Les Blancs jouent. Utilise le zugzwang pour gagner la finale.", "hint": "Bouge le roi pour que le roi adverse doive s'écarter et laisse ses pions sans défense.", "success": "Bien résolu : cette position vient d'une vraie partie." },
         "u6-l01-s10": { "prompt": "Les Blancs jouent. Utilise le zugzwang pour gagner la finale.", "hint": "Bouge le roi pour que le roi adverse doive s'écarter et laisse ses pions sans défense.", "success": "Bien résolu : cette position vient d'une vraie partie." },
         "u6-l01-s11": { "prompt": "Les Noirs jouent. Utilise le zugzwang pour gagner la finale.", "hint": "Bouge le roi pour que le roi adverse doive s'écarter et laisse ses pions sans défense.", "success": "Bien résolu : cette position vient d'une vraie partie." }
@@ -27,11 +27,11 @@
       "title": "Prophylaxie",
       "summary": "Anticiper le plan de l'adversaire",
       "steps": {
-        "u6-l02-s01": { "text": "Avant chaque coup, demande-toi : que veut faire mon adversaire ? Empêcher son plan avant qu'il ne l'exécute, c'est la prophylaxie. Dans cette Italienne, le fou noir veut aller en g4 pour clouer ton cavalier contre la dame." },
+        "u6-l02-s01": { "text": "Avant chaque coup, demande-toi : que veut faire mon adversaire ? Empêcher son plan avant qu'il ne l'exécute, c'est la prophylaxie. Dans cette Italienne, le fou noir veut aller en g4 pour clouer ton cavalier à la dame." },
         "u6-l02-s02": {
           "prompt": "Si le fou arrive en g4, pourquoi est-ce gênant ?",
           "options": ["Il cloue le cavalier en f3 : s'il bouge, le fou prend la dame", "Il menace de faire échec et mat", "Il attaque le pion e4"],
-          "explanation": "Avec le fou en g4, le cavalier en f3 est cloué contre la dame en d1 : s'il bouge, le fou prend la dame. Le cavalier perd sa liberté juste au moment où il doit défendre le centre.",
+          "explanation": "Avec le fou en g4, le cavalier en f3 est cloué à la dame en d1 : s'il bouge, le fou prend la dame. Le cavalier perd sa liberté juste au moment où il doit défendre le centre.",
           "feedback": ["", "Pas de mat en vue : le problème, c'est le clouage du cavalier.", "Depuis g4, le fou n'attaque pas le pion e4. Le problème, c'est le clouage."]
         },
         "u6-l02-s03": { "prompt": "Joue le coup qui empêche le fou d'aller en g4.", "hint": "Un pion peut contrôler la case g4 avant l'arrivée du fou.", "success": "Correct. Avec h3, le pion contrôle g4 et le fou ne peut plus y aller." },
@@ -41,7 +41,7 @@
         "u6-l02-s07": { "text": "Ici, la dame et le fou noirs visent la même case, à côté de ton roi. Si tu ne fais rien, les Noirs donnent mat en un coup." },
         "u6-l02-s08": { "prompt": "Touche la case où les Noirs feraient échec et mat.", "hint": "La dame en h4 et le fou en d6 attaquent la même case, à côté de ton roi." },
         "u6-l02-s09": { "prompt": "Empêche le mat.", "hint": "Utilise un pion près de ton roi : bloque la diagonale du fou avec le pion g2, ou avance le pion h2 pour que la dame n'ait plus de case où donner mat. Avec f4, le fou prend et ton roi reste exposé.", "success": "Correct. Le mat ne marche plus et ta position tient." },
-        "u6-l02-s10": { "text": "En résumé : avant de jouer, regarde ce que menace l'adversaire et ce qu'il veut faire dans les prochains coups. Un coup tranquille joué à temps, comme h3 ou ouvrir une sortie au roi, évite des problèmes bien plus grands." }
+        "u6-l02-s10": { "text": "En résumé : avant de jouer, regarde ce que menace l'adversaire et ce qu'il veut faire dans les prochains coups. Un coup tranquille joué à temps, comme h3 pour ouvrir une sortie au roi, évite des problèmes bien plus grands." }
       }
     },
     "u6-l03": {
@@ -56,12 +56,12 @@
           "feedback": ["", "Tour 5 moins cavalier 3, ça fait 2 points, pas 1.", "Tour 5 moins cavalier 3, ça fait 2 points, pas 3."]
         },
         "u6-l03-s03": { "text": "Il y a trois raisons typiques de sacrifier la qualité : créer un pion passé que personne ne peut arrêter, ouvrir la défense du roi adverse ou éliminer une pièce qui défend quelque chose d'important. Ici, le cavalier en d6 est la seule pièce qui freine ton pion c6." },
-        "u6-l03-s04": { "prompt": "Les Blancs jouent. Sacrifie la qualité pour que ton pion aille à la promotion.", "hint": "Le cavalier en d6 freine ton pion c. Que se passe-t-il si tu l'élimines, même au prix de ta tour ?", "success": "Bien résolu : cette position vient d'une vraie partie." },
+        "u6-l03-s04": { "prompt": "Les Blancs jouent. Sacrifie la qualité pour que ton pion soit promu.", "hint": "Le cavalier en d6 freine ton pion c. Que se passe-t-il si tu l'élimines, même au prix de ta tour ?", "success": "Bien résolu : cette position vient d'une vraie partie." },
         "u6-l03-s05": { "prompt": "Les Blancs jouent. Encore une fois : la qualité contre un pion inarrêtable.", "hint": "Quelle pièce noire freine ton pion b ? Élimine-la avec la tour.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l03-s06": { "text": "La deuxième raison : ouvrir le roi. Si ta tour prend une pièce qui protège le roi adverse, tes autres pièces peuvent entrer pour l'attaquer." },
+        "u6-l03-s06": { "text": "La deuxième raison : exposer le roi. Si ta tour prend une pièce qui protège le roi adverse, tes autres pièces peuvent entrer pour l'attaquer." },
         "u6-l03-s07": { "prompt": "Les Blancs jouent. Sacrifie la qualité pour attaquer le roi.", "hint": "Le fou en g7 protège le roi noir. Prends-le avec la tour, puis entre avec la dame.", "success": "Bien résolu : cette position vient d'une vraie partie." },
         "u6-l03-s08": { "prompt": "Les Blancs jouent. Élimine le défenseur : la qualité pour gagner plus de matériel.", "hint": "Le cavalier en f6 défend la tour en d5. S'il disparaît, la tour reste sans défense.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l03-s09": { "text": "En résumé : la qualité vaut environ 2 points, mais un pion qui va à la promotion, une attaque sur le roi ou le gain d'une autre pièce valent plus. Avant de la sacrifier, calcule ce que tu gagnes en échange." }
+        "u6-l03-s09": { "text": "En résumé : la qualité vaut environ 2 points, mais un pion qui est promu, une attaque sur le roi ou le gain d'une autre pièce valent plus. Avant de la sacrifier, calcule ce que tu gagnes en échange." }
       }
     },
     "u6-l04": {
@@ -75,8 +75,8 @@
         "u6-l04-s05": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : déviation. Un échec sur la première rangée écarte la tour qui défend la dame.", "success": "Bien résolu : cette position vient d'une vraie partie." },
         "u6-l04-s06": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : mat en 2. Prends la pièce qui défend et continue avec un échec de la dame.", "success": "Bien résolu : cette position vient d'une vraie partie." },
         "u6-l04-s07": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : zugzwang. Approche ton roi des pions blancs : le roi adverse ne peut pas les défendre sans s'écarter.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s08": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : clouage. Échange les tours, puis cloue la dame contre son roi avec le fou.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s09": { "prompt": "Les Blancs jouent. Trouve le meilleur coup.", "hint": "Indice : promotion. Ton pion d7 est à un pas : promeus-le, même si la tour peut le prendre.", "success": "Bien résolu : cette position vient d'une vraie partie." },
+        "u6-l04-s08": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : clouage. Échange les tours, puis cloue la dame à son roi avec le fou.", "success": "Bien résolu : cette position vient d'une vraie partie." },
+        "u6-l04-s09": { "prompt": "Les Blancs jouent. Trouve le meilleur coup.", "hint": "Indice : promotion. Ton pion d7 est à un pas de la dernière rangée : fais la promotion, même si la tour peut le prendre.", "success": "Bien résolu : cette position vient d'une vraie partie." },
         "u6-l04-s10": { "text": "Tu as terminé le parcours Apprendre. À partir d'ici, le mieux est de t'entraîner : des puzzles tous les jours, les ouvertures dans leur onglet et des parties contre les bots pour utiliser tout ce que tu as appris." }
       }
     }

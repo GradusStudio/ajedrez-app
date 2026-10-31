@@ -99,9 +99,9 @@
           "explanation": "Le pion ne peut ni avancer ni prendre vers l'avant."
         },
         "u1-l07-s08": { "text": "Quand le pion atteint la dernière rangée, c'est la promotion : il se transforme en dame, en tour, en fou ou en cavalier, au choix. La dame est presque toujours le meilleur choix, car c'est la pièce la plus forte." },
-        "u1-l07-s09": { "prompt": "Promeus le pion et choisis la dame.", "hint": "Avance le pion jusqu'en d8 et, dans le sélecteur, touche la dame.", "success": "Correct. Le pion est maintenant une dame." },
-        "u1-l07-s10": { "text": "La dame n'est pas toujours le meilleur choix. Ici, si tu promeus en dame, les Noirs jouent Dc1+ : ta nouvelle dame s'interpose en e1, ils la prennent et c'est mat." },
-        "u1-l07-s11": { "prompt": "Promeus le pion de façon à gagner la dame noire.", "hint": "Un cavalier en e8 ferait échec au roi et attaquerait la dame en même temps.", "success": "Correct. Le cavalier fait échec et attaque la dame : après l'échec, tu la prends." },
+        "u1-l07-s09": { "prompt": "Fais la promotion et choisis la dame.", "hint": "Avance le pion jusqu'en d8 et, dans le sélecteur, touche la dame.", "success": "Correct. Le pion est maintenant une dame." },
+        "u1-l07-s10": { "text": "La dame n'est pas toujours le meilleur choix. Ici, si tu choisis la dame, les Noirs jouent Dc1+ : ta nouvelle dame s'interpose en e1, ils la prennent et c'est mat." },
+        "u1-l07-s11": { "prompt": "Fais la promotion de façon à gagner la dame noire.", "hint": "Un cavalier en e8 ferait échec au roi et attaquerait la dame en même temps.", "success": "Correct. Le cavalier fait échec et attaque la dame : après l'échec, tu la prends." },
         "u1-l07-s12": { "text": "Le roi s'écarte et le cavalier prend la dame. Promouvoir en une autre pièce que la dame s'appelle une sous-promotion." }
       }
     },
@@ -134,7 +134,7 @@
         },
         "u1-l09-s05": {
           "prompt": "Faut-il prendre le cavalier avec ton pion ?",
-          "options": ["Oui, je gagne un cavalier pour un pion", "Non, on reprend mon pion"],
+          "options": ["Oui, je gagne un cavalier pour un pion", "Non, l'adversaire reprend mon pion"],
           "explanation": "Tu gagnes 3 points et, même si l'adversaire reprend, tu n'en perds que 1.",
           "feedback": ["", "L'adversaire peut reprendre, c'est vrai, mais le cavalier vaut plus que le pion."]
         },
@@ -174,7 +174,7 @@
         "u1-l11-s01": { "text": "Si ton roi est en échec, tu dois parer l'échec. Première façon : déplacer le roi sur une case qui n'est pas attaquée." },
         "u1-l11-s02": { "text": "Deuxième façon : bloquer l'attaque en interposant une pièce." },
         "u1-l11-s03": { "text": "Troisième façon : prendre la pièce qui fait échec." },
-        "u1-l11-s04": { "prompt": "Bloque l'échec avec le cavalier.", "hint": "Place le cavalier sur la colonne e, entre la tour et le roi.", "success": "Correct" },
+        "u1-l11-s04": { "prompt": "Pare l'échec en interposant le cavalier.", "hint": "Place le cavalier sur la colonne e, entre la tour et le roi.", "success": "Correct" },
         "u1-l11-s05": { "prompt": "Prends avec le fou la pièce qui fait échec.", "hint": "L'attaquant est le cavalier blanc.", "success": "Correct" },
         "u1-l11-s06": { "prompt": "Déplace le roi sur une case sûre.", "hint": "La tour contrôle toute la rangée 8.", "success": "Correct" },
         "u1-l11-s07": { "text": "Si aucune des trois solutions ne marche, il n'y a pas d'issue : c'est échec et mat. Nous le verrons dans la prochaine leçon." }

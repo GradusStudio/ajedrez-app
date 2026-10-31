@@ -51,7 +51,7 @@
           "feedback": ["", "L'opposition, c'est pour celui qui n'a pas à jouer. Ici, ce sont les Noirs qui jouent.", "Les rois sont face à face avec une case entre eux : l'un des deux l'a."]
         },
         "u5-l03-s03": { "prompt": "Prends l'opposition : place ton roi face au roi noir, avec une case entre eux.", "hint": "Le roi noir est en e7. Amène ton roi sur la même colonne, deux rangées plus bas.", "success": "Correct. Avec Re5, tu as l'opposition et le roi noir doit céder le passage." },
-        "u5-l03-s04": { "text": "En roi et pion contre roi, ton roi va devant le pion et gagne du terrain grâce à l'opposition. Le pion avance derrière lui, protégé." },
+        "u5-l03-s04": { "text": "Dans la finale roi et pion contre roi, ton roi va devant le pion et gagne du terrain grâce à l'opposition. Le pion avance derrière lui, protégé." },
         "u5-l03-s05": { "prompt": "Un seul coup gagne. Trouve-le.", "hint": "Place ton roi devant le pion et face au roi noir.", "success": "Correct. Re4 prend l'opposition, devant le pion." },
         "u5-l03-s06": {
           "prompt": "Les Blancs jouent, et les Noirs ont l'opposition. Victoire ou nulle ?",
@@ -59,7 +59,7 @@
           "explanation": "Les Blancs gagnent : avec e3, le pion joue un coup d'attente et l'opposition passe aux Blancs. C'est pourquoi il vaut mieux ne pas se presser d'avancer le pion.",
           "feedback": ["", "Regarde le pion : il peut n'avancer que d'une case et passer ainsi le tour aux Noirs."]
         },
-        "u5-l03-s07": { "prompt": "Promeus le pion. Stockfish défend avec les Noirs.", "hint": "Avec ce coup, la finale devient nulle. Amène le roi devant le pion et prends l'opposition avant de l'avancer.", "success": "Correct. Tu as promu ton pion avec l'aide de ton roi." },
+        "u5-l03-s07": { "prompt": "Fais la promotion du pion. Stockfish défend avec les Noirs.", "hint": "Avec ce coup, la finale devient nulle. Amène le roi devant le pion et prends l'opposition avant de l'avancer.", "success": "Correct. Tu as promu ton pion avec l'aide de ton roi." },
         "u5-l03-s08": { "prompt": "Maintenant, tu défends avec les Noirs : obtiens la nulle. Tiens bon pendant 10 coups.", "hint": "Avec ce coup, les Blancs gagnent. Place ton roi devant le pion et cherche l'opposition.", "success": "Correct. Avec ton roi devant le pion, les Blancs ne peuvent pas gagner." }
       }
     },
@@ -81,8 +81,8 @@
           "feedback": ["Le roi en g5 n'atteint que la colonne f, et le carré s'arrête à la colonne e.", ""]
         },
         "u5-l04-s04": { "prompt": "Les Blancs jouent. Un seul coup gagne : tu avances le pion ou tu bouges le roi ?", "hint": "Si tu bouges le roi, le roi noir entre dans le carré. Avance le pion : le carré rétrécit.", "success": "Correct. Avec a5, le carré rétrécit et le roi noir reste dehors." },
-        "u5-l04-s05": { "text": "Parfois, il n'y a pas de pion passé, mais on peut en créer un. Avec trois pions contre trois, b6 casse la chaîne : après n'importe quelle prise, un autre pion blanc avance et l'un d'eux atteint la promotion. Le roi noir est trop loin pour aider." },
-        "u5-l04-s06": { "prompt": "Fais la percée et crée un pion passé qui ira à la promotion.", "hint": "Commence par b6. Après la prise, joue c6 : quand le pion b prendra, ton pion a aura la voie libre.", "success": "Correct. Le pion a ne peut plus être arrêté : le roi noir est hors du carré." },
+        "u5-l04-s05": { "text": "Parfois, il n'y a pas de pion passé, mais on peut en créer un. Avec trois pions contre trois, b6 casse la chaîne : après n'importe quelle prise, un autre pion blanc avance et l'un d'eux est promu. Le roi noir est trop loin pour aider." },
+        "u5-l04-s06": { "prompt": "Fais la percée et crée un pion passé qui sera promu.", "hint": "Commence par b6. Après la prise, joue c6 : quand le pion b prendra, ton pion a aura la voie libre.", "success": "Correct. Le pion a ne peut plus être arrêté : le roi noir est hors du carré." },
         "u5-l04-s07": { "prompt": "Gagne la course de pions.", "hint": "Compte les cases : le roi adverse n'arrive pas à entrer dans le carré de ton pion.", "success": "Bien résolu : cette position vient d'une vraie partie." },
         "u5-l04-s08": { "prompt": "Gagne la course de pions.", "hint": "Compte les cases : le roi adverse n'arrive pas à entrer dans le carré de ton pion.", "success": "Bien résolu : cette position vient d'une vraie partie." }
       }
@@ -92,15 +92,15 @@
       "summary": "Tour et pion contre tour",
       "steps": {
         "u5-l05-s01": { "text": "Voici la position de Lucena, la finale de tours la plus importante. Ton pion est sur la septième rangée et ton roi devant lui, sur la case de promotion. Ta tour coupe le roi noir sur la colonne e, et la tour noire surveille la colonne c pour que ton roi ne sorte pas par là." },
-        "u5-l05-s02": { "text": "Le plan a deux étapes. D'abord, un échec éloigne encore un peu le roi noir. Ensuite, ta tour va sur la quatrième rangée. Quand ton roi sortira, la tour noire fera des échecs, et ta tour s'interposera sur le dernier. C'est ce qu'on appelle construire le pont." },
-        "u5-l05-s03": { "prompt": "Première étape : fais échec depuis la colonne f pour éloigner le roi noir.", "hint": "Amène la tour en e1 sur la colonne du roi noir.", "success": "Correct. Le roi noir doit s'éloigner." },
+        "u5-l05-s02": { "text": "Le plan a deux étapes. D'abord, un échec éloigne encore un peu le roi noir. Ensuite, ta tour va sur la quatrième rangée. Quand ton roi sortira, la tour noire fera des échecs, et ta tour parera le dernier en s'interposant. C'est ce qu'on appelle construire le pont." },
+        "u5-l05-s03": { "prompt": "Première étape : fais échec depuis la colonne f pour éloigner le roi noir.", "hint": "Amène la tour de e1 sur la colonne du roi noir.", "success": "Correct. Le roi noir doit s'éloigner." },
         "u5-l05-s04": {
           "prompt": "Construis le pont, coup par coup.",
           "success": "Tu as construit le pont. Le pion sera promu au coup suivant.",
           "notes": [
             "Échec depuis la colonne f : le roi noir s'éloigne encore un peu.",
             "",
-            "Ta tour va sur la quatrième rangée. De là, elle pourra s'interposer contre les échecs plus tard.",
+            "Ta tour va sur la quatrième rangée. De là, elle pourra parer les échecs plus tard.",
             "",
             "Ton roi quitte la case devant le pion. Maintenant, la tour noire ne peut plus que faire des échecs.",
             "",
@@ -115,12 +115,12 @@
         },
         "u5-l05-s05": {
           "prompt": "Pourquoi la tour va-t-elle sur la quatrième rangée ?",
-          "options": ["Pour s'interposer contre les échecs de la tour noire", "Pour attaquer le roi noir", "Pour protéger le pion par-derrière"],
+          "options": ["Pour parer les échecs de la tour noire", "Pour attaquer le roi noir", "Pour protéger le pion par-derrière"],
           "explanation": "Quand ton roi sort, la tour noire le poursuit avec des échecs. Ta tour sur la quatrième rangée s'interpose au bon moment : c'est ça, le pont.",
           "feedback": ["", "Le roi noir est coupé et loin : la tour ne cherche pas à l'attaquer.", "Ton roi protège déjà le pion. La tour sert à stopper les échecs."]
         },
-        "u5-l05-s06": { "prompt": "Gagne la position de Lucena : promeus le pion. Stockfish défend avec les Noirs.", "hint": "Avec ce coup, la victoire t'échappe. Rappelle-toi le plan : échec pour éloigner le roi, tour sur la quatrième rangée, puis sors ton roi.", "success": "Correct. Tu as gagné la position de Lucena." },
-        "u5-l05-s07": { "text": "En résumé : éloigne le roi adverse, amène la tour sur la quatrième rangée, sors ton roi et interpose la tour contre les échecs. Si le roi du camp qui défend arrive devant le pion, la défense est différente : c'est la position de Philidor, qui donne la nulle." }
+        "u5-l05-s06": { "prompt": "Gagne la position de Lucena : fais la promotion du pion. Stockfish défend avec les Noirs.", "hint": "Avec ce coup, la victoire t'échappe. Rappelle-toi le plan : échec pour éloigner le roi, tour sur la quatrième rangée, puis sors ton roi.", "success": "Correct. Tu as gagné la position de Lucena." },
+        "u5-l05-s07": { "text": "En résumé : éloigne le roi adverse, amène la tour sur la quatrième rangée, sors ton roi et pare les échecs en interposant la tour. Si le roi du camp qui défend arrive devant le pion, la défense est différente : c'est la position de Philidor, qui donne la nulle." }
       }
     }
   }

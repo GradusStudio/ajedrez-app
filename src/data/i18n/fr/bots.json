@@ -75,7 +75,7 @@
       "welcome": [
         "Regarde bien, je vais te montrer une astuce.",
         "Entre, entre. Aujourd'hui, quelque chose se cache dans cette leçon.",
-        "Salut. Méfie-toi, les choses ne sont pas toujours ce qu'elles semblent."
+        "Salut. Méfie-toi, les choses ne sont pas toujours ce qu'elles semblent être."
       ],
       "close": [
         "Et voilà l'astuce. Maintenant, tu la connais.",
@@ -143,7 +143,7 @@
         "Très bien. C'est ainsi que l'on étudie, avec constance."
       ],
       "reminder": {
-        "risk": "Jours de série : {n}. La constance s'entretient avec une activité aujourd'hui.",
+        "risk": "Jours de série : {n}. La constance s'entretient : une activité aujourd'hui préservera ta série.",
         "recovery": "Pour reprendre ta série, il te faut aujourd'hui une leçon, un puzzle et une partie contre un bot.",
         "general": "Le cours d'aujourd'hui est prêt. Je t'attends."
       }
@@ -164,11 +164,11 @@
     "teaching": {
       "welcome": [
         "Bonjour. Travaillons cette leçon avec patience.",
-        "Bonjour. Un pas bien fait vaut mieux que plusieurs précipités.",
+        "Bonjour. Un pas assuré vaut mieux que plusieurs pas précipités.",
         "Ça me fait plaisir de te voir. Commençons sereinement."
       ],
       "close": [
-        "C'est fini. Chaque leçon ajoute un peu.",
+        "C'est fini. Chaque leçon t'apporte un peu plus.",
         "Beau travail. On avance mieux peu à peu.",
         "Leçon terminée. Elle est bien construite."
       ],
@@ -248,8 +248,8 @@
       "greeting": "Les finales montrent la vérité d'une partie.",
       "onGoodMove": "Voilà un coup plein de patience.",
       "onBlunder": "En finale, cette erreur coûte cher.",
-      "onWin": "La finale a décidé. Revois l'activité de ton roi.",
-      "onLose": "Grande technique de finale."
+      "onWin": "La finale a fait la différence. Revois l'activité de ton roi.",
+      "onLose": "Belle technique de finale."
     },
     "teaching": {
       "welcome": [
@@ -275,7 +275,7 @@
     "trait": "Elle joue avec une précision presque totale et utilise tout son répertoire. C'est le défi final.",
     "teaches": "Jouer sans erreur contre un adversaire très exact.",
     "lines": {
-      "greeting": "Je joue du mieux que je sais. Que la partie commence.",
+      "greeting": "Je joue du mieux que je peux. Que la partie commence.",
       "onGoodMove": "Précis. C'était le meilleur coup.",
       "onBlunder": "Erreur. J'en profite.",
       "onWin": "Revois la partie : tu vas beaucoup apprendre.",

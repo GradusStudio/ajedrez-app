@@ -8,7 +8,7 @@
         "summary": "Structure, plan et ordre des coups",
         "steps": {
           "london-l01-s01": {
-            "text": "Avec les Blancs, tu joues presque toujours la même structure : des pions en d4, e3 et c3, et le fou de cases sombres dehors, en f4."
+            "text": "Avec les Blancs, tu joues presque toujours la même structure : des pions en d4, e3 et c3, et le fou de cases sombres sorti en f4."
           },
           "london-l01-s02": {
             "text": "Voici le schéma complet. Le fou sort avant que la chaîne de pions se ferme avec e3."
@@ -26,7 +26,7 @@
           },
           "london-l01-s05": {
             "prompt": "Quel est le bon ordre des premiers coups ?",
-            "explanation": "D'abord le pion dame, ensuite le fou dehors et enfin e3.",
+            "explanation": "D'abord le pion dame, ensuite la sortie du fou et enfin e3.",
             "options": [
               "d4, Ff4, e3",
               "d4, e3, Ff4",
@@ -83,7 +83,7 @@
           },
           "london-l03-s03": {
             "prompt": "Ton fou est attaqué par le fou noir. Recule-le sans quitter la diagonale.",
-            "hint": "Il y a une case sûre qui garde la diagonale.",
+            "hint": "Il y a une case sûre sur la même diagonale.",
             "success": "Correct"
           },
           "london-l03-s04": {
@@ -102,7 +102,7 @@
             "prompt": "Maintenant contre ...c5 : joue le schéma du Londres."
           },
           "london-l04-s03": {
-            "prompt": "Vers quelle case centrale vise ton cavalier en f3 ?",
+            "prompt": "Quelle case centrale vise ton cavalier en f3 ?",
             "explanation": "Le cavalier en f3 surveille e5, la case que tu veux le plus contrôler.",
             "options": [
               "e5",
@@ -163,7 +163,7 @@
               "",
               "Prépare l'avance d4 pour occuper le centre.",
               "",
-              "Coup tranquille : soutient e4 et ouvre le fou en c1.",
+              "Coup tranquille : soutient e4 et ouvre la voie au fou en c1.",
               "",
               "Roi en sécurité et tour vers le centre.",
               "",
@@ -226,7 +226,7 @@
           },
           "italian-l04-s03": {
             "prompt": "Quel pion joues-tu pour soutenir e4 tranquillement ?",
-            "explanation": "Le pion d3 soutient e4 et ouvre le fou en c1.",
+            "explanation": "Le pion d3 soutient e4 et ouvre la voie au fou en c1.",
             "options": [
               "d3",
               "h3",
@@ -292,7 +292,7 @@
               "",
               "Le fou fait pression sur le cavalier noir en e4.",
               "",
-              "Prise en passant : le pion noir a avancé de deux cases et tu le prends comme s'il n'avait avancé que d'une.",
+              "Prise en passant : le pion noir a avancé de deux cases et tu le prends comme s'il n'avait avancé que d'une seule.",
               "",
               "Roi en sécurité et tour en jeu."
             ]
@@ -361,7 +361,7 @@
   },
   "scandinavian": {
     "name": "Défense scandinave",
-    "summary": "Tu remets en cause le centre blanc dès le premier coup, avec un plan simple et peu de lignes à retenir.",
+    "summary": "Tu contestes le centre blanc dès le premier coup, avec un plan simple et peu de lignes à retenir.",
     "lessons": {
       "scandinavian-l01": {
         "title": "L'idée de la Défense scandinave",
@@ -374,7 +374,7 @@
             "text": "La dame sort tôt, mais elle se replie en a5, une case active, et cloue le cavalier en c3 quand la diagonale s'ouvre."
           },
           "scandinavian-l01-s03": {
-            "text": "Le plan : ...c6 pour contrôler d5 et b5, le fou dehors avant ...e6, le cavalier en f6 et petit roque."
+            "text": "Le plan : ...c6 pour contrôler d5 et b5, la sortie du fou avant ...e6, le cavalier en f6 et le petit roque."
           },
           "scandinavian-l01-s04": {
             "prompt": "Quel fou vaut-il mieux sortir avant de jouer ...e6 ?",
@@ -406,7 +406,7 @@
               "",
               "Tu sors le fou avant de fermer avec ...e6.",
               "",
-              "Maintenant, tu peux fermer la chaîne : le fou est dehors."
+              "Maintenant, tu peux fermer la chaîne : le fou est sorti."
             ]
           }
         }
@@ -421,7 +421,7 @@
             "success": "Correct"
           },
           "scandinavian-l03-s02": {
-            "prompt": "Sors le fou en c8 avant de fermer avec ...e6.",
+            "prompt": "Sors le fou de c8 avant de fermer avec ...e6.",
             "hint": "Choisis une case hors de la chaîne de pions.",
             "success": "Correct"
           },
@@ -463,7 +463,7 @@
   },
   "sicilian": {
     "name": "Défense sicilienne (Najdorf)",
-    "summary": "La réponse la plus combative à 1.e4 : structure asymétrique et jeu pour gagner avec les Noirs.",
+    "summary": "La réponse la plus combative à 1.e4 : une structure asymétrique et une partie où les Noirs jouent pour gagner.",
     "lessons": {
       "sicilian-l01": {
         "title": "L'idée de la Sicilienne",
@@ -516,7 +516,7 @@
               "",
               "Najdorf : tu surveilles b5 et tu prépares ...b5.",
               "",
-              "Tu occupes le centre et tu chasses le cavalier en d4.",
+              "Tu occupes le centre et tu chasses le cavalier de d4.",
               "",
               "Le fou fait pression sur le cavalier en b3.",
               "",
@@ -540,7 +540,7 @@
           },
           "sicilian-l03-s02": {
             "prompt": "Développe le cavalier en attaquant e4.",
-            "hint": "Le cavalier en g8 attaque le pion e4.",
+            "hint": "Depuis f6, le cavalier attaque le pion e4.",
             "success": "Correct"
           },
           "sicilian-l03-s03": {
@@ -625,7 +625,7 @@
               "",
               "Tu échanges ton pion c contre le pion central.",
               "",
-              "Tu développes et tu attaques e4.",
+              "Tu te développes et tu attaques e4.",
               "",
               "Dragon : tu prépares le fianchetto en g7.",
               "",
@@ -702,7 +702,7 @@
             "text": "Structure typique : des pions en g3, d3 et e4, le fou en g2 et les cavaliers en f3 et d2."
           },
           "kia-l01-s03": {
-            "text": "Le plan : avancer e5 et attaquer sur l'aile roi avec tes pièces et tes pions."
+            "text": "Le plan : pousser le pion en e5 et attaquer sur l'aile roi avec tes pièces et tes pions."
           },
           "kia-l01-s04": {
             "prompt": "Quelle diagonale ton fou en g2 contrôle-t-il ?",
@@ -739,7 +739,7 @@
               "",
               "Roi vite en sécurité.",
               "",
-              "Soutient e4 et ouvre le fou en c1.",
+              "Soutient e4 et ouvre la voie au fou en c1.",
               "",
               "Développe le cavalier et prépare e4.",
               "",
@@ -840,7 +840,7 @@
             "prompt": "Joue la ligne principale de la Défense est-indienne.",
             "notes": [
               "",
-              "Tu développes et tu contrôles e4 et d5.",
+              "Tu te développes et tu contrôles e4 et d5.",
               "",
               "Prépare le fou en g7.",
               "",
@@ -869,7 +869,7 @@
         "steps": {
           "kings-indian-l03-s01": {
             "prompt": "Mets le fou en fianchetto sur la grande diagonale.",
-            "hint": "Le fou du roi sort en g7.",
+            "hint": "Le fou de l'aile roi sort en g7.",
             "success": "Correct"
           },
           "kings-indian-l03-s02": {
@@ -927,7 +927,7 @@
           },
           "modern-l01-s04": {
             "prompt": "Qu'est-ce qui distingue la Moderne de la Pirc ?",
-            "explanation": "Les deux utilisent ...g6 et ...Fg7, mais l'ordre des pièces est plus souple dans la Moderne.",
+            "explanation": "Les deux utilisent ...g6 et ...Fg7, mais l'ordre de sortie des pièces est plus souple dans la Moderne.",
             "options": [
               "Le cavalier en g8 attend souvent de voir ce que font les Blancs",
               "Il n'y a aucune différence",
@@ -957,7 +957,7 @@
               "",
               "Le fou fait pression sur le centre de loin.",
               "",
-              "Tu contrôles e5 et tu limites le pion e4.",
+              "Tu contrôles e5 et tu freines le pion e4.",
               "",
               "Prépare ...b5 et gagne de l'espace sur l'aile dame.",
               "",
@@ -979,7 +979,7 @@
           },
           "modern-l03-s02": {
             "prompt": "Place le fou sur la grande diagonale.",
-            "hint": "Le fou du roi sort en g7.",
+            "hint": "Le fou de l'aile roi sort en g7.",
             "success": "Correct"
           },
           "modern-l03-s03": {
@@ -1002,7 +1002,7 @@
           },
           "modern-l04-s02": {
             "prompt": "Que cherches-tu avec ...b5 ?",
-            "explanation": "La Moderne utilise l'aile dame pour équilibrer l'espace du centre blanc.",
+            "explanation": "La Moderne utilise l'aile dame pour compenser l'espace que les Blancs ont au centre.",
             "options": [
               "Gagner de l'espace sur l'aile dame",
               "Attaquer le roi",
@@ -1040,7 +1040,7 @@
             ]
           },
           "pirc-l01-s05": {
-            "prompt": "Quelle attaque blanche vaut-il mieux connaître ?",
+            "prompt": "Quelle attaque blanche faut-il connaître ?",
             "explanation": "Avec f4, les Blancs bâtissent un énorme centre et attaquent vite.",
             "options": [
               "Le Gambit dame",
@@ -1060,7 +1060,7 @@
               "",
               "Souple : tu laisses les Blancs occuper le centre.",
               "",
-              "Tu attaques e4 et tu développes.",
+              "Tu attaques e4 et tu te développes.",
               "",
               "Tu prépares le fianchetto.",
               "",
@@ -1137,7 +1137,7 @@
           },
           "scotch-l01-s04": {
             "prompt": "Avec quelle pièce reprends-tu en d4 ?",
-            "explanation": "C'est la prise qui centralise une pièce et qui développe.",
+            "explanation": "C'est la prise qui centralise une pièce et qui la développe.",
             "options": [
               "Avec le cavalier en f3",
               "Avec la dame",
@@ -1146,7 +1146,7 @@
           },
           "scotch-l01-s05": {
             "prompt": "Qu'est-ce que l'avance d4 ouvre ?",
-            "explanation": "La partie s'ouvre et tes pièces gagnent des lignes.",
+            "explanation": "La partie s'ouvre et tes pièces ont plus de lignes.",
             "options": [
               "L'aile dame",
               "Le centre et la colonne d",
@@ -1399,11 +1399,11 @@
               "",
               "Gambit Blackmar-Diemer : tu offres un pion.",
               "",
-              "Tu développes et tu prépares f3.",
+              "Tu te développes et tu prépares f3.",
               "",
               "Tu ouvres la colonne f et tu cherches une avance de développement.",
               "",
-              "Tu reprends et tu développes : tu as un pion de moins, mais de l'avance dans le développement.",
+              "Tu reprends et tu te développes : tu as un pion de moins, mais une avance de développement.",
               "",
               "Le fou vise h7.",
               "",
@@ -1461,7 +1461,7 @@
   },
   "caro-kann": {
     "name": "Défense Caro-Kann",
-    "summary": "Une défense très solide : ta structure est ferme et ton fou reste libre.",
+    "summary": "Une défense très solide : ta structure est saine et ton fou reste libre.",
     "lessons": {
       "caro-kann-l01": {
         "title": "L'idée de la Caro-Kann",
@@ -1489,7 +1489,7 @@
             "prompt": "Que fais-tu du fou en c8 avant de jouer ...e6 ?",
             "explanation": "Si tu joues ...e6 avant, le fou reste enfermé derrière tes pions.",
             "options": [
-              "Tu le laisses chez lui",
+              "Tu le laisses sur sa case",
               "Tu le sors",
               "Tu l'échanges contre la dame"
             ]
@@ -1584,7 +1584,7 @@
             "text": "Avec Fb5, tu fais pression sur le cavalier qui protège e5. Tu ne le prends pas tout de suite : tu maintiens la tension."
           },
           "ruy-lopez-l01-s02": {
-            "text": "Après ...a6, tu recules en a4 et tu gardes la pression sur le cavalier, sans échanger le fou sans nécessité."
+            "text": "Après ...a6, tu recules en a4 et tu gardes la pression sur le cavalier, sans échanger le fou inutilement."
           },
           "ruy-lopez-l01-s03": {
             "text": "Plan typique : c3 et d4 pour occuper le centre, avec ton fou bien placé en b3."
@@ -1599,7 +1599,7 @@
             ]
           },
           "ruy-lopez-l01-s05": {
-            "prompt": "Après ...a6, que fais-tu avec le fou ?",
+            "prompt": "Après ...a6, que fais-tu de ton fou ?",
             "explanation": "Le replier en a4 conserve le fou et la pression sur le centre.",
             "options": [
               "Tu l'échanges toujours en c6",
@@ -1642,7 +1642,7 @@
         "summary": "Le piège de l'Arche de Noé",
         "steps": {
           "ruy-lopez-l03-s01": {
-            "text": "Voici le piège de l'Arche de Noé : les pions a6, b5 et c4 enferment le fou en b3. Cela arrive si tu joues d4 trop tôt contre ...d6."
+            "text": "Voici le piège de l'Arche de Noé : les pions a6, b5 et c4 piègent le fou en b3. Cela arrive si tu joues d4 trop tôt contre ...d6."
           },
           "ruy-lopez-l03-s02": {
             "prompt": "Les Noirs ont joué ...d6. Prépare d4 sans risquer le fou.",
@@ -1650,7 +1650,7 @@
             "success": "Correct"
           },
           "ruy-lopez-l03-s03": {
-            "prompt": "Qu'est-ce que c3 empêche avant d4 ?",
+            "prompt": "Qu'est-ce que tu évites en jouant c3 avant d4 ?",
             "explanation": "Avec c3, ton fou peut se replier en c2 si les Noirs jouent ...b5.",
             "options": [
               "Un échec de la dame",
@@ -1726,7 +1726,7 @@
             "notes": [
               "Centre.",
               "",
-              "Tu développes et tu restes flexible.",
+              "Tu te développes et tu restes flexible.",
               "",
               "Rossolimo : tu fais pression sur le cavalier qui contrôle d4 et e5.",
               "",
@@ -1844,7 +1844,7 @@
               "",
               "Roi en sécurité.",
               "",
-              "Tu continues à développer et tu soutiens d4."
+              "Tu continues à te développer et tu soutiens d4."
             ]
           }
         }
@@ -1981,7 +1981,7 @@
           },
           "queens-gambit-l03-s03": {
             "prompt": "Quel fou reste enfermé si tu joues e3 sans réfléchir ?",
-            "explanation": "C'est pourquoi tu sors le fou en c1 (Fg5) avant de jouer e3.",
+            "explanation": "C'est pourquoi tu sors le fou de c1 (Fg5) avant de jouer e3.",
             "options": [
               "Celui en f1",
               "Celui en c1",
@@ -2012,17 +2012,17 @@
   },
   "kings-gambit": {
     "name": "Gambit roi",
-    "summary": "L'ouverture romantique : tu sacrifies un pion tout de suite et tu attaques avec tout.",
+    "summary": "L'ouverture romantique : tu sacrifies un pion tout de suite et tu attaques de toutes tes forces.",
     "lessons": {
       "kings-gambit-l01": {
         "title": "L'idée du Gambit roi",
-        "summary": "Un pion contre l'attaque",
+        "summary": "Un pion pour l'attaque",
         "steps": {
           "kings-gambit-l01-s01": {
             "text": "Avec f4, tu offres un pion pour ouvrir la colonne f et dominer le centre."
           },
           "kings-gambit-l01-s02": {
-            "text": "Avec Cf3, tu développes et tu évites un échec de la dame en h4."
+            "text": "Avec Cf3, tu te développes et tu évites un échec de la dame en h4."
           },
           "kings-gambit-l01-s03": {
             "text": "Dans la variante Kieseritzky, le cavalier saute en e5 quand il est attaqué par ...g4."
@@ -2106,7 +2106,7 @@
             "prompt": "Rejoue la ligne principale sans aide."
           },
           "kings-gambit-l04-s02": {
-            "prompt": "Quelle diagonale f4 affaiblit-il ?",
+            "prompt": "Quelle diagonale le coup f4 affaiblit-il ?",
             "explanation": "Attention aux échecs de la dame en h4.",
             "options": [
               "Celle qui va de e1 à h4",
@@ -2169,7 +2169,7 @@
               "",
               "Le pion avance et reste comme une épine au centre.",
               "",
-              "Tu développes et tu surveilles e5 et d4.",
+              "Tu te développes et tu surveilles e5 et d4.",
               "",
               "Le fou en c8 sort et fait pression sur c4.",
               "",
@@ -2187,7 +2187,7 @@
         "summary": "Garde le pion d4",
         "steps": {
           "albin-l03-s01": {
-            "prompt": "Contre-attaque le centre avec un pion.",
+            "prompt": "Riposte au centre avec un pion.",
             "hint": "Le pion e arrive en e5.",
             "success": "Correct"
           },
@@ -2197,7 +2197,7 @@
             "success": "Correct"
           },
           "albin-l03-s03": {
-            "prompt": "Quelle pièce ton camp sort-il en premier après ...d4 ?",
+            "prompt": "Quelle pièce sors-tu en premier après ...d4 ?",
             "explanation": "Le cavalier en c6 soutient le pion d4 et surveille e5.",
             "options": [
               "Le cavalier en b8",
@@ -2424,7 +2424,7 @@
             "success": "Correct"
           },
           "english-l03-s04": {
-            "prompt": "Que vient-il après l'échange en d5 ?",
+            "prompt": "Qu'est-ce qui vient après l'échange en d5 ?",
             "explanation": "Le fianchetto complète le plan.",
             "options": [
               "Le fou en g2",
@@ -2463,7 +2463,7 @@
         "summary": "Les fous contre le roque",
         "steps": {
           "danish-l01-s01": {
-            "text": "Avec c3, tu offres des pions pour ouvrir la position et viser avec les deux fous."
+            "text": "Avec c3, tu offres des pions pour ouvrir la position et diriger tes deux fous vers le camp noir."
           },
           "danish-l01-s02": {
             "text": "Quand les pions tombent, tes fous se retrouvent en c4 et b2 et visent f7 et g7."
@@ -2504,9 +2504,9 @@
               "",
               "Gambit danois : tu offres un pion.",
               "",
-              "Tu gagnes du temps et tu développes.",
+              "Tu gagnes du temps et tu te développes.",
               "",
-              "Tu récupères un pion avec attaque.",
+              "Tu récupères un pion tout en attaquant.",
               "",
               "Tu récupères un autre pion. Ton fou en b2 vise g7 et celui en d5 vise f7.",
               "",
@@ -2542,7 +2542,7 @@
           },
           "danish-l03-s04": {
             "prompt": "Que fait le fou en c4 après ...d5 ?",
-            "explanation": "Tu récupères un autre pion en restant actif.",
+            "explanation": "Tu récupères un autre pion et ton jeu reste actif.",
             "options": [
               "Il prend en d5",
               "Il se replie en e2",
@@ -2562,7 +2562,7 @@
             "prompt": "Que cherches-tu avec le gambit ?",
             "explanation": "Tu compenses le matériel par des pièces actives.",
             "options": [
-              "Des échanges de dames",
+              "L'échange des dames",
               "Du développement, du temps et de l'attaque",
               "Une finale égale"
             ]
@@ -2573,17 +2573,17 @@
   },
   "french": {
     "name": "Défense française",
-    "summary": "Une défense solide : tu cèdes un peu d'espace en échange d'une structure ferme et d'une contre-attaque.",
+    "summary": "Une défense solide : tu cèdes un peu d'espace en échange d'une structure robuste et d'une contre-attaque.",
     "lessons": {
       "french-l01": {
         "title": "L'idée de la Française",
-        "summary": "Structure ferme et contre-attaque en c5",
+        "summary": "Structure solide et contre-attaque en c5",
         "steps": {
           "french-l01-s01": {
             "text": "Avec ...e6, tu prépares ...d5 pour disputer le centre blanc."
           },
           "french-l01-s02": {
-            "text": "Ton fou en c8 reste derrière les pions : c'est la pièce « mauvaise » de la Française."
+            "text": "Ton fou en c8 reste derrière les pions : c'est le « mauvais fou » de la Française."
           },
           "french-l01-s03": {
             "text": "Ton plan est d'attaquer la base de la chaîne blanche avec ...c5 et ...Cc6."
@@ -2620,7 +2620,7 @@
               "",
               "Tu disputes le centre.",
               "",
-              "Tu développes et tu attaques e4.",
+              "Tu te développes et tu attaques e4.",
               "",
               "Tu développes le fou et tu romps le clouage sur le cavalier en f6.",
               "",
@@ -2632,7 +2632,7 @@
               "",
               "Attaque contre la base de la chaîne.",
               "",
-              "Tu développes en faisant pression sur d4."
+              "Tu te développes en faisant pression sur d4."
             ]
           }
         }
@@ -2652,7 +2652,7 @@
             "success": "Correct"
           },
           "french-l03-s03": {
-            "prompt": "Les Blancs avancent e5. Où replies-tu le cavalier ?",
+            "prompt": "Les Blancs jouent e5. Où replies-tu le cavalier ?",
             "explanation": "C'est le repli classique, et il soutient ton centre.",
             "options": [
               "En d7",
@@ -2727,7 +2727,7 @@
             "prompt": "Joue la ligne principale de la Nimzo-Indienne.",
             "notes": [
               "",
-              "Tu développes et tu contrôles e4.",
+              "Tu te développes et tu contrôles e4.",
               "",
               "Prépare ...d5.",
               "",
@@ -2739,13 +2739,13 @@
               "",
               "Tu attaques le centre avec un pion.",
               "",
-              "Tu développes et tu fais pression sur d4.",
+              "Tu te développes et tu fais pression sur d4.",
               "",
               "Tu cèdes le fou pour doubler les pions.",
               "",
               "Tu prends en c4 et le fou en d3 reprend.",
               "",
-              "La dame va sur la colonne c et vise c3 pour le moment où elle s'ouvrira."
+              "La dame va sur la colonne c et vise c3 pour le moment où la colonne s'ouvrira."
             ]
           }
         }
@@ -2797,7 +2797,7 @@
   },
   "petrov": {
     "name": "Défense Petrov",
-    "summary": "Tu copies l'attaque blanche au lieu de défendre : solide, symétrique et difficile à battre.",
+    "summary": "Tu copies l'attaque blanche au lieu de te défendre : solide, symétrique et difficile à battre.",
     "lessons": {
       "petrov-l01": {
         "title": "L'idée de la Petrov",
@@ -2810,13 +2810,13 @@
             "text": "Tu chasses d'abord le cavalier avec ...d6, et tu prends e4 seulement ensuite. L'ordre compte."
           },
           "petrov-l01-s03": {
-            "text": "Après ...Cxe4 et ...d5, tu as un centre ferme et des pièces actives."
+            "text": "Après ...Cxe4 et ...d5, tu as un centre solide et des pièces actives."
           },
           "petrov-l01-s04": {
             "prompt": "Que fais-tu avant de prendre en e4 ?",
             "explanation": "Si tu prends tout de suite, De2 laisse les Noirs dans une position inconfortable, avec un risque de perdre du matériel.",
             "options": [
-              "Chasser le cavalier en e5 avec ...d6",
+              "Chasser le cavalier de e5 avec ...d6",
               "Roquer",
               "Échanger les dames"
             ]
@@ -2850,7 +2850,7 @@
               "",
               "Tu occupes le centre et tu protèges ton cavalier.",
               "",
-              "Tu développes et tu fais pression sur d4.",
+              "Tu te développes et tu fais pression sur d4.",
               "",
               "Tu développes le fou.",
               "",
@@ -2868,12 +2868,12 @@
         "summary": "L'ordre des coups",
         "steps": {
           "petrov-l03-s01": {
-            "prompt": "Contre-attaque le pion e4.",
+            "prompt": "Attaque à ton tour le pion e4.",
             "hint": "Le cavalier attaque e4.",
             "success": "Correct"
           },
           "petrov-l03-s02": {
-            "prompt": "Chasse le cavalier en e5.",
+            "prompt": "Chasse le cavalier de e5.",
             "hint": "Un pion attaque le cavalier.",
             "success": "Correct"
           },
@@ -2899,7 +2899,7 @@
             "prompt": "Quelle position cherches-tu ?",
             "explanation": "La Petrov est solide et symétrique.",
             "options": [
-              "Un centre ferme et des pièces actives",
+              "Un centre solide et des pièces actives",
               "Des pions doublés",
               "Une attaque rapide"
             ]
@@ -2917,7 +2917,7 @@
         "summary": "La solidité au centre",
         "steps": {
           "queens-gambit-declined-l01-s01": {
-            "text": "Avec ...e6, tu défends d5 et tu gardes ton centre sans entrer dans les complications."
+            "text": "Avec ...e6, tu défends d5 et tu gardes ton centre sans entrer dans des complications."
           },
           "queens-gambit-declined-l01-s02": {
             "text": "Le fou en c8 reste enfermé, mais dans la variante Tartakover tu lui trouves une sortie avec ...b6."
@@ -2957,7 +2957,7 @@
               "",
               "Tu défends d5.",
               "",
-              "Tu développes et tu protèges d5.",
+              "Tu te développes et tu protèges d5.",
               "",
               "Tu prépares le roque.",
               "",
@@ -2993,7 +2993,7 @@
             "success": "Correct"
           },
           "queens-gambit-declined-l03-s03": {
-            "prompt": "Que fais-tu avec le fou en c8 ?",
+            "prompt": "Que fais-tu du fou en c8 ?",
             "explanation": "Avec ...b6, tu ouvres la diagonale.",
             "options": [
               "Tu le libères avec ...b6",
@@ -3012,11 +3012,11 @@
           },
           "queens-gambit-declined-l04-s02": {
             "prompt": "Quelle structure as-tu à la fin ?",
-            "explanation": "La position est ferme et confortable pour les Noirs.",
+            "explanation": "La position est solide et confortable pour les Noirs.",
             "options": [
               "Un pion central en d5 et un fou libre",
               "Des pions doublés",
-              "Plus de pions centraux"
+              "Aucun pion central"
             ]
           }
         }
@@ -3035,7 +3035,7 @@
             "text": "Si les Noirs prennent en c4, ne t'inquiète pas : le pion se récupère presque toujours."
           },
           "queens-gambit-accepted-l01-s02": {
-            "text": "Tu développes avec e3 et Fxc4, et tu as un avantage d'espace au centre."
+            "text": "Tu te développes avec e3 et Fxc4, et tu as un avantage d'espace au centre."
           },
           "queens-gambit-accepted-l01-s03": {
             "text": "Ensuite : le roque, Dc2 ou De2 et l'expansion au centre. Les Noirs doivent défendre leur aile dame."
@@ -3044,7 +3044,7 @@
             "prompt": "Que fais-tu quand les Noirs prennent en c4 ?",
             "explanation": "Le pion c4 se récupère avec Fxc4 après e3.",
             "options": [
-              "Tu développes et tu récupères le pion",
+              "Tu te développes et tu récupères le pion",
               "Tu le perds pour toujours",
               "Tu échanges les dames"
             ]
@@ -3071,7 +3071,7 @@
               "",
               "Tu offres le gambit.",
               "",
-              "Tu développes et tu contrôles e5.",
+              "Tu te développes et tu contrôles e5.",
               "",
               "Tu ouvres la voie au fou en f1.",
               "",
@@ -3083,7 +3083,7 @@
               "",
               "Le fou recule et garde la pression.",
               "",
-              "La tour prend la colonne d.",
+              "La tour occupe la colonne d.",
               "",
               "Tu développes le dernier cavalier."
             ]

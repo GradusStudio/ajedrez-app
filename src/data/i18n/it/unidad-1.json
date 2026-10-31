@@ -1,0 +1,208 @@
+{
+  "title": "Le basi",
+  "lessons": {
+    "u1-l01": {
+      "title": "La scacchiera e le coordinate",
+      "summary": "Impara a dare un nome a ogni casella",
+      "steps": {
+        "u1-l01-s01": { "text": "La scacchiera ha 64 caselle: 8 colonne e 8 traverse, con colori alternati." },
+        "u1-l01-s02": { "text": "Le colonne hanno il nome di una lettera, dalla a alla h. Le traverse, di un numero, da 1 a 8. Il Bianco inizia in basso." },
+        "u1-l01-s03": { "text": "Ogni casella prende il nome dalla sua colonna e dalla sua traversa. Quella evidenziata è e4: colonna e, traversa 4." },
+        "u1-l01-s04": { "text": "Un trucco: la casella nell'angolo in basso a destra, h1, è sempre chiara." },
+        "u1-l01-s05": { "prompt": "Tocca la casella e4.", "hint": "Colonna e, quarta traversa contando dal basso." },
+        "u1-l01-s06": { "prompt": "Tocca la casella c7.", "hint": "Colonna c, settima traversa." },
+        "u1-l01-s07": { "prompt": "Tocca la casella g2.", "hint": "Colonna g, seconda traversa." },
+        "u1-l01-s08": {
+          "prompt": "Come si chiama la casella evidenziata?",
+          "options": ["f3", "c3", "f6", "g3"],
+          "explanation": "Si trova sulla colonna f e sulla traversa 3: f3."
+        },
+        "u1-l01-s09": {
+          "prompt": "Come si chiama la casella evidenziata?",
+          "options": ["a6", "f2", "b6", "b5"],
+          "explanation": "Si trova sulla colonna b e sulla traversa 6: b6."
+        }
+      }
+    },
+    "u1-l02": {
+      "title": "La torre",
+      "summary": "Si muove in linea retta",
+      "steps": {
+        "u1-l02-s01": { "text": "La torre si muove in linea retta: lungo colonne e traverse, di quante caselle vuole." },
+        "u1-l02-s02": { "text": "Non può saltare gli altri pezzi. Se incontra un pezzo avversario, può catturarlo e si ferma lì." },
+        "u1-l02-s03": { "prompt": "Porta la torre in h4.", "hint": "Muovila verso destra lungo la traversa 4.", "success": "Corretto" },
+        "u1-l02-s04": { "prompt": "Porta la torre in d1.", "hint": "Muovila verso il basso lungo la colonna d.", "success": "Corretto" },
+        "u1-l02-s05": { "prompt": "Cattura il pedone nero con la torre.", "hint": "È sulla stessa colonna della tua torre.", "success": "Corretto" }
+      }
+    },
+    "u1-l03": {
+      "title": "L'alfiere",
+      "summary": "Si muove in diagonale",
+      "steps": {
+        "u1-l03-s01": { "text": "L'alfiere si muove in diagonale, di quante caselle vuole, senza saltare i pezzi." },
+        "u1-l03-s02": { "text": "Ogni alfiere resta sempre su caselle dello stesso colore. Per questo ne hai due all'inizio: uno delle caselle chiare e uno delle caselle scure." },
+        "u1-l03-s03": { "prompt": "Porta l'alfiere in g7.", "hint": "Sali in diagonale verso destra.", "success": "Corretto" },
+        "u1-l03-s04": { "prompt": "Porta l'alfiere in a1.", "hint": "Scendi in diagonale verso sinistra.", "success": "Corretto" },
+        "u1-l03-s05": { "prompt": "Cattura il pedone nero con l'alfiere.", "hint": "È sulla diagonale, una casella più su a destra.", "success": "Corretto" }
+      }
+    },
+    "u1-l04": {
+      "title": "La donna",
+      "summary": "Torre e alfiere in un solo pezzo",
+      "steps": {
+        "u1-l04-s01": { "text": "La donna si muove come una torre e come un alfiere insieme. È il pezzo più potente." },
+        "u1-l04-s02": { "text": "La donna bianca inizia su una casella chiara e quella nera su una scura. Trattala con cura: perderla di solito decide la partita." },
+        "u1-l04-s03": { "prompt": "Porta la donna in g7.", "hint": "Muovila in diagonale.", "success": "Corretto" },
+        "u1-l04-s04": { "prompt": "Porta la donna in a4.", "hint": "Muovila in linea retta lungo la traversa 4.", "success": "Corretto" },
+        "u1-l04-s05": { "prompt": "Cattura il pedone nero con la donna.", "hint": "È subito alla sua destra.", "success": "Corretto" }
+      }
+    },
+    "u1-l05": {
+      "title": "Il re",
+      "summary": "Una casella, con prudenza",
+      "steps": {
+        "u1-l05-s01": { "text": "Il re si muove di una casella in qualsiasi direzione. È il pezzo più importante: se lo perdi, perdi la partita." },
+        "u1-l05-s02": { "text": "Il re non può mai andare su una casella attaccata dall'avversario. Qui la torre nera controlla la colonna d e la traversa 2." },
+        "u1-l05-s03": { "prompt": "Porta il re in e5.", "hint": "Una casella in avanti.", "success": "Corretto" },
+        "u1-l05-s04": { "prompt": "Porta il re su una casella sicura.", "hint": "Evita la colonna d.", "success": "Corretto" },
+        "u1-l05-s05": {
+          "prompt": "Il re può andare in d3?",
+          "options": ["Sì", "No, la torre attacca quella casella"],
+          "explanation": "La torre nera controlla tutta la colonna d."
+        }
+      }
+    },
+    "u1-l06": {
+      "title": "Il cavallo",
+      "summary": "Salta a forma di L",
+      "steps": {
+        "u1-l06-s01": { "text": "Il cavallo si muove a L: due caselle in una direzione e una in perpendicolare." },
+        "u1-l06-s02": { "text": "È l'unico pezzo che salta gli altri. Qui è circondato dai pedoni, eppure può muoversi." },
+        "u1-l06-s03": { "prompt": "Porta il cavallo in f5.", "hint": "Due caselle a destra e una in alto.", "success": "Corretto" },
+        "u1-l06-s04": { "prompt": "Porta il cavallo in c2.", "hint": "Due caselle in basso e una a sinistra.", "success": "Corretto" },
+        "u1-l06-s05": { "prompt": "Cattura il pedone nero con il cavallo.", "hint": "Due a destra e una in alto.", "success": "Corretto" }
+      }
+    },
+    "u1-l07": {
+      "title": "Il pedone",
+      "summary": "Avanza dritto, cattura in diagonale e viene promosso",
+      "steps": {
+        "u1-l07-s01": { "text": "Il pedone avanza di una casella. Alla sua prima mossa può avanzare di due." },
+        "u1-l07-s02": { "text": "Dopo essersi mosso, può avanzare solo di una casella." },
+        "u1-l07-s03": { "text": "Il pedone cattura in diagonale, una casella in avanti." },
+        "u1-l07-s04": { "text": "Non cattura in avanti: se ha un pezzo davanti, il pedone resta bloccato." },
+        "u1-l07-s05": { "prompt": "Avanza il pedone di due caselle.", "hint": "È la sua prima mossa.", "success": "Corretto" },
+        "u1-l07-s06": { "prompt": "Cattura uno dei pedoni neri.", "hint": "I pedoni catturano in diagonale.", "success": "Corretto" },
+        "u1-l07-s07": {
+          "prompt": "Il pedone bianco può avanzare?",
+          "options": ["Sì", "No, ha un pezzo davanti"],
+          "explanation": "Il pedone non può né avanzare né catturare in avanti."
+        },
+        "u1-l07-s08": { "text": "Quando il pedone arriva all'ultima traversa, viene promosso: diventa donna, torre, alfiere o cavallo, a tua scelta. Quasi sempre conviene la donna, il pezzo più forte." },
+        "u1-l07-s09": {
+          "prompt": "Promuovi il pedone e scegli la donna.",
+          "hint": "Avanza il pedone fino a d8 e, nel selettore, tocca la donna.",
+          "success": "Corretto. Il pedone ora è una donna."
+        },
+        "u1-l07-s10": { "text": "La donna non è sempre la scelta migliore. Qui, se promuovi a donna, il Nero gioca Dc1+: la tua donna nuova si interpone in e1, viene catturata ed è matto." },
+        "u1-l07-s11": {
+          "prompt": "Promuovi il pedone in modo da vincere la donna nera.",
+          "hint": "Un cavallo in e8 darebbe scacco al re e attaccherebbe la donna allo stesso tempo.",
+          "success": "Corretto. Il cavallo dà scacco e attacca la donna: dopo lo scacco, la catturi."
+        },
+        "u1-l07-s12": { "text": "Il re si sposta e il cavallo cattura la donna. Promuovere a un pezzo diverso dalla donna si chiama sottopromozione." }
+      }
+    },
+    "u1-l08": {
+      "title": "Proteggere i pezzi",
+      "summary": "Non regalare materiale",
+      "steps": {
+        "u1-l08-s01": { "text": "Il cavallo è protetto dal pedone: se l'alfiere lo cattura, il pedone riprende. Questo si chiama proteggere." },
+        "u1-l08-s02": { "text": "Ora nessuno protegge il cavallo. Se l'alfiere lo cattura, lo perdi senza compenso. Un pezzo così si dice in presa." },
+        "u1-l08-s03": {
+          "prompt": "Il cavallo bianco è protetto?",
+          "options": ["Sì", "No"],
+          "explanation": "Nessun pezzo bianco lo difende, quindi l'alfiere lo cattura gratis."
+        },
+        "u1-l08-s04": { "prompt": "Proteggi il cavallo con la torre.", "hint": "Muovi la torre in modo che veda la casella d4.", "success": "Corretto" },
+        "u1-l08-s05": { "prompt": "Cattura il pezzo nero che non è protetto.", "hint": "L'alfiere è protetto da un pedone.", "success": "Corretto" }
+      }
+    },
+    "u1-l09": {
+      "title": "I cambi",
+      "summary": "Quando conviene catturare",
+      "steps": {
+        "u1-l09-s01": { "text": "C'è un cambio quando catturi e l'avversario riprende. Per decidere se conviene, somma i punti: pedone 1, cavallo 3, alfiere 3, torre 5, donna 9." },
+        "u1-l09-s02": { "text": "Se la torre cattura questo pedone, il pedone in c6 riprende. Guadagni 1 punto e ne perdi 5: è un cattivo cambio." },
+        "u1-l09-s03": { "text": "Qui il tuo pedone cattura un cavallo. Se il pedone in c6 riprende, hai guadagnato 3 punti e ne hai perso 1: è un buon cambio." },
+        "u1-l09-s04": {
+          "prompt": "Conviene catturare il pedone con la torre?",
+          "options": ["Sì, guadagno un pedone", "No, perdo la torre per un pedone"],
+          "explanation": "Guadagni 1 punto e ne perdi 5."
+        },
+        "u1-l09-s05": {
+          "prompt": "Conviene catturare il cavallo con il tuo pedone?",
+          "options": ["Sì, guadagno un cavallo per un pedone", "No, l'avversario riprende il mio pedone"],
+          "explanation": "Guadagni 3 punti e, anche se l'avversario riprende, ne perdi solo 1.",
+          "feedback": ["", "È vero che l'avversario può riprendere, ma il cavallo vale più del pedone."]
+        },
+        "u1-l09-s06": {
+          "prompt": "C'è un pedone nero in d5. Con quale pezzo conviene catturarlo?",
+          "options": ["Con il pedone in e4", "Con la donna"],
+          "explanation": "Con il pedone: se la donna nera riprende, la tua donna cattura la sua.",
+          "feedback": ["", "Con la donna si cambiano le donne. C'è una scelta migliore."]
+        },
+        "u1-l09-s07": { "text": "Guarda la sequenza: il pedone cattura, la donna nera riprende e la tua donna cattura la donna nera. Guadagni 9 punti per un pedone." }
+      }
+    },
+    "u1-l10": {
+      "title": "Lo scacco",
+      "summary": "Quando il re è sotto attacco",
+      "steps": {
+        "u1-l10-s01": { "text": "Scacco significa che il re è attaccato da un pezzo avversario. Qui la torre bianca dà scacco al re nero." },
+        "u1-l10-s02": { "text": "Il re non si cattura mai. Se è sotto scacco, il suo giocatore deve parare lo scacco alla mossa successiva." },
+        "u1-l10-s03": { "prompt": "Dai scacco al re nero con la torre.", "hint": "Arriva alla traversa 8 lungo la colonna a.", "success": "Corretto" },
+        "u1-l10-s04": { "prompt": "Dai scacco al re nero con il cavallo.", "hint": "Cerca una casella da cui il cavallo attacca e8.", "success": "Corretto" },
+        "u1-l10-s05": {
+          "prompt": "Il re nero è sotto scacco?",
+          "options": ["Sì", "No"],
+          "explanation": "La torre attacca la traversa 2 e la colonna a, non il re."
+        },
+        "u1-l10-s06": {
+          "prompt": "Il re nero è sotto scacco?",
+          "options": ["Sì", "No"],
+          "explanation": "La torre attacca lungo la colonna e e in mezzo non c'è nulla."
+        }
+      }
+    },
+    "u1-l11": {
+      "title": "Parare lo scacco",
+      "summary": "Tre modi per salvare il re",
+      "steps": {
+        "u1-l11-s01": { "text": "Se il tuo re è sotto scacco, devi parare lo scacco. Primo modo: muovere il re su una casella non attaccata." },
+        "u1-l11-s02": { "text": "Secondo modo: bloccare l'attacco interponendo un pezzo." },
+        "u1-l11-s03": { "text": "Terzo modo: catturare il pezzo che dà scacco." },
+        "u1-l11-s04": { "prompt": "Blocca lo scacco con il cavallo.", "hint": "Metti il cavallo sulla colonna e, tra la torre e il re.", "success": "Corretto" },
+        "u1-l11-s05": { "prompt": "Cattura con l'alfiere il pezzo che dà scacco.", "hint": "L'attaccante è il cavallo bianco.", "success": "Corretto" },
+        "u1-l11-s06": { "prompt": "Porta il re su una casella sicura.", "hint": "La torre controlla tutta la traversa 8.", "success": "Corretto" },
+        "u1-l11-s07": { "text": "Se nessuno dei tre modi funziona, non c'è via d'uscita: è scacco matto. Lo vediamo nella prossima lezione." }
+      }
+    },
+    "u1-l12": {
+      "title": "Scacco matto in una mossa",
+      "summary": "Come finisce la partita",
+      "steps": {
+        "u1-l12-s01": { "text": "Scacco matto: il re è sotto scacco e non ha modo di uscirne. La partita finisce e vince chi ha dato matto. Qui il re nero è chiuso dai suoi stessi pedoni." },
+        "u1-l12-s02": { "text": "La donna dà scacco e il re bianco la protegge, quindi il re nero non può né catturarla né fuggire." },
+        "u1-l12-s03": { "prompt": "Dai scacco matto in una mossa.", "hint": "La torre sale lungo la colonna a.", "success": "Corretto" },
+        "u1-l12-s04": { "prompt": "Dai scacco matto in una mossa.", "hint": "Metti la donna dove il tuo re la protegge.", "success": "Corretto" },
+        "u1-l12-s05": { "prompt": "Dai scacco matto con le due torri.", "hint": "Una torre chiude la traversa 7; l'altra dà scacco sulla traversa 8.", "success": "Corretto" },
+        "u1-l12-s06": {
+          "prompt": "È scacco matto?",
+          "options": ["Sì", "No, il re può fuggire"],
+          "explanation": "Il re può andare in d7, e7 o f7."
+        }
+      }
+    }
+  }
+}

@@ -24,6 +24,8 @@ type Props = {
   lesson: Lesson;
   /** Id de la lección original, el que define al profesor (también en un repaso de errores). */
   lessonId: string;
+  /** Repaso de errores: no es el comienzo de una lección, así que no hay bienvenida. */
+  noWelcome?: boolean;
   /** Avance guardado desde donde retomar. */
   initial?: LessonState;
   /** Texto del aviso al salir con la ✕ o el botón "atrás". */
@@ -36,7 +38,7 @@ type Props = {
 
 type Status = 'idle' | 'correct' | 'wrong';
 
-export function LessonPlayer({ lesson, lessonId, initial, exitMessage, onExit, onAdvance, onFinish }: Props) {
+export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage, onExit, onAdvance, onFinish }: Props) {
   const start = initial && initial.stepIndex < lesson.steps.length ? initial : undefined;
   const [index, setIndex] = useState(start?.stepIndex ?? 0);
   const [status, setStatus] = useState<Status>('idle');
@@ -51,7 +53,7 @@ export function LessonPlayer({ lesson, lessonId, initial, exitMessage, onExit, o
   // Se elige una vez al abrir. Una lección retomada no repite la bienvenida.
   const [opening] = useState(() => {
     const bot = teacherForLesson(lessonId);
-    return { bot, welcome: start ? undefined : pickPhrase(bot.teaching.welcome) };
+    return { bot, welcome: start || noWelcome ? undefined : pickPhrase(bot.teaching.welcome) };
   });
   const guided = step.type === 'line' && step.mode === 'guided';
   const teacher = useMemo(

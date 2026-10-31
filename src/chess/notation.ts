@@ -42,6 +42,12 @@ export function sanFromSpanish(san: string, notation: Notation): string {
   return notation === 'es' ? san : convert(san, PIECES.es, PIECES[notation], false);
 }
 
+/** ¿La letra de pieza de `san` (al principio y tras "=") es de la tabla de ese idioma? Peones y enroques no llevan letra. */
+export function usesLettersOf(san: string, notation: Notation): boolean {
+  const letters = [san.match(/^[A-Z]/)?.[0], san.match(/=([A-Z])/)?.[1]].filter((c): c is string => !!c && c !== 'O');
+  return letters.every((c) => PIECES[notation].includes(c));
+}
+
 /** Jugada SAN escrita en la notación de un idioma, pasada a las letras españolas: "Lxf7+" (de) → "Axf7+". */
 export function sanToSpanish(san: string, notation: Notation): string {
   return notation === 'es' ? san : convert(san, PIECES[notation], PIECES.es, false);

@@ -17,8 +17,8 @@ type I18n = {
   number: (n: number) => string;
 };
 
-// Catálogos por idioma. Un texto que falte en un idioma se ve en español.
-const catalogs: Partial<Record<Language, Partial<Record<MessageKey, string>>>> = { es };
+// Catálogos por idioma. Cada uno tiene que traer todas las claves de es.ts (lo exige TypeScript).
+const catalogs: Partial<Record<Language, Record<MessageKey, string>>> = { es };
 
 function build(language: Language): I18n {
   const catalog = catalogs[language] ?? es;

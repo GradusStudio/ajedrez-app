@@ -1,4 +1,4 @@
-import { sanToSpanish } from '../chess/notation';
+import { sanToSpanish, usesLettersOf } from '../chess/notation';
 import type { Bot } from '../data/bots';
 import { languageFiles, localizedContent } from '../data/localized';
 import type { Step } from '../data/lessonTypes';
@@ -36,6 +36,9 @@ function checkText(c: Ctx, where: string, es: string, tr: unknown, stepId?: stri
   if (!isText(tr)) return void c.problems.push(`${where}: falta o está vacío`);
   if (markers(es) !== markers(tr)) c.problems.push(`${where}: marcadores distintos (es: ${markers(es) || '-'}; ${c.language}: ${markers(tr) || '-'})`);
   if (stepId !== undefined && c.exceptions.has(stepId)) return;
+  // Una letra de pieza de otro idioma (p. ej. un «Cf3» español que quedó en inglés) no se convierte y pasaría por igual.
+  const foreign = c.language === 'es' ? [] : namedMoves(tr).filter((m) => !usesLettersOf(m, c.language));
+  if (foreign.length) c.problems.push(`${where}: letras de pieza que no son de ${c.language}: ${foreign.join(' ')}`);
   const want = namedMoves(es).join(' ');
   const got = namedMoves(tr).map((m) => toSpanishLetters(m, c.language)).join(' ');
   if (want !== got) c.problems.push(`${where}: jugadas distintas, revisar a mano (es: ${want || '-'}; ${c.language}: ${got || '-'})`);

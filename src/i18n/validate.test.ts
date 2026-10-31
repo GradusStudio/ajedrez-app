@@ -175,3 +175,18 @@ test('signo ! en una frase de bot', () => {
 test('recuperación vacía', () => {
   assert.ok(mutate((f) => (f.bots.pipo.teaching.reminder.recovery = '')).some((p) => p.includes('recovery')));
 });
+
+test('letras de pieza de otro idioma se reportan; las del idioma pasan', () => {
+  const one = (text: string, lang: Language) => {
+    const f = good();
+    step(f, 's1').text = text;
+    return checkTranslation(lang, spanish, f, new Set());
+  };
+  assert.ok(one('Play Cf3 and then O-O.', 'en').some((p) => p.includes('letras de pieza')));
+  assert.ok(one('Spiele Cf3 und O-O.', 'de').some((p) => p.includes('letras de pieza')));
+  assert.deepEqual(one('Jouez Cf3 puis O-O.', 'fr'), []);
+  assert.ok(one('Jouez Axf7 puis e8=A.', 'fr').some((p) => p.includes('letras de pieza')));
+  assert.deepEqual(one('Jouez Cf3 puis O-O.', 'it'), []);
+  assert.deepEqual(one('Spiele Sf3 und O-O.', 'de'), []);
+  assert.deepEqual(one('Spiele Sf3 und Ta1 und Dxd5.', 'de').filter((p) => p.includes('letras')), []);
+});

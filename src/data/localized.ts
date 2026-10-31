@@ -17,6 +17,9 @@ export function languageFiles(language: Language): LanguageFiles | undefined {
     case 'en':
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       return (require('./i18n/en') as { files: LanguageFiles }).files;
+    case 'de':
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./i18n/de') as { files: LanguageFiles }).files;
     default:
       return undefined;
   }

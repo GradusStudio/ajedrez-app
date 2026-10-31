@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import { AppState } from 'react-native';
 import { getLocales } from 'expo-localization';
 import { useSettings } from '../settings/SettingsContext';
+import { de } from './de';
 import { en } from './en';
 import { es, MessageKey, PluralKey } from './es';
 import { format } from './format';
@@ -20,7 +21,7 @@ type I18n = {
 };
 
 // Catálogos por idioma. Cada uno tiene que traer todas las claves de es.ts (lo exige TypeScript).
-const catalogs: Partial<Record<Language, Record<MessageKey, string>>> = { es, en };
+const catalogs: Partial<Record<Language, Record<MessageKey, string>>> = { es, en, de };
 
 function build(language: Language): I18n {
   const catalog = catalogs[language] ?? es;

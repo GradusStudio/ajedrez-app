@@ -1,5 +1,5 @@
 import React from 'react';
-import { ColorValue } from 'react-native';
+import { ColorValue, Text } from 'react-native';
 import { Redirect } from 'expo-router';
 import { Tabs } from 'expo-router/js-tabs';
 import { useI18n } from '../../i18n/I18nContext';
@@ -39,6 +39,12 @@ export default function TabsLayout() {
         },
         // 6 pestañas en un celular: etiqueta chica para que entren todas
         tabBarLabelStyle: { fontFamily: fonts.bold, fontSize: 11 },
+        // etiqueta de una línea que se achica si el idioma la hace más larga
+        tabBarLabel: ({ children, color }) => (
+          <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8} style={{ fontFamily: fonts.bold, fontSize: 11, color, textAlign: 'center' }}>
+            {children}
+          </Text>
+        ),
         sceneStyle: { backgroundColor: colors.bg },
         // Cambio de pestaña con un fundido corto, en vez del corte seco.
         animation: 'fade',

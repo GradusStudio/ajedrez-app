@@ -1,0 +1,198 @@
+{
+  "title": "Endgames",
+  "lessons": {
+    "u5-l01": {
+      "title": "Checkmate with the queen",
+      "summary": "King and queen vs. king",
+      "steps": {
+        "u5-l01-s01": { "text": "King and queen against king always wins. The queen shuts the enemy king in a “box” that keeps getting smaller, and your king comes closer to help deliver mate." },
+        "u5-l01-s02": { "text": "A simple technique: put your queen a knight's move away from the enemy king. That takes away many squares without giving check. When the king moves, the queen follows it the same way." },
+        "u5-l01-s03": {
+          "prompt": "Put the queen a knight's move away from the black king.",
+          "hint": "Find a square a knight could reach from d5 and your queen can go to.",
+          "success": "Correct. The black king is shut in a smaller box."
+        },
+        "u5-l01-s04": {
+          "prompt": "The black king is on the edge. Deliver mate.",
+          "hint": "Your king already covers the squares on the seventh rank. Use the queen on the back rank.",
+          "success": "Correct. That's checkmate."
+        },
+        "u5-l01-s05": {
+          "prompt": "Which of these moves stalemates the black king?",
+          "options": ["Qg6", "Qg7", "Qh2+"],
+          "explanation": "After Qg6, the black king isn't in check but has no square to go to: it's stalemate and the game is a draw. Qg7 is mate because your king protects the queen.",
+          "feedback": ["", "Qg7 is checkmate: your king on f6 protects the queen.", "Qh2+ is check, and the black king escapes to g8."]
+        },
+        "u5-l01-s06": {
+          "prompt": "Deliver mate without stalemating the black king.",
+          "hint": "Bring the queen next to the black king, on a square your king protects.",
+          "success": "Correct. Mate, not stalemate."
+        },
+        "u5-l01-s07": {
+          "prompt": "Deliver mate with king and queen. Stockfish defends the black king.",
+          "success": "Correct. You delivered mate with king and queen.",
+          "hint": "That move lets the win slip away. Make sure your queen isn't left unprotected and the black king always has a square."
+        },
+        "u5-l01-s08": { "text": "To sum up: shut the king in with your queen, bring your king closer and deliver mate on the edge. Before each move, check that the enemy king still has a square: if it has none and isn't in check, it's stalemate." }
+      }
+    },
+    "u5-l02": {
+      "title": "Checkmate with the rook",
+      "summary": "King and rook vs. king",
+      "steps": {
+        "u5-l02-s01": { "text": "The rook cuts off the enemy king: here, from the e-file, it won't let the king cross to the other side. Your king comes closer and, together, they push it to the edge." },
+        "u5-l02-s02": { "text": "Mate happens on the edge, with the kings facing each other: your king covers the squares on the next rank and the rook gives check along the back rank." },
+        "u5-l02-s03": {
+          "prompt": "The kings are facing each other. Deliver mate with the rook.",
+          "hint": "Bring the rook to the back rank.",
+          "success": "Correct. That's checkmate."
+        },
+        "u5-l02-s04": { "text": "When the kings aren't facing each other, make a waiting move: the rook moves along its rank and keeps cutting off the king. The black king has to move and, if it steps in front of your king, mate follows." },
+        "u5-l02-s05": {
+          "prompt": "Make a waiting move: move the rook along the seventh rank and keep cutting off the black king.",
+          "hint": "The rook must stay on the seventh rank, away from the black king. Careful with g7: the black king captures it there.",
+          "success": "Correct. Now the black king has to move."
+        },
+        "u5-l02-s06": {
+          "prompt": "Why do you want the kings facing each other to deliver mate?",
+          "options": ["Your king covers the escape squares on the next rank", "That way the black king can't capture the rook", "It's a rule: no facing kings, no mate"],
+          "explanation": "The rook gives check along the back rank and your king, opposite, takes away the three squares on the next rank from the black king. There's no way out.",
+          "feedback": ["", "The rook is far from the black king: the problem isn't capture, it's the escape squares.", "It isn't a rule: it's how you leave the black king no way out."]
+        },
+        "u5-l02-s07": {
+          "prompt": "Deliver mate with king and rook. Stockfish defends the black king.",
+          "success": "Correct. You delivered mate with king and rook.",
+          "hint": "That move lets the win slip away. Watch your rook: if the black king can capture it, protect it or move it away."
+        },
+        "u5-l02-s08": { "text": "To sum up: cut off the king with your rook, bring your king closer, use waiting moves when needed and deliver mate on the edge with the kings facing each other. It takes more moves than with the queen, so be patient." }
+      }
+    },
+    "u5-l03": {
+      "title": "The opposition",
+      "summary": "The duel between the kings",
+      "steps": {
+        "u5-l03-s01": { "text": "Two kings facing each other, with one square between them, can't advance: neither can step on squares the other one controls. The side that doesn't have to move has the opposition, because the other side must give way." },
+        "u5-l03-s02": {
+          "prompt": "Black to move. Who has the opposition?",
+          "options": ["White", "Black", "Neither"],
+          "explanation": "It's Black's turn, so the black king has to step aside. White has the opposition.",
+          "feedback": ["", "The side that doesn't move has the opposition. Here Black moves.", "The kings are facing each other with one square between them: one side has it."]
+        },
+        "u5-l03-s03": {
+          "prompt": "Take the opposition: put your king in front of the black king, with one square between them.",
+          "hint": "The black king is on e7. Bring your king to the same file, two ranks below.",
+          "success": "Correct. With Ke5 you have the opposition and the black king has to give way."
+        },
+        "u5-l03-s04": { "text": "In king and pawn against king, your king goes in front of the pawn and gains ground with the opposition. The pawn advances behind it, protected." },
+        "u5-l03-s05": {
+          "prompt": "Only one move wins. Find it.",
+          "hint": "Put your king in front of the pawn and facing the black king.",
+          "success": "Correct. Ke4 takes the opposition, in front of the pawn."
+        },
+        "u5-l03-s06": {
+          "prompt": "White to move, and Black has the opposition. Is it a win or a draw?",
+          "options": ["White wins", "Draw"],
+          "explanation": "White wins: with e3, the pawn makes a waiting move and the opposition passes to White. That's why it's best not to rush the pawn.",
+          "feedback": ["", "Look at the pawn: it can advance just one square and pass the turn to Black."]
+        },
+        "u5-l03-s07": {
+          "prompt": "Promote the pawn. Stockfish defends with Black.",
+          "success": "Correct. You promoted with your king's help.",
+          "hint": "That move leaves the endgame drawn. Bring your king in front of the pawn and take the opposition before advancing it."
+        },
+        "u5-l03-s08": {
+          "prompt": "Now you defend with Black: get the draw. Hold out for 10 moves.",
+          "success": "Correct. With your king in front of the pawn, White can't win.",
+          "hint": "That move lets White win. Put your king in front of the pawn and look for the opposition."
+        }
+      }
+    },
+    "u5-l04": {
+      "title": "The rule of the square",
+      "summary": "Can the king catch the pawn?",
+      "steps": {
+        "u5-l04-s01": { "text": "To tell if a king can catch a pawn, imagine a square from the pawn to the promotion rank. If it's the king's turn and it can step into the square, it catches the pawn. If not, the pawn promotes." },
+        "u5-l04-s02": {
+          "prompt": "Black to move. Can the black king catch the pawn?",
+          "options": ["Yes, it enters the square", "No, the pawn promotes"],
+          "explanation": "With Ke5 or Ke6 the king enters the square. From there it catches the pawn before it promotes.",
+          "feedback": ["", "Look at e5 and e6: they're inside the square, and the black king gets there in one move."]
+        },
+        "u5-l04-s03": {
+          "prompt": "Black to move. What about now? Can the black king catch the pawn?",
+          "options": ["Yes, it enters the square", "No, the pawn promotes"],
+          "explanation": "The black king is one square farther away. In one move it can't enter the square, and the pawn promotes.",
+          "feedback": ["The king on g5 only reaches the f-file, and the square ends on the e-file.", ""]
+        },
+        "u5-l04-s04": {
+          "prompt": "White to move. Only one move wins: do you advance the pawn or move the king?",
+          "hint": "If you move the king, the black king enters the square. Advance the pawn: the square gets smaller.",
+          "success": "Correct. With a5 the square gets smaller and the black king is left outside."
+        },
+        "u5-l04-s05": { "text": "Sometimes there's no passed pawn, but you can create one. With three pawns against three, b6 breaks the chain: after any capture, another white pawn advances and one of them promotes. The black king is too far away to help." },
+        "u5-l04-s06": {
+          "prompt": "Make the breakthrough and create a passed pawn that promotes.",
+          "success": "Correct. The a-pawn can't be stopped now: the black king is outside the square.",
+          "hint": "Start with b6. Then advance the pawn that has no black pawn in front of it.",
+          "notes": ["", "", "", "", ""]
+        },
+        "u5-l04-s07": {
+          "prompt": "Win the pawn race.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Count the squares: the enemy king can't get into your pawn's square.",
+          "notes": ["", "", "", ""]
+        },
+        "u5-l04-s08": {
+          "prompt": "Win the pawn race.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Count the squares: the enemy king can't get into your pawn's square.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u5-l05": {
+      "title": "The Lucena position",
+      "summary": "Rook and pawn vs. rook",
+      "steps": {
+        "u5-l05-s01": { "text": "This is the Lucena position, the most important rook endgame. Your pawn is on the seventh rank and your king is in front of it, on the promotion square. Your rook cuts off the black king along the e-file, and the black rook watches the c-file so your king can't get out that way." },
+        "u5-l05-s02": { "text": "The plan has two steps. First, a check drives the black king a little farther away. Then your rook goes to the fourth rank. When your king steps out, the black rook will give checks, and your rook will block the last one. That's called building the bridge." },
+        "u5-l05-s03": {
+          "prompt": "First step: give check from the f-file to drive the black king away.",
+          "hint": "Bring the rook from e1 to the black king's file.",
+          "success": "Correct. The black king has to move away."
+        },
+        "u5-l05-s04": {
+          "prompt": "Build the bridge, move by move.",
+          "success": "You built the bridge. The pawn promotes on the next move.",
+          "notes": [
+            "Check from the f-file: the black king moves a little farther away.",
+            "",
+            "Your rook goes to the fourth rank. From there it will block the checks later on.",
+            "",
+            "Your king steps out from in front of the pawn. Now the black rook can only give checks.",
+            "",
+            "The king gets closer to your rook and keeps protecting the pawn.",
+            "",
+            "It keeps heading down toward the rook.",
+            "",
+            "One more step: now the rook can block the check.",
+            "",
+            "The bridge: your rook blocks the check and the black rook can't go on. The pawn promotes."
+          ]
+        },
+        "u5-l05-s05": {
+          "prompt": "Why does the rook go to the fourth rank?",
+          "options": ["To block the black rook's checks", "To attack the black king", "To protect the pawn from behind"],
+          "explanation": "When your king steps out, the black rook chases it with checks. Your rook on the fourth rank steps in at the right moment: that's the bridge.",
+          "feedback": ["", "The black king is cut off and far away: the rook isn't trying to attack it.", "Your king already protects the pawn. The rook is there to stop the checks."]
+        },
+        "u5-l05-s06": {
+          "prompt": "Win the Lucena position: promote the pawn. Stockfish defends with Black.",
+          "success": "Correct. You won the Lucena position.",
+          "hint": "That move lets the win slip away. Remember the plan: check to drive the king away, rook to the fourth rank, then bring your king out."
+        },
+        "u5-l05-s07": { "text": "To sum up: drive the enemy king away, bring your rook to the fourth rank, step out with your king and block the checks with the rook. If the defending king gets in front of the pawn, the defense is different: the Philidor position, which draws. You'll see it later on." }
+      }
+    }
+  }
+}

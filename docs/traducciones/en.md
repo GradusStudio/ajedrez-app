@@ -74,7 +74,7 @@ Letras: K Q R B N. El peón no lleva letra. Enroque `O-O` y `O-O-O`. Captura `x`
 | clavada | pin |
 | clavada absoluta / relativa | absolute pin / relative pin |
 | pieza sobrecargada | overloaded piece |
-| enfilada | skewer |
+| enfilada, ensartada | skewer |
 | ataque a la descubierta | discovered attack |
 | jaque doble | double check |
 | ataque doble | double attack |
@@ -127,6 +127,14 @@ Letras: K Q R B N. El peón no lleva letra. Enroque `O-O` y `O-O-O`. Captura `x`
 | posición de Lucena | Lucena position |
 | zugzwang | zugzwang |
 | triangulación | triangulation |
+| jugada de espera | waiting move |
+| jugada tranquila | quiet move |
+| ruptura (de peones) | breakthrough |
+| cortar al rey | cut off the king |
+| cajón (del rey) | box |
+| construir el puente | build the bridge |
+| reyes enfrentados | kings facing each other |
+| peón de c / de a | c-pawn / a-pawn |
 | profilaxis | prophylaxis |
 | línea (de apertura) | line |
 | línea principal | main line |

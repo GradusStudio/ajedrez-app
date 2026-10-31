@@ -5669,7 +5669,7 @@
                 {
                   "uci": "c1e3",
                   "san": "Ae3",
-                  "note": "Terminas el desarrollo y apoyas d4."
+                  "note": "Sigues desarrollando y apoyas d4."
                 }
               ],
               "id": "alapin-l02-s01"
@@ -5810,7 +5810,7 @@
             },
             {
               "type": "quiz",
-              "prompt": "¿Qué pieza completa tu desarrollo?",
+              "prompt": "¿Qué pieza desarrollas para apoyar d4?",
               "fen": "r3kb1r/pp3ppp/2n1pn2/2pq4/3P2b1/2P1BN2/PP2BPPP/RN1Q1RK1 b kq - 0 1",
               "options": [
                 "La dama a h5",
@@ -5818,7 +5818,7 @@
                 "El alfil de c1 a e3"
               ],
               "answer": 2,
-              "explanation": "El alfil en e3 apoya d4 y cierra tu desarrollo.",
+              "explanation": "El alfil en e3 apoya d4 y continúa tu desarrollo.",
               "id": "alapin-l04-s02"
             }
           ]
@@ -9390,7 +9390,7 @@
                 {
                   "uci": "b1c3",
                   "san": "Cc3",
-                  "note": "Completas el desarrollo."
+                  "note": "Desarrollas el último caballo."
                 }
               ],
               "id": "queens-gambit-accepted-l02-s01"

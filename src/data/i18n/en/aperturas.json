@@ -1844,7 +1844,7 @@
               "",
               "King safe.",
               "",
-              "You finish development and support d4."
+              "You keep developing and support d4."
             ]
           }
         }
@@ -1887,8 +1887,8 @@
             "prompt": "Repeat the main line without help."
           },
           "alapin-l04-s02": {
-            "prompt": "Which piece completes your development?",
-            "explanation": "The bishop on e3 supports d4 and finishes your development.",
+            "prompt": "Which piece do you develop to support d4?",
+            "explanation": "The bishop on e3 supports d4 and continues your development.",
             "options": [
               "The queen to h5",
               "The king to f1",
@@ -3085,7 +3085,7 @@
               "",
               "The rook takes the d-file.",
               "",
-              "You complete your development."
+              "You develop your last knight."
             ]
           }
         }

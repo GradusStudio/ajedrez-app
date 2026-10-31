@@ -1844,7 +1844,7 @@
               "",
               "Der König ist in Sicherheit.",
               "",
-              "Du schließt die Entwicklung ab und stützt d4."
+              "Du entwickelst weiter und stützt d4."
             ]
           }
         }
@@ -1887,8 +1887,8 @@
             "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
           },
           "alapin-l04-s02": {
-            "prompt": "Welche Figur schließt deine Entwicklung ab?",
-            "explanation": "Der Läufer auf e3 stützt d4 und schließt deine Entwicklung ab.",
+            "prompt": "Welche Figur entwickelst du, um d4 zu stützen?",
+            "explanation": "Der Läufer auf e3 stützt d4 und setzt deine Entwicklung fort.",
             "options": [
               "Die Dame nach h5",
               "Der König nach f1",
@@ -3085,7 +3085,7 @@
               "",
               "Der Turm besetzt die d-Linie.",
               "",
-              "Du schließt die Entwicklung ab."
+              "Du entwickelst deinen letzten Springer."
             ]
           }
         }

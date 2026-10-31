@@ -167,7 +167,7 @@
       "summary": "Read and write down moves",
       "steps": {
         "u2-l06-s01": { "text": "Each move is written with the piece's letter and the square it goes to: K king, Q queen, R rook, B bishop and N knight (K is already taken by the king). This move is Nf3. Pawns have no letter: e4." },
-        "u2-l06-s02": { "text": "If the move is a capture, add an x: Bxf7. When a pawn captures, write the file it comes from: exd5." },
+        "u2-l06-s02": { "text": "If the move is a capture, add an x: Bxd5. When a pawn captures, write the file it comes from: exd5." },
         "u2-l06-s03": { "text": "Other symbols: + is check and # is mate, like Qxf7# in this position. O-O is kingside castling, O-O-O is queenside castling, and =Q shows a promotion: e8=Q." },
         "u2-l06-s04": {
           "prompt": "How do you write the knight's move from g1 to f3?",

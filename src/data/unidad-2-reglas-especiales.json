@@ -529,10 +529,10 @@
         },
         {
           "type": "explain",
-          "text": "Si la jugada captura, se agrega una x: Axf7. Cuando captura un peón, se escribe la columna de donde sale: exd5.",
+          "text": "Si la jugada captura, se agrega una x: Axd5. Cuando captura un peón, se escribe la columna de donde sale: exd5.",
           "fen": "rnbqkbnr/ppp2ppp/8/3pp3/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq d6 0 3",
           "arrows": [
-            "c4f7",
+            "c4d5",
             "e4d5"
           ],
           "id": "u2-l06-s02"

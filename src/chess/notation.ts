@@ -47,7 +47,6 @@ export function sanFromSpanish(san: string, notation: Notation): string {
  * Con `last`, muestra solo las últimas N jugadas completas.
  */
 export function movesText(sans: string[], last?: number, notation: Notation = 'es'): string {
-  if (sans.length === 0) return 'Aún no hay jugadas';
   const s = (x: string) => sanFromEnglish(x, notation);
   const parts: string[] = [];
   for (let i = 0; i < sans.length; i += 2) {

@@ -122,3 +122,9 @@ test('los nombres de los temas de puzzles viven en es.ts, no en themes.json', ()
   const missing = [...themes.practice, ...themes.main, ...themes.known].filter((t) => !keys.has(`puzzleTheme.${t}`));
   assert.deepEqual(missing, []);
 });
+
+test('los ayudantes puros no devuelven texto en español para mostrar', () => {
+  // notation.ts es puro: el texto "sin jugadas" lo pone quien lo muestra, con t().
+  const source = fs.readFileSync(path.join(SRC, 'chess', 'notation.ts'), 'utf8');
+  assert.equal(/Aún no hay/.test(source), false);
+});

@@ -269,7 +269,7 @@ export function FreePlayScreen() {
         <View style={{ height: space.md }} />
         <View style={styles.card}>
           <Text style={styles.question}>{statusText(chess, t)}</Text>
-          <Text style={styles.notation}>{movesText(chess.history(), 8, notation)}</Text>
+          <Text style={styles.notation}>{chess.history().length === 0 ? t('lesson.line.noMoves') : movesText(chess.history(), 8, notation)}</Text>
         </View>
 
         <View style={{ height: space.lg }} />

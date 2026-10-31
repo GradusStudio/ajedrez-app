@@ -284,7 +284,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           <Text style={styles.playerMeta}>{userColor === 'w' ? t('game.colorWhite') : t('game.colorBlack')}</Text>
           {opening && <Text style={styles.opening}>{t('game.opening', { name: opening.name })}</Text>}
         </View>
-        <Text style={styles.notation}>{movesText(sans, 8, resolveNotation(settings.notation, language))}</Text>
+        <Text style={styles.notation}>{sans.length === 0 ? t('lesson.line.noMoves') : movesText(sans, 8, resolveNotation(settings.notation, language))}</Text>
 
         {engineError && (
           <View style={styles.errorCard}>

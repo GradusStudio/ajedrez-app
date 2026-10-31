@@ -104,6 +104,8 @@ Letras: R D T A C (Re, Donna, Torre, Alfiere, Cavallo). El peón no lleva letra.
 | sacrificio | sacrificio |
 | sacrificio de calidad | sacrificio di qualità |
 | calidad | qualità |
+| entregar la calidad | cedere la qualità |
+| perder la calidad | perdere la qualità |
 | combinación | combinazione |
 | amenaza | minaccia |
 | trampa | trappola |
@@ -151,6 +153,8 @@ Letras: R D T A C (Re, Donna, Torre, Alfiere, Cavallo). El peón no lleva letra.
 | ruptura (de peones) | sfondamento |
 | cortar al rey | tagliare fuori il re |
 | cajón (del rey) | recinto |
+| salto de caballo (distancia) | salto di cavallo |
+| peón trabado | pedone bloccato |
 | construir el puente | costruire il ponte |
 | reyes enfrentados | re faccia a faccia |
 | peón de c / de a | pedone c / pedone a |
@@ -180,6 +184,8 @@ Letras: R D T A C (Re, Donna, Torre, Alfiere, Cavallo). El peón no lleva letra.
 | Análisis | Analisi |
 | Perfil | Profilo |
 | Ajustes | Impostazioni |
+| ruta (de Aprender) | percorso |
+| pestaña | scheda |
 | unidad | unità |
 | lección | lezione |
 | paso | passo |

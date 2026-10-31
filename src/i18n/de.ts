@@ -338,6 +338,7 @@ export const de: Record<MessageKey, string> = {
   // Créditos y licencias (los nombres de licencias y paquetes de terceros no se traducen)
   'credits.title': 'Credits und Lizenzen',
   'credits.subtitle': 'Diese App nutzt die Arbeit anderer Menschen und Projekte. Danke.',
+  'credits.translationsNote': 'Die Übersetzungen wurden mit künstlicher Intelligenz erstellt und nicht von Muttersprachlern geprüft. Wenn dir ein Fehler auffällt, sag uns Bescheid.',
   'credits.license.gplOrLater': 'GNU GPL v3 oder neuer',
   'credits.license.sameAsApp': 'GNU GPL v3 oder neuer, wie die App',
   'credits.license.cc0': 'CC0 (gemeinfrei)',

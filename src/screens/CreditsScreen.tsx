@@ -73,6 +73,7 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
       </Pressable>
       <Text style={styles.title}>{t('credits.title')}</Text>
       <Text style={styles.subtitle}>{t('credits.subtitle')}</Text>
+      <Text style={styles.note}>{t('credits.translationsNote')}</Text>
 
       {credits(t).map((c) => (
         <View key={c.name} style={styles.card}>
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
   back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
+  note: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted, marginBottom: space.lg },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,

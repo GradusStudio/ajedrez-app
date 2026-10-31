@@ -3,6 +3,14 @@
 Archivo de datos: `unidad-1-lo-basico.json`. Tipos TypeScript: `lessonTypes.ts`.
 Cada lección tiene pasos; hay 6 tipos de paso. Todos llevan `fen` (la posición) y pueden llevar `orientation` y `highlight`.
 
+## Archivos de traducción
+
+La unidad en español (`src/data/unidad-N-*.json`, `aperturas-v3.json`) es la fuente. Cada idioma tiene `src/data/i18n/<lang>/unidad-1..6.json`, `aperturas.json`, `bots.json` e `index.ts`. Un archivo de traducción repite los ids de lecciones y pasos y solo lleva los campos de texto: títulos, `text`, `prompt`, `options`, `success`, `hint`, `explanations`, notas y frases de los bots. Nunca cambia `fen`, `solutions`, `squares`, `answer` ni las jugadas. Las listas (opciones, explicaciones) tienen el mismo largo que en español. `npm test` corre `findProblems` por idioma: ids, textos vacíos, marcadores, largos de lista, jugadas nombradas, letras de pieza y ausencia de `!`.
+
+Si se corrige un texto en español, hay que corregirlo también en los cuatro idiomas. Las líneas de apertura corregidas también van en los archivos de traducción. `aperturas` en español tiene dos copias (`src/data/` y `docs/`).
+
+Glosarios por idioma en `docs/traducciones/<lang>.md`. Las traducciones se hicieron con IA y no las revisaron hablantes nativos; los testers de la prueba cerrada avisan los errores.
+
 ## Tipos de paso
 
 | Tipo | Qué ve el usuario | Qué hace | Cuándo se da por correcto |

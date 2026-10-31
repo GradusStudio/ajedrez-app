@@ -337,6 +337,7 @@ export const es = {
   // Créditos y licencias (los nombres de licencias y paquetes de terceros no se traducen)
   'credits.title': 'Créditos y licencias',
   'credits.subtitle': 'Esta app usa trabajo de otras personas y proyectos. Gracias.',
+  'credits.translationsNote': 'Las traducciones se hicieron con inteligencia artificial y no las revisaron hablantes nativos. Si ves un error, avísanos.',
   'credits.license.gplOrLater': 'GNU GPL v3 o posterior',
   'credits.license.sameAsApp': 'GNU GPL v3 o posterior, como la app',
   'credits.license.cc0': 'CC0 (dominio público)',

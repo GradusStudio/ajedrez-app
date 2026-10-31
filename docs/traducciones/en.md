@@ -48,6 +48,7 @@ Letras: K Q R B N. El peón no lleva letra. Enroque `O-O` y `O-O-O`. Captura `x`
 | captura al paso | en passant |
 | coronación, coronar | promotion, promote |
 | subpromoción | underpromotion |
+| jaque perpetuo | perpetual check |
 | rendirse | resign |
 | abandonar la partida | abandon the game |
 | partida | game |
@@ -71,6 +72,8 @@ Letras: K Q R B N. El peón no lleva letra. Enroque `O-O` y `O-O-O`. Captura `x`
 |---|---|
 | horquilla | fork |
 | clavada | pin |
+| clavada absoluta / relativa | absolute pin / relative pin |
+| pieza sobrecargada | overloaded piece |
 | enfilada | skewer |
 | ataque a la descubierta | discovered attack |
 | jaque doble | double check |

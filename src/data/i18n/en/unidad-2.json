@@ -1,0 +1,204 @@
+{
+  "title": "Special rules",
+  "lessons": {
+    "u2-l01": {
+      "title": "Castling",
+      "summary": "King and rook in a single move",
+      "steps": {
+        "u2-l01-s01": { "text": "Castling moves the king and a rook in the same move. The king goes two squares toward the rook, and the rook jumps to the other side of the king. This is kingside castling: O-O." },
+        "u2-l01-s02": { "text": "Queenside castling goes toward the rook on a1: the king goes to c1 and the rook to d1. It's written O-O-O." },
+        "u2-l01-s03": {
+          "prompt": "Castle kingside.",
+          "hint": "Tap the king and then g1: the king moves two squares toward the rook.",
+          "success": "Correct. The king is safe on g1, and the rook moved to f1."
+        },
+        "u2-l01-s04": {
+          "prompt": "You're playing Black. Castle queenside.",
+          "hint": "Move the king two squares toward the rook on a8.",
+          "success": "Correct. The king went to c8 and the rook to d8."
+        },
+        "u2-l01-s05": { "text": "To castle, the king and that rook can't have moved at any point in the game, and the squares between them must be empty." },
+        "u2-l01-s06": { "text": "You also can't castle if the king is in check, or if it passes through or lands on an attacked square. Here the black bishop attacks f1: no kingside castling, but queenside is fine." },
+        "u2-l01-s07": {
+          "prompt": "Can White castle kingside?",
+          "options": ["Yes", "No, the king would land on an attacked square", "No, the rook is under attack"],
+          "explanation": "The knight attacks g1, the square where the king would land. That's why kingside castling isn't allowed.",
+          "feedback": ["Look at which squares the knight on h3 attacks.", "", "The rook on h1 isn't attacked, and even if it were, that wouldn't stop you from castling."]
+        },
+        "u2-l01-s08": {
+          "prompt": "And can White castle queenside?",
+          "options": ["Yes", "No"],
+          "explanation": "Nothing is attacked on the queenside: the king passes through d1 and lands on c1 with no problem.",
+          "feedback": ["", "Check d1 and c1: neither is attacked."]
+        }
+      }
+    },
+    "u2-l02": {
+      "title": "En passant",
+      "summary": "A special pawn capture",
+      "steps": {
+        "u2-l02-s01": { "text": "If a pawn advances two squares and lands next to an enemy pawn, that pawn can capture it as if it had advanced only one. This is called en passant." },
+        "u2-l02-s02": { "text": "You can only do it on the very next move. If you play something else, you lose the right." },
+        "u2-l02-s03": {
+          "prompt": "Black just played f5. Capture en passant.",
+          "hint": "The f-pawn advanced two squares and landed next to yours. Capture it by going to f6.",
+          "success": "Correct. Your pawn is on f6 and the pawn on f5 left the board."
+        },
+        "u2-l02-s04": {
+          "prompt": "You're playing Black. White just played b4. Capture en passant.",
+          "hint": "The b-pawn advanced two squares and landed next to your pawn on c4.",
+          "success": "Correct. Your pawn is on b3 and the pawn on b4 left the board."
+        },
+        "u2-l02-s05": {
+          "prompt": "Black just played d5. Where does your pawn end up if it captures en passant?",
+          "options": ["d6", "d5", "e6"],
+          "explanation": "It ends up on d6, the square the black pawn skipped. The pawn on d5 leaves the board.",
+          "feedback": ["", "You capture as if the pawn had advanced just one square.", "The pawn captures diagonally."]
+        },
+        "u2-l02-s06": {
+          "prompt": "Black played d5 two moves ago. Can you still capture en passant?",
+          "options": ["Yes", "No, the moment has passed"],
+          "explanation": "En passant is only allowed on the move right after the two-square advance.",
+          "feedback": ["It's only allowed on the very next move.", ""]
+        },
+        "u2-l02-s07": {
+          "prompt": "Black just played e5, advancing two squares. Tap the pawn you can capture en passant.",
+          "hint": "It's the pawn that just advanced two squares."
+        }
+      }
+    },
+    "u2-l03": {
+      "title": "Promoting well",
+      "summary": "Choose the right piece when you promote",
+      "steps": {
+        "u2-l03-s01": { "text": "Review: when a pawn reaches the last rank, you choose which piece it becomes. The queen is almost always the right choice." },
+        "u2-l03-s02": {
+          "prompt": "Promote by capturing the rook.",
+          "hint": "A pawn can also capture diagonally when it promotes. If it advances to d8, the rook captures it.",
+          "success": "Correct. You captured the rook and promoted at the same time."
+        },
+        "u2-l03-s03": { "text": "Watch out for stalemate. If you promote to a queen here, the black king has no squares and isn't in check: that's stalemate and the game ends in a draw." },
+        "u2-l03-s04": {
+          "prompt": "Promote without stalemating the black king, and keep enough material to deliver mate.",
+          "hint": "A queen gives stalemate. Try a rook: it leaves the square a6 free.",
+          "success": "Correct. With a rook, the black king has a6, and after Ka6 comes Ra8 mate."
+        },
+        "u2-l03-s05": {
+          "prompt": "Black threatens Qf1 mate. Which piece should you promote to?",
+          "options": ["Queen", "Knight", "Rook"],
+          "explanation": "A knight on d8 checks the king and attacks the queen at the same time. With a queen or a rook, Black mates with Qf1.",
+          "feedback": ["With a queen, Black plays Qf1 and it's mate.", "", "With a rook, Black plays Qf1 and it's mate."]
+        },
+        "u2-l03-s06": {
+          "prompt": "Promote so that Black can't deliver mate.",
+          "hint": "Promote to a knight: it gives check and attacks the queen.",
+          "success": "Correct. After the check, the knight captures the queen."
+        },
+        "u2-l03-s07": { "text": "Before promoting, check two things: whether a queen would stalemate the enemy king, and whether you can be mated afterward. It's almost always a queen; sometimes, another piece." }
+      }
+    },
+    "u2-l04": {
+      "title": "Stalemate",
+      "summary": "No moves and no check: a draw",
+      "steps": {
+        "u2-l04-s01": { "text": "Black to move, but the king has no safe square and isn't in check. That's stalemate: the game ends in a draw." },
+        "u2-l04-s02": { "text": "Here, on the other hand, the king is in check and can't escape: that's mate. The difference between mate and stalemate is the check." },
+        "u2-l04-s03": {
+          "prompt": "Black to move. Mate or stalemate?",
+          "options": ["Mate", "Stalemate"],
+          "explanation": "The black king has no squares, but it isn't in check: stalemate, a draw.",
+          "feedback": ["Is the king in check?", ""]
+        },
+        "u2-l04-s04": {
+          "prompt": "Black to move. Mate or stalemate?",
+          "options": ["Mate", "Stalemate"],
+          "explanation": "The queen gives check and the king can't escape or capture it, because the white king protects it: that's mate.",
+          "feedback": ["", "See if the queen gives check."]
+        },
+        "u2-l04-s05": {
+          "prompt": "White to move. Which of these moves stalemates the black king?",
+          "options": ["Qg6", "Qh3", "Qd8"],
+          "explanation": "After Qg6, the black king has no squares and isn't in check: stalemate. Qh3, on the other hand, is mate.",
+          "feedback": ["", "Qh3 gives check, so it isn't stalemate. In fact, it's mate.", "Qd8 gives check and the king escapes to h7."]
+        },
+        "u2-l04-s06": {
+          "prompt": "Now deliver mate, without stalemating.",
+          "hint": "Your king already controls g7 and g8. Give check along the h-file.",
+          "success": "Correct. Qh3 is mate: the black king is in check and has nowhere to go."
+        },
+        "u2-l04-s07": { "text": "If you're losing, stalemate can save you. Here Black has a queen, but White has no moves and isn't in check: a draw." }
+      }
+    },
+    "u2-l05": {
+      "title": "Other draws",
+      "summary": "Repetition, material and 50 moves",
+      "steps": {
+        "u2-l05-s01": { "text": "Black has more material and threatens mate, but White gives check after check. If the same position occurs three times, the game is a draw." },
+        "u2-l05-s02": { "text": "This is called perpetual check: endless checks your opponent can't avoid. It's the most common way to save a lost game by repetition." },
+        "u2-l05-s03": {
+          "prompt": "You're losing and Black threatens mate. Give check to start the perpetual.",
+          "hint": "Look for a queen check where the queen can't be captured.",
+          "success": "Correct. With endless checks, Black can't avoid the draw."
+        },
+        "u2-l05-s04": { "text": "It's also a draw when neither side has enough material to deliver mate: king against king, king and bishop against king, or king and knight against king." },
+        "u2-l05-s05": {
+          "prompt": "King and rook against king. Is that enough to deliver mate?",
+          "options": ["Yes", "No"],
+          "explanation": "Yes: king and rook can deliver mate. You'll see how in the endgames unit.",
+          "feedback": ["", "The rook, with help from the king, can deliver mate."]
+        },
+        "u2-l05-s06": {
+          "prompt": "King and knight against king. Is that enough to deliver mate?",
+          "options": ["Yes", "No"],
+          "explanation": "No: you can't force mate with a single knight. It's a draw by insufficient material.",
+          "feedback": ["A lone knight isn't enough to deliver mate.", ""]
+        },
+        "u2-l05-s07": { "text": "The 50-move rule: if each side plays 50 moves with no captures and no pawn moves, it's a draw. Players can also agree to a draw: in Bots you can offer one to your opponent." },
+        "u2-l05-s08": {
+          "prompt": "Which of these situations is not a draw?",
+          "options": ["Stalemate", "Checkmate", "Threefold repetition"],
+          "explanation": "Checkmate ends the game with a winner. The other two are draws.",
+          "feedback": ["Stalemate is a draw.", "", "Threefold repetition is a draw."]
+        }
+      }
+    },
+    "u2-l06": {
+      "title": "How moves are written",
+      "summary": "Read and write down moves",
+      "steps": {
+        "u2-l06-s01": { "text": "Each move is written with the piece's letter and the square it goes to: K king, Q queen, R rook, B bishop and N knight (K is already taken by the king). This move is Nf3. Pawns have no letter: e4." },
+        "u2-l06-s02": { "text": "If the move is a capture, add an x: Bxf7. When a pawn captures, write the file it comes from: exd5." },
+        "u2-l06-s03": { "text": "Other symbols: + is check and # is mate, like Qxf7# in this position. O-O is kingside castling, O-O-O is queenside castling, and =Q shows a promotion: e8=Q." },
+        "u2-l06-s04": {
+          "prompt": "How do you write the knight's move from g1 to f3?",
+          "options": ["Nf3", "Kf3", "Bf3"],
+          "explanation": "N is the knight: Nf3.",
+          "feedback": ["", "K is the king.", "B is the bishop."]
+        },
+        "u2-l06-s05": {
+          "prompt": "Play Bc4.",
+          "hint": "B is the bishop: move the bishop from f1 to c4.",
+          "success": "Correct. Bc4: the bishop went to c4."
+        },
+        "u2-l06-s06": {
+          "prompt": "Play exd5.",
+          "hint": "The pawn on the e-file captures on d5.",
+          "success": "Correct. exd5: the e-pawn captured on d5."
+        },
+        "u2-l06-s07": {
+          "prompt": "What does O-O-O mean?",
+          "options": ["Queenside castling", "Kingside castling", "Checkmate"],
+          "explanation": "O-O-O is queenside castling, toward the rook on the a-file. O-O is kingside castling.",
+          "feedback": ["", "Kingside castling has two Os: O-O.", "Mate is shown with #."]
+        },
+        "u2-l06-s08": {
+          "prompt": "What move is e8=N+?",
+          "options": ["A pawn promotes to a knight on e8 and gives check", "A knight goes to e8 and gives check", "A pawn promotes to a queen on e8"],
+          "explanation": "e8 is the square, =N the piece it promotes to, and + the check.",
+          "feedback": ["", "If it were a knight, it would start with N: Ne8+.", "=N means knight, not queen."]
+        },
+        "u2-l06-s09": { "text": "Other languages use other letters: in Spanish, for example, the knight is C, so Nf3 is written Cf3. In this app you'll see K, Q, R, B and N in lessons, games, openings and analysis." }
+      }
+    }
+  }
+}

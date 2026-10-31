@@ -9,7 +9,7 @@ import type { Language } from './languages';
 // Módulo puro, sin React Native: lo usan las pruebas con npm test.
 
 /** Ids de pasos donde las jugadas nombradas pueden diferir del español (lecciones que enseñan la notación). */
-export const MOVE_EXCEPTIONS: string[] = [];
+export const MOVE_EXCEPTIONS: string[] = ['u2-l06-s09'];
 
 /**
  * Jugadas escritas en un texto. Una jugada lleva siempre una casilla (a-h + 1-8) o es un enroque, así que

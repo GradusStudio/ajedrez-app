@@ -87,7 +87,7 @@
           "explanation": "The queen is behind the knight, not the king: the knight can move, but the queen would be lost.",
           "feedback": ["Look at which piece is behind the knight, on the bishop's diagonal.", ""]
         },
-        "u3-l02-s08": { "text": "To defend against a pin, protect the pinned piece, put another piece in between, or move the king or queen off the line. Here Be7 cuts the diagonal and the knight is free again." },
+        "u3-l02-s08": { "text": "To defend against a pin, protect the pinned piece, put another piece in between, or move the king or queen off the line. Here Be7 blocks the diagonal and the knight is free again." },
         "u3-l02-s09": {
           "prompt": "Take advantage of the pin.",
           "success": "Well solved: this position comes from a real game.",

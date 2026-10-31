@@ -540,7 +540,7 @@
           },
           "sicilian-l03-s02": {
             "prompt": "Entwickle den Springer und greife e4 an.",
-            "hint": "Der g8-Springer greift den Bauern auf e4 an.",
+            "hint": "Von f6 aus greift der Springer den Bauern auf e4 an.",
             "success": "Richtig"
           },
           "sicilian-l03-s03": {

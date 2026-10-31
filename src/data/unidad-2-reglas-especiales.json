@@ -424,7 +424,7 @@
         },
         {
           "type": "explain",
-          "text": "Esto se llama jaque perpetuo: jaques sin fin que el rival no puede evitar. Es la forma más común de salvar una partida perdida por repetición.",
+          "text": "Esto se llama jaque perpetuo: jaques sin fin que el rival no puede evitar. Es la forma más común de salvar por repetición una partida perdida.",
           "fen": "6k1/6p1/8/2b5/4Q3/8/rr4PP/7K w - - 0 1",
           "arrows": [
             "e4d5",

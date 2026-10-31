@@ -1820,7 +1820,7 @@
               "solutions": [
                 "g8f6"
               ],
-              "hint": "El caballo de g8 ataca el peón de e4.",
+              "hint": "Desde f6, el caballo ataca el peón de e4.",
               "success": "Correcto",
               "orientation": "b",
               "id": "sicilian-l03-s02"
@@ -8177,7 +8177,7 @@
               "orientation": "b",
               "highlight": [
                 "c3",
-                "a3"
+                "c4"
               ],
               "id": "nimzo-indian-l01-s02"
             },

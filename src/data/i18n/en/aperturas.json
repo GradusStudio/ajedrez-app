@@ -540,7 +540,7 @@
           },
           "sicilian-l03-s02": {
             "prompt": "Develop the knight, attacking e4.",
-            "hint": "The g8 knight attacks the e4-pawn.",
+            "hint": "From f6, the knight attacks the e4-pawn.",
             "success": "Correct"
           },
           "sicilian-l03-s03": {

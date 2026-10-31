@@ -134,7 +134,7 @@
       "summary": "Repetition, material and 50 moves",
       "steps": {
         "u2-l05-s01": { "text": "Black has more material and threatens mate, but White gives check after check. If the same position occurs three times, the game is a draw." },
-        "u2-l05-s02": { "text": "This is called perpetual check: endless checks your opponent can't avoid. It's the most common way to save a lost game by repetition." },
+        "u2-l05-s02": { "text": "This is called perpetual check: endless checks your opponent can't avoid. It's the most common way to use repetition to save a lost game." },
         "u2-l05-s03": {
           "prompt": "You're losing and Black threatens mate. Give check to start the perpetual.",
           "hint": "Look for a queen check where the queen can't be captured.",

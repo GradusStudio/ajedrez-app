@@ -540,7 +540,7 @@
           },
           "sicilian-l03-s02": {
             "prompt": "Sviluppa il cavallo attaccando e4.",
-            "hint": "Il cavallo in g8 attacca il pedone in e4.",
+            "hint": "Da f6, il cavallo attacca il pedone in e4.",
             "success": "Corretto"
           },
           "sicilian-l03-s03": {

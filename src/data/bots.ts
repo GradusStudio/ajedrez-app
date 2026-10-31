@@ -32,6 +32,8 @@ export type Bot = {
   repertoire: { white: string[]; black: string[] };
   book: 'corto' | 'medio' | 'largo';
   lines: { greeting: string; onGoodMove: string; onBlunder: string; onWin: string; onLose: string };
+  /** Voz como profesor: frases de lección y de aviso. Ver docs/bots.md, «Voces de profesor». */
+  teaching: { welcome: string[]; close: string[]; reminder: { risk: string; recovery: string; general: string } };
 };
 
 export const bots = (botsRaw as unknown as { bots: Bot[] }).bots;

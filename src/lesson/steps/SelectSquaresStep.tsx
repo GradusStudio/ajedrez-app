@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Square } from 'chess.js';
 import { Board } from '../../components/Board';
 import { Button3D } from '../../components/Button3D';
 import { FadeIn } from '../../components/FadeIn';
 import { SelectSquaresStep as SelectSquaresStepData } from '../../data/lessonTypes';
 import { StepCallbacks } from '../stepTypes';
-import { colors, fonts, space } from '../../theme';
+import { TeacherBubble } from '../TeacherBubble';
+import { space } from '../../theme';
 
 type Props = { step: SelectSquaresStepData } & StepCallbacks;
 
@@ -45,7 +46,7 @@ export function SelectSquaresStep({ step, onCorrect, onWrong, locked }: Props) {
       />
       <View style={{ height: space.lg }} />
       <FadeIn>
-        <Text style={{ fontFamily: fonts.bold, fontSize: 18, color: colors.text, lineHeight: 26 }}>{step.prompt}</Text>
+        <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
       {!solved && !locked && (
         <View style={{ marginTop: space.lg }}>

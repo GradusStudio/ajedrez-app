@@ -147,6 +147,12 @@ Círculo con canto 3D de 3px (`Circle3D`), con el color de su estilo:
 
 Adentro va el personaje del bot (`assets/bots/<id>.webp`, registrado en `AVATARS` de `BotAvatar.tsx`): imagen cuadrada con fondo transparente, cabeza y hombros, hecha con ChatGPT. Si ya viene recortada en círculo, lo llena entero (`scale: 1`); si no, se achica y se apoya abajo para que nada se corte (Ada, `scale: 0.89`). Los 10 bots tienen personaje; si se agrega uno nuevo sin imagen, muestra su inicial (Nunito 800, blanco).
 
+### Profesor en la lección (globo)
+- Debajo del tablero, una fila: la cara del bot (`BotAvatar` de 52 px, con la expresión del paso) a la izquierda y, a la derecha, un globo `surface-raised` con radio 16 y padding `md` arriba y abajo y 14 a los costados. Separación de `md` entre cara y globo; alineados arriba.
+- Texto del globo: Nunito 700 18px en `text`, interlineado 26. Sin alto fijo: con letra grande el globo crece y baja con la página.
+- Bienvenida (solo en el primer paso de una lección empezada de cero): arriba del globo, el nombre del bot en Nunito 800 14px `primary` y la frase en Nunito 700 14px `text-muted`, interlineado 20.
+- En el resultado de la lección, la misma fila con la cara de acierto y la frase de cierre, con `xl` de separación arriba.
+
 ### Partida contra un bot
 - Arriba, el bot: avatar de 40px, nombre, nivel y estado en 12px `text-muted`. Debajo, un globo `surface-raised` con su frase.
 - Debajo del tablero: "Tú", tu color, "Apertura: …" en `gold` y la lista de jugadas en español.

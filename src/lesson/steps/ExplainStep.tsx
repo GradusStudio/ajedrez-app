@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { Board } from '../../components/Board';
 import { FadeIn } from '../../components/FadeIn';
 import { ExplainStep as ExplainStepData } from '../../data/lessonTypes';
-import { colors, fonts, space } from '../../theme';
+import { TeacherBubble } from '../TeacherBubble';
+import { space } from '../../theme';
 
 // El tablero va siempre arriba, en el mismo lugar; el texto va debajo.
 export function ExplainStep({ step }: { step: ExplainStepData }) {
@@ -47,7 +48,7 @@ export function ExplainStep({ step }: { step: ExplainStepData }) {
       />
       <View style={{ height: space.lg }} />
       <FadeIn>
-        <Text style={{ fontFamily: fonts.bold, fontSize: 18, color: colors.text, lineHeight: 26 }}>{step.text}</Text>
+        <TeacherBubble>{step.text}</TeacherBubble>
       </FadeIn>
     </View>
   );

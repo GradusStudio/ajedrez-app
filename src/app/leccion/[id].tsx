@@ -40,6 +40,8 @@ export default function LessonRoute() {
     <LessonPlayer
       key={lesson.id + (isReview ? '-repaso' : '')}
       lesson={lesson}
+      lessonId={base.id}
+      noWelcome={isReview}
       initial={initial}
       exitMessage={isReview ? 'Los errores siguen guardados para repasarlos después.' : 'Tu avance queda guardado.'}
       onAdvance={isReview ? undefined : (state) => saveDraft(base.id, state)}

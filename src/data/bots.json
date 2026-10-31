@@ -66,6 +66,23 @@
         "onBlunder": "Eso estaba suelto. Gracias.",
         "onWin": "Gané. No sé cómo, pero gané.",
         "onLose": "Me ganaste. Quiero ver cómo lo hiciste."
+      },
+      "teaching": {
+        "welcome": [
+          "Hola. Hoy aprendemos juntos y yo también me sumo.",
+          "Qué bueno que viniste. Vamos con calma, paso a paso.",
+          "Hola. Soy Pipo y hoy te acompaño en esta lección."
+        ],
+        "close": [
+          "Terminamos. Fue lindo aprender contigo.",
+          "Listo. Yo también aprendí algo hoy.",
+          "Bien hecho. Me alegra que hayas llegado hasta el final."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. Hoy con una sola acción la sigues cuidando.",
+          "recovery": "Hoy se recupera con un puzzle, una lección y una partida contra un bot. Yo te acompaño.",
+          "general": "Tengo ganas de jugar contigo un rato. Entra cuando puedas."
+        }
       }
     },
     {
@@ -103,6 +120,23 @@
         "onBlunder": "Cuidado: esa pieza quedó sin protección.",
         "onWin": "Ganar con calma también es ganar.",
         "onLose": "Muy bien. Rompiste mi defensa."
+      },
+      "teaching": {
+        "welcome": [
+          "Con calma. Esta lección no tiene apuro.",
+          "Hola. Vamos a ir despacio y con cuidado.",
+          "Hola. Nos tomamos el tiempo que haga falta."
+        ],
+        "close": [
+          "Terminamos con tranquilidad. Muy bien.",
+          "Lección cerrada. Descansa un poco si quieres.",
+          "Buen trabajo. Todo en orden por hoy."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. Con una acción tranquila hoy queda a salvo.",
+          "recovery": "Aún se puede recuperar la racha: hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Cuando tengas un rato tranquilo, aquí te espero."
+        }
       }
     },
     {
@@ -142,6 +176,23 @@
         "onBlunder": "Justo lo que esperaba.",
         "onWin": "Te dije que había un truco.",
         "onLose": "Me descubriste. Bien visto."
+      },
+      "teaching": {
+        "welcome": [
+          "Mira bien, que te voy a mostrar un truco.",
+          "Pasa, pasa. Hoy hay algo escondido en esta lección.",
+          "Hola. Ojo, que a veces las cosas no son lo que parecen."
+        ],
+        "close": [
+          "Y ese era el truco. Ahora lo conoces.",
+          "Terminamos. Ya sabes lo que yo sé.",
+          "Terminamos. Cuéntaselo a alguien, pero con cuidado."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. Una acción hoy y sigue a salvo.",
+          "recovery": "Hay un truco para recuperar la racha: un puzzle, una lección y una partida contra un bot hoy.",
+          "general": "Tengo algo nuevo preparado para ti. Entra a verlo."
+        }
       }
     },
     {
@@ -182,6 +233,23 @@
         "onBlunder": "Eso abre mi ataque.",
         "onWin": "El ataque funcionó.",
         "onLose": "Te defendiste muy bien."
+      },
+      "teaching": {
+        "welcome": [
+          "Vamos directo al punto. Empecemos.",
+          "Hoy se juega con energía. Adelante.",
+          "Hola. Sin vueltas, a trabajar."
+        ],
+        "close": [
+          "Terminamos. Esa fue rápida y buena.",
+          "Bien jugado. Ya estás para la próxima.",
+          "Terminamos. Se nota el ritmo que traes."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. Una acción hoy y sigues adelante.",
+          "recovery": "Hoy toca todo: un puzzle, una lección y una partida contra un bot, para recuperar la racha.",
+          "general": "Es buen momento para jugar. Entra y vamos."
+        }
       }
     },
     {
@@ -218,6 +286,23 @@
         "onBlunder": "Esa jugada rompe un principio de apertura.",
         "onWin": "Repasa los principios y vuelve a intentarlo.",
         "onLose": "Excelente. Has aprendido bien."
+      },
+      "teaching": {
+        "welcome": [
+          "Hola. Empecemos la clase con orden.",
+          "Hola. Abre bien los ojos y las ideas.",
+          "Hola. Hoy toca aprender con método."
+        ],
+        "close": [
+          "Con esto terminamos la clase. Buen trabajo.",
+          "Lección completa. Repásala cuando quieras.",
+          "Muy bien. Así se estudia, con constancia."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. La constancia se cuida con una práctica hoy.",
+          "recovery": "Para retomar la racha, hoy corresponde un puzzle, una lección y una partida contra un bot.",
+          "general": "La clase de hoy está preparada. Te espero."
+        }
       }
     },
     {
@@ -255,6 +340,23 @@
         "onBlunder": "Esa debilidad la voy a aprovechar.",
         "onWin": "Las pequeñas ventajas suman una victoria.",
         "onLose": "Mejor estructura la tuya. Felicitaciones."
+      },
+      "teaching": {
+        "welcome": [
+          "Hola. Vamos a trabajar esta lección con paciencia.",
+          "Hola. Un paso bien dado vale más que muchos apurados.",
+          "Qué bueno verte. Empecemos con serenidad."
+        ],
+        "close": [
+          "Terminamos. Cada lección suma un poco.",
+          "Buen trabajo. Se avanza mejor de a poco.",
+          "Lección cerrada. Quedó bien armada."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. Una acción hoy alcanza para sostenerla.",
+          "recovery": "Para recuperar la racha, hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Cuando puedas, una lección corta te hace bien."
+        }
       }
     },
     {
@@ -291,6 +393,23 @@
         "onBlunder": "Dejaste un hueco en tu defensa.",
         "onWin": "Mi muro resistió.",
         "onLose": "El muro cayó. Buena técnica."
+      },
+      "teaching": {
+        "welcome": [
+          "Hola. Aquí vamos firmes y sin prisa.",
+          "Hola. Asentamos bien las bases antes de seguir.",
+          "Pasa. Esta lección se construye despacio."
+        ],
+        "close": [
+          "Terminamos. Quedó firme.",
+          "Lección cerrada. Buena base para lo que viene.",
+          "Bien. Con paciencia se llega lejos."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. Una acción hoy y se mantiene en pie.",
+          "recovery": "Para levantar la racha hoy hace falta un puzzle, una lección y una partida contra un bot.",
+          "general": "Aquí sigo, sin apuro. Entra cuando quieras."
+        }
       }
     },
     {
@@ -328,6 +447,23 @@
         "onBlunder": "Había una combinación y no la viste.",
         "onWin": "La táctica decidió la partida.",
         "onLose": "Me ganaste con una táctica limpia."
+      },
+      "teaching": {
+        "welcome": [
+          "Hola. Esta lección pide ojos despiertos.",
+          "Hola. Vamos a pensar con la cabeza fría.",
+          "Empecemos. Hoy se mira todo dos veces."
+        ],
+        "close": [
+          "Terminamos. Lo hiciste con buena cabeza.",
+          "Lección cerrada. Eso estuvo muy bien pensado.",
+          "Terminamos. Ya tienes una herramienta más."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. Una acción hoy y no pierdes lo ganado.",
+          "recovery": "Para recuperar la racha, hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Tengo un buen desafío para hoy. Entra a verlo."
+        }
       }
     },
     {
@@ -365,6 +501,23 @@
         "onBlunder": "En el final, ese error cuesta caro.",
         "onWin": "El final lo decidió. Revisa la actividad de tu rey.",
         "onLose": "Gran técnica de final."
+      },
+      "teaching": {
+        "welcome": [
+          "Hola. Vamos a mirar esto con calma y detalle.",
+          "Hola. Aquí cada detalle cuenta.",
+          "Pasa. Hoy trabajamos con precisión."
+        ],
+        "close": [
+          "Terminamos. Un trabajo muy fino.",
+          "Lección cerrada. Se nota la paciencia.",
+          "Bien hecho. El detalle hace la diferencia."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. Una acción hoy y la sostienes.",
+          "recovery": "Para recuperar la racha, hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Un rato de práctica hoy vale mucho. Te espero."
+        }
       }
     },
     {
@@ -406,6 +559,23 @@
         "onBlunder": "Error. Lo aprovecho.",
         "onWin": "Revisa la partida: vas a aprender mucho.",
         "onLose": "Impresionante. Me ganaste."
+      },
+      "teaching": {
+        "welcome": [
+          "Hola. Empecemos.",
+          "Esta es la última etapa. Vamos.",
+          "Hola. Veamos cómo lo haces hoy."
+        ],
+        "close": [
+          "Terminamos. Buen resultado.",
+          "Completo. Ya puedes seguir con lo que viene.",
+          "Terminamos. Lo hiciste bien."
+        ],
+        "reminder": {
+          "risk": "Días de racha: {n}. Una acción hoy y se conserva.",
+          "recovery": "Para recuperar la racha, hoy un puzzle, una lección y una partida contra un bot.",
+          "general": "Es un buen momento para practicar. Entra."
+        }
       }
     }
   ]

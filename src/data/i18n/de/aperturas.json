@@ -1571,5 +1571,443 @@
         }
       }
     }
+  },
+  "ruy-lopez": {
+    "name": "Spanische Partie",
+    "summary": "Die am meisten studierte Eröffnung: ständiger Druck auf das schwarze Zentrum, ganz ohne Eile.",
+    "lessons": {
+      "ruy-lopez-l01": {
+        "title": "Die Idee der Spanischen Partie",
+        "summary": "Druck auf e5",
+        "steps": {
+          "ruy-lopez-l01-s01": {
+            "text": "Mit Lb5 setzt du den Springer unter Druck, der e5 deckt. Du schlägst ihn nicht sofort: Du hältst die Spannung."
+          },
+          "ruy-lopez-l01-s02": {
+            "text": "Nach ...a6 ziehst du nach a4 zurück und hältst den Druck auf den Springer, ohne den Läufer unnötig zu tauschen."
+          },
+          "ruy-lopez-l01-s03": {
+            "text": "Typischer Plan: c3 und d4, um das Zentrum zu besetzen, mit deinem gut platzierten Läufer auf b3."
+          },
+          "ruy-lopez-l01-s04": {
+            "prompt": "Was setzt du mit Lb5 unter Druck?",
+            "explanation": "Fällt der Springer, ist der Bauer auf e5 ungedeckt.",
+            "options": [
+              "Den Springer, der e5 deckt",
+              "Den Bauern auf h7",
+              "Die schwarze Dame"
+            ]
+          },
+          "ruy-lopez-l01-s05": {
+            "prompt": "Was machst du nach ...a6 mit dem Läufer?",
+            "explanation": "Der Rückzug nach a4 erhält den Läufer und den Druck auf das Zentrum.",
+            "options": [
+              "Du tauschst ihn immer auf c6",
+              "Du ziehst ihn nach a4 zurück und hältst die Spannung",
+              "Du verlierst ihn"
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l02": {
+        "title": "Hauptvariante",
+        "summary": "Die geschlossene Variante",
+        "steps": {
+          "ruy-lopez-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Spanischen Partie.",
+            "notes": [
+              "Zentrum.",
+              "",
+              "Greift e5 an.",
+              "",
+              "Du setzt den Springer unter Druck, der e5 deckt.",
+              "",
+              "Du hältst den Druck auf den Springer, ohne den Läufer zu tauschen.",
+              "",
+              "Der König ist in Sicherheit.",
+              "",
+              "Deckt e4 und bereitet d4 vor.",
+              "",
+              "Der Läufer zieht sich auf eine sichere Diagonale zurück.",
+              "",
+              "Du bereitest d4 vor.",
+              "",
+              "Du verhinderst ...Lg4 und ...Sg4."
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l03": {
+        "title": "Fallen und typische Fehler",
+        "summary": "Die Arche-Noah-Falle",
+        "steps": {
+          "ruy-lopez-l03-s01": {
+            "text": "Das ist die Arche-Noah-Falle: Die Bauern a6, b5 und c4 fangen den Läufer auf b3. Das passiert, wenn du zu früh d4 gegen ...d6 spielst."
+          },
+          "ruy-lopez-l03-s02": {
+            "prompt": "Schwarz hat ...d6 gespielt. Bereite d4 vor, ohne den Läufer zu riskieren.",
+            "hint": "Bereite d4 mit einem Bauernzug vor, bevor du das Zentrum öffnest.",
+            "success": "Richtig"
+          },
+          "ruy-lopez-l03-s03": {
+            "prompt": "Was verhinderst du mit c3 vor d4?",
+            "explanation": "Mit c3 kann sich dein Läufer nach c2 zurückziehen, wenn Schwarz ...b5 spielt.",
+            "options": [
+              "Ein Damenschach",
+              "Dass dein Läufer von Bauern gefangen wird",
+              "Den Verlust des Bauern auf e4"
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "ruy-lopez-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "ruy-lopez-l04-s02": {
+            "prompt": "Was verhinderst du mit h3?",
+            "explanation": "Die Fesselung ...Lg4 gegen deinen Springer auf f3 ist die typische Störung.",
+            "options": [
+              "Dass der schwarze Läufer oder Springer nach g4 kommt",
+              "Die schwarze Rochade",
+              "Das Schlagen auf e5"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "rossolimo": {
+    "name": "Rossolimo-Variante",
+    "summary": "Eine solide Art, gegen den Sizilianer zu spielen: Du weichst den theorielastigsten Varianten aus.",
+    "lessons": {
+      "rossolimo-l01": {
+        "title": "Die Idee der Rossolimo-Variante",
+        "summary": "Druck auf c6, Theorie vermeiden",
+        "steps": {
+          "rossolimo-l01-s01": {
+            "text": "Statt das Zentrum mit d4 zu öffnen, setzt du den Springer auf c6 mit dem Läufer unter Druck."
+          },
+          "rossolimo-l01-s02": {
+            "text": "Wenn du auf c6 tauschst, verdoppelst du die schwarzen c-Bauern."
+          },
+          "rossolimo-l01-s03": {
+            "text": "Plan: d3, h3 und Sc3, um solide zu spielen und darauf zu warten, dass Schwarz Schwächen zeigt."
+          },
+          "rossolimo-l01-s04": {
+            "prompt": "Was vermeidest du mit 3.Lb5?",
+            "explanation": "So spielst du, ohne so viel Theorie auswendig zu lernen.",
+            "options": [
+              "Die Theorievarianten des Offenen Sizilianers",
+              "Den Bauern auf e4",
+              "Das Schlagen auf c5"
+            ]
+          },
+          "rossolimo-l01-s05": {
+            "prompt": "Welche Struktur suchst du mit dem Tausch auf c6?",
+            "explanation": "Die Bauern auf c6 und c5 sind Doppelbauern.",
+            "options": [
+              "Eigene isolierte Bauern",
+              "Gegnerische Doppelbauern",
+              "Eine offene Linie"
+            ]
+          }
+        }
+      },
+      "rossolimo-l02": {
+        "title": "Hauptvariante",
+        "summary": "Der Tausch auf c6",
+        "steps": {
+          "rossolimo-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Rossolimo-Variante.",
+            "notes": [
+              "Zentrum.",
+              "",
+              "Du entwickelst dich und bleibst flexibel.",
+              "",
+              "Rossolimo: Du setzt den Springer unter Druck, der d4 und e5 kontrolliert.",
+              "",
+              "Du beschädigst die Struktur: Doppelbauern auf der c-Linie.",
+              "",
+              "Solide: Stützt e4 und öffnet dem c1-Läufer den Weg.",
+              "",
+              "Verhindert ...Lg4 und ...Sg4.",
+              "",
+              "Entwickelt und stützt e4."
+            ]
+          }
+        }
+      },
+      "rossolimo-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Wann du tauschen solltest",
+        "steps": {
+          "rossolimo-l03-s01": {
+            "prompt": "Setze den Springer auf c6 mit dem Läufer unter Druck.",
+            "hint": "Der Läufer zieht nach b5.",
+            "success": "Richtig"
+          },
+          "rossolimo-l03-s02": {
+            "prompt": "Tausche den Läufer gegen den Springer, um die Bauern zu verdoppeln.",
+            "hint": "Schlage auf c6.",
+            "success": "Richtig"
+          },
+          "rossolimo-l03-s03": {
+            "prompt": "Warum h3?",
+            "explanation": "Du ersparst dir Probleme auf g4, ohne Zeit auf anderen Feldern zu verlieren.",
+            "options": [
+              "Verhindert ...Lg4 und ...Sg4",
+              "Bereitet g4 vor",
+              "Greift den Springer auf f6 an"
+            ]
+          }
+        }
+      },
+      "rossolimo-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "rossolimo-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "rossolimo-l04-s02": {
+            "prompt": "Welchem Plan folgst du danach?",
+            "explanation": "Die Rossolimo-Variante sucht eine bequeme Stellung ohne Risiko.",
+            "options": [
+              "Sofort den König angreifen",
+              "Solide spielen und auf einen Fehler warten",
+              "Die Damen tauschen"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "alapin": {
+    "name": "Alapin-Variante",
+    "summary": "Gegen den Sizilianer: Du bereitest d4 mit c3 vor und weichst der Theorie der offenen Varianten aus.",
+    "lessons": {
+      "alapin-l01": {
+        "title": "Die Idee der Alapin-Variante",
+        "summary": "d4 mit c3 vorbereiten",
+        "steps": {
+          "alapin-l01-s01": {
+            "text": "Mit c3 bereitest du d4 vor, um das Zentrum zu besetzen, und vermeidest den Offenen Sizilianer."
+          },
+          "alapin-l01-s02": {
+            "text": "Wenn Schwarz ...d5 spielt, tauschst du und besetzt danach das Zentrum mit einem Bauern."
+          },
+          "alapin-l01-s03": {
+            "text": "Plan: mit Sf3, Le2 und der Rochade entwickeln und die Kontrolle über das Zentrum behalten."
+          },
+          "alapin-l01-s04": {
+            "prompt": "Was bereitet 2.c3 vor?",
+            "explanation": "Mit c3 stützt du d4, bevor du es spielst.",
+            "options": [
+              "Den Vorstoß d4",
+              "Den Vorstoß b4",
+              "Die Rochade"
+            ]
+          },
+          "alapin-l01-s05": {
+            "prompt": "Was vermeidest du mit 2.c3?",
+            "explanation": "Mit c3 gehst du Varianten wie Najdorf und dem Drachen aus dem Weg.",
+            "options": [
+              "Den Bauern auf d5",
+              "Die Theorie des Offenen Sizilianers",
+              "Einen Angriff auf die Dame"
+            ]
+          }
+        }
+      },
+      "alapin-l02": {
+        "title": "Hauptvariante",
+        "summary": "Das Schlagen auf d5",
+        "steps": {
+          "alapin-l02-s01": {
+            "prompt": "Spiele die Hauptvariante der Alapin-Variante.",
+            "notes": [
+              "Zentrum.",
+              "",
+              "Alapin: Du bereitest d4 vor und vermeidest die offenen Sizilianer-Varianten.",
+              "",
+              "Du tauschst und zwingst Schwarz, die Dame herauszubringen.",
+              "",
+              "Du besetzt das Zentrum mit einem Bauern.",
+              "",
+              "Entwickelt.",
+              "",
+              "Entwickelt und bereitet die Rochade vor.",
+              "",
+              "Der König ist in Sicherheit.",
+              "",
+              "Du schließt die Entwicklung ab und stützt d4."
+            ]
+          }
+        }
+      },
+      "alapin-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Schritt für Schritt",
+        "steps": {
+          "alapin-l03-s01": {
+            "prompt": "Bereite den Vorstoß d4 vor.",
+            "hint": "Ein Bauer am Damenflügel zieht vor.",
+            "success": "Richtig"
+          },
+          "alapin-l03-s02": {
+            "prompt": "Tausche auf d5.",
+            "hint": "Der Bauer auf e4 schlägt.",
+            "success": "Richtig"
+          },
+          "alapin-l03-s03": {
+            "prompt": "Besetze das Zentrum mit einem Bauern.",
+            "hint": "Ein Zentrumsbauer zieht zwei Felder vor.",
+            "success": "Richtig"
+          },
+          "alapin-l03-s04": {
+            "prompt": "Was bewirkt ...Lg4?",
+            "explanation": "Deshalb ist es sinnvoll, mit Le2 zu entwickeln und zu rochieren.",
+            "options": [
+              "Fesselt den Springer auf f3 an die Dame",
+              "Greift d4 an",
+              "Bereitet die Rochade vor"
+            ]
+          }
+        }
+      },
+      "alapin-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "alapin-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "alapin-l04-s02": {
+            "prompt": "Welche Figur schließt deine Entwicklung ab?",
+            "explanation": "Der Läufer auf e3 stützt d4 und schließt deine Entwicklung ab.",
+            "options": [
+              "Die Dame nach h5",
+              "Der König nach f1",
+              "Der c1-Läufer nach e3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit": {
+    "name": "Damengambit",
+    "summary": "Eine klassische Eröffnung: Du bietest einen Bauern an, den du fast immer zurückholst, und kontrollierst das Zentrum.",
+    "lessons": {
+      "queens-gambit-l01": {
+        "title": "Die Idee des Damengambits",
+        "summary": "Das Zentrum kontrollieren",
+        "steps": {
+          "queens-gambit-l01-s01": {
+            "text": "Mit c4 greifst du den Bauern auf d5 an. Wird er geschlagen, holst du ihn leicht zurück."
+          },
+          "queens-gambit-l01-s02": {
+            "text": "Wird nicht geschlagen, hältst du den Druck auf d5 und entwickelst dich in Ruhe."
+          },
+          "queens-gambit-l01-s03": {
+            "text": "Typische Struktur: Bauern auf d4 und e3, entwickelte Springer und der Turm auf der c-Linie."
+          },
+          "queens-gambit-l01-s04": {
+            "prompt": "Ist es ein echtes Gambit?",
+            "explanation": "Deshalb gilt es als sehr sichere Eröffnung.",
+            "options": [
+              "Nein: Den Bauern auf c4 holst du fast immer zurück",
+              "Ja: Du verlierst Material",
+              "Es ist eine Falle"
+            ]
+          },
+          "queens-gambit-l01-s05": {
+            "prompt": "Was ist das Hauptziel?",
+            "explanation": "Mit c4 schwächst du den Bauern auf d5, der das schwarze Zentrum stützt.",
+            "options": [
+              "f7 angreifen",
+              "Das Zentrum kontrollieren",
+              "Eine Figur gewinnen"
+            ]
+          }
+        }
+      },
+      "queens-gambit-l02": {
+        "title": "Hauptvariante",
+        "summary": "Das abgelehnte Gambit",
+        "steps": {
+          "queens-gambit-l02-s01": {
+            "prompt": "Spiele die Hauptvariante des Damengambits.",
+            "notes": [
+              "Du besetzt das Zentrum.",
+              "",
+              "Das Gambit: Du greifst d5 an und willst das Zentrum kontrollieren.",
+              "",
+              "Du setzt d5 unter Druck.",
+              "",
+              "Du fesselst den Springer auf f6 an die Dame.",
+              "",
+              "Du stützt d4 und öffnest dem f1-Läufer den Weg.",
+              "",
+              "Entwickelt und deckt d4.",
+              "",
+              "Der Turm behält die c-Linie im Blick, die sich öffnen wird.",
+              "",
+              "Entwickelt, zielt auf h7 und bereitet Lxc4 vor, falls Schwarz schlägt.",
+              "",
+              "Du holst den Bauern mit Entwicklung zurück.",
+              ""
+            ]
+          }
+        }
+      },
+      "queens-gambit-l03": {
+        "title": "Kernideen und typische Fehler",
+        "summary": "Den Bauern zurückholen und den Läufer herausbringen",
+        "steps": {
+          "queens-gambit-l03-s01": {
+            "prompt": "Hole den Bauern mit dem Läufer zurück.",
+            "hint": "Der f1-Läufer schlägt auf c4.",
+            "success": "Richtig"
+          },
+          "queens-gambit-l03-s02": {
+            "prompt": "Fessle den Springer auf f6 an die Dame.",
+            "hint": "Der c1-Läufer zieht nach g5.",
+            "success": "Richtig"
+          },
+          "queens-gambit-l03-s03": {
+            "prompt": "Welcher Läufer wird eingesperrt, wenn du e3 ohne Nachdenken spielst?",
+            "explanation": "Deshalb bringst du den c1-Läufer (Lg5) heraus, bevor du e3 spielst.",
+            "options": [
+              "Der f1-Läufer",
+              "Der c1-Läufer",
+              "Keiner"
+            ]
+          }
+        }
+      },
+      "queens-gambit-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe ohne Hilfe",
+        "steps": {
+          "queens-gambit-l04-s01": {
+            "prompt": "Wiederhole die Hauptvariante ohne Hilfe."
+          },
+          "queens-gambit-l04-s02": {
+            "prompt": "Welche Linie besetzt dein Turm?",
+            "explanation": "Der Turm auf c1 übt Druck auf den schwarzen Damenflügel aus.",
+            "options": [
+              "Die c-Linie",
+              "Die h-Linie",
+              "Die a-Linie"
+            ]
+          }
+        }
+      }
+    }
   }
 }

@@ -153,3 +153,16 @@ test('un idioma sin archivos devuelve el español, con memoria', () => {
   assert.equal(en.units, units);
   assert.equal(localizedContent('en'), en);
 });
+
+test('feedback acepta "" donde el español lo tiene y lo rechaza donde hay texto', () => {
+  const quiz: Lesson = {
+    ...lesson,
+    steps: [{ id: 's1', type: 'quiz', fen: FEN, prompt: 'Cuál', options: ['uno', 'dos'], answer: 0, explanation: 'x', feedback: ['', 'Es cierto, pero'] }],
+  };
+  const ok = applyLessonText(quiz, { steps: { s1: { feedback: ['', 'True, but'] } } });
+  assert.deepEqual((ok.steps[0] as { feedback: string[] }).feedback, ['', 'True, but']);
+  const bad = applyLessonText(quiz, { steps: { s1: { feedback: ['', ''] } } });
+  assert.deepEqual((bad.steps[0] as { feedback: string[] }).feedback, ['', 'Es cierto, pero']);
+  const bad2 = applyLessonText(quiz, { steps: { s1: { feedback: ['algo', 'True'] } } });
+  assert.deepEqual((bad2.steps[0] as { feedback: string[] }).feedback, ['', 'Es cierto, pero']);
+});

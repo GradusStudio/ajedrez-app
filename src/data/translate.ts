@@ -45,7 +45,10 @@ function applyStepText(step: Step, text: StepText | undefined): Step {
   for (const field of LIST_FIELDS) {
     const original = (step as unknown as Record<string, unknown>)[field];
     const translated = text[field];
-    if (Array.isArray(original) && isList(translated) && translated.length === original.length) out[field] = translated;
+    if (!Array.isArray(original) || !Array.isArray(translated) || translated.length !== original.length) continue;
+    // Un '' solo vale donde el español también lo tiene (en feedback, la opción correcta); en el resto se exige texto.
+    const valid = translated.every((t, i) => (original[i] === '' ? t === '' : isText(t)));
+    if (valid) out[field] = translated;
   }
   // Las jugadas sin nota llevan '' en la lista; las que tienen nota exigen texto.
   const notes = text.notes;

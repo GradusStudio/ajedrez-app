@@ -1571,5 +1571,551 @@
         }
       }
     }
+  },
+  "ruy-lopez": {
+    "name": "Apertura Spagnola",
+    "summary": "L'apertura più studiata: una pressione costante sul centro nero, senza fretta.",
+    "lessons": {
+      "ruy-lopez-l01": {
+        "title": "L'idea della Spagnola",
+        "summary": "Pressione su e5",
+        "steps": {
+          "ruy-lopez-l01-s01": {
+            "text": "Con Ab5 premi sul cavallo che protegge e5. Non lo catturi subito: mantieni la tensione."
+          },
+          "ruy-lopez-l01-s02": {
+            "text": "Dopo ...a6 ti ritiri in a4 e mantieni la pressione sul cavallo, senza cambiare l'alfiere quando non serve."
+          },
+          "ruy-lopez-l01-s03": {
+            "text": "Piano tipico: c3 e d4 per occupare il centro, con il tuo alfiere ben piazzato in b3."
+          },
+          "ruy-lopez-l01-s04": {
+            "prompt": "Su che cosa premi con Ab5?",
+            "explanation": "Se il cavallo cade, il pedone in e5 resta senza protezione.",
+            "options": [
+              "Il cavallo che protegge e5",
+              "Il pedone in h7",
+              "La donna nera"
+            ]
+          },
+          "ruy-lopez-l01-s05": {
+            "prompt": "Dopo ...a6, che cosa fai con l'alfiere?",
+            "explanation": "Ritirarlo in a4 conserva l'alfiere e la pressione sul centro.",
+            "options": [
+              "Lo cambi sempre in c6",
+              "Lo ritiri in a4 e mantieni la tensione",
+              "Lo perdi"
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l02": {
+        "title": "Linea principale",
+        "summary": "La variante chiusa",
+        "steps": {
+          "ruy-lopez-l02-s01": {
+            "prompt": "Gioca la linea principale della Spagnola.",
+            "notes": [
+              "Centro.",
+              "",
+              "Attacca e5.",
+              "",
+              "Premi sul cavallo che protegge e5.",
+              "",
+              "Mantieni la pressione sul cavallo senza cambiare l'alfiere.",
+              "",
+              "Re al sicuro.",
+              "",
+              "Protegge e4 e prepara d4.",
+              "",
+              "L'alfiere si ritira su una diagonale sicura.",
+              "",
+              "Prepari d4.",
+              "",
+              "Impedisci ...Ag4 e ...Cg4."
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l03": {
+        "title": "Trappole ed errori tipici",
+        "summary": "La trappola dell'Arca di Noè",
+        "steps": {
+          "ruy-lopez-l03-s01": {
+            "text": "Questa è la trappola dell'Arca di Noè: i pedoni in a6, b5 e c4 intrappolano l'alfiere in b3. Succede se giochi d4 troppo presto contro ...d6."
+          },
+          "ruy-lopez-l03-s02": {
+            "prompt": "Il Nero ha giocato ...d6. Prepara d4 senza mettere a rischio l'alfiere.",
+            "hint": "Prepara d4 con un pedone prima di aprire il centro.",
+            "success": "Corretto"
+          },
+          "ruy-lopez-l03-s03": {
+            "prompt": "Che cosa impedisci con c3 prima di d4?",
+            "explanation": "Con c3 il tuo alfiere può ritirarsi in c2 se il Nero gioca ...b5.",
+            "options": [
+              "Uno scacco di donna",
+              "Che i pedoni ti intrappolino l'alfiere",
+              "La perdita del pedone in e4"
+            ]
+          }
+        }
+      },
+      "ruy-lopez-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "ruy-lopez-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "ruy-lopez-l04-s02": {
+            "prompt": "Che cosa impedisci con h3?",
+            "explanation": "L'inchiodatura ...Ag4 sul tuo cavallo in f3 è il fastidio tipico.",
+            "options": [
+              "Che l'alfiere o il cavallo nero entrino in g4",
+              "L'arrocco del Nero",
+              "La cattura in e5"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "rossolimo": {
+    "name": "Variante Rossolimo",
+    "summary": "Un modo solido di giocare contro la Siciliana: eviti le linee più teoriche.",
+    "lessons": {
+      "rossolimo-l01": {
+        "title": "L'idea della Rossolimo",
+        "summary": "Premere su c6 ed evitare la teoria",
+        "steps": {
+          "rossolimo-l01-s01": {
+            "text": "Invece di aprire il centro con d4, premi con l'alfiere sul cavallo in c6."
+          },
+          "rossolimo-l01-s02": {
+            "text": "Se cambi in c6, doppi i pedoni c del Nero."
+          },
+          "rossolimo-l01-s03": {
+            "text": "Piano: d3, h3 e Cc3 per giocare con solidità e aspettare che il Nero si indebolisca."
+          },
+          "rossolimo-l01-s04": {
+            "prompt": "Che cosa eviti con 3.Ab5?",
+            "explanation": "È un modo di giocare senza memorizzare tanta teoria.",
+            "options": [
+              "Le linee teoriche della Siciliana aperta",
+              "Il pedone in e4",
+              "La cattura in c5"
+            ]
+          },
+          "rossolimo-l01-s05": {
+            "prompt": "Quale struttura cerchi cambiando in c6?",
+            "explanation": "I pedoni in c6 e c5 restano doppiati.",
+            "options": [
+              "Pedoni isolati tuoi",
+              "Pedoni doppiati dell'avversario",
+              "Una colonna aperta"
+            ]
+          }
+        }
+      },
+      "rossolimo-l02": {
+        "title": "Linea principale",
+        "summary": "Il cambio in c6",
+        "steps": {
+          "rossolimo-l02-s01": {
+            "prompt": "Gioca la linea principale della Rossolimo.",
+            "notes": [
+              "Centro.",
+              "",
+              "Sviluppi e resti flessibile.",
+              "",
+              "Rossolimo: premi sul cavallo che controlla d4 ed e5.",
+              "",
+              "Rovini la struttura: pedoni doppiati sulla colonna c.",
+              "",
+              "Solidità: sostiene e4 e libera l'alfiere in c1.",
+              "",
+              "Impedisce ...Ag4 e ...Cg4.",
+              "",
+              "Sviluppa e sostiene e4."
+            ]
+          }
+        }
+      },
+      "rossolimo-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Quando cambiare",
+        "steps": {
+          "rossolimo-l03-s01": {
+            "prompt": "Premi con l'alfiere sul cavallo in c6.",
+            "hint": "L'alfiere esce in b5.",
+            "success": "Corretto"
+          },
+          "rossolimo-l03-s02": {
+            "prompt": "Cambia l'alfiere con il cavallo per doppiare i suoi pedoni.",
+            "hint": "Cattura in c6.",
+            "success": "Corretto"
+          },
+          "rossolimo-l03-s03": {
+            "prompt": "Perché h3?",
+            "explanation": "Ti toglie i problemi in g4 senza spendere tempo su altre caselle.",
+            "options": [
+              "Impedisce ...Ag4 e ...Cg4",
+              "Prepara g4",
+              "Attacca il cavallo in f6"
+            ]
+          }
+        }
+      },
+      "rossolimo-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "rossolimo-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "rossolimo-l04-s02": {
+            "prompt": "Quale piano segui dopo?",
+            "explanation": "La Rossolimo cerca una posizione comoda e senza rischi.",
+            "options": [
+              "Attaccare subito il re",
+              "Giocare con solidità e aspettare un errore",
+              "Cambiare le donne"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "alapin": {
+    "name": "Variante Alapin",
+    "summary": "Contro la Siciliana: prepari d4 con c3 ed eviti la teoria delle linee aperte.",
+    "lessons": {
+      "alapin-l01": {
+        "title": "L'idea dell'Alapin",
+        "summary": "Preparare d4 con c3",
+        "steps": {
+          "alapin-l01-s01": {
+            "text": "Con c3 prepari d4 per occupare il centro ed eviti la Siciliana aperta."
+          },
+          "alapin-l01-s02": {
+            "text": "Se il Nero gioca ...d5, cambi e poi occupi il centro con un pedone."
+          },
+          "alapin-l01-s03": {
+            "text": "Piano: sviluppare con Cf3, Ae2 e l'arrocco, e mantenere il controllo del centro."
+          },
+          "alapin-l01-s04": {
+            "prompt": "Che cosa prepara 2.c3?",
+            "explanation": "Con c3 sostieni d4 prima di giocarlo.",
+            "options": [
+              "L'avanzata d4",
+              "L'avanzata b4",
+              "L'arrocco"
+            ]
+          },
+          "alapin-l01-s05": {
+            "prompt": "Che cosa eviti con 2.c3?",
+            "explanation": "Giocare c3 evita linee come la Najdorf e la Dragone.",
+            "options": [
+              "Il pedone in d5",
+              "La teoria della Siciliana aperta",
+              "Un attacco alla donna"
+            ]
+          }
+        }
+      },
+      "alapin-l02": {
+        "title": "Linea principale",
+        "summary": "La cattura in d5",
+        "steps": {
+          "alapin-l02-s01": {
+            "prompt": "Gioca la linea principale dell'Alapin.",
+            "notes": [
+              "Centro.",
+              "",
+              "Alapin: prepari d4 ed eviti le Siciliane aperte.",
+              "",
+              "Cambi e costringi il Nero a far uscire la donna.",
+              "",
+              "Occupi il centro con un pedone.",
+              "",
+              "Sviluppa.",
+              "",
+              "Sviluppa e prepara l'arrocco.",
+              "",
+              "Re al sicuro.",
+              "",
+              "Completi lo sviluppo e sostieni d4."
+            ]
+          }
+        }
+      },
+      "alapin-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Passo dopo passo",
+        "steps": {
+          "alapin-l03-s01": {
+            "prompt": "Prepara l'avanzata d4.",
+            "hint": "Avanza un pedone dell'ala di donna.",
+            "success": "Corretto"
+          },
+          "alapin-l03-s02": {
+            "prompt": "Cambia in d5.",
+            "hint": "Il pedone in e4 cattura.",
+            "success": "Corretto"
+          },
+          "alapin-l03-s03": {
+            "prompt": "Occupa il centro con un pedone.",
+            "hint": "Un pedone centrale avanza di due caselle.",
+            "success": "Corretto"
+          },
+          "alapin-l03-s04": {
+            "prompt": "Che cosa fa ...Ag4?",
+            "explanation": "Per questo conviene sviluppare con Ae2 e arroccare.",
+            "options": [
+              "Inchioda il cavallo in f3 contro la donna",
+              "Attacca d4",
+              "Prepara l'arrocco"
+            ]
+          }
+        }
+      },
+      "alapin-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "alapin-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "alapin-l04-s02": {
+            "prompt": "Quale pezzo completa il tuo sviluppo?",
+            "explanation": "L'alfiere in e3 sostiene d4 e chiude il tuo sviluppo.",
+            "options": [
+              "La donna in h5",
+              "Il re in f1",
+              "L'alfiere da c1 a e3"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "queens-gambit": {
+    "name": "Gambetto di Donna",
+    "summary": "Un'apertura classica: offri un pedone che quasi sempre recuperi, e controlli il centro.",
+    "lessons": {
+      "queens-gambit-l01": {
+        "title": "L'idea del Gambetto di Donna",
+        "summary": "Controllare il centro",
+        "steps": {
+          "queens-gambit-l01-s01": {
+            "text": "Con c4 attacchi il pedone in d5. Se il Nero lo cattura, lo recuperi con facilità."
+          },
+          "queens-gambit-l01-s02": {
+            "text": "Se non cattura, mantieni la pressione su d5 e sviluppi con calma."
+          },
+          "queens-gambit-l01-s03": {
+            "text": "Struttura tipica: pedoni in d4 ed e3, cavalli sviluppati e la torre sulla colonna c."
+          },
+          "queens-gambit-l01-s04": {
+            "prompt": "È un vero gambetto?",
+            "explanation": "Per questo è considerata un'apertura molto sicura.",
+            "options": [
+              "No: il pedone in c4 si recupera quasi sempre",
+              "Sì: perdi materiale",
+              "È una trappola"
+            ]
+          },
+          "queens-gambit-l01-s05": {
+            "prompt": "Qual è l'obiettivo principale?",
+            "explanation": "Con c4 indebolisci il pedone in d5, che sostiene il centro nero.",
+            "options": [
+              "Attaccare f7",
+              "Controllare il centro",
+              "Vincere un pezzo"
+            ]
+          }
+        }
+      },
+      "queens-gambit-l02": {
+        "title": "Linea principale",
+        "summary": "Il gambetto rifiutato",
+        "steps": {
+          "queens-gambit-l02-s01": {
+            "prompt": "Gioca la linea principale del Gambetto di Donna.",
+            "notes": [
+              "Occupi il centro.",
+              "",
+              "Il gambetto: attacchi d5 e cerchi di controllare il centro.",
+              "",
+              "Premi su d5.",
+              "",
+              "Inchiodi il cavallo in f6 contro la donna.",
+              "",
+              "Sostieni d4 e liberi l'alfiere in f1.",
+              "",
+              "Sviluppa e protegge d4.",
+              "",
+              "La torre sorveglia la colonna c, che si aprirà.",
+              "",
+              "Sviluppa e punta su h7; prepara Axc4 se il Nero cattura.",
+              "",
+              "Recuperi il pedone sviluppando un pezzo.",
+              ""
+            ]
+          }
+        }
+      },
+      "queens-gambit-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Recuperare il pedone e far uscire l'alfiere",
+        "steps": {
+          "queens-gambit-l03-s01": {
+            "prompt": "Recupera il pedone con l'alfiere.",
+            "hint": "L'alfiere in f1 cattura in c4.",
+            "success": "Corretto"
+          },
+          "queens-gambit-l03-s02": {
+            "prompt": "Inchioda il cavallo in f6 contro la donna.",
+            "hint": "L'alfiere in c1 esce in g5.",
+            "success": "Corretto"
+          },
+          "queens-gambit-l03-s03": {
+            "prompt": "Quale alfiere resta chiuso se giochi e3 senza pensarci?",
+            "explanation": "Per questo fai uscire l'alfiere da c1 (Ag5) prima di giocare e3.",
+            "options": [
+              "Quello in f1",
+              "Quello in c1",
+              "Nessuno"
+            ]
+          }
+        }
+      },
+      "queens-gambit-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "queens-gambit-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "queens-gambit-l04-s02": {
+            "prompt": "Quale colonna occupa la tua torre?",
+            "explanation": "La torre in c1 preme sull'ala di donna nera.",
+            "options": [
+              "La colonna c",
+              "La colonna h",
+              "La colonna a"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "kings-gambit": {
+    "name": "Gambetto di Re",
+    "summary": "L'apertura romantica: sacrifichi subito un pedone e attacchi con tutto.",
+    "lessons": {
+      "kings-gambit-l01": {
+        "title": "L'idea del Gambetto di Re",
+        "summary": "Un pedone per l'attacco",
+        "steps": {
+          "kings-gambit-l01-s01": {
+            "text": "Con f4 offri un pedone per aprire la colonna f e dominare il centro."
+          },
+          "kings-gambit-l01-s02": {
+            "text": "Con Cf3 sviluppi e impedisci uno scacco di donna in h4."
+          },
+          "kings-gambit-l01-s03": {
+            "text": "Nella variante Kieseritzky, il cavallo salta in e5 quando viene attaccato con ...g4."
+          },
+          "kings-gambit-l01-s04": {
+            "prompt": "Che cosa impedisci con 3.Cf3?",
+            "explanation": "Il cavallo sorveglia h4 da f3.",
+            "options": [
+              "Uno scacco di donna in h4",
+              "Un cambio di donne",
+              "La cattura in e4"
+            ]
+          },
+          "kings-gambit-l01-s05": {
+            "prompt": "Perché il tuo re è vulnerabile?",
+            "explanation": "Con f4 apri quella diagonale alla donna avversaria.",
+            "options": [
+              "Cade il pedone in e4",
+              "La diagonale e1–h4 resta aperta",
+              "Non puoi arroccare"
+            ]
+          }
+        }
+      },
+      "kings-gambit-l02": {
+        "title": "Linea principale",
+        "summary": "La variante Kieseritzky",
+        "steps": {
+          "kings-gambit-l02-s01": {
+            "prompt": "Gioca la linea principale del Gambetto di Re.",
+            "notes": [
+              "Centro.",
+              "",
+              "Gambetto di Re: offri un pedone per aprire la colonna f.",
+              "",
+              "Sviluppa e impedisce ...Dh4+.",
+              "",
+              "Attacchi il pedone in g5.",
+              "",
+              "Il cavallo occupa un avamposto forte in e5.",
+              "",
+              "Punta su f7 e sviluppa.",
+              "",
+              "Apri il centro.",
+              "",
+              "Occupi il centro e proteggi il tuo cavallo in e5."
+            ]
+          }
+        }
+      },
+      "kings-gambit-l03": {
+        "title": "Idee chiave ed errori tipici",
+        "summary": "Sviluppo e attacco",
+        "steps": {
+          "kings-gambit-l03-s01": {
+            "prompt": "Sviluppa il cavallo e impedisci ...Dh4+.",
+            "hint": "Il cavallo di re esce in f3.",
+            "success": "Corretto"
+          },
+          "kings-gambit-l03-s02": {
+            "prompt": "Attacca il pedone in g5 con un altro pedone.",
+            "hint": "Avanza un pedone della colonna h.",
+            "success": "Corretto"
+          },
+          "kings-gambit-l03-s03": {
+            "prompt": "Dove salta il cavallo attaccato dal pedone in g4?",
+            "explanation": "È la casella centrale più attiva.",
+            "options": [
+              "In e5",
+              "In g1",
+              "In h2"
+            ]
+          }
+        }
+      },
+      "kings-gambit-l04": {
+        "title": "Ripasso",
+        "summary": "Allenati senza aiuti",
+        "steps": {
+          "kings-gambit-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti."
+          },
+          "kings-gambit-l04-s02": {
+            "prompt": "Quale diagonale indebolisce f4?",
+            "explanation": "Attenzione agli scacchi di donna in h4.",
+            "options": [
+              "Quella da e1 a h4",
+              "Quella da a1 a h8",
+              "Quella da a2 a g8"
+            ]
+          }
+        }
+      }
+    }
   }
 }

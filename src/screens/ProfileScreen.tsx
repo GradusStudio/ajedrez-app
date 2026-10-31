@@ -5,6 +5,7 @@ import { ProgressBar } from '../components/ProgressBar';
 import { SettingRow } from '../components/SettingRow';
 import { StatIcon } from '../components/StatIcon';
 import { useContent } from '../data/useContent';
+import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, isPuzzleSolved, recordAgainst } from '../progress/progressStore';
 import { puzzles } from '../puzzles/puzzles';
@@ -23,6 +24,7 @@ type Props = {
 export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onOpenReview }: Props) {
   const { progress } = useProgress();
   const { bots, openings, units, findLesson } = useContent();
+  const { t, tn } = useI18n();
   const today = useTodayKey();
   // Errores que se pueden repasar (un paso pudo desaparecer si cambió el contenido de la lección).
   const reviewable = progress.mistakes.filter((m) => findLesson(m.lessonId)?.steps.some((s) => s.id === m.stepId));
@@ -45,18 +47,18 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}
     >
-      <Text style={styles.title}>Perfil</Text>
+      <Text style={styles.title}>{t('profile.title')}</Text>
 
       <View style={styles.grid}>
-        <Stat icon="streak" value={currentStreak(progress, today)} label={`días de racha · mejor: ${progress.streak.best}`} />
-        <Stat icon="coin" value={progress.coins} label="monedas" />
-        <Stat value={`${lessonsDone}/${unitLessons.length}`} label="lecciones" />
-        <Stat value={puzzlesSolved} label="puzzles resueltos" />
+        <Stat icon="streak" value={currentStreak(progress, today)} label={t('profile.streakDays', { best: progress.streak.best })} />
+        <Stat icon="coin" value={progress.coins} label={t('profile.coins')} />
+        <Stat value={`${lessonsDone}/${unitLessons.length}`} label={t('profile.lessons')} />
+        <Stat value={puzzlesSolved} label={t('profile.puzzlesSolved')} />
       </View>
 
-      <Text style={styles.section}>Aperturas</Text>
+      <Text style={styles.section}>{t('profile.openings')}</Text>
       {startedOpenings.length === 0 ? (
-        <Text style={styles.empty}>Todavía no empezaste ninguna apertura.</Text>
+        <Text style={styles.empty}>{t('profile.noOpenings')}</Text>
       ) : (
         startedOpenings.map(({ course, done }) => (
           <View key={course.id} style={styles.openingRow}>
@@ -73,16 +75,18 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
         ))
       )}
 
-      <Text style={styles.section}>Partidas contra bots</Text>
+      <Text style={styles.section}>{t('profile.botGames')}</Text>
       {playedBots.length === 0 ? (
-        <Text style={styles.empty}>Todavía no jugaste contra ningún bot.</Text>
+        <Text style={styles.empty}>{t('profile.noBotGames')}</Text>
       ) : (
         playedBots.map(({ bot, r }) => (
           <View key={bot.id} style={styles.botRow}>
             <BotAvatar bot={bot} size={32} />
             <Text style={[styles.rowLabel, { flex: 1 }]}>{bot.name}</Text>
             <Text style={styles.record}>
-              {r.wins} ganadas · {r.losses} perdidas{r.draws ? ` · ${r.draws} tablas` : ''}
+              {r.draws
+                ? t('profile.recordDraws', { wins: r.wins, losses: r.losses, draws: r.draws })
+                : t('profile.record', { wins: r.wins, losses: r.losses })}
             </Text>
           </View>
         ))
@@ -91,14 +95,14 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
       <View style={{ height: space.xl }} />
       {reviewable.length > 0 && (
         <SettingRow
-          label="Repasar errores"
-          description={`${reviewable.length} ${reviewable.length === 1 ? 'ejercicio pendiente' : 'ejercicios pendientes'}`}
+          label={t('common.reviewMistakes')}
+          description={tn('profile.pending', reviewable.length)}
           onPress={openReview}
         />
       )}
-      <SettingRow label="Piezas" description="Elige tu set o compra sets nuevos con monedas" onPress={onOpenPieces} />
-      <SettingRow label="Ajustes" description="Recordatorio, tablero, piezas, sonido" onPress={onOpenSettings} />
-      <SettingRow label="Créditos y licencias" onPress={onOpenCredits} />
+      <SettingRow label={t('profile.pieces')} description={t('profile.pieces.description')} onPress={onOpenPieces} />
+      <SettingRow label={t('profile.settings')} description={t('profile.settings.description')} onPress={onOpenSettings} />
+      <SettingRow label={t('credits.title')} onPress={onOpenCredits} />
     </ScrollView>
   );
 }

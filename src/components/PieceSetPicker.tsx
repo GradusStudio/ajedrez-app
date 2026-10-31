@@ -1,5 +1,6 @@
 import React from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useI18n } from '../i18n/I18nContext';
 import { PIECE_SET_META, PieceSetId } from '../pieces/pieceSets';
 import { isPieceSetOwned, pieceSetPrice } from '../pieces/shop';
 import { useProgress } from '../progress/ProgressContext';
@@ -24,6 +25,7 @@ const CELL = 46;
  * la app; uno de pago pide confirmar la compra con monedas.
  */
 export function PieceSetPicker() {
+  const { t } = useI18n();
   const { pieceSet, setPieceSet } = usePieceSet();
   const { progress, buyPieceSet } = useProgress();
   const board = boardThemes[useSettings().settings.boardTheme];
@@ -32,15 +34,12 @@ export function PieceSetPicker() {
     if (isPieceSetOwned(id, progress.pieceSets)) return setPieceSet(id);
     const price = pieceSetPrice(id);
     if (progress.coins < price) {
-      Alert.alert(
-        'Te faltan monedas',
-        `Este set cuesta ${price} monedas y tienes ${progress.coins}. Ganas monedas con lecciones nuevas, puzzles, partidas ganadas y el premio del día.`
-      );
+      Alert.alert(t('pieces.needCoins.title'), t('pieces.needCoins.message', { price, coins: progress.coins }));
       return;
     }
-    Alert.alert(`¿Comprar «${name}»?`, `Cuesta ${price} monedas. Te quedan ${progress.coins - price}.`, [
-      { text: 'Cancelar', style: 'cancel' },
-      { text: 'Comprar', onPress: () => buyPieceSet(id, price) && setPieceSet(id) },
+    Alert.alert(t('pieces.buy.title', { name }), t('pieces.buy.message', { price, left: progress.coins - price }), [
+      { text: t('common.cancel'), style: 'cancel' },
+      { text: t('pieces.buy.confirm'), onPress: () => buyPieceSet(id, price) && setPieceSet(id) },
     ]);
   };
 
@@ -50,18 +49,20 @@ export function PieceSetPicker() {
         const selected = m.id === pieceSet;
         const owned = isPieceSetOwned(m.id, progress.pieceSets);
         const price = pieceSetPrice(m.id);
+        const name = t(`pieceSet.${m.id}.name`);
+        const description = t(`pieceSet.${m.id}.description`);
         return (
           <Pressable
             key={m.id}
-            onPress={() => choose(m.id, m.name)}
+            onPress={() => choose(m.id, name)}
             accessibilityRole="radio"
             accessibilityState={{ selected }}
-            accessibilityLabel={`${m.name}. ${m.description}${owned ? '' : `. Cuesta ${price} monedas`}`}
+            accessibilityLabel={owned ? t('pieces.label', { name, description }) : t('pieces.labelPriced', { name, description, price })}
             style={[styles.card, selected && styles.cardSelected]}
           >
             <View style={styles.header}>
-              <Text style={styles.name}>{m.name}</Text>
-              {selected && <Text style={styles.check}>✓ En uso</Text>}
+              <Text style={styles.name}>{name}</Text>
+              {selected && <Text style={styles.check}>{t('pieces.inUse')}</Text>}
               {!owned && (
                 <View style={styles.price}>
                   <StatIcon name="coin" size={16} />
@@ -69,7 +70,7 @@ export function PieceSetPicker() {
                 </View>
               )}
             </View>
-            <Text style={styles.description}>{m.description}</Text>
+            <Text style={styles.description}>{description}</Text>
             <View style={styles.preview}>
               {PREVIEW.map((p, i) => (
                 <View

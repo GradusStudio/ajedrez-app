@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
+import { useI18n } from '../i18n/I18nContext';
 import { PlayerLevel } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -8,26 +9,24 @@ type Props = {
   onFinish: (choice: { level?: PlayerLevel }) => void;
 };
 
-const LEVELS: { value: PlayerLevel; label: string; description: string }[] = [
-  { value: 'nuevo', label: 'Nunca jugué', description: 'Empezamos desde cómo se mueve cada pieza.' },
-  { value: 'basico', label: 'Sé mover las piezas', description: 'Conoces las reglas y quieres jugar mejor.' },
-  { value: 'casual', label: 'Juego de vez en cuando', description: 'Ya jugaste partidas y quieres aprender aperturas y táctica.' },
-];
+// El texto de cada nivel está en es.ts: onboarding.level.<nivel> y onboarding.level.<nivel>.description.
+const LEVELS: PlayerLevel[] = ['nuevo', 'basico', 'casual'];
 
 // Primera vez que se abre la app: bienvenida y nivel. Todo se puede saltar (mapa-de-pantallas.md, 2.2).
 export function OnboardingScreen({ onFinish }: Props) {
+  const { t } = useI18n();
   const [step, setStep] = useState(0);
 
   return (
     <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.lg }]}>
       <View style={styles.top}>
-        <View style={styles.dots} accessibilityLabel={`Paso ${step + 1} de 2`}>
+        <View style={styles.dots} accessibilityLabel={t('onboarding.step', { n: step + 1 })}>
           {[0, 1].map((i) => (
             <View key={i} style={[styles.dot, i <= step && styles.dotOn]} />
           ))}
         </View>
         <Pressable onPress={() => onFinish({})} accessibilityRole="button" hitSlop={12}>
-          <Text style={styles.skip}>Saltar</Text>
+          <Text style={styles.skip}>{t('onboarding.skip')}</Text>
         </Pressable>
       </View>
 
@@ -35,23 +34,25 @@ export function OnboardingScreen({ onFinish }: Props) {
         <View style={styles.body}>
           <Text style={styles.emoji}>♞</Text>
           <Text style={styles.brand}>Gradus</Text>
-          <Text style={styles.title}>Aprende ajedrez paso a paso</Text>
-          <Text style={styles.text}>
-            Lecciones cortas, aperturas, puzzles y bots que juegan como personas. Si te equivocas, ves una pista y
-            vuelves a intentar.
-          </Text>
+          <Text style={styles.title}>{t('onboarding.title')}</Text>
+          <Text style={styles.text}>{t('onboarding.text')}</Text>
           <View style={{ flex: 1 }} />
-          <Button3D label="Empezar" variant="primary" onPress={() => setStep(1)} />
+          <Button3D label={t('common.start')} variant="primary" onPress={() => setStep(1)} />
         </View>
       )}
 
       {step === 1 && (
         <View style={styles.body}>
-          <Text style={styles.title}>¿Cuánto sabes de ajedrez?</Text>
-          <Text style={styles.text}>Sirve para elegir la dificultad inicial de los puzzles. Puedes cambiarla cuando quieras.</Text>
+          <Text style={styles.title}>{t('onboarding.question')}</Text>
+          <Text style={styles.text}>{t('onboarding.questionText')}</Text>
           <View style={{ height: space.lg }} />
-          {LEVELS.map((l) => (
-            <Choice key={l.value} label={l.label} description={l.description} onPress={() => onFinish({ level: l.value })} />
+          {LEVELS.map((level) => (
+            <Choice
+              key={level}
+              label={t(`onboarding.level.${level}`)}
+              description={t(`onboarding.level.${level}.description`)}
+              onPress={() => onFinish({ level })}
+            />
           ))}
         </View>
       )}
@@ -60,11 +61,12 @@ export function OnboardingScreen({ onFinish }: Props) {
 }
 
 function Choice({ label, description, onPress }: { label: string; description: string; onPress: () => void }) {
+  const { t } = useI18n();
   return (
     <Pressable
       onPress={onPress}
       accessibilityRole="button"
-      accessibilityLabel={`${label}. ${description}`}
+      accessibilityLabel={t('onboarding.choiceLabel', { label, description })}
       style={({ pressed }) => [styles.choice, pressed && { transform: [{ translateY: 2 }], borderBottomWidth: 2 }]}
     >
       <Text style={styles.choiceLabel}>{label}</Text>

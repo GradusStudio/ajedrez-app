@@ -157,6 +157,11 @@ Cuidado: en alemán *Linie* es solo la columna. La «línea» de una apertura es
 | profilaxis | Prophylaxe |
 | línea (de apertura) | Variante (nunca *Linie*) |
 | línea principal | Hauptvariante |
+| columna semiabierta | halboffene Linie |
+| alfil de casillas oscuras / claras | dunkelfeldriger / hellfeldriger Läufer |
+| alfil «dragón» | Drachenläufer |
+| ventaja de desarrollo | Entwicklungsvorsprung |
+| abrir líneas (en general) | Wege öffnen (*Linie* solo si es una columna) |
 | liberar (una pieza o un peón) | befreien, *öffnet dem c1-Läufer den Weg* |
 | evitar (que el rival haga algo) | verhindern |
 | libro (de aperturas) | Buch, Eröffnungsbuch |

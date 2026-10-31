@@ -788,7 +788,7 @@
           "solutions": [
             "c3f6"
           ],
-          "hint": "Tu dama y tu caballo atacan h7. Solo el caballo de f6 lo defiende.",
+          "hint": "Tu dama y tu caballo atacan h7. Aparte del rey, solo lo defiende el caballo de f6.",
           "success": "Correcto. Sin el caballo, Dxh7 es mate.",
           "id": "u3-l05-s05"
         },
@@ -890,7 +890,7 @@
       "steps": [
         {
           "type": "explain",
-          "text": "La desviación obliga a una pieza a irse de la casilla que defiende. Aquí la torre de d8 defiende la dama y la última fila. Si la dama blanca captura, la torre tiene que recapturar y deja libre e8.",
+          "text": "La desviación obliga a una pieza a dejar de defender una casilla. Aquí la torre de d8 defiende la dama y la última fila. Si la dama blanca captura, la torre tiene que recapturar y deja libre e8.",
           "fen": "3r2k1/3q1ppp/8/1Q6/8/8/5PPP/4R1K1 w - - 0 1",
           "play": [
             "b5d7",
@@ -985,7 +985,7 @@
             }
           ],
           "success": "Bien resuelto: esta posición salió de una partida real.",
-          "hint": "Un jaque de peón obliga al rey a capturarlo y alejarse del alfil.",
+          "hint": "Un jaque de peón obliga al rey a moverse, y cualquier casilla lo aleja del alfil.",
           "id": "u3-l06-s05"
         },
         {
@@ -1041,7 +1041,7 @@
             }
           ],
           "success": "Bien resuelto: esta posición salió de una partida real.",
-          "hint": "Obliga a una pieza rival a dejar la casilla que defiende, casi siempre con un jaque.",
+          "hint": "Obliga a una pieza rival a dejar de defender una casilla, casi siempre con un jaque.",
           "id": "u3-l06-s08"
         },
         {
@@ -1070,7 +1070,7 @@
             }
           ],
           "success": "Bien resuelto: esta posición salió de una partida real.",
-          "hint": "Obliga a una pieza rival a dejar la casilla que defiende, casi siempre con un jaque.",
+          "hint": "Obliga a una pieza rival a dejar de defender una casilla, casi siempre con un jaque.",
           "id": "u3-l06-s09"
         }
       ]

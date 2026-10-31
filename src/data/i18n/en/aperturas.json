@@ -374,7 +374,7 @@
             "text": "The queen comes out early, but it retreats to a5, an active square, and pins the c3 knight when the diagonal opens."
           },
           "scandinavian-l01-s03": {
-            "text": "The plan: ...c6 to support the center, the bishop out before ...e6, the knight to f6 and kingside castling."
+            "text": "The plan: ...c6 to control d5 and b5, the bishop out before ...e6, the knight to f6 and kingside castling."
           },
           "scandinavian-l01-s04": {
             "prompt": "Which bishop should you bring out before playing ...e6?",
@@ -480,7 +480,7 @@
           },
           "sicilian-l01-s04": {
             "prompt": "What do you trade in the Sicilian?",
-            "explanation": "The trade ...cxd4 draws away White's central pawn and leaves you with more central pawns.",
+            "explanation": "The trade ...cxd4 removes White's central pawn and leaves you with more central pawns.",
             "options": [
               "Your c-pawn for White's d-pawn",
               "Your e-pawn for White's d-pawn",
@@ -1190,7 +1190,7 @@
         "steps": {
           "scotch-l03-s01": {
             "prompt": "Open the center with a pawn.",
-            "hint": "It's the move that gives the opening its name.",
+            "hint": "It's the move that defines the opening.",
             "success": "Correct"
           },
           "scotch-l03-s02": {
@@ -1409,7 +1409,7 @@
               "",
               "King safe.",
               "",
-              "You connect your pieces; next come Bg5 and Rad1."
+              "You bring out the queen; then Bg5 and Rad1."
             ]
           }
         }
@@ -2616,7 +2616,7 @@
             "prompt": "Play the main line of the French.",
             "notes": [
               "",
-              "You prepare ...d5 with solid pawn support.",
+              "You prepare ...d5 and give it support.",
               "",
               "You challenge the center.",
               "",
@@ -2743,9 +2743,9 @@
               "",
               "You give up the bishop to double the pawns.",
               "",
-              "You restore the balance with a capture.",
+              "You capture on c4 and the d3 bishop recaptures.",
               "",
-              "The queen pressures down the c-file."
+              "The queen goes to the c-file and eyes c3 for when it opens."
             ]
           }
         }
@@ -2784,7 +2784,7 @@
           },
           "nimzo-indian-l04-s02": {
             "prompt": "Which file does your queen pressure?",
-            "explanation": "The doubled pawns are its target.",
+            "explanation": "The weak c3-pawn is its target.",
             "options": [
               "The c-file",
               "The h-file",
@@ -2858,7 +2858,7 @@
               "",
               "King safe.",
               "",
-              "The bishop comes out with tempo."
+              "The bishop comes out and protects the e4 knight."
             ]
           }
         }

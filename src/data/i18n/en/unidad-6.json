@@ -67,7 +67,7 @@
           "hint": "A pawn can control the g4 square before the bishop gets there.",
           "success": "Correct. With h3, the pawn controls g4 and the bishop can't go there anymore."
         },
-        "u6-l02-s04": { "text": "Your rook on the seventh rank attacks pawns, but before you capture, look at Black's threat: the rook on e8 wants to drop down to e1. Your king has no free square, because its own pawns shut it in." },
+        "u6-l02-s04": { "text": "Your rook on the seventh rank attacks pawns, but before you capture, look at Black's threat: the rook on e8 wants to drop down to e1. Your king can't leave the back rank, because its own pawns shut it in." },
         "u6-l02-s05": {
           "prompt": "Tap the square where the black rook would give checkmate.",
           "hint": "The rook on e8 comes down the e-file to your first rank."

@@ -218,7 +218,7 @@
         },
         "u3-l05-s05": {
           "prompt": "The knight on f6 defends h7. Remove it and threaten mate.",
-          "hint": "Your queen and knight attack h7. Only the knight on f6 defends it.",
+          "hint": "Your queen and knight attack h7. Apart from the king, only the knight on f6 defends it.",
           "success": "Correct. Without the knight, Qxh7 is mate."
         },
         "u3-l05-s06": {
@@ -246,7 +246,7 @@
       "title": "Deflection",
       "summary": "Pull the defender out of position",
       "steps": {
-        "u3-l06-s01": { "text": "A deflection forces a piece to leave the square it's defending. Here the rook on d8 defends the queen and the back rank. If the white queen captures, the rook has to recapture and leaves e8 unguarded." },
+        "u3-l06-s01": { "text": "A deflection forces a piece to stop defending a square. Here the rook on d8 defends the queen and the back rank. If the white queen captures, the rook has to recapture and leaves e8 unguarded." },
         "u3-l06-s02": {
           "prompt": "Tap the black piece that has two jobs at once.",
           "hint": "One piece defends the queen and also the square e8."
@@ -266,7 +266,7 @@
         "u3-l06-s05": {
           "prompt": "The black king defends the bishop on d8. Give check with the pawn to deflect it and win the bishop.",
           "success": "Well solved: this position comes from a real game.",
-          "hint": "A pawn check forces the king to capture it and move away from the bishop.",
+          "hint": "A pawn check forces the king to move, and every square takes it away from the bishop.",
           "notes": ["", "", "", ""]
         },
         "u3-l06-s06": {
@@ -279,13 +279,13 @@
         "u3-l06-s08": {
           "prompt": "Deflect the defender.",
           "success": "Well solved: this position comes from a real game.",
-          "hint": "Force an enemy piece to leave the square it defends, usually with a check.",
+          "hint": "Force an enemy piece to stop defending a square, usually with a check.",
           "notes": ["", "", "", ""]
         },
         "u3-l06-s09": {
           "prompt": "Deflect the defender.",
           "success": "Well solved: this position comes from a real game.",
-          "hint": "Force an enemy piece to leave the square it defends, usually with a check.",
+          "hint": "Force an enemy piece to stop defending a square, usually with a check.",
           "notes": ["", "", "", ""]
         }
       }

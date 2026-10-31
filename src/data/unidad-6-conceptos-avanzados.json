@@ -248,7 +248,7 @@
         },
         {
           "type": "explain",
-          "text": "Tu torre en séptima ataca peones, pero antes de comer mira la amenaza negra: la torre de e8 quiere bajar a e1. Tu rey no tiene ninguna casilla libre, porque sus propios peones lo encierran.",
+          "text": "Tu torre en séptima ataca peones, pero antes de comer mira la amenaza negra: la torre de e8 quiere bajar a e1. Tu rey no puede salir de la primera fila, porque sus propios peones lo encierran.",
           "fen": "4r1k1/ppR2ppp/8/8/8/8/PP3PPP/6K1 w - - 0 1",
           "arrows": [
             "e8e1"

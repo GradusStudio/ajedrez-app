@@ -5,6 +5,7 @@ import { localizedContent } from './localized';
 import { bots } from './bots';
 import { openings } from './openings';
 import { units } from './units';
+import type { Language } from '../i18n/languages';
 import type { Lesson } from './lessonTypes';
 
 const FEN = '8/8/8/8/8/8/8/K6k w - - 0 1';
@@ -149,9 +150,10 @@ test('español devuelve los datos originales', () => {
 });
 
 test('un idioma sin archivos devuelve el español, con memoria', () => {
-  const en = localizedContent('fr');
+  const unknown = 'pt' as Language;
+  const en = localizedContent(unknown);
   assert.equal(en.units, units);
-  assert.equal(localizedContent('fr'), en);
+  assert.equal(localizedContent(unknown), en);
 });
 
 test('feedback acepta "" donde el español lo tiene y lo rechaza donde hay texto', () => {

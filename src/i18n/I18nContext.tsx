@@ -6,6 +6,7 @@ import { de } from './de';
 import { en } from './en';
 import { es, MessageKey, PluralKey } from './es';
 import { format } from './format';
+import { fr } from './fr';
 import { it } from './it';
 import { Language, resolveLanguage } from './languages';
 import { pluralCategory } from './plural';
@@ -22,7 +23,7 @@ type I18n = {
 };
 
 // Catálogos por idioma. Cada uno tiene que traer todas las claves de es.ts (lo exige TypeScript).
-const catalogs: Partial<Record<Language, Record<MessageKey, string>>> = { es, en, de, it };
+const catalogs: Partial<Record<Language, Record<MessageKey, string>>> = { es, en, de, it, fr };
 
 function build(language: Language): I18n {
   const catalog = catalogs[language] ?? es;

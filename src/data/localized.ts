@@ -13,7 +13,7 @@ const spanish: Content = { units, openings, bots };
  * y solo se ejecuta si ese idioma se elige. Aún no hay traducciones: todo idioma da el español.
  * Para sumar uno: `case 'en': return require('./i18n/en') as LanguageFiles;`
  */
-function loadFiles(language: Language): LanguageFiles | undefined {
+export function languageFiles(language: Language): LanguageFiles | undefined {
   switch (language) {
     default:
       return undefined;
@@ -27,7 +27,7 @@ export function localizedContent(language: Language): Content {
   if (language === 'es') return spanish;
   let content = cache.get(language);
   if (!content) {
-    content = buildContent(spanish, loadFiles(language));
+    content = buildContent(spanish, languageFiles(language));
     cache.set(language, content);
   }
   return content;

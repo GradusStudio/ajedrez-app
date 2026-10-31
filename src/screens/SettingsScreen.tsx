@@ -31,7 +31,7 @@ export function SettingsScreen({ onBack, onOpenPieces }: Props) {
       return;
     }
     try {
-      const ok = await ensureReminderPermission();
+      const ok = await ensureReminderPermission(t('settings.reminder'));
       if (!ok) {
         Alert.alert(t('settings.noPermission.title'), t('settings.noPermission.message'));
         update({ reminder: { enabled: false, hour } });

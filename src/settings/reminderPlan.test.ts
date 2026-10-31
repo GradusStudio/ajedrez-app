@@ -62,3 +62,26 @@ test('con la hora ya pasada, nada para el pasado', () => {
   const tarde = new Date(2026, 9, 30, 20, 0);
   assert.ok(planReminders(streak(0, null), 19, tarde).every((x) => x.date > tarde));
 });
+
+// Bots de prueba "traducidos": mismo id y orden, otro texto.
+const botsEn = bots.map((b) => ({
+  ...b,
+  name: `${b.name} (en)`,
+  teaching: { ...b.teaching, reminder: { risk: 'Your {n}-day streak is at risk', recovery: 'Do all three today', general: 'Time to play' } },
+}));
+
+test('mismos días con otros bots', () => {
+  const s = streak(5, '2026-10-29');
+  assert.deepEqual(
+    planReminders(s, 19, now, botsEn).map((r) => r.date.getTime()),
+    planReminders(s, 19, now).map((r) => r.date.getTime()),
+  );
+});
+test('el cuerpo y el título usan los bots recibidos', () => {
+  const [risk] = planReminders(streak(5, '2026-10-29'), 19, now, botsEn);
+  assert.equal(risk.body, 'Your 5-day streak is at risk');
+  assert.ok(risk.title.endsWith('(en)'));
+  assert.equal(planReminders(streak(0, null), 19, now, botsEn)[0].body, 'Time to play');
+  const s: Streak = { ...streak(5, '2026-10-28'), actions: { date: '2026-10-30', lesson: true, puzzle: false, bot: false } };
+  assert.equal(planReminders(s, 19, now, botsEn)[0].body, 'Do all three today');
+});

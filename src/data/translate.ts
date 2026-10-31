@@ -6,9 +6,9 @@ import type { Lesson, OpeningCourse, Step, Unit } from './lessonTypes';
 // soluciones (fen, solutions, answer, orden de options): una traducción solo cambia texto.
 
 /** Campos de texto que una traducción puede reemplazar en un paso. Cualquier otro se ignora. */
-const STRING_FIELDS = ['text', 'prompt', 'hint', 'success', 'explanation'] as const;
+export const STRING_FIELDS = ['text', 'prompt', 'hint', 'success', 'explanation'] as const;
 /** Listas de texto alineadas con las del español (misma cantidad de elementos). */
-const LIST_FIELDS = ['options', 'feedback'] as const;
+export const LIST_FIELDS = ['options', 'feedback'] as const;
 
 type StringField = (typeof STRING_FIELDS)[number];
 type ListField = (typeof LIST_FIELDS)[number];

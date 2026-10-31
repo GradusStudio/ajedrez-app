@@ -42,6 +42,11 @@ export function sanFromSpanish(san: string, notation: Notation): string {
   return notation === 'es' ? san : convert(san, PIECES.es, PIECES[notation], false);
 }
 
+/** Jugada SAN escrita en la notación de un idioma, pasada a las letras españolas: "Lxf7+" (de) → "Axf7+". */
+export function sanToSpanish(san: string, notation: Notation): string {
+  return notation === 'es' ? san : convert(san, PIECES[notation], PIECES.es, false);
+}
+
 /**
  * Jugadas numeradas: "1. e4 e5 2. Cf3 Cc6". `sans` en inglés (chess.js).
  * Con `last`, muestra solo las últimas N jugadas completas.

@@ -41,7 +41,7 @@ export default function ResultRoute() {
     accepting.current = true;
     setShowOffer(false);
     try {
-      if (await ensureReminderPermission()) {
+      if (await ensureReminderPermission(t('settings.reminder'))) {
         update({ reminder: { enabled: true, hour: OFFER_REMINDER_HOUR } });
         return;
       }

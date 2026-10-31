@@ -53,6 +53,12 @@ Letras: K D T L S (König, Dame, Turm, Läufer, Springer). El peón no lleva let
 | rendirse | aufgeben |
 | abandonar la partida | die Partie verlassen (no *abbrechen*, que es el botón Cancelar) |
 | partida | Partie |
+| jaques (como lista de opciones) | Schachgebote |
+| capturas (como lista de opciones) | Schlagzüge |
+| recapturar | zurückschlagen |
+| interponer, tapar un jaque | dazwischenziehen |
+| avance de dos casillas del peón | Doppelschritt |
+| tocar (en la pantalla) | tippen |
 | rival | Gegner |
 | turno, «juegan las blancas» | am Zug, *Weiß am Zug* |
 

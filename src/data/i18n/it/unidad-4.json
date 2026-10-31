@@ -1,0 +1,212 @@
+{
+  "title": "Apertura e strategia",
+  "lessons": {
+    "u4-l01": {
+      "title": "Principi di apertura",
+      "summary": "Centro, sviluppo e arrocco",
+      "steps": {
+        "u4-l01-s01": { "text": "In apertura ci sono tre idee: occupare il centro con i pedoni, far uscire i pezzi (svilupparli) e arroccare per mettere il re al sicuro." },
+        "u4-l01-s02": {
+          "prompt": "Tocca le 4 caselle del centro.",
+          "hint": "Sono le 4 caselle in mezzo alla scacchiera."
+        },
+        "u4-l01-s03": {
+          "prompt": "Prima mossa: occupa il centro con un pedone.",
+          "hint": "Avanza di due caselle il pedone della colonna e o quello della colonna d.",
+          "success": "Corretto. Il pedone occupa il centro e apre la strada ai tuoi pezzi."
+        },
+        "u4-l01-s04": { "text": "Poi sviluppa: prima i cavalli e gli alfieri, verso il centro. Le torri e la donna escono più tardi, quando la strada è aperta." },
+        "u4-l01-s05": {
+          "prompt": "Sviluppa un cavallo o un alfiere verso il centro.",
+          "hint": "Porta un cavallo o un alfiere su una casella da cui guardi il centro.",
+          "success": "Corretto. Un pezzo in più in gioco."
+        },
+        "u4-l01-s06": {
+          "prompt": "Quale mossa segue i principi di apertura?",
+          "options": ["Cf3", "h4", "Dh5"],
+          "explanation": "Cf3 sviluppa un cavallo e attacca il pedone in e5. h4 non sviluppa nulla, e Dh5 fa uscire la donna così presto che l'avversario può attaccarla guadagnando un tempo.",
+          "feedback": ["", "h4 non fa uscire nessun pezzo e non occupa il centro.", "La donna esce troppo presto: l'avversario la attaccherà sviluppando i suoi pezzi."]
+        },
+        "u4-l01-s07": {
+          "prompt": "Hai già sviluppato i pezzi sul lato del re. Arrocca.",
+          "hint": "Muovi il re di due caselle verso la torre in h1.",
+          "success": "Corretto. Il re è al sicuro e la torre è pronta a giocare."
+        },
+        "u4-l01-s08": {
+          "prompt": "A che cosa serve arroccare presto?",
+          "options": ["Mette il re al sicuro e collega le torri", "Attacca il re avversario", "Vince un pedone"],
+          "explanation": "Il re lascia il centro, dove si aprono le colonne, e la torre si porta verso il centro.",
+          "feedback": ["", "L'arrocco è una mossa di difesa e di sviluppo, non di attacco.", "L'arrocco non cattura nulla."]
+        }
+      }
+    },
+    "u4-l02": {
+      "title": "Errori tipici di apertura",
+      "summary": "Ciò che conviene evitare",
+      "steps": {
+        "u4-l02-s01": { "text": "Se fai uscire la donna presto, l'avversario la attacca mentre sviluppa i suoi pezzi e tu perdi tempo a muoverla di nuovo." },
+        "u4-l02-s02": {
+          "prompt": "Il Nero ha portato la donna in d5. Quale mossa la attacca e in più sviluppa un pezzo?",
+          "options": ["Cc3", "Dg4", "h3"],
+          "explanation": "Cc3 fa uscire un cavallo e attacca la donna: il Nero deve muoverla di nuovo.",
+          "feedback": ["", "Dg4 fa uscire presto la tua donna, e per di più la perde: l'alfiere in c8 la cattura.", "h3 non sviluppa nulla e non attacca la donna."]
+        },
+        "u4-l02-s03": {
+          "prompt": "Attacca la donna nera sviluppando un pezzo.",
+          "hint": "Un cavallo può attaccare la donna in d5.",
+          "success": "Corretto. Hai sviluppato guadagnando un tempo."
+        },
+        "u4-l02-s04": { "text": "Muovere lo stesso pezzo più volte in apertura lascia fermi gli altri. Qui il Bianco ha mosso il cavallo tre volte ed è tornato in f3; il Nero, invece, ha già fatto uscire tre pezzi." },
+        "u4-l02-s05": {
+          "prompt": "Quale di queste mosse perde tempo?",
+          "options": ["Cg1", "Ac4", "d4"],
+          "explanation": "Cg1 riporta il cavallo sulla sua casella: è come disfare una mossa di sviluppo.",
+          "feedback": ["", "Ac4 sviluppa un alfiere verso il centro: è una buona mossa.", "d4 attacca il centro: è una buona mossa."]
+        },
+        "u4-l02-s06": { "text": "Lasciare il re al centro è pericoloso quando si apre la colonna e. Qui l'alfiere nero in e7 è inchiodato: se si muove, la torre dà scacco." },
+        "u4-l02-s07": {
+          "prompt": "Il Nero non ha arroccato e la colonna e è aperta. Mettici un pezzo pesante, contro il suo re.",
+          "hint": "Una torre o la donna sulla colonna e puntano al re nero.",
+          "success": "Corretto. Ora l'alfiere in e7 è inchiodato e il re nero è a disagio."
+        },
+        "u4-l02-s08": { "text": "Riassunto: non far uscire la donna troppo presto, non muovere tante volte lo stesso pezzo e non lasciare il re al centro." }
+      }
+    },
+    "u4-l03": {
+      "title": "Struttura pedonale",
+      "summary": "Pedoni isolati, doppiati e passati",
+      "steps": {
+        "u4-l03-s01": { "text": "Un pedone isolato non ha pedoni dello stesso colore sulle colonne vicine: nessun pedone può difenderlo. Qui il pedone bianco in d4 è isolato." },
+        "u4-l03-s02": {
+          "prompt": "Tocca il pedone nero isolato.",
+          "hint": "Cerca un pedone nero senza pedoni neri sulle colonne vicine."
+        },
+        "u4-l03-s03": { "text": "I pedoni doppiati stanno sulla stessa colonna, uno davanti all'altro. Si ostacolano nell'avanzare e non possono difendersi a vicenda." },
+        "u4-l03-s04": {
+          "prompt": "Su quante colonne il Bianco ha pedoni doppiati?",
+          "options": ["Nessuna", "Una", "Due"],
+          "explanation": "Su due: la colonna c (c2 e c3) e la colonna f (f2 e f3).",
+          "feedback": ["Guarda le colonne c e f.", "Ce n'è più di una: controlla anche la colonna f.", ""]
+        },
+        "u4-l03-s05": { "text": "Un pedone passato non ha pedoni avversari davanti, né sulla sua colonna né su quelle vicine: nessuno gli impedisce di avanzare. È un grande vantaggio nel finale." },
+        "u4-l03-s06": {
+          "prompt": "Tocca il pedone passato del Bianco.",
+          "hint": "Cerca un pedone bianco senza pedoni neri davanti, né sulla sua colonna né su quelle vicine."
+        },
+        "u4-l03-s07": {
+          "prompt": "Il re nero si avvicina. Avanza il tuo pedone passato senza perdere tempo.",
+          "hint": "Se non avanzi ora, il re nero arriva in tempo per fermare il pedone.",
+          "success": "Corretto. Il re nero non raggiunge più il pedone: arriverà alla promozione."
+        },
+        "u4-l03-s08": {
+          "prompt": "Qual è la debolezza di un pedone isolato?",
+          "options": ["Nessun pedone può difenderlo", "Non può avanzare", "Si perde sempre"],
+          "explanation": "Possono difenderlo solo i pezzi, che così restano legati a proteggerlo. Ma un pedone isolato non si perde sempre.",
+          "feedback": ["", "Può avanzare se la casella davanti è libera.", "Non sempre: è una debolezza, non una perdita sicura."]
+        },
+        "u4-l03-s09": {
+          "prompt": "Promuovi il tuo pedone passato.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Avanza il pedone: conta se arriva alla promozione prima di quello dell'avversario."
+        },
+        "u4-l03-s10": {
+          "prompt": "Promuovi il tuo pedone passato.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Avanza il pedone: conta se arriva alla promozione prima di quello dell'avversario."
+        }
+      }
+    },
+    "u4-l04": {
+      "title": "Colonne aperte e torri attive",
+      "summary": "Dove giocano meglio le torri",
+      "steps": {
+        "u4-l04-s01": { "text": "Una colonna aperta è una colonna senza pedoni. Le torri sono molto più forti sulle colonne aperte: da lì possono entrare nel campo avversario." },
+        "u4-l04-s02": {
+          "prompt": "Quale colonna è aperta?",
+          "options": ["La colonna d", "La colonna e", "La colonna c"],
+          "explanation": "Sulla colonna d non c'è nessun pedone.",
+          "feedback": ["", "Sulla colonna e ci sono pedoni di entrambi i colori.", "Sulla colonna c ci sono pedoni di entrambi i colori."]
+        },
+        "u4-l04-s03": {
+          "prompt": "Metti una torre sulla colonna aperta.",
+          "hint": "Entrambe le tue torri possono andare in d1.",
+          "success": "Corretto. La torre controlla la colonna aperta."
+        },
+        "u4-l04-s04": { "text": "Due torri sulla stessa colonna sono raddoppiate: si proteggono a vicenda e premono il doppio." },
+        "u4-l04-s05": {
+          "prompt": "Raddoppia le torri sulla colonna d.",
+          "hint": "Porta la torre in e2 sulla colonna d, davanti all'altra.",
+          "success": "Corretto. Le torri sono raddoppiate."
+        },
+        "u4-l04-s06": { "text": "Una torre in settima traversa attacca i pedoni che non si sono ancora mossi e chiude il re avversario sull'ultima traversa." },
+        "u4-l04-s07": {
+          "prompt": "Porta la tua torre in settima traversa.",
+          "hint": "La colonna d è aperta: la torre arriva fino a d7.",
+          "success": "Corretto. La torre attacca i pedoni in b7 e f7."
+        }
+      }
+    },
+    "u4-l05": {
+      "title": "Caselle deboli e avamposti",
+      "summary": "Caselle che i pedoni non coprono più",
+      "steps": {
+        "u4-l05-s01": { "text": "Una casella debole è una casella che nessun pedone avversario può difendere, né ora né più avanti. Qui il Nero ha giocato e5 senza avere un pedone sulla colonna c: nessun pedone nero può proteggere d5." },
+        "u4-l05-s02": {
+          "prompt": "Tocca la casella debole del centro, nel campo del Nero: nessun pedone nero può difenderla.",
+          "hint": "I pedoni neri in d5 e f5 sono già avanzati: la casella in mezzo, davanti a e6, è rimasta senza difesa."
+        },
+        "u4-l05-s03": { "text": "Un avamposto è una casella debole dell'avversario dove il tuo pezzo, quasi sempre un cavallo, è protetto da un tuo pedone. Da lì nessuno può scacciarlo." },
+        "u4-l05-s04": {
+          "prompt": "Porta il cavallo sull'avamposto.",
+          "hint": "La casella debole del Nero è al centro, e il tuo pedone in d4 la protegge.",
+          "success": "Corretto. Il cavallo in e5 è protetto e nessun pedone nero può scacciarlo."
+        },
+        "u4-l05-s05": {
+          "prompt": "Perché il cavallo in d5 è così forte?",
+          "options": ["Nessun pedone nero può scacciarlo", "Dà scacco al re", "Attacca la donna"],
+          "explanation": "Sta su una casella debole: per toglierlo di lì, il Nero dovrebbe cambiarlo con un pezzo.",
+          "feedback": ["", "Il cavallo in d5 non dà scacco.", "Non attacca la donna: la sua forza è che nessuno può scacciarlo."]
+        },
+        "u4-l05-s06": {
+          "prompt": "Quale di queste caselle è un buon avamposto per il tuo cavallo?",
+          "options": ["e5", "c5", "g5"],
+          "explanation": "e5 è protetta dal tuo pedone in d4 e nessun pedone nero può attaccarla.",
+          "feedback": ["", "Il pedone in b7 può avanzare in b6 e scacciare il cavallo.", "Nessun tuo pedone protegge g5, e il pedone in h7 può scacciare il cavallo."]
+        },
+        "u4-l05-s07": { "text": "Prima di muovere un pedone, pensa a quali caselle smette di difendere: un pedone non può tornare indietro, e quelle caselle restano deboli per sempre." }
+      }
+    },
+    "u4-l06": {
+      "title": "La coppia degli alfieri",
+      "summary": "Due alfieri insieme valgono di più",
+      "steps": {
+        "u4-l06-s01": { "text": "I due alfieri insieme coprono caselle di entrambi i colori. Nelle posizioni aperte, la coppia degli alfieri vale spesso più di un alfiere e un cavallo." },
+        "u4-l06-s02": {
+          "prompt": "Chi ha la coppia degli alfieri?",
+          "options": ["Il Bianco", "Il Nero", "Nessuno"],
+          "explanation": "Il Nero ha i due alfieri. Il Bianco ha alfiere e cavallo.",
+          "feedback": ["Il Bianco ha un alfiere e un cavallo.", "", "Uno dei due giocatori ha entrambi gli alfieri."]
+        },
+        "u4-l06-s03": { "text": "Quando il centro è chiuso da catene di pedoni, gli alfieri ci sbattono contro e i cavalli, che saltano, stanno spesso meglio. Quando il centro si apre, vincono gli alfieri." },
+        "u4-l06-s04": {
+          "prompt": "Il centro è chiuso dai pedoni. Quale pezzo sta spesso meglio in posizioni così?",
+          "options": ["Il cavallo", "L'alfiere"],
+          "explanation": "In genere, con il centro bloccato, i cavalli saltano sopra i pedoni e gli alfieri restano chiusi.",
+          "feedback": ["", "Gli alfieri hanno bisogno di diagonali aperte: qui sbattono contro i pedoni."]
+        },
+        "u4-l06-s05": {
+          "prompt": "Hai la coppia degli alfieri. Fai uno sfondamento al centro con un pedone per aprire la posizione.",
+          "hint": "Un pedone del centro può avanzare e scontrarsi con il pedone in e5.",
+          "success": "Corretto. Se si cambiano i pedoni, si aprono diagonali per i tuoi alfieri."
+        },
+        "u4-l06-s06": {
+          "prompt": "In una posizione aperta, conviene cambiare un tuo alfiere con il cavallo avversario?",
+          "options": ["No, a meno di vincere qualcosa: perderesti la coppia degli alfieri", "Sì, conviene sempre"],
+          "explanation": "Senza un motivo concreto, conviene tenere la coppia degli alfieri, soprattutto se la posizione sta per aprirsi.",
+          "feedback": ["", "Non sempre: la coppia degli alfieri è un vantaggio che conviene conservare."]
+        },
+        "u4-l06-s07": { "text": "Riassunto: se hai la coppia degli alfieri, cerca di aprire la posizione. Se ce l'ha l'avversario, prova a tenerla chiusa." }
+      }
+    }
+  }
+}

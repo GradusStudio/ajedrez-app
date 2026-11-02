@@ -47,6 +47,11 @@ export type Bot = {
   trait: string;
   teaches: string;
   engine: BotEngine;
+  /**
+   * Motor de respaldo con Stockfish (el que tenía el bot antes de Maia): se usa si Maia no arranca o se
+   * cae (por ejemplo, un WebView de Android demasiado viejo para descomprimir la red). Ver docs/maia.md.
+   */
+  fallback?: Exclude<BotEngine, { type: 'maia' }>;
   repertoire: { white: string[]; black: string[] };
   book: 'corto' | 'medio' | 'largo';
   lines: { greeting: string; onGoodMove: string; onBlunder: string; onWin: string; onLose: string };

@@ -19,7 +19,7 @@ Fuentes: [blog de Maia](https://www.maiachess.com/blog/maia-v1), [artículo (arX
 
 ```
 scripts/build-maia.js                  baja las redes originales (si faltan) y genera los .generated.ts (npm run build:maia)
-src/engine/maia/redes/                 maia-1100/1500/1900.pb.gz SIN MODIFICAR + COPYING.txt (GPL v3) + los .generated.ts (base64)
+src/engine/maia/redes/                 maia-1100/1500/1900.pb.gz SIN MODIFICAR + COPYING.txt (GPL v3) + los .generated.ts (base64); todo va en git (≈ 8,8 MB), así una copia limpia compila sin correr nada
 src/engine/maia/maiaWorkerSource.ts    la red: lee el archivo de Lc0 y hace una pasada (como Lc0 con `nodes 1`)
 src/engine/maia/lc0Tables.ts           las 1858 jugadas de la salida de Lc0 y su mapa (calculados, iguales a los de Lc0)
 src/engine/maia/encode.ts              arma la entrada (112 planos) con chess.js, desde las jugadas de la partida
@@ -45,6 +45,11 @@ src/bots/brain.ts                      libro → Maia → (seguro de Stockfish) 
 4. **Evaluación para las frases y las tablas:** la da Stockfish (profundidad 8) sobre la jugada elegida. La evaluación propia de Maia es poco confiable (con una dama regalada, a veces marca menos de un peón).
 
 Por eso la partida monta dos WebViews: Maia y Stockfish.
+
+## Si Maia falla
+
+- **Respaldo con Stockfish:** cada bot guarda en `fallback` (bots.json) el motor que tenía antes de Maia. Si Maia no arranca (por ejemplo, un WebView de Android demasiado viejo para `DecompressionStream`) o se cae a mitad de la partida, el bot sigue con ese motor sin mostrar error (`maiaFailed` en `GameScreen`; `shouldFallback` en `brain.ts`). Hasta ahí, "Reintentar" volvería a fallar siempre.
+- **Un error puntual de una jugada** (una evaluación que falla, o una red que devuelve valores no numéricos y deja sin candidatas): el bot juega la mejor jugada de Stockfish a profundidad 8; solo si tampoco hay Stockfish, una legal al azar. Antes jugaba siempre al azar, y Ada habría regalado la partida.
 
 ## Calibración (2-11-2026)
 

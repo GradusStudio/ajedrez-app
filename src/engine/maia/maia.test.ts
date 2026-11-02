@@ -130,3 +130,49 @@ test('la red maia-1500 da los mismos números que Lc0', { skip: !existsSync(NET)
     ref.wdl.forEach((w, i) => assert.ok(Math.abs(r.wdl[i] - w) < 1e-3));
   }
 });
+
+// ---- Fallos de Maia: el bot no se traba ni regala la partida ----
+import type { MaiaEngine } from './maiaEngine';
+import type { UciEngine } from '../uci';
+import { findBot } from '../../data/bots';
+import { thinkMove } from '../../bots/brain';
+
+const botWithoutBook = (id: string) => {
+  const b = findBot(id)!;
+  return { ...b, repertoire: { white: [], black: [] }, engine: { ...b.engine, thinkMs: [0, 0] as [number, number] } } as typeof b;
+};
+const AFTER_E4 = { fen: 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1', history: ['e2e4'], botColor: 'b' as const };
+const fakeStockfish = (calls: unknown[] = []) =>
+  ({ failed: false, search: async (o: unknown) => (calls.push(o), { bestmove: 'e7e5', lines: [{ move: 'e7e5', score: 20 }] }) }) as unknown as UciEngine;
+
+test('si Maia devuelve valores no numéricos, juega la mejor de Stockfish (no se traba)', async () => {
+  const maia = { failed: false, evaluate: async () => ({ logits: Array(20).fill(NaN), wdl: [0.4, 0.2, 0.4] }) } as unknown as MaiaEngine;
+  const move = await thinkMove({ maia, stockfish: fakeStockfish() }, botWithoutBook('ada'), AFTER_E4);
+  assert.equal(move.uci, 'e7e5');
+});
+
+test('si una evaluación de Maia falla, juega la mejor de Stockfish y no una al azar', async () => {
+  const maia = { failed: false, evaluate: async () => { throw new Error('boom'); } } as unknown as MaiaEngine;
+  for (let i = 0; i < 5; i++) {
+    const move = await thinkMove({ maia, stockfish: fakeStockfish() }, botWithoutBook('ada'), AFTER_E4);
+    assert.equal(move.uci, 'e7e5');
+  }
+});
+
+test('con Maia caída, el bot sigue con su motor de respaldo de Stockfish', async () => {
+  const calls: { elo?: number }[] = [];
+  const maia = { failed: true, evaluate: async () => { throw new Error('no debería llamarse'); } } as unknown as MaiaEngine;
+  const ada = botWithoutBook('ada');
+  const move = await thinkMove({ maia, stockfish: fakeStockfish(calls) }, ada, AFTER_E4);
+  assert.equal(move.uci, 'e7e5');
+  assert.equal(calls[0].elo, 2200, 'usa el Elo del motor anterior de Ada');
+  const none = await thinkMove({ maia: null, stockfish: fakeStockfish() }, ada, AFTER_E4);
+  assert.equal(none.uci, 'e7e5', 'también si Maia nunca arrancó');
+});
+
+test('todos los bots tienen motor de respaldo con Stockfish', () => {
+  for (const id of ['pipo', 'lola', 'tomas', 'valentina', 'ramiro', 'camila', 'bruno', 'sofia', 'ivo', 'ada']) {
+    const b = findBot(id)!;
+    assert.ok(b.fallback, id);
+  }
+});

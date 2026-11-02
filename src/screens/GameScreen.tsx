@@ -59,9 +59,11 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const [engineError, setEngineError] = useState<string | null>(null);
   const [engineKey, setEngineKey] = useState(0);
   const [maia, setMaia] = useState<MaiaEngine | null>(null);
+  // Maia no arrancó o se cayó y el bot sigue con su motor de respaldo de Stockfish (bots.ts, `fallback`).
+  const [maiaFailed, setMaiaFailed] = useState(false);
   // Motores del bot: Maia y, para el seguro de los más fuertes (o un bot sin Maia), Stockfish.
   const needs = enginesFor(bot);
-  const ready = (!needs.maia || !!maia) && (!needs.stockfish || !!engine);
+  const ready = (!needs.maia || !!maia || maiaFailed) && (!needs.stockfish || !!engine);
   const [speech, setSpeech] = useState(
     practiceCourse ? t('game.practiceSpeech', { name: practiceCourse.name }) : bot.lines.greeting
   );
@@ -245,14 +247,15 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
 
   return (
     <View style={styles.screen}>
-      {!engineError && bot.engine.type === 'maia' && (
+      {!engineError && !maiaFailed && bot.engine.type === 'maia' && (
         <MaiaView
           key={`maia-${engineKey}`}
           net={bot.engine.net}
           onReady={setMaia}
           onError={(msg) => {
-            setEngineError(msg);
             setMaia(null);
+            if (bot.fallback) setMaiaFailed(true);
+            else setEngineError(msg);
           }}
         />
       )}
@@ -314,6 +317,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
                 setEngineError(null);
                 setEngine(null);
                 setMaia(null);
+                setMaiaFailed(false);
                 setEngineKey((k) => k + 1);
               }}
               style={{ marginTop: space.sm }}

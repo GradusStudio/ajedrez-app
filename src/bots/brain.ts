@@ -1,5 +1,5 @@
 import { Chess } from 'chess.js';
-import { Bot } from '../data/bots';
+import { Bot, BotEngine } from '../data/bots';
 import { encodeMaia } from '../engine/maia/encode';
 import { MaiaEngine, wdlToCentipawns } from '../engine/maia/maiaEngine';
 import { EngineLine, UciEngine } from '../engine/uci';
@@ -24,6 +24,10 @@ export type ThinkOptions = {
 
 /** Motores con los que piensa un bot: Maia (los bots "maia") y Stockfish. */
 export type BotEngines = { maia?: MaiaEngine | null; stockfish?: UciEngine | null };
+
+/** ¿Hay que jugar con el motor de respaldo? Maia no está disponible y el bot tiene uno. */
+const shouldFallback = (bot: Bot, engines: BotEngines) =>
+  bot.engine.type === 'maia' && !!bot.fallback && (!engines.maia || engines.maia.failed);
 
 /**
  * Qué motores necesita un bot. Los bots Maia también usan Stockfish: para evaluar sus jugadas (las frases
@@ -164,8 +168,8 @@ export async function thinkMove(engines: BotEngines, bot: Bot, o: ThinkOptions):
   const book = bookMove(courses, o.history, limit);
   if (book) return finish({ uci: book, fromBook: true });
 
-  // 2. Motor.
-  const e = bot.engine;
+  // 2. Motor (Maia; si no está disponible, el de respaldo con Stockfish).
+  const e: BotEngine = shouldFallback(bot, engines) ? bot.fallback! : bot.engine;
   const down = () => engines.stockfish?.failed || (e.type === 'maia' && engines.maia?.failed);
   try {
     if (e.type === 'maia') {
@@ -175,6 +179,8 @@ export async function thinkMove(engines: BotEngines, bot: Bot, o: ThinkOptions):
       if (pos.legal.length === 0) throw new Error('sin jugadas');
       const { logits, wdl } = await maia.evaluate(pos.input);
       const order = maiaOrder(logits, e).map((i) => pos.legal[i]);
+      // Sin candidatas (la red devolvió valores no numéricos): es un fallo, no una jugada.
+      if (order.length === 0 || order.some((m) => !m)) throw new Error('Maia sin candidatas');
       const sf = engines.stockfish;
       const pick: { move: string; score?: number } =
         e.safety && sf ? await safeChoice(sf, o.fen, order, e.safety) : { move: order[0] };
@@ -201,9 +207,21 @@ export async function thinkMove(engines: BotEngines, bot: Bot, o: ThinkOptions):
     const chosen = lines.find((l) => l.move === bestmove) ?? lines[0];
     return finish({ uci: bestmove, score: chosen?.score, fromBook: false });
   } catch (err) {
+    // Maia se cayó con el bot pensando: sigue con su motor de respaldo.
+    if (e.type === 'maia' && bot.fallback && engines.maia?.failed) return thinkMove(engines, bot, o);
     // Motor caído: la pantalla ofrece reintentar y entonces el bot vuelve a pensar esta jugada.
     if (down()) throw err;
-    // Si solo falló esta respuesta, una jugada legal cualquiera: la partida no se traba.
+    // Si solo falló esta respuesta, la mejor jugada de Stockfish (un bot fuerte no debe regalar la partida
+    // por un error puntual) y, si tampoco se puede, una legal cualquiera: la partida no se traba.
+    const sf = engines.stockfish;
+    if (sf) {
+      try {
+        const { bestmove } = await sf.search({ fen: o.fen, multipv: 1, depth: EVAL_DEPTH });
+        if (bestmove) return finish({ uci: bestmove, fromBook: false });
+      } catch {
+        /* sigue con la jugada al azar */
+      }
+    }
     const moves = new Chess(o.fen).moves({ verbose: true });
     const m = moves[Math.floor(Math.random() * moves.length)];
     return finish({ uci: m.from + m.to + (m.promotion ?? ''), fromBook: false });

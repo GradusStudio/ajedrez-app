@@ -4,10 +4,12 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { Chess } from 'chess.js';
-import { maiaOrder, softmax } from '../../bots/brain';
+import { maiaOrder, softmax, thinkMove } from '../../bots/brain';
+import { findBot } from '../../data/bots';
+import type { UciEngine } from '../uci';
 import { encodeMaia, lc0MoveIndex } from './encode';
 import { LC0_CONV_POLICY_MAP, LC0_MOVES } from './lc0Tables';
-import { wdlToCentipawns } from './maiaEngine';
+import { MaiaEngine, wdlToCentipawns } from './maiaEngine';
 import { MAIA_WORKER_JS } from './maiaWorkerSource';
 
 const bit = (bits: number[], plane: number, square: number) =>
@@ -132,10 +134,6 @@ test('la red maia-1500 da los mismos números que Lc0', { skip: !existsSync(NET)
 });
 
 // ---- Fallos de Maia: el bot no se traba ni regala la partida ----
-import type { MaiaEngine } from './maiaEngine';
-import type { UciEngine } from '../uci';
-import { findBot } from '../../data/bots';
-import { thinkMove } from '../../bots/brain';
 
 const botWithoutBook = (id: string) => {
   const b = findBot(id)!;

@@ -81,7 +81,7 @@ El formato definitivo de los pasos está en `formato-lecciones.md` y `src/data/l
 
 **Estado actual:** el repertorio que se usa es el de `aperturas-v3.json`: 28 cursos (16 con blancas y 12 con negras), con la lista completa en `formato-lecciones.md`. Las tablas de abajo son el plan original de 10 + 10. De ese plan, el **Gambito Budapest** quedó fuera de v3. Se sumaron Vienesa, Dragón, Ataque Indio de Rey, Moderna, Pirc, Blackmar-Diemer, Rossolimo, Alapin y Gambito de dama aceptado.
 
-Cada apertura se divide en 4 lecciones: idea principal, línea principal, trampas y errores típicos, drill. Orden sugerido: de menor a mayor dificultad.
+Cada apertura se divide en: idea principal, línea principal, una guía por cada línea o variante (desde el 1-11-2026 reemplazan a «trampas y errores típicos») y el drill de repaso al final. Orden sugerido: de menor a mayor dificultad.
 
 ### Con blancas
 | # | Apertura | Primeras jugadas | Tipo | Idea principal | Bot sugerido |
@@ -126,4 +126,4 @@ Los bots deben jugar las aperturas que el usuario ya aprendió, para que cada pa
 - Validar cada línea con Stockfish y una base de datos de partidas.
 - Decidir variantes concretas por apertura (por ejemplo, qué línea de la Siciliana).
 - Escribir los textos de cada lección siguiendo la voz definida en design.md.
-- ~~Definir cuántas lecciones de apertura se desbloquean al inicio y cuáles después.~~ Decidido en el hito 3: los 28 cursos están abiertos y, dentro de cada curso, las 4 lecciones se desbloquean de a una.
+- ~~Definir cuántas lecciones de apertura se desbloquean al inicio y cuáles después.~~ Decidido en el hito 3: los 28 cursos están abiertos y, dentro de cada curso, las lecciones se desbloquean de a una.

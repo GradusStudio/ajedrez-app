@@ -11,10 +11,10 @@ y abre la app en el celular con Expo Go.
 ## Qué verás
 - **Pestaña Aperturas:**
   - Arriba, un selector **Blancas · 16 / Negras · 12**.
-  - Debajo, una tarjeta por apertura: nombre, resumen, barra de progreso (de 4 lecciones) y el estilo de bot que la usa ("Bot tranquilo").
+  - Debajo, una tarjeta por apertura: nombre, resumen, barra de progreso (según las lecciones del curso) y el estilo de bot que la usa ("Bot tranquilo").
 - **Detalle de una apertura** (al tocar una tarjeta):
   - Nombre, con qué color juegas y el progreso.
-  - Las 4 lecciones: Idea, Línea principal, Trampas y errores, Repaso. Se abren de a una, igual que en Aprender. Todos los cursos están abiertos desde el inicio.
+  - Las lecciones (en el hito 3 eran 4: Idea, Línea principal, Trampas y errores, Repaso; desde el 1-11-2026 «Trampas y errores» se reemplazó por una guía por línea): Idea, Línea principal, guías por línea y Repaso. Se abren de a una, igual que en Aprender. Todos los cursos están abiertos desde el inicio.
   - El botón **Practicar contra un bot** avisa que los bots llegan en el hito 4.
 - **Lección con una línea de apertura (paso nuevo `line`):**
   - Juegas las jugadas de tu color; el rival responde solo. Si estudias una defensa con negras, el tablero se gira y el rival abre con la primera jugada.

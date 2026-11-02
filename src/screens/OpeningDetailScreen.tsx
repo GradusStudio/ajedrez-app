@@ -19,7 +19,7 @@ type Props = {
   onBack: () => void;
 };
 
-// Detalle de apertura: sus 4 lecciones, que se desbloquean de a una (mapa-de-pantallas.md, 2.7).
+// Detalle de apertura: introducción, línea principal, una guía por cada línea y el repaso, que se desbloquean de a una (mapa-de-pantallas.md, 2.7).
 export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack }: Props) {
   const { progress } = useProgress();
   const { t } = useI18n();

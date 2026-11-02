@@ -109,7 +109,7 @@ Tablero libre con jugadas legales (chess.js): deshacer, voltear, reiniciar y nue
 
 ### 2.7 Detalle de apertura · hecha en el hito 3
 - Encabezado con el nombre, chips con el color con el que se juega y el estilo de bot, el resumen y el progreso.
-- Lista de sus 4 lecciones: Idea, Línea principal, Trampas y errores, Repaso. Se desbloquean de a una, igual que dentro de una unidad (`lessonStates`). La siguiente se resalta en verde y dice si quedó a medias.
+- Lista de sus lecciones: Idea, Línea principal, una guía por línea o variante y Repaso (al final). Se desbloquean de a una, igual que dentro de una unidad (`lessonStates`). La siguiente se resalta en verde y dice si quedó a medias.
 - Botón "Practicar contra un bot": abre una partida en modo práctica (ver 2.10).
 - Al terminar una lección, "Continuar" vuelve a este detalle.
 

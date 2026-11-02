@@ -36,7 +36,7 @@ Glosarios por idioma en `docs/traducciones/<lang>.md`. Las traducciones se hicie
 
 ## Paso `line` (aperturas)
 
-Archivos: `aperturas-v1.json` (4 cursos, ya no se usa) y `aperturas-v3.json` (28 cursos). La app usa la copia en `src/data/aperturas-v3.json`; si se corrige una línea, hay que cambiarla allí (y en `docs/` para que coincidan). Cada apertura es un curso de 4 lecciones: idea, línea principal, trampas y errores, repaso.
+Archivos: `aperturas-v1.json` (4 cursos, ya no se usa) y `aperturas-v3.json` (28 cursos). La app usa la copia en `src/data/aperturas-v3.json`; si se corrige una línea, hay que cambiarla allí (y en `docs/` para que coincidan). Cada apertura es un curso con idea (`l01`), línea principal (`l02`), una guía por línea (`l05` en adelante) y repaso (`l04`, al final). Ver «Guías por línea» más abajo.
 
 El paso `line` parte de la posición inicial. El usuario juega solo las jugadas de su color (`side`); la app juega las del rival automáticamente después de cada acierto.
 
@@ -68,6 +68,16 @@ La captura al paso (por ejemplo `exf6` en la Vienesa) y el enroque funcionan con
 - Al terminar la línea aparece el panel verde con "Continuar".
 - Las líneas de Escocesa y Gambito de dama (lecciones 2 y 4) terminan con una jugada del rival (18 jugadas): la app la juega sola y después da la línea por completada.
 - Todas las líneas de `aperturas-v3.json` se recorrieron con esta lógica: 61 líneas, 533 jugadas del usuario y 500 automáticas, sin problemas.
+
+### Guías por línea (1-11-2026)
+- **Qué cambió:** se quitó la lección «Claves y errores» (`l03`), porque repetía el Repaso, y se añadió una guía por cada línea o variante que menciona el archivo fuente de cada apertura. Son 286 guías en las 28 aperturas, de 5 a 18 por apertura. Cada guía es una lección con una explicación, una línea `guided` completa desde la posición inicial, al menos un quiz y a veces un paso `move`. El Repaso (`l04`) conserva sus pasos y suma al final de 2 a 4 (drills de las guías más importantes y quizzes).
+- **Ids y orden:** `l03` desaparece y las guías empiezan en `l05`, para no perder el progreso guardado (es por id). `order` sí es consecutivo y el Repaso queda último. El progreso de `l03` ya guardado se ignora.
+- **Gambito Blackmar-Diemer:** incluye ahora el Gambito Ryder (4 guías, además de 6 del BDG) y su `summary` lo menciona.
+- **Ataque Indio de Rey:** no tenía archivo fuente en `C:\dev\aperturas`. Se redactó `ataque indio de rey.md` (sin transcripción de video, escrito por el modelo y sin contrastar con una base de partidas) y de ahí salieron 5 guías. Hay que revisarlas antes de publicar.
+- **Fuentes y límites:** las fuentes son transcripciones automáticas de video, muchas con jugadas mal dictadas. Los textos de las guías no atribuyen consejos a ningún presentador. Donde la fuente no daba una jugada, el modelo completó con una jugada natural o teoría estándar. `docs/informe-lineas-aperturas.md` lista cada línea de cada fuente con su guía o el motivo del descarte.
+- **Revisión con Stockfish:** 6.070 posiciones (primera línea `guided` de cada guía) a profundidad 12; las dudosas se confirmaron a 18. Se marcaron 6 guías. Eliminadas: `london-l07` (la «trampa» 7.Cxf7 pierde material; la mejor jugada era Cd2, +0,56) e `italian-l13` (caña de pescar: tras 8.hxg5 las negras tienen ventaja, +1,3). Recortadas: `caro-kann-l13` a 18 jugadas (ahí 10.Ae3 permite 10...Dxb2, +4,6), `kings-gambit-l14` a 21 (12.Cc3 desaprovechaba 12.Dxh4) y `modern-l11` a 16 (la evaluación se tuerce desde ...a5). Se deja `catalan-l11`: Aa5 es la idea de la guía y queda en +0,2, aunque el motor prefiere Cg5.
+- **Bots:** `src/bots/book.ts` toma todas las líneas `line` desde la posición inicial, así que las guías nuevas amplían el repertorio de los bots.
+- **Un error del español que encontró el validador de traducciones:** `Rxd8` (rey toma) donde la torre negra recaptura (`Txd8`), en `queens-gambit-declined-l10-s04`. Corregido en los cinco idiomas.
 
 ### Revisión con Stockfish (hito 3)
 Las 61 líneas se analizaron con Stockfish 19 a profundidad 20, jugada por jugada.

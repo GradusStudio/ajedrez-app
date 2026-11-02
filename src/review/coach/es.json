@@ -1,0 +1,201 @@
+{
+  "you": {
+    "tranquilo": {
+      "book": [
+        "{move} es jugada de libro. Vas por buen camino.",
+        "Teoría pura con {move}: sin apuro y bien."
+      ],
+      "best": [
+        "{move} es la mejor. Muy bien, así se hace.",
+        "Justo lo que había que jugar: {move}."
+      ],
+      "excellent": [
+        "{move} es excelente. Sigue así.",
+        "Muy buena jugada, {move}."
+      ],
+      "good": [
+        "{move} está bien, no hay problema.",
+        "Jugada correcta: {move}. Tranquilo."
+      ],
+      "inaccuracy": [
+        "{move} es una imprecisión. Nada grave, pero había algo mejor.",
+        "Con {move} se te escapa un poquito de ventaja."
+      ],
+      "mistake": [
+        "{move} es un error. Pasa, lo importante es entender por qué.",
+        "Ojo con {move}: cambia la partida."
+      ],
+      "blunder": [
+        "{move} es un error grave. Respira: lo vemos juntos.",
+        "Uy, {move} fue un descuido importante. Mira bien el tablero."
+      ],
+      "great": [
+        "{move}: aprovechaste el error del rival. Muy bien visto.",
+        "Buen ojo con {move}: castigaste la jugada anterior."
+      ],
+      "mate": [
+        "{move} es jaque mate. Partida ganada, felicitaciones.",
+        "Mate con {move}. Qué lindo final."
+      ]
+    },
+    "equilibrado": {
+      "book": [
+        "{move} es teoría. Seguimos en libro.",
+        "Jugada de libro: {move}."
+      ],
+      "best": [
+        "{move} es la mejor jugada.",
+        "Exacto: {move} era lo mejor."
+      ],
+      "excellent": [
+        "{move} es excelente.",
+        "Muy precisa, {move}."
+      ],
+      "good": [
+        "{move} es una buena jugada.",
+        "{move} cumple: correcta, sin más."
+      ],
+      "inaccuracy": [
+        "{move} es imprecisa: había algo mejor.",
+        "Con {move} regalas un poco de ventaja."
+      ],
+      "mistake": [
+        "{move} es un error y se paga.",
+        "Error con {move}: te cuesta la iniciativa."
+      ],
+      "blunder": [
+        "{move} es un error grave. Cambia el resultado.",
+        "Grave: {move} deja la partida en manos del rival."
+      ],
+      "great": [
+        "{move} castiga el error del rival. Buena.",
+        "Bien ahí: {move} aprovecha el regalo."
+      ],
+      "mate": [
+        "{move} es mate. Bien cerrado.",
+        "Jaque mate con {move}."
+      ]
+    },
+    "posicional": {
+      "book": [
+        "{move} sigue la teoría: estructura sana.",
+        "{move} es de libro; la posición es la esperada."
+      ],
+      "best": [
+        "{move} es la mejor: mejora tu posición al máximo.",
+        "{move} era lo más preciso."
+      ],
+      "excellent": [
+        "{move} es excelente: conserva tu ventaja.",
+        "Muy sólida, {move}."
+      ],
+      "good": [
+        "{move} es correcta, aunque hay jugadas más finas.",
+        "{move} es aceptable: no empeora la posición."
+      ],
+      "inaccuracy": [
+        "{move} es imprecisa: cede un poco de control.",
+        "Con {move} la posición se vuelve algo más fácil para el rival."
+      ],
+      "mistake": [
+        "{move} es un error posicional y táctico: pierde el hilo de la partida.",
+        "{move} debilita demasiado tu posición."
+      ],
+      "blunder": [
+        "{move} es un error grave: la posición se desploma.",
+        "Con {move} rompes el equilibrio de la peor manera."
+      ],
+      "great": [
+        "{move} aprovecha con precisión el error rival.",
+        "{move}: cobras la ventaja que te regaló."
+      ],
+      "mate": [
+        "{move} es mate: la posición lo pedía.",
+        "Mate con {move}. Final limpio."
+      ]
+    },
+    "agresivo": {
+      "book": [
+        "{move}, de libro. Ahora a atacar.",
+        "Teoría con {move}: sigue presionando."
+      ],
+      "best": [
+        "¡{move}! La mejor, directo al grano.",
+        "{move} es lo mejor: así se juega."
+      ],
+      "excellent": [
+        "¡{move} es excelente! Con ganas.",
+        "Qué buena, {move}."
+      ],
+      "good": [
+        "{move} está bien, pero se podía apretar más.",
+        "Correcta, {move}; falta un poco de fuego."
+      ],
+      "inaccuracy": [
+        "{move} es imprecisa: pierdes ritmo.",
+        "Con {move} le das aire al rival."
+      ],
+      "mistake": [
+        "{move} es un error: te sacan de la pelea.",
+        "Eso con {move} no se hace: lo pagas caro."
+      ],
+      "blunder": [
+        "¡{move} es un error grave! Se te cayó todo.",
+        "Ay, {move}: regalaste la partida."
+      ],
+      "great": [
+        "¡{move}! Castigaste sin piedad el error.",
+        "¡Así se aprovecha un regalo con {move}!"
+      ],
+      "mate": [
+        "¡{move} es mate! ¡Ese es el final que quería ver!",
+        "¡Jaque mate con {move}! Ni lo vio venir."
+      ]
+    }
+  },
+  "opp": {
+    "ok": [
+      "El rival juega {move}, una jugada correcta.",
+      "El rival responde con {move}."
+    ],
+    "inaccuracy": [
+      "El rival juega {move}, una imprecisión: te da algo de aire."
+    ],
+    "mistake": [
+      "El rival se equivoca con {move}: es tu oportunidad."
+    ],
+    "blunder": [
+      "¡El rival cometió un error grave con {move}! Aprovéchalo."
+    ],
+    "mate": [
+      "El rival da mate con {move}."
+    ]
+  },
+  "pieces": {
+    "p": "un peón",
+    "n": "un caballo",
+    "b": "un alfil",
+    "r": "una torre",
+    "q": "la dama",
+    "k": "el rey"
+  },
+  "expl": {
+    "didMate": "{move} da jaque mate.",
+    "didCheck": "{move} da jaque.",
+    "didCapture": "{move} captura {piece}.",
+    "didCastle": "{move} es un enroque: rey a salvo y torre al juego.",
+    "allowsMateYou": "Permite {san}: jaque mate.",
+    "allowsMateOpp": "Con {san} puedes dar mate.",
+    "allowsCaptureMoved": "Esa pieza queda sin defensa: con {san} el rival se lleva {piece}.",
+    "allowsCaptureYou": "Deja que el rival capture {piece} con {san}.",
+    "allowsCaptureOpp": "Con {san} puedes capturar {piece}.",
+    "allowsCheckYou": "El rival responde con {san}, jaque, y toma la iniciativa.",
+    "allowsCheckOpp": "Puedes responder con {san}, jaque.",
+    "missedMateYou": "Había mate con {best}.",
+    "missedMateOpp": "El rival no vio el mate con {best}.",
+    "missedCaptureYou": "Podías capturar {piece} con {best}.",
+    "missedCaptureOpp": "El rival podía capturar {piece} con {best}.",
+    "missedBestYou": "Lo mejor era {best}.",
+    "missedBestOpp": "Lo mejor para el rival era {best}."
+  }
+}

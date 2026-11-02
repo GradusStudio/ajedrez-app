@@ -1,0 +1,201 @@
+{
+  "you": {
+    "tranquilo": {
+      "book": [
+        "{move} is a book move. You are on the right track.",
+        "Pure theory with {move}: calm and correct."
+      ],
+      "best": [
+        "{move} is the best move. Well done.",
+        "Exactly what the position needed: {move}."
+      ],
+      "excellent": [
+        "{move} is excellent. Keep it up.",
+        "A really nice move, {move}."
+      ],
+      "good": [
+        "{move} is fine, no problem at all.",
+        "A correct move: {move}. Relax."
+      ],
+      "inaccuracy": [
+        "{move} is an inaccuracy. Nothing serious, but there was better.",
+        "With {move} a little of your edge slips away."
+      ],
+      "mistake": [
+        "{move} is a mistake. It happens; what matters is understanding why.",
+        "Careful with {move}: it changes the game."
+      ],
+      "blunder": [
+        "{move} is a blunder. Breathe: we will look at it together.",
+        "Oops, {move} was a big slip. Look at the board again."
+      ],
+      "great": [
+        "{move}: you took advantage of the mistake. Nicely spotted.",
+        "Good eye with {move}: you punished the last move."
+      ],
+      "mate": [
+        "{move} is checkmate. Game won, congratulations.",
+        "Mate with {move}. What a lovely ending."
+      ]
+    },
+    "equilibrado": {
+      "book": [
+        "{move} is theory. Still in the book.",
+        "Book move: {move}."
+      ],
+      "best": [
+        "{move} is the best move.",
+        "Exactly: {move} was best."
+      ],
+      "excellent": [
+        "{move} is excellent.",
+        "Very precise, {move}."
+      ],
+      "good": [
+        "{move} is a good move.",
+        "{move} does the job: correct, nothing more."
+      ],
+      "inaccuracy": [
+        "{move} is inaccurate: there was better.",
+        "With {move} you give away a little advantage."
+      ],
+      "mistake": [
+        "{move} is a mistake and it costs you.",
+        "A mistake with {move}: you lose the initiative."
+      ],
+      "blunder": [
+        "{move} is a blunder. It changes the result.",
+        "Serious: {move} hands the game to your opponent."
+      ],
+      "great": [
+        "{move} punishes the opponent's mistake. Good.",
+        "Well done: {move} takes the gift."
+      ],
+      "mate": [
+        "{move} is mate. Nicely finished.",
+        "Checkmate with {move}."
+      ]
+    },
+    "posicional": {
+      "book": [
+        "{move} follows theory: a healthy structure.",
+        "{move} is book; the position is as expected."
+      ],
+      "best": [
+        "{move} is the best: it improves your position the most.",
+        "{move} was the most precise."
+      ],
+      "excellent": [
+        "{move} is excellent: it keeps your edge.",
+        "Very solid, {move}."
+      ],
+      "good": [
+        "{move} is correct, though there were finer moves.",
+        "{move} is acceptable: it does not worsen the position."
+      ],
+      "inaccuracy": [
+        "{move} is inaccurate: it gives up a little control.",
+        "With {move} the position gets easier for your opponent."
+      ],
+      "mistake": [
+        "{move} is a positional and tactical mistake: you lose the thread.",
+        "{move} weakens your position too much."
+      ],
+      "blunder": [
+        "{move} is a blunder: the position collapses.",
+        "With {move} you break the balance in the worst way."
+      ],
+      "great": [
+        "{move} precisely exploits the opponent's mistake.",
+        "{move}: you collect the advantage you were given."
+      ],
+      "mate": [
+        "{move} is mate: the position called for it.",
+        "Mate with {move}. A clean finish."
+      ]
+    },
+    "agresivo": {
+      "book": [
+        "{move}, straight from the book. Now attack.",
+        "Theory with {move}: keep the pressure on."
+      ],
+      "best": [
+        "{move}! The best, right to the point.",
+        "{move} is best: that is how you play."
+      ],
+      "excellent": [
+        "{move} is excellent! Love it.",
+        "What a move, {move}."
+      ],
+      "good": [
+        "{move} is fine, but you could press harder.",
+        "Correct, {move}; it needs a bit more fire."
+      ],
+      "inaccuracy": [
+        "{move} is inaccurate: you lose the tempo.",
+        "With {move} you give your opponent air."
+      ],
+      "mistake": [
+        "{move} is a mistake: you are out of the fight.",
+        "You do not play {move} there: it costs you dearly."
+      ],
+      "blunder": [
+        "{move} is a blunder! Everything fell apart.",
+        "Ouch, {move}: you gave the game away."
+      ],
+      "great": [
+        "{move}! You punished the mistake without mercy.",
+        "That is how you take a gift with {move}!"
+      ],
+      "mate": [
+        "{move} is mate! That is the ending I wanted to see!",
+        "Checkmate with {move}! They never saw it coming."
+      ]
+    }
+  },
+  "opp": {
+    "ok": [
+      "Your opponent plays {move}, a correct move.",
+      "Your opponent answers with {move}."
+    ],
+    "inaccuracy": [
+      "Your opponent plays {move}, an inaccuracy: it gives you some air."
+    ],
+    "mistake": [
+      "Your opponent errs with {move}: this is your chance."
+    ],
+    "blunder": [
+      "Your opponent blundered with {move}! Take advantage."
+    ],
+    "mate": [
+      "Your opponent delivers mate with {move}."
+    ]
+  },
+  "pieces": {
+    "p": "a pawn",
+    "n": "a knight",
+    "b": "a bishop",
+    "r": "a rook",
+    "q": "the queen",
+    "k": "the king"
+  },
+  "expl": {
+    "didMate": "{move} is checkmate.",
+    "didCheck": "{move} gives check.",
+    "didCapture": "{move} captures {piece}.",
+    "didCastle": "{move} castles: king safe and rook in play.",
+    "allowsMateYou": "It allows {san}: checkmate.",
+    "allowsMateOpp": "{san} would be mate.",
+    "allowsCaptureMoved": "That piece is left unprotected: {san} wins {piece}.",
+    "allowsCaptureYou": "It lets your opponent capture {piece} with {san}.",
+    "allowsCaptureOpp": "{san} wins {piece}.",
+    "allowsCheckYou": "Your opponent answers with check, {san}, and takes the initiative.",
+    "allowsCheckOpp": "You can answer with {san}, check.",
+    "missedMateYou": "There was mate with {best}.",
+    "missedMateOpp": "Your opponent missed mate with {best}.",
+    "missedCaptureYou": "You could capture {piece} with {best}.",
+    "missedCaptureOpp": "Your opponent could capture {piece} with {best}.",
+    "missedBestYou": "The best move was {best}.",
+    "missedBestOpp": "Best for your opponent was {best}."
+  }
+}

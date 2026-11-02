@@ -1,0 +1,201 @@
+{
+  "you": {
+    "tranquilo": {
+      "book": [
+        "{move} è una mossa da libro. Sei sulla strada giusta.",
+        "Teoria pura con {move}: tranquillo e corretto."
+      ],
+      "best": [
+        "{move} è la mossa migliore. Ottimo lavoro.",
+        "Esattamente quello che la posizione chiedeva: {move}."
+      ],
+      "excellent": [
+        "{move} è eccellente. Continua così.",
+        "Una mossa davvero bella, {move}."
+      ],
+      "good": [
+        "{move} va bene, nessun problema.",
+        "Mossa corretta: {move}. Rilassati."
+      ],
+      "inaccuracy": [
+        "{move} è un'imprecisione. Niente di grave, ma c'era di meglio.",
+        "Con {move} perdi un po' di vantaggio."
+      ],
+      "mistake": [
+        "{move} è un errore. Succede; conta capire perché.",
+        "Attento con {move}: cambia la partita."
+      ],
+      "blunder": [
+        "{move} è un errore grossolano. Respira: lo guardiamo insieme.",
+        "Ops, {move} è stato un errore serio. Rivedi la scacchiera."
+      ],
+      "great": [
+        "{move}: hai sfruttato l'errore dell'avversario. Ben notato.",
+        "Occhio con {move}: hai punito l'ultima mossa."
+      ],
+      "mate": [
+        "{move} è scacco matto. Partita vinta, complimenti.",
+        "Scacco matto con {move}. Che finale splendido."
+      ]
+    },
+    "equilibrado": {
+      "book": [
+        "{move} è teoria. Continuiamo con il libro.",
+        "Mossa da libro: {move}."
+      ],
+      "best": [
+        "{move} è la mossa migliore.",
+        "Esatto: {move} era la migliore."
+      ],
+      "excellent": [
+        "{move} è eccellente.",
+        "Molto precisa, {move}."
+      ],
+      "good": [
+        "{move} è una buona mossa.",
+        "{move} fa il suo dovere: corretta, niente di più."
+      ],
+      "inaccuracy": [
+        "{move} è imprecisa: c'era qualcosa di meglio.",
+        "Con {move} regali un po' di vantaggio."
+      ],
+      "mistake": [
+        "{move} è un errore e ti costa.",
+        "Errore con {move}: perdi l'iniziativa."
+      ],
+      "blunder": [
+        "{move} è un errore grave. Cambia il risultato.",
+        "Grave: {move} lascia la partita nelle mani del tuo avversario."
+      ],
+      "great": [
+        "{move} punisce l'errore dell'avversario. Bene.",
+        "Bravo: {move} sfrutta il regalo."
+      ],
+      "mate": [
+        "{move} è scacco matto. Ben chiuso.",
+        "Scacco matto con {move}."
+      ]
+    },
+    "posicional": {
+      "book": [
+        "{move} segue la teoria: struttura sana.",
+        "{move} è da libro; la posizione è come atteso."
+      ],
+      "best": [
+        "{move} è la migliore: migliora al massimo la tua posizione.",
+        "{move} era il più preciso."
+      ],
+      "excellent": [
+        "{move} è eccellente: mantiene il tuo vantaggio.",
+        "Molto solido, {move}."
+      ],
+      "good": [
+        "{move} è corretta, anche se c'erano mosse più fini.",
+        "{move} è accettabile: non peggiora la posizione."
+      ],
+      "inaccuracy": [
+        "{move} è imprecisa: cede un po' di controllo.",
+        "Con {move} la posizione diventa più facile per l'avversario."
+      ],
+      "mistake": [
+        "{move} è un errore posizionale e tattico: perdi il filo della partita.",
+        "{move} indebolisce troppo la tua posizione."
+      ],
+      "blunder": [
+        "{move} è un errore grave: la posizione crolla.",
+        "Con {move} rompi l'equilibrio nel modo peggiore."
+      ],
+      "great": [
+        "{move} sfrutta con precisione l'errore dell'avversario.",
+        "{move}: raccogli il vantaggio che ti è stato regalato."
+      ],
+      "mate": [
+        "{move} è scacco matto: la posizione lo chiedeva.",
+        "Scacco matto con {move}. Finale pulito."
+      ]
+    },
+    "agresivo": {
+      "book": [
+        "{move}, da manuale. Ora attacca.",
+        "Teoria con {move}: continua a fare pressione."
+      ],
+      "best": [
+        "{move}! La migliore, dritta al punto.",
+        "{move} è la migliore: così si gioca."
+      ],
+      "excellent": [
+        "{move} è eccellente! Mi piace.",
+        "Che mossa, {move}."
+      ],
+      "good": [
+        "{move} va bene, ma potevi spingere di più.",
+        "Corretto, {move}; ci vuole un po' più di fuoco."
+      ],
+      "inaccuracy": [
+        "{move} è imprecisa: perdi il tempo.",
+        "Con {move} dai respiro all'avversario."
+      ],
+      "mistake": [
+        "{move} è un errore: sei fuori dal gioco.",
+        "Non fai {move} lì: ti costa caro."
+      ],
+      "blunder": [
+        "{move} è un errore grave! Tutto crolla.",
+        "Ops, {move}: hai regalato la partita."
+      ],
+      "great": [
+        "{move}! Hai punito l'errore senza pietà.",
+        "Così si sfrutta un regalo con {move}!"
+      ],
+      "mate": [
+        "{move} è scacco matto! Questo è il finale che volevo vedere!",
+        "Scacco matto con {move}! Non se l'aspettavano."
+      ]
+    }
+  },
+  "opp": {
+    "ok": [
+      "Il tuo avversario gioca {move}, una mossa corretta.",
+      "Il tuo avversario risponde con {move}."
+    ],
+    "inaccuracy": [
+      "Il tuo avversario gioca {move}, un'imprecisione: ti dà un po' di respiro."
+    ],
+    "mistake": [
+      "Il tuo avversario sbaglia con {move}: questa è la tua occasione."
+    ],
+    "blunder": [
+      "Il tuo avversario fa un errore grossolano con {move}! Approfittane."
+    ],
+    "mate": [
+      "Il tuo avversario dà scacco matto con {move}."
+    ]
+  },
+  "pieces": {
+    "p": "un pedone",
+    "n": "un cavallo",
+    "b": "un alfiere",
+    "r": "una torre",
+    "q": "la donna",
+    "k": "il re"
+  },
+  "expl": {
+    "didMate": "{move} è scacco matto.",
+    "didCheck": "{move} dà scacco.",
+    "didCapture": "{move} cattura {piece}.",
+    "didCastle": "{move} è un arrocco: re al sicuro e torre in gioco.",
+    "allowsMateYou": "Permette {san}: scacco matto.",
+    "allowsMateOpp": "Con {san} è scacco matto.",
+    "allowsCaptureMoved": "Quella pedina è scoperta: con {san} l'avversario prende {piece}.",
+    "allowsCaptureYou": "Lascia che l'avversario catturi {piece} con {san}.",
+    "allowsCaptureOpp": "Con {san} puoi catturare {piece}.",
+    "allowsCheckYou": "L'avversario risponde con scacco, {san}, e prende l'iniziativa.",
+    "allowsCheckOpp": "Puoi rispondere con {san}, scacco.",
+    "missedMateYou": "C'era scacco matto con {best}.",
+    "missedMateOpp": "L'avversario ha perso lo scacco matto con {best}.",
+    "missedCaptureYou": "Potevi catturare {piece} con {best}.",
+    "missedCaptureOpp": "L'avversario poteva catturare {piece} con {best}.",
+    "missedBestYou": "La mossa migliore era {best}.",
+    "missedBestOpp": "La mossa migliore per l'avversario era {best}."
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "you": {
+    "tranquilo": {
+      "book": [
+        "{move} ist ein Buchzug. Du bist auf dem richtigen Weg.",
+        "Reine Theorie mit {move}: ruhig und korrekt."
+      ],
+      "best": [
+        "{move} ist der beste Zug. Sehr gut gemacht.",
+        "Genau das, was die Stellung brauchte: {move}."
+      ],
+      "excellent": [
+        "{move} ist exzellent. Mach weiter so.",
+        "Ein wirklich schöner Zug, {move}."
+      ],
+      "good": [
+        "{move} ist in Ordnung, kein Problem.",
+        "Ein korrekter Zug: {move}. Bleib entspannt."
+      ],
+      "inaccuracy": [
+        "{move} ist eine Ungenauigkeit. Nichts Ernstes, aber es gab Besseres.",
+        "Mit {move} verlierst du ein bisschen deinen Vorteil."
+      ],
+      "mistake": [
+        "{move} ist ein Fehler. Das passiert; wichtig ist, zu verstehen, warum.",
+        "Pass auf mit {move}: das ändert das Spiel."
+      ],
+      "blunder": [
+        "{move} ist ein Blunder. Atme durch: wir schauen es uns zusammen an.",
+        "Hoppla, {move} war ein großer Fehler. Schau dir das Brett nochmal an."
+      ],
+      "great": [
+        "{move}: Du hast den Fehler ausgenutzt. Gut gesehen.",
+        "Guter Blick mit {move}: Du hast den letzten Zug bestraft."
+      ],
+      "mate": [
+        "{move} ist Schachmatt. Spiel gewonnen, Glückwunsch.",
+        "Matt mit {move}. Was für ein schönes Ende."
+      ]
+    },
+    "equilibrado": {
+      "book": [
+        "{move} ist Theorie. Wir bleiben im Buch.",
+        "Buchzug: {move}."
+      ],
+      "best": [
+        "{move} ist der beste Zug.",
+        "Genau: {move} war das Beste."
+      ],
+      "excellent": [
+        "{move} ist exzellent.",
+        "Sehr präzise, {move}."
+      ],
+      "good": [
+        "{move} ist ein guter Zug.",
+        "{move} erfüllt: korrekt, nichts mehr."
+      ],
+      "inaccuracy": [
+        "{move} ist ungenau: es gab Besseres.",
+        "Mit {move} gibst du etwas Vorteil ab."
+      ],
+      "mistake": [
+        "{move} ist ein Fehler und du zahlst dafür.",
+        "Fehler mit {move}: du verlierst die Initiative."
+      ],
+      "blunder": [
+        "{move} ist ein Blunder. Das ändert das Ergebnis.",
+        "Schwerwiegend: {move} gibt das Spiel deinem Gegner."
+      ],
+      "great": [
+        "{move} bestraft den Fehler deines Gegners. Gut.",
+        "Gut gemacht: {move} nutzt das Geschenk."
+      ],
+      "mate": [
+        "{move} ist Schachmatt. Schön beendet.",
+        "Schachmatt mit {move}."
+      ]
+    },
+    "posicional": {
+      "book": [
+        "{move} folgt der Theorie: eine gesunde Struktur.",
+        "{move} ist Standard; die Stellung ist wie erwartet."
+      ],
+      "best": [
+        "{move} ist das Beste: es verbessert deine Stellung maximal.",
+        "{move} war am präzisesten."
+      ],
+      "excellent": [
+        "{move} ist exzellent: du behältst deinen Vorteil.",
+        "Sehr solide, {move}."
+      ],
+      "good": [
+        "{move} ist richtig, obwohl es feinere Züge gab.",
+        "{move} ist akzeptabel: es verschlechtert die Stellung nicht."
+      ],
+      "inaccuracy": [
+        "{move} ist ungenau: du gibst etwas Kontrolle ab.",
+        "Mit {move} wird die Stellung für deinen Gegner leichter."
+      ],
+      "mistake": [
+        "{move} ist ein Stellungungs- und taktischer Fehler: du verlierst den Faden.",
+        "{move} schwächt deine Stellung zu sehr."
+      ],
+      "blunder": [
+        "{move} ist ein Fehler: die Stellung bricht zusammen.",
+        "Mit {move} brichst du das Gleichgewicht auf die schlimmste Weise."
+      ],
+      "great": [
+        "{move} nutzt den Fehler deines Gegners präzise aus.",
+        "{move}: du sammelst den Vorteil, den er dir geschenkt hat."
+      ],
+      "mate": [
+        "{move} ist Schachmatt: die Stellung verlangte es.",
+        "Schachmatt mit {move}. Ein sauberes Ende."
+      ]
+    },
+    "agresivo": {
+      "book": [
+        "{move}, aus dem Buch. Jetzt angreifen.",
+        "Theorie mit {move}: Druck halten."
+      ],
+      "best": [
+        "{move}! Das Beste, direkt auf den Punkt.",
+        "{move} ist das Beste: so spielt man."
+      ],
+      "excellent": [
+        "{move} ist exzellent! Gefällt mir.",
+        "Was für ein Zug, {move}."
+      ],
+      "good": [
+        "{move} ist okay, aber du könntest härter drücken.",
+        "Richtig, {move}; es braucht noch etwas Feuer."
+      ],
+      "inaccuracy": [
+        "{move} ist ungenau: du verlierst den Rhythmus.",
+        "Mit {move} gibst du deinem Gegner Luft."
+      ],
+      "mistake": [
+        "{move} ist ein Fehler: du bist aus dem Kampf raus.",
+        "Das machst du nicht mit {move}: das kostet dich teuer."
+      ],
+      "blunder": [
+        "{move} ist ein Blunder! Alles ist zusammengebrochen.",
+        "Ouch, {move}: du hast die Partie verschenkt."
+      ],
+      "great": [
+        "{move}! Du hast den Fehler gnadenlos bestraft.",
+        "So nimmt man ein Geschenk mit {move}!"
+      ],
+      "mate": [
+        "{move} ist Schachmatt! Das ist das Ende, das ich sehen wollte!",
+        "Schachmatt mit {move}! Die haben es nicht kommen sehen."
+      ]
+    }
+  },
+  "opp": {
+    "ok": [
+      "Dein Gegner spielt {move}, ein korrekter Zug.",
+      "Dein Gegner antwortet mit {move}."
+    ],
+    "inaccuracy": [
+      "Dein Gegner spielt {move}, eine Ungenauigkeit: das gibt dir Luft."
+    ],
+    "mistake": [
+      "Dein Gegner macht mit {move} einen Fehler: das ist deine Chance."
+    ],
+    "blunder": [
+      "Dein Gegner hat mit {move} einen Blunder gemacht! Nutze das aus."
+    ],
+    "mate": [
+      "Dein Gegner setzt mit {move} Schachmatt."
+    ]
+  },
+  "pieces": {
+    "p": "einen Bauern",
+    "n": "einen Springer",
+    "b": "einen Läufer",
+    "r": "einen Turm",
+    "q": "die Dame",
+    "k": "den König"
+  },
+  "expl": {
+    "didMate": "{move} ist Schachmatt.",
+    "didCheck": "{move} gibt Schach.",
+    "didCapture": "{move} nimmt {piece}.",
+    "didCastle": "{move} ist Rochade: König ist sicher und Turm im Spiel.",
+    "allowsMateYou": "Es erlaubt {san}: Schachmatt.",
+    "allowsMateOpp": "Mit {san} wäre es Schachmatt.",
+    "allowsCaptureMoved": "Dieses Stück bleibt ungeschützt: Mit {san} nimmt der Gegner {piece}.",
+    "allowsCaptureYou": "Es lässt deinen Gegner {piece} mit {san} nehmen.",
+    "allowsCaptureOpp": "Mit {san} nimmt der Gegner {piece}.",
+    "allowsCheckYou": "Dein Gegner antwortet mit Schach, {san}, und übernimmt die Initiative.",
+    "allowsCheckOpp": "Du kannst mit {san} antworten, Schach.",
+    "missedMateYou": "Es gab Schachmatt mit {best}.",
+    "missedMateOpp": "Dein Gegner hat Schachmatt mit {best} verpasst.",
+    "missedCaptureYou": "Du hättest {piece} mit {best} nehmen können.",
+    "missedCaptureOpp": "Dein Gegner hätte {piece} mit {best} nehmen können.",
+    "missedBestYou": "Der beste Zug war {best}.",
+    "missedBestOpp": "Am besten für deinen Gegner wäre {best} gewesen."
+  }
+}

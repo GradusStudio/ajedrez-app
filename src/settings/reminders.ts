@@ -26,10 +26,17 @@ Notifications.setNotificationHandler({
 async function ensureChannel(channelName: string): Promise<void> {
   if (Platform.OS === 'android') {
     // En Android, sin un canal creado no aparece el pedido de permiso.
-    await Notifications.setNotificationChannelAsync(CHANNEL_ID, {
-      name: channelName,
-      importance: AndroidImportance.DEFAULT,
-    });
+    // Si crear el canal falla (en Expo Go con Android 15, setNotificationChannelAsync lanza una
+    // NullPointerException nativa), no es fatal: sin el canal propio, expo-notifications publica el
+    // aviso en su canal de respaldo. El recordatorio no debe quedar bloqueado por esto.
+    try {
+      await Notifications.setNotificationChannelAsync(CHANNEL_ID, {
+        name: channelName,
+        importance: AndroidImportance.DEFAULT,
+      });
+    } catch {
+      // Se sigue sin canal propio.
+    }
   }
 }
 

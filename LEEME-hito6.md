@@ -50,3 +50,6 @@ npx expo start -c
 - El nivel de la bienvenida hoy solo cambia la dificultad inicial de los puzzles: todavía hay una sola unidad.
 - Los niveles de los bots se calibraron midiendo partidas entre bots. Con partidas tuyas se pueden afinar más.
 - No se probó en el celular al escribirlo: si ves un error, copia el mensaje y lo corregimos.
+
+## Corrección del 1-11-2026: sonido, vibración y recordatorio
+Al probar en un Redmi (Android 15, Expo Go) fallaban los tres. **Quedó solucionado y probado en el celular:** los sonidos se oyen aunque el teléfono esté en vibración (`playsInSilentMode: true`), el error vibra con el vibrador directo y el recordatorio se puede activar (el canal de notificaciones es opcional). Causas y detalles en `CLAUDE.md`. Pendiente: confirmar el recordatorio en un build de desarrollo o de prueba, porque Expo Go no lo soporta del todo.

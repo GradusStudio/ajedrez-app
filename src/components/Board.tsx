@@ -15,7 +15,9 @@ import { useFeedback } from '../feedback/feedback';
 import { useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
 import { boardHighlight, boardThemes, colors } from '../theme';
-import { Captured, computeMove, Offsets } from './boardAnimation';import Piece, { PieceColor, PieceType } from './Piece';
+import { Captured, computeMove, Offsets } from './boardAnimation';
+import { SquareTexture } from './SquareTexture';
+import Piece, { PieceColor, PieceType } from './Piece';
 
 export type PromotionPiece = 'q' | 'r' | 'b' | 'n';
 export type BoardMove = { from: Square; to: Square; promotion?: PromotionPiece };
@@ -447,6 +449,7 @@ export function Board({
             zIndex: offsets[`${br}${bc}`] ? 10 : 0,
           }}
         >
+          <SquareTexture theme={settings.boardTheme} light={isLight} size={sq} seed={br * 3 + bc * 5} />
           {isLast && <View style={[styles.fill, { backgroundColor: boardHighlight.lastMove }]} />}
           {isMarked && (
             <View

@@ -3,6 +3,7 @@ import { Alert, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Tex
 import { Button3D } from '../components/Button3D';
 import { Segmented } from '../components/Segmented';
 import { SettingRow } from '../components/SettingRow';
+import { SquareTexture } from '../components/SquareTexture';
 import { useI18n } from '../i18n/I18nContext';
 import { AVAILABLE_LANGUAGES, LANGUAGE_NAMES, Language } from '../i18n/languages';
 import { resolveNotation, sanFromEnglish } from '../chess/notation';
@@ -94,7 +95,9 @@ export function SettingsScreen({ onBack, onOpenPieces }: Props) {
             >
               <View style={styles.swatch}>
                 {[theme.light, theme.dark, theme.dark, theme.light].map((c, i) => (
-                  <View key={i} style={{ width: 18, height: 18, backgroundColor: c }} />
+                  <View key={i} style={{ width: 18, height: 18, backgroundColor: c }}>
+                    <SquareTexture theme={id} light={c === theme.light} size={18} seed={i} />
+                  </View>
                 ))}
               </View>
               <Text style={[styles.themeText, selected && { color: colors.text }]}>{themeName}</Text>

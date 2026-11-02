@@ -136,10 +136,15 @@ export const it: Record<MessageKey, string> = {
   'settings.reset.message': 'Vengono cancellati lezioni, serie, monete, set acquistati, puzzle e partite. Le impostazioni restano. Non si può annullare.',
   'settings.reset.confirm': 'Cancella',
   'boardTheme.verde': 'Verde',
-  'boardTheme.marron': 'Legno',
+  'boardTheme.marron': 'Marrone',
   'boardTheme.azul': 'Blu',
   'boardTheme.gris': 'Grigio',
   'boardTheme.morado': 'Viola',
+  'boardTheme.madera': 'Legno',
+  'boardTheme.marmol': 'Marmo',
+  'boardTheme.neon': 'Neon',
+  'boardTheme.vintage': 'Vintage',
+  'boardTheme.hielo': 'Ghiaccio',
 
   // Piezas
   'pieces.back': '‹ Indietro',
@@ -165,6 +170,16 @@ export const it: Record<MessageKey, string> = {
   'pieceSet.redondeado.description': 'Stile amichevole e moderno. Forme morbide e arrotondate.',
   'pieceSet.contorneado.name': 'Contornato',
   'pieceSet.contorneado.description': 'Pezzi solidi con bordo esterno.',
+  'pieceSet.madera.name': 'Legno',
+  'pieceSet.madera.description': 'Pezzi di legno chiaro e scuro. Caldo e classico.',
+  'pieceSet.marmol.name': 'Marmo',
+  'pieceSet.marmol.description': 'Pietra lucida: marmo bianco e nero con venature dorate.',
+  'pieceSet.neon.name': 'Neon',
+  'pieceSet.neon.description': 'Luci al neon su sfondo scuro. Stile futuristico.',
+  'pieceSet.vintage.name': 'Vintage',
+  'pieceSet.vintage.description': 'Avorio invecchiato e bronzo antico, su pergamena e cuoio.',
+  'pieceSet.hielo.name': 'Ghiaccio',
+  'pieceSet.hielo.description': 'Cristallo di ghiaccio e brina. Freddo e brillante.',
 
   // Tablero
   'board.cancelPromotion': 'Annulla promozione',

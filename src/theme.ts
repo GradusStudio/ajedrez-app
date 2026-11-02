@@ -39,12 +39,19 @@ export const fonts = {
 // Temas del tablero (Ajustes > Tema del tablero). "verde" es el de design.md.
 export const boardThemes = {
   verde: { name: 'Verde', light: '#EBECD0', dark: '#779556' },
-  marron: { name: 'Madera', light: '#F0D9B5', dark: '#B58863' },
+  marron: { name: 'Marrón', light: '#F0D9B5', dark: '#B58863' },
   azul: { name: 'Azul', light: '#DEE3E6', dark: '#8CA2AD' },
   gris: { name: 'Gris', light: '#E3E3E3', dark: '#969696' },
   morado: { name: 'Morado', light: '#EAE3F2', dark: '#9C83B8' },
-} as const;
+  // Con textura (assets/texturas, ver src/pieces/textures.ts). Los colores son el promedio de la textura:
+  // sirven de respaldo, para las coordenadas y para la vista previa.
+  madera: { name: 'Madera', light: '#E0BE8A', dark: '#7A4A2A', texture: 'madera' },
+  marmol: { name: 'Mármol', light: '#E8E6E1', dark: '#2F5A44', texture: 'marmol' },
+  hielo: { name: 'Hielo', light: '#DCEAF3', dark: '#4F8FB5', texture: 'hielo' },
+} as const satisfies Record<string, { name: string; light: string; dark: string; texture?: string }>;
 export type BoardThemeId = keyof typeof boardThemes;
+/** Tema del tablero con textura: `texture` es el estilo de material (`MaterialSetId`). */
+export const boardTexture = (id: BoardThemeId): string | undefined => (boardThemes[id] as { texture?: string }).texture;
 
 // Resaltados del tablero (sección 5 de design.md)
 export const boardHighlight = {

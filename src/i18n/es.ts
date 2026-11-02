@@ -135,10 +135,15 @@ export const es = {
   'settings.reset.message': 'Se borran tus lecciones, racha, monedas, sets comprados, puzzles y partidas. Los ajustes no se borran. No se puede deshacer.',
   'settings.reset.confirm': 'Borrar',
   'boardTheme.verde': 'Verde',
-  'boardTheme.marron': 'Madera',
+  'boardTheme.marron': 'Marrón',
   'boardTheme.azul': 'Azul',
   'boardTheme.gris': 'Gris',
   'boardTheme.morado': 'Morado',
+  'boardTheme.madera': 'Madera',
+  'boardTheme.marmol': 'Mármol',
+  'boardTheme.neon': 'Neón',
+  'boardTheme.vintage': 'Vintage',
+  'boardTheme.hielo': 'Hielo',
 
   // Piezas
   'pieces.back': '‹ Volver',
@@ -164,6 +169,16 @@ export const es = {
   'pieceSet.redondeado.description': 'Estilo amigable y moderno. Formas suaves y redondeadas.',
   'pieceSet.contorneado.name': 'Contorneado',
   'pieceSet.contorneado.description': 'Piezas sólidas con borde exterior.',
+  'pieceSet.madera.name': 'Madera',
+  'pieceSet.madera.description': 'Piezas de madera clara y oscura. Cálido y clásico.',
+  'pieceSet.marmol.name': 'Mármol',
+  'pieceSet.marmol.description': 'Piedra pulida: mármol blanco y negro con vetas doradas.',
+  'pieceSet.neon.name': 'Neón',
+  'pieceSet.neon.description': 'Luces de neón sobre fondo oscuro. Estilo futurista.',
+  'pieceSet.vintage.name': 'Vintage',
+  'pieceSet.vintage.description': 'Marfil envejecido y bronce antiguo, sobre pergamino y cuero.',
+  'pieceSet.hielo.name': 'Hielo',
+  'pieceSet.hielo.description': 'Cristal de hielo y escarcha. Frío y brillante.',
 
   // Tablero
   'board.cancelPromotion': 'Cancelar coronación',

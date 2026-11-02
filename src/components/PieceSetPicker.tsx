@@ -1,12 +1,13 @@
 import React from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
-import { PIECE_SET_META, PieceSetId } from '../pieces/pieceSets';
+import { AnyPieceSetId, PIECE_SET_LIST } from '../pieces/materials';
 import { isPieceSetOwned, pieceSetPrice } from '../pieces/shop';
 import { useProgress } from '../progress/ProgressContext';
 import { usePieceSet } from '../settings/PieceSetContext';
 import { useSettings } from '../settings/SettingsContext';
 import { boardThemes, colors, fonts, radius, space } from '../theme';
+import { SquareTexture } from './SquareTexture';
 import Piece, { PieceColor, PieceType } from './Piece';
 import { StatIcon } from './StatIcon';
 
@@ -28,9 +29,10 @@ export function PieceSetPicker() {
   const { t } = useI18n();
   const { pieceSet, setPieceSet } = usePieceSet();
   const { progress, buyPieceSet } = useProgress();
-  const board = boardThemes[useSettings().settings.boardTheme];
+  const boardTheme = useSettings().settings.boardTheme;
+  const board = boardThemes[boardTheme];
 
-  const choose = (id: PieceSetId, name: string) => {
+  const choose = (id: AnyPieceSetId, name: string) => {
     if (isPieceSetOwned(id, progress.pieceSets)) return setPieceSet(id);
     const price = pieceSetPrice(id);
     if (progress.coins < price) {
@@ -45,7 +47,7 @@ export function PieceSetPicker() {
 
   return (
     <View>
-      {PIECE_SET_META.map((m) => {
+      {PIECE_SET_LIST.map((m) => {
         const selected = m.id === pieceSet;
         const owned = isPieceSetOwned(m.id, progress.pieceSets);
         const price = pieceSetPrice(m.id);
@@ -81,6 +83,7 @@ export function PieceSetPicker() {
                     backgroundColor: i % 2 === 0 ? board.light : board.dark,
                   }}
                 >
+                  <SquareTexture theme={boardTheme} light={i % 2 === 0} size={CELL} seed={i} />
                   <Piece type={p.type} color={p.color} size={CELL} set={m.id} />
                 </View>
               ))}

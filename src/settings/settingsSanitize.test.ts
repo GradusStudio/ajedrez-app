@@ -11,3 +11,4 @@ test('conserva la inglesa', () => assert.equal(sanitizeSettings({ notation: 'en'
 test('idioma inválido vuelve a auto', () => assert.equal(sanitizeSettings({ language: 'xx' as never }).language, 'auto'));
 test('conserva idioma elegido', () => assert.equal(sanitizeSettings({ language: 'de' }).language, 'de'));
 test('tema inválido', () => assert.equal(sanitizeSettings({ boardTheme: 'zzz' as never }).boardTheme, 'verde'));
+test('conserva un tema con textura', () => assert.equal(sanitizeSettings({ boardTheme: 'hielo' }).boardTheme, 'hielo'));

@@ -136,10 +136,15 @@ export const en: Record<MessageKey, string> = {
   'settings.reset.message': 'This erases your lessons, streak, coins, purchased sets, puzzles and games. Settings are kept. This cannot be undone.',
   'settings.reset.confirm': 'Erase',
   'boardTheme.verde': 'Green',
-  'boardTheme.marron': 'Wood',
+  'boardTheme.marron': 'Brown',
   'boardTheme.azul': 'Blue',
   'boardTheme.gris': 'Gray',
   'boardTheme.morado': 'Purple',
+  'boardTheme.madera': 'Wood',
+  'boardTheme.marmol': 'Marble',
+  'boardTheme.neon': 'Neon',
+  'boardTheme.vintage': 'Vintage',
+  'boardTheme.hielo': 'Ice',
 
   // Piezas
   'pieces.back': '‹ Back',
@@ -165,6 +170,16 @@ export const en: Record<MessageKey, string> = {
   'pieceSet.redondeado.description': 'Friendly, modern style. Soft, rounded shapes.',
   'pieceSet.contorneado.name': 'Outlined',
   'pieceSet.contorneado.description': 'Solid pieces with an outer border.',
+  'pieceSet.madera.name': 'Wood',
+  'pieceSet.madera.description': 'Light and dark wooden pieces. Warm and classic.',
+  'pieceSet.marmol.name': 'Marble',
+  'pieceSet.marmol.description': 'Polished stone: white and black marble with golden veins.',
+  'pieceSet.neon.name': 'Neon',
+  'pieceSet.neon.description': 'Neon lights on a dark background. Futuristic style.',
+  'pieceSet.vintage.name': 'Vintage',
+  'pieceSet.vintage.description': 'Aged ivory and antique bronze, on parchment and leather.',
+  'pieceSet.hielo.name': 'Ice',
+  'pieceSet.hielo.description': 'Ice crystal and frost. Cold and shiny.',
 
   // Tablero
   'board.cancelPromotion': 'Cancel promotion',

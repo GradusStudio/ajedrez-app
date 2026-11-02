@@ -136,10 +136,15 @@ export const de: Record<MessageKey, string> = {
   'settings.reset.message': 'Gelöscht werden deine Lektionen, Serie, Münzen, gekauften Sets, Puzzles und Partien. Die Einstellungen bleiben. Das lässt sich nicht rückgängig machen.',
   'settings.reset.confirm': 'Löschen',
   'boardTheme.verde': 'Grün',
-  'boardTheme.marron': 'Holz',
+  'boardTheme.marron': 'Braun',
   'boardTheme.azul': 'Blau',
   'boardTheme.gris': 'Grau',
   'boardTheme.morado': 'Lila',
+  'boardTheme.madera': 'Holz',
+  'boardTheme.marmol': 'Marmor',
+  'boardTheme.neon': 'Neon',
+  'boardTheme.vintage': 'Vintage',
+  'boardTheme.hielo': 'Eis',
 
   // Piezas
   'pieces.back': '‹ Zurück',
@@ -165,6 +170,16 @@ export const de: Record<MessageKey, string> = {
   'pieceSet.redondeado.description': 'Freundlich und modern. Weiche, runde Formen.',
   'pieceSet.contorneado.name': 'Umrandet',
   'pieceSet.contorneado.description': 'Massive Figuren mit Außenrand.',
+  'pieceSet.madera.name': 'Holz',
+  'pieceSet.madera.description': 'Helle und dunkle Holzfiguren. Warm und klassisch.',
+  'pieceSet.marmol.name': 'Marmor',
+  'pieceSet.marmol.description': 'Polierter Stein: weißer und schwarzer Marmor mit goldenen Adern.',
+  'pieceSet.neon.name': 'Neon',
+  'pieceSet.neon.description': 'Neonlichter auf dunklem Grund. Futuristischer Stil.',
+  'pieceSet.vintage.name': 'Vintage',
+  'pieceSet.vintage.description': 'Gealtertes Elfenbein und antike Bronze auf Pergament und Leder.',
+  'pieceSet.hielo.name': 'Eis',
+  'pieceSet.hielo.description': 'Eiskristall und Frost. Kalt und glänzend.',
 
   // Tablero
   'board.cancelPromotion': 'Umwandlung abbrechen',

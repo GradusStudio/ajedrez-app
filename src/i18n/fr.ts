@@ -136,10 +136,15 @@ export const fr: Record<MessageKey, string> = {
   'settings.reset.message': 'Tes leçons, ta série, tes jetons, tes sets achetés, tes puzzles et tes parties seront effacés. Les réglages sont conservés. Impossible de revenir en arrière.',
   'settings.reset.confirm': 'Effacer',
   'boardTheme.verde': 'Vert',
-  'boardTheme.marron': 'Bois',
+  'boardTheme.marron': 'Marron',
   'boardTheme.azul': 'Bleu',
   'boardTheme.gris': 'Gris',
   'boardTheme.morado': 'Violet',
+  'boardTheme.madera': 'Bois',
+  'boardTheme.marmol': 'Marbre',
+  'boardTheme.neon': 'Néon',
+  'boardTheme.vintage': 'Vintage',
+  'boardTheme.hielo': 'Glace',
 
   // Piezas
   'pieces.back': '‹ Retour',
@@ -165,6 +170,16 @@ export const fr: Record<MessageKey, string> = {
   'pieceSet.redondeado.description': 'Style moderne et amical. Formes douces et arrondies.',
   'pieceSet.contorneado.name': 'Contour',
   'pieceSet.contorneado.description': 'Pièces pleines avec un bord extérieur.',
+  'pieceSet.madera.name': 'Bois',
+  'pieceSet.madera.description': 'Pièces en bois clair et foncé. Chaleureux et classique.',
+  'pieceSet.marmol.name': 'Marbre',
+  'pieceSet.marmol.description': 'Pierre polie : marbre blanc et noir aux veines dorées.',
+  'pieceSet.neon.name': 'Néon',
+  'pieceSet.neon.description': 'Lumières néon sur fond sombre. Style futuriste.',
+  'pieceSet.vintage.name': 'Vintage',
+  'pieceSet.vintage.description': 'Ivoire vieilli et bronze ancien, sur parchemin et cuir.',
+  'pieceSet.hielo.name': 'Glace',
+  'pieceSet.hielo.description': 'Cristal de glace et givre. Froid et brillant.',
 
   // Tablero
   'board.cancelPromotion': 'Annuler la promotion',

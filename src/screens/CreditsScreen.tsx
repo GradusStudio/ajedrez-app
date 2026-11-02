@@ -31,6 +31,16 @@ const credits = (t: Translate): Credit[] => [
     ],
   },
   {
+    name: 'Maia · Lc0',
+    what: t('credits.maia.what'),
+    license: 'GNU GPL v3',
+    links: [
+      { label: t('credits.maia.code'), url: 'https://github.com/CSSLab/maia-chess' },
+      { label: t('credits.lc0.code'), url: 'https://github.com/LeelaChessZero/lc0' },
+      { label: t('credits.gplText'), url: 'https://www.gnu.org/licenses/gpl-3.0.html' },
+    ],
+  },
+  {
     name: t('credits.lichess.name'),
     what: t('credits.lichess.what'),
     license: t('credits.license.cc0'),
@@ -60,7 +70,7 @@ const credits = (t: Translate): Credit[] => [
   },
 ];
 
-// Créditos y licencias (mapa-de-pantallas.md, 2.13). Obligatoria para cumplir la GPL de Stockfish.
+// Créditos y licencias (mapa-de-pantallas.md, 2.13). Obligatoria para cumplir la GPL de Stockfish y de Maia.
 export function CreditsScreen({ onBack }: { onBack: () => void }) {
   const { t } = useI18n();
   return (

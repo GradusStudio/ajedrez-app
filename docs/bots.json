@@ -42,12 +42,9 @@
       "trait": "Mueve las piezas con buena intención, pero se olvida de protegerlas. Toma lo que le dejas suelto y cae en mates simples.",
       "teaches": "Capturar piezas sin protección y dar mates básicos.",
       "engine": {
-        "type": "human-like",
-        "depth": 1,
-        "multipv": 15,
-        "temperature": 160,
-        "blunderRate": 0.26,
-        "maxBlunder": 825,
+        "type": "maia",
+        "net": 1100,
+        "temperature": 2.0,
         "thinkMs": [
           400,
           1200
@@ -94,12 +91,10 @@
       "trait": "Protege todo y casi nunca ataca. Cambia piezas cuando puede y espera tu error.",
       "teaches": "Paciencia: cómo romper una posición sólida sin arriesgar de más.",
       "engine": {
-        "type": "human-like",
-        "depth": 1,
-        "multipv": 12,
-        "temperature": 110,
-        "blunderRate": 0.18,
-        "maxBlunder": 650,
+        "type": "maia",
+        "net": 1100,
+        "temperature": 2.35,
+        "minProb": 0.01,
         "thinkMs": [
           500,
           1500
@@ -148,12 +143,10 @@
       "trait": "Busca trampas desde la apertura y ataca f7. Si no caes, se queda sin plan.",
       "teaches": "Defenderse de amenazas tempranas y reconocer trampas conocidas.",
       "engine": {
-        "type": "human-like",
-        "depth": 2,
-        "multipv": 10,
-        "temperature": 90,
-        "blunderRate": 0.13,
-        "maxBlunder": 550,
+        "type": "maia",
+        "net": 1100,
+        "temperature": 1.5,
+        "minProb": 0.01,
         "thinkMs": [
           500,
           1500
@@ -204,12 +197,9 @@
       "trait": "Sacrifica peones por iniciativa y ataca al rey. Se debilita si te defiendes con calma.",
       "teaches": "Defenderse bajo presión y contraatacar.",
       "engine": {
-        "type": "human-like",
-        "depth": 2,
-        "multipv": 10,
-        "temperature": 70,
-        "blunderRate": 0.1,
-        "maxBlunder": 500,
+        "type": "maia",
+        "net": 1100,
+        "temperature": 0.7,
         "thinkMs": [
           600,
           1800
@@ -261,9 +251,9 @@
       "trait": "Juega las aperturas como en los libros y castiga cada error de principios.",
       "teaches": "Los principios de apertura: centro, desarrollo y enroque.",
       "engine": {
-        "type": "stockfish-elo",
-        "uciElo": 1350,
-        "multipv": 3,
+        "type": "maia",
+        "net": 1100,
+        "temperature": 0.4,
         "thinkMs": [
           700,
           2000
@@ -314,9 +304,9 @@
       "trait": "Evita las tácticas, mejora sus piezas y busca finales con ventaja pequeña.",
       "teaches": "Estructura de peones, casillas débiles y planes a largo plazo.",
       "engine": {
-        "type": "stockfish-elo",
-        "uciElo": 1500,
-        "multipv": 3,
+        "type": "maia",
+        "net": 1500,
+        "temperature": 0.45,
         "thinkMs": [
           800,
           2200
@@ -368,9 +358,13 @@
       "trait": "Defensa sólida y paciencia infinita. Concede espacio, pero casi no deja debilidades.",
       "teaches": "Atacar una posición sólida con paciencia y buenos cambios.",
       "engine": {
-        "type": "stockfish-elo",
-        "uciElo": 1650,
-        "multipv": 3,
+        "type": "maia",
+        "net": 1500,
+        "temperature": 0.2,
+        "safety": {
+          "maxLoss": 500,
+          "depth": 8
+        },
         "thinkMs": [
           900,
           2500
@@ -421,9 +415,13 @@
       "trait": "Calcula varias jugadas por delante. Castiga cualquier pieza sin protección.",
       "teaches": "Ver tácticas: horquillas, clavadas y ataques dobles, antes de que lleguen.",
       "engine": {
-        "type": "stockfish-elo",
-        "uciElo": 1800,
-        "multipv": 3,
+        "type": "maia",
+        "net": 1900,
+        "temperature": 0.3,
+        "safety": {
+          "maxLoss": 400,
+          "depth": 8
+        },
         "thinkMs": [
           1000,
           2800
@@ -475,9 +473,13 @@
       "trait": "Cambia piezas con precisión y juega los finales con una técnica muy fina.",
       "teaches": "Técnica de finales y conversión de ventajas pequeñas.",
       "engine": {
-        "type": "stockfish-elo",
-        "uciElo": 1950,
-        "multipv": 2,
+        "type": "maia",
+        "net": 1900,
+        "temperature": 0.2,
+        "safety": {
+          "maxLoss": 275,
+          "depth": 8
+        },
         "thinkMs": [
           1200,
           3000
@@ -529,9 +531,13 @@
       "trait": "Juega con precisión casi total y usa todo su repertorio. Es el desafío final.",
       "teaches": "Jugar sin errores contra un rival muy exacto.",
       "engine": {
-        "type": "stockfish-elo",
-        "uciElo": 2200,
-        "multipv": 1,
+        "type": "maia",
+        "net": 1900,
+        "temperature": 0.2,
+        "safety": {
+          "maxLoss": 150,
+          "depth": 8
+        },
         "thinkMs": [
           1500,
           3500

@@ -41,6 +41,7 @@
   "scripts": {
     "build:avatars": "node scripts/build-avatars.js",
     "build:engine": "node scripts/build-engine.js",
+    "build:maia": "node scripts/build-maia.js",
     "build:puzzles": "node scripts/build-puzzles.js",
     "build:sounds": "node scripts/build-sounds.js",
     "start": "expo start",

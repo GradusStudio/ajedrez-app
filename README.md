@@ -1,6 +1,6 @@
 # Gradus
 
-Gradus es una app gratuita para Android para aprender ajedrez: una ruta de 41 lecciones (de cómo se mueven las piezas a conceptos avanzados), 28 cursos de aperturas, 50.000 puzzles, bots con personalidad que juegan las aperturas enseñadas y un tablero de análisis con Stockfish.
+Gradus es una app gratuita para Android para aprender ajedrez: una ruta de 41 lecciones (de cómo se mueven las piezas a conceptos avanzados), 28 cursos de aperturas, 50.000 puzzles, bots con personalidad que juegan las aperturas enseñadas (y eligen sus jugadas como personas, con Maia) y un tablero de análisis con Stockfish.
 
 El nombre viene del latín *gradus*, «paso»: se aprende de a un paso, como en el clásico método *Gradus ad Parnassum*.
 
@@ -20,12 +20,13 @@ Después, escanea el código QR con Expo Go.
 Los archivos generados ya están en el repositorio. Para volver a crearlos:
 
 - `npm run build:engine`: copia Stockfish desde el paquete `stockfish` de npm (ver `docs/motor.md`).
+- `npm run build:maia`: baja las redes de Maia (si faltan) y genera los archivos que usa la app (ver `docs/maia.md`).
 - `npm run build:puzzles -- <ruta a lichess_db_puzzle.csv.zst>`: elige los puzzles de la base de Lichess (ver `docs/puzzles.md`).
 - `npm run build:sounds`: genera los sonidos.
 
 ## Documentación
 
-En `docs/`: diseño, formato de las lecciones, mapa de pantallas, bots, motor y puzzles.
+En `docs/`: diseño, formato de las lecciones, mapa de pantallas, bots, motor, Maia y puzzles.
 
 ## Licencia
 
@@ -42,6 +43,8 @@ La licencia cubre el código y el contenido propio de la app: lecciones, cursos 
 | Componente | Licencia | Origen |
 |---|---|---|
 | Stockfish 19 (Stockfish.js 19.0.1), sin modificar, en `src/engine/stockfish/` | GNU GPL v3 | https://github.com/official-stockfish/Stockfish · https://github.com/nmrugg/stockfish.js |
+| Maia 1100, 1500 y 1900 (redes de los bots), sin modificar, en `src/engine/maia/redes/` | GNU GPL v3 | https://github.com/CSSLab/maia-chess |
+| Tablas y cálculo de la red de Lc0, en `src/engine/maia/` | GNU GPL v3 | https://github.com/LeelaChessZero/lc0 |
 | Puzzles de Lichess (`src/puzzles/puzzles.json`) | CC0 (dominio público) | https://database.lichess.org/#puzzles |
 | chess.js | BSD-2-Clause | https://github.com/jhlywa/chess.js |
 | Fuente Nunito | SIL Open Font License 1.1 | https://fonts.google.com/specimen/Nunito |

@@ -17,7 +17,7 @@ Datos para la app en `bots.json`. Voz y colores: ver `design.md`.
 | 9 | Maestro Ivo · El finalista | 1950 | posicional | Técnica de finales y conversión de ventajas pequeñas. |
 | 10 | Ada · La máquina | 2200 | equilibrado | Jugar sin errores contra un rival muy exacto. |
 
-Los niveles son objetivos, no medidos: hay que calibrarlos jugando.
+Los niveles se calibraron con partidas entre bots (ver `maia.md`, «Calibración»); falta confirmarlos con partidas reales.
 
 ## 2. Fichas
 
@@ -165,12 +165,17 @@ Reglas: sin exclamaciones, sin datos de ajedrez y nunca retan. Quién enseña qu
 
 ## 3. Cómo se logra cada nivel
 
-| Tipo | Bots | Cómo funciona |
-|---|---|---|
-| `human-like` | Pipo, Lola, Tomás, Valentina (500 a 1200) | Stockfish con poca profundidad y varias jugadas candidatas (MultiPV). Con cierta probabilidad (`blunderRate`) elige una jugada peor que la mejor. Los errores deben ser humanos: piezas sin protección y tácticas que no ve, no jugadas absurdas |
-| `stockfish-elo` | Don Ramiro a Ada (1350 a 2200) | Stockfish con `UCI_LimitStrength` y `UCI_Elo`. Confirma el rango mínimo de `UCI_Elo` en la versión que uses: Stockfish no baja de cierto nivel, por eso los más débiles usan el tipo anterior |
+Desde el 2-11-2026 todos los bots juegan con **Maia** (`"type": "maia"`), una red neuronal entrenada con partidas humanas de Lichess que elige la jugada que haría una persona de ese nivel. Detalle, motivos y calibración en `maia.md`.
 
-Los valores `depth`, `multipv`, `blunderRate` y `thinkMs` del JSON son un punto de partida para ajustar.
+| Campo | Qué hace |
+|---|---|
+| `net` | Red de Maia: 1100, 1500 o 1900 (rating de Lichess que imita). |
+| `temperature` | Cómo sortea entre las jugadas que haría una persona: 1 = tal cual; menos = más fiel a la favorita (más fuerte); más = más errores; 0 = siempre la favorita. |
+| `minProb` | Deja afuera las jugadas que casi nadie de ese nivel jugaría (más fuerte). |
+| `safety` | Solo Bruno, Sofía, Ivo y Ada: Stockfish descarta las candidatas de Maia que pierden más de `maxLoss` centipeones. |
+| `thinkMs` | Cuánto "piensa" cada jugada (al azar entre los dos valores). |
+
+Los tipos anteriores (`human-like` y `stockfish-elo`, con Stockfish) siguen funcionando en `brain.ts` por si se quiere volver a ellos; sus valores están en la sección 4.1.
 
 ### Estilo
 
@@ -192,7 +197,9 @@ Cada bot sigue las líneas de `aperturas-v3.json` mientras el rival las respete.
 
 Las líneas están validadas como jugadas legales, pero no evaluadas con motor (Albin y Catalana son las menos seguras).
 
-## 4.1 Cómo quedó en la app (hito 4)
+## 4.1 Cómo quedó en la app (hito 4; motor anterior)
+Esta sección describe los bots con Stockfish, antes de Maia. Libro, tiempo, frases, tablas y modo práctica siguen igual con Maia; las frases y las tablas usan la evaluación de Stockfish sobre la jugada de Maia.
+
 Código en `src/bots/` (`book.ts` y `brain.ts`). El motor está descrito en `motor.md`.
 - **Libro:** el bot juega la siguiente jugada de alguna línea de su repertorio (las de los pasos `line` de `aperturas-v3.json`) que coincida con la partida. Si hay varias, elige al azar. `book` limita cuántas jugadas (de los dos bandos) sigue: corto 6, medio 12, largo toda la línea.
 - **human-like** (Pipo a Valentina): Stockfish a profundidad `depth` con `multipv` candidatas (`pickHumanLike` en `brain.ts`).
@@ -227,14 +234,14 @@ Tomás quedó algo cerca de Valentina. Los bots son muy sensibles a cambios chic
   - El bot es el de menor nivel que juega esa apertura. Si ninguno la juega, Don Ramiro.
   - Las líneas de trampas (por ejemplo, la lección 3 de la Italiana) también forman parte del libro: a veces el bot "cae" en la trampa a propósito.
 - **Sin implementar todavía:**
-  - El `bias` de estilo: los bots no prefieren todavía capturas, jugadas sólidas, etc.
+  - El `bias` de estilo: los bots no prefieren todavía capturas, jugadas sólidas, etc. (con Maia ya juegan con estilo humano propio de su nivel).
   - Deshacer jugadas.
   - Que el bot se rinda.
   - Ajustar la calibración con partidas reales (ver "Calibración").
 
-## 5. Maia (opcional)
+## 5. Maia
 
-Maia imita a jugadores humanos de 1100 a 1900 y encajaría con los niveles intermedios. Tiene el problema técnico de que necesita Lc0 para ejecutarse, algo más pesado en un celular. Recomendación: lanzar con Stockfish y evaluar Maia después, si se pueden ejecutar sus redes dentro de la app.
+Implementada el 2-11-2026: ver `maia.md`.
 
 ## 6. Decisiones pendientes
 

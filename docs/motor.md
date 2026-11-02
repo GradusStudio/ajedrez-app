@@ -7,6 +7,8 @@
   - Aunque es más débil que el Stockfish completo, sigue siendo muchísimo más fuerte que cualquier persona.
 - **Licencia: GPL v3.** El texto está en `src/engine/stockfish/COPYING.txt`. El código fuente está en https://github.com/nmrugg/stockfish.js y https://github.com/official-stockfish/Stockfish.
 
+Desde el 2-11-2026 los bots eligen sus jugadas con **Maia** (ver `maia.md`). Stockfish sigue en el análisis, la revisión de partidas, las prácticas de las lecciones y, en las partidas contra bots, para evaluar las jugadas (frases y tablas) y como seguro de los bots fuertes.
+
 ## Cómo está armado
 ```
 scripts/build-engine.js        genera stockfishAssets.ts desde node_modules/stockfish (npm run build:engine)
@@ -14,7 +16,7 @@ src/engine/stockfish/          archivos de Stockfish SIN MODIFICAR (js como text
 src/engine/engineHtml.ts       página del WebView: arma el motor en un Worker
 src/engine/EngineView.tsx      WebView invisible; se monta en la pantalla de partida
 src/engine/uci.ts              UciEngine: habla UCI por texto (search, MultiPV, UCI_Elo)
-src/bots/                      lógica de los bots (libro + motor); no conoce el WebView
+src/bots/                      lógica de los bots (libro + Maia + Stockfish); no conoce el WebView
 ```
 
 - **Separación:** Stockfish corre en un Worker dentro del WebView, que es otro motor de JavaScript distinto al de la app. La app y el motor solo se pasan **texto UCI**: `position…`, `go…`, `bestmove…`. Ningún código de la app se mezcla con el de Stockfish, y sus archivos van tal cual vienen en el paquete.

@@ -1,10 +1,28 @@
 import botsRaw from './bots.json';
+import type { MaiaNetId } from '../engine/maia/nets';
 
 // Tipos de bots.json (copia de docs/bots.json). Ver docs/bots.md.
 
 export type BotStyle = 'tranquilo' | 'equilibrado' | 'agresivo' | 'posicional';
 
 export type BotEngine =
+  | {
+      /** Maia: una red entrenada con partidas humanas elige como una persona de ese nivel (docs/maia.md). */
+      type: 'maia';
+      /** Red: imita a jugadores de Lichess de ese rating (1100, 1500 o 1900). */
+      net: MaiaNetId;
+      /**
+       * Cómo sortea entre las jugadas que haría una persona: 1 = tal cual juegan las personas de ese nivel;
+       * menos = más fiel a la jugada favorita (más fuerte); más = más dispersa (más errores); 0 = siempre la favorita.
+       */
+      temperature: number;
+      /** Deja afuera las jugadas que casi nadie de ese nivel jugaría (probabilidad menor a esta). */
+      minProb?: number;
+      /** Seguro de Stockfish (bots fuertes): descarta las candidatas de Maia que pierden más de `maxLoss` centipeones. */
+      safety?: { maxLoss: number; depth: number; tries?: number };
+      thinkMs: [number, number];
+      bias?: string;
+    }
   | {
       type: 'human-like';
       depth: number;
@@ -29,6 +47,11 @@ export type Bot = {
   trait: string;
   teaches: string;
   engine: BotEngine;
+  /**
+   * Motor de respaldo con Stockfish (el que tenía el bot antes de Maia): se usa si Maia no arranca o se
+   * cae (por ejemplo, un WebView de Android demasiado viejo para descomprimir la red). Ver docs/maia.md.
+   */
+  fallback?: Exclude<BotEngine, { type: 'maia' }>;
   repertoire: { white: string[]; black: string[] };
   book: 'corto' | 'medio' | 'largo';
   lines: { greeting: string; onGoodMove: string; onBlunder: string; onWin: string; onLose: string };

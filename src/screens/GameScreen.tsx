@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { detectOpening } from '../bots/book';
-import { thinkMove } from '../bots/brain';
+import { enginesFor, thinkMove } from '../bots/brain';
 import { movesText, resolveNotation } from '../chess/notation';
 import { Board, BoardMove } from '../components/Board';
 import { BotAvatar } from '../components/BotAvatar';
@@ -12,6 +12,8 @@ import { StatIcon } from '../components/StatIcon';
 import { Bot } from '../data/bots';
 import { OpeningCourse } from '../data/lessonTypes';
 import { EngineView } from '../engine/EngineView';
+import { MaiaEngine } from '../engine/maia/maiaEngine';
+import { MaiaView } from '../engine/maia/MaiaView';
 import { UciEngine } from '../engine/uci';
 import { useFeedback } from '../feedback/feedback';
 import { useProgress } from '../progress/ProgressContext';
@@ -56,6 +58,12 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const [engine, setEngine] = useState<UciEngine | null>(null);
   const [engineError, setEngineError] = useState<string | null>(null);
   const [engineKey, setEngineKey] = useState(0);
+  const [maia, setMaia] = useState<MaiaEngine | null>(null);
+  // Maia no arrancó o se cayó y el bot sigue con su motor de respaldo de Stockfish (bots.ts, `fallback`).
+  const [maiaFailed, setMaiaFailed] = useState(false);
+  // Motores del bot: Maia y, para el seguro de los más fuertes (o un bot sin Maia), Stockfish.
+  const needs = enginesFor(bot);
+  const ready = (!needs.maia || !!maia || maiaFailed) && (!needs.stockfish || !!engine);
   const [speech, setSpeech] = useState(
     practiceCourse ? t('game.practiceSpeech', { name: practiceCourse.name }) : bot.lines.greeting
   );
@@ -130,9 +138,9 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
 
   // Turno del bot.
   useEffect(() => {
-    if (!engine || result || chess.turn() !== botColor) return;
+    if (!ready || result || chess.turn() !== botColor) return;
     let cancelled = false;
-    thinkMove(engine, bot, { fen: chess.fen(), history: uciHistory(), botColor, practiceCourseId: practiceCourse?.id }).then(
+    thinkMove({ maia, stockfish: engine }, bot, { fen: chess.fen(), history: uciHistory(), botColor, practiceCourseId: practiceCourse?.id }).then(
       (move) => {
         if (cancelled || !alive.current) return;
         if (!move.fromBook && inBook.current) {
@@ -167,11 +175,12 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
     return () => {
       cancelled = true;
     };
-    // checkEnd, sync y uciHistory leen `chess`, que no cambia; el turno depende de `fen`.
-  }, [engine, fen, result]);
+    // checkEnd, sync y uciHistory leen `chess`, que no cambia; el turno depende de `fen`. `ready` pasa a true
+    // cuando ya están los motores del bot (`maia` y `engine`), y no cambian mientras dura.
+  }, [ready, fen, result]);
 
   const onUserMove = (m: BoardMove) => {
-    if (result || !engine || chess.turn() !== userColor) return;
+    if (result || !ready || chess.turn() !== userColor) return;
     try {
       chess.move({ from: m.from, to: m.to, promotion: m.promotion });
     } catch {
@@ -224,11 +233,11 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
     return () => sub.remove();
   });
 
-  const userTurn = !!engine && !result && chess.turn() === userColor;
-  const thinking = !!engine && !result && chess.turn() === botColor;
+  const userTurn = ready && !result && chess.turn() === userColor;
+  const thinking = ready && !result && chess.turn() === botColor;
   const status = engineError
     ? t('game.status.engineDown')
-    : !engine
+    : !ready
       ? t('game.status.preparing', { name: bot.name })
       : result
         ? t('game.status.over')
@@ -238,9 +247,21 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
 
   return (
     <View style={styles.screen}>
-      {!engineError && (
+      {!engineError && !maiaFailed && bot.engine.type === 'maia' && (
+        <MaiaView
+          key={`maia-${engineKey}`}
+          net={bot.engine.net}
+          onReady={setMaia}
+          onError={(msg) => {
+            setMaia(null);
+            if (bot.fallback) setMaiaFailed(true);
+            else setEngineError(msg);
+          }}
+        />
+      )}
+      {!engineError && needs.stockfish && (
         <EngineView
-          key={engineKey}
+          key={`sf-${engineKey}`}
           onReady={setEngine}
           onError={(msg) => {
             setEngineError(msg);
@@ -295,6 +316,8 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
               onPress={() => {
                 setEngineError(null);
                 setEngine(null);
+                setMaia(null);
+                setMaiaFailed(false);
                 setEngineKey((k) => k + 1);
               }}
               style={{ marginTop: space.sm }}

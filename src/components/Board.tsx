@@ -36,6 +36,10 @@ type Props = {
   highlight?: string[];
   /** Flechas como pares origen+destino: ['c4f7']. */
   arrows?: string[];
+  /** Flechas con color propio (revisión de partidas): { move: 'c4f7', color: 'rgba(...)' }. */
+  colorArrows?: { move: string; color: string }[];
+  /** Insignia redonda en la esquina de una casilla (calidad de la jugada en la revisión). */
+  badge?: { square: string; color: string; label: string };
   /** Muestra los destinos legales de la pieza en esa casilla (explicaciones). */
   showMovesFrom?: string;
   /** Casillas elegidas por el usuario (ejercicio de tocar casillas). */
@@ -44,6 +48,7 @@ type Props = {
   onSquarePress?: (square: Square) => void;
 };
 
+const YELLOW_ARROW = 'rgba(247, 198, 49, 0.9)';
 const FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 /** Destinos legales de una pieza; si no le toca mover, se prueba con el turno cambiado. */
@@ -114,7 +119,7 @@ function CapturedPiece({ type, color, size }: { type: PieceType; color: PieceCol
   );
 }
 
-function Arrows({ arrows, sq, orientation }: { arrows: string[]; sq: number; orientation: 'w' | 'b' }) {
+function Arrows({ arrows, sq, orientation }: { arrows: { move: string; color: string }[]; sq: number; orientation: 'w' | 'b' }) {
   const center = (s: string) => {
     const file = s.charCodeAt(0) - 97;
     const rank = Number(s[1]);
@@ -122,10 +127,9 @@ function Arrows({ arrows, sq, orientation }: { arrows: string[]; sq: number; ori
     const r = orientation === 'w' ? 8 - rank : rank - 1;
     return { x: (c + 0.5) * sq, y: (r + 0.5) * sq };
   };
-  const color = 'rgba(247, 198, 49, 0.9)';
   return (
     <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width={sq * 8} height={sq * 8}>
-      {arrows.map((a, i) => {
+      {arrows.map(({ move: a, color }, i) => {
         const from = center(a.slice(0, 2));
         const to = center(a.slice(2, 4));
         const dx = to.x - from.x;
@@ -157,6 +161,37 @@ function Arrows({ arrows, sq, orientation }: { arrows: string[]; sq: number; ori
   );
 }
 
+/** Insignia en la esquina superior derecha de una casilla. */
+function SquareBadge({ badge, sq, orientation }: { badge: { square: string; color: string; label: string }; sq: number; orientation: 'w' | 'b' }) {
+  const file = badge.square.charCodeAt(0) - 97;
+  const rank = Number(badge.square[1]);
+  const c = orientation === 'w' ? file : 7 - file;
+  const r = orientation === 'w' ? 8 - rank : rank - 1;
+  const size = Math.max(18, sq * 0.42);
+  const left = Math.min((c + 1) * sq - size * 0.7, sq * 8 - size);
+  return (
+    <View
+      pointerEvents="none"
+      style={{
+        position: 'absolute',
+        left,
+        top: Math.max(r * sq - size * 0.3, 0),
+        width: size,
+        height: size,
+        borderRadius: size / 2,
+        backgroundColor: badge.color,
+        borderWidth: 1.5,
+        borderColor: '#FFFFFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 15,
+      }}
+    >
+      <Text style={{ color: '#FFFFFF', fontWeight: '900', fontSize: size * 0.5 }}>{badge.label}</Text>
+    </View>
+  );
+}
+
 export function Board({
   fen,
   orientation = 'w',
@@ -165,6 +200,8 @@ export function Board({
   onMove,
   highlight = [],
   arrows = [],
+  colorArrows = [],
+  badge,
   showMovesFrom,
   pickedSquares = [],
   onSquarePress,
@@ -500,8 +537,15 @@ export function Board({
     <View style={{ width: boardPx, height: boardPx, alignSelf: 'center' }}>
       <View style={[styles.board, { width: boardPx, height: boardPx }]}>
         {rows}
-        {arrows.length > 0 && <Arrows arrows={arrows} sq={sq} orientation={orientation} />}
+        {(arrows.length > 0 || colorArrows.length > 0) && (
+          <Arrows
+            arrows={[...arrows.map((move) => ({ move, color: YELLOW_ARROW })), ...colorArrows]}
+            sq={sq}
+            orientation={orientation}
+          />
+        )}
       </View>
+      {badge && <SquareBadge badge={badge} sq={sq} orientation={orientation} />}
       {draggedCell && (
         <Animated.View
           pointerEvents="none"

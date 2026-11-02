@@ -42,3 +42,5 @@ yarn-error.*
 
 # originales de las expresiones de los bots (ver CLAUDE.md)
 assets/fuente/expresiones/
+
+.superpowers/

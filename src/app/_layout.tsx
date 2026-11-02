@@ -83,6 +83,9 @@ function AppStack() {
       <Stack.Screen name="piezas" />
       <Stack.Screen name="puzzle" />
       <Stack.Screen name="ajustes" />
+      <Stack.Screen name="analisis-libre" />
+      <Stack.Screen name="importar-partida" />
+      <Stack.Screen name="revision" />
       <Stack.Screen name="creditos" />
       <Stack.Screen name="bienvenida" options={{ gestureEnabled: false, animation: 'fade' }} />
       {/* Sin gesto de volver: abandonar la partida pasa por la confirmación */}

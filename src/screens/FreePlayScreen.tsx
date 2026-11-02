@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Animated,
-  Easing,
   Pressable,
   ScrollView,
   StatusBar as RNStatusBar,
@@ -9,7 +7,6 @@ import {
   Switch,
   Text,
   View,
-  useWindowDimensions,
 } from 'react-native';
 import { useIsFocused } from 'expo-router';
 import { Chess, Square } from 'chess.js';
@@ -19,7 +16,9 @@ import { useSettings } from '../settings/SettingsContext';
 import { Board, BoardMove } from '../components/Board';
 import { Button3D } from '../components/Button3D';
 import { EngineView } from '../engine/EngineView';
-import { AnalysisUpdate, EngineLine, UciEngine } from '../engine/uci';
+import { EvalBar } from '../components/EvalBar';
+import { formatScore, whiteScore } from '../engine/evalFormat';
+import { AnalysisUpdate, UciEngine } from '../engine/uci';
 import { colors, fonts, radius, space } from '../theme';
 
 type LastMove = { from: Square; to: Square } | null;
@@ -36,24 +35,6 @@ function statusText(chess: Chess, t: Translate): string {
   if (chess.isDraw()) return t('analysis.draw');
   if (chess.isCheck()) return t(white ? 'analysis.checkWhite' : 'analysis.checkBlack');
   return t(white ? 'common.whiteToMove' : 'common.blackToMove');
-}
-
-/** Evaluación desde el punto de vista de las blancas (el motor la da para el bando que mueve). */
-const whiteScore = (line: EngineLine, turn: 'w' | 'b') => (turn === 'w' ? line.score : -line.score);
-
-const isMate = (score: number) => Math.abs(score) >= 9000;
-
-/** "+1,3", "−0,4", "M3" (mate de las blancas en 3), "−M2" (mate de las negras en 2). `decimal` es el separador del idioma. */
-function formatScore(score: number, decimal: string): string {
-  if (isMate(score)) return `${score > 0 ? '' : '−'}M${10000 - Math.abs(score)}`;
-  const pawns = (Math.abs(score) / 100).toFixed(1).replace('.', decimal);
-  return score > 0 ? `+${pawns}` : score < 0 ? `−${pawns}` : `0${decimal}0`;
-}
-
-/** Parte de la barra que es blanca (0 a 1). Misma curva que Lichess: ±4 peones ≈ 90 %. */
-function whiteShare(score: number): number {
-  if (isMate(score)) return score > 0 ? 1 : 0;
-  return 1 / (1 + Math.exp(-0.00368208 * score));
 }
 
 /** Variante en notación, numerada desde la posición: "12… Cf6 13. e5 Cd5". */
@@ -79,34 +60,7 @@ function pvText(fen: string, pv: string[], notation: Notation): { first: string;
   return { first: parts[0] ?? '', rest: parts.slice(1).join(' ') };
 }
 
-/** Barra de evaluación: blanco a la izquierda, negro a la derecha; se desliza al cambiar. */
-function EvalBar({ score, decimal }: { score: number | null; decimal: string }) {
-  const { t } = useI18n();
-  const share = score === null ? 0.5 : whiteShare(score);
-  const [w] = useState(() => new Animated.Value(share));
-  useEffect(() => {
-    Animated.timing(w, { toValue: share, duration: 350, easing: Easing.out(Easing.cubic), useNativeDriver: false }).start();
-  }, [w, share]);
-  const label = score === null ? '' : formatScore(score, decimal);
-  const whiteAhead = score === null || score >= 0;
-  // Mismo ancho que el tablero (Board calcula su tamaño igual).
-  const { width } = useWindowDimensions();
-  const boardPx = Math.floor(Math.min(width - 32, 480) / 8) * 8;
-  return (
-    <View style={[styles.bar, { width: boardPx }]} accessibilityLabel={label ? t('analysis.evalLabel', { score: label }) : t('analysis.evalPending')}>
-      <Animated.View
-        style={[styles.barWhite, { width: w.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }) }]}
-      />
-      {!!label && (
-        <Text style={[styles.barLabel, whiteAhead ? { left: 8, color: '#262421' } : { right: 8, color: '#FFFFFF' }]}>
-          {label}
-        </Text>
-      )}
-    </View>
-  );
-}
-
-export function FreePlayScreen() {
+export function FreePlayScreen({ onBack }: { onBack?: () => void } = {}) {
   const { settings } = useSettings();
   const { language, t } = useI18n();
   const notation = resolveNotation(settings.notation, language);
@@ -196,6 +150,11 @@ export function FreePlayScreen() {
       {engineOn && !engineError && <EngineView key={engineKey} onReady={setEngine} onError={setEngineError} />}
 
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+        {onBack && (
+          <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('analysisMenu.title')} hitSlop={12}>
+            <Text style={styles.back}>{t('analysisMenu.back')}</Text>
+          </Pressable>
+        )}
         <Text style={styles.title}>{t('analysis.title')}</Text>
         <Text style={styles.subtitle}>{t('analysis.subtitle')}</Text>
 
@@ -287,19 +246,9 @@ export function FreePlayScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
+  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.md },
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2 },
-  bar: {
-    height: 22,
-    borderRadius: radius.bar,
-    backgroundColor: '#403D39',
-    overflow: 'hidden',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    marginBottom: space.sm,
-  },
-  barWhite: { position: 'absolute', left: 0, top: 0, bottom: 0, backgroundColor: '#F2F2F2' },
-  barLabel: { position: 'absolute', fontFamily: fonts.extrabold, fontSize: 12 },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,

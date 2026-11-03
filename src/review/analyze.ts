@@ -14,6 +14,16 @@ function terminal(fen: string): PositionEval | null {
   return null;
 }
 
+/** Evalúa una posición (la terminada se resuelve sin motor). `score` va desde las blancas. */
+export async function evaluatePosition(engine: UciEngine, fen: string, depth = REVIEW_DEPTH): Promise<PositionEval> {
+  const done = terminal(fen);
+  if (done) return done;
+  const r = await engine.search({ fen, multipv: 1, depth });
+  const line = r.lines[0];
+  const turn = fen.split(' ')[1];
+  return { score: line ? (turn === 'w' ? line.score : -line.score) : 0, best: r.bestmove };
+}
+
 /**
  * Evalúa las n + 1 posiciones de la partida, de a una. `onProgress(hechas, total)` avisa el avance;
  * si `isCancelled()` da true corta y devuelve null (por ejemplo, al salir de la pantalla).
@@ -29,15 +39,7 @@ export async function analyzeGame(
   const out: PositionEval[] = [];
   for (let i = 0; i < fens.length; i++) {
     if (isCancelled()) return null;
-    const done = terminal(fens[i]);
-    if (done) out.push(done);
-    else {
-      const r = await engine.search({ fen: fens[i], multipv: 1, depth });
-      const line = r.lines[0];
-      const turn = fens[i].split(' ')[1];
-      const score = line ? (turn === 'w' ? line.score : -line.score) : 0;
-      out.push({ score, best: r.bestmove });
-    }
+    out.push(await evaluatePosition(engine, fens[i], depth));
     onProgress(i + 1, fens.length);
   }
   // La mejor jugada de la posición posterior a una jugada es la respuesta que el rival tiene a mano (build.ts).

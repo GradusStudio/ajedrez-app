@@ -67,6 +67,43 @@ const sanOf = (fen: string, uci: string) => tryMove(fen, uci)?.san ?? '';
 const moveAccuracy = (loss: number) => Math.max(0, Math.min(100, 103.1668 * Math.exp(-0.04354 * loss) - 3.1669));
 
 /**
+ * Califica una jugada: `before` es la evaluación de la posición antes de jugarla y `after`, la de después.
+ * `prev` es la jugada anterior (del rival), para reconocer las «grandes jugadas».
+ */
+export function ratePly(
+  ply: number,
+  move: GameMove,
+  before: PositionEval,
+  after: PositionEval,
+  book: Set<string>,
+  prev?: Pick<ReviewPly, 'quality' | 'loss'>
+): ReviewPly {
+  const loss = Math.max(0, winPercent(before.score, move.color) - winPercent(after.score, move.color));
+  let quality: MoveQuality;
+  if (book.has(positionKey(move.fenAfter)) && loss < THRESHOLDS.mistake) quality = 'book';
+  else if (move.uci === before.best || loss < 0.5) quality = 'best';
+  else quality = classify(loss);
+  const great = quality === 'best' && !!prev && (prev.quality === 'blunder' || prev.quality === 'mistake') && prev.loss >= 20;
+  const mateGiven = move.san.endsWith('#');
+  const highlight = quality === 'inaccuracy' || quality === 'mistake' || quality === 'blunder' || great || mateGiven;
+  // Lo que sigue a la jugada: la mejor respuesta del rival, según el motor.
+  return {
+    ply,
+    move,
+    quality,
+    loss,
+    great,
+    highlight,
+    scoreAfter: after.score,
+    bestUci: before.best,
+    bestSan: sanOf(move.fenBefore, before.best),
+    replyUci: after.best,
+    replySan: sanOf(move.fenAfter, after.best),
+    facts: factsFor(move, before.best, after.best, quality),
+  };
+}
+
+/**
  * Arma la revisión. `evals[i]` es la evaluación de la posición antes de la jugada i + 1
  * (y `evals[n]`, la de la posición final): hay una más que jugadas.
  */
@@ -76,34 +113,9 @@ export function buildReview(game: ParsedGame, evals: PositionEval[], book: Set<s
   const acc: Record<'w' | 'b', number[]> = { w: [], b: [] };
 
   game.moves.forEach((move, i) => {
-    const before = evals[i];
-    const after = evals[i + 1];
-    const loss = Math.max(0, winPercent(before.score, move.color) - winPercent(after.score, move.color));
-    let quality: MoveQuality;
-    if (book.has(positionKey(move.fenAfter)) && loss < THRESHOLDS.mistake) quality = 'book';
-    else if (move.uci === before.best || loss < 0.5) quality = 'best';
-    else quality = classify(loss);
-    const prev = plies[i - 1];
-    const great = quality === 'best' && !!prev && (prev.quality === 'blunder' || prev.quality === 'mistake') && prev.loss >= 20;
-    const mateGiven = move.san.endsWith('#');
-    const highlight = quality === 'inaccuracy' || quality === 'mistake' || quality === 'blunder' || great || mateGiven;
-    // Lo que sigue a la jugada: la mejor respuesta del rival, según el motor.
-    plies.push({
-      ply: i + 1,
-      move,
-      quality,
-      loss,
-      great,
-      highlight,
-      scoreAfter: after.score,
-      bestUci: before.best,
-      bestSan: sanOf(move.fenBefore, before.best),
-      replyUci: after.best,
-      replySan: sanOf(move.fenAfter, after.best),
-      facts: factsFor(move, before.best, after.best, quality),
-    });
-    if (quality !== 'book') acc[move.color].push(moveAccuracy(loss));
-    else acc[move.color].push(100);
+    const rated = ratePly(i + 1, move, evals[i], evals[i + 1], book, plies[i - 1]);
+    plies.push(rated);
+    acc[move.color].push(rated.quality === 'book' ? 100 : moveAccuracy(rated.loss));
   });
 
   const mean = (xs: number[]) => (xs.length === 0 ? 100 : xs.reduce((a, b) => a + b, 0) / xs.length);

@@ -42,7 +42,7 @@ export function Button3D({ label, onPress, variant = 'secondary', style }: Props
         style,
       ]}
     >
-      <Text style={[styles.label, { color: v.text }]}>{label}</Text>
+      <Text numberOfLines={1} adjustsFontSizeToFit style={[styles.label, { color: v.text }]}>{label}</Text>
     </Pressable>
   );
 }

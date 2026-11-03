@@ -185,19 +185,11 @@ export const de: Record<MessageKey, string> = {
   'pieceSet.magma.name': 'Magma',
   'pieceSet.magma.description': 'Weißer und schwarzer Stein, durchzogen von glühenden Magmaadern.',
 
-  // Tienda
-  'shop.title': 'Shop',
-  'shop.subtitle': 'Gib deine Münzen für Bretter und Figurensets aus. Sie gelten sofort nach dem Kauf.',
-  'shop.boards': 'Bretter',
-  'shop.pieces': 'Figuren',
-  'shop.buy': 'Kaufen',
-  'shop.owned': 'Gekauft',
-  'shop.use': 'Nutzen',
-  'shop.inUse': '✓ Aktiv',
-  'shop.buyBoard.title': 'Brett „{name}“ kaufen?',
-  'shop.needCoins.board': 'Dieses Brett kostet {price} Münzen und du hast {coins}. Münzen bekommst du für neue Lektionen, Puzzles, gewonnene Partien und den Tagesbonus.',
-  'shop.itemLabel': '{name}. Kostet {price} Münzen',
-  'shop.ownedLabel': '{name}. Gekauft',
+  // Tableros
+  'boards.title': 'Bretter',
+  'boards.subtitle': 'Wähle das Brett, das dir am besten gefällt. Es gilt in der ganzen App. Bretter mit Preis kaufst du mit Münzen.',
+  'boards.buy.title': 'Brett „{name}“ kaufen?',
+  'boards.needCoins.message': 'Dieses Brett kostet {price} Münzen und du hast {coins}. Münzen bekommst du für neue Lektionen, Puzzles, gewonnene Partien und den Tagesbonus.',
 
   // Tablero
   'board.cancelPromotion': 'Umwandlung abbrechen',
@@ -365,8 +357,8 @@ export const de: Record<MessageKey, string> = {
   'profile.pending.other': '{n} offene Übungen',
   'profile.pieces': 'Figuren',
   'profile.pieces.description': 'Wähle dein Set oder kaufe neue Sets mit Münzen',
-  'profile.shop': 'Shop',
-  'profile.shop.description': 'Bretter und Figuren, die du mit Münzen kaufst',
+  'profile.boards': 'Bretter',
+  'profile.boards.description': 'Wähle dein Brett oder kaufe neue Bretter mit Münzen',
   'profile.settings': 'Einstellungen',
   'profile.settings.description': 'Erinnerung, Brett, Figuren, Ton',
 

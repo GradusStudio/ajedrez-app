@@ -184,19 +184,11 @@ export const es = {
   'pieceSet.magma.name': 'Magma',
   'pieceSet.magma.description': 'Piedra blanca y negra surcada por vetas de magma incandescente.',
 
-  // Tienda
-  'shop.title': 'Tienda',
-  'shop.subtitle': 'Gasta tus monedas en tableros y sets de piezas. Se aplican apenas los compras.',
-  'shop.boards': 'Tableros',
-  'shop.pieces': 'Piezas',
-  'shop.buy': 'Comprar',
-  'shop.owned': 'Comprado',
-  'shop.use': 'Usar',
-  'shop.inUse': '✓ En uso',
-  'shop.buyBoard.title': '¿Comprar el tablero «{name}»?',
-  'shop.needCoins.board': 'Este tablero cuesta {price} monedas y tienes {coins}. Ganas monedas con lecciones nuevas, puzzles, partidas ganadas y el premio del día.',
-  'shop.itemLabel': '{name}. Cuesta {price} monedas',
-  'shop.ownedLabel': '{name}. Comprado',
+  // Tableros
+  'boards.title': 'Tableros',
+  'boards.subtitle': 'Elige el tablero que más te guste. Se aplica en toda la app. Los tableros con precio se compran con monedas.',
+  'boards.buy.title': '¿Comprar el tablero «{name}»?',
+  'boards.needCoins.message': 'Este tablero cuesta {price} monedas y tienes {coins}. Ganas monedas con lecciones nuevas, puzzles, partidas ganadas y el premio del día.',
 
   // Tablero
   'board.cancelPromotion': 'Cancelar coronación',
@@ -364,8 +356,8 @@ export const es = {
   'profile.pending.other': '{n} ejercicios pendientes',
   'profile.pieces': 'Piezas',
   'profile.pieces.description': 'Elige tu set o compra sets nuevos con monedas',
-  'profile.shop': 'Tienda',
-  'profile.shop.description': 'Tableros y piezas para comprar con monedas',
+  'profile.boards': 'Tableros',
+  'profile.boards.description': 'Elige tu tablero o compra tableros nuevos con monedas',
   'profile.settings': 'Ajustes',
   'profile.settings.description': 'Recordatorio, tablero, piezas, sonido',
 

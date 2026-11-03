@@ -185,19 +185,11 @@ export const it: Record<MessageKey, string> = {
   'pieceSet.magma.name': 'Magma',
   'pieceSet.magma.description': 'Pietra bianca e nera attraversata da vene di magma incandescente.',
 
-  // Tienda
-  'shop.title': 'Negozio',
-  'shop.subtitle': 'Spendi le tue monete in scacchiere e set di pezzi. Si applicano appena li compri.',
-  'shop.boards': 'Scacchiere',
-  'shop.pieces': 'Pezzi',
-  'shop.buy': 'Compra',
-  'shop.owned': 'Comprato',
-  'shop.use': 'Usa',
-  'shop.inUse': '✓ In uso',
-  'shop.buyBoard.title': 'Comprare la scacchiera «{name}»?',
-  'shop.needCoins.board': 'Questa scacchiera costa {price} monete. Le tue monete: {coins}. Le guadagni con lezioni nuove, puzzle, partite vinte e il premio del giorno.',
-  'shop.itemLabel': '{name}. Costa {price} monete',
-  'shop.ownedLabel': '{name}. Comprato',
+  // Tableros
+  'boards.title': 'Scacchiere',
+  'boards.subtitle': "Scegli la scacchiera che ti piace di più. Vale in tutta l'app. Le scacchiere con un prezzo si comprano con le monete.",
+  'boards.buy.title': 'Comprare la scacchiera «{name}»?',
+  'boards.needCoins.message': 'Questa scacchiera costa {price} monete. Le tue monete: {coins}. Le guadagni con lezioni nuove, puzzle, partite vinte e il premio del giorno.',
 
   // Tablero
   'board.cancelPromotion': 'Annulla promozione',
@@ -365,8 +357,8 @@ export const it: Record<MessageKey, string> = {
   'profile.pending.other': '{n} esercizi da rifare',
   'profile.pieces': 'Pezzi',
   'profile.pieces.description': 'Scegli il tuo set o comprane di nuovi con le monete',
-  'profile.shop': 'Negozio',
-  'profile.shop.description': 'Scacchiere e pezzi da comprare con le monete',
+  'profile.boards': 'Scacchiere',
+  'profile.boards.description': 'Scegli la tua scacchiera o comprane di nuove con le monete',
   'profile.settings': 'Impostazioni',
   'profile.settings.description': 'Promemoria, scacchiera, pezzi, suono',
 

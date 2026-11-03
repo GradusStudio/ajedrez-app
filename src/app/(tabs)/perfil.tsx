@@ -8,7 +8,7 @@ export default function ProfileTab() {
       onOpenSettings={() => router.push('/ajustes')}
       onOpenCredits={() => router.push('/creditos')}
       onOpenPieces={() => router.push('/piezas')}
-      onOpenShop={() => router.push('/tienda')}
+      onOpenBoards={() => router.push('/tableros')}
       onOpenReview={(lessonId, stepIds) =>
         router.push({ pathname: '/leccion/[id]', params: { id: lessonId, repaso: stepIds.join(',') } })
       }

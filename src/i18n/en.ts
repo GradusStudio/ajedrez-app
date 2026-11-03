@@ -185,19 +185,11 @@ export const en: Record<MessageKey, string> = {
   'pieceSet.magma.name': 'Magma',
   'pieceSet.magma.description': 'White and black stone cut by glowing magma veins.',
 
-  // Tienda
-  'shop.title': 'Shop',
-  'shop.subtitle': 'Spend your coins on boards and piece sets. They apply as soon as you buy them.',
-  'shop.boards': 'Boards',
-  'shop.pieces': 'Pieces',
-  'shop.buy': 'Buy',
-  'shop.owned': 'Owned',
-  'shop.use': 'Use',
-  'shop.inUse': '✓ In use',
-  'shop.buyBoard.title': 'Buy the “{name}” board?',
-  'shop.needCoins.board': 'This board costs {price} coins and you have {coins}. You earn coins with new lessons, puzzles, won games and the daily bonus.',
-  'shop.itemLabel': '{name}. Costs {price} coins',
-  'shop.ownedLabel': '{name}. Owned',
+  // Tableros
+  'boards.title': 'Boards',
+  'boards.subtitle': 'Choose the board you like best. It applies across the app. Boards with a price are bought with coins.',
+  'boards.buy.title': 'Buy the “{name}” board?',
+  'boards.needCoins.message': 'This board costs {price} coins and you have {coins}. You earn coins with new lessons, puzzles, won games and the daily bonus.',
 
   // Tablero
   'board.cancelPromotion': 'Cancel promotion',
@@ -365,8 +357,8 @@ export const en: Record<MessageKey, string> = {
   'profile.pending.other': '{n} exercises to review',
   'profile.pieces': 'Pieces',
   'profile.pieces.description': 'Choose your set or buy new sets with coins',
-  'profile.shop': 'Shop',
-  'profile.shop.description': 'Boards and pieces to buy with coins',
+  'profile.boards': 'Boards',
+  'profile.boards.description': 'Choose your board or buy new boards with coins',
   'profile.settings': 'Settings',
   'profile.settings.description': 'Reminder, board, pieces, sound',
 

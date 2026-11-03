@@ -3,8 +3,8 @@ import type { AnyPieceSetId } from './materials';
 
 // Tienda de sets de piezas y de tableros. `pieceSets.ts` es generado, por eso los precios viven aquí.
 // Algo sin precio (o con 0) es gratis. Para vender un set o un tablero nuevo, basta con agregarlo con su precio.
-export const PIECE_SET_PRICES: Partial<Record<AnyPieceSetId, number>> = { hielo: 200, magma: 200 };
-export const BOARD_THEME_PRICES: Partial<Record<BoardThemeId, number>> = { hielo: 200, magma: 200 };
+export const PIECE_SET_PRICES: Partial<Record<AnyPieceSetId, number>> = { madera: 200, marmol: 200, hielo: 200, magma: 200 };
+export const BOARD_THEME_PRICES: Partial<Record<BoardThemeId, number>> = { madera: 200, marmol: 200, hielo: 200, magma: 200 };
 
 export const pieceSetPrice = (id: AnyPieceSetId): number => PIECE_SET_PRICES[id] ?? 0;
 export const boardThemePrice = (id: BoardThemeId): number => BOARD_THEME_PRICES[id] ?? 0;

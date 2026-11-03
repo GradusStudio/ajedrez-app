@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { boardThemePrice, isBoardThemeOwned, isPieceSetOwned, pieceSetPrice } from './shop';
 
-test('hielo y magma cuestan 200 monedas, tablero y piezas', () => {
-  for (const id of ['hielo', 'magma'] as const) {
+test('madera, mármol, hielo y magma cuestan 200 monedas, tablero y piezas', () => {
+  for (const id of ['madera', 'marmol', 'hielo', 'magma'] as const) {
     assert.equal(boardThemePrice(id), 200);
     assert.equal(pieceSetPrice(id), 200);
   }

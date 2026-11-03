@@ -54,6 +54,8 @@ export type Progress = {
   rewards: { goalDate: string | null; botWins: Record<string, string> };
   /** Sets de piezas comprados (los gratis no se guardan). */
   pieceSets: string[];
+  /** Tableros con textura comprados (los gratis no se guardan). Se agregó sin subir la versión: si falta, vale []. */
+  boardThemes: string[];
   practice: { seconds: number; date: string | null }; // tiempo de práctica del día `date`
   mistakes: Mistake[];
   games: GameRecord[]; // las últimas MAX_GAMES, la más reciente primero
@@ -81,6 +83,7 @@ export const emptyProgress: Progress = {
   coins: 0,
   rewards: { goalDate: null, botWins: {} },
   pieceSets: [],
+  boardThemes: [],
   practice: { seconds: 0, date: null },
   mistakes: [],
   games: [],
@@ -239,6 +242,12 @@ export function withPieceSetBought(p: Progress, id: string, price: number): Prog
   return { ...p, coins: p.coins - price, pieceSets: [...p.pieceSets, id] };
 }
 
+/** Compra un tablero. Devuelve null si no alcanzan las monedas o si ya era suyo. */
+export function withBoardThemeBought(p: Progress, id: string, price: number): Progress | null {
+  if (p.boardThemes.includes(id) || p.coins < price) return null;
+  return { ...p, coins: p.coins - price, boardThemes: [...p.boardThemes, id] };
+}
+
 export function withProfile(p: Progress, patch: Partial<Progress['profile']>): Progress {
   return { ...p, profile: { ...p.profile, ...patch } };
 }
@@ -294,7 +303,7 @@ type ProgressV1 = {
 };
 
 /** Versión 2: igual que la 3, pero con XP en lugar de monedas. */
-type ProgressV2 = Omit<Progress, 'version' | 'coins' | 'rewards' | 'pieceSets'> & {
+type ProgressV2 = Omit<Progress, 'version' | 'coins' | 'rewards' | 'pieceSets' | 'boardThemes'> & {
   version: 2;
   xp: { total: number; today: number; date: string | null };
 };

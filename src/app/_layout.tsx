@@ -81,6 +81,7 @@ function AppStack() {
       <Stack.Screen name="apertura/[id]" />
       <Stack.Screen name="bot/[id]" />
       <Stack.Screen name="piezas" />
+      <Stack.Screen name="tienda" />
       <Stack.Screen name="puzzle" />
       <Stack.Screen name="ajustes" />
       <Stack.Screen name="analisis-libre" />

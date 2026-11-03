@@ -5,7 +5,7 @@ import { AnyPieceSetId, PIECE_SET_LIST } from '../pieces/materials';
 import { isPieceSetOwned, pieceSetPrice } from '../pieces/shop';
 import { useProgress } from '../progress/ProgressContext';
 import { usePieceSet } from '../settings/PieceSetContext';
-import { useSettings } from '../settings/SettingsContext';
+import { useBoardTheme } from '../settings/useBoardTheme';
 import { boardThemes, colors, fonts, radius, space } from '../theme';
 import { SquareTexture } from './SquareTexture';
 import Piece, { PieceColor, PieceType } from './Piece';
@@ -29,7 +29,7 @@ export function PieceSetPicker() {
   const { t } = useI18n();
   const { pieceSet, setPieceSet } = usePieceSet();
   const { progress, buyPieceSet } = useProgress();
-  const boardTheme = useSettings().settings.boardTheme;
+  const boardTheme = useBoardTheme();
   const board = boardThemes[boardTheme];
 
   const choose = (id: AnyPieceSetId, name: string) => {

@@ -4,13 +4,16 @@ import { Button3D } from '../components/Button3D';
 import { Segmented } from '../components/Segmented';
 import { SettingRow } from '../components/SettingRow';
 import { SquareTexture } from '../components/SquareTexture';
+import { StatIcon } from '../components/StatIcon';
 import { useI18n } from '../i18n/I18nContext';
 import { AVAILABLE_LANGUAGES, LANGUAGE_NAMES, Language } from '../i18n/languages';
 import { resolveNotation, sanFromEnglish } from '../chess/notation';
+import { boardThemePrice, isBoardThemeOwned } from '../pieces/shop';
 import { useProgress } from '../progress/ProgressContext';
 import { usePieceSet } from '../settings/PieceSetContext';
 import { cancelDailyReminder, ensureReminderPermission } from '../settings/reminders';
 import { useSettings } from '../settings/SettingsContext';
+import { useBoardTheme } from '../settings/useBoardTheme';
 import { BoardThemeId, boardThemes, colors, fonts, radius, space } from '../theme';
 
 type Props = { onBack: () => void; onOpenPieces: () => void };
@@ -21,9 +24,24 @@ const REMINDER_HOURS = [9, 13, 19, 21];
 export function SettingsScreen({ onBack, onOpenPieces }: Props) {
   const { settings, update } = useSettings();
   const { language, t } = useI18n();
-  const { resetProgress } = useProgress();
+  const { progress, resetProgress, buyBoardTheme } = useProgress();
+  const boardTheme = useBoardTheme();
   const { pieceSet } = usePieceSet();
   const pieceName = t(`pieceSet.${pieceSet}.name`);
+
+  // Un tablero de pago se compra aquí mismo (con confirmación); uno propio se aplica al tocarlo.
+  const chooseBoard = (id: BoardThemeId, name: string) => {
+    if (isBoardThemeOwned(id, progress.boardThemes)) return update({ boardTheme: id });
+    const price = boardThemePrice(id);
+    if (progress.coins < price) {
+      Alert.alert(t('pieces.needCoins.title'), t('shop.needCoins.board', { price, coins: progress.coins }));
+      return;
+    }
+    Alert.alert(t('shop.buyBoard.title', { name }), t('pieces.buy.message', { price, left: progress.coins - price }), [
+      { text: t('common.cancel'), style: 'cancel' },
+      { text: t('pieces.buy.confirm'), onPress: () => buyBoardTheme(id, price) && update({ boardTheme: id }) },
+    ]);
+  };
 
   const setReminder = async (enabled: boolean, hour = settings.reminder.hour) => {
     if (!enabled) {
@@ -83,14 +101,16 @@ export function SettingsScreen({ onBack, onOpenPieces }: Props) {
         {(Object.keys(boardThemes) as BoardThemeId[]).map((id) => {
           const theme = boardThemes[id];
           const themeName = t(`boardTheme.${id}`);
-          const selected = settings.boardTheme === id;
+          const selected = boardTheme === id;
+          const owned = isBoardThemeOwned(id, progress.boardThemes);
+          const price = boardThemePrice(id);
           return (
             <Pressable
               key={id}
-              onPress={() => update({ boardTheme: id })}
+              onPress={() => chooseBoard(id, themeName)}
               accessibilityRole="radio"
               accessibilityState={{ selected }}
-              accessibilityLabel={t('settings.boardThemeLabel', { name: themeName })}
+              accessibilityLabel={owned ? t('settings.boardThemeLabel', { name: themeName }) : t('settings.boardThemeLabelPriced', { name: themeName, price })}
               style={[styles.theme, selected && styles.themeSelected]}
             >
               <View style={styles.swatch}>
@@ -101,6 +121,12 @@ export function SettingsScreen({ onBack, onOpenPieces }: Props) {
                 ))}
               </View>
               <Text style={[styles.themeText, selected && { color: colors.text }]}>{themeName}</Text>
+              {!owned && (
+                <View style={styles.themePrice}>
+                  <StatIcon name="coin" size={12} />
+                  <Text style={styles.themePriceText}>{price}</Text>
+                </View>
+              )}
             </Pressable>
           );
         })}
@@ -175,4 +201,6 @@ const styles = StyleSheet.create({
   themeSelected: { borderColor: colors.primary, backgroundColor: colors.surfaceRaised },
   swatch: { width: 36, height: 36, flexDirection: 'row', flexWrap: 'wrap', borderRadius: 6, overflow: 'hidden' },
   themeText: { fontFamily: fonts.bold, fontSize: 12, color: colors.textMuted },
+  themePrice: { flexDirection: 'row', alignItems: 'center', gap: 2 },
+  themePriceText: { fontFamily: fonts.extrabold, fontSize: 12, color: colors.gold },
 });

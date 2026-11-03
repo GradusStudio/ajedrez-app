@@ -19,6 +19,7 @@ import {
   withProfile,
   withPuzzleFinished,
   withReviewFinished,
+  withBoardThemeBought,
 } from './progressStore';
 
 /** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
@@ -45,6 +46,8 @@ type ProgressValue = {
   finishPuzzle: (id: string, result: PuzzleResult, seconds: number) => Earned;
   /** Compra un set de piezas: devuelve false si no alcanzan las monedas. */
   buyPieceSet: (id: string, price: number) => boolean;
+  /** Compra un tablero: devuelve false si no alcanzan las monedas. */
+  buyBoardTheme: (id: string, price: number) => boolean;
   updateProfile: (patch: Partial<Progress['profile']>) => void;
   /** Borra todo el progreso. Conserva la bienvenida ya hecha y el nivel. */
   resetProgress: () => void;
@@ -135,6 +138,15 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     [commit]
   );
 
+  const buyBoardTheme = useCallback(
+    (id: string, price: number) => {
+      const next = withBoardThemeBought(current.current, id, price);
+      if (next) commit(next);
+      return !!next;
+    },
+    [commit]
+  );
+
   const updateProfile = useCallback(
     (patch: Partial<Progress['profile']>) => commit(withProfile(current.current, patch)),
     [commit]
@@ -160,6 +172,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         finishGame,
         finishPuzzle,
         buyPieceSet,
+        buyBoardTheme,
         updateProfile,
         resetProgress,
       }}

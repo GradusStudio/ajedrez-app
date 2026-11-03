@@ -16,12 +16,13 @@ type Props = {
   onOpenSettings: () => void;
   onOpenCredits: () => void;
   onOpenPieces: () => void;
+  onOpenShop: () => void;
   /** Abre el repaso de los errores guardados de una lección. */
   onOpenReview: (lessonId: string, stepIds: string[]) => void;
 };
 
 // Perfil: racha, monedas, lecciones, aperturas, puzzles y bots; acceso a Ajustes y Créditos (mapa-de-pantallas.md, 2.11).
-export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onOpenReview }: Props) {
+export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onOpenShop, onOpenReview }: Props) {
   const { progress } = useProgress();
   const { bots, openings, units, findLesson } = useContent();
   const { t, tn } = useI18n();
@@ -100,6 +101,7 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
           onPress={openReview}
         />
       )}
+      <SettingRow label={t('profile.shop')} description={t('profile.shop.description')} onPress={onOpenShop} />
       <SettingRow label={t('profile.pieces')} description={t('profile.pieces.description')} onPress={onOpenPieces} />
       <SettingRow label={t('profile.settings')} description={t('profile.settings.description')} onPress={onOpenSettings} />
       <SettingRow label={t('credits.title')} onPress={onOpenCredits} />

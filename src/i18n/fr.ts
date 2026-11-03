@@ -119,6 +119,7 @@ export const fr: Record<MessageKey, string> = {
   'settings.board': 'Échiquier',
   'settings.boardTheme': "Thème de l'échiquier",
   'settings.boardThemeLabel': 'Échiquier {name}',
+  'settings.boardThemeLabelPriced': 'Échiquier {name}. Prix : {price} jetons',
   'settings.pieces': 'Pièces',
   'settings.language': 'Langue',
   'settings.language.auto': 'Automatique',
@@ -183,6 +184,20 @@ export const fr: Record<MessageKey, string> = {
   'pieceSet.hielo.description': 'Cristal de glace et givre. Froid et brillant.',
   'pieceSet.magma.name': 'Magma',
   'pieceSet.magma.description': 'Pierre blanche et noire traversée de veines de magma incandescent.',
+
+  // Tienda
+  'shop.title': 'Boutique',
+  'shop.subtitle': "Dépense tes jetons en échiquiers et sets de pièces. Ils s'appliquent dès l'achat.",
+  'shop.boards': 'Échiquiers',
+  'shop.pieces': 'Pièces',
+  'shop.buy': 'Acheter',
+  'shop.owned': 'Acheté',
+  'shop.use': 'Utiliser',
+  'shop.inUse': '✓ Utilisé',
+  'shop.buyBoard.title': "Acheter l'échiquier « {name} » ?",
+  'shop.needCoins.board': 'Prix de cet échiquier : {price} jetons. Ton solde : {coins}. Tu gagnes des jetons avec les nouvelles leçons, les puzzles, les parties gagnées et le bonus du jour.',
+  'shop.itemLabel': '{name}. Prix : {price} jetons',
+  'shop.ownedLabel': '{name}. Acheté',
 
   // Tablero
   'board.cancelPromotion': 'Annuler la promotion',
@@ -350,6 +365,8 @@ export const fr: Record<MessageKey, string> = {
   'profile.pending.other': '{n} exercices à reprendre',
   'profile.pieces': 'Pièces',
   'profile.pieces.description': 'Choisis ton set ou achète-en de nouveaux avec des jetons',
+  'profile.shop': 'Boutique',
+  'profile.shop.description': 'Échiquiers et pièces à acheter avec des jetons',
   'profile.settings': 'Réglages',
   'profile.settings.description': 'Rappel, échiquier, pièces, son',
 

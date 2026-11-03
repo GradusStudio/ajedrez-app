@@ -119,6 +119,7 @@ export const en: Record<MessageKey, string> = {
   'settings.board': 'Board',
   'settings.boardTheme': 'Board theme',
   'settings.boardThemeLabel': '{name} board',
+  'settings.boardThemeLabelPriced': '{name} board. Costs {price} coins',
   'settings.pieces': 'Pieces',
   'settings.language': 'Language',
   'settings.language.auto': 'Automatic',
@@ -183,6 +184,20 @@ export const en: Record<MessageKey, string> = {
   'pieceSet.hielo.description': 'Ice crystal and frost. Cold and shiny.',
   'pieceSet.magma.name': 'Magma',
   'pieceSet.magma.description': 'White and black stone cut by glowing magma veins.',
+
+  // Tienda
+  'shop.title': 'Shop',
+  'shop.subtitle': 'Spend your coins on boards and piece sets. They apply as soon as you buy them.',
+  'shop.boards': 'Boards',
+  'shop.pieces': 'Pieces',
+  'shop.buy': 'Buy',
+  'shop.owned': 'Owned',
+  'shop.use': 'Use',
+  'shop.inUse': '✓ In use',
+  'shop.buyBoard.title': 'Buy the “{name}” board?',
+  'shop.needCoins.board': 'This board costs {price} coins and you have {coins}. You earn coins with new lessons, puzzles, won games and the daily bonus.',
+  'shop.itemLabel': '{name}. Costs {price} coins',
+  'shop.ownedLabel': '{name}. Owned',
 
   // Tablero
   'board.cancelPromotion': 'Cancel promotion',
@@ -350,6 +365,8 @@ export const en: Record<MessageKey, string> = {
   'profile.pending.other': '{n} exercises to review',
   'profile.pieces': 'Pieces',
   'profile.pieces.description': 'Choose your set or buy new sets with coins',
+  'profile.shop': 'Shop',
+  'profile.shop.description': 'Boards and pieces to buy with coins',
   'profile.settings': 'Settings',
   'profile.settings.description': 'Reminder, board, pieces, sound',
 

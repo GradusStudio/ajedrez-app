@@ -13,7 +13,7 @@ import Svg, { Line, Polygon } from 'react-native-svg';
 import { Chess, Square } from 'chess.js';
 import { useFeedback } from '../feedback/feedback';
 import { useI18n } from '../i18n/I18nContext';
-import { useSettings } from '../settings/SettingsContext';
+import { useBoardTheme } from '../settings/useBoardTheme';
 import { boardHighlight, boardThemes, colors } from '../theme';
 import { Captured, computeMove, Offsets } from './boardAnimation';
 import { SquareTexture } from './SquareTexture';
@@ -212,9 +212,9 @@ export function Board({
   const sq = Math.floor(Math.min(width - 32, 480) / 8);
   const boardPx = sq * 8;
 
-  const { settings } = useSettings();
   const feedback = useFeedback();
-  const theme = boardThemes[settings.boardTheme];
+  const boardTheme = useBoardTheme();
+  const theme = boardThemes[boardTheme];
   const [selected, setSelected] = useState<Square | null>(null);
 
   // Arrastre: casilla de la pieza que se arrastra y casilla bajo el dedo. La posición de la pieza va en
@@ -449,7 +449,7 @@ export function Board({
             zIndex: offsets[`${br}${bc}`] ? 10 : 0,
           }}
         >
-          <SquareTexture theme={settings.boardTheme} light={isLight} size={sq} seed={br * 3 + bc * 5} />
+          <SquareTexture theme={boardTheme} light={isLight} size={sq} seed={br * 3 + bc * 5} />
           {isLast && <View style={[styles.fill, { backgroundColor: boardHighlight.lastMove }]} />}
           {isMarked && (
             <View

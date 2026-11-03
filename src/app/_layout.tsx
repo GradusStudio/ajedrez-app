@@ -54,7 +54,10 @@ export default function RootLayout() {
         <I18nProvider>
           <PieceSetProvider>
             <StatusBar style="light" />
-            <ThemeProvider value={navTheme}>{fontsLoaded ? <AppStack /> : <Loading />}</ThemeProvider>
+            {/* Vista raíz oscura: si algo deja ver lo que hay detrás de las pantallas, que no sea blanco. */}
+            <View style={{ flex: 1, backgroundColor: colors.bg }}>
+              <ThemeProvider value={navTheme}>{fontsLoaded ? <AppStack /> : <Loading />}</ThemeProvider>
+            </View>
           </PieceSetProvider>
         </I18nProvider>
       </SettingsProvider>

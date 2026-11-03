@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { ActivityIndicator, AppState, Platform, View } from 'react-native';
-import { Stack } from 'expo-router';
+import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -16,6 +16,10 @@ import { PieceSetProvider, usePieceSet } from '../settings/PieceSetContext';
 import { SettingsProvider, useSettings } from '../settings/SettingsContext';
 import { useReminderSync } from '../settings/useReminderSync';
 import { colors } from '../theme';
+
+// Tema de la navegación: su `background` es el fondo que se ve detrás de las pantallas mientras se deslizan
+// (con el tema por defecto es claro y se veía un destello blanco al abrir y volver de un menú).
+const navTheme = { ...DarkTheme, colors: { ...DarkTheme.colors, background: colors.bg, card: colors.surface, border: colors.surfaceRaised } };
 
 // La pantalla de carga sigue visible hasta que AppStack termina de cargar fuentes y datos.
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -50,7 +54,7 @@ export default function RootLayout() {
         <I18nProvider>
           <PieceSetProvider>
             <StatusBar style="light" />
-            {fontsLoaded ? <AppStack /> : <Loading />}
+            <ThemeProvider value={navTheme}>{fontsLoaded ? <AppStack /> : <Loading />}</ThemeProvider>
           </PieceSetProvider>
         </I18nProvider>
       </SettingsProvider>

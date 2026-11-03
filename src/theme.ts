@@ -47,7 +47,8 @@ export const boardThemes = {
   // sirven de respaldo, para las coordenadas y para la vista previa.
   madera: { name: 'Madera', light: '#E0BE8A', dark: '#7A4A2A', texture: 'madera' },
   marmol: { name: 'Mármol', light: '#E8E6E1', dark: '#2F5A44', texture: 'marmol' },
-  hielo: { name: 'Hielo', light: '#DCEAF3', dark: '#4F8FB5', texture: 'hielo' },
+  hielo: { name: 'Hielo', light: '#91B1C7', dark: '#265E73', texture: 'hielo' },
+  magma: { name: 'Magma', light: '#6D3F2F', dark: '#362A2A', texture: 'magma' },
 } as const satisfies Record<string, { name: string; light: string; dark: string; texture?: string }>;
 export type BoardThemeId = keyof typeof boardThemes;
 /** Tema del tablero con textura: `texture` es el estilo de material (`MaterialSetId`). */

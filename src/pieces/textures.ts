@@ -29,4 +29,10 @@ export const TEXTURES: Record<MaterialSetId, MaterialTextures> = {
     white: require('../../assets/texturas/hielo-pieza-blanca.webp'),
     black: require('../../assets/texturas/hielo-pieza-negra.webp'),
   },
+  magma: {
+    light: require('../../assets/texturas/magma-casilla-clara.webp'),
+    dark: require('../../assets/texturas/magma-casilla-oscura.webp'),
+    white: require('../../assets/texturas/magma-pieza-blanca.webp'),
+    black: require('../../assets/texturas/magma-pieza-negra.webp'),
+  },
 };

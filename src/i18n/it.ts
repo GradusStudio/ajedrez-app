@@ -145,6 +145,7 @@ export const it: Record<MessageKey, string> = {
   'boardTheme.neon': 'Neon',
   'boardTheme.vintage': 'Vintage',
   'boardTheme.hielo': 'Ghiaccio',
+  'boardTheme.magma': 'Magma',
 
   // Piezas
   'pieces.back': '‹ Indietro',
@@ -180,6 +181,8 @@ export const it: Record<MessageKey, string> = {
   'pieceSet.vintage.description': 'Avorio invecchiato e bronzo antico, su pergamena e cuoio.',
   'pieceSet.hielo.name': 'Ghiaccio',
   'pieceSet.hielo.description': 'Cristallo di ghiaccio e brina. Freddo e brillante.',
+  'pieceSet.magma.name': 'Magma',
+  'pieceSet.magma.description': 'Pietra bianca e nera attraversata da vene di magma incandescente.',
 
   // Tablero
   'board.cancelPromotion': 'Annulla promozione',

@@ -145,6 +145,7 @@ export const de: Record<MessageKey, string> = {
   'boardTheme.neon': 'Neon',
   'boardTheme.vintage': 'Vintage',
   'boardTheme.hielo': 'Eis',
+  'boardTheme.magma': 'Magma',
 
   // Piezas
   'pieces.back': '‹ Zurück',
@@ -180,6 +181,8 @@ export const de: Record<MessageKey, string> = {
   'pieceSet.vintage.description': 'Gealtertes Elfenbein und antike Bronze auf Pergament und Leder.',
   'pieceSet.hielo.name': 'Eis',
   'pieceSet.hielo.description': 'Eiskristall und Frost. Kalt und glänzend.',
+  'pieceSet.magma.name': 'Magma',
+  'pieceSet.magma.description': 'Weißer und schwarzer Stein, durchzogen von glühenden Magmaadern.',
 
   // Tablero
   'board.cancelPromotion': 'Umwandlung abbrechen',

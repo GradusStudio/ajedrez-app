@@ -144,6 +144,7 @@ export const es = {
   'boardTheme.neon': 'Neón',
   'boardTheme.vintage': 'Vintage',
   'boardTheme.hielo': 'Hielo',
+  'boardTheme.magma': 'Magma',
 
   // Piezas
   'pieces.back': '‹ Volver',
@@ -179,6 +180,8 @@ export const es = {
   'pieceSet.vintage.description': 'Marfil envejecido y bronce antiguo, sobre pergamino y cuero.',
   'pieceSet.hielo.name': 'Hielo',
   'pieceSet.hielo.description': 'Cristal de hielo y escarcha. Frío y brillante.',
+  'pieceSet.magma.name': 'Magma',
+  'pieceSet.magma.description': 'Piedra blanca y negra surcada por vetas de magma incandescente.',
 
   // Tablero
   'board.cancelPromotion': 'Cancelar coronación',

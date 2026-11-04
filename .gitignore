@@ -49,3 +49,7 @@ assets/fuente/texturas/
 # Claves de cuentas de servicio de Google Play (nunca al repositorio)
 google-service-account*.json
 *-service-account*.json
+
+# Sesiones y grafo de Claude Code (locales)
+.claude/
+graphify-out/

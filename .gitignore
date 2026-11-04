@@ -56,3 +56,9 @@ graphify-out/
 
 # Salidas sueltas de pruebas
 u[1-6].txt
+
+# Material de la ficha de Google Play (no va al repositorio)
+assets/fuente/tienda/
+
+# Grabación de referencia de chess.com (con derechos de autor; no va al repositorio)
+assets/fuente/sonidos/referencia-chesscom.wav

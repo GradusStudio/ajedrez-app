@@ -62,3 +62,6 @@ assets/fuente/tienda/
 
 # Grabación de referencia de chess.com (con derechos de autor; no va al repositorio)
 assets/fuente/sonidos/referencia-chesscom.wav
+
+# Efectos de ElevenLabs: licencia depende del plan (ver CLAUDE.md); no van al repositorio
+assets/fuente/sonidos/elevenlabs/

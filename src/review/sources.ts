@@ -101,8 +101,12 @@ export function parseLichessNdjson(text: string): ListedGame[] {
   return out.sort((a, b) => b.date - a.date);
 }
 
+// Lichess responde 404 a los clientes con User-Agent genérico (curl, okhttp, el de React Native en Android)
+// y chess.com responde 403 si no hay ninguno: se manda uno propio e identificable.
+const USER_AGENT = 'Gradus-Chess-App/1.0';
+
 async function getJson(url: string): Promise<{ status: number; json?: unknown }> {
-  const res = await fetch(url, { headers: { Accept: 'application/json' } });
+  const res = await fetch(url, { headers: { Accept: 'application/json', 'User-Agent': USER_AGENT } });
   if (!res.ok) return { status: res.status };
   return { status: res.status, json: await res.json() };
 }
@@ -131,7 +135,7 @@ export async function fetchLichessGames(username: string): Promise<FetchResult> 
     const user = encodeURIComponent(username);
     const res = await fetch(
       `https://lichess.org/api/games/user/${user}?max=${GAMES_SHOWN}&pgnInJson=true&clocks=false&evals=false&opening=false`,
-      { headers: { Accept: 'application/x-ndjson' } }
+      { headers: { Accept: 'application/x-ndjson', 'User-Agent': USER_AGENT } }
     );
     if (res.status === 404) return { ok: false, error: 'notFound' };
     if (!res.ok) return { ok: false, error: 'network' };

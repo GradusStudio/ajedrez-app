@@ -15,8 +15,8 @@ Estado al 3-11-2026. Textos de la ficha en `ficha.md`; política de privacidad e
 - [x] `.gitignore` protege la clave de la cuenta de servicio de Google (`google-service-account*.json`).
 
 ## 2. Falta antes de enviar a producción
-- [ ] **Correo de contacto público** (Play lo muestra en la ficha) y completar `[CORREO]` y `[FECHA]` de la política de privacidad.
-- [ ] **Publicar la política de privacidad** en una URL pública (por ejemplo GitHub Pages).
+- [x] **Correo de contacto público**: `gradusstudioapp@gmail.com` (cuenta de Google creada el 4-11-2026).
+- [x] **Política de privacidad publicada** (4-11-2026): https://gradusstudio.github.io/gradus-web/privacidad.html. Página del estudio: https://gradusstudio.github.io/gradus-web/ (repositorio `GradusStudio/gradus-web`, carpeta local `C:\dev\gradus-web`).
 - [ ] **Gráfico de funciones**: 1024 × 500 px, PNG o JPG.
 - [ ] **Capturas de pantalla**: mínimo 2 de teléfono (recomendado 4 a 8; relación entre 16:9 y 9:16, lado menor de al menos 320 px). Se pueden sacar del Redmi con Expo Go o del build de prueba.
 - [ ] **Build de producción probado**: `.aab` de producción y, antes, un APK `preview` instalado en el teléfono para confirmar que los sonidos, Stockfish y Maia (WebViews) funcionan fuera de Expo Go.

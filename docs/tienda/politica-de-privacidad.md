@@ -1,6 +1,6 @@
 # Política de privacidad de Gradus
 
-Google Play pide una URL pública con esta política. Opciones gratis: publicarla con GitHub Pages desde el repositorio o como página de un sitio propio. Antes de publicarla hay que completar el correo de contacto (marcado con `[CORREO]`) y la fecha.
+Versión publicada: https://gradusstudio.github.io/gradus-web/privacidad.html (repositorio `GradusStudio/gradus-web`, GitHub Pages). Esa es la URL que se pone en Play Console y en el registro de desarrollador. Si se cambia este texto, hay que cambiarlo también en esa página y actualizar la fecha.
 
 Este texto describe lo que hace la app hoy (comprobado en el código el 3-11-2026): si se agrega una función que envíe datos (cuentas, anuncios, estadísticas), hay que actualizarlo y revisar el formulario de «Seguridad de los datos» de Play Console.
 
@@ -8,7 +8,7 @@ Este texto describe lo que hace la app hoy (comprobado en el código el 3-11-202
 
 ## Español
 
-**Gradus Chess: aprende ajedrez** — publicada por Gradus Studio. Última actualización: [FECHA].
+**Gradus Chess: aprende ajedrez** — publicada por Gradus Studio. Última actualización: 4 de noviembre de 2026.
 
 **Resumen:** Gradus no tiene cuentas, no tiene anuncios, no usa herramientas de estadísticas y no recopila ningún dato personal. Todo lo que guarda se queda en tu teléfono.
 
@@ -33,13 +33,13 @@ Como no recopilamos datos personales, no hay datos nuestros para acceder, correg
 Gradus es software libre (GPL v3 o posterior): puedes revisar en el código fuente que esto es lo que hace la app.
 
 ### Cambios y contacto
-Si esta política cambia, se actualiza en esta misma dirección con una nueva fecha. Consultas: [CORREO].
+Si esta política cambia, se actualiza en esta misma dirección con una nueva fecha. Consultas: gradusstudioapp@gmail.com.
 
 ---
 
 ## English
 
-**Gradus Chess: learn chess** — published by Gradus Studio. Last updated: [DATE].
+**Gradus Chess: learn chess** — published by Gradus Studio. Last updated: November 4, 2026.
 
 **Summary:** Gradus has no accounts, no ads, no analytics tools and collects no personal data. Everything it stores stays on your phone.
 
@@ -64,4 +64,4 @@ Since we do not collect personal data, there is no data of ours to access, corre
 Gradus is free software (GPL v3 or later): you can check in the source code that this is what the app does.
 
 ### Changes and contact
-If this policy changes, it will be updated at this same address with a new date. Questions: [EMAIL].
+If this policy changes, it will be updated at this same address with a new date. Questions: gradusstudioapp@gmail.com.

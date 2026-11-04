@@ -4,7 +4,7 @@ import { AudioPlayer, createAudioPlayer, setAudioModeAsync } from 'expo-audio';
 import * as Haptics from 'expo-haptics';
 import { useSettings } from '../settings/SettingsContext';
 
-// Sonidos y vibración de la app. Los sonidos son propios (scripts/build-sounds.js).
+// Sonidos y vibración de la app. Los sonidos son los de assets/sounds, generados con ComfyUI (Stable Audio Open); los anteriores sintetizados están en assets/fuente/sonidos/previos.
 // Respetan los ajustes "Sonido" y "Vibración" de la app. Suenan aunque el timbre del teléfono esté en silencio (ver playSound).
 
 export type SoundName = 'move' | 'capture' | 'correct' | 'wrong';

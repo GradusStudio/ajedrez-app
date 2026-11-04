@@ -86,8 +86,7 @@ function buzz({ ms, from, to, gain }) {
 }
 
 const sounds = {
-  move: knock({ ms: 70, tones: [[880, 0.6], [1760, 0.25], [2640, 0.1]], noiseAmount: 0.9, decayMs: 14, gain: 0.55 }),
-  capture: knock({ ms: 110, tones: [[520, 0.6], [1040, 0.3], [1560, 0.15]], noiseAmount: 1.3, decayMs: 24, gain: 0.6 }),
+  // move, capture y mate ya no se generan acá: salen de scripts/sonidos/sintetizar.py (modelados sobre golpes de madera reales).
   correct: chime([880, 1318.5], { noteMs: 90, gain: 0.35 }),
   wrong: buzz({ ms: 220, from: 260, to: 170, gain: 0.35 }),
 };

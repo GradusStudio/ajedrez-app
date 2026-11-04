@@ -390,7 +390,7 @@ export const es = {
   'credits.icon.name': 'Icono',
   'credits.icon.what': 'El icono de la app (el caballo que sube la escalera) se creó con ChatGPT (OpenAI).',
   'credits.sounds.name': 'Sonidos',
-  'credits.sounds.what': 'Generados por la propia app (síntesis de sonido).',
+  'credits.sounds.what': 'Generados con IA (Stable Audio Open, en ComfyUI) y editados a mano, a partir de sonidos CC0 de Freesound (el_boss).',
   'credits.expo.name': 'Expo, React Native y React',
   'credits.expo.what': 'La base de la app, más Expo Router, react-native-svg, react-native-webview, AsyncStorage, expo-audio, expo-haptics y expo-notifications.',
 

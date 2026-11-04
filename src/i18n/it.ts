@@ -391,7 +391,7 @@ export const it: Record<MessageKey, string> = {
   'credits.icon.name': 'Icona',
   'credits.icon.what': "L'icona dell'app (il cavallo che sale la scala) è stata creata con ChatGPT (OpenAI).",
   'credits.sounds.name': 'Suoni',
-  'credits.sounds.what': "Generati dall'app stessa (sintesi del suono).",
+  'credits.sounds.what': "Generati con l'IA (Stable Audio Open, in ComfyUI) e ritoccati a mano, a partire da suoni CC0 di Freesound (el_boss).",
   'credits.expo.name': 'Expo, React Native e React',
   'credits.expo.what': "La base dell'app, più Expo Router, react-native-svg, react-native-webview, AsyncStorage, expo-audio, expo-haptics ed expo-notifications.",
 

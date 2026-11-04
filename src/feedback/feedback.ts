@@ -4,7 +4,7 @@ import { AudioPlayer, createAudioPlayer, setAudioModeAsync } from 'expo-audio';
 import * as Haptics from 'expo-haptics';
 import { useSettings } from '../settings/SettingsContext';
 
-// Sonidos y vibración de la app. Los sonidos son propios (scripts/build-sounds.js).
+// Sonidos y vibración de la app. Los sonidos son los de assets/sounds, generados con ComfyUI (Stable Audio Open); los anteriores sintetizados están en ajedrez-app/assets/fuente/sonidos/previos/avatar.
 // Respetan los ajustes "Sonido" y "Vibración", y el modo silencio del teléfono.
 
 export type SoundName = 'move' | 'capture' | 'correct' | 'wrong';

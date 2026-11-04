@@ -53,3 +53,6 @@ google-service-account*.json
 # Sesiones y grafo de Claude Code (locales)
 .claude/
 graphify-out/
+
+# Salidas sueltas de pruebas
+u[1-6].txt

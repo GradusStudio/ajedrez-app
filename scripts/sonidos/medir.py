@@ -1,5 +1,6 @@
 import numpy as np, scipy.io.wavfile as w, scipy.signal as sg
-r,a=w.read("C:/dev/ajedrez-app/assets/fuente/sonidos/referencia-chesscom.wav"); a=a.astype(float)/32768
+import os; ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')).replace(os.sep, '/') + '/'  # raíz del proyecto
+r,a=w.read(ROOT + "assets/fuente/sonidos/referencia-chesscom.wav"); a=a.astype(float)/32768
 groups={'toc':[5.87,9.83,14.26,17.66,27.96,44.29,53.92,60.47,67.63,116.23,127.39],
         'chak':[20.74,24.42,29.47,31.15,38.07,39.27,57.40,80.79],
         'contra':[8.11,12.24,15.85,19.35,22.69],

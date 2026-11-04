@@ -2,6 +2,7 @@
 Las frecuencias y los tiempos de apagado salen de medir.py sobre la referencia; la señal es propia (modos + ruido).
 Uso: python sintetizar.py  -> assets/sounds/move.wav, capture.wav"""
 import numpy as np, scipy.io.wavfile as w, scipy.signal as sg
+import os; ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')).replace(os.sep, '/') + '/'  # raíz del proyecto
 R = 44100
 rng = np.random.default_rng(7)
 
@@ -21,7 +22,7 @@ def hit(modes, ms, noise_ms=1.5, noise_gain=0.35, noise_band=(900, 3500), hits=(
 
 def save(name, y, peak=0.5):
     y = y / np.abs(y).max() * peak
-    w.write(f"C:/dev/ajedrez-app/assets/sounds/{name}.wav", R, (y * 32767).astype(np.int16))
+    w.write(f"{ROOT}assets/sounds/{name}.wav", R, (y * 32767).astype(np.int16))
 
 TOC = [(193, .8, 5), (462, 1.0, 3.5), (624, .25, 3), (925, .57, 2.5), (1087, .25, 2.5), (1313, .3, 2)]
 CHAK = [(150, 1.0, 7), (322, .65, 6), (613, .4, 5), (807, .35, 4), (1001, .38, 4), (1238, .5, 4), (1453, .7, 5), (1884, .22, 3)]

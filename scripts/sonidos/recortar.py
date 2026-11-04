@@ -1,8 +1,9 @@
 """Recorta los candidatos de ComfyUI al golpe, normaliza y los compara con la referencia.
 Uso: python recortar.py <nombre> <ms> <centroide objetivo Hz>"""
 import av, glob, os, sys, numpy as np, scipy.io.wavfile as w, scipy.signal as sg
+import os; ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')).replace(os.sep, '/') + '/'  # raíz del proyecto
 name, ms, target = sys.argv[1], int(sys.argv[2]), float(sys.argv[3])
-OUT = "C:/dev/ajedrez-app/assets/fuente/sonidos/"
+OUT = ROOT + "assets/fuente/sonidos/"
 # Carpeta de salida de ComfyUI: variable de entorno COMFYUI_OUTPUT o ~/ComfyUI/output/audio
 COMFY = os.environ.get("COMFYUI_OUTPUT", os.path.expanduser("~/ComfyUI/output/audio"))
 def load(p):

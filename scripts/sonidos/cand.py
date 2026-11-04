@@ -1,5 +1,6 @@
 import numpy as np, scipy.io.wavfile as w, scipy.signal as sg, glob
-for p in sorted(glob.glob("C:/dev/ajedrez-app/assets/fuente/sonidos/elevenlabs/*.wav")):
+import os; ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')).replace(os.sep, '/') + '/'  # raíz del proyecto
+for p in sorted(glob.glob(ROOT + "assets/fuente/sonidos/elevenlabs/*.wav")):
     r,a=w.read(p); a=a.astype(float)/32768
     if a.ndim>1: a=a.mean(1)
     pk=np.abs(a).max(); on=np.argmax(np.abs(a)>pk*0.15)

@@ -260,6 +260,7 @@ export function Board({
   useEffect(() => {
     if (anim.id > 0 && anim.moved) feedback.move(!!anim.captured);
     // Solo cuando cambia la jugada (anim.id).
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [anim.id]);
 
   // Jugadas legales de la pieza seleccionada: casilla destino -> ¿es captura?

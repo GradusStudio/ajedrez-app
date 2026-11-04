@@ -177,6 +177,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
     };
     // checkEnd, sync y uciHistory leen `chess`, que no cambia; el turno depende de `fen`. `ready` pasa a true
     // cuando ya están los motores del bot (`maia` y `engine`), y no cambian mientras dura.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, fen, result]);
 
   const onUserMove = (m: BoardMove) => {

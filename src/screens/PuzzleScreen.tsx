@@ -86,6 +86,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
       pending.forEach(clearTimeout);
     };
     // Solo al montar: `apply` usa el `chess` de este puzzle.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const finish = (result: PuzzleResult) => {

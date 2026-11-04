@@ -71,6 +71,7 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
     const timer = setTimeout(() => play(ply), REPLY_DELAY_MS);
     return () => clearTimeout(timer);
     // play y onCorrect cambian en cada render; el efecto solo depende de la jugada actual.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ply]);
 
   const handleMove = (m: BoardMove) => {

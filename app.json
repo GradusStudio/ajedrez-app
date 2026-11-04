@@ -51,7 +51,8 @@
           "backgroundColor": "#262421"
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      "expo-asset"
     ],
     "extra": {
       "eas": {

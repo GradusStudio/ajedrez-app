@@ -68,7 +68,7 @@
 4. Bots con Stockfish (pestaña Bots, ficha, partida, práctica de aperturas): HECHO (probado en el celular; ver LEEME-hito4.md). Niveles de Pipo a Valentina recalibrados midiendo partidas entre bots vecinos (docs/bots.md, "Calibración"). Desde el 2-11-2026 juegan con Maia, recalibrados contra los bots anteriores (docs/maia.md); falta probarlos en el celular.
 5. Puzzles: 50.000 (al principio 10.000) de la base abierta de Lichess (CC0), puzzle del día y práctica por nivel y tema: HECHO (probado en el celular; ver LEEME-hito5.md y docs/puzzles.md).
 6. Perfil, Ajustes, Créditos, bienvenida, sonidos, vibración, recordatorio diario, 5 temas de tablero y animación de jugadas: HECHO (probado en el celular; ver LEEME-hito6.md). Después: arrastrar piezas, transiciones, selector de coronación y análisis en vivo.
-7. Prueba cerrada en Google Play (12 testers, 14 días).
+7. Prueba cerrada en Google Play (12 testers, 14 días). Preparado el 3-11-2026: `eas.json` con perfil de producción (`.aab`) y envío a pista interna, `expo-asset` instalado, paquetes alineados, política de privacidad y lista de pasos en `docs/tienda/` (`lanzamiento.md`). Falta: cuenta de Play Console, correo de contacto, URL de la política, gráfico de funciones y capturas, y probar un APK `preview` fuera de Expo Go.
 
 ## Pendientes y avisos
 - Bots con Maia: probar en el celular cuánto tarda cada jugada, la memoria con dos WebViews (Maia y Stockfish; cargar solo la red del bot en vez de las 3 en `nets.ts`) y si el nivel de cada bot se siente bien.

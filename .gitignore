@@ -40,8 +40,6 @@ yarn-error.*
 /ios
 /android
 
-# originales de las expresiones de los bots (ver CLAUDE.md)
-assets/fuente/expresiones/
 
 .superpowers/
 assets/fuente/texturas/

@@ -391,7 +391,7 @@ export const de: Record<MessageKey, string> = {
   'credits.icon.name': 'Icon',
   'credits.icon.what': 'Das App-Icon (der Springer, der die Treppe hinaufsteigt) wurde mit ChatGPT (OpenAI) erstellt.',
   'credits.sounds.name': 'Töne',
-  'credits.sounds.what': 'Mit KI erzeugt (Stable Audio Open in ComfyUI) und von Hand bearbeitet, ausgehend von CC0-Klängen auf Freesound (el_boss).',
+  'credits.sounds.what': 'Mit KI erzeugt (ElevenLabs).',
   'credits.expo.name': 'Expo, React Native und React',
   'credits.expo.what': 'Die Grundlage der App, dazu Expo Router, react-native-svg, react-native-webview, AsyncStorage, expo-audio, expo-haptics und expo-notifications.',
 

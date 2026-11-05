@@ -202,160 +202,160 @@
     "found": {
       "you": {
         "fork": [
-          "You found a fork: {attacker} attacks {targets}.",
-          "One move, several threats: {attacker} aims at more than one piece."
+          "Du hast eine Gabel gefunden: {attacker} greift {targets} an.",
+          "Ein Zug, mehrere Drohungen: {attacker} greift mehr als eine Figur an."
         ],
         "pin": [
-          "You found a pin: {attacker} pins {targets} on the same line.",
-          "Pin with {attacker}: if the front piece moves, the one behind, which is worth more, is attacked."
+          "Du hast eine Fesselung gefunden: {attacker} fesselt {targets} auf derselben Linie.",
+          "Fesselung: {attacker} greift die vordere Figur an. Zieht sie weg, wird die dahinter stehende, wertvollere Figur angegriffen."
         ],
         "skewer": [
-          "You found a skewer: {attacker} attacks {targets} on the same line.",
-          "Skewer with {attacker}: the front piece is attacked and the one behind is exposed behind it."
+          "Du hast einen Spieß gefunden: {attacker} greift {targets} auf derselben Linie an.",
+          "Spieß: {attacker} greift die vordere Figur an. Weicht sie aus, ist die Figur dahinter dran."
         ],
         "discovered": [
-          "You found a discovered attack: {attacker} now attacks {targets}.",
-          "Discovered attack: when the piece moved, the line of {attacker} opened."
+          "Du hast einen Abzugsangriff gefunden: {attacker} greift jetzt {targets} an.",
+          "Abzugsangriff: Die Figur zieht weg, und {attacker} hat freie Linie."
         ],
         "doubleCheck": [
-          "You found a double check: {attacker} and another piece give check.",
-          "Against a double check, blocking or capturing with another piece does not work: your opponent has to move the king."
+          "Du hast ein Doppelschach gefunden: {attacker} und eine andere Figur geben dem König Schach.",
+          "Gegen ein Doppelschach hilft kein Blocken und kein Schlagen mit einer anderen Figur: Der Gegner muss den König ziehen."
         ],
         "hanging": [
-          "You found a hanging piece: {attacker} captures {targetsDef}, which nobody defended.",
-          "Good eye: {targetsDef} was undefended."
+          "Du hast eine hängende Figur gefunden: {targetsDef} stand ungedeckt, und {attacker} schlägt die Figur.",
+          "Gut gesehen: {targetsDef} war ungedeckt."
         ],
         "backRank": [
-          "You found a back-rank mate: {attacker} gives checkmate on the last rank.",
-          "Back-rank mate: {attacker} attacks along the last rank and the king has no escape squares."
+          "Du hast ein Grundreihenmatt gefunden: {attacker} setzt auf der letzten Reihe matt.",
+          "Grundreihenmatt: {attacker} greift auf der letzten Reihe an, und der König hat keine Fluchtfelder."
         ]
       },
       "opp": {
         "fork": [
-          "Your opponent found a fork: {attacker} attacks {targets}.",
-          "One move by your opponent, several threats: {attacker} aims at more than one piece."
+          "Der Gegner hat eine Gabel gefunden: {attacker} greift {targets} an.",
+          "Ein Zug des Gegners, mehrere Drohungen: {attacker} greift mehr als eine Figur an."
         ],
         "pin": [
-          "Your opponent found a pin: {attacker} pins {targets} on the same line.",
-          "Pin by your opponent with {attacker}: if the front piece moves, the one behind, which is worth more, is attacked."
+          "Der Gegner hat eine Fesselung gefunden: {attacker} fesselt {targets} auf derselben Linie.",
+          "Fesselung des Gegners: {attacker} greift die vordere Figur an. Zieht sie weg, wird die dahinter stehende, wertvollere Figur angegriffen."
         ],
         "skewer": [
-          "Your opponent found a skewer: {attacker} attacks {targets} on the same line.",
-          "Skewer by your opponent with {attacker}: the front piece is attacked and the one behind is exposed behind it."
+          "Der Gegner hat einen Spieß gefunden: {attacker} greift {targets} auf derselben Linie an.",
+          "Spieß des Gegners: {attacker} greift die vordere Figur an. Weicht sie aus, ist die Figur dahinter dran."
         ],
         "discovered": [
-          "Your opponent found a discovered attack: {attacker} now attacks {targets}.",
-          "Discovered attack by your opponent: the line of {attacker} opened onto {targetsDef}."
+          "Der Gegner hat einen Abzugsangriff gefunden: {attacker} greift jetzt {targets} an.",
+          "Abzugsangriff des Gegners: {attacker} hat freie Linie. Im Visier: {targetsDef}."
         ],
         "doubleCheck": [
-          "Your opponent found a double check: {attacker} and another piece give check.",
-          "A double check can only be answered by moving the king, not by blocking or capturing with another piece."
+          "Der Gegner hat ein Doppelschach gefunden: {attacker} und eine andere Figur geben dem König Schach.",
+          "Ein Doppelschach lässt sich nur mit einem Königszug beantworten, nicht durch Blocken oder Schlagen."
         ],
         "hanging": [
-          "Your opponent found a hanging piece: {attacker} captures {targetsDef}, which nobody defended.",
-          "Always check which pieces are left undefended: here {targetsDef} had no defender."
+          "Der Gegner hat eine hängende Figur gefunden: {targetsDef} stand ungedeckt, und {attacker} schlägt die Figur.",
+          "Prüfe immer, welche Figuren ungedeckt sind: Hier hatte {targetsDef} keine Deckung."
         ],
         "backRank": [
-          "Your opponent found a back-rank mate: {attacker} gives checkmate on the last rank.",
-          "The king has no escape squares behind its own pieces: that is how a back-rank mate works."
+          "Der Gegner hat ein Grundreihenmatt gefunden: {attacker} setzt auf der letzten Reihe matt.",
+          "Der König hat hinter seinen eigenen Figuren keine Fluchtfelder: So funktioniert das Grundreihenmatt."
         ]
       }
     },
     "allows": {
       "you": {
         "fork": [
-          "That move lets your opponent play a fork with {san}.",
-          "With {san}, your opponent attacks {targets} at once with {attacker}."
+          "Dieser Zug erlaubt deinem Gegner eine Gabel mit {san}.",
+          "Mit {san} greift {attacker} gleichzeitig {targets} an."
         ],
         "pin": [
-          "That move lets your opponent play a pin with {san}.",
-          "With {san}, your opponent pins {targets} with {attacker}."
+          "Dieser Zug erlaubt deinem Gegner eine Fesselung mit {san}.",
+          "Mit {san} fesselt {attacker} {targets}."
         ],
         "skewer": [
-          "That move lets your opponent play a skewer with {san}.",
-          "With {san}, your opponent skewers {targets} with {attacker}."
+          "Dieser Zug erlaubt deinem Gegner einen Spieß mit {san}.",
+          "Mit {san} setzt {attacker} einen Spieß gegen {targets}."
         ],
         "discovered": [
-          "That move lets your opponent play a discovered attack with {san}.",
-          "With {san}, your opponent opens the line of {attacker} onto {targetsDef}."
+          "Dieser Zug erlaubt deinem Gegner einen Abzugsangriff mit {san}.",
+          "Mit {san} wird die Linie frei: {attacker} hat freie Bahn. Im Visier: {targetsDef}."
         ],
         "doubleCheck": [
-          "That move lets your opponent play a double check with {san}.",
-          "With {san}, your opponent gives double check: you could only answer by moving the king."
+          "Dieser Zug erlaubt deinem Gegner ein Doppelschach mit {san}.",
+          "Mit {san} gibt der Gegner Doppelschach: Du kannst nur mit einem Königszug antworten."
         ],
         "hanging": [
-          "That move leaves a piece hanging: your opponent takes it with {san}.",
-          "With {san}, your opponent takes {targetsDef}, undefended."
+          "Dieser Zug lässt eine Figur hängen: Der Gegner schlägt sie mit {san}.",
+          "Nach {san} geht {targetsDef} ohne Deckung verloren."
         ],
         "backRank": [
-          "That move lets your opponent play a back-rank mate with {san}.",
-          "Your king has no escape squares on the last rank: {san} would be mate."
+          "Dieser Zug erlaubt deinem Gegner ein Grundreihenmatt mit {san}.",
+          "Dein König hat auf der letzten Reihe keine Fluchtfelder: {san} wäre Matt."
         ]
       },
       "opp": {
         "fork": [
-          "That move lets you play a fork with {san}.",
-          "You have {san}: {attacker} attacks {targets} at once."
+          "Dieser Zug erlaubt dir eine Gabel mit {san}.",
+          "Du hast {san}: {attacker} greift gleichzeitig {targets} an."
         ],
         "pin": [
-          "That move lets you play a pin with {san}.",
-          "With {san} you can pin {targets} with {attacker}."
+          "Dieser Zug erlaubt dir eine Fesselung mit {san}.",
+          "Mit {san} kann {attacker} {targets} fesseln."
         ],
         "skewer": [
-          "That move lets you play a skewer with {san}.",
-          "With {san} you can skewer {targets} with {attacker}."
+          "Dieser Zug erlaubt dir einen Spieß mit {san}.",
+          "Mit {san} kann {attacker} einen Spieß gegen {targets} setzen."
         ],
         "discovered": [
-          "That move lets you play a discovered attack with {san}.",
-          "With {san} you open the line of {attacker} onto {targetsDef}."
+          "Dieser Zug erlaubt dir einen Abzugsangriff mit {san}.",
+          "Mit {san} wird die Linie frei: {attacker} hat freie Bahn. Im Visier: {targetsDef}."
         ],
         "doubleCheck": [
-          "That move lets you play a double check with {san}.",
-          "With {san} you give double check: your opponent can only answer by moving the king."
+          "Dieser Zug erlaubt dir ein Doppelschach mit {san}.",
+          "Mit {san} gibst du Doppelschach: Der Gegner kann nur mit einem Königszug antworten."
         ],
         "hanging": [
-          "That move leaves a piece hanging: you take it with {san}.",
-          "With {san} you take {targetsDef}, undefended."
+          "Dieser Zug lässt eine Figur hängen: Du schlägst sie mit {san}.",
+          "Mit {san} kannst du die Figur gewinnen: {targetsDef} ist ungedeckt."
         ],
         "backRank": [
-          "That move lets you play a back-rank mate with {san}.",
-          "The enemy king has no escape squares on its last rank: {san} is mate."
+          "Dieser Zug erlaubt dir ein Grundreihenmatt mit {san}.",
+          "Der gegnerische König hat auf seiner letzten Reihe keine Fluchtfelder: {san} ist Matt."
         ]
       }
     }
   },
   "mateIn": {
-    "foundYou": "Your move leaves a forced mate in {n}.",
-    "foundOpp": "Your opponent's move leaves a forced mate in {n}.",
-    "allowsYou": "That move lets your opponent play a mate in {n}.",
-    "allowsOpp": "That move lets you play a mate in {n}."
+    "foundYou": "Dein Zug führt zu einem erzwungenen Matt in {n}.",
+    "foundOpp": "Dieser Zug des Gegners führt zu einem erzwungenen Matt in {n}.",
+    "allowsYou": "Dieser Zug erlaubt deinem Gegner ein Matt in {n}.",
+    "allowsOpp": "Dieser Zug erlaubt dir ein Matt in {n}."
   },
   "plan": {
-    "develop": "Develops {piece} from {from} to {to}: a minor piece leaves its starting square.",
-    "center": "{Piece} reaches {to}, a central square.",
-    "rookFile": "{Piece} goes to {to}, on a file with no pawns of its own.",
-    "pawnBreak": "The pawn reaches {to} and attacks an enemy pawn.",
-    "pawnAdvance": "The pawn advances from {from} to {to}.",
-    "trade": "Offers a trade of pieces on {to}; the opponent can recapture.",
-    "retreat": "{Piece} retreats from {from} to {to}.",
-    "kingActive": "The king approaches the center: it goes from {from} to {to}.",
-    "plain": "{Piece} moves from {from} to {to}."
+    "develop": "Entwicklung: {piece} geht von {from} nach {to} und verlässt das Ausgangsfeld.",
+    "center": "{Piece} kommt nach {to}, auf ein zentrales Feld.",
+    "rookFile": "{Piece} geht nach {to}, auf eine Linie ohne eigene Bauern.",
+    "pawnBreak": "Der Bauer kommt nach {to} und greift einen gegnerischen Bauern an.",
+    "pawnAdvance": "Der Bauer zieht von {from} nach {to}.",
+    "trade": "Abtauschangebot auf {to}: Der Gegner kann zurückschlagen.",
+    "retreat": "{Piece} zieht von {from} nach {to} zurück.",
+    "kingActive": "Der König nähert sich dem Zentrum: von {from} nach {to}.",
+    "plain": "{Piece} zieht von {from} nach {to}."
   },
-  "and": "and",
+  "and": "und",
   "pieceDef": {
-    "p": "the pawn",
-    "n": "the knight",
-    "b": "the bishop",
-    "r": "the rook",
-    "q": "the queen",
-    "k": "the king"
+    "p": "der Bauer",
+    "n": "der Springer",
+    "b": "der Läufer",
+    "r": "der Turm",
+    "q": "die Dame",
+    "k": "der König"
   },
   "pieceObj": {
-    "p": "the pawn",
-    "n": "the knight",
-    "b": "the bishop",
-    "r": "the rook",
-    "q": "the queen",
-    "k": "the king"
+    "p": "den Bauern",
+    "n": "den Springer",
+    "b": "den Läufer",
+    "r": "den Turm",
+    "q": "die Dame",
+    "k": "den König"
   }
 }

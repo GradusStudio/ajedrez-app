@@ -202,160 +202,160 @@
     "found": {
       "you": {
         "fork": [
-          "You found a fork: {attacker} attacks {targets}.",
-          "One move, several threats: {attacker} aims at more than one piece."
+          "Tu as trouvé une fourchette : {attacker} attaque {targets}.",
+          "Un seul coup, plusieurs menaces : {attacker} vise plus d'une pièce."
         ],
         "pin": [
-          "You found a pin: {attacker} pins {targets} on the same line.",
-          "Pin with {attacker}: if the front piece moves, the one behind, which is worth more, is attacked."
+          "Tu as trouvé un clouage : {attacker} cloue {targets} sur la même ligne.",
+          "Clouage avec {attacker} : si la pièce devant bouge, celle derrière, plus précieuse, est attaquée."
         ],
         "skewer": [
-          "You found a skewer: {attacker} attacks {targets} on the same line.",
-          "Skewer with {attacker}: the front piece is attacked and the one behind is exposed behind it."
+          "Tu as trouvé une enfilade : {attacker} attaque {targets} sur la même ligne.",
+          "Enfilade avec {attacker} : la pièce devant est attaquée et celle qui est derrière reste exposée."
         ],
         "discovered": [
-          "You found a discovered attack: {attacker} now attacks {targets}.",
-          "Discovered attack: when the piece moved, the line of {attacker} opened."
+          "Tu as trouvé une attaque à la découverte : {attacker} attaque maintenant {targets}.",
+          "Attaque à la découverte : la pièce s'écarte et {attacker} a la voie libre."
         ],
         "doubleCheck": [
-          "You found a double check: {attacker} and another piece give check.",
-          "Against a double check, blocking or capturing with another piece does not work: your opponent has to move the king."
+          "Tu as trouvé un échec double : {attacker} et une autre pièce donnent échec au roi.",
+          "Face à un échec double, on ne peut ni bloquer ni prendre avec une autre pièce : l'adversaire doit bouger le roi."
         ],
         "hanging": [
-          "You found a hanging piece: {attacker} captures {targetsDef}, which nobody defended.",
-          "Good eye: {targetsDef} was undefended."
+          "Tu as trouvé une pièce en prise : {attacker} prend {targetsDef}, que personne ne défendait.",
+          "Bien vu : {targetsDef} n'avait aucune défense."
         ],
         "backRank": [
-          "You found a back-rank mate: {attacker} gives checkmate on the last rank.",
-          "Back-rank mate: {attacker} attacks along the last rank and the king has no escape squares."
+          "Tu as trouvé un mat du couloir : {attacker} donne échec et mat sur la dernière rangée.",
+          "Mat du couloir : {attacker} attaque par la dernière rangée et le roi n'a pas de cases de fuite."
         ]
       },
       "opp": {
         "fork": [
-          "Your opponent found a fork: {attacker} attacks {targets}.",
-          "One move by your opponent, several threats: {attacker} aims at more than one piece."
+          "L'adversaire a trouvé une fourchette : {attacker} attaque {targets}.",
+          "Un seul coup de l'adversaire, plusieurs menaces : {attacker} vise plus d'une pièce."
         ],
         "pin": [
-          "Your opponent found a pin: {attacker} pins {targets} on the same line.",
-          "Pin by your opponent with {attacker}: if the front piece moves, the one behind, which is worth more, is attacked."
+          "L'adversaire a trouvé un clouage : {attacker} cloue {targets} sur la même ligne.",
+          "Clouage de l'adversaire avec {attacker} : si la pièce devant bouge, celle derrière, plus précieuse, est attaquée."
         ],
         "skewer": [
-          "Your opponent found a skewer: {attacker} attacks {targets} on the same line.",
-          "Skewer by your opponent with {attacker}: the front piece is attacked and the one behind is exposed behind it."
+          "L'adversaire a trouvé une enfilade : {attacker} attaque {targets} sur la même ligne.",
+          "Enfilade de l'adversaire avec {attacker} : la pièce devant est attaquée et celle qui est derrière reste exposée."
         ],
         "discovered": [
-          "Your opponent found a discovered attack: {attacker} now attacks {targets}.",
-          "Discovered attack by your opponent: the line of {attacker} opened onto {targetsDef}."
+          "L'adversaire a trouvé une attaque à la découverte : {attacker} attaque maintenant {targets}.",
+          "Attaque à la découverte de l'adversaire : {attacker} a la voie libre sur {targetsDef}."
         ],
         "doubleCheck": [
-          "Your opponent found a double check: {attacker} and another piece give check.",
-          "A double check can only be answered by moving the king, not by blocking or capturing with another piece."
+          "L'adversaire a trouvé un échec double : {attacker} et une autre pièce donnent échec au roi.",
+          "Un échec double se résout uniquement en bougeant le roi, pas en bloquant ou en prenant avec une autre pièce."
         ],
         "hanging": [
-          "Your opponent found a hanging piece: {attacker} captures {targetsDef}, which nobody defended.",
-          "Always check which pieces are left undefended: here {targetsDef} had no defender."
+          "L'adversaire a trouvé une pièce en prise : {attacker} prend {targetsDef}, que personne ne défendait.",
+          "Vérifie toujours quelles pièces restent sans défense : ici {targetsDef} n'en avait aucune."
         ],
         "backRank": [
-          "Your opponent found a back-rank mate: {attacker} gives checkmate on the last rank.",
-          "The king has no escape squares behind its own pieces: that is how a back-rank mate works."
+          "L'adversaire a trouvé un mat du couloir : {attacker} donne échec et mat sur la dernière rangée.",
+          "Le roi n'a pas de cases de fuite derrière ses propres pièces : c'est le principe du mat du couloir."
         ]
       }
     },
     "allows": {
       "you": {
         "fork": [
-          "That move lets your opponent play a fork with {san}.",
-          "With {san}, your opponent attacks {targets} at once with {attacker}."
+          "Ce coup permet à ton adversaire de faire une fourchette avec {san}.",
+          "Avec {san}, l'adversaire attaque {targets} à la fois avec {attacker}."
         ],
         "pin": [
-          "That move lets your opponent play a pin with {san}.",
-          "With {san}, your opponent pins {targets} with {attacker}."
+          "Ce coup permet à ton adversaire de faire un clouage avec {san}.",
+          "Avec {san}, l'adversaire cloue {targets} avec {attacker}."
         ],
         "skewer": [
-          "That move lets your opponent play a skewer with {san}.",
-          "With {san}, your opponent skewers {targets} with {attacker}."
+          "Ce coup permet à ton adversaire de faire une enfilade avec {san}.",
+          "Avec {san}, l'adversaire enfile {targets} avec {attacker}."
         ],
         "discovered": [
-          "That move lets your opponent play a discovered attack with {san}.",
-          "With {san}, your opponent opens the line of {attacker} onto {targetsDef}."
+          "Ce coup permet à ton adversaire de faire une attaque à la découverte avec {san}.",
+          "Avec {san}, l'adversaire découvre l'attaque : {attacker} a la voie libre sur {targetsDef}."
         ],
         "doubleCheck": [
-          "That move lets your opponent play a double check with {san}.",
-          "With {san}, your opponent gives double check: you could only answer by moving the king."
+          "Ce coup permet à ton adversaire de faire un échec double avec {san}.",
+          "Avec {san}, l'adversaire donne échec double : tu ne peux répondre qu'en bougeant le roi."
         ],
         "hanging": [
-          "That move leaves a piece hanging: your opponent takes it with {san}.",
-          "With {san}, your opponent takes {targetsDef}, undefended."
+          "Ce coup laisse une pièce en prise : l'adversaire la prend avec {san}.",
+          "Avec {san}, l'adversaire prend {targetsDef} sans défense."
         ],
         "backRank": [
-          "That move lets your opponent play a back-rank mate with {san}.",
-          "Your king has no escape squares on the last rank: {san} would be mate."
+          "Ce coup permet à ton adversaire de faire un mat du couloir avec {san}.",
+          "Ton roi n'a pas de cases de fuite sur la dernière rangée : {san} est mat."
         ]
       },
       "opp": {
         "fork": [
-          "That move lets you play a fork with {san}.",
-          "You have {san}: {attacker} attacks {targets} at once."
+          "Ce coup te permet de faire une fourchette avec {san}.",
+          "Tu as {san} : {attacker} attaque {targets} à la fois."
         ],
         "pin": [
-          "That move lets you play a pin with {san}.",
-          "With {san} you can pin {targets} with {attacker}."
+          "Ce coup te permet de faire un clouage avec {san}.",
+          "Avec {san} tu peux clouer {targets} avec {attacker}."
         ],
         "skewer": [
-          "That move lets you play a skewer with {san}.",
-          "With {san} you can skewer {targets} with {attacker}."
+          "Ce coup te permet de faire une enfilade avec {san}.",
+          "Avec {san} tu peux enfiler {targets} avec {attacker}."
         ],
         "discovered": [
-          "That move lets you play a discovered attack with {san}.",
-          "With {san} you open the line of {attacker} onto {targetsDef}."
+          "Ce coup te permet de faire une attaque à la découverte avec {san}.",
+          "Avec {san}, tu découvres l'attaque : {attacker} a la voie libre sur {targetsDef}."
         ],
         "doubleCheck": [
-          "That move lets you play a double check with {san}.",
-          "With {san} you give double check: your opponent can only answer by moving the king."
+          "Ce coup te permet de faire un échec double avec {san}.",
+          "Avec {san} tu donnes échec double : l'adversaire ne peut répondre qu'en bougeant le roi."
         ],
         "hanging": [
-          "That move leaves a piece hanging: you take it with {san}.",
-          "With {san} you take {targetsDef}, undefended."
+          "Ce coup laisse une pièce en prise : tu la prends avec {san}.",
+          "Avec {san} tu prends {targetsDef} sans défense."
         ],
         "backRank": [
-          "That move lets you play a back-rank mate with {san}.",
-          "The enemy king has no escape squares on its last rank: {san} is mate."
+          "Ce coup te permet de faire un mat du couloir avec {san}.",
+          "Le roi adversaire n'a pas de cases de fuite sur sa dernière rangée : {san} est mat."
         ]
       }
     }
   },
   "mateIn": {
-    "foundYou": "Your move leaves a forced mate in {n}.",
-    "foundOpp": "Your opponent's move leaves a forced mate in {n}.",
-    "allowsYou": "That move lets your opponent play a mate in {n}.",
-    "allowsOpp": "That move lets you play a mate in {n}."
+    "foundYou": "Ton coup mène à un mat forcé en {n}.",
+    "foundOpp": "Ce coup de l'adversaire mène à un mat forcé en {n}.",
+    "allowsYou": "Ce coup permet à ton adversaire de donner mat en {n}.",
+    "allowsOpp": "Ce coup te permet de donner mat en {n}."
   },
   "plan": {
-    "develop": "Develops {piece} from {from} to {to}: a minor piece leaves its starting square.",
-    "center": "{Piece} reaches {to}, a central square.",
-    "rookFile": "{Piece} goes to {to}, on a file with no pawns of its own.",
-    "pawnBreak": "The pawn reaches {to} and attacks an enemy pawn.",
-    "pawnAdvance": "The pawn advances from {from} to {to}.",
-    "trade": "Offers a trade of pieces on {to}; the opponent can recapture.",
-    "retreat": "{Piece} retreats from {from} to {to}.",
-    "kingActive": "The king approaches the center: it goes from {from} to {to}.",
-    "plain": "{Piece} moves from {from} to {to}."
+    "develop": "Développement : {piece} va de {from} à {to} et quitte sa case de départ.",
+    "center": "{Piece} arrive à {to}, une case centrale.",
+    "rookFile": "{Piece} va à {to}, dans une colonne sans pion de son camp.",
+    "pawnBreak": "Le pion arrive à {to} et attaque un pion adverse.",
+    "pawnAdvance": "Le pion avance de {from} à {to}.",
+    "trade": "Offre d'échange à {to} : l'adversaire peut reprendre.",
+    "retreat": "{Piece} recule de {from} à {to}.",
+    "kingActive": "Le roi se rapproche du centre : il passe de {from} à {to}.",
+    "plain": "{Piece} se déplace de {from} à {to}."
   },
-  "and": "and",
+  "and": "et",
   "pieceDef": {
-    "p": "the pawn",
-    "n": "the knight",
-    "b": "the bishop",
-    "r": "the rook",
-    "q": "the queen",
-    "k": "the king"
+    "p": "le pion",
+    "n": "le cavalier",
+    "b": "le fou",
+    "r": "la tour",
+    "q": "la dame",
+    "k": "le roi"
   },
   "pieceObj": {
-    "p": "the pawn",
-    "n": "the knight",
-    "b": "the bishop",
-    "r": "the rook",
-    "q": "the queen",
-    "k": "the king"
+    "p": "le pion",
+    "n": "le cavalier",
+    "b": "le fou",
+    "r": "la tour",
+    "q": "la dame",
+    "k": "le roi"
   }
 }

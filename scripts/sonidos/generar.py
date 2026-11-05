@@ -1,11 +1,11 @@
 """Genera candidatos de sonido con ComfyUI (Stable Audio Open).
 Uso: python generar.py <nombre> "<prompt>" <semillas separadas por coma> [segundos]
 Guarda en ComfyUI/output/audio/<nombre>_<semilla>_*.flac. ComfyUI tiene que estar abierto en el puerto 8188."""
-import json, sys, time, urllib.request
+import json, os, sys, time, urllib.request
 
 name, prompt, seeds = sys.argv[1], sys.argv[2], [int(s) for s in sys.argv[3].split(",")]
 secs = float(sys.argv[4]) if len(sys.argv) > 4 else 2.0
-NEG = "music, melody, speech, voice, noise, hiss, reverb, echo, long, drone"
+NEG = os.environ.get("NEG", "music, melody, speech, voice, noise, hiss, reverb, echo, long, drone")
 
 def wf(seed):
     return {

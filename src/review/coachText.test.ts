@@ -153,7 +153,7 @@ test('cada marcador de cada plantilla lo rellena el código y los idiomas coinci
   for (const [path, text] of es) {
     const allowed = SUPPLIED.find(([p]) => path.startsWith(p))?.[1];
     assert.ok(allowed, `familia sin lista: ${path}`);
-    for (const m of text.match(/{w+}/g) ?? []) assert.ok(allowed.includes(m.slice(1, -1)), `${path}: ${m}`);
+    for (const m of text.match(/\{\w+\}/g) ?? []) assert.ok(allowed.includes(m.slice(1, -1)), `${path}: ${m}`);
   }
   for (const lang of ['en', 'de', 'it', 'fr'] as const) {
     const other: [string, string][] = [];

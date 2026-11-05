@@ -37,6 +37,8 @@ type TactTexts = Record<'you' | 'opp', Record<TacticKind, string[]>>;
 type Texts = {
   you: Record<BotStyle, Record<VoiceKey, string[]>>;
   opp: Record<OppKey, string[]>;
+  // `pieces` lleva artículo indefinido ("un caballo", para lo capturado); `pieceDef` el definido ("el caballo", sujeto o
+  // complemento con preposición) y `pieceObj` el complemento directo ("al rey", "a la torre"; igual que pieceDef en inglés).
   pieces: Record<PieceKind, string>;
   expl: Record<ExplKey, string>;
   tact: { found: TactTexts; allows: TactTexts };
@@ -44,6 +46,7 @@ type Texts = {
   plan: Record<PlanKind, string>;
   and: string;
   pieceDef: Record<PieceKind, string>;
+  pieceObj: Record<PieceKind, string>;
 };
 
 export const TEXTS: Record<CoachLang, Texts> = { es, en, de, it, fr } as Record<CoachLang, Texts>;
@@ -101,11 +104,11 @@ export function coachExplanation(o: {
   const piece = (k: PieceKind) => tx.pieces[k];
   const cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
   const def = (k: PieceKind) => tx.pieceDef[k];
-  const list = (ks: PieceKind[]) => {
-    const names = [...new Set(ks)].map(def);
+  const list = (ks: PieceKind[], table: Record<PieceKind, string>) => {
+    const names = [...new Set(ks)].map((k) => table[k]);
     return names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} ${tx.and} ${names[names.length - 1]}`;
   };
-  const tacticVars = (t: { attacker: PieceKind; targets: PieceKind[] }) => ({ attacker: def(t.attacker), targets: list(t.targets) });
+  const tacticVars = (t: { attacker: PieceKind; targets: PieceKind[] }) => ({ attacker: def(t.attacker), targets: list(t.targets, tx.pieceObj), targetsDef: list(t.targets, tx.pieceDef) });
 
   if (facts.mateIn) {
     const { n, mover } = facts.mateIn;

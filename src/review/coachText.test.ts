@@ -35,14 +35,14 @@ const LANGS5 = ['es', 'en', 'de', 'it', 'fr'] as const;
 
 test('horquilla encontrada se explica con piezas reales', () => {
   const ex = coachExplanation({ ...base, facts: { found: [{ kind: 'fork', attacker: 'n', targets: ['k', 'r'] }] } });
-  assert.ok(ex[0].includes('horquilla') && ex[0].includes('el caballo') && ex[0].includes('el rey y la torre'), ex[0]);
+  assert.ok(ex[0].includes('horquilla') && ex[0].includes('el caballo') && ex[0].includes('al rey y a la torre'), ex[0]);
   const opp = coachExplanation({ ...base, subject: 'opponent', facts: { found: [{ kind: 'fork', attacker: 'n', targets: ['k', 'r'] }] } });
-  assert.ok(opp[0].startsWith('El rival') && opp[0].includes('horquilla') && opp[0].includes('la torre'), opp[0]);
+  assert.ok(opp[0].startsWith('El rival') && opp[0].includes('horquilla') && opp[0].includes('a la torre'), opp[0]);
 });
 
 test('los objetivos repetidos se listan una sola vez', () => {
   const ex = coachExplanation({ ...base, facts: { found: [{ kind: 'fork', attacker: 'n', targets: ['r', 'r', 'q'] }] } });
-  assert.ok(ex[0].includes('la torre y la dama') && !ex[0].includes('la torre y la torre'), ex[0]);
+  assert.ok(ex[0].includes('a la torre y a la dama') && !ex[0].includes('torre y a la torre'), ex[0]);
 });
 
 test('una táctica permitida nombra la jugada del rival', () => {
@@ -66,7 +66,7 @@ test('jugada sin hechos tácticos ni did explica el plan', () => {
   assert.equal(ex.length, 1);
   assert.ok(ex[0].includes('el caballo') && ex[0].includes('g1') && ex[0].includes('f3'), ex[0]);
   const plain = coachExplanation({ ...base, facts: { plan: { kind: 'plain', piece: 'r', from: 'a1', to: 'a2' } } });
-  assert.equal(plain[0], 'La torre pasa de a1 a a2.');
+  assert.equal(plain[0], 'La torre se mueve de a1 a a2.');
 });
 
 test('kingActive no habla de finales ni de endgame en ningún idioma', () => {
@@ -130,4 +130,42 @@ test('cada texto nuevo sale rellenado en los cinco idiomas, sin llaves ni rayas 
     }
     assert.ok(!JSON.stringify(TEXTS[lang]).includes('—'), lang);
   }
+});
+
+// Marcadores que el código rellena en cada familia de textos (fill deja vacío lo que falta, así que un
+// error de tecleo como {atacker} solo se ve comparando con esta lista).
+const SUPPLIED: [string, string[]][] = [
+  ['you.', ['move']], ['opp.', ['move']], ['pieces.', []], ['pieceDef.', []], ['pieceObj.', []], ['and', []],
+  ['expl.', ['move', 'san', 'piece', 'best']],
+  ['tact.found.', ['attacker', 'targets', 'targetsDef']], ['tact.allows.', ['attacker', 'targets', 'targetsDef', 'san']],
+  ['mateIn.', ['n']], ['plan.', ['piece', 'Piece', 'from', 'to', 'move']],
+];
+const walk = (o: unknown, path: string, out: [string, string][]) => {
+  if (typeof o === 'string') out.push([path, o]);
+  else if (Array.isArray(o)) o.forEach((v, i) => walk(v, `${path}[${i}]`, out));
+  else for (const [k, v] of Object.entries(o as object)) walk(v, path ? `${path}.${k}` : k, out);
+};
+
+test('cada marcador de cada plantilla lo rellena el código y los idiomas coinciden con es', () => {
+  const es: [string, string][] = [];
+  walk(TEXTS.es, '', es);
+  assert.ok(es.length > 150);
+  for (const [path, text] of es) {
+    const allowed = SUPPLIED.find(([p]) => path.startsWith(p))?.[1];
+    assert.ok(allowed, `familia sin lista: ${path}`);
+    for (const m of text.match(/{w+}/g) ?? []) assert.ok(allowed.includes(m.slice(1, -1)), `${path}: ${m}`);
+  }
+  for (const lang of ['en', 'de', 'it', 'fr'] as const) {
+    const other: [string, string][] = [];
+    walk(TEXTS[lang], '', other);
+    assert.deepEqual(other.map(([p, t]) => [p, ph(t)]), es.map(([p, t]) => [p, ph(t)]), lang);
+  }
+});
+
+test('la jugada permitida usa el marco pedido y las colgadas no se juegan', () => {
+  const only = (kind: 'fork' | 'hanging' | 'backRank', subject: 'you' | 'opponent', seed: number) =>
+    coachExplanation({ ...base, subject, seed, quality: 'blunder', bestSan: '', facts: { allowsTactic: { tactic: { kind, attacker: 'q', targets: ['r'] }, san: 'Qxf7' } } })[0];
+  assert.equal(only('fork', 'you', 0), 'Esa jugada habilita a tu rival a realizar una horquilla con Qxf7.');
+  assert.equal(only('hanging', 'you', 0), 'Esa jugada deja una pieza colgada: el rival la captura con Qxf7.');
+  assert.equal(only('backRank', 'opponent', 0), 'Esa jugada te habilita a dar mate del pasillo con Qxf7.');
 });

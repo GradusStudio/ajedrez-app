@@ -203,15 +203,15 @@
       "you": {
         "fork": [
           "Encontraste una horquilla: {attacker} ataca {targets}.",
-          "Horquilla con {attacker}: el rival no puede defender todo a la vez."
+          "Una sola jugada, varias amenazas: {attacker} apunta a más de una pieza."
         ],
         "pin": [
           "Encontraste una clavada: {attacker} sujeta {targets} en la misma línea.",
-          "Clavada con {attacker}: la pieza de adelante no puede moverse sin dejar expuesta a la de atrás."
+          "Clavada con {attacker}: si la pieza de adelante se mueve, la de atrás, que vale más, queda atacada."
         ],
         "skewer": [
           "Encontraste una enfilada: {attacker} ataca {targets} en la misma línea.",
-          "Enfilada con {attacker}: si la pieza de adelante se aparta, la de atrás queda expuesta."
+          "Enfilada con {attacker}: la pieza de adelante está atacada y la de atrás queda expuesta detrás de ella."
         ],
         "discovered": [
           "Encontraste un ataque a la descubierta: {attacker} ahora ataca {targets}.",
@@ -219,45 +219,45 @@
         ],
         "doubleCheck": [
           "Encontraste un jaque doble: {attacker} y otra pieza dan jaque al rey.",
-          "Jaque doble con {attacker}: la única salida del rival es mover el rey."
+          "Con un jaque doble no vale bloquear ni capturar con otra pieza: el rival tiene que mover el rey."
         ],
         "hanging": [
-          "Encontraste una pieza colgada: {attacker} captura {targets}, que nadie defendía.",
-          "Buen ojo: {targets} estaba sin defensa."
+          "Encontraste una pieza colgada: {attacker} captura {targetsDef}, que nadie defendía.",
+          "Buen ojo: {targetsDef} estaba sin defensa."
         ],
         "backRank": [
-          "Encontraste un mate del pasillo: {attacker} da mate en la última fila.",
-          "Mate del pasillo: el rey está encerrado por sus propios peones."
+          "Encontraste un mate del pasillo: {attacker} da jaque mate en la última fila.",
+          "Mate del pasillo: {attacker} ataca por la última fila y el rey no tiene casillas de escape."
         ]
       },
       "opp": {
         "fork": [
           "El rival encontró una horquilla: {attacker} ataca {targets}.",
-          "Horquilla del rival con {attacker}: hay más de una pieza amenazada."
+          "Una sola jugada del rival, varias amenazas: {attacker} apunta a más de una pieza."
         ],
         "pin": [
           "El rival encontró una clavada: {attacker} sujeta {targets} en la misma línea.",
-          "Clavada del rival con {attacker}: la pieza de adelante queda atada a la de atrás."
+          "Clavada del rival con {attacker}: si la pieza de adelante se mueve, la de atrás, que vale más, queda atacada."
         ],
         "skewer": [
           "El rival encontró una enfilada: {attacker} ataca {targets} en la misma línea.",
-          "Enfilada del rival con {attacker}: la pieza de adelante tiene que apartarse y deja expuesta a la de atrás."
+          "Enfilada del rival con {attacker}: la pieza de adelante está atacada y la de atrás queda expuesta detrás de ella."
         ],
         "discovered": [
           "El rival encontró un ataque a la descubierta: {attacker} ahora ataca {targets}.",
-          "Ataque a la descubierta del rival: se abrió la línea de {attacker} sobre {targets}."
+          "Ataque a la descubierta del rival: se abrió la línea de {attacker} sobre {targetsDef}."
         ],
         "doubleCheck": [
           "El rival encontró un jaque doble: {attacker} y otra pieza dan jaque al rey.",
-          "Jaque doble del rival con {attacker}: la única salida es mover el rey."
+          "Un jaque doble solo se resuelve moviendo el rey, no bloqueando ni capturando con otra pieza."
         ],
         "hanging": [
-          "El rival encontró una pieza colgada: {attacker} captura {targets}, que nadie defendía.",
-          "El rival aprovechó que {targets} estaba sin defensa."
+          "El rival encontró una pieza colgada: {attacker} captura {targetsDef}, que nadie defendía.",
+          "Revisa siempre qué piezas quedan sin defensa: aquí {targetsDef} no tenía ninguna."
         ],
         "backRank": [
-          "El rival encontró un mate del pasillo: {attacker} da mate en la última fila.",
-          "Mate del pasillo del rival: el rey está encerrado por sus propios peones."
+          "El rival encontró un mate del pasillo: {attacker} da jaque mate en la última fila.",
+          "El rey no tiene casillas de escape detrás de sus propias piezas: así funciona el mate del pasillo."
         ]
       }
     },
@@ -277,19 +277,19 @@
         ],
         "discovered": [
           "Esa jugada habilita a tu rival a realizar un ataque a la descubierta con {san}.",
-          "Con {san}, el rival abre la línea de {attacker} sobre {targets}."
+          "Con {san}, el rival abre la línea de {attacker} sobre {targetsDef}."
         ],
         "doubleCheck": [
           "Esa jugada habilita a tu rival a realizar un jaque doble con {san}.",
-          "Con {san}, el rival da jaque doble: tu única salida sería mover el rey."
+          "Con {san}, el rival da jaque doble: solo podrías responder moviendo el rey."
         ],
         "hanging": [
-          "Esa jugada habilita a tu rival a realizar una pieza colgada con {san}.",
-          "Con {san}, el rival se lleva {targets} sin defensa."
+          "Esa jugada deja una pieza colgada: el rival la captura con {san}.",
+          "Con {san}, el rival se lleva {targetsDef} sin defensa."
         ],
         "backRank": [
-          "Esa jugada habilita a tu rival a realizar un mate del pasillo con {san}.",
-          "Con {san}, el rival da mate en la última fila."
+          "Esa jugada habilita a tu rival a dar mate del pasillo con {san}.",
+          "Tu rey no tiene casillas de escape en la última fila: {san} sería mate."
         ]
       },
       "opp": {
@@ -307,19 +307,19 @@
         ],
         "discovered": [
           "Esa jugada te habilita a realizar un ataque a la descubierta con {san}.",
-          "Con {san} abres la línea de {attacker} sobre {targets}."
+          "Con {san} abres la línea de {attacker} sobre {targetsDef}."
         ],
         "doubleCheck": [
           "Esa jugada te habilita a realizar un jaque doble con {san}.",
-          "Con {san} das jaque doble: el rival solo puede mover el rey."
+          "Con {san} das jaque doble: el rival solo puede responder moviendo el rey."
         ],
         "hanging": [
-          "Esa jugada te habilita a realizar una pieza colgada con {san}.",
-          "Con {san} te llevas {targets} sin defensa."
+          "Esa jugada deja una pieza colgada: la capturas con {san}.",
+          "Con {san} te llevas {targetsDef} sin defensa."
         ],
         "backRank": [
-          "Esa jugada te habilita a realizar un mate del pasillo con {san}.",
-          "Con {san} das mate en la última fila: el rey está encerrado por sus peones."
+          "Esa jugada te habilita a dar mate del pasillo con {san}.",
+          "El rey rival no tiene casillas de escape en su última fila: {san} es mate."
         ]
       }
     }
@@ -339,7 +339,7 @@
     "trade": "Ofrece un cambio de piezas en {to}; el rival puede recapturar.",
     "retreat": "{Piece} retrocede de {from} a {to}.",
     "kingActive": "El rey se acerca al centro: pasa de {from} a {to}.",
-    "plain": "{Piece} pasa de {from} a {to}."
+    "plain": "{Piece} se mueve de {from} a {to}."
   },
   "and": "y",
   "pieceDef": {
@@ -349,5 +349,13 @@
     "r": "la torre",
     "q": "la dama",
     "k": "el rey"
+  },
+  "pieceObj": {
+    "p": "al peón",
+    "n": "al caballo",
+    "b": "al alfil",
+    "r": "a la torre",
+    "q": "a la dama",
+    "k": "al rey"
   }
 }

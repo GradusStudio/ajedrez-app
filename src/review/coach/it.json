@@ -203,15 +203,15 @@
       "you": {
         "fork": [
           "You found a fork: {attacker} attacks {targets}.",
-          "Fork with {attacker}: your opponent cannot defend everything at once."
+          "One move, several threats: {attacker} aims at more than one piece."
         ],
         "pin": [
           "You found a pin: {attacker} pins {targets} on the same line.",
-          "Pin with {attacker}: the front piece cannot move without exposing the one behind."
+          "Pin with {attacker}: if the front piece moves, the one behind, which is worth more, is attacked."
         ],
         "skewer": [
           "You found a skewer: {attacker} attacks {targets} on the same line.",
-          "Skewer with {attacker}: if the front piece steps aside, the one behind is exposed."
+          "Skewer with {attacker}: the front piece is attacked and the one behind is exposed behind it."
         ],
         "discovered": [
           "You found a discovered attack: {attacker} now attacks {targets}.",
@@ -219,45 +219,45 @@
         ],
         "doubleCheck": [
           "You found a double check: {attacker} and another piece give check.",
-          "Double check with {attacker}: the only way out for your opponent is a king move."
+          "Against a double check, blocking or capturing with another piece does not work: your opponent has to move the king."
         ],
         "hanging": [
-          "You found a hanging piece: {attacker} captures {targets}, which nobody defended.",
-          "Good eye: {targets} was undefended."
+          "You found a hanging piece: {attacker} captures {targetsDef}, which nobody defended.",
+          "Good eye: {targetsDef} was undefended."
         ],
         "backRank": [
-          "You found a back-rank mate: {attacker} mates on the last rank.",
-          "Back-rank mate: the king is boxed in by its own pawns."
+          "You found a back-rank mate: {attacker} gives checkmate on the last rank.",
+          "Back-rank mate: {attacker} attacks along the last rank and the king has no escape squares."
         ]
       },
       "opp": {
         "fork": [
           "Your opponent found a fork: {attacker} attacks {targets}.",
-          "Fork by your opponent with {attacker}: more than one piece is under attack."
+          "One move by your opponent, several threats: {attacker} aims at more than one piece."
         ],
         "pin": [
           "Your opponent found a pin: {attacker} pins {targets} on the same line.",
-          "Pin by your opponent with {attacker}: the front piece is tied to the one behind."
+          "Pin by your opponent with {attacker}: if the front piece moves, the one behind, which is worth more, is attacked."
         ],
         "skewer": [
           "Your opponent found a skewer: {attacker} attacks {targets} on the same line.",
-          "Skewer by your opponent with {attacker}: the front piece must step aside and exposes the one behind."
+          "Skewer by your opponent with {attacker}: the front piece is attacked and the one behind is exposed behind it."
         ],
         "discovered": [
           "Your opponent found a discovered attack: {attacker} now attacks {targets}.",
-          "Discovered attack by your opponent: the line of {attacker} opened onto {targets}."
+          "Discovered attack by your opponent: the line of {attacker} opened onto {targetsDef}."
         ],
         "doubleCheck": [
           "Your opponent found a double check: {attacker} and another piece give check.",
-          "Double check by your opponent with {attacker}: the only way out is a king move."
+          "A double check can only be answered by moving the king, not by blocking or capturing with another piece."
         ],
         "hanging": [
-          "Your opponent found a hanging piece: {attacker} captures {targets}, which nobody defended.",
-          "Your opponent took advantage of {targets} being undefended."
+          "Your opponent found a hanging piece: {attacker} captures {targetsDef}, which nobody defended.",
+          "Always check which pieces are left undefended: here {targetsDef} had no defender."
         ],
         "backRank": [
-          "Your opponent found a back-rank mate: {attacker} mates on the last rank.",
-          "Back-rank mate by your opponent: the king is boxed in by its own pawns."
+          "Your opponent found a back-rank mate: {attacker} gives checkmate on the last rank.",
+          "The king has no escape squares behind its own pieces: that is how a back-rank mate works."
         ]
       }
     },
@@ -277,19 +277,19 @@
         ],
         "discovered": [
           "That move lets your opponent play a discovered attack with {san}.",
-          "With {san}, your opponent opens the line of {attacker} onto {targets}."
+          "With {san}, your opponent opens the line of {attacker} onto {targetsDef}."
         ],
         "doubleCheck": [
           "That move lets your opponent play a double check with {san}.",
-          "With {san}, your opponent gives double check: your only way out would be a king move."
+          "With {san}, your opponent gives double check: you could only answer by moving the king."
         ],
         "hanging": [
-          "That move lets your opponent play a hanging piece with {san}.",
-          "With {san}, your opponent takes {targets}, undefended."
+          "That move leaves a piece hanging: your opponent takes it with {san}.",
+          "With {san}, your opponent takes {targetsDef}, undefended."
         ],
         "backRank": [
           "That move lets your opponent play a back-rank mate with {san}.",
-          "With {san}, your opponent mates on the back rank."
+          "Your king has no escape squares on the last rank: {san} would be mate."
         ]
       },
       "opp": {
@@ -307,19 +307,19 @@
         ],
         "discovered": [
           "That move lets you play a discovered attack with {san}.",
-          "With {san} you open the line of {attacker} onto {targets}."
+          "With {san} you open the line of {attacker} onto {targetsDef}."
         ],
         "doubleCheck": [
           "That move lets you play a double check with {san}.",
-          "With {san} you give double check: your opponent can only move the king."
+          "With {san} you give double check: your opponent can only answer by moving the king."
         ],
         "hanging": [
-          "That move lets you play a hanging piece with {san}.",
-          "With {san} you take {targets}, undefended."
+          "That move leaves a piece hanging: you take it with {san}.",
+          "With {san} you take {targetsDef}, undefended."
         ],
         "backRank": [
           "That move lets you play a back-rank mate with {san}.",
-          "With {san} you mate on the back rank: the king is boxed in by its pawns."
+          "The enemy king has no escape squares on its last rank: {san} is mate."
         ]
       }
     }
@@ -339,10 +339,18 @@
     "trade": "Offers a trade of pieces on {to}; the opponent can recapture.",
     "retreat": "{Piece} retreats from {from} to {to}.",
     "kingActive": "The king approaches the center: it goes from {from} to {to}.",
-    "plain": "{Piece} goes from {from} to {to}."
+    "plain": "{Piece} moves from {from} to {to}."
   },
   "and": "and",
   "pieceDef": {
+    "p": "the pawn",
+    "n": "the knight",
+    "b": "the bishop",
+    "r": "the rook",
+    "q": "the queen",
+    "k": "the king"
+  },
+  "pieceObj": {
     "p": "the pawn",
     "n": "the knight",
     "b": "the bishop",

@@ -1,6 +1,8 @@
 import { Chess } from 'chess.js';
 import { whiteShare } from '../engine/evalFormat';
 import { positionKey } from './book';
+import { planFor } from './plans';
+import { detectTactics, mateIn } from './tactics';
 import type { Facts, GameMove, MoveQuality, ParsedGame, PieceKind, PositionEval, Review, ReviewPly } from './types';
 
 // Del análisis del motor a la revisión: calidad de cada jugada, hechos verificados con el tablero,
@@ -34,7 +36,7 @@ function tryMove(fen: string, uci: string) {
 }
 
 /** Hechos de la jugada jugada, de la mejor y de la respuesta del rival, todos comprobados con chess.js. */
-export function factsFor(move: GameMove, bestUci: string, replyUci: string, quality: MoveQuality): Facts {
+export function factsFor(move: GameMove, bestUci: string, replyUci: string, quality: MoveQuality, scoreAfter?: number): Facts {
   const facts: Facts = {};
   const played = tryMove(move.fenBefore, move.uci);
   if (played) {
@@ -43,7 +45,19 @@ export function factsFor(move: GameMove, bestUci: string, replyUci: string, qual
     else if (played.captured) facts.did = { kind: 'capture', piece: played.captured as PieceKind };
     else if (played.san.startsWith('O-O')) facts.did = { kind: 'castle' };
   }
-  if (quality !== 'inaccuracy' && quality !== 'mistake' && quality !== 'blunder') return facts;
+  const tactics = detectTactics(move.fenBefore, move.uci).slice(0, 2);
+  if (tactics.length > 0) facts.found = tactics;
+  if (!facts.did && !facts.found) facts.plan = planFor(move.fenBefore, move.uci);
+
+  const bad = quality === 'inaccuracy' || quality === 'mistake' || quality === 'blunder';
+  const mate = scoreAfter === undefined ? null : mateIn(scoreAfter);
+  if (mate) {
+    const mover = mate.by === move.color;
+    // k = 0 ya es did.mate y, para el rival, k = 1 ya es allows.mate.
+    if (mover && mate.n >= 1 && (quality === 'best' || quality === 'excellent' || quality === 'book')) facts.mateIn = { n: mate.n + 1, mover: true };
+    else if (!mover && mate.n >= 2 && bad) facts.mateIn = { n: mate.n, mover: false };
+  }
+  if (!bad) return facts;
 
   const reply = tryMove(move.fenAfter, replyUci);
   if (reply) {
@@ -51,6 +65,9 @@ export function factsFor(move: GameMove, bestUci: string, replyUci: string, qual
     else if (reply.captured && PIECE_VALUE[reply.captured as PieceKind] >= 3)
       facts.allows = { kind: 'capture', piece: reply.captured as PieceKind, san: reply.san, ofMoved: reply.to === played?.to };
     else if (reply.san.endsWith('+')) facts.allows = { kind: 'check', san: reply.san };
+    const tactic = detectTactics(move.fenAfter, replyUci)[0];
+    // Una pieza colgada ya la dice `allows` (la misma captura): no se repite.
+    if (tactic && !(tactic.kind === 'hanging' && facts.allows?.kind === 'capture')) facts.allowsTactic = { tactic, san: reply.san };
   }
   const best = tryMove(move.fenBefore, bestUci);
   if (best) {
@@ -99,7 +116,7 @@ export function ratePly(
     bestSan: sanOf(move.fenBefore, before.best),
     replyUci: after.best,
     replySan: sanOf(move.fenAfter, after.best),
-    facts: factsFor(move, before.best, after.best, quality),
+    facts: factsFor(move, before.best, after.best, quality, after.score),
   };
 }
 

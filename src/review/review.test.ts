@@ -1,12 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { Chess } from 'chess.js';
 import { buildReview, factsFor, winPercent } from './build';
+import { detectTactics } from './tactics';
 import { bookPositions, positionKey } from './book';
 import { coachExplanation, coachVoice } from './coachText';
 import { parseGame } from './pgn';
 import { clearPendingGame, peekPendingGame, setPendingGame, sideOf } from './session';
 import { parseChessComMonth, parseLichessNdjson, validUsername } from './sources';
-import type { PositionEval } from './types';
+import type { GameMove, PositionEval } from './types';
 
 const PGN = `[Event "Test"]
 [White "Ana"]
@@ -92,6 +94,93 @@ test('hechos: no hay hechos de error en una jugada buena', () => {
   const f = factsFor(g.moves[0], 'e2e4', 'e7e5', 'best');
   assert.equal(f.allows, undefined);
   assert.equal(f.missed, undefined);
+});
+
+/** Arma una GameMove aplicando `uci` sobre `fen` con chess.js. */
+function mk(fen: string, uci: string): GameMove {
+  const c = new Chess(fen);
+  const m = c.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion: uci.slice(4, 5) || undefined });
+  return { san: m.san, uci, color: m.color, fenBefore: fen, fenAfter: c.fen() };
+}
+const START = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+const FORK_FEN = '1r6/4k3/8/8/3N4/8/8/6K1 w - - 0 1'; // Cc6+ ataca rey y torre
+// Las negras tienen Cc2+ (orquilla de rey y torre) y las blancas juegan h3 sin verlo.
+const ALLOW_FORK_FEN = '6k1/8/8/8/1n6/8/7P/R3K3 w - - 0 1';
+// Las blancas dejan el caballo de d4 sin defensa y la dama negra lo captura.
+const HANGING_FEN = '6k1/3q4/8/8/3N4/8/7P/4K3 w - - 0 1';
+
+test('factsFor: jugada buena que encuentra una orquilla trae found', () => {
+  const f = factsFor(mk(FORK_FEN, 'd4c6'), 'd4c6', '', 'best');
+  assert.equal(f.found?.[0].kind, 'fork');
+  assert.equal(f.plan, undefined, 'con found no hay plan');
+});
+
+test('factsFor: found trae como mucho 2 tácticas', () => {
+  const move = mk(FORK_FEN, 'd4c6');
+  assert.ok(detectTactics(move.fenBefore, move.uci).length >= 1);
+  assert.ok((factsFor(move, '', '', 'good').found?.length ?? 0) <= 2);
+});
+
+test('factsFor: un error cuya mejor respuesta es una orquilla trae allowsTactic con su SAN', () => {
+  const move = mk(ALLOW_FORK_FEN, 'h2h3');
+  assert.equal(detectTactics(move.fenAfter, 'b4c2')[0].kind, 'fork');
+  const f = factsFor(move, 'a1a8', 'b4c2', 'blunder');
+  assert.equal(f.allowsTactic?.tactic.kind, 'fork');
+  assert.equal(f.allowsTactic?.san, 'Nc2+');
+  assert.equal(factsFor(move, 'a1a8', 'b4c2', 'best').allowsTactic, undefined, 'solo con calidad mala');
+});
+
+test('factsFor: sin replyUci no hay allowsTactic y no lanza error', () => {
+  const move = mk(FORK_FEN, 'd4c6');
+  assert.equal(factsFor(move, 'd4c6', '', 'blunder').allowsTactic, undefined);
+});
+
+test('factsFor: si allows ya es una captura de la misma respuesta, allowsTactic hanging se omite', () => {
+  const move = mk(HANGING_FEN, 'h2h3');
+  assert.equal(detectTactics(move.fenAfter, 'd7d4')[0].kind, 'hanging');
+  const f = factsFor(move, 'd4b5', 'd7d4', 'blunder');
+  assert.equal(f.allows?.kind, 'capture');
+  assert.equal(f.allowsTactic, undefined);
+});
+
+test('factsFor: mate en N con scoreAfter', () => {
+  const e4 = mk(START, 'e2e4');
+  assert.deepEqual(factsFor(e4, '', '', 'best', 9996).mateIn, { n: 5, mover: true });
+  assert.deepEqual(factsFor(e4, '', '', 'book', 9996).mateIn, { n: 5, mover: true });
+  assert.deepEqual(factsFor(e4, '', 'e7e5', 'blunder', -9997).mateIn, { n: 3, mover: false });
+  const e5 = mk(e4.fenAfter, 'e7e5');
+  assert.deepEqual(factsFor(e5, '', '', 'best', -9996).mateIn, { n: 5, mover: true });
+  assert.deepEqual(factsFor(e5, '', '', 'mistake', 9997).mateIn, { n: 3, mover: false });
+});
+
+test('factsFor: mate en N se omite en los casos ya cubiertos o sin sentido', () => {
+  const e4 = mk(START, 'e2e4');
+  assert.equal(factsFor(e4, '', '', 'best', 10000).mateIn, undefined, 'k = 0 ya es did.mate');
+  assert.equal(factsFor(e4, '', '', 'blunder', -9999).mateIn, undefined, 'k = 1 ya es allows.mate');
+  assert.equal(factsFor(e4, '', '', 'best', -9997).mateIn, undefined, 'mate rival con buena jugada');
+  assert.equal(factsFor(e4, '', '', 'blunder', 9996).mateIn, undefined, 'mate propio con mala calidad');
+  assert.equal(factsFor(e4, '', '', 'good', 9996).mateIn, undefined);
+  assert.equal(factsFor(e4, '', '', 'best', 300).mateIn, undefined);
+  assert.equal(factsFor(e4, '', '', 'best').mateIn, undefined);
+});
+
+test('factsFor: toda jugada sin did ni found trae plan; con captura no', () => {
+  const e4 = factsFor(mk(START, 'e2e4'), '', '', 'best');
+  assert.equal(e4.plan?.kind, 'center');
+  const conCaptura = mk('rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2', 'e4d5');
+  const f = factsFor(conCaptura, '', '', 'best');
+  assert.equal(f.did?.kind, 'capture');
+  assert.equal(f.plan, undefined);
+});
+
+test('factsFor conserva allows y missed existentes', () => {
+  // Las blancas tenían Ta8# y juegan Rh1.
+  const move = mk('6k1/5ppp/8/8/8/8/5PPP/R5K1 w - - 0 1', 'g1h1');
+  const f = factsFor(move, 'a1a8', '', 'blunder');
+  assert.deepEqual(f.missed, { kind: 'mate' });
+  assert.equal(f.allows, undefined);
+  const g = parseGame(PGN)!;
+  assert.equal(factsFor(g.moves[5], 'g7g6', 'h5f7', 'blunder').allows?.kind, 'mate');
 });
 
 test('el comentarista cambia de voz según el estilo y el sujeto', () => {

@@ -40,8 +40,10 @@ export function planFor(fenBefore: string, uci: string): Plan {
   const isCapture = Boolean(move.captured);
   const board = game.board();
 
-  // Cambio: captura de igual valor (sin reyes).
-  if (isCapture && piece !== 'k' && VALUE[move.captured as PieceKind] === VALUE[piece]) return plan('trade');
+  // Cambio: captura de igual valor (sin reyes) y el rival puede recapturar en la casilla.
+  if (isCapture && piece !== 'k' && VALUE[move.captured as PieceKind] === VALUE[piece]) {
+    if (game.moves({ verbose: true }).some((m) => m.to === to)) return plan('trade');
+  }
 
   // Desarrollo: pieza menor que sale de su casilla inicial de la fila de atras.
   const homeRank = color === 'w' ? '1' : '8';

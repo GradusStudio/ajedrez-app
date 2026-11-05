@@ -18,8 +18,23 @@ test('torre a columna semiabierta (solo hay un peon rival)', () => {
 test('torre a columna con peon propio no es rookFile', () => {
   assert.equal(kind('4k3/8/8/8/8/8/P2P4/R3K3 w - - 0 1', 'a1d1'), 'plain');
 });
-test('cambio: caballo toma alfil', () => {
-  assert.equal(kind('4k3/8/8/3b4/8/2N5/8/4K3 w - - 0 1', 'c3d5'), 'trade');
+test('cambio: caballo toma alfil defendido por el peon de e6', () => {
+  assert.equal(kind('4k3/8/4p3/3b4/8/2N5/8/4K3 w - - 0 1', 'c3d5'), 'trade');
+});
+test('caballo toma alfil sin defensa no es cambio (ocupa el centro)', () => {
+  assert.equal(kind('4k3/8/8/3b4/8/2N5/8/4K3 w - - 0 1', 'c3d5'), 'center');
+});
+test('peon toma peon con recaptura es cambio', () => {
+  assert.equal(kind('4k3/8/2p5/3p4/4P3/8/8/4K3 w - - 0 1', 'e4d5'), 'trade');
+});
+test('peon toma peon sin recaptura no es cambio', () => {
+  assert.equal(kind('4k3/8/8/3p4/4P3/8/8/4K3 w - - 0 1', 'e4d5'), 'plain');
+});
+test('al paso con recaptura posible es cambio', () => {
+  assert.equal(kind('4k3/2p5/8/3pP3/8/8/8/4K3 w - d6 0 1', 'e5d6'), 'trade');
+});
+test('al paso sin recaptura no es cambio', () => {
+  assert.equal(kind('4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1', 'e5d6'), 'plain');
 });
 test('captura desigual (peon toma caballo) no es cambio ni avance', () => {
   assert.equal(kind('4k3/8/8/3n4/4P3/8/8/4K3 w - - 0 1', 'e4d5'), 'plain');

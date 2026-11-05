@@ -39,9 +39,9 @@ const kindAt = (game: Chess, s: Square): PieceKind => found(game, s)?.kind ?? 'p
 /** Piezas del bando `color` que `from` ataca (no cuenta casillas vacías). */
 function attackedBy(game: Chess, from: Square, color: Color): Found[] {
   const out: Found[] = [];
+  const me = found(game, from);
   for (const s of ALL) {
     const t = found(game, s);
-    const me = found(game, from);
     if (t && me && t.color === color && game.attackers(s, me.color).includes(from)) out.push(t);
   }
   return out;
@@ -119,6 +119,11 @@ export function detectTactics(fenBefore: string, uci: string): Tactic[] {
     const newly = attackedBy(after, s, opp).filter((t) => {
       if (t.sq === to) return false;
       if (before.attackers(t.sq, mover).includes(s)) return false;
+      // Si el objetivo captura gratis a la torre o alfil descubierto, no es una amenaza real (el rey no puede: es jaque).
+      if (t.kind !== 'k' && after.attackers(s, opp).includes(t.sq)) {
+        const undefended = after.attackers(s, mover).length === 0;
+        if (undefended || VALUE[slider] >= VALUE[t.kind]) return false;
+      }
       const defended = after.attackers(t.sq, opp).length > 0;
       return t.kind === 'k' || (VALUE[t.kind] >= 3 && (!defended || VALUE[t.kind] > VALUE[slider]));
     });

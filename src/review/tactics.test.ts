@@ -15,8 +15,13 @@ test('enfilada: Th8+ con la dama detras del rey', () => {
   assert.ok(kinds('q3k3/8/8/8/8/8/8/4K2R w - - 0 1', 'h1h8').includes('skewer'));
 });
 test('ataque descubierto: Ad5 descubre la torre de e1 contra la dama de e7', () => {
-  const t = detectTactics('4k3/4q2p/8/8/4B3/8/8/4R1K1 w - - 0 1', 'e4d5');
+  // El rey de f1 defiende la torre descubierta de e1.
+  const t = detectTactics('4k3/4q2p/8/8/4B3/8/8/4RK2 w - - 0 1', 'e4d5');
   assert.ok(t.some((x) => x.kind === 'discovered' && x.attacker === 'r' && x.targets.includes('q')));
+});
+test('descubierto que no cuenta: la dama captura gratis la torre sin defensa', () => {
+  // Con el rey en g1 la torre de e1 queda sin defensa y Dxe1+ la gana.
+  assert.ok(!kinds('4k3/4q2p/8/8/4B3/8/8/4R1K1 w - - 0 1', 'e4d5').includes('discovered'));
 });
 test('jaque doble: Cf6+ con la torre detras', () => {
   assert.ok(kinds('4k3/8/8/8/4N3/8/8/4R1K1 w - - 0 1', 'e4f6').includes('doubleCheck'));

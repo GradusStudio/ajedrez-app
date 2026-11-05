@@ -197,5 +197,157 @@
     "missedCaptureOpp": "L'avversario poteva catturare {piece} con {best}.",
     "missedBestYou": "La mossa migliore era {best}.",
     "missedBestOpp": "La mossa migliore per l'avversario era {best}."
+  },
+  "tact": {
+    "found": {
+      "you": {
+        "fork": [
+          "You found a fork: {attacker} attacks {targets}.",
+          "Fork with {attacker}: your opponent cannot defend everything at once."
+        ],
+        "pin": [
+          "You found a pin: {attacker} pins {targets} on the same line.",
+          "Pin with {attacker}: the front piece cannot move without exposing the one behind."
+        ],
+        "skewer": [
+          "You found a skewer: {attacker} attacks {targets} on the same line.",
+          "Skewer with {attacker}: if the front piece steps aside, the one behind is exposed."
+        ],
+        "discovered": [
+          "You found a discovered attack: {attacker} now attacks {targets}.",
+          "Discovered attack: when the piece moved, the line of {attacker} opened."
+        ],
+        "doubleCheck": [
+          "You found a double check: {attacker} and another piece give check.",
+          "Double check with {attacker}: the only way out for your opponent is a king move."
+        ],
+        "hanging": [
+          "You found a hanging piece: {attacker} captures {targets}, which nobody defended.",
+          "Good eye: {targets} was undefended."
+        ],
+        "backRank": [
+          "You found a back-rank mate: {attacker} mates on the last rank.",
+          "Back-rank mate: the king is boxed in by its own pawns."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "Your opponent found a fork: {attacker} attacks {targets}.",
+          "Fork by your opponent with {attacker}: more than one piece is under attack."
+        ],
+        "pin": [
+          "Your opponent found a pin: {attacker} pins {targets} on the same line.",
+          "Pin by your opponent with {attacker}: the front piece is tied to the one behind."
+        ],
+        "skewer": [
+          "Your opponent found a skewer: {attacker} attacks {targets} on the same line.",
+          "Skewer by your opponent with {attacker}: the front piece must step aside and exposes the one behind."
+        ],
+        "discovered": [
+          "Your opponent found a discovered attack: {attacker} now attacks {targets}.",
+          "Discovered attack by your opponent: the line of {attacker} opened onto {targets}."
+        ],
+        "doubleCheck": [
+          "Your opponent found a double check: {attacker} and another piece give check.",
+          "Double check by your opponent with {attacker}: the only way out is a king move."
+        ],
+        "hanging": [
+          "Your opponent found a hanging piece: {attacker} captures {targets}, which nobody defended.",
+          "Your opponent took advantage of {targets} being undefended."
+        ],
+        "backRank": [
+          "Your opponent found a back-rank mate: {attacker} mates on the last rank.",
+          "Back-rank mate by your opponent: the king is boxed in by its own pawns."
+        ]
+      }
+    },
+    "allows": {
+      "you": {
+        "fork": [
+          "That move lets your opponent play a fork with {san}.",
+          "With {san}, your opponent attacks {targets} at once with {attacker}."
+        ],
+        "pin": [
+          "That move lets your opponent play a pin with {san}.",
+          "With {san}, your opponent pins {targets} with {attacker}."
+        ],
+        "skewer": [
+          "That move lets your opponent play a skewer with {san}.",
+          "With {san}, your opponent skewers {targets} with {attacker}."
+        ],
+        "discovered": [
+          "That move lets your opponent play a discovered attack with {san}.",
+          "With {san}, your opponent opens the line of {attacker} onto {targets}."
+        ],
+        "doubleCheck": [
+          "That move lets your opponent play a double check with {san}.",
+          "With {san}, your opponent gives double check: your only way out would be a king move."
+        ],
+        "hanging": [
+          "That move lets your opponent play a hanging piece with {san}.",
+          "With {san}, your opponent takes {targets}, undefended."
+        ],
+        "backRank": [
+          "That move lets your opponent play a back-rank mate with {san}.",
+          "With {san}, your opponent mates on the back rank."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "That move lets you play a fork with {san}.",
+          "You have {san}: {attacker} attacks {targets} at once."
+        ],
+        "pin": [
+          "That move lets you play a pin with {san}.",
+          "With {san} you can pin {targets} with {attacker}."
+        ],
+        "skewer": [
+          "That move lets you play a skewer with {san}.",
+          "With {san} you can skewer {targets} with {attacker}."
+        ],
+        "discovered": [
+          "That move lets you play a discovered attack with {san}.",
+          "With {san} you open the line of {attacker} onto {targets}."
+        ],
+        "doubleCheck": [
+          "That move lets you play a double check with {san}.",
+          "With {san} you give double check: your opponent can only move the king."
+        ],
+        "hanging": [
+          "That move lets you play a hanging piece with {san}.",
+          "With {san} you take {targets}, undefended."
+        ],
+        "backRank": [
+          "That move lets you play a back-rank mate with {san}.",
+          "With {san} you mate on the back rank: the king is boxed in by its pawns."
+        ]
+      }
+    }
+  },
+  "mateIn": {
+    "foundYou": "Your move leaves a forced mate in {n}.",
+    "foundOpp": "Your opponent's move leaves a forced mate in {n}.",
+    "allowsYou": "That move lets your opponent play a mate in {n}.",
+    "allowsOpp": "That move lets you play a mate in {n}."
+  },
+  "plan": {
+    "develop": "Develops {piece} from {from} to {to}: a minor piece leaves its starting square.",
+    "center": "{Piece} reaches {to}, a central square.",
+    "rookFile": "{Piece} goes to {to}, on a file with no pawns of its own.",
+    "pawnBreak": "The pawn reaches {to} and attacks an enemy pawn.",
+    "pawnAdvance": "The pawn advances from {from} to {to}.",
+    "trade": "Offers a trade of pieces on {to}; the opponent can recapture.",
+    "retreat": "{Piece} retreats from {from} to {to}.",
+    "kingActive": "The king approaches the center: it goes from {from} to {to}.",
+    "plain": "{Piece} goes from {from} to {to}."
+  },
+  "and": "and",
+  "pieceDef": {
+    "p": "the pawn",
+    "n": "the knight",
+    "b": "the bishop",
+    "r": "the rook",
+    "q": "the queen",
+    "k": "the king"
   }
 }

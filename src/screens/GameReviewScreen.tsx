@@ -344,6 +344,7 @@ export function GameReviewScreen({ onBack }: Props) {
         move: san,
         bestSan: ply.bestSan,
         fmt,
+        seed: ply.ply + coach.elo,
       })
     : [];
 

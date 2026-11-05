@@ -197,5 +197,157 @@
     "missedCaptureOpp": "El rival podía capturar {piece} con {best}.",
     "missedBestYou": "Lo mejor era {best}.",
     "missedBestOpp": "Lo mejor para el rival era {best}."
+  },
+  "tact": {
+    "found": {
+      "you": {
+        "fork": [
+          "Encontraste una horquilla: {attacker} ataca {targets}.",
+          "Horquilla con {attacker}: el rival no puede defender todo a la vez."
+        ],
+        "pin": [
+          "Encontraste una clavada: {attacker} sujeta {targets} en la misma línea.",
+          "Clavada con {attacker}: la pieza de adelante no puede moverse sin dejar expuesta a la de atrás."
+        ],
+        "skewer": [
+          "Encontraste una enfilada: {attacker} ataca {targets} en la misma línea.",
+          "Enfilada con {attacker}: si la pieza de adelante se aparta, la de atrás queda expuesta."
+        ],
+        "discovered": [
+          "Encontraste un ataque a la descubierta: {attacker} ahora ataca {targets}.",
+          "Ataque a la descubierta: al moverse la pieza, se abrió la línea de {attacker}."
+        ],
+        "doubleCheck": [
+          "Encontraste un jaque doble: {attacker} y otra pieza dan jaque al rey.",
+          "Jaque doble con {attacker}: la única salida del rival es mover el rey."
+        ],
+        "hanging": [
+          "Encontraste una pieza colgada: {attacker} captura {targets}, que nadie defendía.",
+          "Buen ojo: {targets} estaba sin defensa."
+        ],
+        "backRank": [
+          "Encontraste un mate del pasillo: {attacker} da mate en la última fila.",
+          "Mate del pasillo: el rey está encerrado por sus propios peones."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "El rival encontró una horquilla: {attacker} ataca {targets}.",
+          "Horquilla del rival con {attacker}: hay más de una pieza amenazada."
+        ],
+        "pin": [
+          "El rival encontró una clavada: {attacker} sujeta {targets} en la misma línea.",
+          "Clavada del rival con {attacker}: la pieza de adelante queda atada a la de atrás."
+        ],
+        "skewer": [
+          "El rival encontró una enfilada: {attacker} ataca {targets} en la misma línea.",
+          "Enfilada del rival con {attacker}: la pieza de adelante tiene que apartarse y deja expuesta a la de atrás."
+        ],
+        "discovered": [
+          "El rival encontró un ataque a la descubierta: {attacker} ahora ataca {targets}.",
+          "Ataque a la descubierta del rival: se abrió la línea de {attacker} sobre {targets}."
+        ],
+        "doubleCheck": [
+          "El rival encontró un jaque doble: {attacker} y otra pieza dan jaque al rey.",
+          "Jaque doble del rival con {attacker}: la única salida es mover el rey."
+        ],
+        "hanging": [
+          "El rival encontró una pieza colgada: {attacker} captura {targets}, que nadie defendía.",
+          "El rival aprovechó que {targets} estaba sin defensa."
+        ],
+        "backRank": [
+          "El rival encontró un mate del pasillo: {attacker} da mate en la última fila.",
+          "Mate del pasillo del rival: el rey está encerrado por sus propios peones."
+        ]
+      }
+    },
+    "allows": {
+      "you": {
+        "fork": [
+          "Esa jugada habilita a tu rival a realizar una horquilla con {san}.",
+          "Con {san}, el rival ataca {targets} a la vez con {attacker}."
+        ],
+        "pin": [
+          "Esa jugada habilita a tu rival a realizar una clavada con {san}.",
+          "Con {san}, el rival clava {targets} con {attacker}."
+        ],
+        "skewer": [
+          "Esa jugada habilita a tu rival a realizar una enfilada con {san}.",
+          "Con {san}, el rival enfila {targets} con {attacker}."
+        ],
+        "discovered": [
+          "Esa jugada habilita a tu rival a realizar un ataque a la descubierta con {san}.",
+          "Con {san}, el rival abre la línea de {attacker} sobre {targets}."
+        ],
+        "doubleCheck": [
+          "Esa jugada habilita a tu rival a realizar un jaque doble con {san}.",
+          "Con {san}, el rival da jaque doble: tu única salida sería mover el rey."
+        ],
+        "hanging": [
+          "Esa jugada habilita a tu rival a realizar una pieza colgada con {san}.",
+          "Con {san}, el rival se lleva {targets} sin defensa."
+        ],
+        "backRank": [
+          "Esa jugada habilita a tu rival a realizar un mate del pasillo con {san}.",
+          "Con {san}, el rival da mate en la última fila."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "Esa jugada te habilita a realizar una horquilla con {san}.",
+          "Tienes {san}: {attacker} ataca {targets} a la vez."
+        ],
+        "pin": [
+          "Esa jugada te habilita a realizar una clavada con {san}.",
+          "Con {san} puedes clavar {targets} con {attacker}."
+        ],
+        "skewer": [
+          "Esa jugada te habilita a realizar una enfilada con {san}.",
+          "Con {san} puedes enfilar {targets} con {attacker}."
+        ],
+        "discovered": [
+          "Esa jugada te habilita a realizar un ataque a la descubierta con {san}.",
+          "Con {san} abres la línea de {attacker} sobre {targets}."
+        ],
+        "doubleCheck": [
+          "Esa jugada te habilita a realizar un jaque doble con {san}.",
+          "Con {san} das jaque doble: el rival solo puede mover el rey."
+        ],
+        "hanging": [
+          "Esa jugada te habilita a realizar una pieza colgada con {san}.",
+          "Con {san} te llevas {targets} sin defensa."
+        ],
+        "backRank": [
+          "Esa jugada te habilita a realizar un mate del pasillo con {san}.",
+          "Con {san} das mate en la última fila: el rey está encerrado por sus peones."
+        ]
+      }
+    }
+  },
+  "mateIn": {
+    "foundYou": "Tu jugada deja mate forzado en {n}.",
+    "foundOpp": "Esa jugada del rival deja mate forzado en {n}.",
+    "allowsYou": "Esa jugada habilita a tu rival a realizar un mate en {n}.",
+    "allowsOpp": "Esa jugada te habilita a realizar un mate en {n}."
+  },
+  "plan": {
+    "develop": "Desarrolla {piece} de {from} a {to}: saca una pieza menor de su casilla inicial.",
+    "center": "{Piece} llega a {to}, una casilla central.",
+    "rookFile": "{Piece} se coloca en {to}, en una columna sin peones propios.",
+    "pawnBreak": "El peón llega a {to} y queda atacando un peón rival.",
+    "pawnAdvance": "El peón avanza de {from} a {to}.",
+    "trade": "Ofrece un cambio de piezas en {to}; el rival puede recapturar.",
+    "retreat": "{Piece} retrocede de {from} a {to}.",
+    "kingActive": "El rey se acerca al centro: pasa de {from} a {to}.",
+    "plain": "{Piece} pasa de {from} a {to}."
+  },
+  "and": "y",
+  "pieceDef": {
+    "p": "el peón",
+    "n": "el caballo",
+    "b": "el alfil",
+    "r": "la torre",
+    "q": "la dama",
+    "k": "el rey"
   }
 }

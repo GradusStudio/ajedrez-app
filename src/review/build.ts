@@ -36,7 +36,7 @@ function tryMove(fen: string, uci: string) {
 }
 
 /** Hechos de la jugada jugada, de la mejor y de la respuesta del rival, todos comprobados con chess.js. */
-export function factsFor(move: GameMove, bestUci: string, replyUci: string, quality: MoveQuality, scoreAfter?: number): Facts {
+export function factsFor(move: GameMove, bestUci: string, replyUci: string, quality: MoveQuality, scoreAfter?: number, prevTo?: string): Facts {
   const facts: Facts = {};
   const played = tryMove(move.fenBefore, move.uci);
   if (played) {
@@ -45,7 +45,12 @@ export function factsFor(move: GameMove, bestUci: string, replyUci: string, qual
     else if (played.captured) facts.did = { kind: 'capture', piece: played.captured as PieceKind };
     else if (played.san.startsWith('O-O')) facts.did = { kind: 'castle' };
   }
-  const tactics = detectTactics(move.fenBefore, move.uci).slice(0, 2);
+  let tactics = detectTactics(move.fenBefore, move.uci);
+  // En un mate solo cuentan el jaque doble y el mate del pasillo: lo demás tapa lo importante.
+  if (played?.san.endsWith('#')) tactics = tactics.filter((t) => t.kind === 'doubleCheck' || t.kind === 'backRank');
+  // Recapturar en la casilla donde el rival acaba de capturar no es «encontrar una pieza colgada».
+  if (prevTo && prevTo === move.uci.slice(2, 4)) tactics = tactics.filter((t) => t.kind !== 'hanging');
+  tactics = tactics.slice(0, 2);
   if (tactics.length > 0) facts.found = tactics;
   if (!facts.did && !facts.found) facts.plan = planFor(move.fenBefore, move.uci);
 
@@ -93,7 +98,7 @@ export function ratePly(
   before: PositionEval,
   after: PositionEval,
   book: Set<string>,
-  prev?: Pick<ReviewPly, 'quality' | 'loss'>
+  prev?: Pick<ReviewPly, 'quality' | 'loss'> & { move?: GameMove }
 ): ReviewPly {
   const loss = Math.max(0, winPercent(before.score, move.color) - winPercent(after.score, move.color));
   let quality: MoveQuality;
@@ -116,7 +121,7 @@ export function ratePly(
     bestSan: sanOf(move.fenBefore, before.best),
     replyUci: after.best,
     replySan: sanOf(move.fenAfter, after.best),
-    facts: factsFor(move, before.best, after.best, quality, after.score),
+    facts: factsFor(move, before.best, after.best, quality, after.score, prev?.move?.uci.slice(2, 4)),
   };
 }
 

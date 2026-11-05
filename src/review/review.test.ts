@@ -173,6 +173,27 @@ test('factsFor: toda jugada sin did ni found trae plan; con captura no', () => {
   assert.equal(f.plan, undefined);
 });
 
+test('factsFor: un mate que también es orquilla no trae fork ni skewer', () => {
+  // Ce5-f7 es mate ahogado y además ataca a la dama de d8.
+  const move = mk('3q2rk/6pp/8/4N3/8/8/8/6K1 w - - 0 1', 'e5f7');
+  assert.equal(detectTactics(move.fenBefore, move.uci)[0].kind, 'fork');
+  const f = factsFor(move, 'e5f7', '', 'best');
+  assert.equal(f.did?.kind, 'mate');
+  assert.equal(f.found, undefined);
+});
+
+test('factsFor: un mate del pasillo conserva backRank', () => {
+  const f = factsFor(mk('6k1/5ppp/8/8/8/8/8/R5K1 w - - 0 1', 'a1a8'), 'a1a8', '', 'best');
+  assert.deepEqual(f.found?.map((t) => t.kind), ['backRank']);
+});
+
+test('factsFor: recapturar en la casilla del rival no trae hanging; una captura libre en otra casilla sí', () => {
+  const move = mk('6k1/8/8/8/R3n3/8/8/4K3 w - - 0 1', 'a4e4');
+  assert.equal(factsFor(move, '', '', 'best').found?.[0].kind, 'hanging');
+  assert.equal(factsFor(move, '', '', 'best', undefined, 'e4').found, undefined);
+  assert.equal(factsFor(move, '', '', 'best', undefined, 'h5').found?.[0].kind, 'hanging');
+});
+
 test('factsFor conserva allows y missed existentes', () => {
   // Las blancas tenían Ta8# y juegan Rh1.
   const move = mk('6k1/5ppp/8/8/8/8/5PPP/R5K1 w - - 0 1', 'g1h1');

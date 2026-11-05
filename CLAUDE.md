@@ -72,7 +72,7 @@
 
 ## Pendientes y avisos
 - Bots con Maia: probar en el celular cuánto tarda cada jugada, la memoria con dos WebViews (Maia y Stockfish; cargar solo la red del bot en vez de las 3 en `nets.ts`) y si el nivel de cada bot se siente bien.
-- Originales fuera de git: las 40 expresiones ya están en git (WebP q90, 5-11-2026). Faltan por revisar los originales de los avatares (`assets/bots/<id>.webp` ya está en git; confirmar si hay versiones de mayor resolución que subir), por la GPL.
+- Originales fuera de git: las 40 expresiones ya están en git (WebP q90, 5-11-2026). Los avatares (`assets/bots/<id>.webp`) ya están en git a la resolución original (1254 × 1254, con transparencia; revisado el 5-11-2026: no existe una versión mayor en el disco), así que no queda nada de bots por subir.
 - Licencia: la app es software libre, GPL v3 o posterior (decidido el 29-10-2026; `LICENSE`, `README.md`, Créditos). Motivo y obligaciones en docs/motor.md. Antes de publicar, el repositorio de GitHub tiene que ser público y corresponder a la versión subida (etiquetar cada versión). No es asesoramiento legal.
 - Piezas: la app usa solo los 5 sets de `pieceSets.ts` (hechos con ChatGPT). El set anterior (`PieceLegacy.tsx`, "Sombra lateral") ya no se importa en ningún lado y no viaja en la app. Si algún día se agrega un set de otra persona (por ejemplo, el de un amigo), hace falta su permiso por escrito, los archivos originales y una licencia compatible con la GPL v3.
 - Líneas de apertura revisadas con Stockfish (profundidad 20): Danés corregido; Albin se deja como está a propósito (gambito de trampas). Detalle en docs/formato-lecciones.md. Si se agregan aperturas nuevas, revisarlas igual.

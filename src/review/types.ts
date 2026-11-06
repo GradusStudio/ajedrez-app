@@ -28,6 +28,8 @@ export type PositionEval = {
   score: number;
   /** Mejor jugada del bando que mueve (UCI). Vacía si la partida terminó. */
   best: string;
+  /** Variante principal del motor (UCI), como mucho 8 jugadas. */
+  pv?: string[];
 };
 
 /** Hechos verificados con el tablero (no inventados): de ellos salen las frases del comentarista. */

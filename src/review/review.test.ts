@@ -303,6 +303,7 @@ test('el comentarista cambia de voz según el estilo y el sujeto', () => {
 test('la explicación nombra solo hechos comprobados', () => {
   const lines = coachExplanation({
     lang: 'es',
+    style: 'equilibrado',
     subject: 'you',
     quality: 'blunder',
     facts: { did: { kind: 'capture', piece: 'p' }, allows: { kind: 'capture', piece: 'q', san: 'Axd1', ofMoved: false }, missed: { kind: 'mate' } },
@@ -310,11 +311,12 @@ test('la explicación nombra solo hechos comprobados', () => {
     bestSan: 'Dxf7#',
     fmt: (s) => s,
   });
-  assert.equal(lines.length, 3);
-  assert.ok(lines[0].includes('un peón'));
-  assert.ok(lines[1].includes('la dama'));
-  assert.ok(lines[2].includes('mate'));
-  const none = coachExplanation({ lang: 'en', subject: 'you', quality: 'best', facts: {}, move: 'e4', bestSan: '', fmt: (s) => s });
+  // Un único párrafo con los dos hechos de mayor prioridad: lo que hizo la jugada y lo que permite.
+  assert.equal(lines.length, 1);
+  assert.ok(lines[0].includes('Cxe5 captura un peón'));
+  assert.ok(lines[0].includes('Axd1') && lines[0].includes('la dama'));
+  assert.ok(!lines[0].includes('mate') && !lines[0].includes('Dxf7#'));
+  const none = coachExplanation({ lang: 'en', style: 'agresivo', subject: 'you', quality: 'best', facts: {}, move: 'e4', bestSan: '', fmt: (s) => s });
   assert.deepEqual(none, []);
 });
 

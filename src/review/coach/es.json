@@ -154,22 +154,208 @@
     }
   },
   "opp": {
-    "ok": [
-      "El rival juega {move}, una jugada correcta.",
-      "El rival responde con {move}."
-    ],
-    "inaccuracy": [
-      "El rival juega {move}, una imprecisión: te da algo de aire."
-    ],
-    "mistake": [
-      "El rival se equivoca con {move}: es tu oportunidad."
-    ],
-    "blunder": [
-      "¡El rival cometió un error grave con {move}! Aprovéchalo."
-    ],
-    "mate": [
-      "El rival da mate con {move}."
-    ]
+    "tranquilo": {
+      "ok": [
+        "El rival juega {move}: correcta, sigamos con calma.",
+        "Respuesta razonable del rival: {move}."
+      ],
+      "inaccuracy": [
+        "El rival juega {move}, una imprecisión: te da un poco de aire.",
+        "Con {move} el rival no encuentra lo mejor; hay algo para ti."
+      ],
+      "mistake": [
+        "El rival se equivoca con {move}. Mira con calma: hay una oportunidad.",
+        "{move} es un error del rival. Tómate tu tiempo."
+      ],
+      "blunder": [
+        "El rival cometió un error grave con {move}. Con calma, ahora puedes aprovecharlo.",
+        "{move} es un descuido grande del rival. Respira y mira qué te regaló."
+      ],
+      "mate": [
+        "El rival da mate con {move}. La partida terminó.",
+        "Mate del rival con {move}. Toca aprender de esta partida."
+      ]
+    },
+    "equilibrado": {
+      "ok": [
+        "El rival juega {move}, una jugada correcta.",
+        "El rival responde con {move}."
+      ],
+      "inaccuracy": [
+        "El rival juega {move}, una imprecisión: te da algo de aire.",
+        "{move} no es lo mejor del rival: cede un poco."
+      ],
+      "mistake": [
+        "El rival se equivoca con {move}: es tu oportunidad.",
+        "{move} es un error del rival y tiene respuesta."
+      ],
+      "blunder": [
+        "El rival cometió un error grave con {move}. Aprovéchalo.",
+        "{move} es un error grave del rival: la partida cambia a tu favor."
+      ],
+      "mate": [
+        "El rival da mate con {move}.",
+        "Jaque mate del rival con {move}."
+      ]
+    },
+    "posicional": {
+      "ok": [
+        "El rival juega {move}, una jugada correcta que no debilita su posición.",
+        "{move}: una respuesta coherente del rival."
+      ],
+      "inaccuracy": [
+        "El rival juega {move}, imprecisa: cede un poco de control.",
+        "Con {move} el rival afloja algo su posición."
+      ],
+      "mistake": [
+        "{move} debilita la posición del rival: hay algo que cobrar.",
+        "El rival se equivoca con {move} y deja un punto débil."
+      ],
+      "blunder": [
+        "{move} es un error grave: la posición del rival se resiente.",
+        "El rival rompe su propio equilibrio con {move}. Hay que castigarlo."
+      ],
+      "mate": [
+        "El rival da mate con {move}. Final limpio.",
+        "Mate con {move}: el rival coronó su ataque."
+      ]
+    },
+    "agresivo": {
+      "ok": [
+        "El rival juega {move}, correcta. La pelea sigue.",
+        "El rival responde con {move}. Ahora te toca atacar a ti."
+      ],
+      "inaccuracy": [
+        "¡El rival juega {move}, una imprecisión! Te deja respirar.",
+        "Con {move} el rival afloja: aprieta."
+      ],
+      "mistake": [
+        "¡El rival se equivoca con {move}! A por él.",
+        "{move} es un error: es tu oportunidad de apretar."
+      ],
+      "blunder": [
+        "¡El rival cometió un error grave con {move}! A cobrar.",
+        "¡{move} es un error enorme del rival! No lo sueltes."
+      ],
+      "mate": [
+        "El rival remata con {move}: jaque mate.",
+        "{move} es mate del rival: se llevó la partida."
+      ]
+    }
+  },
+  "frame": {
+    "tranquilo": {
+      "exploit": {
+        "lead": [
+          "Con calma: hay una oportunidad.",
+          "Respira: aquí hay algo para ti."
+        ],
+        "tail": [
+          "Tómate el tiempo de calcularlo, vale la pena.",
+          "Visto con calma, es una ventaja fácil de cobrar."
+        ]
+      },
+      "allows": {
+        "lead": [
+          "Tranquilo, pasa. Veamos qué permitió.",
+          "Despacio: miremos qué dejó abierto."
+        ],
+        "tail": [
+          "La próxima vez, antes de mover, pregúntate qué puede hacer el rival.",
+          "Con práctica lo vas a ver antes."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Mirémosla con calma.",
+          "Vale la pena entender esta jugada."
+        ]
+      }
+    },
+    "equilibrado": {
+      "exploit": {
+        "lead": [
+          "El rival erró y puedes aprovecharlo.",
+          "Hay una oportunidad clara para ti."
+        ],
+        "tail": [
+          "Conviene cobrarlo ahora, antes de que el rival lo arregle.",
+          "Es el tipo de oportunidad que hay que buscar en cada jugada."
+        ]
+      },
+      "allows": {
+        "lead": [
+          "Esa jugada le da algo al rival.",
+          "Esa jugada tiene un problema."
+        ],
+        "tail": [
+          "Antes de mover, revisa qué puede capturar o amenazar el rival.",
+          "Un repaso rápido de las respuestas del rival evita este tipo de error."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Esto es lo que logra la jugada.",
+          "Veamos la jugada."
+        ]
+      }
+    },
+    "posicional": {
+      "exploit": {
+        "lead": [
+          "Su posición queda con una grieta.",
+          "Hay un punto débil en su posición."
+        ],
+        "tail": [
+          "Las piezas sin apoyo y las casillas flojas son lo que conviene buscar.",
+          "Una posición se rompe por sus puntos débiles: aquí había uno."
+        ]
+      },
+      "allows": {
+        "lead": [
+          "Esa jugada afloja tu estructura.",
+          "Mira qué deja de proteger esa jugada."
+        ],
+        "tail": [
+          "Antes de mover, mira qué piezas y casillas quedan sin protección.",
+          "Cada jugada cambia lo que defiende cada pieza: compruébalo antes de mover."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Veamos qué cambia en la posición.",
+          "Fíjate en qué piezas y casillas toca esta jugada."
+        ]
+      }
+    },
+    "agresivo": {
+      "exploit": {
+        "lead": [
+          "¡Es tu momento!",
+          "Regalo del rival: ¡a cobrarlo!"
+        ],
+        "tail": [
+          "No le des tiempo a arreglarlo.",
+          "Aquí se ataca, no se espera."
+        ]
+      },
+      "allows": {
+        "lead": [
+          "Ojo, esa jugada abre la puerta al rival.",
+          "Aquí el rival tiene un golpe preparado."
+        ],
+        "tail": [
+          "La próxima, mira primero qué ataca el rival y después mueves.",
+          "Para atacar bien, primero hay que cuidar lo tuyo."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Mira lo que hace esta jugada.",
+          "Vamos al grano con esta jugada."
+        ]
+      }
+    }
   },
   "pieces": {
     "p": "un peón",
@@ -340,6 +526,66 @@
     "retreat": "{Piece} retrocede de {from} a {to}.",
     "kingActive": "El rey se acerca al centro: pasa de {from} a {to}.",
     "plain": "{Piece} se mueve de {from} a {to}."
+  },
+  "intent": {
+    "develop": [
+      "Solo desarrollaba {piece} de {from} a {to}.",
+      "La idea era sacar {piece} de {from} hacia {to}."
+    ],
+    "center": [
+      "La jugada llevaba {piece} a {to}, una casilla central.",
+      "{Piece} iba al centro, a {to}."
+    ],
+    "rookFile": [
+      "{Piece} quedaba en {to}, en una columna sin peones propios.",
+      "La idea era poner {piece} en {to}, en una columna abierta para ella."
+    ],
+    "pawnBreak": [
+      "El peón llegaba a {to} para atacar un peón rival.",
+      "Era una ruptura de peones: {to} presiona un peón rival."
+    ],
+    "pawnAdvance": [
+      "El peón solo avanzaba de {from} a {to}.",
+      "La jugada ganaba espacio con el peón de {from} a {to}."
+    ],
+    "kingActive": [
+      "La idea era acercar el rey al centro, de {from} a {to}.",
+      "El rey salía de {from} hacia {to}, más cerca del centro."
+    ],
+    "retreat": [
+      "{Piece} retrocedía de {from} a {to}.",
+      "La jugada solo retiraba {piece} de {from} a {to}."
+    ]
+  },
+  "line": {
+    "removeDefender": {
+      "exploit": [
+        "Eliminar al defensor: {first} se lleva {removed} que defendía {targetSq}; después, {finish} gana {target} de {targetSq}.",
+        "Eliminar al defensor: {removed} protegía {targetSq}. Sin él, {target} de {targetSq} cae: {seq}."
+      ],
+      "allows": [
+        "Eliminar al defensor: con {first} el rival se lleva {removed} que defendía {targetSq}; después, {finish} gana {target} de {targetSq}.",
+        "Eliminar al defensor: {removed} protegía {targetSq}. El rival captura esa pieza y {target} de {targetSq} cae: {seq}."
+      ],
+      "missed": [
+        "Se podía eliminar al defensor: {first} se llevaba {removed} que defendía {targetSq}; después, {finish} ganaba {target} de {targetSq}.",
+        "Se podía eliminar al defensor: {removed} protegía {targetSq}. Sin él, {target} de {targetSq} caía: {seq}."
+      ]
+    },
+    "material": {
+      "exploit": [
+        "El motor ve {seq}: ganas {n} puntos de material.",
+        "Con {first} empieza una secuencia que te deja {n} puntos de material arriba."
+      ],
+      "allows": [
+        "El motor ve {seq}: pierdes {n} puntos de material.",
+        "Con {first}, el rival queda {n} puntos de material arriba."
+      ],
+      "missed": [
+        "El motor veía {seq}: ganabas {n} puntos de material.",
+        "Con {first} podías ganar {n} puntos de material."
+      ]
+    }
   },
   "and": "y",
   "pieceDef": {

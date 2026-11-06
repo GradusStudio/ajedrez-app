@@ -1,6 +1,8 @@
 import { Chess } from 'chess.js';
 import { whiteShare } from '../engine/evalFormat';
 import { positionKey } from './book';
+import { analyzeLine } from './lines';
+import type { LineFacts } from './lines';
 import { planFor } from './plans';
 import { detectTactics, mateIn } from './tactics';
 import type { Facts, GameMove, MoveQuality, ParsedGame, PieceKind, PositionEval, Review, ReviewPly } from './types';
@@ -36,7 +38,15 @@ function tryMove(fen: string, uci: string) {
 }
 
 /** Hechos de la jugada jugada, de la mejor y de la respuesta del rival, todos comprobados con chess.js. */
-export function factsFor(move: GameMove, bestUci: string, replyUci: string, quality: MoveQuality, scoreAfter?: number, prevTo?: string): Facts {
+export function factsFor(
+  move: GameMove,
+  bestUci: string,
+  replyUci: string,
+  quality: MoveQuality,
+  scoreAfter?: number,
+  prevTo?: string,
+  pvs?: { reply?: string[]; best?: string[] }
+): Facts {
   const facts: Facts = {};
   const played = tryMove(move.fenBefore, move.uci);
   if (played) {
@@ -80,7 +90,18 @@ export function factsFor(move: GameMove, bestUci: string, replyUci: string, qual
     else if (best.captured && PIECE_VALUE[best.captured as PieceKind] >= 3 && best.captured !== played?.captured)
       facts.missed = { kind: 'capture', piece: best.captured as PieceKind };
   }
+  const line = informative(move.fenAfter, pvs?.reply);
+  if (line) facts.line = line;
+  const missedLine = informative(move.fenBefore, pvs?.best);
+  if (missedLine) facts.missedLine = missedLine;
   return facts;
+}
+
+/** La línea del motor solo se cuenta si el tablero comprueba algo que vale la pena decir. */
+function informative(fen: string, pv?: string[]): LineFacts | undefined {
+  if (!pv || pv.length === 0) return undefined;
+  const facts = analyzeLine(fen, pv);
+  return facts && (facts.removeDefender || facts.material >= 2) ? facts : undefined;
 }
 
 const sanOf = (fen: string, uci: string) => tryMove(fen, uci)?.san ?? '';
@@ -121,7 +142,7 @@ export function ratePly(
     bestSan: sanOf(move.fenBefore, before.best),
     replyUci: after.best,
     replySan: sanOf(move.fenAfter, after.best),
-    facts: factsFor(move, before.best, after.best, quality, after.score, prev?.move?.uci.slice(2, 4)),
+    facts: factsFor(move, before.best, after.best, quality, after.score, prev?.move?.uci.slice(2, 4), { reply: after.pv, best: before.pv }),
   };
 }
 

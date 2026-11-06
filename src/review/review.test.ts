@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Chess } from 'chess.js';
-import { buildReview, factsFor, winPercent } from './build';
+import { buildReview, factsFor, ratePly, winPercent } from './build';
+import { analyzeLine } from './lines';
 import { detectTactics } from './tactics';
 import { bookPositions, positionKey } from './book';
 import { coachExplanation, coachVoice } from './coachText';
@@ -202,6 +203,90 @@ test('factsFor conserva allows y missed existentes', () => {
   assert.equal(f.allows, undefined);
   const g = parseGame(PGN)!;
   assert.equal(factsFor(g.moves[5], 'g7g6', 'h5f7', 'blunder').allows?.kind, 'mate');
+});
+
+// Lichess puzzle fXWxU: el rival juega d5f5 y el motor sigue con f3f5 e6f5 e3g5 (quita al defensor y gana un peón).
+const FXWXU_FEN = '8/5p2/2k1p3/1p1r2p1/1P5p/2K1BR2/5P2/8 b - - 2 50';
+const FXWXU_REPLY = ['f3f5', 'e6f5', 'e3g5'];
+// Lichess puzzle XRAot: el rival juega e7f5 y el motor sigue con e8e5 f6e5 g3f5 (quita la dama defensora y gana el caballo).
+const XRAOT_FEN = '4Q3/4n1pk/5p1p/3pq3/8/6NP/5PPK/8 b - - 8 34';
+const XRAOT_REPLY = ['e8e5', 'f6e5', 'g3f5'];
+
+test('factsFor: error del rival con la línea de fXWxU trae line con removeDefender', () => {
+  const f = factsFor(mk(FXWXU_FEN, 'd5f5'), '', 'f3f5', 'blunder', undefined, undefined, { reply: FXWXU_REPLY });
+  assert.deepEqual(f.line?.removeDefender, { capturer: 'r', removed: 'r', removedSq: 'f5', target: 'p', targetSq: 'g5' });
+  assert.equal(f.line?.material, 1);
+  assert.equal(f.missedLine, undefined);
+  const g = factsFor(mk(XRAOT_FEN, 'e7f5'), '', 'e8e5', 'mistake', undefined, undefined, { reply: XRAOT_REPLY });
+  assert.deepEqual(g.line?.removeDefender, { capturer: 'q', removed: 'q', removedSq: 'e5', target: 'n', targetSq: 'f5' });
+  assert.equal(g.line?.material, 3);
+});
+
+test('factsFor: la línea solo se añade con jugada mala', () => {
+  const move = mk(FXWXU_FEN, 'd5f5');
+  for (const q of ['book', 'best', 'excellent', 'good'] as const) {
+    const f = factsFor(move, '', 'f3f5', q, undefined, undefined, { reply: FXWXU_REPLY, best: FXWXU_REPLY });
+    assert.equal(f.line, undefined, q);
+    assert.equal(f.missedLine, undefined, q);
+  }
+  assert.ok(factsFor(move, '', 'f3f5', 'inaccuracy', undefined, undefined, { reply: FXWXU_REPLY }).line);
+});
+
+test('factsFor: missedLine con una línea que gana 3 puntos desde antes de la jugada', () => {
+  // Tras e7f5 las blancas tienen Dxe5 y juegan h4 sin verlo.
+  const after = new Chess(XRAOT_FEN);
+  after.move('e7f5');
+  const move = mk(after.fen(), 'h3h4');
+  const f = factsFor(move, 'e8e5', '', 'blunder', undefined, undefined, { best: XRAOT_REPLY });
+  assert.equal(f.missedLine?.material, 3);
+  assert.equal(f.missedLine?.sans[0], 'Qxe5');
+  assert.equal(f.line, undefined);
+});
+
+test('factsFor: sin pvs, con pv vacía o ilegal no hay line ni missedLine y lo demás no cambia', () => {
+  const move = mk(FXWXU_FEN, 'd5f5');
+  const base = factsFor(move, 'a1a8', 'f3f5', 'blunder');
+  assert.equal(base.line, undefined);
+  assert.equal(base.missedLine, undefined);
+  for (const pvs of [{}, { reply: [], best: [] }, { reply: ['a1a8', 'h7h8'], best: ['e2e9'] }]) {
+    const f = factsFor(move, 'a1a8', 'f3f5', 'blunder', undefined, undefined, pvs);
+    assert.deepEqual(f, base);
+  }
+});
+
+test('factsFor: una línea que gana menos de 2 puntos y sin removeDefender no trae line', () => {
+  // Tras e7f5 la línea h4 (jugada tranquila) no gana nada.
+  const move = mk(XRAOT_FEN, 'e7f5');
+  assert.deepEqual(analyzeLine(move.fenAfter, ['h3h4'])?.material, 0);
+  const f = factsFor(move, '', 'h3h4', 'blunder', undefined, undefined, { reply: ['h3h4'], best: ['h7g8'] });
+  assert.equal(f.line, undefined);
+  assert.equal(f.missedLine, undefined);
+});
+
+test('ratePly: pasa after.pv como line y before.pv como missedLine', () => {
+  const black = mk(XRAOT_FEN, 'e7f5');
+  const r = ratePly(1, black, { score: 0, best: 'e7e6' }, { score: 500, best: 'e8e5', pv: XRAOT_REPLY }, new Set());
+  assert.equal(r.quality, 'blunder');
+  assert.equal(r.facts.line?.material, 3);
+  assert.equal(r.facts.missedLine, undefined);
+  const white = mk(black.fenAfter, 'h3h4');
+  const r2 = ratePly(2, white, { score: 500, best: 'e8e5', pv: XRAOT_REPLY }, { score: -500, best: 'g7g6' }, new Set());
+  assert.equal(r2.facts.missedLine?.material, 3);
+  assert.equal(r2.facts.line, undefined);
+});
+
+test('buildReview: lleva after.pv y before.pv a los hechos de cada jugada', () => {
+  const black = mk(XRAOT_FEN, 'e7f5');
+  const white = mk(black.fenAfter, 'h3h4');
+  const game = { white: 'A', black: 'B', result: '*', startFen: XRAOT_FEN, moves: [black, white] };
+  const evals: PositionEval[] = [
+    { score: 0, best: 'e7e6' },
+    { score: 500, best: 'e8e5', pv: XRAOT_REPLY },
+    { score: -500, best: 'g7g6' },
+  ];
+  const r = buildReview(game, evals, new Set());
+  assert.equal(r.plies[0].facts.line?.material, 3);
+  assert.equal(r.plies[1].facts.missedLine?.material, 3);
 });
 
 test('el comentarista cambia de voz según el estilo y el sujeto', () => {

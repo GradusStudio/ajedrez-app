@@ -1,5 +1,6 @@
 // Tipos de la revisión de partidas. Sin React Native: lo usan las pruebas con tsx.
 import type { Plan } from './plans';
+import type { LineFacts } from './lines';
 import type { Tactic } from './tactics';
 
 export type MoveQuality = 'book' | 'best' | 'excellent' | 'good' | 'inaccuracy' | 'mistake' | 'blunder';
@@ -44,6 +45,10 @@ export type Facts = {
   found?: Tactic[];
   /** Táctica que crea la mejor respuesta del rival (solo en imprecisiones, errores y errores graves). */
   allowsTactic?: { tactic: Tactic; san: string };
+  /** Línea del motor DESPUÉS de la jugada. Mueve primero el rival de quien jugó: `material` positivo es ganancia de quien mueve ahora (en un error del rival, del usuario; en un error propio, del rival). Solo en jugadas malas y si es informativa. */
+  line?: LineFacts;
+  /** Línea del motor ANTES de la jugada. Mueve primero quien jugó: `material` positivo es lo que pudo ganar. Mismas condiciones que `line`. */
+  missedLine?: LineFacts;
   /** Mate en `n` jugadas; `mover` es true si lo da quien jugó. */
   mateIn?: { n: number; mover: boolean };
   /** Para qué sirve la jugada; solo si no hay `did` ni `found`. */

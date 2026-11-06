@@ -42,6 +42,9 @@ export function EngineView({ onReady, onError }: Props) {
       ref={(web: WebViewRef | null) =>
         engine.connect((cmd) => web?.injectJavaScript(`window.sendToEngine(${JSON.stringify(cmd)});true;`))
       }
+      // react-native-webview envuelve el WebView en un View con `flex: 1`: sin `containerStyle` ese
+      // contenedor ocupa la mitad de la pantalla cuando comparte padre con otro `flex: 1`.
+      containerStyle={styles.hidden}
       style={styles.hidden}
       originWhitelist={['*']}
       source={{ html: engineHtml(), baseUrl: 'https://localhost/' }}

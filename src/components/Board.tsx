@@ -130,7 +130,8 @@ function Arrows({ arrows, sq, orientation }: { arrows: { move: string; color: st
     return { x: (c + 0.5) * sq, y: (r + 0.5) * sq };
   };
   return (
-    <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width={sq * 8} height={sq * 8}>
+    // zIndex 11: la fila de la última jugada queda en zIndex 10 (animación) y taparía las puntas de las flechas.
+    <Svg pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 11 }]} width={sq * 8} height={sq * 8}>
       {arrows.map(({ move: a, color }, i) => {
         const from = center(a.slice(0, 2));
         const to = center(a.slice(2, 4));

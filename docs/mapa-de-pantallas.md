@@ -256,8 +256,7 @@ src/
     leccion/[id].tsx    lección de unidad o de apertura (con ?repaso=ids para el repaso de errores)
     resultado.tsx       resultado de lección
   theme.ts
-  components/   Board, Piece, PieceSetPicker, Button3D, ProgressBar, FeedbackPanel, LessonNode, TabIcon, StatIcon, Chip,
-                BotAvatar (PieceLegacy: set anterior, sin uso)
+  components/   Board, Piece, PieceSetPicker, Button3D, ProgressBar, FeedbackPanel, LessonNode, TabIcon, StatIcon, Chip, BotAvatar
   puzzles/      puzzles.json (50.000 de Lichess, generado), themes.json (temas en español), puzzles.ts (del día, práctica)
   pieces/       pieceSets.ts (los 5 sets como trazados SVG; archivo generado, no editar a mano)
   settings/     SettingsContext.tsx (ajustes), PieceSetContext.tsx (set de piezas), reminders.ts (recordatorio diario)

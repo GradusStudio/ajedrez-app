@@ -15,10 +15,10 @@ import { MessageKey, useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
 import { Board, BoardMove } from '../components/Board';
 import { Button3D } from '../components/Button3D';
-import { EngineView } from '../engine/EngineView';
 import { EvalBar } from '../components/EvalBar';
 import { formatScore, whiteScore } from '../engine/evalFormat';
-import { AnalysisUpdate, UciEngine } from '../engine/uci';
+import { AnalysisUpdate } from '../engine/uci';
+import { useUciEngine } from '../engine/useUciEngine';
 import { colors, fonts, radius, space } from '../theme';
 
 type LastMove = { from: Square; to: Square } | null;
@@ -74,9 +74,7 @@ export function FreePlayScreen({ onBack }: { onBack?: () => void } = {}) {
 
   // Motor: se enciende y apaga desde la tarjeta. Solo analiza con la pestaña a la vista.
   const [engineOn, setEngineOn] = useState(true);
-  const [engine, setEngine] = useState<UciEngine | null>(null);
-  const [engineError, setEngineError] = useState<string | null>(null);
-  const [engineKey, setEngineKey] = useState(0);
+  const { engine, error: engineError, retry: retryEngine, view: engineView } = useUciEngine(engineOn);
   const [analysis, setAnalysis] = useState<(AnalysisUpdate & { fen: string }) | null>(null);
   const focused = useIsFocused();
 
@@ -132,22 +130,12 @@ export function FreePlayScreen({ onBack }: { onBack?: () => void } = {}) {
 
   const toggleEngine = (on: boolean) => {
     setEngineOn(on);
-    if (!on) {
-      setEngine(null);
-      setAnalysis(null);
-      setEngineError(null);
-    }
-  };
-
-  const retryEngine = () => {
-    setEngineError(null);
-    setEngine(null);
-    setEngineKey((k) => k + 1);
+    if (!on) setAnalysis(null);
   };
 
   return (
     <View style={styles.screen}>
-      {engineOn && !engineError && <EngineView key={engineKey} onReady={setEngine} onError={setEngineError} />}
+      {engineView}
 
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
         {onBack && (

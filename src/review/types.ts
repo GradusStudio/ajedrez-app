@@ -2,6 +2,9 @@
 
 export type MoveQuality = 'book' | 'best' | 'excellent' | 'good' | 'inaccuracy' | 'mistake' | 'blunder';
 
+/** Jugada que pierde ventaja: imprecisión, error o error grave. */
+export const isBad = (q: MoveQuality): q is 'inaccuracy' | 'mistake' | 'blunder' => q === 'inaccuracy' || q === 'mistake' || q === 'blunder';
+
 export type PieceKind = 'p' | 'n' | 'b' | 'r' | 'q' | 'k';
 
 /** Una jugada de la partida, ya reproducida con chess.js. */

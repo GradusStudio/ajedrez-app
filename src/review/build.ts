@@ -1,6 +1,7 @@
 import { Chess } from 'chess.js';
 import { whiteShare } from '../engine/evalFormat';
 import { positionKey } from './book';
+import { isBad } from './types';
 import type { Facts, GameMove, MoveQuality, ParsedGame, PieceKind, PositionEval, Review, ReviewPly } from './types';
 
 // Del análisis del motor a la revisión: calidad de cada jugada, hechos verificados con el tablero,
@@ -85,7 +86,7 @@ export function ratePly(
   else quality = classify(loss);
   const great = quality === 'best' && !!prev && (prev.quality === 'blunder' || prev.quality === 'mistake') && prev.loss >= 20;
   const mateGiven = move.san.endsWith('#');
-  const highlight = quality === 'inaccuracy' || quality === 'mistake' || quality === 'blunder' || great || mateGiven;
+  const highlight = isBad(quality) || great || mateGiven;
   // Lo que sigue a la jugada: la mejor respuesta del rival, según el motor.
   return {
     ply,

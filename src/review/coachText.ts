@@ -4,6 +4,7 @@ import en from './coach/en.json';
 import es from './coach/es.json';
 import fr from './coach/fr.json';
 import it from './coach/it.json';
+import { isBad } from './types';
 import type { Facts, MoveQuality, PieceKind } from './types';
 
 // Voz del comentarista. Las opiniones salen de plantillas por estilo del personaje; los hechos
@@ -53,7 +54,7 @@ export function coachVoice(o: {
   const tx = TEXTS[o.lang];
   const key: VoiceKey = o.mate ? 'mate' : o.great ? 'great' : o.quality;
   if (o.subject === 'you') return fill(pick(tx.you[o.style][key], o.seed), { move: o.move });
-  const k: OppKey = o.mate ? 'mate' : o.quality === 'inaccuracy' || o.quality === 'mistake' || o.quality === 'blunder' ? o.quality : 'ok';
+  const k: OppKey = o.mate ? 'mate' : isBad(o.quality) ? o.quality : 'ok';
   return fill(pick(tx.opp[k], o.seed), { move: o.move });
 }
 
@@ -95,8 +96,7 @@ export function coachExplanation(o: {
   }
 
   const m = facts.missed;
-  const bad = o.quality === 'inaccuracy' || o.quality === 'mistake' || o.quality === 'blunder';
-  if (bad && o.bestSan) {
+  if (isBad(o.quality) && o.bestSan) {
     const best = fmt(o.bestSan);
     if (m?.kind === 'mate') say(you ? 'missedMateYou' : 'missedMateOpp', { best });
     else if (m?.kind === 'capture') say(you ? 'missedCaptureYou' : 'missedCaptureOpp', { best, piece: piece(m.piece) });

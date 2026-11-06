@@ -246,29 +246,15 @@
   "frame": {
     "tranquilo": {
       "exploit": {
-        "lead": [
-          "Easy now: there is a chance.",
-          "Breathe: there is something here for you."
-        ],
         "tail": [
           "Take your time to calculate it, it is worth it.",
           "Seen calmly, it is an easy edge to collect."
         ]
       },
       "allows": {
-        "lead": [
-          "Relax, it happens. Let us see what it allowed.",
-          "Slowly now: let us see what it left open."
-        ],
         "tail": [
           "Next time, before moving, ask yourself what your opponent can do.",
           "With practice you will spot it earlier."
-        ]
-      },
-      "miss": {
-        "lead": [
-          "Easy now: there was something better.",
-          "Let us calmly see what else there was."
         ]
       },
       "good": {
@@ -280,29 +266,15 @@
     },
     "equilibrado": {
       "exploit": {
-        "lead": [
-          "Your opponent erred: you can take advantage.",
-          "There is a clear chance for you."
-        ],
         "tail": [
           "Better to collect it now, before your opponent fixes it.",
           "This is the kind of chance to look for on every move."
         ]
       },
       "allows": {
-        "lead": [
-          "That move gives your opponent something.",
-          "That move has a problem."
-        ],
         "tail": [
           "Before moving, check what your opponent can capture or threaten.",
           "A quick scan of your opponent's replies avoids this kind of error."
-        ]
-      },
-      "miss": {
-        "lead": [
-          "There was a better move.",
-          "A more precise move was available."
         ]
       },
       "good": {
@@ -314,29 +286,15 @@
     },
     "posicional": {
       "exploit": {
-        "lead": [
-          "Their position now has a crack.",
-          "There is a weak point in their position."
-        ],
         "tail": [
           "Unsupported pieces and loose squares are what to look for.",
           "A position breaks at its weak points: there was one here."
         ]
       },
       "allows": {
-        "lead": [
-          "Let us see how your structure stands.",
-          "Look at what that move stops protecting."
-        ],
         "tail": [
           "Before moving, see which pieces and squares are left unprotected.",
           "Every move changes what each piece defends: check it before moving."
-        ]
-      },
-      "miss": {
-        "lead": [
-          "There was a more precise continuation.",
-          "Another move kept the position better."
         ]
       },
       "good": {
@@ -348,29 +306,15 @@
     },
     "agresivo": {
       "exploit": {
-        "lead": [
-          "This is your moment!",
-          "A gift from your opponent: go collect it!"
-        ],
         "tail": [
           "Do not give them time to fix it.",
           "You attack here, you do not wait."
         ]
       },
       "allows": {
-        "lead": [
-          "Careful, that move opens the door to your opponent.",
-          "Your opponent has a blow ready here."
-        ],
         "tail": [
           "Next time, look at what your opponent attacks first, then move.",
           "To attack well, you first have to look after your own pieces."
-        ]
-      },
-      "miss": {
-        "lead": [
-          "There was more to get here.",
-          "There was something stronger."
         ]
       },
       "good": {
@@ -403,10 +347,12 @@
     "allowsCheckOpp": "Tu peux répondre avec {san}, échec.",
     "missedMateYou": "Il y avait mat avec {best}.",
     "missedMateOpp": "Ton adversaire a manqué le mat avec {best}.",
-    "missedCaptureYou": "Tu pouvais capturer {piece} avec {best}.",
-    "missedCaptureOpp": "Ton adversaire pouvait capturer {piece} avec {best}.",
     "missedBestYou": "Le meilleur coup était {best}.",
-    "missedBestOpp": "Le meilleur coup pour ton adversaire était {best}."
+    "missedBestOpp": "Le meilleur coup pour ton adversaire était {best}.",
+    "threatFree": "{Attacker} attaque {target} en {sq}, qui n'a aucun défenseur.",
+    "threatValue": "{Attacker} attaque {target} en {sq}, une pièce de plus grande valeur.",
+    "bestBecauseYou": "Le meilleur coup était {best}, parce que {why}.",
+    "bestBecauseOpp": "Le meilleur coup pour ton adversaire était {best}, parce que {why}."
   },
   "tact": {
     "found": {
@@ -553,32 +499,32 @@
   },
   "intent": {
     "develop": [
-      "It only developed {piece} from {from} to {to}.",
-      "The idea was to bring {piece} out from {from} to {to}."
+      "Il développait seulement {piece} de {from} à {to}.",
+      "L'idée était de sortir {piece} de {from} vers {to}."
     ],
     "center": [
-      "The move took {piece} to {to}, a central square.",
-      "{Piece} headed for the center, to {to}."
+      "Le coup amenait {piece} en {to}, une case centrale.",
+      "{Piece} allait au centre, en {to}."
     ],
     "rookFile": [
-      "{Piece} landed on {to}, on a file with no pawns of its own.",
-      "The idea was to put {piece} on {to}, on a file open for it."
+      "{Piece} se plaçait en {to}, sur une colonne sans pions à lui.",
+      "L'idée était de placer {piece} en {to}, sur une colonne ouverte."
     ],
     "pawnBreak": [
-      "The pawn went to {to} to attack an enemy pawn.",
-      "It was a pawn break: {to} puts pressure on an enemy pawn."
+      "Le pion arrivait en {to} pour attaquer un pion adverse.",
+      "C'était une rupture de pions : {to} met la pression sur un pion adverse."
     ],
     "pawnAdvance": [
-      "The pawn only advanced from {from} to {to}.",
-      "It was a pawn advance: from {from} to {to}."
+      "Le pion avançait seulement de {from} à {to}.",
+      "C'était une avancée de pion : de {from} à {to}."
     ],
     "kingActive": [
-      "The idea was to bring the king toward the center, from {from} to {to}.",
-      "The king left {from} for {to}, closer to the center."
+      "L'idée était de rapprocher le roi du centre, de {from} à {to}.",
+      "Le roi allait de {from} vers {to}, plus près du centre."
     ],
     "retreat": [
-      "{Piece} retreated from {from} to {to}.",
-      "The move only pulled {piece} back from {from} to {to}."
+      "{Piece} reculait de {from} à {to}.",
+      "Le coup ne faisait que reculer {piece} de {from} à {to}."
     ]
   },
   "line": {
@@ -627,5 +573,28 @@
     "r": "la tour",
     "q": "la dame",
     "k": "le roi"
+  },
+  "verdict": {
+    "inaccuracy": "mais c'est une imprécision.",
+    "mistake": "mais c'est une erreur.",
+    "blunder": "mais c'est une grosse erreur."
+  },
+  "why": {
+    "capture": "il capture {piece}",
+    "fork": "{attacker} attaque {targets} en même temps",
+    "pin": "{attacker} cloue {targets} sur la même ligne",
+    "skewer": "{attacker} attaque {targets} sur la même ligne",
+    "discovered": "la ligne de {attacker} s'ouvre et attaque maintenant {targets}",
+    "doubleCheck": "il donne échec double",
+    "hanging": "{attacker} capture {targetsDef}, que personne ne défendait",
+    "backRank": "c'est un mat du couloir",
+    "threatFree": "{attacker} attaque {target} en {sq}, qui n'a aucun défenseur",
+    "threatValue": "{attacker} attaque {target} en {sq}, une pièce de plus grande valeur",
+    "develop": "il développe {piece} de {from} à {to}",
+    "center": "il amène {piece} en {to}, une case centrale",
+    "rookFile": "il place {piece} en {to}, sur une colonne sans pions à lui",
+    "pawnBreak": "le pion arrive en {to} et attaque un pion adverse",
+    "kingActive": "il rapproche le roi du centre, de {from} à {to}",
+    "trade": "il propose un échange de pièces en {to}"
   }
 }

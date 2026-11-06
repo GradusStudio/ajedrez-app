@@ -4,6 +4,9 @@ import { Chess } from 'chess.js';
 import type { Color, Square } from 'chess.js';
 import type { PieceKind } from './types';
 
+/** Amenaza que crea la jugada: la pieza movida ataca algo valioso que no puede perder gratis. `free` = el objetivo no tiene defensores. */
+export type Threat = { attacker: PieceKind; target: PieceKind; square: string; free: boolean };
+
 export type TacticKind = 'fork' | 'pin' | 'skewer' | 'discovered' | 'doubleCheck' | 'hanging' | 'backRank';
 
 /** `attacker` es la pieza que ejerce la táctica (en `discovered`, la que quedó descubierta). */
@@ -163,6 +166,37 @@ export function detectTactics(fenBefore: string, uci: string): Tactic[] {
   }
 
   return out;
+}
+
+/**
+ * Amenaza simple: la pieza movida ataca una pieza (caballo, alfil, torre o dama) que antes no atacaba y que o bien no tiene
+ * defensores o bien vale más que ella. No cuenta si la pieza movida se puede capturar gratis, si da jaque (eso ya se dice
+ * solo) ni las clavadas, orquillas y descubiertas (eso lo cubre detectTactics). Ante la duda devuelve null.
+ */
+export function detectThreat(fenBefore: string, uci: string): Threat | null {
+  let before: Chess;
+  let after: Chess;
+  let move;
+  try {
+    before = new Chess(fenBefore);
+    after = new Chess(fenBefore);
+    move = after.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion: uci.slice(4, 5) || undefined });
+  } catch {
+    return null;
+  }
+  const mover = move.color;
+  const opp: Color = mover === 'w' ? 'b' : 'w';
+  const moved = kindAt(after, move.to);
+  if (moved === 'k' || after.inCheck() || capturableForFree(after, move.to, mover, opp)) return null;
+  const prior = new Set(attackedBy(before, move.from, opp).map((t) => t.sq));
+  const targets = attackedBy(after, move.to, opp)
+    .filter((t) => t.kind !== 'p' && t.kind !== 'k' && !prior.has(t.sq))
+    .map((t) => ({ t, free: after.attackers(t.sq, opp).length === 0 }))
+    .filter(({ t, free }) => free || VALUE[t.kind] > VALUE[moved])
+    .sort((a, b) => VALUE[b.t.kind] - VALUE[a.t.kind]);
+  if (targets.length === 0) return null;
+  const { t, free } = targets[0];
+  return { attacker: moved, target: t.kind, square: t.sq, free };
 }
 
 /** Mate anunciado por la evaluación (±(10000 − n)); null si `score` no es mate. */

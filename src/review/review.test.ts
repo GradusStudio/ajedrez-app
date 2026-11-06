@@ -311,11 +311,12 @@ test('la explicación nombra solo hechos comprobados', () => {
     bestSan: 'Dxf7#',
     fmt: (s) => s,
   });
-  // Un único párrafo con los dos hechos de mayor prioridad: el mate que se dejó pasar y lo que hizo la jugada.
+  // Un único párrafo: lo que hizo la jugada con el veredicto, lo que permitió y el mate que se dejó pasar, en ese orden.
   assert.equal(lines.length, 1);
-  assert.ok(lines[0].includes('Había mate con Dxf7#'));
-  assert.ok(lines[0].includes('Cxe5 captura un peón'));
-  assert.ok(!lines[0].includes('Axd1'));
+  const p = lines[0];
+  assert.ok(p.startsWith('Cxe5 captura un peón, pero es un error grave.'), p);
+  assert.ok(p.includes('Deja que el rival capture la dama con Axd1.') && p.includes('Había mate con Dxf7#.'), p);
+  assert.ok(p.indexOf('Axd1') < p.indexOf('Había mate'), p);
   const none = coachExplanation({ lang: 'en', style: 'agresivo', subject: 'you', quality: 'best', facts: {}, move: 'e4', bestSan: '', fmt: (s) => s });
   assert.deepEqual(none, []);
 });
@@ -362,4 +363,58 @@ test('la partida pendiente se puede leer varias veces hasta que se borra', () =>
   assert.equal(peekPendingGame()?.pgn, 'x');
   clearPendingGame();
   assert.equal(peekPendingGame(), null);
+});
+
+// ---- El caso de la captura del 6-11-2026: ...Ac5 ataca el caballo de d4 y cuesta ~0,4 peones ----
+const FEN_BEFORE_BC5 = 'rnbqkbnr/ppp3pp/8/3p1p2/3Np3/6P1/PPPPPPBP/RNBQ1RK1 b kq - 0 5';
+const FEN_AFTER_BC5 = 'rnbqk1nr/ppp3pp/8/2bp1p2/3Np3/6P1/PPPPPPBP/RNBQ1RK1 w kq - 1 6';
+const bc5: GameMove = { san: 'Bc5', uci: 'f8c5', color: 'b', fenBefore: FEN_BEFORE_BC5, fenAfter: FEN_AFTER_BC5 };
+
+test('ratePly: cpLoss es la ventaja perdida desde quien jugó, en centipeones', () => {
+  // Las negras estaban mejor por 0,33 (blancas −33) y quedan en −0,04 (blancas +4): pierden 37.
+  const r = ratePly(10, bc5, { score: -33, best: 'c7c5' }, { score: 4, best: 'd4b3' }, new Set());
+  assert.equal(r.cpLoss, 37);
+  // Para las blancas el signo se invierte: perder ventaja es bajar la evaluación.
+  const w: GameMove = { san: 'e4', uci: 'e2e4', color: 'w', fenBefore: FEN_AFTER_BC5, fenAfter: FEN_AFTER_BC5 };
+  assert.equal(ratePly(1, w, { score: 50, best: 'e2e4' }, { score: 20, best: '' }, new Set()).cpLoss, 30);
+  // Mejorar la evaluación no es pérdida.
+  assert.equal(ratePly(1, w, { score: 10, best: '' }, { score: 80, best: '' }, new Set()).cpLoss, 0);
+});
+
+test('ratePly: una imprecisión de menos de 0,8 peones se marca pero no se destaca; una mayor sí', () => {
+  const rate = (after: number) => ratePly(10, bc5, { score: -33, best: 'c7c5' }, { score: after, best: 'd4b3' }, new Set());
+  const small = rate(25); // cuesta 58 cp
+  assert.equal(small.quality, 'inaccuracy');
+  assert.equal(small.cpLoss, 58);
+  assert.equal(small.highlight, false);
+  const edge = rate(40); // 73 cp: todavía chica
+  assert.equal(edge.quality, 'inaccuracy');
+  assert.equal(edge.highlight, false);
+  const bigger = rate(70); // 103 cp: sigue siendo imprecisión, pero ya se destaca
+  assert.equal(bigger.quality, 'inaccuracy');
+  assert.equal(bigger.highlight, true);
+  assert.equal(rate(120).highlight, true, 'un error siempre se destaca');
+});
+
+test('factsFor: ...Ac5 trae la amenaza al caballo de d4 sin defensores y el plan de desarrollo', () => {
+  const f = factsFor(bc5, 'c7c5', 'd4b3', 'good');
+  assert.deepEqual(f.threat, { attacker: 'b', target: 'n', square: 'd4', free: true });
+  assert.equal(f.plan?.kind, 'develop');
+});
+
+test('factsFor: una jugada con táctica (orquilla) no trae threat aparte', () => {
+  const f = factsFor({ san: 'Nc6+', uci: 'd4c6', color: 'w', fenBefore: '1r6/4k3/8/8/3N4/8/8/6K1 w - - 0 1', fenAfter: '1r6/4k3/2N5/8/8/8/8/6K1 b - - 1 1' }, 'd4c6', '', 'best');
+  assert.ok(f.found?.some((t) => t.kind === 'fork'));
+  assert.equal(f.threat, undefined);
+});
+
+test('explicación de ...Ac5: la idea con su veredicto, la amenaza y la mejor jugada, sin frase de costo', () => {
+  const f = factsFor(bc5, 'c7c5', 'd4b3', 'inaccuracy');
+  const text = coachExplanation({
+    lang: 'es', subject: 'opponent', quality: 'inaccuracy', facts: f, move: 'Ac5', bestSan: 'c5', fmt: (s) => s, style: 'equilibrado', seed: 3,
+  })[0];
+  assert.ok(/(desarrollaba|sacar) el alfil de f8/.test(text) && text.includes(', pero es una imprecisión.'), text);
+  assert.ok(text.includes('El alfil ataca al caballo de d4, que no tiene defensores.'), text);
+  assert.ok(text.includes('La mejor jugada para el rival era c5'), text);
+  assert.ok(!/peones|Cuesta|respirar/.test(text), text);
 });

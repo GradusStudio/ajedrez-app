@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { detectTactics, mateIn } from './tactics';
+import { detectTactics, detectThreat, mateIn } from './tactics';
 
 const kinds = (fen: string, uci: string) => detectTactics(fen, uci).map((t) => t.kind);
 
@@ -75,4 +75,31 @@ test('mateIn lee el bando y N', () => {
   assert.deepEqual(mateIn(9997), { by: 'w', n: 3 });
   assert.deepEqual(mateIn(-9998), { by: 'b', n: 2 });
   assert.equal(mateIn(120), null);
+});
+
+// ---- Amenazas ----
+
+const BEFORE_BC5 = 'rnbqkbnr/ppp3pp/8/3p1p2/3Np3/6P1/PPPPPPBP/RNBQ1RK1 b kq - 0 5';
+
+test('amenaza: Ac5 ataca el caballo de d4, que no tiene defensores', () => {
+  assert.deepEqual(detectThreat(BEFORE_BC5, 'f8c5'), { attacker: 'b', target: 'n', square: 'd4', free: true });
+});
+test('amenaza: un peón que ataca un caballo es amenaza por valor, aunque el caballo esté defendido', () => {
+  // El peón de d3 avanza a d4 y ataca el caballo de e5, que defiende el peón de d6.
+  assert.deepEqual(detectThreat('4k3/8/3p4/4n3/8/3P4/8/4K3 w - - 0 1', 'd3d4'), { attacker: 'p', target: 'n', square: 'e5', free: false });
+});
+test('amenaza: no cuenta si la pieza movida se puede capturar gratis', () => {
+  // El alfil va a c5 pero el caballo de b3 lo captura sin que nadie lo defienda.
+  assert.equal(detectThreat('4k3/8/8/8/3N4/1n6/8/4K3 b - - 0 1', 'b3c5'), null);
+});
+test('amenaza: no cuenta si el objetivo ya estaba atacado desde la casilla anterior', () => {
+  // La torre pasa de a4 a b4 y sigue atacando el caballo de d4 en la misma fila.
+  assert.equal(detectThreat('4k3/8/8/8/R2n4/8/8/4K3 w - - 0 1', 'a4b4'), null);
+});
+test('amenaza: un jaque no es una amenaza (se dice aparte)', () => {
+  assert.equal(detectThreat('4k3/8/8/8/3N4/8/8/4K3 w - - 0 1', 'd4f5'), null);
+});
+test('amenaza: jugada ilegal o FEN roto devuelven null sin lanzar', () => {
+  assert.equal(detectThreat(BEFORE_BC5, 'a1a8'), null);
+  assert.equal(detectThreat('no es un fen', 'e2e4'), null);
 });

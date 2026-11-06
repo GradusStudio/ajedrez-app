@@ -5,7 +5,7 @@ import { isBad } from './types';
 import { analyzeLine } from './lines';
 import type { LineFacts } from './lines';
 import { planFor } from './plans';
-import { detectTactics, mateIn } from './tactics';
+import { detectTactics, detectThreat, mateIn } from './tactics';
 import type { Facts, GameMove, MoveQuality, ParsedGame, PieceKind, PositionEval, Review, ReviewPly } from './types';
 
 // Del análisis del motor a la revisión: calidad de cada jugada, hechos verificados con el tablero,
@@ -13,6 +13,9 @@ import type { Facts, GameMove, MoveQuality, ParsedGame, PieceKind, PositionEval,
 
 /** Cota superior (en puntos de probabilidad de ganar perdidos) de cada categoría; desde mistake hasta arriba es error grave. */
 export const THRESHOLDS = { excellent: 2, good: 5, inaccuracy: 10, mistake: 20 } as const;
+
+/** Una imprecisión que cuesta menos de esto (en centipeones: 0,8 peones) no entra en «Destacadas»: sigue marcada, pero no es una lección. */
+export const MINOR_CP_LOSS = 80;
 
 const PIECE_VALUE: Record<PieceKind, number> = { p: 1, n: 3, b: 3, r: 5, q: 9, k: 0 };
 
@@ -64,6 +67,11 @@ export function factsFor(
   tactics = tactics.slice(0, 2);
   if (tactics.length > 0) facts.found = tactics;
   if (!facts.did && !facts.found) facts.plan = planFor(move.fenBefore, move.uci);
+  // La amenaza que crea la jugada (ataca una pieza sin defensa o de más valor) se dice aparte; una táctica ya la cubre.
+  if (!facts.found && facts.did?.kind !== 'mate') {
+    const threat = detectThreat(move.fenBefore, move.uci);
+    if (threat) facts.threat = threat;
+  }
 
   const bad = isBad(quality);
   const mate = scoreAfter === undefined ? null : mateIn(scoreAfter);
@@ -87,6 +95,8 @@ export function factsFor(
   }
   const best = tryMove(move.fenBefore, bestUci);
   if (best) {
+    const why = whyBest(move.fenBefore, bestUci);
+    if (why) facts.bestWhy = why;
     if (best.san.endsWith('#')) facts.missed = { kind: 'mate' };
     else if (best.captured && PIECE_VALUE[best.captured as PieceKind] >= 3 && best.captured !== played?.captured)
       facts.missed = { kind: 'capture', piece: best.captured as PieceKind };
@@ -96,6 +106,15 @@ export function factsFor(
   const missedLine = informative(move.fenBefore, pvs?.best);
   if (missedLine) facts.missedLine = missedLine;
   return facts;
+}
+
+/** Qué tenía de bueno la jugada recomendada: la primera táctica, si no una amenaza y, si no, su plan. */
+function whyBest(fen: string, uci: string): Facts['bestWhy'] {
+  const found = detectTactics(fen, uci).slice(0, 1);
+  if (found.length > 0) return { found };
+  const threat = detectThreat(fen, uci);
+  if (threat) return { threat };
+  return { plan: planFor(fen, uci) };
 }
 
 /** La línea del motor solo se cuenta si el tablero comprueba algo que vale la pena decir. */
@@ -129,13 +148,19 @@ export function ratePly(
   else quality = classify(loss);
   const great = quality === 'best' && !!prev && (prev.quality === 'blunder' || prev.quality === 'mistake') && prev.loss >= 20;
   const mateGiven = move.san.endsWith('#');
-  const highlight = isBad(quality) || great || mateGiven;
+  // Ventaja perdida en peones (centipeones) desde quien jugó; con un mate de por medio no tiene sentido y queda enorme.
+  const side = move.color === 'w' ? 1 : -1;
+  const cpLoss = Math.max(0, side * (before.score - after.score));
+  // Una imprecisión chica (las imprecisiones van de unos 55 a 110 cp cerca de la igualdad) se marca, pero no se destaca.
+  const minor = quality === 'inaccuracy' && cpLoss < MINOR_CP_LOSS;
+  const highlight = (isBad(quality) && !minor) || great || mateGiven;
   // Lo que sigue a la jugada: la mejor respuesta del rival, según el motor.
   return {
     ply,
     move,
     quality,
     loss,
+    cpLoss,
     great,
     highlight,
     scoreAfter: after.score,

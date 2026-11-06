@@ -110,20 +110,24 @@ export function GameReviewScreen({ onBack }: Props) {
         ? `${tn('review.keyMoments', review.highlights.length)} ${t('review.startHint')}`
         : `${t('review.noKeyMoments')} ${t('review.startHint')}`;
 
-  let details: string[] = [];
-  if (pb.showBest && ply) {
-    const lines = coachExplanation({
-      lang: coachLang(language),
-      subject: mine ? 'you' : 'opponent',
-      quality: ply.quality,
-      facts: ply.facts,
-      move: san,
-      bestSan: ply.bestSan,
-      fmt,
-      seed: ply.ply + coach.elo,
-      style: coach.style,
-    });
-    details = lines.length > 0 ? lines : ply.bestSan ? [t('review.bestWas', { move: fmt(ply.bestSan) })] : [];
+  // Los hechos (qué buscaba la jugada, por qué falla, cuál era la mejor y por qué) van primero y siempre a la vista.
+  // La frase con la voz del bot solo aparece cuando no hay ningún hecho que decir.
+  const explanation = ply
+    ? coachExplanation({
+        lang: coachLang(language),
+        subject: mine ? 'you' : 'opponent',
+        quality: ply.quality,
+        facts: ply.facts,
+        move: san,
+        bestSan: ply.bestSan,
+        fmt,
+        seed: ply.ply + coach.elo,
+        style: coach.style,
+      })
+    : [];
+  const details = [...explanation];
+  if (pb.showBest && ply?.bestSan && !explanation.join(' ').includes(fmt(ply.bestSan))) {
+    details.push(t('review.bestWas', { move: fmt(ply.bestSan) }));
   }
 
   const scoreHere = branch
@@ -137,7 +141,7 @@ export function GameReviewScreen({ onBack }: Props) {
       expression={pendingOwn ? 'piensa' : faceFor(ply, mine)}
       head={ply ? { badge, title: t(titleKey(ply), { move: san }), score: scoreHere, decimal } : null}
       startTitle={!ply && !pendingOwn && started ? t('review.startPosition') : null}
-      voice={voice}
+      voice={explanation.length > 0 ? '' : voice}
       details={details}
     />
   );

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { colors, fonts, radius, space } from '../../theme';
 
-const BUBBLE_H = 118; // alto fijo del globo: así el tablero nunca se mueve (3 líneas de texto y el resto se desliza)
+const BUBBLE_H = 190; // alto fijo del globo: así el tablero nunca se mueve (unas 7 líneas de texto y el resto se desliza)
 
 export const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },

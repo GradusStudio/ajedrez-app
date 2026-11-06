@@ -13,8 +13,8 @@ import type { Facts, MoveQuality, PieceKind } from './types';
 // Voz del comentarista. Las opiniones salen de plantillas por estilo del personaje; los hechos
 // (qué capturó, qué permite, qué se dejó pasar) vienen ya verificados con el tablero (build.ts):
 // aquí solo se ponen en palabras. Los textos de cada idioma están en `coach/<idioma>.json`
-// (de, it y fr traducidos con IA, sin revisión de nativos; las claves de `frame`, `opp`, `line` e
-// `intent` están por ahora en inglés en esos tres idiomas). Sin React Native.
+// (de, it y fr traducidos con IA, sin revisión de nativos; las claves de `frame`, `opp`, `you` y `line`
+// están por ahora en inglés en esos tres idiomas; `intent`, `verdict` y `why` ya están traducidas). Sin React Native.
 
 export type CoachLang = 'es' | 'en' | 'de' | 'it' | 'fr';
 const LANGS: CoachLang[] = ['es', 'en', 'de', 'it', 'fr'];
@@ -29,34 +29,43 @@ type ExplKey =
   | 'didMate' | 'didCheck' | 'didCapture' | 'didCastle'
   | 'allowsMateYou' | 'allowsMateOpp' | 'allowsCaptureMoved' | 'allowsCaptureYou' | 'allowsCaptureOpp'
   | 'allowsCheckYou' | 'allowsCheckOpp'
-  | 'missedMateYou' | 'missedMateOpp' | 'missedCaptureYou' | 'missedCaptureOpp' | 'missedBestYou' | 'missedBestOpp';
+  | 'missedMateYou' | 'missedMateOpp' | 'missedBestYou' | 'missedBestOpp'
+  | 'bestBecauseYou' | 'bestBecauseOpp'
+  | 'threatFree' | 'threatValue';
 
 type MateKey = 'foundYou' | 'foundOpp' | 'allowsYou' | 'allowsOpp';
 type TactTexts = Record<'you' | 'opp', Record<TacticKind, string[]>>;
+type Bad = 'inaccuracy' | 'mistake' | 'blunder';
+/** Por qué era mejor la jugada recomendada: cláusulas que siguen a «porque». */
+type WhyKey = 'capture' | TacticKind | 'threatFree' | 'threatValue' | 'develop' | 'center' | 'rookFile' | 'pawnBreak' | 'kingActive' | 'trade';
 /**
- * Situación de la explicación: el rival erró (exploit); el error es propio y hay algo que permitió (allows) o solo se dejó pasar algo mejor
- * (miss); o la jugada no es mala (good).
+ * Situación de la explicación de una jugada mala: el rival erró (exploit); el error es propio y hay algo que permitió (allows) o solo se
+ * dejó pasar algo mejor (miss, sin marco). Solo exploit y allows tienen cola con la voz del bot.
  */
-type Situation = 'exploit' | 'allows' | 'miss' | 'good';
+type Situation = 'exploit' | 'allows' | 'miss';
 /** Texto de una línea del motor: la usa quien explota el error (exploit), quien lo sufre (allows) o la oportunidad perdida (missed). */
 type LineSituation = 'exploit' | 'allows' | 'missed';
 type IntentKind = Extract<PlanKind, 'develop' | 'center' | 'rookFile' | 'pawnBreak' | 'pawnAdvance' | 'kingActive' | 'retreat'>;
 
 /** Largo máximo (en caracteres) del párrafo de la explicación. */
-export const EXPLANATION_CAP = 220;
+export const EXPLANATION_CAP = 320;
 
 // Convención: las tácticas (tact.*) son listas de variantes elegidas con la semilla; mateIn y plan
 // son una sola frase. En plan, {piece} va en minúscula con artículo ("el caballo") y {Piece} con
-// la primera letra en mayúscula, para empezar frase. `frame` es el marco del estilo (lead y tail
-// del párrafo; el tail solo existe cuando hay error), `line` dice la línea del motor ({first} y
-// {finish} son la primera y la tercera jugada, {seq} la secuencia, {n} los puntos de material) e
-// `intent` dice, solo en jugadas malas, qué buscaba el plan; no depende de quién jugó.
+// la primera letra en mayúscula, para empezar frase. `frame` es el marco del estilo: `good` abre el
+// párrafo de una jugada buena y `exploit`/`allows` cierran con una cola con la voz del bot cuando
+// hay error. `line` dice la línea del motor ({first} y {finish} son la primera y la tercera jugada,
+// {seq} la secuencia, {n} los puntos de material), `intent` dice qué buscaba la jugada (solo en
+// jugadas malas, y se le agrega `verdict`: «..., pero es un error.»), y `why` son las cláusulas que
+// siguen a «La mejor jugada era X, porque ...».
 type Texts = {
   you: Record<BotStyle, Record<VoiceKey, string[]>>;
   opp: Record<BotStyle, Record<OppKey, string[]>>;
-  frame: Record<BotStyle, { exploit: { lead: string[]; tail: string[] }; allows: { lead: string[]; tail: string[] }; miss: { lead: string[] }; good: { lead: string[] } }>;
+  frame: Record<BotStyle, { exploit: { tail: string[] }; allows: { tail: string[] }; good: { lead: string[] } }>;
   line: { removeDefender: Record<LineSituation, string[]>; material: Record<LineSituation, string[]> };
   intent: Record<IntentKind, string[]>;
+  verdict: Record<Bad, string>;
+  why: Record<WhyKey, string>;
   // `pieces` lleva artículo indefinido ("un caballo", para lo capturado); `pieceDef` el definido ("el caballo", sujeto o
   // complemento con preposición) y `pieceObj` el complemento directo ("al rey", "a la torre"; igual que pieceDef en inglés).
   pieces: Record<PieceKind, string>;
@@ -94,26 +103,15 @@ export function coachVoice(o: {
 }
 
 const INTENT_KINDS: PlanKind[] = ['develop', 'center', 'rookFile', 'pawnBreak', 'pawnAdvance', 'kingActive', 'retreat'];
+/** Planes que explican por qué una jugada era la mejor (los demás, como avanzar un peón, no dicen nada útil). */
+const REASON_PLANS: PlanKind[] = ['develop', 'center', 'rookFile', 'pawnBreak', 'kingActive', 'trade'];
 // Cuántas variantes distintas se prueban, como mucho, para que el párrafo entre en el tope (acortar es cambiar a una variante sin {seq}).
 const VARIANT_TRIES = 4;
 
 /** Un trozo del párrafo; `k` corre la variante elegida con la semilla (se prueba con k = 0, 1, ... hasta que el párrafo entre en el tope). */
 type Part = (k: number) => string;
 
-/**
- * La explicación de una jugada en la voz del bot: un único párrafo con un lead del estilo, como mucho
- * dos hechos verificados, la intención del plan (solo en jugadas malas) y una cola del estilo (solo en
- * errores). Los hechos salen de una escalera de prioridad: mate, eliminar al defensor, otras tácticas,
- * material de la línea del motor, lo que hizo la jugada y lo permitido o perdido; el plan de una jugada
- * buena entra al final como un hecho más. Si el párrafo pasa de `EXPLANATION_CAP`, se prueban otras variantes
- * (las que no llevan {seq} son las cortas: una secuencia nunca se muestra recortada, porque afirma una ganancia)
- * y, si ninguna entra, se quita la cola, después la intención y por último el segundo hecho. Devuelve `[]`
- * si no hay ningún hecho que decir: una jugada mala con solo intención no dice nada, porque la mejor jugada
- * se agrega siempre que haya `bestSan`. El concepto (eliminar al defensor) queda siempre que es el primer
- * hecho; un mate como primer hecho puede dejarlo fuera del segundo lugar.
- * `fmt` pasa una jugada de notación inglesa a la del usuario; `seed` elige entre las variantes.
- */
-export function coachExplanation(o: {
+type ExplainOptions = {
   lang: CoachLang;
   subject: Subject;
   quality: MoveQuality;
@@ -123,26 +121,17 @@ export function coachExplanation(o: {
   fmt: (san: string) => string;
   seed?: number;
   style: BotStyle;
-}): string[] {
-  const { facts, fmt } = o;
+};
+
+/** Herramientas comunes para poner hechos en palabras. */
+function kit(o: ExplainOptions) {
   const tx = TEXTS[o.lang];
   const seed = o.seed ?? 0;
-  const you = o.subject === 'you';
-  const side = you ? 'you' : 'opp';
-  const bad = isBad(o.quality);
-  const mate: Part[] = [];
-  const removeDefender: Part[] = [];
-  const tactics: Part[] = [];
-  const allowedTactic: Part[] = [];
-  const material: Part[] = [];
-  const did: Part[] = [];
-  const rest: Part[] = [];
-  const plan: Part[] = [];
-
+  const { fmt } = o;
   const fixed = (s: string): Part => () => s;
   const variant = (list: string[], salt: number, vars: () => Record<string, string> = () => ({}), index = seed + salt): Part =>
     (k) => fill(pick(list, index + k), { move: o.move, ...vars() });
-  const say = (to: Part[], key: ExplKey, v: Record<string, string> = {}) => to.push(fixed(fill(tx.expl[key], { move: o.move, ...v })));
+  const say = (key: ExplKey, v: Record<string, string> = {}): Part => fixed(fill(tx.expl[key], { move: o.move, ...v }));
   const piece = (k: PieceKind) => tx.pieces[k];
   const cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
   const def = (k: PieceKind) => tx.pieceDef[k];
@@ -158,115 +147,156 @@ export function coachExplanation(o: {
     seq: l.sans.slice(0, 3).map(fmt).join(' '),
     n: String(l.material),
   });
+  const planVars = (x: { piece: PieceKind; from: string; to: string }) => ({ piece: def(x.piece), Piece: cap(def(x.piece)), from: x.from, to: x.to });
+  return { tx, seed, you: o.subject === 'you', fixed, variant, say, piece, cap, def, tacticVars, lineVars, planVars };
+}
+
+/**
+ * Dice el párrafo más largo que entra en `EXPLANATION_CAP`: prueba otras variantes (las que no llevan {seq} son las cortas:
+ * una secuencia nunca se muestra recortada, porque afirma una ganancia) y, si ninguna entra, pasa al siguiente diseño de `layouts`
+ * (cada uno quita algo del anterior). Si ni el último entra, se queda con su variante más corta.
+ */
+function fit<L>(layouts: L[], render: (l: L, k: number) => string): string {
+  for (const l of layouts)
+    for (let k = 0; k < VARIANT_TRIES; k++) {
+      const text = render(l, k);
+      if (text.length <= EXPLANATION_CAP) return text;
+    }
+  const last = layouts[layouts.length - 1];
+  return Array.from({ length: VARIANT_TRIES }, (_, k) => render(last, k)).reduce((x, y) => (y.length < x.length ? y : x));
+}
+
+const join = (parts: string[]) => parts.filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+const stripPeriod = (s: string) => s.replace(/\.$/, '');
+
+/**
+ * La explicación de una jugada en la voz del bot: un único párrafo. En una jugada buena, un lead del estilo y como mucho dos hechos
+ * verificados (mate, táctica, amenaza, lo que hizo la jugada y, al final, su plan). En una jugada mala, en cambio:
+ * 1. lo que hacía la jugada seguido del veredicto («La idea era sacar el caballo de b1 hacia a3, pero es un error.»);
+ * 2. un hecho de por qué falla (mate permitido, eliminar al defensor, táctica o captura permitida, material de la línea del motor);
+ * 3. la mejor jugada y por qué lo era (mate, línea del motor, captura, táctica, amenaza o plan de esa jugada);
+ * 4. una cola corta con la voz del bot (solo si el rival erró o el error permitió algo).
+ * Si no entra en `EXPLANATION_CAP` se quita primero la cola, luego el hecho de por qué falla y por último lo que hacía la jugada.
+ * Devuelve `[]` si no hay nada que decir: en una jugada mala, lo que hacía la jugada solo no dice nada.
+ * `fmt` pasa una jugada de notación inglesa a la del usuario; `seed` elige entre las variantes.
+ */
+export function coachExplanation(o: ExplainOptions): string[] {
+  const text = isBad(o.quality) ? explainMistake(o) : explainGood(o);
+  return text ? [text] : [];
+}
+
+function explainGood(o: ExplainOptions): string | undefined {
+  const { facts } = o;
+  const { tx, you, fixed, variant, say, piece, cap, def, tacticVars, planVars } = kit(o);
+  const side = you ? 'you' : 'opp';
+  const parts: Part[] = [];
 
   if (facts.mateIn) {
     const { n, mover } = facts.mateIn;
     const key: MateKey = mover ? (you ? 'foundYou' : 'foundOpp') : you ? 'allowsYou' : 'allowsOpp';
-    mate.push(fixed(fill(tx.mateIn[key], { n: String(n) })));
+    parts.push(fixed(fill(tx.mateIn[key], { n: String(n) })));
   }
-  if (facts.did) {
-    const d = facts.did;
-    if (d.kind === 'mate') say(mate, 'didMate');
-    else if (d.kind === 'check') say(did, 'didCheck');
-    else if (d.kind === 'capture') say(did, 'didCapture', { piece: piece(d.piece) });
-    else say(did, 'didCastle');
+  if (facts.did?.kind === 'mate') parts.push(say('didMate'));
+  (facts.found ?? []).forEach((t, i) => parts.push(variant(tx.tact.found[side][t.kind], i, () => tacticVars(t))));
+  if (facts.threat) {
+    const t = facts.threat;
+    parts.push(say(t.free ? 'threatFree' : 'threatValue', { Attacker: cap(def(t.attacker)), target: tx.pieceObj[t.target], sq: t.square }));
   }
+  const d = facts.did;
+  if (d?.kind === 'check') parts.push(say('didCheck'));
+  else if (d?.kind === 'capture') parts.push(say('didCapture', { piece: piece(d.piece) }));
+  else if (d?.kind === 'castle') parts.push(say('didCastle'));
+  // El plan de una jugada buena es un mérito más.
+  if (facts.plan && !facts.did && !facts.found) parts.push(fixed(fill(tx.plan[facts.plan.kind], { ...planVars(facts.plan), move: o.move })));
 
-  // La línea del motor solo se usa en jugadas malas; la de la oportunidad perdida, solo para el error propio.
-  const line = bad ? facts.line : undefined;
-  const missedLine = bad && you ? facts.missedLine : undefined;
+  const chosen = parts.slice(0, 2);
+  if (chosen.length === 0) return undefined;
+  const lead = variant(tx.frame[o.style].good.lead, 0);
+  const layouts = [chosen.length, ...(chosen.length > 1 ? [1] : [])];
+  return fit(layouts, (n, k) => join([lead(k), ...chosen.slice(0, n).map((f) => f(k))]));
+}
+
+function explainMistake(o: ExplainOptions): string | undefined {
+  const { facts, fmt } = o;
+  const { tx, you, fixed, variant, say, piece, cap, def, tacticVars, lineVars, planVars } = kit(o);
+  const quality = o.quality as Bad;
   const lineKey: LineSituation = you ? 'allows' : 'exploit';
-  const rdSource: [LineFacts, LineSituation] | undefined =
-    line?.removeDefender && line.sans.length >= 3
-      ? [line, lineKey]
-      : missedLine?.removeDefender && missedLine.sans.length >= 3
-        ? [missedLine, 'missed']
-        : undefined;
-  if (rdSource) {
-    const [l, key] = rdSource;
-    const rd = l.removeDefender!;
-    const vars = lineVars(l);
-    removeDefender.push(
-      variant(tx.line.removeDefender[key], 2, () => ({
-        ...vars(),
-        capturer: def(rd.capturer),
-        removed: def(rd.removed),
-        target: def(rd.target),
-        targetSq: rd.targetSq,
-      })),
-    );
-  }
+  const best = o.bestSan ? fmt(o.bestSan) : '';
 
-  (facts.found ?? []).forEach((t, i) => tactics.push(variant(tx.tact.found[side][t.kind], i, () => tacticVars(t))));
+  // 1. Lo que hacía la jugada, con el veredicto: «..., pero es un error.»
+  let what: Part | undefined;
+  const d = facts.did;
+  if (d?.kind === 'check') what = say('didCheck');
+  else if (d?.kind === 'capture') what = say('didCapture', { piece: piece(d.piece) });
+  else if (d?.kind === 'castle') what = say('didCastle');
+  else if (facts.plan && !facts.found && INTENT_KINDS.includes(facts.plan.kind)) {
+    const p = facts.plan;
+    what = variant(tx.intent[p.kind as IntentKind], 2, () => planVars(p));
+  }
+  const s1: Part | undefined = what && ((k) => `${stripPeriod(what(k))}, ${tx.verdict[quality]}`);
+
+  // 2. Por qué falla: el primer hecho de lo que permite (o, si erró el rival, de lo que se puede aprovechar).
+  const line = facts.line;
+  const problem: Part[] = [];
+  if (facts.mateIn && !facts.mateIn.mover) problem.push(fixed(fill(tx.mateIn[you ? 'allowsYou' : 'allowsOpp'], { n: String(facts.mateIn.n) })));
+  const a = facts.allows;
+  if (a?.kind === 'mate') problem.push(say(you ? 'allowsMateYou' : 'allowsMateOpp', { san: fmt(a.san) }));
+  if (line?.removeDefender && line.sans.length >= 3) {
+    const rd = line.removeDefender;
+    const vars = lineVars(line);
+    problem.push(variant(tx.line.removeDefender[lineKey], 2, () => ({ ...vars(), capturer: def(rd.capturer), removed: def(rd.removed), target: def(rd.target), targetSq: rd.targetSq })));
+  }
   if (facts.allowsTactic) {
     const { tactic, san } = facts.allowsTactic;
-    allowedTactic.push(variant(tx.tact.allows[side][tactic.kind], 0, () => ({ ...tacticVars(tactic), san: fmt(san) })));
+    problem.push(variant(tx.tact.allows[you ? 'you' : 'opp'][tactic.kind], 0, () => ({ ...tacticVars(tactic), san: fmt(san) })));
   }
-
-  // Material de la línea del motor (el concepto de eliminar al defensor ya lo dice por su cuenta).
-  if (line && !line.removeDefender && line.material >= 2) material.push(variant(tx.line.material[lineKey], 2, lineVars(line)));
-  if (missedLine && !missedLine.removeDefender && missedLine.material >= 2) material.push(variant(tx.line.material.missed, 3, lineVars(missedLine)));
-  // Los textos de la oportunidad perdida ya nombran la mejor jugada: no hace falta repetirla.
-  const saysBest = rdSource?.[1] === 'missed' || (missedLine && missedLine.material >= 2 && !missedLine.removeDefender);
-
+  if (line && !line.removeDefender && line.material >= 2) problem.push(variant(tx.line.material[lineKey], 2, lineVars(line)));
   // Con la línea del motor, su primera jugada ya dice la captura o el jaque permitidos: no se repiten.
-  const a = facts.allows;
-  if (a) {
+  if (a && a.kind !== 'mate') {
     const san = fmt(a.san);
-    if (a.kind === 'mate') say(rest, you ? 'allowsMateYou' : 'allowsMateOpp', { san });
-    else if (!line) {
-      if (a.kind === 'capture') say(rest, you ? (a.ofMoved ? 'allowsCaptureMoved' : 'allowsCaptureYou') : 'allowsCaptureOpp', { san, piece: piece(a.piece) });
-      else say(rest, you ? 'allowsCheckYou' : 'allowsCheckOpp', { san });
-    }
+    if (a.kind === 'capture' && !line) problem.push(say(you ? (a.ofMoved ? 'allowsCaptureMoved' : 'allowsCaptureYou') : 'allowsCaptureOpp', { san, piece: piece(a.piece) }));
+    else if (a.kind === 'check' && !line) problem.push(say(you ? 'allowsCheckYou' : 'allowsCheckOpp', { san }));
   }
+  // Sin nada que permita, lo útil es la amenaza que la jugada crea (hay que responderla).
+  const t = facts.threat;
+  const threatSentence = t && say(t.free ? 'threatFree' : 'threatValue', { Attacker: cap(def(t.attacker)), target: tx.pieceObj[t.target], sq: t.square });
+  const s2: Part | undefined = problem[0] ?? threatSentence;
 
+  // 3. La mejor jugada y por qué lo era.
+  const because = (why: WhyKey, vars: Record<string, string> = {}): Part =>
+    fixed(fill(tx.expl[you ? 'bestBecauseYou' : 'bestBecauseOpp'], { best, why: fill(tx.why[why], vars) }));
   const m = facts.missed;
-  if (bad && o.bestSan) {
-    const best = fmt(o.bestSan);
-    // Dejar pasar un mate es lo más grave que hay en la lista: va con el mate y no se pierde por el tope de dos hechos.
-    if (m?.kind === 'mate') say(mate, you ? 'missedMateYou' : 'missedMateOpp', { best });
-    else if (m?.kind === 'capture') say(rest, you ? 'missedCaptureYou' : 'missedCaptureOpp', { best, piece: piece(m.piece) });
-    else if (!saysBest) say(rest, you ? 'missedBestYou' : 'missedBestOpp', { best });
+  const missedLine = facts.missedLine;
+  const bw = facts.bestWhy;
+  let s3: Part | undefined;
+  if (best && m?.kind === 'mate') s3 = say(you ? 'missedMateYou' : 'missedMateOpp', { best });
+  else if (missedLine?.removeDefender && missedLine.sans.length >= 3) {
+    const rd = missedLine.removeDefender;
+    const vars = lineVars(missedLine);
+    s3 = variant(tx.line.removeDefender.missed, 2, () => ({ ...vars(), capturer: def(rd.capturer), removed: def(rd.removed), target: def(rd.target), targetSq: rd.targetSq }));
+  } else if (missedLine && !missedLine.removeDefender && missedLine.material >= 2) s3 = variant(tx.line.material.missed, 3, lineVars(missedLine));
+  else if (best) {
+    if (m?.kind === 'capture') s3 = because('capture', { piece: piece(m.piece) });
+    else if (bw?.found?.[0]) s3 = because(bw.found[0].kind, tacticVars(bw.found[0]));
+    // «Porque» afirma una causa: una amenaza o un plan solo se dan como razón si la jugada jugada no hacía lo mismo.
+    else if (bw?.threat && bw.threat.square !== facts.threat?.square) s3 = because(bw.threat.free ? 'threatFree' : 'threatValue', { attacker: def(bw.threat.attacker), target: tx.pieceObj[bw.threat.target], sq: bw.threat.square });
+    else if (bw?.plan && REASON_PLANS.includes(bw.plan.kind) && bw.plan.kind !== facts.plan?.kind) s3 = because(bw.plan.kind as WhyKey, planVars(bw.plan));
+    else s3 = say(you ? 'missedBestYou' : 'missedBestOpp', { best });
   }
+  if (!s2 && !s3) return undefined;
 
-  // El plan de una jugada buena es un mérito más; el de una jugada mala solo se dice como intención.
-  const p = facts.plan && !facts.did && !facts.found ? facts.plan : undefined;
-  const planVars = (x: NonNullable<typeof p>) => ({ piece: def(x.piece), Piece: cap(def(x.piece)), from: x.from, to: x.to });
-  if (p && !bad) plan.push(fixed(fill(tx.plan[p.kind], { ...planVars(p), move: o.move })));
-  const intent: Part | undefined =
-    p && bad && INTENT_KINDS.includes(p.kind) ? variant(tx.intent[p.kind as IntentKind], 2, () => planVars(p)) : undefined;
+  // 4. Cola con la voz del bot: solo cuando el rival erró o el error permitió algo.
+  const allowsFact = !!(line || a || facts.allowsTactic || (facts.mateIn && !facts.mateIn.mover));
+  const situation: Situation = you ? (allowsFact ? 'allows' : 'miss') : 'exploit';
+  const tails = situation === 'miss' ? undefined : tx.frame[o.style][situation].tail;
+  const tail: Part | undefined = tails && variant(tails, 0, () => ({}), Math.floor((o.seed ?? 0) / 2));
 
-  // Un error propio solo habla de lo que permitió si hay un hecho de ese tipo; si solo se dejó pasar algo mejor, el lead no afirma más que eso.
-  const allowsFact = !!(line || facts.allows || facts.allowsTactic || (facts.mateIn && !facts.mateIn.mover));
-  const situation: Situation = bad ? (you ? (allowsFact ? 'allows' : 'miss') : 'exploit') : 'good';
-  const chosen = [...mate, ...removeDefender, ...tactics, ...allowedTactic, ...material, ...did, ...rest, ...plan].slice(0, 2);
-  if (chosen.length === 0) return [];
-
-  const frame = tx.frame[o.style][situation];
-  const lead: Part = variant(frame.lead, 0);
-  // La cola corre con la mitad de la semilla, para que lead y cola se combinen de las cuatro maneras.
-  const tail: Part | undefined = 'tail' in frame ? variant(frame.tail, 0, () => ({}), Math.floor(seed / 2)) : undefined;
-
-  type Layout = { facts: number; intent: boolean; tail: boolean };
-  // Lo que se quita primero va al final: la cola, luego la intención y por último el segundo hecho.
-  const layouts: Layout[] = [{ facts: chosen.length, intent: !!intent, tail: !!tail }];
-  if (tail) layouts.push({ facts: chosen.length, intent: !!intent, tail: false });
-  if (intent) layouts.push({ facts: chosen.length, intent: false, tail: false });
-  if (chosen.length > 1) layouts.push({ facts: 1, intent: false, tail: false });
-  const render = (l: Layout, k: number) =>
-    [lead(k), ...chosen.slice(0, l.facts).map((f) => f(k)), l.intent && intent ? intent(k) : '', l.tail && tail ? tail(k) : '']
-      .filter(Boolean)
-      .join(' ')
-      .replace(/\s+/g, ' ')
-      .trim();
-
-  for (const l of layouts)
-    for (let k = 0; k < VARIANT_TRIES; k++) {
-      const text = render(l, k);
-      if (text.length <= EXPLANATION_CAP) return [text];
-    }
-  // Ni siquiera lead y primer hecho entran: se queda el más corto, con el concepto.
-  const last = layouts[layouts.length - 1];
-  const shortest = Array.from({ length: VARIANT_TRIES }, (_, k) => render(last, k)).reduce((x, y) => (y.length < x.length ? y : x));
-  return [shortest];
+  type Layout = { s1: boolean; s2: boolean; tail: boolean };
+  // Lo que se quita primero va al final: la cola, luego el hecho de por qué falla (si queda la mejor jugada) y por último la idea.
+  let cur: Layout = { s1: !!s1, s2: !!s2, tail: !!tail };
+  const layouts: Layout[] = [cur];
+  if (cur.tail) layouts.push((cur = { ...cur, tail: false }));
+  if (cur.s2 && s3) layouts.push((cur = { ...cur, s2: false }));
+  if (cur.s1 && (cur.s2 || s3)) layouts.push((cur = { ...cur, s1: false }));
+  return fit(layouts, (l, k) => join([l.s1 && s1 ? s1(k) : '', l.s2 && s2 ? s2(k) : '', s3 ? s3(k) : '', l.tail && tail ? tail(k) : '']));
 }

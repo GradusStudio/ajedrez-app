@@ -83,8 +83,25 @@ test('kingActive no habla de finales ni de endgame en ningún idioma', () => {
   assert.ok(coachExplanation({ ...base, facts: { plan: { kind: 'kingActive', piece: 'k', from: 'e1', to: 'e2' } } })[0].includes('se acerca al centro'));
 });
 
-test('prioridad: el mate gana a la captura, a las tácticas y al plan, y solo caben dos hechos', () => {
+test('prioridad en una jugada buena: el mate gana a la táctica, a la captura y al plan, y solo caben dos hechos', () => {
   const ex = coachExplanation({
+    ...base, quality: 'best', bestSan: 'Nf3',
+    facts: {
+      mateIn: { n: 3, mover: true },
+      found: [{ kind: 'pin', attacker: 'b', targets: ['n', 'k'] }],
+      did: { kind: 'capture', piece: 'p' },
+      plan: { kind: 'plain', piece: 'r', from: 'a1', to: 'a2' },
+    },
+  });
+  assert.equal(ex.length, 1);
+  const p = ex[0];
+  assert.ok(p.includes('mate forzado en 3') && p.includes('clavada'), p);
+  assert.ok(p.indexOf('mate forzado en 3') < p.indexOf('clavada'), p);
+  assert.ok(!p.includes('captura') && !p.includes('pasa de'), p);
+});
+
+test('prioridad en una jugada mala: lo que hizo con el veredicto, el mate permitido como único hecho de por qué falla y la mejor jugada con su razón', () => {
+  const [p] = coachExplanation({
     ...base, quality: 'blunder', bestSan: 'Nf3',
     facts: {
       mateIn: { n: 3, mover: false },
@@ -96,16 +113,15 @@ test('prioridad: el mate gana a la captura, a las tácticas y al plan, y solo ca
       plan: { kind: 'plain', piece: 'r', from: 'a1', to: 'a2' },
     },
   });
-  assert.equal(ex.length, 1);
-  const p = ex[0];
-  assert.ok(p.includes('mate en 3') && p.includes('clavada'), p);
-  assert.ok(p.indexOf('mate en 3') < p.indexOf('clavada'), p);
-  assert.ok(!p.includes('Nxe5') && !p.includes('horquilla') && !p.includes('captura') && !p.includes('Qh5+') && !p.includes('pasa de'), p);
+  assert.ok(p.startsWith('Nc6+ captura un peón, pero es un error grave.'), p);
+  assert.ok(p.includes('mate en 3') && p.includes('La mejor jugada era Nf3, porque captura un caballo.'), p);
+  assert.ok(p.indexOf('captura un peón') < p.indexOf('mate en 3') && p.indexOf('mate en 3') < p.indexOf('La mejor jugada'), p);
+  assert.ok(!p.includes('Nxe5') && !p.includes('horquilla') && !p.includes('clavada') && !p.includes('Qh5+') && !p.includes('pasa de'), p);
 });
 
-test('la jugada de mate abre el párrafo, antes de lo permitido', () => {
-  const [p] = coachExplanation({ ...base, quality: 'blunder', facts: { did: { kind: 'mate' }, allows: { kind: 'check', san: 'Qh5+' } } });
-  assert.ok(p.includes('Nc6+ da jaque mate.') && p.indexOf('da jaque mate') < p.indexOf('Qh5+'), p);
+test('la jugada de mate abre el párrafo', () => {
+  const [p] = coachExplanation({ ...base, quality: 'best', facts: { did: { kind: 'mate' }, plan: { kind: 'plain', piece: 'n', from: 'e5', to: 'c6' } } });
+  assert.ok(p.includes('Nc6+ da jaque mate.') && !p.includes('se mueve de'), p);
 });
 
 test('las variantes dependen de la semilla', () => {
@@ -144,7 +160,8 @@ test('cada texto nuevo sale rellenado en los cinco idiomas, sin llaves ni rayas 
 // error de tecleo como {atacker} solo se ve comparando con esta lista).
 const SUPPLIED: [string, string[]][] = [
   ['you.', ['move']], ['opp.', ['move']], ['frame.', []], ['pieces.', []], ['pieceDef.', []], ['pieceObj.', []], ['and', []],
-  ['expl.', ['move', 'san', 'piece', 'best']],
+  ['expl.', ['move', 'san', 'piece', 'best', 'why', 'Attacker', 'target', 'sq']],
+  ['verdict.', []], ['why.', ['piece', 'attacker', 'targets', 'targetsDef', 'target', 'sq', 'from', 'to']],
   ['tact.found.', ['attacker', 'targets', 'targetsDef']], ['tact.allows.', ['attacker', 'targets', 'targetsDef', 'san']],
   ['mateIn.', ['n']], ['plan.', ['piece', 'Piece', 'from', 'to', 'move']],
   ['line.removeDefender.', ['first', 'finish', 'capturer', 'removed', 'target', 'targetSq', 'seq', 'n']], ['line.material.', ['first', 'seq', 'n']],
@@ -183,7 +200,6 @@ test('la jugada permitida usa el marco pedido y las colgadas no se juegan', () =
   assert.ok(only('backRank', 'opponent', 0).includes('Esa jugada te habilita a dar mate del pasillo con Qxf7.'));
 });
 
-// ---- Composición en la voz del bot ----
 const esFmt = (s: string) => s.replace(/[NBRQK]/g, (c) => ({ N: 'C', B: 'A', R: 'T', Q: 'D', K: 'R' })[c as 'N']);
 const rd = { capturer: 'b' as const, removed: 'n' as const, removedSq: 'f6', target: 'p' as const, targetSq: 'd4' };
 const rdLine = { sans: ['Bxf6', 'gxf6', 'Nxd4'], material: 1, removeDefender: rd };
@@ -193,116 +209,159 @@ const userCase: Facts = {
   allows: { kind: 'capture', san: 'Bxf6', piece: 'n', ofMoved: false },
   plan: { kind: 'develop', piece: 'n', from: 'b8', to: 'c6' },
 };
-const leadsOf = (style: BotStyle, sit: 'exploit' | 'allows' | 'miss' | 'good') => TEXTS.es.frame[style][sit].lead;
+const leadsOf = (style: BotStyle, sit: 'good') => TEXTS.es.frame[style][sit].lead;
 const bump = { ...base, fmt: esFmt, bestSan: 'Nc6' };
 
-test('el caso del usuario: un párrafo con el concepto, la jugada, el defensor y la casilla; sin el plan en positivo', () => {
-  for (const style of STYLES) {
+
+const spanish = (o: Partial<Parameters<typeof coachExplanation>[0]> & { facts: Facts }) => coachExplanation({ ...bump, subject: 'opponent', quality: 'blunder', ...o })[0];
+const idx = (p: string, s: string | RegExp) => (typeof s === 'string' ? p.indexOf(s) : p.search(s));
+
+test('el caso del usuario: la idea con su veredicto, el hecho de por qué falla y la mejor jugada, en ese orden', () => {
+  for (const style of STYLES)
     for (const seed of [0, 1, 2, 3]) {
-      const ex = coachExplanation({ ...bump, style, seed, subject: 'opponent', quality: 'blunder', facts: userCase });
-      assert.equal(ex.length, 1);
-      const p = ex[0];
-      assert.ok(/Eliminar al defensor/i.test(p) && p.includes('Axf6') && p.includes('caballo') && p.includes('d4'), p);
+      const p = spanish({ style, seed, facts: userCase });
+      const verdict = idx(p, ', pero es un error grave.');
+      const fact = idx(p, /Eliminar al defensor/i);
+      const best = idx(p, 'La mejor jugada para el rival era Cc6');
+      assert.ok(/desarrollaba|sacar/.test(p.slice(0, verdict)) && verdict > 0, p);
+      assert.ok(fact > verdict && best > fact, p);
+      assert.ok(p.includes('Axf6') && p.includes('caballo') && p.includes('d4'), p);
       assert.ok(p.length <= EXPLANATION_CAP, p);
       assert.ok(!p.includes('saca una pieza menor') && !p.includes('Desarrolla el caballo'), p);
       assert.ok(!p.includes('puedes capturar'), p);
-      assert.ok(leadsOf(style, 'exploit').some((l) => p.startsWith(l)), p);
     }
-  }
 });
 
-test('la intención del plan se dice después de los hechos y nunca en positivo', () => {
+test('el veredicto sigue a la calidad y no hay frase de costo en peones', () => {
   const only: Facts = { plan: { kind: 'develop', piece: 'n', from: 'b8', to: 'c6' } };
-  const p = coachExplanation({ ...bump, style: 'agresivo', subject: 'opponent', quality: 'blunder', facts: only })[0];
-  assert.ok(p.includes('Lo mejor para el rival era Cc6') && /desarrollaba|sacar/.test(p), p);
-  assert.ok(p.indexOf('Lo mejor para el rival') < p.search(/desarrollaba|sacar/), p);
-  assert.ok(!p.includes('saca una pieza menor'), p);
-  const inEn = coachExplanation({ ...bump, lang: 'en', fmt: (s) => s, bestSan: 'Nc6', style: 'agresivo', subject: 'opponent', quality: 'blunder', facts: only })[0];
-  assert.ok(/developed|bring/.test(inEn) && !inEn.includes('a minor piece leaves'), inEn);
-  // Con el concepto como único hecho y espacio de sobra, la intención llega después del concepto.
-  const withRd = coachExplanation({ ...bump, bestSan: '', style: 'agresivo', seed: 0, subject: 'opponent', quality: 'blunder', facts: { line: rdLine, plan: only.plan } })[0];
-  assert.ok(/desarrollaba|sacar/.test(withRd) && withRd.search(/Eliminar al defensor/i) < withRd.search(/desarrollaba|sacar/), withRd);
-});
-
-test('el mismo caso en los cuatro estilos tiene leads distintos', () => {
-  const leads = STYLES.map((style) => {
-    const p = coachExplanation({ ...bump, style, seed: 0, subject: 'opponent', quality: 'blunder', facts: userCase })[0];
-    return leadsOf(style, 'exploit').find((l) => p.startsWith(l));
-  });
-  assert.ok(leads.every(Boolean));
-  assert.equal(new Set(leads).size, 4, leads.join(' | '));
-  for (const lang of ['es', 'en'] as const)
-    for (const sit of ['exploit', 'allows', 'miss', 'good'] as const) {
-      const all = STYLES.flatMap((s) => TEXTS[lang].frame[s][sit].lead);
-      assert.equal(new Set(all).size, all.length, `${lang} ${sit}`);
-    }
-});
-
-test('el error propio con eliminar al defensor usa el texto allows, no el de exploit', () => {
-  for (const style of STYLES) {
-    const p = coachExplanation({ ...bump, style, subject: 'you', quality: 'blunder', facts: { line: rdLine, plan: userCase.plan } })[0];
-    assert.ok(/Eliminar al defensor/i.test(p) && /el rival/i.test(p) && p.includes('Axf6'), p);
-    assert.ok(!p.includes('Se podía eliminar'), p);
-    assert.ok(leadsOf(style, 'allows').some((l) => p.startsWith(l)), p);
-    assert.ok(!leadsOf(style, 'exploit').some((l) => p.startsWith(l)), p);
+  for (const [quality, verdict] of [['inaccuracy', 'pero es una imprecisión.'], ['mistake', 'pero es un error.'], ['blunder', 'pero es un error grave.']] as const) {
+    const p = spanish({ quality, facts: only });
+    assert.ok(p.includes(', ' + verdict) && !/peones|Cuesta/.test(p), p);
   }
-  // Si el rival comete el error, el mismo hecho se dice en exploit.
-  const opp = coachExplanation({ ...bump, subject: 'opponent', quality: 'blunder', facts: { line: rdLine } })[0];
-  assert.ok(leadsOf('equilibrado', 'exploit').some((l) => opp.startsWith(l)), opp);
+  const inEn = spanish({ lang: 'en', fmt: (s) => s, bestSan: 'Nc6', quality: 'mistake', facts: only });
+  assert.ok(/, but it is a mistake\./.test(inEn) && /The best move for your opponent was Nc6\./.test(inEn), inEn);
+});
+
+test('una jugada mala sin idea (captura o jaque) abre con lo que hizo y el veredicto', () => {
+  const p = spanish({ move: 'Dxf7+', subject: 'you', facts: { did: { kind: 'capture', piece: 'p' }, allows: { kind: 'capture', san: 'Bxf6', piece: 'n', ofMoved: false } } });
+  assert.ok(p.startsWith('Dxf7+ captura un peón, pero es un error grave.'), p);
+  assert.ok(p.includes('Deja que el rival capture un caballo con Axf6.') && p.includes('La mejor jugada era Cc6.'), p);
+  const check = spanish({ move: 'Dh5+', subject: 'you', facts: { did: { kind: 'check' }, allows: { kind: 'check', san: 'Dxh5+' } } });
+  assert.ok(check.startsWith('Dh5+ da jaque, pero es un error grave.'), check);
+});
+
+test('la mejor jugada dice por qué lo era solo con razones comprobadas', () => {
+  const you = (facts: Facts, bestSan = 'Nf3') => spanish({ subject: 'you', bestSan, facts });
+  assert.ok(you({ missed: { kind: 'capture', piece: 'n' } }).includes('La mejor jugada era Cf3, porque captura un caballo.'));
+  assert.ok(you({ bestWhy: { found: [{ kind: 'fork', attacker: 'n', targets: ['k', 'r'] }] } }).includes('porque el caballo ataca al rey y a la torre a la vez.'));
+  assert.ok(you({ bestWhy: { found: [{ kind: 'hanging', attacker: 'r', targets: ['q'] }] } }).includes('porque la torre captura la dama, que nadie defendía.'));
+  assert.ok(you({ bestWhy: { threat: { attacker: 'b', target: 'n', square: 'd4', free: true } } }).includes('porque el alfil ataca al caballo de d4, que no tiene defensores.'));
+  assert.ok(you({ bestWhy: { threat: { attacker: 'p', target: 'n', square: 'e5', free: false } } }).includes('porque el peón ataca al caballo de e5, una pieza de más valor.'));
+  assert.ok(you({ bestWhy: { plan: { kind: 'develop', piece: 'n', from: 'g1', to: 'f3' } } }).includes('porque desarrolla el caballo de g1 a f3.'));
+  assert.ok(spanish({ bestSan: 'Nf3', facts: { bestWhy: { plan: { kind: 'center', piece: 'n', from: 'g1', to: 'f3' } } } }).includes('La mejor jugada para el rival era Cf3, porque lleva el caballo a f3, una casilla central.'));
+  // Avanzar un peón o retroceder no explican nada: sin «porque».
+  for (const kind of ['pawnAdvance', 'retreat', 'plain'] as const) {
+    const p = you({ bestWhy: { plan: { kind, piece: 'p', from: 'e2', to: 'e4' } } });
+    assert.ok(p.includes('La mejor jugada era Cf3.') && !p.includes('porque'), p);
+  }
+  // Si la jugada jugada ya hacía lo mismo, el «porque» no explicaría la diferencia: se omite.
+  const same = you({ threat: { attacker: 'b', target: 'n', square: 'd4', free: true }, plan: { kind: 'develop', piece: 'b', from: 'f8', to: 'c5' }, bestWhy: { threat: { attacker: 'p', target: 'n', square: 'd4', free: true } } });
+  assert.ok(same.includes('La mejor jugada era Cf3.') && !same.includes('porque'), same);
+  const samePlan = you({ plan: { kind: 'develop', piece: 'b', from: 'f8', to: 'c5' }, bestWhy: { plan: { kind: 'develop', piece: 'n', from: 'g1', to: 'f3' } } });
+  assert.ok(!samePlan.includes('porque'), samePlan);
+});
+
+test('con la oportunidad perdida de la línea del motor, esa frase ya nombra la mejor jugada; un mate perdido va como mate', () => {
+  const missedLine = { sans: ['Qxf7+', 'Kxf7', 'Bxe6'], material: 3 };
+  for (const subject of ['you', 'opponent'] as const) {
+    const p = spanish({ subject, quality: 'mistake', facts: { missedLine } });
+    assert.ok(p.includes('3 puntos de material') && /ganabas|podías ganar/.test(p) && !p.includes('La mejor jugada'), p);
+    const rdp = spanish({ subject, quality: 'mistake', facts: { missedLine: { ...rdLine, material: 1 } } });
+    assert.ok(rdp.includes('Se podía eliminar al defensor') && rdp.includes('Axf6') && !rdp.includes('La mejor jugada'), rdp);
+  }
+  const mate = spanish({ subject: 'you', bestSan: 'Qxf7#', facts: { missed: { kind: 'mate' }, line: rdLine } });
+  assert.ok(mate.includes('Había mate con Dxf7#.') && !mate.includes('La mejor jugada') && !mate.includes('porque'), mate);
+  assert.ok(spanish({ subject: 'opponent', bestSan: 'Qxf7#', facts: { missed: { kind: 'mate' } } }).includes('El rival no vio el mate con Dxf7#.'));
+  assert.ok(coachExplanation({ ...bump, lang: 'en', fmt: (s) => s, subject: 'you', quality: 'blunder', bestSan: 'Qxf7#', facts: { missed: { kind: 'mate' }, line: rdLine } })[0].includes('There was mate with Qxf7#.'));
+});
+
+test('lo que falla: el mate permitido gana a eliminar al defensor, y este a otras tácticas y al material', () => {
+  const tactic = { kind: 'pin' as const, attacker: 'b' as const, targets: ['n' as const, 'k' as const] };
+  const material = { sans: ['Qxf7+', 'Kxf7', 'Bxe6'], material: 4 };
+  const a = spanish({ subject: 'you', facts: { mateIn: { n: 2, mover: false }, line: rdLine, allowsTactic: { tactic, san: 'Bb5' } } });
+  assert.ok(a.includes('mate en 2') && !/Eliminar al defensor|clavada/i.test(a), a);
+  const b = spanish({ subject: 'you', facts: { line: rdLine, allowsTactic: { tactic, san: 'Bb5' } } });
+  assert.ok(/Eliminar al defensor/i.test(b) && !/clavada/.test(b), b);
+  const c = spanish({ subject: 'you', facts: { allowsTactic: { tactic, san: 'Bb5' }, line: material } });
+  assert.ok(/clavada/.test(c) && !c.includes('puntos de material'), c);
+  const d = spanish({ subject: 'opponent', facts: { line: material, allows: { kind: 'check', san: 'Bxf6+' } } });
+  assert.ok(d.includes('puntos de material') && !d.includes('Puedes responder con'), d);
+  assert.ok(spanish({ facts: { line: rdLine, allows: { kind: 'mate', san: 'Dh7#' } } }).includes('mate'), 'un mate permitido siempre se dice');
+  // Con la línea del motor no se repiten la captura ni el jaque permitidos.
+  assert.ok(!spanish({ facts: { line: rdLine, allows: { kind: 'check', san: 'Bxf6+' } } }).includes('Puedes responder con'));
+});
+
+test('el error propio con eliminar al defensor usa el texto allows; el del rival, el de exploit', () => {
+  for (const style of STYLES) {
+    const own = spanish({ style, subject: 'you', facts: { line: rdLine } });
+    assert.ok(/Eliminar al defensor/i.test(own) && /el rival/i.test(own) && own.includes('Axf6') && !own.includes('Se podía eliminar'), own);
+  }
+  const opp = spanish({ facts: { line: rdLine } });
   assert.ok(!opp.includes('el rival se lleva') && !opp.includes('el rival captura'), opp);
 });
 
-test('missedLine solo se usa en el error propio y con el texto missed', () => {
-  const missedLine = { sans: ['Qxf7+', 'Kxf7', 'Bxe6'], material: 3 };
-  for (const seed of [0, 1]) {
-    const own = coachExplanation({ ...bump, subject: 'you', quality: 'mistake', seed, facts: { missedLine } })[0];
-    assert.ok(own.includes('3 puntos de material') && /ganabas|podías ganar/.test(own), own);
-    assert.ok(!own.includes('Lo mejor era'), own);
-  }
-  const withRd = coachExplanation({ ...bump, subject: 'you', quality: 'mistake', facts: { missedLine: { ...rdLine, material: 1 } } })[0];
-  assert.ok(withRd.includes('Se podía eliminar al defensor') && withRd.includes('Axf6') && !withRd.includes('Lo mejor era'), withRd);
-  // En una jugada del rival no se usa la línea de oportunidad perdida.
-  const opp = coachExplanation({ ...bump, subject: 'opponent', quality: 'mistake', facts: { missedLine: { ...rdLine, material: 3 } } })[0];
-  assert.ok(!/ganabas|podías ganar|Se podía eliminar|puntos de material/.test(opp), opp);
-  // Con la línea tras la jugada, el error propio habla de lo que gana el rival y el error ajeno, de lo que ganas tú.
-  const allows = coachExplanation({ ...bump, subject: 'you', quality: 'mistake', facts: { line: { sans: ['Qxf7+', 'Kxf7', 'Bxe6'], material: 4 } } })[0];
-  assert.ok(allows.includes('4 puntos de material') && /pierdes|rival queda/.test(allows), allows);
-  const exploit = coachExplanation({ ...bump, subject: 'opponent', quality: 'mistake', facts: { line: { sans: ['Qxf7+', 'Kxf7', 'Bxe6'], material: 4 } } })[0];
-  assert.ok(exploit.includes('4 puntos de material') && /ganas|te deja/.test(exploit), exploit);
+test('la amenaza de la jugada jugada se dice si no hay otro hecho de lo que falla', () => {
+  const threat = { attacker: 'b' as const, target: 'n' as const, square: 'd4', free: true };
+  const p = spanish({ quality: 'inaccuracy', facts: { threat, plan: { kind: 'develop', piece: 'b', from: 'f8', to: 'c5' } } });
+  assert.ok(p.includes('El alfil ataca al caballo de d4, que no tiene defensores.'), p);
+  assert.ok(idx(p, ', pero es una imprecisión.') < idx(p, 'El alfil ataca') && idx(p, 'El alfil ataca') < idx(p, 'La mejor jugada'), p);
+  // Con otro hecho, la amenaza no entra: el párrafo tiene una sola razón de por qué falla.
+  const other = spanish({ quality: 'inaccuracy', facts: { threat, line: rdLine } });
+  assert.ok(!other.includes('El alfil ataca al caballo'), other);
 });
 
-test('con mate y eliminar al defensor a la vez, el mate va primero y solo hay dos hechos', () => {
-  const p = coachExplanation({
-    ...bump, subject: 'you', quality: 'blunder',
-    facts: { mateIn: { n: 2, mover: false }, line: rdLine, found: [{ kind: 'pin', attacker: 'b', targets: ['n', 'k'] }], did: { kind: 'capture', piece: 'p' } },
-  })[0];
-  assert.ok(p.includes('mate en 2') && /Eliminar al defensor/i.test(p), p);
-  assert.ok(p.indexOf('mate en 2') < p.search(/Eliminar al defensor/i), p);
-  assert.ok(!p.includes('clavada') && !p.includes('captura'), p);
+test('la cola con la voz del bot solo existe si el rival erró o el error permitió algo', () => {
+  const tailsOf = (style: BotStyle, sit: 'exploit' | 'allows') => TEXTS.es.frame[style][sit].tail;
+  for (const style of STYLES)
+    for (const seed of [0, 1, 2, 3]) {
+      const opp = spanish({ style, seed, facts: { missed: { kind: 'capture', piece: 'n' } } });
+      assert.ok(tailsOf(style, 'exploit').some((t) => opp.endsWith(t)), opp);
+      const own = spanish({ style, seed, subject: 'you', facts: { allows: { kind: 'check', san: 'Dh5+' } } });
+      assert.ok(tailsOf(style, 'allows').some((t) => own.endsWith(t)), own);
+      const miss = spanish({ style, seed, subject: 'you', facts: { missed: { kind: 'capture', piece: 'n' } } });
+      assert.ok(![...tailsOf(style, 'exploit'), ...tailsOf(style, 'allows')].some((t) => miss.endsWith(t)), miss);
+    }
 });
 
-test('eliminar al defensor va antes que otras tácticas, la táctica antes que el material y el material antes que lo que hizo la jugada', () => {
-  const tactic = { kind: 'pin' as const, attacker: 'b' as const, targets: ['n' as const, 'k' as const] };
-  const a = coachExplanation({ ...bump, subject: 'opponent', quality: 'blunder', facts: { line: rdLine, found: [tactic], did: { kind: 'check' } } })[0];
-  assert.ok(/Eliminar al defensor/i.test(a) && /lavada/.test(a) && !a.includes('da jaque'), a);
-  assert.ok(a.search(/Eliminar al defensor/i) < a.search(/lavada/), a);
-  const material = { sans: ['Qxf7+', 'Kxf7', 'Bxe6'], material: 4 };
-  const b = coachExplanation({ ...bump, subject: 'opponent', quality: 'blunder', facts: { line: material, found: [tactic], did: { kind: 'check' } } })[0];
-  assert.ok(/lavada/.test(b) && b.includes('puntos de material') && !b.includes('da jaque'), b);
-  assert.ok(b.search(/lavada/) < b.indexOf('puntos de material'), b);
-  const c = coachExplanation({ ...bump, subject: 'opponent', quality: 'blunder', facts: { line: material, did: { kind: 'check' }, missed: { kind: 'capture', piece: 'n' } } })[0];
-  assert.ok(c.includes('puntos de material') && c.includes('da jaque') && !/podía capturar/i.test(c), c);
-  assert.ok(c.indexOf('puntos de material') < c.indexOf('da jaque'), c);
+test('si el párrafo no entra se quita primero la cola, luego el hecho de por qué falla y por último la idea', () => {
+  const names = ['Qxf7+', 'Kxf7', 'Bxe6+'];
+  const tails = [...TEXTS.es.frame.tranquilo.exploit.tail];
+  const facts: Facts = { line: { sans: names, material: 3 }, plan: { kind: 'develop', piece: 'n', from: 'b8', to: 'c6' } };
+  const rows = Array.from({ length: 301 }, (_, pad) => {
+    const fmt = (s: string) => s.padEnd(pad, '_');
+    const p = coachExplanation({ ...base, style: 'tranquilo', fmt, seed: 0, subject: 'opponent', quality: 'blunder', bestSan: 'Nf3', facts })[0];
+    return { p, tail: tails.some((t) => p.endsWith(t)), fact: p.includes('puntos de material') || p.includes('secuencia'), idea: /pero es un error grave/.test(p), best: p.includes('La mejor jugada para el rival era') };
+  });
+  const rank = (r: (typeof rows)[number]) => (r.tail ? 0 : r.fact ? 1 : r.idea ? 2 : 3);
+  for (let i = 1; i < rows.length; i++) assert.ok(rank(rows[i]) >= rank(rows[i - 1]), `${rows[i - 1].p} => ${rows[i].p}`);
+  assert.deepEqual([...new Set(rows.map(rank))], [0, 1, 2, 3]);
+  assert.ok(rows.every((r) => r.best), 'la mejor jugada nunca se quita');
+  assert.ok(rows[0].tail && rows[0].fact && rows[0].idea);
 });
 
-test('si hay línea del motor no se repiten la captura ni el jaque permitidos, pero sí la mejor jugada', () => {
-  const p = coachExplanation({
-    ...bump, subject: 'opponent', quality: 'blunder',
-    facts: { line: rdLine, allows: { kind: 'check', san: 'Bxf6+' } },
-  })[0];
-  assert.ok(!p.includes('Puedes responder con') && /Lo mejor para el rival era Cc6/.test(p), p);
-  const mate = coachExplanation({ ...bump, subject: 'opponent', quality: 'blunder', facts: { line: rdLine, allows: { kind: 'mate', san: 'Dh7#' } } })[0];
-  assert.ok(mate.includes('Dh7#') && mate.includes('mate'), mate);
+test('el tope de largo se cumple en los cinco idiomas', () => {
+  let checked = 0;
+  for (const lang of LANGS5)
+    for (const style of STYLES)
+      for (const seed of [0, 1, 2, 3])
+        for (const s of SAMPLES) {
+          const ex = coachExplanation({ ...base, lang, style, seed, subject: s.subject, quality: s.quality, bestSan: 'Nf3', facts: s.facts });
+          if (ex.length === 0) continue;
+          checked++;
+          assert.equal(ex.length, 1);
+          assert.ok(ex[0].length <= EXPLANATION_CAP, `${lang} ${style} ${seed} ${s.label} (${ex[0].length}): ${ex[0]}`);
+        }
+  assert.ok(checked > 3000, String(checked));
 });
 
 test('una jugada buena con plan y sin hechos: lead good y plan en positivo, nunca solo el lead', () => {
@@ -325,7 +384,7 @@ test('plan en una jugada mala: trade y plain se omiten, el resto se dice como in
   for (const lang of ['es', 'en'] as const)
     for (const kind of PLANS) {
       const p = run(kind, lang);
-      const best = lang === 'es' ? 'Lo mejor para el rival era Nf3' : 'Best for your opponent was Nf3';
+      const best = lang === 'es' ? 'La mejor jugada para el rival era Nf3' : 'The best move for your opponent was Nf3';
       assert.ok(p.includes(best), p);
       assert.equal(p.includes('h3'), kind !== 'trade' && kind !== 'plain', `${lang} ${kind}: ${p}`);
       assert.ok(p.length <= EXPLANATION_CAP, p);
@@ -359,68 +418,6 @@ const SAMPLES: Sample[] = [];
     for (const quality of ['blunder', 'best'] as const)
       for (const subject of ['you', 'opponent'] as const) SAMPLES.push({ label, facts, quality, subject });
 }
-
-test('el tope de largo se cumple en es y en, y el concepto no desaparece', () => {
-  const concept = /Eliminar al defensor|Remove the defender|eliminar al defensor|remove the defender/;
-  let checked = 0;
-  let concepts = 0;
-  for (const lang of ['es', 'en'] as const)
-    for (const style of STYLES)
-      for (const seed of [0, 1, 2, 3])
-        for (const s of SAMPLES) {
-          const ex = coachExplanation({ ...base, lang, style, seed, subject: s.subject, quality: s.quality, bestSan: 'Nf3', facts: s.facts });
-          if (ex.length === 0) continue;
-          const p = ex[0];
-          checked++;
-          assert.equal(ex.length, 1);
-          assert.ok(p.length <= EXPLANATION_CAP, `${lang} ${style} ${seed} ${s.label} (${p.length}): ${p}`);
-          // Si el concepto es el primer hecho (no lo gana el mate), nunca se quita.
-          const bad = s.quality === 'blunder';
-          const rdFirst = bad && !s.facts.mateIn && s.facts.missed?.kind !== 'mate' && (s.facts.line?.removeDefender || (s.subject === 'you' && s.facts.missedLine?.removeDefender));
-          if (rdFirst) {
-            concepts++;
-            assert.ok(concept.test(p), `${lang} ${s.label}: ${p}`);
-          }
-        }
-  assert.ok(checked > 1500 && concepts > 100, `${checked} ${concepts}`);
-});
-
-test('si el párrafo no entra se cambia a una variante corta antes de quitar nada y luego se quita la cola, la intención y el segundo hecho', () => {
-  const names = ['Qxf7+', 'Kxf7', 'Bxe6+'];
-  const tails = TEXTS.es.frame.tranquilo.exploit.tail;
-  const analyse = (facts: Facts, bestSan: string, pads: number[]) =>
-    pads.map((pad) => {
-      const fmt = (s: string) => s.padEnd(pad, '_');
-      const p = coachExplanation({ ...base, style: 'tranquilo', fmt, seed: 0, subject: 'opponent', quality: 'blunder', bestSan, facts })[0];
-      return {
-        pad, p,
-        tail: tails.some((t) => p.endsWith(t)),
-        intent: /desarrollaba|sacar/.test(p),
-        second: p.includes('Lo mejor para el rival'),
-        shown: names.filter((n) => p.includes(fmt(n))).length,
-        seqVariant: p.includes('El motor ve'),
-      };
-    });
-  const range = (n: number) => Array.from({ length: n + 1 }, (_, i) => i);
-  // Un solo hecho: primero la secuencia completa, luego la variante sin secuencia (con cola) y recién después se quita la cola.
-  const one = analyse({ line: { sans: names, material: 3 } }, '', range(130));
-  const stage = (r: (typeof one)[number]) => (r.seqVariant ? 0 : r.tail ? 1 : 2);
-  for (const r of one) assert.ok(!r.seqVariant || r.shown === 3, r.p);
-  for (let i = 1; i < one.length; i++) assert.ok(stage(one[i]) >= stage(one[i - 1]), `${one[i - 1].p} => ${one[i].p}`);
-  assert.deepEqual([...new Set(one.map(stage))], [0, 1, 2]);
-  assert.ok(one.every((r) => r.p.includes('puntos de material') || r.p.includes('secuencia')));
-  // Dos hechos e intención: se quita la cola, luego la intención, luego el segundo hecho; nunca vuelve algo ya quitado.
-  const facts: Facts = { line: { sans: names, material: 3 }, plan: { kind: 'develop', piece: 'n', from: 'b8', to: 'c6' } };
-  const two = analyse(facts, 'Nf3', range(130));
-  const rank = (r: (typeof two)[number]) => (r.tail ? 0 : r.intent ? 1 : r.second ? 2 : 3);
-  for (const r of two) {
-    assert.ok(r.p.includes('puntos de material') || r.p.includes('secuencia'), r.p);
-    assert.ok(!r.seqVariant || r.shown === 3, r.p);
-  }
-  for (let i = 1; i < two.length; i++) assert.ok(rank(two[i]) >= rank(two[i - 1]), `${two[i - 1].p} => ${two[i].p}`);
-  assert.deepEqual([...new Set(two.map(rank))], [0, 1, 2, 3]);
-  assert.ok(two[0].tail && two[0].intent && two[0].second);
-});
 
 test('una secuencia nunca se muestra recortada: o sale entera o se usa una variante sin secuencia, en es y en', () => {
   const lines = [
@@ -462,8 +459,8 @@ test('una secuencia nunca se muestra recortada: o sale entera o se usa una varia
   }
   assert.ok(withSeq > 100 && withoutSeq > 100, `${withSeq} ${withoutSeq}`);
   // Y el caso concreto: con jugadas largas sale la variante que nombra la primera jugada, no una secuencia cortada.
-  const long = coachExplanation({ ...base, style: 'tranquilo', fmt: (s) => s.padEnd(60, '_'), seed: 0, subject: 'opponent', quality: 'blunder', bestSan: '', facts: { line: lines[1] } })[0];
-  assert.ok(long.includes('empieza una secuencia') && long.includes('Qxf7+'.padEnd(60, '_')) && !long.includes('Kxf7'), long);
+  const long = coachExplanation({ ...base, style: 'tranquilo', fmt: (s) => s.padEnd(120, '_'), seed: 0, subject: 'opponent', quality: 'blunder', bestSan: '', facts: { line: lines[1] } })[0];
+  assert.ok(long.includes('empieza una secuencia') && long.includes('Qxf7+'.padEnd(120, '_')) && !long.includes('Kxf7'), long);
 });
 
 test('toda línea del motor tiene al menos una variante con y otra sin {seq}, en los cinco idiomas', () => {
@@ -471,77 +468,6 @@ test('toda línea del motor tiene al menos una variante con y otra sin {seq}, en
     for (const [group, texts] of Object.entries(TEXTS[lang].line))
       for (const [sit, list] of Object.entries(texts as Record<string, string[]>))
         assert.ok(list.some((s) => !s.includes('{seq}')) && list.some((s) => s.includes('{seq}')), `${lang} ${group}.${sit}`);
-});
-
-test('dejar pasar un mate no se pierde por el tope de dos hechos', () => {
-  const facts: Facts = { did: { kind: 'capture', piece: 'p' }, allows: { kind: 'capture', san: 'Qxf7+', piece: 'q', ofMoved: false }, missed: { kind: 'mate' } };
-  const own = coachExplanation({ ...base, subject: 'you', quality: 'blunder', bestSan: 'Qxf7#', facts })[0];
-  assert.ok(own.includes('Había mate con Qxf7#.'), own);
-  assert.ok(own.includes('captura un peón') !== own.includes('Deja que el rival capture'), own);
-  const opp = coachExplanation({ ...base, subject: 'opponent', quality: 'blunder', bestSan: 'Qxf7#', facts })[0];
-  assert.ok(opp.includes('El rival no vio el mate con Qxf7#.'), opp);
-  assert.ok(opp.includes('captura un peón') !== opp.includes('puedes capturar'), opp);
-  // Va antes que el concepto y sin la mejor jugada repetida.
-  const withRd = coachExplanation({ ...base, subject: 'you', quality: 'blunder', bestSan: 'Qxf7#', facts: { missed: { kind: 'mate' }, line: rdLine } })[0];
-  assert.ok(withRd.indexOf('Había mate') < withRd.search(/Eliminar al defensor/i) && !withRd.includes('Lo mejor era'), withRd);
-  const inEn = coachExplanation({ ...base, lang: 'en', subject: 'you', quality: 'blunder', bestSan: 'Qxf7#', facts })[0];
-  assert.ok(inEn.includes('There was mate with Qxf7#.'), inEn);
-  // Sin jugada mala no se habla de un mate perdido.
-  assert.ok(!(coachExplanation({ ...base, quality: 'good', facts: { ...facts, plan: undefined } })[0] ?? '').includes('Había mate'));
-});
-
-test('un error propio que solo dejó pasar algo mejor no habla de lo permitido; con un hecho permitido sí', () => {
-  const onlyMissed: Facts[] = [
-    {},
-    { missed: { kind: 'capture', piece: 'n' } },
-    { missed: { kind: 'mate' } },
-    { missedLine: { sans: sans4, material: 4 } },
-    { missedLine: rdLine },
-    { did: { kind: 'castle' }, plan: { kind: 'develop', piece: 'n', from: 'g1', to: 'f3' } },
-    { mateIn: { n: 3, mover: true } },
-  ];
-  const allowsFacts: Facts[] = [
-    { line: { sans: sans4, material: 4 } },
-    { line: rdLine },
-    { allows: { kind: 'check', san: 'Qh5+' } },
-    { allows: { kind: 'capture', san: 'Qxf7+', piece: 'q', ofMoved: true } },
-    { allowsTactic: { tactic: { kind: 'fork', attacker: 'n', targets: ['q', 'r'] }, san: 'Nxe5' } },
-    { mateIn: { n: 2, mover: false } },
-    { allows: { kind: 'mate', san: 'Qh7#' }, missedLine: { sans: sans4, material: 4 } },
-  ];
-  for (const lang of ['es', 'en'] as const)
-    for (const style of STYLES)
-      for (const seed of [0, 1, 2, 3]) {
-        const lead = (sit: 'allows' | 'miss') => TEXTS[lang].frame[style][sit].lead;
-        for (const quality of ['inaccuracy', 'mistake', 'blunder'] as const) {
-          for (const facts of onlyMissed) {
-            const [p] = coachExplanation({ ...base, lang, style, seed, subject: 'you', quality, bestSan: 'Nf3', facts });
-            assert.ok(lead('miss').some((l) => p.startsWith(l)) && !lead('allows').some((l) => p.startsWith(l)), `${lang} ${style} ${JSON.stringify(facts)}: ${p}`);
-          }
-          for (const facts of allowsFacts) {
-            const [p] = coachExplanation({ ...base, lang, style, seed, subject: 'you', quality, bestSan: 'Nf3', facts });
-            assert.ok(lead('allows').some((l) => p.startsWith(l)) && !lead('miss').some((l) => p.startsWith(l)), `${lang} ${style} ${JSON.stringify(facts)}: ${p}`);
-          }
-        }
-        // El rival que erró nunca usa miss.
-        const [o] = coachExplanation({ ...base, lang, style, seed, subject: 'opponent', quality: 'blunder', bestSan: 'Nf3', facts: { missed: { kind: 'capture', piece: 'n' } } });
-        assert.ok(TEXTS[lang].frame[style].exploit.lead.some((l) => o.startsWith(l)), o);
-      }
-});
-
-test('lead y cola se combinan de las cuatro maneras según la semilla', () => {
-  for (const subject of ['opponent', 'you'] as const) {
-    const combos = new Set<string>();
-    for (let seed = 0; seed < 8; seed++) {
-      const [p] = coachExplanation({ ...base, style: 'tranquilo', seed, subject, quality: 'mistake', bestSan: '', facts: { did: { kind: 'check' }, allows: { kind: 'check', san: 'Qh5+' } } });
-      const fr = TEXTS.es.frame.tranquilo[subject === 'you' ? 'allows' : 'exploit'];
-      const l = fr.lead.findIndex((x) => p.startsWith(x));
-      const t = fr.tail.findIndex((x) => p.endsWith(x));
-      assert.ok(l >= 0 && t >= 0, p);
-      combos.add(`${l}${t}`);
-    }
-    assert.equal(combos.size, 4, [...combos].join());
-  }
 });
 
 test('dos semillas distintas pueden dar dos párrafos distintos', () => {
@@ -580,7 +506,7 @@ test('ningún párrafo sale con llaves, dobles espacios, rayas largas ni undefin
   assert.ok(n > 3000, String(n));
 });
 
-test('todas las listas nuevas tienen al menos dos variantes distintas y el tail solo existe en exploit y allows', () => {
+test('todas las listas nuevas tienen al menos dos variantes distintas; verdict y why están completos', () => {
   const lists: [string, unknown][] = [];
   const collect = (o: unknown, path: string) => {
     if (Array.isArray(o)) lists.push([path, o]);
@@ -590,15 +516,18 @@ test('todas las listas nuevas tienen al menos dos variantes distintas y el tail 
     const tx = TEXTS[lang];
     lists.length = 0;
     collect({ frame: tx.frame, opp: tx.opp, line: tx.line, intent: tx.intent }, lang);
-    assert.equal(lists.length, 4 * 6 + 4 * 5 + 6 + 7, `${lang}: ${lists.length}`);
+    assert.equal(lists.length, 4 * 3 + 4 * 5 + 6 + 7, `${lang}: ${lists.length}`);
     for (const [path, l] of lists) assert.ok(Array.isArray(l) && l.length >= 2 && new Set(l).size === l.length && l.every((x) => typeof x === 'string' && x.length > 0), path);
     for (const s of STYLES) {
+      assert.deepEqual(Object.keys(tx.frame[s]).sort(), ['allows', 'exploit', 'good'], lang);
       assert.deepEqual(Object.keys(tx.frame[s].good), ['lead'], lang);
-      assert.deepEqual(Object.keys(tx.frame[s].miss), ['lead'], lang);
-      assert.deepEqual(Object.keys(tx.frame[s].exploit).sort(), ['lead', 'tail'], lang);
-      assert.deepEqual(Object.keys(tx.frame[s].allows).sort(), ['lead', 'tail'], lang);
+      assert.deepEqual(Object.keys(tx.frame[s].exploit), ['tail'], lang);
+      assert.deepEqual(Object.keys(tx.frame[s].allows), ['tail'], lang);
       assert.deepEqual(Object.keys(tx.opp[s]).sort(), ['blunder', 'inaccuracy', 'mate', 'mistake', 'ok'], lang);
     }
+    assert.deepEqual(Object.keys(tx.verdict).sort(), ['blunder', 'inaccuracy', 'mistake'], lang);
+    assert.deepEqual(Object.keys(tx.why).sort(), [...KINDS, 'capture', 'threatFree', 'threatValue', 'develop', 'center', 'rookFile', 'pawnBreak', 'kingActive', 'trade'].sort(), lang);
+    for (const v of Object.values(tx.verdict)) assert.ok(v.endsWith('.'), `${lang}: el veredicto cierra la frase`);
   }
 });
 
@@ -616,4 +545,30 @@ test('coachVoice sobre el rival cambia de frase según el estilo', () => {
   // Con la semilla cambia la variante dentro del mismo estilo.
   const v = (seed: number) => coachVoice({ lang: 'es', style: 'agresivo', quality: 'blunder', great: false, mate: false, subject: 'opponent', move: 'Nf3', seed });
   assert.notEqual(v(0), v(1));
+});
+
+// ---- Amenazas y la estructura de una jugada mala en los cinco idiomas ----
+test('amenaza de una jugada buena sale rellenada y legible en los cinco idiomas', () => {
+  const facts: Facts = { threat: { attacker: 'b', target: 'n', square: 'd4', free: true } };
+  for (const lang of LANGS5) {
+    const ex = coachExplanation({ ...base, lang, quality: 'good', facts })[0];
+    assert.ok(ex.includes('d4') && !ex.includes('{') && !/undefined/.test(ex), `${lang}: ${ex}`);
+  }
+  const value = coachExplanation({ ...base, quality: 'good', facts: { threat: { attacker: 'p', target: 'n', square: 'e5', free: false } } })[0];
+  assert.ok(value.includes('El peón ataca al caballo de e5, una pieza de más valor.'), value);
+});
+
+test('una jugada mala sale con idea, veredicto, razón y mejor jugada en los cinco idiomas', () => {
+  const facts: Facts = {
+    plan: { kind: 'develop', piece: 'n', from: 'b1', to: 'a3' },
+    line: rdLine,
+    bestWhy: { found: [{ kind: 'fork', attacker: 'b', targets: ['q', 'r'] }] },
+  };
+  for (const lang of LANGS5)
+    for (const subject of ['you', 'opponent'] as const)
+      for (const quality of ['inaccuracy', 'mistake', 'blunder'] as const) {
+        const [p] = coachExplanation({ ...base, lang, subject, quality, bestSan: 'Bc2', fmt: (s) => s, style: 'equilibrado', seed: 1, facts });
+        assert.ok(p.includes('Bc2') && p.includes(TEXTS[lang].verdict[quality].replace(/\.$/, '')), `${lang} ${subject} ${quality}: ${p}`);
+        assert.ok(!p.includes('{') && !p.includes('}') && !/undefined/.test(p) && !p.includes('—') && p.length <= EXPLANATION_CAP, `${lang}: ${p}`);
+      }
 });

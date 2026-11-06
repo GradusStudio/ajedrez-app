@@ -246,29 +246,15 @@
   "frame": {
     "tranquilo": {
       "exploit": {
-        "lead": [
-          "Easy now: there is a chance.",
-          "Breathe: there is something here for you."
-        ],
         "tail": [
           "Take your time to calculate it, it is worth it.",
           "Seen calmly, it is an easy edge to collect."
         ]
       },
       "allows": {
-        "lead": [
-          "Relax, it happens. Let us see what it allowed.",
-          "Slowly now: let us see what it left open."
-        ],
         "tail": [
           "Next time, before moving, ask yourself what your opponent can do.",
           "With practice you will spot it earlier."
-        ]
-      },
-      "miss": {
-        "lead": [
-          "Easy now: there was something better.",
-          "Let us calmly see what else there was."
         ]
       },
       "good": {
@@ -280,29 +266,15 @@
     },
     "equilibrado": {
       "exploit": {
-        "lead": [
-          "Your opponent erred: you can take advantage.",
-          "There is a clear chance for you."
-        ],
         "tail": [
           "Better to collect it now, before your opponent fixes it.",
           "This is the kind of chance to look for on every move."
         ]
       },
       "allows": {
-        "lead": [
-          "That move gives your opponent something.",
-          "That move has a problem."
-        ],
         "tail": [
           "Before moving, check what your opponent can capture or threaten.",
           "A quick scan of your opponent's replies avoids this kind of error."
-        ]
-      },
-      "miss": {
-        "lead": [
-          "There was a better move.",
-          "A more precise move was available."
         ]
       },
       "good": {
@@ -314,29 +286,15 @@
     },
     "posicional": {
       "exploit": {
-        "lead": [
-          "Their position now has a crack.",
-          "There is a weak point in their position."
-        ],
         "tail": [
           "Unsupported pieces and loose squares are what to look for.",
           "A position breaks at its weak points: there was one here."
         ]
       },
       "allows": {
-        "lead": [
-          "Let us see how your structure stands.",
-          "Look at what that move stops protecting."
-        ],
         "tail": [
           "Before moving, see which pieces and squares are left unprotected.",
           "Every move changes what each piece defends: check it before moving."
-        ]
-      },
-      "miss": {
-        "lead": [
-          "There was a more precise continuation.",
-          "Another move kept the position better."
         ]
       },
       "good": {
@@ -348,29 +306,15 @@
     },
     "agresivo": {
       "exploit": {
-        "lead": [
-          "This is your moment!",
-          "A gift from your opponent: go collect it!"
-        ],
         "tail": [
           "Do not give them time to fix it.",
           "You attack here, you do not wait."
         ]
       },
       "allows": {
-        "lead": [
-          "Careful, that move opens the door to your opponent.",
-          "Your opponent has a blow ready here."
-        ],
         "tail": [
           "Next time, look at what your opponent attacks first, then move.",
           "To attack well, you first have to look after your own pieces."
-        ]
-      },
-      "miss": {
-        "lead": [
-          "There was more to get here.",
-          "There was something stronger."
         ]
       },
       "good": {
@@ -403,10 +347,12 @@
     "allowsCheckOpp": "You can answer with {san}, check.",
     "missedMateYou": "There was mate with {best}.",
     "missedMateOpp": "Your opponent missed mate with {best}.",
-    "missedCaptureYou": "You could capture {piece} with {best}.",
-    "missedCaptureOpp": "Your opponent could capture {piece} with {best}.",
     "missedBestYou": "The best move was {best}.",
-    "missedBestOpp": "Best for your opponent was {best}."
+    "missedBestOpp": "The best move for your opponent was {best}.",
+    "threatFree": "{Attacker} attacks {target} on {sq}, which has no defenders.",
+    "threatValue": "{Attacker} attacks {target} on {sq}, a more valuable piece.",
+    "bestBecauseYou": "The best move was {best}, because {why}.",
+    "bestBecauseOpp": "The best move for your opponent was {best}, because {why}."
   },
   "tact": {
     "found": {
@@ -627,5 +573,28 @@
     "r": "the rook",
     "q": "the queen",
     "k": "the king"
+  },
+  "verdict": {
+    "inaccuracy": "but it is an inaccuracy.",
+    "mistake": "but it is a mistake.",
+    "blunder": "but it is a blunder."
+  },
+  "why": {
+    "capture": "it captures {piece}",
+    "fork": "{attacker} attacks {targets} at once",
+    "pin": "{attacker} pins {targets} on the same line",
+    "skewer": "{attacker} attacks {targets} on the same line",
+    "discovered": "{attacker}'s line opens and now attacks {targets}",
+    "doubleCheck": "it gives double check",
+    "hanging": "{attacker} captures {targetsDef}, which nobody defended",
+    "backRank": "it is back rank mate",
+    "threatFree": "{attacker} attacks {target} on {sq}, which has no defenders",
+    "threatValue": "{attacker} attacks {target} on {sq}, a more valuable piece",
+    "develop": "it develops {piece} from {from} to {to}",
+    "center": "it brings {piece} to {to}, a central square",
+    "rookFile": "it puts {piece} on {to}, on a file without its own pawns",
+    "pawnBreak": "the pawn reaches {to} and attacks an enemy pawn",
+    "kingActive": "it brings the king toward the center, from {from} to {to}",
+    "trade": "it offers a trade of pieces on {to}"
   }
 }

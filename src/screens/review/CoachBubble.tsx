@@ -12,8 +12,9 @@ type Props = {
   /** Cabecera de una jugada (insignia, título y evaluación). Sin jugada: `startTitle` o nada. */
   head: { badge: Badge | null; title: string; score: number; decimal: string } | null;
   startTitle: string | null;
+  /** Frase con la voz del bot; vacía cuando hay hechos que explicar. */
   voice: string;
-  /** Líneas de explicación bajo la frase (vacío si no se pidió «Mejor»). */
+  /** Hechos de la jugada (qué buscaba, por qué falla, cuál era la mejor y por qué). */
   details: string[];
 };
 
@@ -23,7 +24,12 @@ export function CoachBubble({ coach, expression, head, startTitle, voice, detail
     <View style={styles.coachRow}>
       <BotAvatar bot={coach} size={64} expression={expression} />
       <View style={styles.bubble}>
-        <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false} contentContainerStyle={styles.bubbleContent}>
+        <ScrollView
+          key={`${head?.title ?? startTitle ?? ''}|${voice}|${details.join('|')}`}
+          nestedScrollEnabled
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.bubbleContent}
+        >
           {head ? (
             <View style={styles.bubbleHead}>
               {head.badge && (
@@ -41,7 +47,7 @@ export function CoachBubble({ coach, expression, head, startTitle, voice, detail
           ) : startTitle ? (
             <Text style={styles.bubbleTitle}>{startTitle}</Text>
           ) : null}
-          <Text style={styles.bubbleText}>{voice}</Text>
+          {voice ? <Text style={styles.bubbleText}>{voice}</Text> : null}
           {details.map((line, i) => (
             <Text key={i} style={styles.bubbleExplain}>
               {line}

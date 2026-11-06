@@ -1,7 +1,7 @@
 // Tipos de la revisión de partidas. Sin React Native: lo usan las pruebas con tsx.
 import type { Plan } from './plans';
 import type { LineFacts } from './lines';
-import type { Tactic } from './tactics';
+import type { Tactic, Threat } from './tactics';
 
 export type MoveQuality = 'book' | 'best' | 'excellent' | 'good' | 'inaccuracy' | 'mistake' | 'blunder';
 
@@ -44,8 +44,12 @@ export type Facts = {
   allows?: { kind: 'mate'; san: string } | { kind: 'capture'; piece: PieceKind; san: string; ofMoved: boolean } | { kind: 'check'; san: string };
   /** Lo que se dejó pasar. */
   missed?: { kind: 'mate' } | { kind: 'capture'; piece: PieceKind };
+  /** Amenaza que crea la jugada (pieza movida que ataca algo valioso). No se guarda si ya hay una táctica. */
+  threat?: Threat;
   /** Tácticas que creó la jugada (máximo 2). */
   found?: Tactic[];
+  /** Por qué era mejor la jugada recomendada (solo en jugadas malas): la táctica, la amenaza o el plan que tenía. */
+  bestWhy?: { found?: Tactic[]; threat?: Threat; plan?: Plan };
   /** Táctica que crea la mejor respuesta del rival (solo en imprecisiones, errores y errores graves). */
   allowsTactic?: { tactic: Tactic; san: string };
   /** Línea del motor DESPUÉS de la jugada. Mueve primero el rival de quien jugó: `material` positivo es ganancia de quien mueve ahora (en un error del rival, del usuario; en un error propio, del rival). Solo en jugadas malas y si es informativa. */
@@ -65,6 +69,8 @@ export type ReviewPly = {
   quality: MoveQuality;
   /** Puntos de probabilidad de ganar que se perdieron con la jugada (0–100). */
   loss: number;
+  /** Ventaja perdida con la jugada en centipeones, desde quien jugó (≥ 0). Con mates de por medio es enorme: no se muestra. */
+  cpLoss: number;
   /** Jugada que aprovecha un error grave del rival. */
   great: boolean;
   /** Entra en «Lo más destacado». */

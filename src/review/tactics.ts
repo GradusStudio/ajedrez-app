@@ -48,7 +48,7 @@ function attackedBy(game: Chess, from: Square, color: Color): Found[] {
 }
 
 /** La pieza movida se puede capturar gratis (sin defensa, o por una pieza de menos valor). */
-function capturableForFree(after: Chess, to: Square, mover: Color, opp: Color): boolean {
+export function capturableForFree(after: Chess, to: Square, mover: Color, opp: Color): boolean {
   const attackers = after.attackers(to, opp);
   if (attackers.length === 0) return false;
   const mine = VALUE[kindAt(after, to)];

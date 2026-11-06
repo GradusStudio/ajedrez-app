@@ -76,7 +76,9 @@ function analyze(fen: string, pv: string[]): LineFacts | null {
 function removeDefender(start: Chess, moves: Move[], boards: Chess[], me: Color, rival: Color): RemoveDefender | undefined {
   if (moves.length < 3) return undefined;
   const [m1, m2, m3] = moves;
-  if (!m1.captured || m1.captured === 'k' || m1.flags.includes('e')) return undefined;
+  // Los controles de rey son defensivos: chess.js nunca deja capturar un rey en una línea legal.
+  // Con promoción la pieza que queda en `s` no es la que salió, y al paso la capturada no está en `to`: no se afirma nada.
+  if (!m1.captured || m1.captured === 'k' || m1.flags.includes('e') || m1.promotion) return undefined;
   if (m2.color !== rival || m3.color !== me || !m3.captured) return undefined;
   const s = m1.to;
   const t = m3.to;

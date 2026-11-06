@@ -121,7 +121,7 @@ test('una jugada posterior ilegal trunca al prefijo legal', () => {
   assert.deepEqual(r.sans, ['Rxf5', 'exf5']);
 });
 
-test('coronacion, enroque y al paso no lanzan ni dan falsos positivos', () => {
+test('coronacion, enroque y al paso (sin captura inicial) no lanzan y no devuelven removeDefender', () => {
   const promo = analyzeLine('7k/4P3/8/8/8/8/8/4K3 w - - 0 1', ['e7e8q']);
   assert.ok(promo);
   assert.deepEqual(promo.sans, ['e8=Q+']);
@@ -134,4 +134,53 @@ test('coronacion, enroque y al paso no lanzan ni dan falsos positivos', () => {
   assert.ok(ep);
   assert.equal(ep.material, 1);
   assert.equal(ep.removeDefender, undefined);
+});
+
+test('el defensor se recaptura con otra pieza que tambien defiende g5: no se elimino al defensor', () => {
+  // Blancas: Txf5 Txf5 Axg5. La torre de f8 recaptura en f5 y sigue defendiendo g5 (h4 protege al alfil).
+  const fen = '5r2/8/2k5/1p3rp1/1P5P/2K1BR2/5P2/8 w - - 0 1';
+  const g = new Chess(fen);
+  assert.deepEqual(g.attackers('g5', 'b'), ['f5']);
+  g.move('Rxf5');
+  g.move('Rxf5');
+  assert.deepEqual(g.attackers('g5', 'b'), ['f5']);
+  const r = analyzeLine(fen, ['f3f5', 'f8f5', 'e3g5']);
+  assert.ok(r);
+  assert.equal(r.material, 1);
+  assert.equal(r.removeDefender, undefined);
+});
+
+test('material neto <= 0: se cumplen las condiciones pero el rival recupera mas, sin removeDefender', () => {
+  // Como fXWxU, pero el alfil de d8 captura en g5 en la 4.a jugada: 5 - 5 + 1 - 3 = -2.
+  const fen = '3b4/5p2/2k1p3/1p3rp1/1P5p/2K1BR2/5P2/8 w - - 0 1';
+  const g = new Chess(fen);
+  assert.deepEqual(g.attackers('g5', 'b').sort(), ['d8', 'f5']);
+  g.move('Rxf5');
+  g.move('exf5');
+  assert.deepEqual(g.attackers('g5', 'b'), ['d8']);
+  const r = analyzeLine(fen, ['f3f5', 'e6f5', 'e3g5', 'd8g5']);
+  assert.ok(r);
+  assert.deepEqual(r.sans, ['Rxf5', 'exf5', 'Bxg5', 'Bxg5']);
+  assert.equal(r.material, -2);
+  assert.equal(r.removeDefender, undefined);
+});
+
+test('primera jugada al paso: conservador, sin removeDefender aunque la 3.a capture un peon defendido', () => {
+  const fen = '4k3/8/8/3pP3/2p5/8/8/4KB2 w - d6 0 1';
+  const r = analyzeLine(fen, ['e5d6', 'e8d7', 'f1c4']);
+  assert.ok(r);
+  assert.deepEqual(r.sans, ['exd6', 'Kd7', 'Bxc4']);
+  assert.equal(r.material, 2);
+  assert.equal(r.removeDefender, undefined);
+});
+
+test('primera jugada captura con coronacion: sin removeDefender (no se nombra la pieza equivocada)', () => {
+  // bxa8=D+ elimina la torre que defendia a5; la torre ya no esta, pero la pieza de a8 es una dama.
+  const fen = 'r6k/1P6/8/p7/8/8/8/4K3 w - - 0 1';
+  const g = new Chess(fen);
+  assert.deepEqual(g.attackers('a5', 'b'), ['a8']);
+  const r = analyzeLine(fen, ['b7a8q', 'h8h7', 'a8a5']);
+  assert.ok(r);
+  assert.equal(r.material, 6);
+  assert.equal(r.removeDefender, undefined);
 });

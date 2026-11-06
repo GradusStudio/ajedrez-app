@@ -58,9 +58,10 @@ export type LineMove = {
 };
 
 /**
- * Línea de apertura desde la posición inicial.
+ * Línea de jugadas: apertura (desde la posición inicial) o combinación táctica (desde `fen`).
  * El usuario juega las jugadas de su color (`side`); la app juega las del rival automáticamente.
- * Las jugadas del usuario son las de índice par si side = 'w', impar si side = 'b'.
+ * De quién es cada jugada lo decide el turno de la posición de partida, no el índice:
+ * un puzzle puede empezar con una jugada del rival aunque side = 'w'.
  */
 export type LineStep = StepBase & {
   type: 'line';

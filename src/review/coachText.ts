@@ -32,8 +32,11 @@ type ExplKey =
 
 type MateKey = 'foundYou' | 'foundOpp' | 'allowsYou' | 'allowsOpp';
 type TactTexts = Record<'you' | 'opp', Record<TacticKind, string[]>>;
-/** Situación de la explicación: el rival erró (exploit), el error es propio (allows) o la jugada no es mala (good). */
-type Situation = 'exploit' | 'allows' | 'good';
+/**
+ * Situación de la explicación: el rival erró (exploit); el error es propio y hay algo que permitió (allows) o solo se dejó pasar algo mejor
+ * (miss); o la jugada no es mala (good).
+ */
+type Situation = 'exploit' | 'allows' | 'miss' | 'good';
 /** Texto de una línea del motor: la usa quien explota el error (exploit), quien lo sufre (allows) o la oportunidad perdida (missed). */
 type LineSituation = 'exploit' | 'allows' | 'missed';
 type IntentKind = Extract<PlanKind, 'develop' | 'center' | 'rookFile' | 'pawnBreak' | 'pawnAdvance' | 'kingActive' | 'retreat'>;
@@ -50,7 +53,7 @@ export const EXPLANATION_CAP = 220;
 type Texts = {
   you: Record<BotStyle, Record<VoiceKey, string[]>>;
   opp: Record<BotStyle, Record<OppKey, string[]>>;
-  frame: Record<BotStyle, { exploit: { lead: string[]; tail: string[] }; allows: { lead: string[]; tail: string[] }; good: { lead: string[] } }>;
+  frame: Record<BotStyle, { exploit: { lead: string[]; tail: string[] }; allows: { lead: string[]; tail: string[] }; miss: { lead: string[] }; good: { lead: string[] } }>;
   line: { removeDefender: Record<LineSituation, string[]>; material: Record<LineSituation, string[]> };
   intent: Record<IntentKind, string[]>;
   // `pieces` lleva artículo indefinido ("un caballo", para lo capturado); `pieceDef` el definido ("el caballo", sujeto o
@@ -90,20 +93,23 @@ export function coachVoice(o: {
 }
 
 const INTENT_KINDS: PlanKind[] = ['develop', 'center', 'rookFile', 'pawnBreak', 'pawnAdvance', 'kingActive', 'retreat'];
-// Cuántas variantes distintas se prueban, como mucho, para que el párrafo entre en el tope.
+// Cuántas variantes distintas se prueban, como mucho, para que el párrafo entre en el tope (acortar es cambiar a una variante sin {seq}).
 const VARIANT_TRIES = 4;
 
-/** Un trozo del párrafo: `len` es cuántas jugadas de la secuencia se muestran y `k` cuánto se corre la variante elegida. */
-type Part = (len: number, k: number) => string;
+/** Un trozo del párrafo; `k` corre la variante elegida con la semilla (se prueba con k = 0, 1, ... hasta que el párrafo entre en el tope). */
+type Part = (k: number) => string;
 
 /**
  * La explicación de una jugada en la voz del bot: un único párrafo con un lead del estilo, como mucho
  * dos hechos verificados, la intención del plan (solo en jugadas malas) y una cola del estilo (solo en
  * errores). Los hechos salen de una escalera de prioridad: mate, eliminar al defensor, otras tácticas,
  * material de la línea del motor, lo que hizo la jugada y lo permitido o perdido; el plan de una jugada
- * buena entra al final como un hecho más. Si el párrafo pasa de `EXPLANATION_CAP`, primero se acorta la
- * secuencia (3, 2, 1 jugadas), luego se prueban otras variantes y, si no alcanza, se quita la cola, después
- * la intención y por último el segundo hecho. Devuelve `[]` si no hay ningún hecho que decir.
+ * buena entra al final como un hecho más. Si el párrafo pasa de `EXPLANATION_CAP`, se prueban otras variantes
+ * (las que no llevan {seq} son las cortas: una secuencia nunca se muestra recortada, porque afirma una ganancia)
+ * y, si ninguna entra, se quita la cola, después la intención y por último el segundo hecho. Devuelve `[]`
+ * si no hay ningún hecho que decir: una jugada mala con solo intención no dice nada, porque la mejor jugada
+ * se agrega siempre que haya `bestSan`. El concepto (eliminar al defensor) queda siempre que es el primer
+ * hecho; un mate como primer hecho puede dejarlo fuera del segundo lugar.
  * `fmt` pasa una jugada de notación inglesa a la del usuario; `seed` elige entre las variantes.
  */
 export function coachExplanation(o: {
@@ -123,7 +129,6 @@ export function coachExplanation(o: {
   const you = o.subject === 'you';
   const side = you ? 'you' : 'opp';
   const bad = o.quality === 'inaccuracy' || o.quality === 'mistake' || o.quality === 'blunder';
-  const situation: Situation = bad ? (you ? 'allows' : 'exploit') : 'good';
   const mate: Part[] = [];
   const removeDefender: Part[] = [];
   const tactics: Part[] = [];
@@ -134,8 +139,8 @@ export function coachExplanation(o: {
   const plan: Part[] = [];
 
   const fixed = (s: string): Part => () => s;
-  const variant = (list: string[], salt: number, vars: (len: number) => Record<string, string> = () => ({})): Part =>
-    (len, k) => fill(pick(list, seed + salt + k), { move: o.move, ...vars(len) });
+  const variant = (list: string[], salt: number, vars: () => Record<string, string> = () => ({}), index = seed + salt): Part =>
+    (k) => fill(pick(list, index + k), { move: o.move, ...vars() });
   const say = (to: Part[], key: ExplKey, v: Record<string, string> = {}) => to.push(fixed(fill(tx.expl[key], { move: o.move, ...v })));
   const piece = (k: PieceKind) => tx.pieces[k];
   const cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
@@ -145,11 +150,11 @@ export function coachExplanation(o: {
     return names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} ${tx.and} ${names[names.length - 1]}`;
   };
   const tacticVars = (t: { attacker: PieceKind; targets: PieceKind[] }) => ({ attacker: def(t.attacker), targets: list(t.targets, tx.pieceObj), targetsDef: list(t.targets, tx.pieceDef) });
-  // Datos comunes de una línea del motor; `seq` muestra como mucho `len` jugadas (y nunca más de 3).
-  const lineVars = (l: LineFacts) => (len: number) => ({
+  // Datos comunes de una línea del motor; `seq` muestra siempre las primeras 3 jugadas (o todas si hay menos), nunca una parte.
+  const lineVars = (l: LineFacts) => () => ({
     first: fmt(l.sans[0]),
     finish: l.sans[2] ? fmt(l.sans[2]) : '',
-    seq: l.sans.slice(0, Math.min(len, 3)).map(fmt).join(' '),
+    seq: l.sans.slice(0, 3).map(fmt).join(' '),
     n: String(l.material),
   });
 
@@ -181,8 +186,8 @@ export function coachExplanation(o: {
     const rd = l.removeDefender!;
     const vars = lineVars(l);
     removeDefender.push(
-      variant(tx.line.removeDefender[key], 2, (len) => ({
-        ...vars(len),
+      variant(tx.line.removeDefender[key], 2, () => ({
+        ...vars(),
         capturer: def(rd.capturer),
         removed: def(rd.removed),
         target: def(rd.target),
@@ -217,7 +222,8 @@ export function coachExplanation(o: {
   const m = facts.missed;
   if (bad && o.bestSan) {
     const best = fmt(o.bestSan);
-    if (m?.kind === 'mate') say(rest, you ? 'missedMateYou' : 'missedMateOpp', { best });
+    // Dejar pasar un mate es lo más grave que hay en la lista: va con el mate y no se pierde por el tope de dos hechos.
+    if (m?.kind === 'mate') say(mate, you ? 'missedMateYou' : 'missedMateOpp', { best });
     else if (m?.kind === 'capture') say(rest, you ? 'missedCaptureYou' : 'missedCaptureOpp', { best, piece: piece(m.piece) });
     else if (!saysBest) say(rest, you ? 'missedBestYou' : 'missedBestOpp', { best });
   }
@@ -229,12 +235,16 @@ export function coachExplanation(o: {
   const intent: Part | undefined =
     p && bad && INTENT_KINDS.includes(p.kind) ? variant(tx.intent[p.kind as IntentKind], 2, () => planVars(p)) : undefined;
 
+  // Un error propio solo habla de lo que permitió si hay un hecho de ese tipo; si solo se dejó pasar algo mejor, el lead no afirma más que eso.
+  const allowsFact = !!(line || facts.allows || facts.allowsTactic || (facts.mateIn && !facts.mateIn.mover));
+  const situation: Situation = bad ? (you ? (allowsFact ? 'allows' : 'miss') : 'exploit') : 'good';
   const chosen = [...mate, ...removeDefender, ...tactics, ...allowedTactic, ...material, ...did, ...rest, ...plan].slice(0, 2);
   if (chosen.length === 0) return [];
 
   const frame = tx.frame[o.style][situation];
   const lead: Part = variant(frame.lead, 0);
-  const tail: Part | undefined = situation === 'good' ? undefined : variant((frame as { tail: string[] }).tail, 1);
+  // La cola corre con la mitad de la semilla, para que lead y cola se combinen de las cuatro maneras.
+  const tail: Part | undefined = 'tail' in frame ? variant(frame.tail, 0, () => ({}), Math.floor(seed / 2)) : undefined;
 
   type Layout = { facts: number; intent: boolean; tail: boolean };
   // Lo que se quita primero va al final: la cola, luego la intención y por último el segundo hecho.
@@ -242,21 +252,20 @@ export function coachExplanation(o: {
   if (tail) layouts.push({ facts: chosen.length, intent: !!intent, tail: false });
   if (intent) layouts.push({ facts: chosen.length, intent: false, tail: false });
   if (chosen.length > 1) layouts.push({ facts: 1, intent: false, tail: false });
-  const render = (l: Layout, len: number, k: number) =>
-    [lead(len, k), ...chosen.slice(0, l.facts).map((f) => f(len, k)), l.intent && intent ? intent(len, k) : '', l.tail && tail ? tail(len, k) : '']
+  const render = (l: Layout, k: number) =>
+    [lead(k), ...chosen.slice(0, l.facts).map((f) => f(k)), l.intent && intent ? intent(k) : '', l.tail && tail ? tail(k) : '']
       .filter(Boolean)
       .join(' ')
       .replace(/\s+/g, ' ')
       .trim();
 
   for (const l of layouts)
-    for (let k = 0; k < VARIANT_TRIES; k++)
-      for (let len = 3; len >= 1; len--) {
-        const text = render(l, len, k);
-        if (text.length <= EXPLANATION_CAP) return [text];
-      }
-  // Ni siquiera el primer hecho con una sola jugada entra: se queda el más corto, con el concepto.
+    for (let k = 0; k < VARIANT_TRIES; k++) {
+      const text = render(l, k);
+      if (text.length <= EXPLANATION_CAP) return [text];
+    }
+  // Ni siquiera lead y primer hecho entran: se queda el más corto, con el concepto.
   const last = layouts[layouts.length - 1];
-  const shortest = Array.from({ length: VARIANT_TRIES }, (_, k) => render(last, 1, k)).reduce((x, y) => (y.length < x.length ? y : x));
+  const shortest = Array.from({ length: VARIANT_TRIES }, (_, k) => render(last, k)).reduce((x, y) => (y.length < x.length ? y : x));
   return [shortest];
 }

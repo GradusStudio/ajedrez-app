@@ -217,7 +217,7 @@
       ],
       "mate": [
         "El rival da mate con {move}. Final limpio.",
-        "Mate con {move}: el rival coronó su ataque."
+        "Mate con {move}: así termina la partida."
       ]
     },
     "agresivo": {
@@ -265,6 +265,12 @@
           "Con práctica lo vas a ver antes."
         ]
       },
+      "miss": {
+        "lead": [
+          "Con calma: había algo mejor.",
+          "Veamos con calma qué otra opción había."
+        ]
+      },
       "good": {
         "lead": [
           "Mirémosla con calma.",
@@ -293,6 +299,12 @@
           "Un repaso rápido de las respuestas del rival evita este tipo de error."
         ]
       },
+      "miss": {
+        "lead": [
+          "Había una jugada mejor.",
+          "Aquí se podía jugar algo más preciso."
+        ]
+      },
       "good": {
         "lead": [
           "Esto es lo que logra la jugada.",
@@ -313,12 +325,18 @@
       },
       "allows": {
         "lead": [
-          "Esa jugada afloja tu estructura.",
+          "Veamos cómo queda tu estructura.",
           "Mira qué deja de proteger esa jugada."
         ],
         "tail": [
           "Antes de mover, mira qué piezas y casillas quedan sin protección.",
           "Cada jugada cambia lo que defiende cada pieza: compruébalo antes de mover."
+        ]
+      },
+      "miss": {
+        "lead": [
+          "Había una continuación más precisa.",
+          "Otra jugada mantenía mejor la posición."
         ]
       },
       "good": {
@@ -347,6 +365,12 @@
         "tail": [
           "La próxima, mira primero qué ataca el rival y después mueves.",
           "Para atacar bien, primero hay que cuidar lo tuyo."
+        ]
+      },
+      "miss": {
+        "lead": [
+          "Aquí se podía más.",
+          "Había algo más fuerte."
         ]
       },
       "good": {
@@ -546,7 +570,7 @@
     ],
     "pawnAdvance": [
       "El peón solo avanzaba de {from} a {to}.",
-      "La jugada ganaba espacio con el peón de {from} a {to}."
+      "Era un avance de peón: de {from} a {to}."
     ],
     "kingActive": [
       "La idea era acercar el rey al centro, de {from} a {to}.",

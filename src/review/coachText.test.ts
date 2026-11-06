@@ -193,7 +193,7 @@ const userCase: Facts = {
   allows: { kind: 'capture', san: 'Bxf6', piece: 'n', ofMoved: false },
   plan: { kind: 'develop', piece: 'n', from: 'b8', to: 'c6' },
 };
-const leadsOf = (style: BotStyle, sit: 'exploit' | 'allows' | 'good') => TEXTS.es.frame[style][sit].lead;
+const leadsOf = (style: BotStyle, sit: 'exploit' | 'allows' | 'miss' | 'good') => TEXTS.es.frame[style][sit].lead;
 const bump = { ...base, fmt: esFmt, bestSan: 'Nc6' };
 
 test('el caso del usuario: un párrafo con el concepto, la jugada, el defensor y la casilla; sin el plan en positivo', () => {
@@ -232,7 +232,7 @@ test('el mismo caso en los cuatro estilos tiene leads distintos', () => {
   assert.ok(leads.every(Boolean));
   assert.equal(new Set(leads).size, 4, leads.join(' | '));
   for (const lang of ['es', 'en'] as const)
-    for (const sit of ['exploit', 'allows', 'good'] as const) {
+    for (const sit of ['exploit', 'allows', 'miss', 'good'] as const) {
       const all = STYLES.flatMap((s) => TEXTS[lang].frame[s][sit].lead);
       assert.equal(new Set(all).size, all.length, `${lang} ${sit}`);
     }
@@ -376,7 +376,7 @@ test('el tope de largo se cumple en es y en, y el concepto no desaparece', () =>
           assert.ok(p.length <= EXPLANATION_CAP, `${lang} ${style} ${seed} ${s.label} (${p.length}): ${p}`);
           // Si el concepto es el primer hecho (no lo gana el mate), nunca se quita.
           const bad = s.quality === 'blunder';
-          const rdFirst = bad && !s.facts.mateIn && (s.facts.line?.removeDefender || (s.subject === 'you' && s.facts.missedLine?.removeDefender));
+          const rdFirst = bad && !s.facts.mateIn && s.facts.missed?.kind !== 'mate' && (s.facts.line?.removeDefender || (s.subject === 'you' && s.facts.missedLine?.removeDefender));
           if (rdFirst) {
             concepts++;
             assert.ok(concept.test(p), `${lang} ${s.label}: ${p}`);
@@ -385,38 +385,163 @@ test('el tope de largo se cumple en es y en, y el concepto no desaparece', () =>
   assert.ok(checked > 1500 && concepts > 100, `${checked} ${concepts}`);
 });
 
-test('si el párrafo no entra se acorta la secuencia (3, 2, 1) antes de quitar nada y luego se quita la cola, la intención y el segundo hecho', () => {
+test('si el párrafo no entra se cambia a una variante corta antes de quitar nada y luego se quita la cola, la intención y el segundo hecho', () => {
   const names = ['Qxf7+', 'Kxf7', 'Bxe6+'];
-  const facts: Facts = { line: { sans: names, material: 3 }, plan: { kind: 'develop', piece: 'n', from: 'b8', to: 'c6' } };
   const tails = TEXTS.es.frame.tranquilo.exploit.tail;
-  const rows: { pad: number; p: string; tail: boolean; intent: boolean; second: boolean; shown: number; seqVariant: boolean }[] = [];
-  for (let pad = 0; pad <= 130; pad++) {
-    const fmt = (s: string) => s.padEnd(pad, '_');
-    const p = coachExplanation({ ...base, style: 'tranquilo', fmt, seed: 0, subject: 'opponent', quality: 'blunder', bestSan: 'Nf3', facts })[0];
-    rows.push({
-      pad, p,
-      tail: tails.some((t) => p.endsWith(t)),
-      intent: /desarrollaba|sacar/.test(p),
-      second: p.includes('Lo mejor para el rival'),
-      shown: names.filter((n) => p.includes(fmt(n))).length,
-      seqVariant: p.includes('El motor ve'),
+  const analyse = (facts: Facts, bestSan: string, pads: number[]) =>
+    pads.map((pad) => {
+      const fmt = (s: string) => s.padEnd(pad, '_');
+      const p = coachExplanation({ ...base, style: 'tranquilo', fmt, seed: 0, subject: 'opponent', quality: 'blunder', bestSan, facts })[0];
+      return {
+        pad, p,
+        tail: tails.some((t) => p.endsWith(t)),
+        intent: /desarrollaba|sacar/.test(p),
+        second: p.includes('Lo mejor para el rival'),
+        shown: names.filter((n) => p.includes(fmt(n))).length,
+        seqVariant: p.includes('El motor ve'),
+      };
     });
-  }
-  const rank = (r: (typeof rows)[number]) => (r.tail ? 0 : r.intent ? 1 : r.second ? 2 : 3);
-  // El primer hecho nunca se quita y, mientras algo entre, no se pasa del tope.
-  for (const r of rows) {
+  const range = (n: number) => Array.from({ length: n + 1 }, (_, i) => i);
+  // Un solo hecho: primero la secuencia completa, luego la variante sin secuencia (con cola) y recién después se quita la cola.
+  const one = analyse({ line: { sans: names, material: 3 } }, '', range(130));
+  const stage = (r: (typeof one)[number]) => (r.seqVariant ? 0 : r.tail ? 1 : 2);
+  for (const r of one) assert.ok(!r.seqVariant || r.shown === 3, r.p);
+  for (let i = 1; i < one.length; i++) assert.ok(stage(one[i]) >= stage(one[i - 1]), `${one[i - 1].p} => ${one[i].p}`);
+  assert.deepEqual([...new Set(one.map(stage))], [0, 1, 2]);
+  assert.ok(one.every((r) => r.p.includes('puntos de material') || r.p.includes('secuencia')));
+  // Dos hechos e intención: se quita la cola, luego la intención, luego el segundo hecho; nunca vuelve algo ya quitado.
+  const facts: Facts = { line: { sans: names, material: 3 }, plan: { kind: 'develop', piece: 'n', from: 'b8', to: 'c6' } };
+  const two = analyse(facts, 'Nf3', range(130));
+  const rank = (r: (typeof two)[number]) => (r.tail ? 0 : r.intent ? 1 : r.second ? 2 : 3);
+  for (const r of two) {
     assert.ok(r.p.includes('puntos de material') || r.p.includes('secuencia'), r.p);
-    if (r.pad <= 40) assert.ok(r.p.length <= EXPLANATION_CAP, r.p);
+    assert.ok(!r.seqVariant || r.shown === 3, r.p);
   }
-  // Lo que se quita va en orden: cola, intención, segundo hecho; nunca vuelve algo ya quitado.
-  for (let i = 1; i < rows.length; i++) assert.ok(rank(rows[i]) >= rank(rows[i - 1]), `${rows[i - 1].p} => ${rows[i].p}`);
-  assert.deepEqual([...new Set(rows.map(rank))], [0, 1, 2, 3]);
-  // Antes de quitar la cola se acorta la secuencia de la variante elegida: 3, luego 2, luego 1.
-  const shortened = rows.filter((r) => r.tail && r.seqVariant);
-  assert.deepEqual([...new Set(shortened.map((r) => r.shown))].sort().reverse(), [3, 2, 1], shortened.map((r) => r.shown).join());
-  for (let i = 1; i < shortened.length; i++) assert.ok(shortened[i].shown <= shortened[i - 1].shown);
-  // Con todo cabiendo (jugadas cortas) salen los dos hechos, la intención y la cola.
-  assert.ok(rows[0].tail && rows[0].intent && rows[0].second);
+  for (let i = 1; i < two.length; i++) assert.ok(rank(two[i]) >= rank(two[i - 1]), `${two[i - 1].p} => ${two[i].p}`);
+  assert.deepEqual([...new Set(two.map(rank))], [0, 1, 2, 3]);
+  assert.ok(two[0].tail && two[0].intent && two[0].second);
+});
+
+test('una secuencia nunca se muestra recortada: o sale entera o se usa una variante sin secuencia, en es y en', () => {
+  const lines = [
+    { sans: ['Qxf7+', 'Kxf7', 'Bxe6+', 'Kg8'], material: 5 },
+    { sans: ['Qxf7+', 'Kxf7', 'Bxe6+'], material: 4 },
+    { sans: ['Qxf7+', 'Kxf7'], material: 3 },
+    { sans: ['Qxf7+'], material: 2 },
+    rdLine,
+  ];
+  const seqLiterals = (lang: 'es' | 'en') =>
+    Object.values(TEXTS[lang].line)
+      .flatMap((g) => Object.values(g).flat())
+      .filter((s) => s.includes('{seq}'))
+      .map((s) => s.slice(0, s.indexOf('{seq}')).replace(/\{\w+\}/g, '\u0000').split('\u0000').pop() as string);
+  let withSeq = 0;
+  let withoutSeq = 0;
+  for (const lang of ['es', 'en'] as const) {
+    const literals = seqLiterals(lang);
+    assert.ok(literals.length >= 6 && literals.every((l) => l.length >= 4), literals.join('|'));
+    for (const line of lines)
+      for (const style of STYLES)
+        for (const seed of [0, 1, 2, 3])
+          for (const pad of [0, 10, 20, 30, 40, 50, 60, 80]) {
+            const fmt = (s: string) => s.padEnd(pad, '_');
+            const full = line.sans.slice(0, 3).map(fmt).join(' ');
+            for (const [subject, key] of [['opponent', 'line'], ['you', 'line'], ['you', 'missedLine']] as const) {
+              const ex = coachExplanation({ ...base, lang, fmt, style, seed, subject, quality: 'blunder', bestSan: '', facts: { [key]: line } as Facts });
+              for (const p of ex) {
+                for (const lit of literals) {
+                  if (!p.includes(lit)) continue;
+                  withSeq++;
+                  assert.ok(p.includes(lit + full), `${lang} pad ${pad}: ${p}`);
+                }
+                if (!literals.some((l) => p.includes(l))) withoutSeq++;
+                if (pad <= 20) assert.ok(p.length <= EXPLANATION_CAP, p);
+              }
+            }
+          }
+  }
+  assert.ok(withSeq > 100 && withoutSeq > 100, `${withSeq} ${withoutSeq}`);
+  // Y el caso concreto: con jugadas largas sale la variante que nombra la primera jugada, no una secuencia cortada.
+  const long = coachExplanation({ ...base, style: 'tranquilo', fmt: (s) => s.padEnd(60, '_'), seed: 0, subject: 'opponent', quality: 'blunder', bestSan: '', facts: { line: lines[1] } })[0];
+  assert.ok(long.includes('empieza una secuencia') && long.includes('Qxf7+'.padEnd(60, '_')) && !long.includes('Kxf7'), long);
+});
+
+test('toda línea del motor tiene al menos una variante con y otra sin {seq}, en los cinco idiomas', () => {
+  for (const lang of LANGS5)
+    for (const [group, texts] of Object.entries(TEXTS[lang].line))
+      for (const [sit, list] of Object.entries(texts as Record<string, string[]>))
+        assert.ok(list.some((s) => !s.includes('{seq}')) && list.some((s) => s.includes('{seq}')), `${lang} ${group}.${sit}`);
+});
+
+test('dejar pasar un mate no se pierde por el tope de dos hechos', () => {
+  const facts: Facts = { did: { kind: 'capture', piece: 'p' }, allows: { kind: 'capture', san: 'Qxf7+', piece: 'q', ofMoved: false }, missed: { kind: 'mate' } };
+  const own = coachExplanation({ ...base, subject: 'you', quality: 'blunder', bestSan: 'Qxf7#', facts })[0];
+  assert.ok(own.includes('Había mate con Qxf7#.'), own);
+  assert.ok(own.includes('captura un peón') !== own.includes('Deja que el rival capture'), own);
+  const opp = coachExplanation({ ...base, subject: 'opponent', quality: 'blunder', bestSan: 'Qxf7#', facts })[0];
+  assert.ok(opp.includes('El rival no vio el mate con Qxf7#.'), opp);
+  assert.ok(opp.includes('captura un peón') !== opp.includes('puedes capturar'), opp);
+  // Va antes que el concepto y sin la mejor jugada repetida.
+  const withRd = coachExplanation({ ...base, subject: 'you', quality: 'blunder', bestSan: 'Qxf7#', facts: { missed: { kind: 'mate' }, line: rdLine } })[0];
+  assert.ok(withRd.indexOf('Había mate') < withRd.search(/Eliminar al defensor/i) && !withRd.includes('Lo mejor era'), withRd);
+  const inEn = coachExplanation({ ...base, lang: 'en', subject: 'you', quality: 'blunder', bestSan: 'Qxf7#', facts })[0];
+  assert.ok(inEn.includes('There was mate with Qxf7#.'), inEn);
+  // Sin jugada mala no se habla de un mate perdido.
+  assert.ok(!(coachExplanation({ ...base, quality: 'good', facts: { ...facts, plan: undefined } })[0] ?? '').includes('Había mate'));
+});
+
+test('un error propio que solo dejó pasar algo mejor no habla de lo permitido; con un hecho permitido sí', () => {
+  const onlyMissed: Facts[] = [
+    {},
+    { missed: { kind: 'capture', piece: 'n' } },
+    { missed: { kind: 'mate' } },
+    { missedLine: { sans: sans4, material: 4 } },
+    { missedLine: rdLine },
+    { did: { kind: 'castle' }, plan: { kind: 'develop', piece: 'n', from: 'g1', to: 'f3' } },
+    { mateIn: { n: 3, mover: true } },
+  ];
+  const allowsFacts: Facts[] = [
+    { line: { sans: sans4, material: 4 } },
+    { line: rdLine },
+    { allows: { kind: 'check', san: 'Qh5+' } },
+    { allows: { kind: 'capture', san: 'Qxf7+', piece: 'q', ofMoved: true } },
+    { allowsTactic: { tactic: { kind: 'fork', attacker: 'n', targets: ['q', 'r'] }, san: 'Nxe5' } },
+    { mateIn: { n: 2, mover: false } },
+    { allows: { kind: 'mate', san: 'Qh7#' }, missedLine: { sans: sans4, material: 4 } },
+  ];
+  for (const lang of ['es', 'en'] as const)
+    for (const style of STYLES)
+      for (const seed of [0, 1, 2, 3]) {
+        const lead = (sit: 'allows' | 'miss') => TEXTS[lang].frame[style][sit].lead;
+        for (const quality of ['inaccuracy', 'mistake', 'blunder'] as const) {
+          for (const facts of onlyMissed) {
+            const [p] = coachExplanation({ ...base, lang, style, seed, subject: 'you', quality, bestSan: 'Nf3', facts });
+            assert.ok(lead('miss').some((l) => p.startsWith(l)) && !lead('allows').some((l) => p.startsWith(l)), `${lang} ${style} ${JSON.stringify(facts)}: ${p}`);
+          }
+          for (const facts of allowsFacts) {
+            const [p] = coachExplanation({ ...base, lang, style, seed, subject: 'you', quality, bestSan: 'Nf3', facts });
+            assert.ok(lead('allows').some((l) => p.startsWith(l)) && !lead('miss').some((l) => p.startsWith(l)), `${lang} ${style} ${JSON.stringify(facts)}: ${p}`);
+          }
+        }
+        // El rival que erró nunca usa miss.
+        const [o] = coachExplanation({ ...base, lang, style, seed, subject: 'opponent', quality: 'blunder', bestSan: 'Nf3', facts: { missed: { kind: 'capture', piece: 'n' } } });
+        assert.ok(TEXTS[lang].frame[style].exploit.lead.some((l) => o.startsWith(l)), o);
+      }
+});
+
+test('lead y cola se combinan de las cuatro maneras según la semilla', () => {
+  for (const subject of ['opponent', 'you'] as const) {
+    const combos = new Set<string>();
+    for (let seed = 0; seed < 8; seed++) {
+      const [p] = coachExplanation({ ...base, style: 'tranquilo', seed, subject, quality: 'mistake', bestSan: '', facts: { did: { kind: 'check' }, allows: { kind: 'check', san: 'Qh5+' } } });
+      const fr = TEXTS.es.frame.tranquilo[subject === 'you' ? 'allows' : 'exploit'];
+      const l = fr.lead.findIndex((x) => p.startsWith(x));
+      const t = fr.tail.findIndex((x) => p.endsWith(x));
+      assert.ok(l >= 0 && t >= 0, p);
+      combos.add(`${l}${t}`);
+    }
+    assert.equal(combos.size, 4, [...combos].join());
+  }
 });
 
 test('dos semillas distintas pueden dar dos párrafos distintos', () => {
@@ -465,10 +590,11 @@ test('todas las listas nuevas tienen al menos dos variantes distintas y el tail 
     const tx = TEXTS[lang];
     lists.length = 0;
     collect({ frame: tx.frame, opp: tx.opp, line: tx.line, intent: tx.intent }, lang);
-    assert.equal(lists.length, 4 * 5 + 4 * 5 + 6 + 7, `${lang}: ${lists.length}`);
+    assert.equal(lists.length, 4 * 6 + 4 * 5 + 6 + 7, `${lang}: ${lists.length}`);
     for (const [path, l] of lists) assert.ok(Array.isArray(l) && l.length >= 2 && new Set(l).size === l.length && l.every((x) => typeof x === 'string' && x.length > 0), path);
     for (const s of STYLES) {
       assert.deepEqual(Object.keys(tx.frame[s].good), ['lead'], lang);
+      assert.deepEqual(Object.keys(tx.frame[s].miss), ['lead'], lang);
       assert.deepEqual(Object.keys(tx.frame[s].exploit).sort(), ['lead', 'tail'], lang);
       assert.deepEqual(Object.keys(tx.frame[s].allows).sort(), ['lead', 'tail'], lang);
       assert.deepEqual(Object.keys(tx.opp[s]).sort(), ['blunder', 'inaccuracy', 'mate', 'mistake', 'ok'], lang);

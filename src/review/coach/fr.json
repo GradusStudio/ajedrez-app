@@ -217,7 +217,7 @@
       ],
       "mate": [
         "Your opponent delivers mate with {move}. A clean finish.",
-        "Mate with {move}: your opponent crowned their attack."
+        "Mate with {move}: that is how the game ends."
       ]
     },
     "agresivo": {
@@ -265,6 +265,12 @@
           "With practice you will spot it earlier."
         ]
       },
+      "miss": {
+        "lead": [
+          "Easy now: there was something better.",
+          "Let us calmly see what else there was."
+        ]
+      },
       "good": {
         "lead": [
           "Let us look at it calmly.",
@@ -293,6 +299,12 @@
           "A quick scan of your opponent's replies avoids this kind of error."
         ]
       },
+      "miss": {
+        "lead": [
+          "There was a better move.",
+          "A more precise move was available."
+        ]
+      },
       "good": {
         "lead": [
           "This is what the move achieves.",
@@ -313,12 +325,18 @@
       },
       "allows": {
         "lead": [
-          "That move loosens your structure.",
+          "Let us see how your structure stands.",
           "Look at what that move stops protecting."
         ],
         "tail": [
           "Before moving, see which pieces and squares are left unprotected.",
           "Every move changes what each piece defends: check it before moving."
+        ]
+      },
+      "miss": {
+        "lead": [
+          "There was a more precise continuation.",
+          "Another move kept the position better."
         ]
       },
       "good": {
@@ -347,6 +365,12 @@
         "tail": [
           "Next time, look at what your opponent attacks first, then move.",
           "To attack well, you first have to look after your own pieces."
+        ]
+      },
+      "miss": {
+        "lead": [
+          "There was more to get here.",
+          "There was something stronger."
         ]
       },
       "good": {
@@ -546,7 +570,7 @@
     ],
     "pawnAdvance": [
       "The pawn only advanced from {from} to {to}.",
-      "The move gained space with the pawn from {from} to {to}."
+      "It was a pawn advance: from {from} to {to}."
     ],
     "kingActive": [
       "The idea was to bring the king toward the center, from {from} to {to}.",

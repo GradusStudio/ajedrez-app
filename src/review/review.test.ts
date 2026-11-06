@@ -311,11 +311,11 @@ test('la explicación nombra solo hechos comprobados', () => {
     bestSan: 'Dxf7#',
     fmt: (s) => s,
   });
-  // Un único párrafo con los dos hechos de mayor prioridad: lo que hizo la jugada y lo que permite.
+  // Un único párrafo con los dos hechos de mayor prioridad: el mate que se dejó pasar y lo que hizo la jugada.
   assert.equal(lines.length, 1);
+  assert.ok(lines[0].includes('Había mate con Dxf7#'));
   assert.ok(lines[0].includes('Cxe5 captura un peón'));
-  assert.ok(lines[0].includes('Axd1') && lines[0].includes('la dama'));
-  assert.ok(!lines[0].includes('mate') && !lines[0].includes('Dxf7#'));
+  assert.ok(!lines[0].includes('Axd1'));
   const none = coachExplanation({ lang: 'en', style: 'agresivo', subject: 'you', quality: 'best', facts: {}, move: 'e4', bestSan: '', fmt: (s) => s });
   assert.deepEqual(none, []);
 });

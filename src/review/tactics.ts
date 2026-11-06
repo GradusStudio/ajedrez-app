@@ -85,22 +85,27 @@ export function detectTactics(fenBefore: string, uci: string): Tactic[] {
   const mover = move.color;
   const opp: Color = mover === 'w' ? 'b' : 'w';
   const to = move.to;
+  const from = move.from;
   const moved = kindAt(after, to);
   const out: Tactic[] = [];
   const safe = !capturableForFree(after, to, mover, opp);
 
-  // Orquilla: la pieza movida ataca a dos o más piezas importantes.
+  // Orquilla: la pieza movida ataca a dos o más piezas importantes, y alguna no la atacaba ya desde su casilla anterior.
   if (moved !== 'k' && safe) {
     const targets = attackedBy(after, to, opp).filter((t) => t.kind !== 'p');
     const worth = targets.some((t) => VALUE[t.kind] > VALUE[moved] || after.attackers(t.sq, opp).length === 0);
-    if (targets.length >= 2 && worth) out.push({ kind: 'fork', attacker: moved, targets: targets.map((t) => t.kind) });
+    const prior = new Set(attackedBy(before, from, opp).map((t) => t.sq));
+    const isNew = targets.some((t) => !prior.has(t.sq));
+    if (targets.length >= 2 && worth && isNew) out.push({ kind: 'fork', attacker: moved, targets: targets.map((t) => t.kind) });
   }
 
-  // Clavada y enfilada: deslizante con dos piezas rivales en fila.
+  // Clavada y enfilada: deslizante con dos piezas rivales en fila (que no estaban ya en esa fila desde su casilla anterior).
   if (SLIDERS.includes(moved) && safe) {
     for (const dir of DIRS[moved]) {
       const [a, b] = firstTwo(after, to, dir);
       if (!a || !b || a.color !== opp || b.color !== opp) continue;
+      const [pa, pb] = firstTwo(before, from, dir);
+      if (pa?.sq === a.sq && pb?.sq === b.sq) continue;
       if (b.kind === 'k' && a.kind !== 'p') {
         out.push({ kind: 'pin', attacker: moved, targets: [a.kind, b.kind] });
       } else if (a.kind !== 'k' && VALUE[a.kind] >= 3 && VALUE[b.kind] > VALUE[a.kind]) {
@@ -115,6 +120,9 @@ export function detectTactics(fenBefore: string, uci: string): Tactic[] {
   for (const s of ALL) {
     const p = found(after, s);
     if (!p || p.color !== mover || s === to || !SLIDERS.includes(p.kind)) continue;
+    // Solo se descubre algo si el deslizante ya estaba ahi: la torre de un enroque cambia de casilla.
+    const was = before.get(s);
+    if (!was || was.type !== p.kind || was.color !== p.color) continue;
     const slider = p.kind;
     const newly = attackedBy(after, s, opp).filter((t) => {
       if (t.sq === to) return false;

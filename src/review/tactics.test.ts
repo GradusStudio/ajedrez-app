@@ -48,6 +48,29 @@ test('una orquilla cuyo atacante puede ser capturado gratis por el rival no cuen
   // Cc6+ ataca rey y torre, pero el peon de b7 captura el caballo.
   assert.ok(!kinds('1r6/1p2k3/8/8/3N4/8/8/6K1 w - - 0 1', 'd4c6').includes('fork'));
 });
+test('un enroque no es un ataque descubierto aunque la torre quede frente a una pieza', () => {
+  // Tras O-O la torre de f1 ataca al caballo de f6 (sin defensa), pero la torre se movio: no se descubrio nada.
+  assert.ok(!kinds('7k/8/5n2/8/8/8/8/4K2R w K - 0 1', 'e1g1').includes('discovered'));
+});
+test('la misma jugada de torre sin enroque tampoco da descubierto (control)', () => {
+  assert.deepEqual(kinds('7k/8/5n2/8/8/8/8/6KR w - - 0 1', 'h1f1'), []);
+});
+test('mantener una clavada que ya existia no cuenta como encontrarla', () => {
+  // El alfil de b5 ya clava el caballo de d7 al rey; Ab5-a4 sigue en la misma diagonal.
+  assert.ok(!kinds('4k3/3n4/8/1B6/8/8/8/4K3 w - - 0 1', 'b5a4').includes('pin'));
+});
+test('una clavada nueva sigue contando aunque haya otra pieza en la diagonal', () => {
+  // El alfil llega a b5 desde f1: antes no clavaba nada.
+  assert.ok(kinds('4k3/3n4/8/8/8/8/8/4KB2 w - - 0 1', 'f1b5').includes('pin'));
+});
+test('mantener una horquilla que ya existia no cuenta como encontrarla', () => {
+  // La dama de d5 ya ataca a los dos caballos sin defensa (a5 y h5); De5 sigue atacandolos a los dos.
+  assert.ok(!kinds('6k1/8/8/n2Q3n/8/8/8/4K3 w - - 0 1', 'd5e5').includes('fork'));
+});
+test('una horquilla nueva con la dama sigue contando', () => {
+  // La dama llega a d5 desde d1: antes no atacaba ninguno de los dos caballos.
+  assert.ok(kinds('6k1/8/8/n6n/8/8/8/3QK3 w - - 0 1', 'd1d5').includes('fork'));
+});
 test('mateIn lee el bando y N', () => {
   assert.deepEqual(mateIn(9997), { by: 'w', n: 3 });
   assert.deepEqual(mateIn(-9998), { by: 'b', n: 2 });

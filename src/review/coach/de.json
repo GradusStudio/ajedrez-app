@@ -154,22 +154,232 @@
     }
   },
   "opp": {
-    "ok": [
-      "Dein Gegner spielt {move}, ein korrekter Zug.",
-      "Dein Gegner antwortet mit {move}."
-    ],
-    "inaccuracy": [
-      "Dein Gegner spielt {move}, eine Ungenauigkeit: das gibt dir Luft."
-    ],
-    "mistake": [
-      "Dein Gegner macht mit {move} einen Fehler: das ist deine Chance."
-    ],
-    "blunder": [
-      "Dein Gegner hat mit {move} einen Blunder gemacht! Nutze das aus."
-    ],
-    "mate": [
-      "Dein Gegner setzt mit {move} Schachmatt."
-    ]
+    "tranquilo": {
+      "ok": [
+        "Your opponent plays {move}: correct, let us go on calmly.",
+        "A reasonable answer from your opponent: {move}."
+      ],
+      "inaccuracy": [
+        "Your opponent plays {move}, an inaccuracy: it gives you a little air.",
+        "With {move} your opponent does not find the best; there is something for you."
+      ],
+      "mistake": [
+        "Your opponent errs with {move}. Look calmly: there is a chance.",
+        "{move} is a mistake by your opponent. Take your time."
+      ],
+      "blunder": [
+        "Your opponent blundered with {move}. Calmly now: you can take advantage.",
+        "{move} is a big slip by your opponent. Breathe and see what it gave you."
+      ],
+      "mate": [
+        "Your opponent delivers mate with {move}. The game is over.",
+        "Mate by your opponent with {move}. Time to learn from this game."
+      ]
+    },
+    "equilibrado": {
+      "ok": [
+        "Your opponent plays {move}, a correct move.",
+        "Your opponent answers with {move}."
+      ],
+      "inaccuracy": [
+        "Your opponent plays {move}, an inaccuracy: it gives you some air.",
+        "{move} is not your opponent's best: it concedes a little."
+      ],
+      "mistake": [
+        "Your opponent errs with {move}: this is your chance.",
+        "{move} is your opponent's mistake, and it has an answer."
+      ],
+      "blunder": [
+        "Your opponent blundered with {move}. Take advantage.",
+        "{move} is a serious mistake by your opponent: the game turns in your favor."
+      ],
+      "mate": [
+        "Your opponent delivers mate with {move}.",
+        "Checkmate by your opponent with {move}."
+      ]
+    },
+    "posicional": {
+      "ok": [
+        "Your opponent plays {move}, a correct move that does not weaken their position.",
+        "{move}: a coherent reply from your opponent."
+      ],
+      "inaccuracy": [
+        "Your opponent plays {move}, inaccurate: it gives up a little control.",
+        "With {move} your opponent loosens their position a bit."
+      ],
+      "mistake": [
+        "{move} weakens your opponent's position: there is something to collect.",
+        "Your opponent errs with {move} and leaves a weak point."
+      ],
+      "blunder": [
+        "{move} is a serious mistake: your opponent's position gives way.",
+        "Your opponent breaks their own balance with {move}. Punish it."
+      ],
+      "mate": [
+        "Your opponent delivers mate with {move}. A clean finish.",
+        "Mate with {move}: that is how the game ends."
+      ]
+    },
+    "agresivo": {
+      "ok": [
+        "Your opponent plays {move}, correct. The fight goes on.",
+        "Your opponent answers with {move}. Now it is your turn to attack."
+      ],
+      "inaccuracy": [
+        "Your opponent plays {move}, an inaccuracy! They let you breathe.",
+        "With {move} your opponent loosens up: press."
+      ],
+      "mistake": [
+        "Your opponent errs with {move}! Go get them.",
+        "{move} is a mistake: your chance to press."
+      ],
+      "blunder": [
+        "Your opponent blundered with {move}! Time to collect.",
+        "{move} is a huge mistake by your opponent! Do not let go."
+      ],
+      "mate": [
+        "Your opponent finishes it with {move}: checkmate.",
+        "{move} is your opponent's mate: they took the game."
+      ]
+    }
+  },
+  "frame": {
+    "tranquilo": {
+      "exploit": {
+        "lead": [
+          "Easy now: there is a chance.",
+          "Breathe: there is something here for you."
+        ],
+        "tail": [
+          "Take your time to calculate it, it is worth it.",
+          "Seen calmly, it is an easy edge to collect."
+        ]
+      },
+      "allows": {
+        "lead": [
+          "Relax, it happens. Let us see what it allowed.",
+          "Slowly now: let us see what it left open."
+        ],
+        "tail": [
+          "Next time, before moving, ask yourself what your opponent can do.",
+          "With practice you will spot it earlier."
+        ]
+      },
+      "miss": {
+        "lead": [
+          "Easy now: there was something better.",
+          "Let us calmly see what else there was."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Let us look at it calmly.",
+          "It is worth understanding this move."
+        ]
+      }
+    },
+    "equilibrado": {
+      "exploit": {
+        "lead": [
+          "Your opponent erred: you can take advantage.",
+          "There is a clear chance for you."
+        ],
+        "tail": [
+          "Better to collect it now, before your opponent fixes it.",
+          "This is the kind of chance to look for on every move."
+        ]
+      },
+      "allows": {
+        "lead": [
+          "That move gives your opponent something.",
+          "That move has a problem."
+        ],
+        "tail": [
+          "Before moving, check what your opponent can capture or threaten.",
+          "A quick scan of your opponent's replies avoids this kind of error."
+        ]
+      },
+      "miss": {
+        "lead": [
+          "There was a better move.",
+          "A more precise move was available."
+        ]
+      },
+      "good": {
+        "lead": [
+          "This is what the move achieves.",
+          "Let us look at the move."
+        ]
+      }
+    },
+    "posicional": {
+      "exploit": {
+        "lead": [
+          "Their position now has a crack.",
+          "There is a weak point in their position."
+        ],
+        "tail": [
+          "Unsupported pieces and loose squares are what to look for.",
+          "A position breaks at its weak points: there was one here."
+        ]
+      },
+      "allows": {
+        "lead": [
+          "Let us see how your structure stands.",
+          "Look at what that move stops protecting."
+        ],
+        "tail": [
+          "Before moving, see which pieces and squares are left unprotected.",
+          "Every move changes what each piece defends: check it before moving."
+        ]
+      },
+      "miss": {
+        "lead": [
+          "There was a more precise continuation.",
+          "Another move kept the position better."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Let us see what changes in the position.",
+          "Notice which pieces and squares this move touches."
+        ]
+      }
+    },
+    "agresivo": {
+      "exploit": {
+        "lead": [
+          "This is your moment!",
+          "A gift from your opponent: go collect it!"
+        ],
+        "tail": [
+          "Do not give them time to fix it.",
+          "You attack here, you do not wait."
+        ]
+      },
+      "allows": {
+        "lead": [
+          "Careful, that move opens the door to your opponent.",
+          "Your opponent has a blow ready here."
+        ],
+        "tail": [
+          "Next time, look at what your opponent attacks first, then move.",
+          "To attack well, you first have to look after your own pieces."
+        ]
+      },
+      "miss": {
+        "lead": [
+          "There was more to get here.",
+          "There was something stronger."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Look at what this move does.",
+          "Straight to the point with this move."
+        ]
+      }
+    }
   },
   "pieces": {
     "p": "einen Bauern",
@@ -197,5 +407,225 @@
     "missedCaptureOpp": "Dein Gegner hätte {piece} mit {best} nehmen können.",
     "missedBestYou": "Der beste Zug war {best}.",
     "missedBestOpp": "Am besten für deinen Gegner wäre {best} gewesen."
+  },
+  "tact": {
+    "found": {
+      "you": {
+        "fork": [
+          "Du hast eine Gabel gefunden: {attacker} greift {targets} an.",
+          "Ein Zug, mehrere Drohungen: {attacker} greift mehr als eine Figur an."
+        ],
+        "pin": [
+          "Du hast eine Fesselung gefunden: {attacker} fesselt {targets} auf derselben Linie.",
+          "Fesselung: {attacker} greift die vordere Figur an. Zieht sie weg, wird die dahinter stehende, wertvollere Figur angegriffen."
+        ],
+        "skewer": [
+          "Du hast einen Spieß gefunden: {attacker} greift {targets} auf derselben Linie an.",
+          "Spieß: {attacker} greift die vordere Figur an. Weicht sie aus, ist die Figur dahinter dran."
+        ],
+        "discovered": [
+          "Du hast einen Abzugsangriff gefunden: {attacker} greift jetzt {targets} an.",
+          "Abzugsangriff: Die Figur zieht weg, und {attacker} hat freie Linie."
+        ],
+        "doubleCheck": [
+          "Du hast ein Doppelschach gefunden: {attacker} und eine andere Figur geben dem König Schach.",
+          "Gegen ein Doppelschach hilft kein Blocken und kein Schlagen mit einer anderen Figur: Der Gegner muss den König ziehen."
+        ],
+        "hanging": [
+          "Du hast eine hängende Figur gefunden: {targetsDef} stand ungedeckt, und {attacker} schlägt die Figur.",
+          "Gut gesehen: {targetsDef} war ungedeckt."
+        ],
+        "backRank": [
+          "Du hast ein Grundreihenmatt gefunden: {attacker} setzt auf der letzten Reihe matt.",
+          "Grundreihenmatt: {attacker} greift auf der letzten Reihe an, und der König hat keine Fluchtfelder."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "Der Gegner hat eine Gabel gefunden: {attacker} greift {targets} an.",
+          "Ein Zug des Gegners, mehrere Drohungen: {attacker} greift mehr als eine Figur an."
+        ],
+        "pin": [
+          "Der Gegner hat eine Fesselung gefunden: {attacker} fesselt {targets} auf derselben Linie.",
+          "Fesselung des Gegners: {attacker} greift die vordere Figur an. Zieht sie weg, wird die dahinter stehende, wertvollere Figur angegriffen."
+        ],
+        "skewer": [
+          "Der Gegner hat einen Spieß gefunden: {attacker} greift {targets} auf derselben Linie an.",
+          "Spieß des Gegners: {attacker} greift die vordere Figur an. Weicht sie aus, ist die Figur dahinter dran."
+        ],
+        "discovered": [
+          "Der Gegner hat einen Abzugsangriff gefunden: {attacker} greift jetzt {targets} an.",
+          "Abzugsangriff des Gegners: {attacker} hat freie Linie. Im Visier: {targetsDef}."
+        ],
+        "doubleCheck": [
+          "Der Gegner hat ein Doppelschach gefunden: {attacker} und eine andere Figur geben dem König Schach.",
+          "Ein Doppelschach lässt sich nur mit einem Königszug beantworten, nicht durch Blocken oder Schlagen."
+        ],
+        "hanging": [
+          "Der Gegner hat eine hängende Figur gefunden: {targetsDef} stand ungedeckt, und {attacker} schlägt die Figur.",
+          "Prüfe immer, welche Figuren ungedeckt sind: Hier hatte {targetsDef} keine Deckung."
+        ],
+        "backRank": [
+          "Der Gegner hat ein Grundreihenmatt gefunden: {attacker} setzt auf der letzten Reihe matt.",
+          "Der König hat hinter seinen eigenen Figuren keine Fluchtfelder: So funktioniert das Grundreihenmatt."
+        ]
+      }
+    },
+    "allows": {
+      "you": {
+        "fork": [
+          "Dieser Zug erlaubt deinem Gegner eine Gabel mit {san}.",
+          "Mit {san} greift {attacker} gleichzeitig {targets} an."
+        ],
+        "pin": [
+          "Dieser Zug erlaubt deinem Gegner eine Fesselung mit {san}.",
+          "Mit {san} fesselt {attacker} {targets}."
+        ],
+        "skewer": [
+          "Dieser Zug erlaubt deinem Gegner einen Spieß mit {san}.",
+          "Mit {san} setzt {attacker} einen Spieß gegen {targets}."
+        ],
+        "discovered": [
+          "Dieser Zug erlaubt deinem Gegner einen Abzugsangriff mit {san}.",
+          "Mit {san} wird die Linie frei: {attacker} hat freie Bahn. Im Visier: {targetsDef}."
+        ],
+        "doubleCheck": [
+          "Dieser Zug erlaubt deinem Gegner ein Doppelschach mit {san}.",
+          "Mit {san} gibt der Gegner Doppelschach: Du kannst nur mit einem Königszug antworten."
+        ],
+        "hanging": [
+          "Dieser Zug lässt eine Figur hängen: Der Gegner schlägt sie mit {san}.",
+          "Nach {san} geht {targetsDef} ohne Deckung verloren."
+        ],
+        "backRank": [
+          "Dieser Zug erlaubt deinem Gegner ein Grundreihenmatt mit {san}.",
+          "Dein König hat auf der letzten Reihe keine Fluchtfelder: {san} wäre Matt."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "Dieser Zug erlaubt dir eine Gabel mit {san}.",
+          "Du hast {san}: {attacker} greift gleichzeitig {targets} an."
+        ],
+        "pin": [
+          "Dieser Zug erlaubt dir eine Fesselung mit {san}.",
+          "Mit {san} kann {attacker} {targets} fesseln."
+        ],
+        "skewer": [
+          "Dieser Zug erlaubt dir einen Spieß mit {san}.",
+          "Mit {san} kann {attacker} einen Spieß gegen {targets} setzen."
+        ],
+        "discovered": [
+          "Dieser Zug erlaubt dir einen Abzugsangriff mit {san}.",
+          "Mit {san} wird die Linie frei: {attacker} hat freie Bahn. Im Visier: {targetsDef}."
+        ],
+        "doubleCheck": [
+          "Dieser Zug erlaubt dir ein Doppelschach mit {san}.",
+          "Mit {san} gibst du Doppelschach: Der Gegner kann nur mit einem Königszug antworten."
+        ],
+        "hanging": [
+          "Dieser Zug lässt eine Figur hängen: Du schlägst sie mit {san}.",
+          "Mit {san} kannst du die Figur gewinnen: {targetsDef} ist ungedeckt."
+        ],
+        "backRank": [
+          "Dieser Zug erlaubt dir ein Grundreihenmatt mit {san}.",
+          "Der gegnerische König hat auf seiner letzten Reihe keine Fluchtfelder: {san} ist Matt."
+        ]
+      }
+    }
+  },
+  "mateIn": {
+    "foundYou": "Dein Zug führt zu einem erzwungenen Matt in {n}.",
+    "foundOpp": "Dieser Zug des Gegners führt zu einem erzwungenen Matt in {n}.",
+    "allowsYou": "Dieser Zug erlaubt deinem Gegner ein Matt in {n}.",
+    "allowsOpp": "Dieser Zug erlaubt dir ein Matt in {n}."
+  },
+  "plan": {
+    "develop": "Entwicklung: {piece} geht von {from} nach {to} und verlässt das Ausgangsfeld.",
+    "center": "{Piece} kommt nach {to}, auf ein zentrales Feld.",
+    "rookFile": "{Piece} geht nach {to}, auf eine Linie ohne eigene Bauern.",
+    "pawnBreak": "Der Bauer kommt nach {to} und greift einen gegnerischen Bauern an.",
+    "pawnAdvance": "Der Bauer zieht von {from} nach {to}.",
+    "trade": "Abtauschangebot auf {to}: Der Gegner kann zurückschlagen.",
+    "retreat": "{Piece} zieht von {from} nach {to} zurück.",
+    "kingActive": "Der König nähert sich dem Zentrum: von {from} nach {to}.",
+    "plain": "{Piece} zieht von {from} nach {to}."
+  },
+  "intent": {
+    "develop": [
+      "It only developed {piece} from {from} to {to}.",
+      "The idea was to bring {piece} out from {from} to {to}."
+    ],
+    "center": [
+      "The move took {piece} to {to}, a central square.",
+      "{Piece} headed for the center, to {to}."
+    ],
+    "rookFile": [
+      "{Piece} landed on {to}, on a file with no pawns of its own.",
+      "The idea was to put {piece} on {to}, on a file open for it."
+    ],
+    "pawnBreak": [
+      "The pawn went to {to} to attack an enemy pawn.",
+      "It was a pawn break: {to} puts pressure on an enemy pawn."
+    ],
+    "pawnAdvance": [
+      "The pawn only advanced from {from} to {to}.",
+      "It was a pawn advance: from {from} to {to}."
+    ],
+    "kingActive": [
+      "The idea was to bring the king toward the center, from {from} to {to}.",
+      "The king left {from} for {to}, closer to the center."
+    ],
+    "retreat": [
+      "{Piece} retreated from {from} to {to}.",
+      "The move only pulled {piece} back from {from} to {to}."
+    ]
+  },
+  "line": {
+    "removeDefender": {
+      "exploit": [
+        "Remove the defender: {first} takes {removed} that was guarding {targetSq}; then {finish} takes {target} on {targetSq}.",
+        "Remove the defender: {removed} was guarding {targetSq}. Without it, {target} on {targetSq} falls: {seq}."
+      ],
+      "allows": [
+        "Remove the defender: with {first} your opponent takes {removed} that was guarding {targetSq}; then {finish} takes {target} on {targetSq}.",
+        "Remove the defender: {removed} was guarding {targetSq}. Your opponent takes that piece and {target} on {targetSq} falls: {seq}."
+      ],
+      "missed": [
+        "You could remove the defender: {first} took {removed} that was guarding {targetSq}, and then {finish} won {target} on {targetSq}.",
+        "You could remove the defender: {removed} was guarding {targetSq}. Without it, {target} on {targetSq} fell: {seq}."
+      ]
+    },
+    "material": {
+      "exploit": [
+        "The engine sees {seq}: you win {n} points of material.",
+        "{first} starts a sequence that leaves you {n} points of material ahead."
+      ],
+      "allows": [
+        "The engine sees {seq}: you lose {n} points of material.",
+        "With {first}, your opponent ends up {n} points of material ahead."
+      ],
+      "missed": [
+        "The engine saw {seq}: you won {n} points of material.",
+        "With {first} you could have won {n} points of material."
+      ]
+    }
+  },
+  "and": "und",
+  "pieceDef": {
+    "p": "der Bauer",
+    "n": "der Springer",
+    "b": "der Läufer",
+    "r": "der Turm",
+    "q": "die Dame",
+    "k": "der König"
+  },
+  "pieceObj": {
+    "p": "den Bauern",
+    "n": "den Springer",
+    "b": "den Läufer",
+    "r": "den Turm",
+    "q": "die Dame",
+    "k": "den König"
   }
 }

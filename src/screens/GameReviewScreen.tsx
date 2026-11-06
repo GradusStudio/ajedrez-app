@@ -120,6 +120,8 @@ export function GameReviewScreen({ onBack }: Props) {
       move: san,
       bestSan: ply.bestSan,
       fmt,
+      seed: ply.ply + coach.elo,
+      style: coach.style,
     });
     details = lines.length > 0 ? lines : ply.bestSan ? [t('review.bestWas', { move: fmt(ply.bestSan) })] : [];
   }

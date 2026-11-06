@@ -1,4 +1,7 @@
 // Tipos de la revisión de partidas. Sin React Native: lo usan las pruebas con tsx.
+import type { Plan } from './plans';
+import type { LineFacts } from './lines';
+import type { Tactic } from './tactics';
 
 export type MoveQuality = 'book' | 'best' | 'excellent' | 'good' | 'inaccuracy' | 'mistake' | 'blunder';
 
@@ -29,6 +32,8 @@ export type PositionEval = {
   score: number;
   /** Mejor jugada del bando que mueve (UCI). Vacía si la partida terminó. */
   best: string;
+  /** Variante principal del motor (UCI), como mucho 8 jugadas. */
+  pv?: string[];
 };
 
 /** Hechos verificados con el tablero (no inventados): de ellos salen las frases del comentarista. */
@@ -39,6 +44,18 @@ export type Facts = {
   allows?: { kind: 'mate'; san: string } | { kind: 'capture'; piece: PieceKind; san: string; ofMoved: boolean } | { kind: 'check'; san: string };
   /** Lo que se dejó pasar. */
   missed?: { kind: 'mate' } | { kind: 'capture'; piece: PieceKind };
+  /** Tácticas que creó la jugada (máximo 2). */
+  found?: Tactic[];
+  /** Táctica que crea la mejor respuesta del rival (solo en imprecisiones, errores y errores graves). */
+  allowsTactic?: { tactic: Tactic; san: string };
+  /** Línea del motor DESPUÉS de la jugada. Mueve primero el rival de quien jugó: `material` positivo es ganancia de quien mueve ahora (en un error del rival, del usuario; en un error propio, del rival). Solo en jugadas malas y si es informativa. */
+  line?: LineFacts;
+  /** Línea del motor ANTES de la jugada. Mueve primero quien jugó: `material` positivo es lo que pudo ganar. Mismas condiciones que `line`. */
+  missedLine?: LineFacts;
+  /** Mate en `n` jugadas; `mover` es true si lo da quien jugó. */
+  mateIn?: { n: number; mover: boolean };
+  /** Para qué sirve la jugada; solo si no hay `did` ni `found`. */
+  plan?: Plan;
 };
 
 export type ReviewPly = {

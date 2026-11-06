@@ -2,6 +2,10 @@ import { Chess } from 'chess.js';
 import { whiteShare } from '../engine/evalFormat';
 import { positionKey } from './book';
 import { isBad } from './types';
+import { analyzeLine } from './lines';
+import type { LineFacts } from './lines';
+import { planFor } from './plans';
+import { detectTactics, mateIn } from './tactics';
 import type { Facts, GameMove, MoveQuality, ParsedGame, PieceKind, PositionEval, Review, ReviewPly } from './types';
 
 // Del análisis del motor a la revisión: calidad de cada jugada, hechos verificados con el tablero,
@@ -35,7 +39,15 @@ function tryMove(fen: string, uci: string) {
 }
 
 /** Hechos de la jugada jugada, de la mejor y de la respuesta del rival, todos comprobados con chess.js. */
-export function factsFor(move: GameMove, bestUci: string, replyUci: string, quality: MoveQuality): Facts {
+export function factsFor(
+  move: GameMove,
+  bestUci: string,
+  replyUci: string,
+  quality: MoveQuality,
+  scoreAfter?: number,
+  prevTo?: string,
+  pvs?: { reply?: string[]; best?: string[] }
+): Facts {
   const facts: Facts = {};
   const played = tryMove(move.fenBefore, move.uci);
   if (played) {
@@ -44,7 +56,24 @@ export function factsFor(move: GameMove, bestUci: string, replyUci: string, qual
     else if (played.captured) facts.did = { kind: 'capture', piece: played.captured as PieceKind };
     else if (played.san.startsWith('O-O')) facts.did = { kind: 'castle' };
   }
-  if (quality !== 'inaccuracy' && quality !== 'mistake' && quality !== 'blunder') return facts;
+  let tactics = detectTactics(move.fenBefore, move.uci);
+  // En un mate solo cuentan el jaque doble y el mate del pasillo: lo demás tapa lo importante.
+  if (played?.san.endsWith('#')) tactics = tactics.filter((t) => t.kind === 'doubleCheck' || t.kind === 'backRank');
+  // Recapturar en la casilla donde el rival acaba de capturar no es «encontrar una pieza colgada».
+  if (prevTo && prevTo === move.uci.slice(2, 4)) tactics = tactics.filter((t) => t.kind !== 'hanging');
+  tactics = tactics.slice(0, 2);
+  if (tactics.length > 0) facts.found = tactics;
+  if (!facts.did && !facts.found) facts.plan = planFor(move.fenBefore, move.uci);
+
+  const bad = isBad(quality);
+  const mate = scoreAfter === undefined ? null : mateIn(scoreAfter);
+  if (mate) {
+    const mover = mate.by === move.color;
+    // k = 0 ya es did.mate y, para el rival, k = 1 ya es allows.mate.
+    if (mover && mate.n >= 1 && (quality === 'best' || quality === 'excellent' || quality === 'book')) facts.mateIn = { n: mate.n + 1, mover: true };
+    else if (!mover && mate.n >= 2 && bad) facts.mateIn = { n: mate.n, mover: false };
+  }
+  if (!bad) return facts;
 
   const reply = tryMove(move.fenAfter, replyUci);
   if (reply) {
@@ -52,6 +81,9 @@ export function factsFor(move: GameMove, bestUci: string, replyUci: string, qual
     else if (reply.captured && PIECE_VALUE[reply.captured as PieceKind] >= 3)
       facts.allows = { kind: 'capture', piece: reply.captured as PieceKind, san: reply.san, ofMoved: reply.to === played?.to };
     else if (reply.san.endsWith('+')) facts.allows = { kind: 'check', san: reply.san };
+    const tactic = detectTactics(move.fenAfter, replyUci)[0];
+    // Una pieza colgada ya la dice `allows` (la misma captura): no se repite.
+    if (tactic && !(tactic.kind === 'hanging' && facts.allows?.kind === 'capture')) facts.allowsTactic = { tactic, san: reply.san };
   }
   const best = tryMove(move.fenBefore, bestUci);
   if (best) {
@@ -59,7 +91,18 @@ export function factsFor(move: GameMove, bestUci: string, replyUci: string, qual
     else if (best.captured && PIECE_VALUE[best.captured as PieceKind] >= 3 && best.captured !== played?.captured)
       facts.missed = { kind: 'capture', piece: best.captured as PieceKind };
   }
+  const line = informative(move.fenAfter, pvs?.reply);
+  if (line) facts.line = line;
+  const missedLine = informative(move.fenBefore, pvs?.best);
+  if (missedLine) facts.missedLine = missedLine;
   return facts;
+}
+
+/** La línea del motor solo se cuenta si el tablero comprueba algo que vale la pena decir. */
+function informative(fen: string, pv?: string[]): LineFacts | undefined {
+  if (!pv || pv.length === 0) return undefined;
+  const facts = analyzeLine(fen, pv);
+  return facts && (facts.removeDefender || facts.material >= 2) ? facts : undefined;
 }
 
 const sanOf = (fen: string, uci: string) => tryMove(fen, uci)?.san ?? '';
@@ -77,7 +120,7 @@ export function ratePly(
   before: PositionEval,
   after: PositionEval,
   book: Set<string>,
-  prev?: Pick<ReviewPly, 'quality' | 'loss'>
+  prev?: Pick<ReviewPly, 'quality' | 'loss'> & { move?: GameMove }
 ): ReviewPly {
   const loss = Math.max(0, winPercent(before.score, move.color) - winPercent(after.score, move.color));
   let quality: MoveQuality;
@@ -100,7 +143,7 @@ export function ratePly(
     bestSan: sanOf(move.fenBefore, before.best),
     replyUci: after.best,
     replySan: sanOf(move.fenAfter, after.best),
-    facts: factsFor(move, before.best, after.best, quality),
+    facts: factsFor(move, before.best, after.best, quality, after.score, prev?.move?.uci.slice(2, 4), { reply: after.pv, best: before.pv }),
   };
 }
 

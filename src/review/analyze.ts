@@ -21,7 +21,7 @@ export async function evaluatePosition(engine: UciEngine, fen: string, depth = R
   const r = await engine.search({ fen, multipv: 1, depth });
   const line = r.lines[0];
   const turn = fen.split(' ')[1];
-  return { score: line ? (turn === 'w' ? line.score : -line.score) : 0, best: r.bestmove };
+  return { score: line ? (turn === 'w' ? line.score : -line.score) : 0, best: r.bestmove, pv: line?.pv?.slice(0, 8) ?? [] };
 }
 
 /**

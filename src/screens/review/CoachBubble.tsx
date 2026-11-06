@@ -16,16 +16,18 @@ type Props = {
   voice: string;
   /** Hechos de la jugada (qué buscaba, por qué falla, cuál era la mejor y por qué). */
   details: string[];
+  /** La línea del motor con la mejor jugada, ya con su texto («Línea: 7. Cg5 d5 …»); vacía si no hay. */
+  line: string;
 };
 
 /** Cara del comentarista y su globo, de alto fijo para que el tablero no se mueva. */
-export function CoachBubble({ coach, expression, head, startTitle, voice, details }: Props) {
+export function CoachBubble({ coach, expression, head, startTitle, voice, details, line }: Props) {
   return (
     <View style={styles.coachRow}>
       <BotAvatar bot={coach} size={64} expression={expression} />
       <View style={styles.bubble}>
         <ScrollView
-          key={`${head?.title ?? startTitle ?? ''}|${voice}|${details.join('|')}`}
+          key={`${head?.title ?? startTitle ?? ''}|${voice}|${details.join('|')}|${line}`}
           nestedScrollEnabled
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.bubbleContent}
@@ -53,6 +55,7 @@ export function CoachBubble({ coach, expression, head, startTitle, voice, detail
               {line}
             </Text>
           ))}
+          {line ? <Text style={styles.bubbleLine}>{line}</Text> : null}
         </ScrollView>
       </View>
     </View>

@@ -5,18 +5,20 @@ import { ProgressBar } from '../../components/ProgressBar';
 import { useI18n } from '../../i18n/I18nContext';
 import { space } from '../../theme';
 import { styles } from './reviewStyles';
+import type { AnalysisPhase } from './useReviewAnalysis';
 
 type Props = {
   /** El motor o el análisis fallaron: se ofrece reintentar. */
   down: boolean;
   engineReady: boolean;
   progress: { done: number; total: number };
+  phase: AnalysisPhase;
   onBack: () => void;
   onRetry: () => void;
 };
 
 /** Pantalla mientras Stockfish recorre la partida. */
-export function AnalyzingView({ down, engineReady, progress, onBack, onRetry }: Props) {
+export function AnalyzingView({ down, engineReady, progress, phase, onBack, onRetry }: Props) {
   const { t } = useI18n();
   return (
     <View style={[styles.screen, { paddingHorizontal: space.lg, paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
@@ -37,7 +39,7 @@ export function AnalyzingView({ down, engineReady, progress, onBack, onRetry }: 
             <View style={{ flexDirection: 'row', width: '100%', marginVertical: space.md }}>
               <ProgressBar value={engineReady ? progress.done / progress.total : 0} />
             </View>
-            <Text style={styles.muted}>{t('review.analyzingProgress', { done: progress.done, total: progress.total })}</Text>
+            <Text style={styles.muted}>{t(phase === 'refine' ? 'review.refining' : 'review.analyzingProgress', { done: progress.done, total: progress.total })}</Text>
             <Text style={[styles.muted, { marginTop: space.sm, textAlign: 'center' }]}>{t('review.analyzingTip')}</Text>
           </>
         )}

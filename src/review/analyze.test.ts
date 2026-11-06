@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import type { UciEngine } from '../engine/uci';
-import { evaluatePosition } from './analyze';
+import { evaluatePosition, refineCandidates, refineGame, REFINE_DEPTH } from './analyze';
+import { parseGame } from './pgn';
+import type { ReviewPly } from './types';
 
 const START = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 const BLACK_TO_MOVE = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1';
@@ -52,4 +54,41 @@ test('score y best no cambian: negras mueven, el puntaje se invierte', async () 
   const r = await evaluatePosition(fakeEngine('e7e5', [{ rank: 1, score: 45, move: 'e7e5', pv: ['e7e5', 'g1f3'] }]), BLACK_TO_MOVE);
   assert.equal(r.score, -45);
   assert.equal(r.best, 'e7e5');
+});
+
+// ---- Re-análisis de las jugadas malas ----
+const ply = (quality: ReviewPly['quality'], loss: number) => ({ quality, loss }) as ReviewPly;
+
+test('refineCandidates elige solo jugadas malas, las más costosas primero, y las devuelve en orden de partida', () => {
+  const plies = [ply('best', 0), ply('inaccuracy', 6), ply('good', 4), ply('blunder', 40), ply('mistake', 15), ply('inaccuracy', 7)];
+  assert.deepEqual(refineCandidates(plies), [1, 3, 4, 5]);
+  assert.deepEqual(refineCandidates(plies, 2), [3, 4]);
+  assert.deepEqual(refineCandidates([ply('best', 0), ply('good', 3)]), []);
+});
+
+const GAME = parseGame('1. e4 e5 2. Qh5 Nc6 3. Bc4 Nf6 4. Qxf7# 1-0')!;
+
+test('refineGame evalúa cada posición una sola vez a más profundidad y devuelve el par de cada jugada', async () => {
+  const seen: { fen: string; depth: number }[] = [];
+  const engine = {
+    search: async (o: { fen: string; depth: number }) => {
+      seen.push({ fen: o.fen, depth: o.depth });
+      return { bestmove: 'e2e4', lines: [{ rank: 1, score: seen.length * 10, move: 'e2e4', pv: ['e2e4'] }] };
+    },
+  } as unknown as UciEngine;
+  const progress: [number, number][] = [];
+  const r = await refineGame(engine, GAME, [2, 3], (d, t) => progress.push([d, t]), () => false);
+  // Las jugadas 2 y 3 comparten la posición 3: son 3 posiciones distintas (2, 3 y 4), no 4.
+  assert.equal(seen.length, 3);
+  assert.ok(seen.every((s) => s.depth === REFINE_DEPTH));
+  assert.deepEqual([...r!.keys()], [2, 3]);
+  assert.equal(r!.get(2)!.after, r!.get(3)!.before, 'la posición compartida es la misma evaluación');
+  assert.deepEqual(progress.at(-1), [3, 3]);
+});
+
+test('refineGame corta y devuelve null si se cancela', async () => {
+  const engine = { search: async () => ({ bestmove: 'e2e4', lines: [] }) } as unknown as UciEngine;
+  let calls = 0;
+  const r = await refineGame(engine, GAME, [2, 3], () => {}, () => ++calls > 1);
+  assert.equal(r, null);
 });

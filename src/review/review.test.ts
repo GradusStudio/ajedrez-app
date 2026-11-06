@@ -418,3 +418,30 @@ test('explicación de ...Ac5: la idea con su veredicto, la amenaza y la mejor ju
   assert.ok(text.includes('La mejor jugada para el rival era c5'), text);
   assert.ok(!/peones|Cuesta|respirar/.test(text), text);
 });
+
+// ---- Re-análisis profundo y línea del motor ----
+test('buildReview: una jugada revisada a más profundidad se califica con su par profundo y las demás no cambian', () => {
+  const g = parseGame(PGN)!;
+  const evals = fakeEvals(g.moves.length);
+  evals[3].score = -250; // a profundidad baja Dh5 parece un error grave
+  evals[2].best = 'g1f3';
+  const base = buildReview(g, evals, new Set());
+  assert.ok(['mistake', 'blunder'].includes(base.plies[2].quality));
+  // A más profundidad la jugada resulta casi igual de buena: el par profundo manda en esa jugada.
+  const deep = new Map([[2, { before: { score: 30, best: 'g1f3' }, after: { score: 20, best: 'b8c6' } }]]);
+  const r = buildReview(g, evals, new Set(), deep);
+  assert.ok(!['mistake', 'blunder'].includes(r.plies[2].quality), r.plies[2].quality);
+  assert.deepEqual(r.plies.map((p, i) => (i === 2 ? '' : p.quality)), base.plies.map((p, i) => (i === 2 ? '' : p.quality)));
+  assert.deepEqual(r.scores, base.scores, 'el gráfico sigue con las evaluaciones del recorrido completo');
+});
+
+test('ratePly: la variante de la mejor jugada se guarda solo en jugadas malas', () => {
+  const g = parseGame(PGN)!;
+  const pv = ['g1f3', 'b8c6', 'f1c4'];
+  const bad = ratePly(3, g.moves[2], { score: 30, best: 'g1f3', pv }, { score: -250, best: 'b8c6' }, new Set());
+  assert.deepEqual(bad.bestPv, pv);
+  const good = ratePly(1, g.moves[0], { score: 30, best: 'e2e4', pv: ['e2e4', 'e7e5'] }, { score: 30, best: 'e7e5' }, new Set());
+  assert.equal(good.bestPv, undefined);
+  const noPv = ratePly(3, g.moves[2], { score: 30, best: 'g1f3' }, { score: -250, best: 'b8c6' }, new Set());
+  assert.equal(noPv.bestPv, undefined);
+});

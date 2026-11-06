@@ -8,6 +8,7 @@ import { resolveNotation, sanFromEnglish } from '../chess/notation';
 import { useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
 import { coachExplanation, coachLang, coachVoice } from '../review/coachText';
+import { lineMoves, lineText } from '../review/bestLine';
 import { parseGame } from '../review/pgn';
 import { clearPendingGame, peekPendingGame, sideOf } from '../review/session';
 import { isBad } from '../review/types';
@@ -41,7 +42,7 @@ export function GameReviewScreen({ onBack }: Props) {
   const game = useMemo(() => (pending ? parseGame(pending.pgn) : null), [pending]);
   useEffect(() => () => clearPendingGame(), []);
 
-  const { engine, engineError, engineView, review, progress, failed, retry } = useReviewAnalysis(game);
+  const { engine, engineError, engineView, review, progress, phase, failed, retry } = useReviewAnalysis(game);
   const n = review?.plies.length ?? 0;
   const pb = useReviewPlayback(n, review?.highlights ?? []);
   const { coach, choose: chooseCoach } = useReviewCoach();
@@ -74,21 +75,26 @@ export function GameReviewScreen({ onBack }: Props) {
 
   if (!review) {
     return shell(
-      <AnalyzingView down={!!engineError || failed} engineReady={!!engine} progress={progress} onBack={onBack} onRetry={retry} />
+      <AnalyzingView down={!!engineError || failed} engineReady={!!engine} progress={progress} phase={phase} onBack={onBack} onRetry={retry} />
     );
   }
 
   // ── Lo que se ve ahora: jugada de la partida o jugada propia ──
   const ply = lastVar ? (lastVar.rated ?? undefined) : idx > 0 ? review.plies[idx - 1] : undefined;
   const pendingOwn = !!lastVar && !lastVar.rated;
-  const shownMove = lastVar ? lastVar.move : ply?.move;
+  // La línea del motor de una jugada mala se puede reproducir sobre el tablero desde la posición anterior a esa jugada.
+  const lineList = ply && isBad(ply.quality) ? lineMoves(ply.move.fenBefore, ply.bestPv) : [];
+  const pv = pb.preview;
+  const previewMove = pv && pv.step > 0 ? pv.moves[pv.step - 1] : null;
+  const shownFen = pv ? (previewMove ? previewMove.fenAfter : pv.baseFen) : fen;
+  const shownMove = pv ? previewMove : lastVar ? lastVar.move : ply?.move;
   const lastMove = shownMove ? { from: shownMove.uci.slice(0, 2) as Square, to: shownMove.uci.slice(2, 4) as Square } : null;
   const mine = lastVar ? true : ply ? ply.move.color === me : true;
   const bad = !!ply && isBad(ply.quality);
   const badge = ply ? badgeOf(ply) : null;
   const colorArrows: { move: string; color: string }[] = [];
-  if (ply && bad && ply.replyUci) colorArrows.push({ move: ply.replyUci.slice(0, 4), color: REPLY_ARROW });
-  if (ply && pb.showBest && ply.bestUci) colorArrows.push({ move: ply.bestUci.slice(0, 4), color: BEST_ARROW });
+  if (!pv && ply && bad && ply.replyUci) colorArrows.push({ move: ply.replyUci.slice(0, 4), color: REPLY_ARROW });
+  if (!pv && ply && pb.showBest && ply.bestUci) colorArrows.push({ move: ply.bestUci.slice(0, 4), color: BEST_ARROW });
 
   const san = ply ? fmt(ply.move.san) : '';
   const voice = pendingOwn
@@ -143,6 +149,7 @@ export function GameReviewScreen({ onBack }: Props) {
       startTitle={!ply && !pendingOwn && started ? t('review.startPosition') : null}
       voice={explanation.length > 0 ? '' : voice}
       details={details}
+      line={ply && lineList.length > 0 ? t('review.bestLine', { line: lineText(ply.move.fenBefore, lineList, fmt) }) : ''}
     />
   );
 
@@ -187,13 +194,13 @@ export function GameReviewScreen({ onBack }: Props) {
         <View style={{ height: space.md }} />
         <EvalBar score={scoreHere} decimal={decimal} />
         <Board
-          fen={fen}
+          fen={shownFen}
           orientation={me}
-          interactive={!pb.fast && !pb.autoplaying}
+          interactive={!pb.fast && !pb.autoplaying && !pv}
           onMove={playOwn}
           lastMove={lastMove}
           colorArrows={colorArrows}
-          badge={ply && badge && lastMove ? { square: lastMove.to, color: badge.color, label: badge.label } : undefined}
+          badge={!pv && ply && badge && lastMove ? { square: lastMove.to, color: badge.color, label: badge.label } : undefined}
         />
         <MoveStrip
           plies={review.plies}
@@ -213,6 +220,12 @@ export function GameReviewScreen({ onBack }: Props) {
           label={pb.showBest ? t('review.hide') : t('review.best')}
           disabled={!canBest}
           onPress={() => pb.setShowBest((v) => !v)}
+        />
+        <ToolBtn
+          icon="line"
+          label={pv ? t('review.stopLine') : t('review.showLine')}
+          disabled={!pv && lineList.length === 0}
+          onPress={() => (pv ? pb.stopPreview() : ply && pb.startPreview(ply.move.fenBefore, lineList))}
         />
         <ToolBtn
           icon={pb.autoplaying ? 'pause' : 'play'}

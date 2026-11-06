@@ -165,6 +165,7 @@ export function ratePly(
     highlight,
     scoreAfter: after.score,
     bestUci: before.best,
+    bestPv: isBad(quality) && before.pv && before.pv.length > 0 ? before.pv.slice(0, 8) : undefined,
     bestSan: sanOf(move.fenBefore, before.best),
     replyUci: after.best,
     replySan: sanOf(move.fenAfter, after.best),
@@ -174,15 +175,23 @@ export function ratePly(
 
 /**
  * Arma la revisión. `evals[i]` es la evaluación de la posición antes de la jugada i + 1
- * (y `evals[n]`, la de la posición final): hay una más que jugadas.
+ * (y `evals[n]`, la de la posición final): hay una más que jugadas. `refined` trae, por índice de jugada, evaluaciones
+ * más profundas que reemplazan a las de esa jugada.
  */
-export function buildReview(game: ParsedGame, evals: PositionEval[], book: Set<string>): Review {
+export function buildReview(
+  game: ParsedGame,
+  evals: PositionEval[],
+  book: Set<string>,
+  refined?: Map<number, { before: PositionEval; after: PositionEval }>
+): Review {
   const n = game.moves.length;
   const plies: ReviewPly[] = [];
   const acc: Record<'w' | 'b', number[]> = { w: [], b: [] };
 
   game.moves.forEach((move, i) => {
-    const rated = ratePly(i + 1, move, evals[i], evals[i + 1], book, plies[i - 1]);
+    // Una jugada revisada a más profundidad se califica con su par profundo (nunca mezclado con el superficial).
+    const deep = refined?.get(i);
+    const rated = ratePly(i + 1, move, deep?.before ?? evals[i], deep?.after ?? evals[i + 1], book, plies[i - 1]);
     plies.push(rated);
     acc[move.color].push(rated.quality === 'book' ? 100 : moveAccuracy(rated.loss));
   });

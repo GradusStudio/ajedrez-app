@@ -26,7 +26,7 @@ export function useBranchPlay(review: Review | null, engine: UciEngine | null, p
   }, [review]);
 
   return (m: BoardMove) => {
-    if (!review || pb.fast || pb.autoplaying) return;
+    if (!review || pb.fast || pb.autoplaying || pb.preview) return;
     const { idx, branch, lastVar } = pb;
     const n = review.plies.length;
     const fenBefore = fen;

@@ -5,13 +5,14 @@ import { useI18n } from '../../i18n/I18nContext';
 import { colors } from '../../theme';
 import { styles } from './reviewStyles';
 
-export type IconName = 'back' | 'next' | 'star' | 'sliders' | 'first' | 'last' | 'play' | 'pause' | 'close';
+export type IconName = 'line' | 'back' | 'next' | 'star' | 'sliders' | 'first' | 'last' | 'play' | 'pause' | 'close';
 
 /** Iconos simples de la pantalla (24 × 24), dibujados con SVG para no depender de emojis. */
 export function Icon({ name, color, size = 24 }: { name: IconName; color: string; size?: number }) {
   const line = { stroke: color, strokeWidth: 2.4, strokeLinecap: 'round', strokeLinejoin: 'round', fill: 'none' } as const;
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24">
+      {name === 'line' && <Path d="M4 17l5-7 4 4 7-9" {...line} />}
       {name === 'back' && <Path d="M15 5l-7 7 7 7" {...line} />}
       {name === 'next' && <Path d="M9 5l7 7-7 7" {...line} />}
       {name === 'close' && <Path d="M6 6l12 12M18 6L6 18" {...line} />}

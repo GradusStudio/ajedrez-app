@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import type { LineMove } from '../../review/bestLine';
 import type { GameMove, ReviewPly } from '../../review/types';
 
 export type Filter = 'all' | 'highlights';
@@ -8,6 +9,10 @@ export type Branch = { from: number; moves: { id: number; move: GameMove; rated:
 
 const AUTOPLAY_MS = 1400;
 const FAST_MS = 220; // cámara rápida hasta la próxima jugada destacada
+const LINE_MS = 1100; // una jugada de la línea del motor cada tanto
+
+/** La línea del motor reproducida sobre el tablero desde `baseFen`; `step` = jugadas ya hechas. */
+export type Preview = { baseFen: string; moves: LineMove[]; step: number };
 
 export type Playback = ReturnType<typeof useReviewPlayback>;
 
@@ -22,6 +27,7 @@ export function useReviewPlayback(n: number, highlights: number[]) {
   const [showBest, setShowBest] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [branch, setBranch] = useState<Branch | null>(null);
+  const [preview, setPreview] = useState<Preview | null>(null);
 
   const lastVar = branch ? branch.moves[branch.moves.length - 1] : null;
 
@@ -30,6 +36,7 @@ export function useReviewPlayback(n: number, highlights: number[]) {
     setShowBest(false);
     setFfTarget(null);
     setBranch(null);
+    setPreview(null);
   };
 
   // La reproducción automática avanza sola hasta el final de la partida.
@@ -51,9 +58,26 @@ export function useReviewPlayback(n: number, highlights: number[]) {
     return () => clearInterval(id);
   }, [fast, ffTarget]);
 
+  // La línea del motor avanza sola hasta su última jugada y se queda ahí hasta que se la detenga.
+  const previewing = preview !== null && preview.step < preview.moves.length;
+  useEffect(() => {
+    if (!previewing) return;
+    const id = setInterval(() => setPreview((p) => (p && p.step < p.moves.length ? { ...p, step: p.step + 1 } : p)), LINE_MS);
+    return () => clearInterval(id);
+  }, [previewing]);
+  const startPreview = (baseFen: string, moves: LineMove[]) => {
+    setPlaying(false);
+    setFfTarget(null);
+    setBranch(null);
+    setShowBest(false);
+    setPreview({ baseFen, moves, step: 0 });
+  };
+  const stopPreview = () => setPreview(null);
+
   const togglePlay = () => {
     setFfTarget(null);
     setBranch(null);
+    setPreview(null);
     if (autoplaying) return setPlaying(false);
     if (idx >= n) goTo(0);
     setPlaying(true);
@@ -61,6 +85,7 @@ export function useReviewPlayback(n: number, highlights: number[]) {
 
   /** Botón principal. `onFinish` se llama al tocarlo estando en la última jugada («Finalizar»). */
   const next = (onFinish: () => void) => {
+    if (preview) return setPreview(null);
     if (branch) {
       // Vuelve a la posición de la partida desde la que se probó otra jugada.
       setBranch(null);
@@ -96,7 +121,7 @@ export function useReviewPlayback(n: number, highlights: number[]) {
 
   return {
     idx, filter, setFilter, showBest, setShowBest, branch, setBranch, lastVar,
-    setPlaying, setFfTarget, autoplaying, fast,
+    setPlaying, setFfTarget, autoplaying, fast, preview, startPreview, stopPreview,
     goTo, togglePlay, next, stepBack, stepForward, jumpHighlight,
   };
 }

@@ -78,6 +78,8 @@ export type ReviewPly = {
   /** Evaluación (blancas) de la posición después de la jugada. */
   scoreAfter: number;
   bestUci: string;
+  /** Variante del motor que empieza con la mejor jugada (UCI, hasta 8). Solo en jugadas malas. */
+  bestPv?: string[];
   bestSan: string;
   replyUci: string;
   replySan: string;

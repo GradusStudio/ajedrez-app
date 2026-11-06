@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
   bubbleHead: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginBottom: 4 },
   bubbleTitle: { flex: 1, fontFamily: fonts.extrabold, fontSize: 15, color: colors.text },
   bubbleText: { fontFamily: fonts.semibold, fontSize: 14, lineHeight: 20, color: colors.textMuted },
+  bubbleLine: { fontFamily: fonts.bold, fontSize: 13, lineHeight: 19, color: colors.textMuted, marginTop: 8 },
   bubbleExplain: { fontFamily: fonts.semibold, fontSize: 14, lineHeight: 20, color: colors.text, marginTop: 6 },
   miniBadge: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
   miniBadgeText: { fontFamily: fonts.extrabold, fontSize: 11, color: '#FFFFFF' },

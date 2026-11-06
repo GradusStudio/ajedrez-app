@@ -154,22 +154,176 @@
     }
   },
   "opp": {
-    "ok": [
-      "Il tuo avversario gioca {move}, una mossa corretta.",
-      "Il tuo avversario risponde con {move}."
-    ],
-    "inaccuracy": [
-      "Il tuo avversario gioca {move}, un'imprecisione: ti dà un po' di respiro."
-    ],
-    "mistake": [
-      "Il tuo avversario sbaglia con {move}: questa è la tua occasione."
-    ],
-    "blunder": [
-      "Il tuo avversario fa un errore grossolano con {move}! Approfittane."
-    ],
-    "mate": [
-      "Il tuo avversario dà scacco matto con {move}."
-    ]
+    "tranquilo": {
+      "ok": [
+        "Your opponent plays {move}: correct, let us go on calmly.",
+        "A reasonable answer from your opponent: {move}."
+      ],
+      "inaccuracy": [
+        "Your opponent plays {move}, an inaccuracy: it gives you a little air.",
+        "With {move} your opponent does not find the best; there is something for you."
+      ],
+      "mistake": [
+        "Your opponent errs with {move}. Look calmly: there is a chance.",
+        "{move} is a mistake by your opponent. Take your time."
+      ],
+      "blunder": [
+        "Your opponent blundered with {move}. Calmly now: you can take advantage.",
+        "{move} is a big slip by your opponent. Breathe and see what it gave you."
+      ],
+      "mate": [
+        "Your opponent delivers mate with {move}. The game is over.",
+        "Mate by your opponent with {move}. Time to learn from this game."
+      ]
+    },
+    "equilibrado": {
+      "ok": [
+        "Your opponent plays {move}, a correct move.",
+        "Your opponent answers with {move}."
+      ],
+      "inaccuracy": [
+        "Your opponent plays {move}, an inaccuracy: it gives you some air.",
+        "{move} is not your opponent's best: it concedes a little."
+      ],
+      "mistake": [
+        "Your opponent errs with {move}: this is your chance.",
+        "{move} is your opponent's mistake, and it has an answer."
+      ],
+      "blunder": [
+        "Your opponent blundered with {move}. Take advantage.",
+        "{move} is a serious mistake by your opponent: the game turns in your favor."
+      ],
+      "mate": [
+        "Your opponent delivers mate with {move}.",
+        "Checkmate by your opponent with {move}."
+      ]
+    },
+    "posicional": {
+      "ok": [
+        "Your opponent plays {move}, a correct move that does not weaken their position.",
+        "{move}: a coherent reply from your opponent."
+      ],
+      "inaccuracy": [
+        "Your opponent plays {move}, inaccurate: it gives up a little control.",
+        "With {move} your opponent loosens their position a bit."
+      ],
+      "mistake": [
+        "{move} weakens your opponent's position: there is something to collect.",
+        "Your opponent errs with {move} and leaves a weak point."
+      ],
+      "blunder": [
+        "{move} is a serious mistake: your opponent's position gives way.",
+        "Your opponent breaks their own balance with {move}. Punish it."
+      ],
+      "mate": [
+        "Your opponent delivers mate with {move}. A clean finish.",
+        "Mate with {move}: that is how the game ends."
+      ]
+    },
+    "agresivo": {
+      "ok": [
+        "Your opponent plays {move}, correct. The fight goes on.",
+        "Your opponent answers with {move}. Now it is your turn to attack."
+      ],
+      "inaccuracy": [
+        "Your opponent plays {move}, an inaccuracy! They let you breathe.",
+        "With {move} your opponent loosens up: press."
+      ],
+      "mistake": [
+        "Your opponent errs with {move}! Go get them.",
+        "{move} is a mistake: your chance to press."
+      ],
+      "blunder": [
+        "Your opponent blundered with {move}! Time to collect.",
+        "{move} is a huge mistake by your opponent! Do not let go."
+      ],
+      "mate": [
+        "Your opponent finishes it with {move}: checkmate.",
+        "{move} is your opponent's mate: they took the game."
+      ]
+    }
+  },
+  "frame": {
+    "tranquilo": {
+      "exploit": {
+        "tail": [
+          "Take your time to calculate it, it is worth it.",
+          "Seen calmly, it is an easy edge to collect."
+        ]
+      },
+      "allows": {
+        "tail": [
+          "Next time, before moving, ask yourself what your opponent can do.",
+          "With practice you will spot it earlier."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Let us look at it calmly.",
+          "It is worth understanding this move."
+        ]
+      }
+    },
+    "equilibrado": {
+      "exploit": {
+        "tail": [
+          "Better to collect it now, before your opponent fixes it.",
+          "This is the kind of chance to look for on every move."
+        ]
+      },
+      "allows": {
+        "tail": [
+          "Before moving, check what your opponent can capture or threaten.",
+          "A quick scan of your opponent's replies avoids this kind of error."
+        ]
+      },
+      "good": {
+        "lead": [
+          "This is what the move achieves.",
+          "Let us look at the move."
+        ]
+      }
+    },
+    "posicional": {
+      "exploit": {
+        "tail": [
+          "Unsupported pieces and loose squares are what to look for.",
+          "A position breaks at its weak points: there was one here."
+        ]
+      },
+      "allows": {
+        "tail": [
+          "Before moving, see which pieces and squares are left unprotected.",
+          "Every move changes what each piece defends: check it before moving."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Let us see what changes in the position.",
+          "Notice which pieces and squares this move touches."
+        ]
+      }
+    },
+    "agresivo": {
+      "exploit": {
+        "tail": [
+          "Do not give them time to fix it.",
+          "You attack here, you do not wait."
+        ]
+      },
+      "allows": {
+        "tail": [
+          "Next time, look at what your opponent attacks first, then move.",
+          "To attack well, you first have to look after your own pieces."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Look at what this move does.",
+          "Straight to the point with this move."
+        ]
+      }
+    }
   },
   "pieces": {
     "p": "un pedone",
@@ -193,9 +347,254 @@
     "allowsCheckOpp": "Puoi rispondere con {san}, scacco.",
     "missedMateYou": "C'era scacco matto con {best}.",
     "missedMateOpp": "L'avversario ha perso lo scacco matto con {best}.",
-    "missedCaptureYou": "Potevi catturare {piece} con {best}.",
-    "missedCaptureOpp": "L'avversario poteva catturare {piece} con {best}.",
     "missedBestYou": "La mossa migliore era {best}.",
-    "missedBestOpp": "La mossa migliore per l'avversario era {best}."
+    "missedBestOpp": "La mossa migliore per l'avversario era {best}.",
+    "threatFree": "{Attacker} attacca {target} in {sq}, che non ha difensori.",
+    "threatValue": "{Attacker} attacca {target} in {sq}, un pezzo di maggior valore.",
+    "bestBecauseYou": "La mossa migliore era {best}, perché {why}.",
+    "bestBecauseOpp": "La mossa migliore per l'avversario era {best}, perché {why}."
+  },
+  "tact": {
+    "found": {
+      "you": {
+        "fork": [
+          "Hai trovato una forchetta: {attacker} attacca {targets}.",
+          "Una sola mossa, molte minacce: {attacker} punta a più pezzi."
+        ],
+        "pin": [
+          "Hai trovato un'inchiodatura: {attacker} inchioda {targets} sulla stessa linea.",
+          "Inchiodatura con {attacker}: se il pezzo davanti si muove, quello dietro, più prezioso, viene attaccato."
+        ],
+        "skewer": [
+          "Hai trovato un'infilata: {attacker} attacca {targets} sulla stessa linea.",
+          "Infilata con {attacker}: il pezzo davanti è attaccato e quello dietro resta esposto."
+        ],
+        "discovered": [
+          "Hai trovato un attacco di scoperta: {attacker} ora attacca {targets}.",
+          "Attacco di scoperta: il pezzo si sposta e {attacker} ha via libera."
+        ],
+        "doubleCheck": [
+          "Hai trovato uno scacco doppio: {attacker} e un altro pezzo danno scacco al re.",
+          "Con uno scacco doppio non puoi bloccare né catturare con un altro pezzo: l'avversario deve muovere il re."
+        ],
+        "hanging": [
+          "Hai trovato un pezzo in presa: {attacker} cattura {targetsDef}, che nessuno difendeva.",
+          "Buon occhio: {targetsDef} non aveva difese."
+        ],
+        "backRank": [
+          "Hai trovato un matto sull'ultima traversa: {attacker} dà scacco matto sull'ultima traversa.",
+          "Matto sull'ultima traversa: {attacker} attacca sull'ultima traversa e il re non ha caselle di fuga."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "L'avversario ha trovato una forchetta: {attacker} attacca {targets}.",
+          "Una sola mossa dell'avversario, molte minacce: {attacker} punta a più pezzi."
+        ],
+        "pin": [
+          "L'avversario ha trovato un'inchiodatura: {attacker} inchioda {targets} sulla stessa linea.",
+          "Inchiodatura dell'avversario con {attacker}: se il pezzo davanti si muove, quello dietro, più prezioso, viene attaccato."
+        ],
+        "skewer": [
+          "L'avversario ha trovato un'infilata: {attacker} attacca {targets} sulla stessa linea.",
+          "Infilata dell'avversario con {attacker}: il pezzo davanti è attaccato e quello dietro resta esposto."
+        ],
+        "discovered": [
+          "L'avversario ha trovato un attacco di scoperta: {attacker} ora attacca {targets}.",
+          "Attacco di scoperta dell'avversario: {attacker} ha via libera. Nel mirino: {targetsDef}."
+        ],
+        "doubleCheck": [
+          "L'avversario ha trovato uno scacco doppio: {attacker} e un altro pezzo danno scacco al re.",
+          "Uno scacco doppio si risolve solo muovendo il re, non bloccando né catturando con un altro pezzo."
+        ],
+        "hanging": [
+          "L'avversario ha trovato un pezzo in presa: {attacker} cattura {targetsDef}, che nessuno difendeva.",
+          "Controlla sempre quali pezzi non hanno difese: qui {targetsDef} non ne aveva."
+        ],
+        "backRank": [
+          "L'avversario ha trovato un matto sull'ultima traversa: {attacker} dà scacco matto sull'ultima traversa.",
+          "Il re non ha caselle di fuga dietro i propri pezzi: così funziona il matto sull'ultima traversa."
+        ]
+      }
+    },
+    "allows": {
+      "you": {
+        "fork": [
+          "Questa mossa permette al tuo avversario di fare una forchetta con {san}.",
+          "Con {san}, l'avversario attacca {targets} contemporaneamente con {attacker}."
+        ],
+        "pin": [
+          "Questa mossa permette al tuo avversario di fare un'inchiodatura con {san}.",
+          "Con {san}, l'avversario inchioda {targets} con {attacker}."
+        ],
+        "skewer": [
+          "Questa mossa permette al tuo avversario di fare un'infilata con {san}.",
+          "Con {san}, l'avversario infila {targets} con {attacker}."
+        ],
+        "discovered": [
+          "Questa mossa permette al tuo avversario di fare un attacco di scoperta con {san}.",
+          "Con {san} l'avversario scopre l'attacco: {attacker} ha via libera. Nel mirino: {targetsDef}."
+        ],
+        "doubleCheck": [
+          "Questa mossa permette al tuo avversario di fare uno scacco doppio con {san}.",
+          "Con {san}, l'avversario dà scacco doppio: puoi rispondere solo muovendo il re."
+        ],
+        "hanging": [
+          "Questa mossa lascia un pezzo in presa: l'avversario lo cattura con {san}.",
+          "Con {san}, l'avversario prende {targetsDef} senza difesa."
+        ],
+        "backRank": [
+          "Questa mossa permette al tuo avversario di dare matto sull'ultima traversa con {san}.",
+          "Il tuo re non ha caselle di fuga sull'ultima traversa: {san} è matto."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "Questa mossa ti permette di fare una forchetta con {san}.",
+          "Hai {san}: {attacker} attacca {targets} contemporaneamente."
+        ],
+        "pin": [
+          "Questa mossa ti permette di fare un'inchiodatura con {san}.",
+          "Con {san} puoi inchiodare {targets} con {attacker}."
+        ],
+        "skewer": [
+          "Questa mossa ti permette di fare un'infilata con {san}.",
+          "Con {san} puoi infilare {targets} con {attacker}."
+        ],
+        "discovered": [
+          "Questa mossa ti permette di fare un attacco di scoperta con {san}.",
+          "Con {san} scopri l'attacco: {attacker} ha via libera. Nel mirino: {targetsDef}."
+        ],
+        "doubleCheck": [
+          "Questa mossa ti permette di fare uno scacco doppio con {san}.",
+          "Con {san} dai scacco doppio: l'avversario può rispondere solo muovendo il re."
+        ],
+        "hanging": [
+          "Questa mossa lascia un pezzo in presa: lo catturi con {san}.",
+          "Con {san} prendi {targetsDef} senza difesa."
+        ],
+        "backRank": [
+          "Questa mossa ti permette di dare matto sull'ultima traversa con {san}.",
+          "Il re avversario non ha caselle di fuga sulla sua ultima traversa: {san} è matto."
+        ]
+      }
+    }
+  },
+  "mateIn": {
+    "foundYou": "La tua mossa porta a un matto forzato in {n}.",
+    "foundOpp": "Quella mossa dell'avversario porta a un matto forzato in {n}.",
+    "allowsYou": "Quella mossa permette al tuo avversario di dare matto in {n}.",
+    "allowsOpp": "Quella mossa ti permette di dare matto in {n}."
+  },
+  "plan": {
+    "develop": "Sviluppo: {piece} va da {from} a {to} e lascia la casella iniziale.",
+    "center": "{Piece} arriva a {to}, una casella centrale.",
+    "rookFile": "{Piece} va in {to}, in una colonna senza pedoni propri.",
+    "pawnBreak": "Il pedone arriva a {to} e attacca un pedone avversario.",
+    "pawnAdvance": "Il pedone avanza da {from} a {to}.",
+    "trade": "Offerta di scambio in {to}: l'avversario può riprendere.",
+    "retreat": "{Piece} si ritira da {from} a {to}.",
+    "kingActive": "Il re si avvicina al centro: passa da {from} a {to}.",
+    "plain": "{Piece} si muove da {from} a {to}."
+  },
+  "intent": {
+    "develop": [
+      "Si sviluppava solo {piece} da {from} a {to}.",
+      "L'idea era far uscire {piece} da {from} verso {to}."
+    ],
+    "center": [
+      "La mossa portava {piece} in {to}, una casa centrale.",
+      "{Piece} andava al centro, in {to}."
+    ],
+    "rookFile": [
+      "{Piece} restava in {to}, su una colonna senza pedoni propri.",
+      "L'idea era mettere {piece} in {to}, su una colonna aperta."
+    ],
+    "pawnBreak": [
+      "Il pedone arrivava in {to} per attaccare un pedone avversario.",
+      "Era una rottura di pedoni: {to} mette sotto pressione un pedone avversario."
+    ],
+    "pawnAdvance": [
+      "Il pedone avanzava solo da {from} a {to}.",
+      "Era un avanzamento di pedone: da {from} a {to}."
+    ],
+    "kingActive": [
+      "L'idea era avvicinare il re al centro, da {from} a {to}.",
+      "Il re andava da {from} verso {to}, più vicino al centro."
+    ],
+    "retreat": [
+      "{Piece} arretrava da {from} a {to}.",
+      "La mossa ritirava solo {piece} da {from} a {to}."
+    ]
+  },
+  "line": {
+    "removeDefender": {
+      "exploit": [
+        "Remove the defender: {first} takes {removed} that was guarding {targetSq}; then {finish} takes {target} on {targetSq}.",
+        "Remove the defender: {removed} was guarding {targetSq}. Without it, {target} on {targetSq} falls: {seq}."
+      ],
+      "allows": [
+        "Remove the defender: with {first} your opponent takes {removed} that was guarding {targetSq}; then {finish} takes {target} on {targetSq}.",
+        "Remove the defender: {removed} was guarding {targetSq}. Your opponent takes that piece and {target} on {targetSq} falls: {seq}."
+      ],
+      "missed": [
+        "You could remove the defender: {first} took {removed} that was guarding {targetSq}, and then {finish} won {target} on {targetSq}.",
+        "You could remove the defender: {removed} was guarding {targetSq}. Without it, {target} on {targetSq} fell: {seq}."
+      ]
+    },
+    "material": {
+      "exploit": [
+        "The engine sees {seq}: you win {n} points of material.",
+        "{first} starts a sequence that leaves you {n} points of material ahead."
+      ],
+      "allows": [
+        "The engine sees {seq}: you lose {n} points of material.",
+        "With {first}, your opponent ends up {n} points of material ahead."
+      ],
+      "missed": [
+        "The engine saw {seq}: you won {n} points of material.",
+        "With {first} you could have won {n} points of material."
+      ]
+    }
+  },
+  "and": "e",
+  "pieceDef": {
+    "p": "il pedone",
+    "n": "il cavallo",
+    "b": "l'alfiere",
+    "r": "la torre",
+    "q": "la donna",
+    "k": "il re"
+  },
+  "pieceObj": {
+    "p": "il pedone",
+    "n": "il cavallo",
+    "b": "l'alfiere",
+    "r": "la torre",
+    "q": "la donna",
+    "k": "il re"
+  },
+  "verdict": {
+    "inaccuracy": "ma è un'imprecisione.",
+    "mistake": "ma è un errore.",
+    "blunder": "ma è un errore grave."
+  },
+  "why": {
+    "capture": "cattura {piece}",
+    "fork": "{attacker} attacca {targets} contemporaneamente",
+    "pin": "{attacker} inchioda {targets} sulla stessa linea",
+    "skewer": "{attacker} attacca {targets} sulla stessa linea",
+    "discovered": "si apre la linea di {attacker} e ora attacca {targets}",
+    "doubleCheck": "dà scacco doppio",
+    "hanging": "{attacker} cattura {targetsDef}, che nessuno difendeva",
+    "backRank": "dà scacco matto sull'ultima traversa",
+    "threatFree": "{attacker} attacca {target} in {sq}, che non ha difensori",
+    "threatValue": "{attacker} attacca {target} in {sq}, un pezzo di maggior valore",
+    "develop": "sviluppa {piece} da {from} a {to}",
+    "center": "porta {piece} in {to}, una casa centrale",
+    "rookFile": "mette {piece} in {to}, su una colonna senza pedoni propri",
+    "pawnBreak": "il pedone arriva in {to} e attacca un pedone avversario",
+    "kingActive": "avvicina il re al centro, da {from} a {to}",
+    "trade": "offre uno scambio di pezzi in {to}"
   }
 }

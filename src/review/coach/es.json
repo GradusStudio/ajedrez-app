@@ -154,22 +154,176 @@
     }
   },
   "opp": {
-    "ok": [
-      "El rival juega {move}, una jugada correcta.",
-      "El rival responde con {move}."
-    ],
-    "inaccuracy": [
-      "El rival juega {move}, una imprecisión: te da algo de aire."
-    ],
-    "mistake": [
-      "El rival se equivoca con {move}: es tu oportunidad."
-    ],
-    "blunder": [
-      "¡El rival cometió un error grave con {move}! Aprovéchalo."
-    ],
-    "mate": [
-      "El rival da mate con {move}."
-    ]
+    "tranquilo": {
+      "ok": [
+        "El rival juega {move}: correcta, sigamos con calma.",
+        "Respuesta razonable del rival: {move}."
+      ],
+      "inaccuracy": [
+        "El rival juega {move}, una imprecisión: te da un poco de aire.",
+        "Con {move} el rival no encuentra lo mejor; hay algo para ti."
+      ],
+      "mistake": [
+        "El rival se equivoca con {move}. Mira con calma: hay una oportunidad.",
+        "{move} es un error del rival. Tómate tu tiempo."
+      ],
+      "blunder": [
+        "El rival cometió un error grave con {move}. Con calma, ahora puedes aprovecharlo.",
+        "{move} es un descuido grande del rival. Respira y mira qué te regaló."
+      ],
+      "mate": [
+        "El rival da mate con {move}. La partida terminó.",
+        "Mate del rival con {move}. Toca aprender de esta partida."
+      ]
+    },
+    "equilibrado": {
+      "ok": [
+        "El rival juega {move}, una jugada correcta.",
+        "El rival responde con {move}."
+      ],
+      "inaccuracy": [
+        "El rival juega {move}, una imprecisión: te da algo de aire.",
+        "{move} no es lo mejor del rival: cede un poco."
+      ],
+      "mistake": [
+        "El rival se equivoca con {move}: es tu oportunidad.",
+        "{move} es un error del rival y tiene respuesta."
+      ],
+      "blunder": [
+        "El rival cometió un error grave con {move}. Aprovéchalo.",
+        "{move} es un error grave del rival: la partida cambia a tu favor."
+      ],
+      "mate": [
+        "El rival da mate con {move}.",
+        "Jaque mate del rival con {move}."
+      ]
+    },
+    "posicional": {
+      "ok": [
+        "El rival juega {move}, una jugada correcta que no debilita su posición.",
+        "{move}: una respuesta coherente del rival."
+      ],
+      "inaccuracy": [
+        "El rival juega {move}, imprecisa: cede un poco de control.",
+        "Con {move} el rival afloja algo su posición."
+      ],
+      "mistake": [
+        "{move} debilita la posición del rival: hay algo que cobrar.",
+        "El rival se equivoca con {move} y deja un punto débil."
+      ],
+      "blunder": [
+        "{move} es un error grave: la posición del rival se resiente.",
+        "El rival rompe su propio equilibrio con {move}. Hay que castigarlo."
+      ],
+      "mate": [
+        "El rival da mate con {move}. Final limpio.",
+        "Mate con {move}: así termina la partida."
+      ]
+    },
+    "agresivo": {
+      "ok": [
+        "El rival juega {move}, correcta. La pelea sigue.",
+        "El rival responde con {move}. Ahora te toca atacar a ti."
+      ],
+      "inaccuracy": [
+        "¡El rival juega {move}, una imprecisión! Te deja respirar.",
+        "Con {move} el rival afloja: aprieta."
+      ],
+      "mistake": [
+        "¡El rival se equivoca con {move}! A por él.",
+        "{move} es un error: es tu oportunidad de apretar."
+      ],
+      "blunder": [
+        "¡El rival cometió un error grave con {move}! A cobrar.",
+        "¡{move} es un error enorme del rival! No lo sueltes."
+      ],
+      "mate": [
+        "El rival remata con {move}: jaque mate.",
+        "{move} es mate del rival: se llevó la partida."
+      ]
+    }
+  },
+  "frame": {
+    "tranquilo": {
+      "exploit": {
+        "tail": [
+          "Tómate el tiempo de calcularlo, vale la pena.",
+          "Visto con calma, es una ventaja fácil de cobrar."
+        ]
+      },
+      "allows": {
+        "tail": [
+          "La próxima vez, antes de mover, pregúntate qué puede hacer el rival.",
+          "Con práctica lo vas a ver antes."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Mirémosla con calma.",
+          "Vale la pena entender esta jugada."
+        ]
+      }
+    },
+    "equilibrado": {
+      "exploit": {
+        "tail": [
+          "Conviene cobrarlo ahora, antes de que el rival lo arregle.",
+          "Es el tipo de oportunidad que hay que buscar en cada jugada."
+        ]
+      },
+      "allows": {
+        "tail": [
+          "Antes de mover, revisa qué puede capturar o amenazar el rival.",
+          "Un repaso rápido de las respuestas del rival evita este tipo de error."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Esto es lo que logra la jugada.",
+          "Veamos la jugada."
+        ]
+      }
+    },
+    "posicional": {
+      "exploit": {
+        "tail": [
+          "Las piezas sin apoyo y las casillas flojas son lo que conviene buscar.",
+          "Una posición se rompe por sus puntos débiles: aquí había uno."
+        ]
+      },
+      "allows": {
+        "tail": [
+          "Antes de mover, mira qué piezas y casillas quedan sin protección.",
+          "Cada jugada cambia lo que defiende cada pieza: compruébalo antes de mover."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Veamos qué cambia en la posición.",
+          "Fíjate en qué piezas y casillas toca esta jugada."
+        ]
+      }
+    },
+    "agresivo": {
+      "exploit": {
+        "tail": [
+          "No le des tiempo a arreglarlo.",
+          "Aquí se ataca, no se espera."
+        ]
+      },
+      "allows": {
+        "tail": [
+          "La próxima, mira primero qué ataca el rival y después mueves.",
+          "Para atacar bien, primero hay que cuidar lo tuyo."
+        ]
+      },
+      "good": {
+        "lead": [
+          "Mira lo que hace esta jugada.",
+          "Vamos al grano con esta jugada."
+        ]
+      }
+    }
   },
   "pieces": {
     "p": "un peón",
@@ -193,9 +347,254 @@
     "allowsCheckOpp": "Puedes responder con {san}, jaque.",
     "missedMateYou": "Había mate con {best}.",
     "missedMateOpp": "El rival no vio el mate con {best}.",
-    "missedCaptureYou": "Podías capturar {piece} con {best}.",
-    "missedCaptureOpp": "El rival podía capturar {piece} con {best}.",
-    "missedBestYou": "Lo mejor era {best}.",
-    "missedBestOpp": "Lo mejor para el rival era {best}."
+    "missedBestYou": "La mejor jugada era {best}.",
+    "missedBestOpp": "La mejor jugada para el rival era {best}.",
+    "threatFree": "{Attacker} ataca {target} de {sq}, que no tiene defensores.",
+    "threatValue": "{Attacker} ataca {target} de {sq}, una pieza de más valor.",
+    "bestBecauseYou": "La mejor jugada era {best}, porque {why}.",
+    "bestBecauseOpp": "La mejor jugada para el rival era {best}, porque {why}."
+  },
+  "tact": {
+    "found": {
+      "you": {
+        "fork": [
+          "Encontraste una horquilla: {attacker} ataca {targets}.",
+          "Una sola jugada, varias amenazas: {attacker} apunta a más de una pieza."
+        ],
+        "pin": [
+          "Encontraste una clavada: {attacker} sujeta {targets} en la misma línea.",
+          "Clavada con {attacker}: si la pieza de adelante se mueve, la de atrás, que vale más, queda atacada."
+        ],
+        "skewer": [
+          "Encontraste una enfilada: {attacker} ataca {targets} en la misma línea.",
+          "Enfilada con {attacker}: la pieza de adelante está atacada y la de atrás queda expuesta detrás de ella."
+        ],
+        "discovered": [
+          "Encontraste un ataque a la descubierta: {attacker} ahora ataca {targets}.",
+          "Ataque a la descubierta: al moverse la pieza, se abrió la línea de {attacker}."
+        ],
+        "doubleCheck": [
+          "Encontraste un jaque doble: {attacker} y otra pieza dan jaque al rey.",
+          "Con un jaque doble no vale bloquear ni capturar con otra pieza: el rival tiene que mover el rey."
+        ],
+        "hanging": [
+          "Encontraste una pieza colgada: {attacker} captura {targetsDef}, que nadie defendía.",
+          "Buen ojo: {targetsDef} estaba sin defensa."
+        ],
+        "backRank": [
+          "Encontraste un mate del pasillo: {attacker} da jaque mate en la última fila.",
+          "Mate del pasillo: {attacker} ataca por la última fila y el rey no tiene casillas de escape."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "El rival encontró una horquilla: {attacker} ataca {targets}.",
+          "Una sola jugada del rival, varias amenazas: {attacker} apunta a más de una pieza."
+        ],
+        "pin": [
+          "El rival encontró una clavada: {attacker} sujeta {targets} en la misma línea.",
+          "Clavada del rival con {attacker}: si la pieza de adelante se mueve, la de atrás, que vale más, queda atacada."
+        ],
+        "skewer": [
+          "El rival encontró una enfilada: {attacker} ataca {targets} en la misma línea.",
+          "Enfilada del rival con {attacker}: la pieza de adelante está atacada y la de atrás queda expuesta detrás de ella."
+        ],
+        "discovered": [
+          "El rival encontró un ataque a la descubierta: {attacker} ahora ataca {targets}.",
+          "Ataque a la descubierta del rival: se abrió la línea de {attacker} sobre {targetsDef}."
+        ],
+        "doubleCheck": [
+          "El rival encontró un jaque doble: {attacker} y otra pieza dan jaque al rey.",
+          "Un jaque doble solo se resuelve moviendo el rey, no bloqueando ni capturando con otra pieza."
+        ],
+        "hanging": [
+          "El rival encontró una pieza colgada: {attacker} captura {targetsDef}, que nadie defendía.",
+          "Revisa siempre qué piezas quedan sin defensa: aquí {targetsDef} no tenía ninguna."
+        ],
+        "backRank": [
+          "El rival encontró un mate del pasillo: {attacker} da jaque mate en la última fila.",
+          "El rey no tiene casillas de escape detrás de sus propias piezas: así funciona el mate del pasillo."
+        ]
+      }
+    },
+    "allows": {
+      "you": {
+        "fork": [
+          "Esa jugada habilita a tu rival a realizar una horquilla con {san}.",
+          "Con {san}, el rival ataca {targets} a la vez con {attacker}."
+        ],
+        "pin": [
+          "Esa jugada habilita a tu rival a realizar una clavada con {san}.",
+          "Con {san}, el rival clava {targets} con {attacker}."
+        ],
+        "skewer": [
+          "Esa jugada habilita a tu rival a realizar una enfilada con {san}.",
+          "Con {san}, el rival enfila {targets} con {attacker}."
+        ],
+        "discovered": [
+          "Esa jugada habilita a tu rival a realizar un ataque a la descubierta con {san}.",
+          "Con {san}, el rival abre la línea de {attacker} sobre {targetsDef}."
+        ],
+        "doubleCheck": [
+          "Esa jugada habilita a tu rival a realizar un jaque doble con {san}.",
+          "Con {san}, el rival da jaque doble: solo podrías responder moviendo el rey."
+        ],
+        "hanging": [
+          "Esa jugada deja una pieza colgada: el rival la captura con {san}.",
+          "Con {san}, el rival se lleva {targetsDef} sin defensa."
+        ],
+        "backRank": [
+          "Esa jugada habilita a tu rival a dar mate del pasillo con {san}.",
+          "Tu rey no tiene casillas de escape en la última fila: {san} sería mate."
+        ]
+      },
+      "opp": {
+        "fork": [
+          "Esa jugada te habilita a realizar una horquilla con {san}.",
+          "Tienes {san}: {attacker} ataca {targets} a la vez."
+        ],
+        "pin": [
+          "Esa jugada te habilita a realizar una clavada con {san}.",
+          "Con {san} puedes clavar {targets} con {attacker}."
+        ],
+        "skewer": [
+          "Esa jugada te habilita a realizar una enfilada con {san}.",
+          "Con {san} puedes enfilar {targets} con {attacker}."
+        ],
+        "discovered": [
+          "Esa jugada te habilita a realizar un ataque a la descubierta con {san}.",
+          "Con {san} abres la línea de {attacker} sobre {targetsDef}."
+        ],
+        "doubleCheck": [
+          "Esa jugada te habilita a realizar un jaque doble con {san}.",
+          "Con {san} das jaque doble: el rival solo puede responder moviendo el rey."
+        ],
+        "hanging": [
+          "Esa jugada deja una pieza colgada: la capturas con {san}.",
+          "Con {san} te llevas {targetsDef} sin defensa."
+        ],
+        "backRank": [
+          "Esa jugada te habilita a dar mate del pasillo con {san}.",
+          "El rey rival no tiene casillas de escape en su última fila: {san} es mate."
+        ]
+      }
+    }
+  },
+  "mateIn": {
+    "foundYou": "Tu jugada deja mate forzado en {n}.",
+    "foundOpp": "Esa jugada del rival deja mate forzado en {n}.",
+    "allowsYou": "Esa jugada habilita a tu rival a realizar un mate en {n}.",
+    "allowsOpp": "Esa jugada te habilita a realizar un mate en {n}."
+  },
+  "plan": {
+    "develop": "Desarrolla {piece} de {from} a {to}: saca una pieza menor de su casilla inicial.",
+    "center": "{Piece} llega a {to}, una casilla central.",
+    "rookFile": "{Piece} se coloca en {to}, en una columna sin peones propios.",
+    "pawnBreak": "El peón llega a {to} y queda atacando un peón rival.",
+    "pawnAdvance": "El peón avanza de {from} a {to}.",
+    "trade": "Ofrece un cambio de piezas en {to}; el rival puede recapturar.",
+    "retreat": "{Piece} retrocede de {from} a {to}.",
+    "kingActive": "El rey se acerca al centro: pasa de {from} a {to}.",
+    "plain": "{Piece} se mueve de {from} a {to}."
+  },
+  "intent": {
+    "develop": [
+      "Solo desarrollaba {piece} de {from} a {to}.",
+      "La idea era sacar {piece} de {from} hacia {to}."
+    ],
+    "center": [
+      "La jugada llevaba {piece} a {to}, una casilla central.",
+      "{Piece} iba al centro, a {to}."
+    ],
+    "rookFile": [
+      "{Piece} quedaba en {to}, en una columna sin peones propios.",
+      "La idea era poner {piece} en {to}, en una columna abierta para ella."
+    ],
+    "pawnBreak": [
+      "El peón llegaba a {to} para atacar un peón rival.",
+      "Era una ruptura de peones: {to} presiona un peón rival."
+    ],
+    "pawnAdvance": [
+      "El peón solo avanzaba de {from} a {to}.",
+      "Era un avance de peón: de {from} a {to}."
+    ],
+    "kingActive": [
+      "La idea era acercar el rey al centro, de {from} a {to}.",
+      "El rey salía de {from} hacia {to}, más cerca del centro."
+    ],
+    "retreat": [
+      "{Piece} retrocedía de {from} a {to}.",
+      "La jugada solo retiraba {piece} de {from} a {to}."
+    ]
+  },
+  "line": {
+    "removeDefender": {
+      "exploit": [
+        "Eliminar al defensor: {first} se lleva {removed} que defendía {targetSq}; después, {finish} gana {target} de {targetSq}.",
+        "Eliminar al defensor: {removed} protegía {targetSq}. Sin él, {target} de {targetSq} cae: {seq}."
+      ],
+      "allows": [
+        "Eliminar al defensor: con {first} el rival se lleva {removed} que defendía {targetSq}; después, {finish} gana {target} de {targetSq}.",
+        "Eliminar al defensor: {removed} protegía {targetSq}. El rival captura esa pieza y {target} de {targetSq} cae: {seq}."
+      ],
+      "missed": [
+        "Se podía eliminar al defensor: {first} se llevaba {removed} que defendía {targetSq}; después, {finish} ganaba {target} de {targetSq}.",
+        "Se podía eliminar al defensor: {removed} protegía {targetSq}. Sin él, {target} de {targetSq} caía: {seq}."
+      ]
+    },
+    "material": {
+      "exploit": [
+        "El motor ve {seq}: ganas {n} puntos de material.",
+        "Con {first} empieza una secuencia que te deja {n} puntos de material arriba."
+      ],
+      "allows": [
+        "El motor ve {seq}: pierdes {n} puntos de material.",
+        "Con {first}, el rival queda {n} puntos de material arriba."
+      ],
+      "missed": [
+        "El motor veía {seq}: ganabas {n} puntos de material.",
+        "Con {first} podías ganar {n} puntos de material."
+      ]
+    }
+  },
+  "and": "y",
+  "pieceDef": {
+    "p": "el peón",
+    "n": "el caballo",
+    "b": "el alfil",
+    "r": "la torre",
+    "q": "la dama",
+    "k": "el rey"
+  },
+  "pieceObj": {
+    "p": "al peón",
+    "n": "al caballo",
+    "b": "al alfil",
+    "r": "a la torre",
+    "q": "a la dama",
+    "k": "al rey"
+  },
+  "verdict": {
+    "inaccuracy": "pero es una imprecisión.",
+    "mistake": "pero es un error.",
+    "blunder": "pero es un error grave."
+  },
+  "why": {
+    "capture": "captura {piece}",
+    "fork": "{attacker} ataca {targets} a la vez",
+    "pin": "{attacker} sujeta {targets} en la misma línea",
+    "skewer": "{attacker} ataca {targets} en la misma línea",
+    "discovered": "se abre la línea de {attacker} y ahora ataca {targets}",
+    "doubleCheck": "da jaque doble",
+    "hanging": "{attacker} captura {targetsDef}, que nadie defendía",
+    "backRank": "da mate del pasillo",
+    "threatFree": "{attacker} ataca {target} de {sq}, que no tiene defensores",
+    "threatValue": "{attacker} ataca {target} de {sq}, una pieza de más valor",
+    "develop": "desarrolla {piece} de {from} a {to}",
+    "center": "lleva {piece} a {to}, una casilla central",
+    "rookFile": "coloca {piece} en {to}, en una columna sin peones propios",
+    "pawnBreak": "el peón llega a {to} y ataca un peón rival",
+    "kingActive": "acerca el rey al centro, de {from} a {to}",
+    "trade": "ofrece un cambio de piezas en {to}"
   }
 }

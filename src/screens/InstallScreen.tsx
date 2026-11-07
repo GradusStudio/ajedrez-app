@@ -116,7 +116,7 @@ function Steps({ system, open, first }: { system: System; open: boolean; first?:
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { flexGrow: 1, paddingHorizontal: space.lg, paddingBottom: space.xxl, alignItems: 'center' },
-  column: { width: '100%', maxWidth: 480 },
+  column: { width: '100%' },
   icon: { width: 72, height: 72, borderRadius: 16 },
   brand: { fontFamily: fonts.extrabold, fontSize: 28, color: colors.text, marginTop: space.md },
   tagline: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.xs, lineHeight: 22 },

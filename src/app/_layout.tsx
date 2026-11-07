@@ -15,6 +15,7 @@ import { ProgressProvider, useProgress } from '../progress/ProgressContext';
 import { PieceSetProvider, usePieceSet } from '../settings/PieceSetContext';
 import { SettingsProvider, useSettings } from '../settings/SettingsContext';
 import { useReminderSync } from '../settings/useReminderSync';
+import { registerServiceWorker, requestPersistentStorage } from '../pwa/register';
 import { colors } from '../theme';
 
 // Tema de la navegación: su `background` es el fondo que se ve detrás de las pantallas mientras se deslizan
@@ -33,6 +34,11 @@ export default function RootLayout() {
   useEffect(() => {
     const t = setTimeout(() => SplashScreen.hideAsync().catch(() => {}), SPLASH_MAX_MS);
     return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    registerServiceWorker();
+    requestPersistentStorage();
   }, []);
 
   // Oculta la barra de navegación de Android (se muestra al deslizar desde abajo y vuelve a ocultarse).

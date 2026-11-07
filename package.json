@@ -38,10 +38,11 @@
     "sharp": "^0.35.5",
     "stockfish": "19.0.1",
     "tsx": "^4.23.15",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "workbox-build": "^7.4.1"
   },
   "scripts": {
-    "build:web": "expo export -p web",
+    "build:web": "expo export -p web && node scripts/build-sw.js",
     "build:avatars": "node scripts/build-avatars.js",
     "build:engine": "node scripts/build-engine.js",
     "build:maia": "node scripts/build-maia.js",

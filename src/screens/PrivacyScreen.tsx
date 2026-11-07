@@ -25,7 +25,7 @@ export function PrivacyScreen({ onBack }: { onBack: () => void }) {
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('privacy.back').replace('‹ ', '')} hitSlop={12} style={styles.backButton}>
+      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('privacy.backLabel')} hitSlop={12} style={styles.backButton}>
         <Text style={styles.back}>{t('privacy.back')}</Text>
       </Pressable>
 
@@ -68,5 +68,5 @@ const styles = StyleSheet.create({
   section: { marginTop: space.xl },
   heading: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text },
   text: { fontFamily: fonts.semibold, fontSize: 15, color: colors.textMuted, marginTop: space.sm, lineHeight: 23 },
-  link: { fontFamily: fonts.bold, fontSize: 15, color: colors.primary, marginTop: space.sm, textDecorationLine: 'underline' },
+  link: { fontFamily: fonts.bold, fontSize: 15, color: colors.primary, minHeight: 44, textAlignVertical: 'center', marginTop: space.xs, textDecorationLine: 'underline' },
 });

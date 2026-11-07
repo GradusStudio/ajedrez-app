@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
   note: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted, marginBottom: space.lg },
-  privacyLink: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary, marginBottom: space.lg, textDecorationLine: 'underline' },
+  privacyLink: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary, minHeight: 44, textAlignVertical: 'center', marginBottom: space.sm, textDecorationLine: 'underline' },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,

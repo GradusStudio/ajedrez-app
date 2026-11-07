@@ -628,11 +628,12 @@ export const en: Record<MessageKey, string> = {
 
   // Política de privacidad (web)
   'privacy.back': '‹ Back',
+  'privacy.backLabel': 'Back',
   'privacy.title': 'Gradus privacy policy',
   'privacy.updated': 'Gradus Chess: learn chess, published by Gradus Studio. Last updated: November 7, 2026.',
   'privacy.summary': 'Gradus has no accounts, ads or analytics tools, and Gradus Studio does not collect personal data. Your progress and settings are stored only on this device.',
   'privacy.stored.title': 'What is stored on this device',
-  'privacy.stored.text': 'Your progress (lessons, streak, coins, solved puzzles) and your settings (sound, language, board and pieces), plus the usernames you used when importing games, are stored in the browser\'s storage, on this device. Gradus Studio does not receive or see them. If you clear the site data, they are lost: to keep them, use "Save a copy of your progress" in Settings. The copy is a file that stays with you. Gradus also asks the browser not to clear this data on its own.',
+  'privacy.stored.text': 'Your progress (lessons, streak, coins, solved puzzles) and your settings (sound, language, board and pieces), the commentator you chose for reviewing games and the usernames you used when importing games are stored in the browser\'s storage, on this device. Gradus Studio does not receive or see them. If you clear the site data, they are lost: to keep them, use "Save a copy of your progress" in Settings. The copy is a file that stays with you. If you install Gradus as an app, it also asks the browser not to clear this data on its own.',
   'privacy.offline.title': 'What the app stores to work offline',
   'privacy.offline.text': 'Gradus stores its own files (the code, the lessons, the chess engines and the puzzles) in the browser\'s memory so it works without internet. They are the same for everyone and contain none of your data.',
   'privacy.leaves.title': 'What leaves this device',

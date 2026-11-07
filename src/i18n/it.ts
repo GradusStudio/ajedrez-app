@@ -628,11 +628,12 @@ export const it: Record<MessageKey, string> = {
 
   // Política de privacidad (web)
   'privacy.back': '‹ Indietro',
+  'privacy.backLabel': 'Indietro',
   'privacy.title': 'Informativa sulla privacy di Gradus',
   'privacy.updated': 'Gradus Chess: impara gli scacchi, pubblicata da Gradus Studio. Ultimo aggiornamento: 7 novembre 2026.',
   'privacy.summary': 'Gradus non ha account, pubblicità né strumenti di statistica, e Gradus Studio non raccoglie dati personali. I tuoi progressi e le tue impostazioni sono salvati solo su questo dispositivo.',
   'privacy.stored.title': 'Cosa viene salvato su questo dispositivo',
-  'privacy.stored.text': 'I tuoi progressi (lezioni, serie, monete, puzzle risolti) e le tue impostazioni (suono, lingua, scacchiera e pezzi), insieme ai nomi utente che hai usato per importare partite, sono salvati nella memoria del browser, su questo dispositivo. Gradus Studio non li riceve e non li vede. Se cancelli i dati del sito, vanno persi: per conservarli, usa «Salva una copia dei progressi» in Impostazioni. La copia è un file che resta a te. Gradus chiede inoltre al browser di non cancellare questi dati da solo.',
+  'privacy.stored.text': 'I tuoi progressi (lezioni, serie, monete, puzzle risolti) e le tue impostazioni (suono, lingua, scacchiera e pezzi), il commentatore che hai scelto per rivedere le partite e i nomi utente che hai usato per importare partite sono salvati nella memoria del browser, su questo dispositivo. Gradus Studio non li riceve e non li vede. Se cancelli i dati del sito, vanno persi: per conservarli, usa «Salva una copia dei progressi» in Impostazioni. La copia è un file che resta a te. Se installi Gradus come app, chiede inoltre al browser di non cancellare questi dati da solo.',
   'privacy.offline.title': 'Cosa salva l\'app per funzionare offline',
   'privacy.offline.text': 'Gradus salva i propri file (il codice, le lezioni, i motori di scacchi e i puzzle) nella memoria del browser, così funziona senza internet. Sono uguali per tutti e non contengono dati tuoi.',
   'privacy.leaves.title': 'Cosa esce da questo dispositivo',

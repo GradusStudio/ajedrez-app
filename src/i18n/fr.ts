@@ -628,11 +628,12 @@ export const fr: Record<MessageKey, string> = {
 
   // Política de privacidad (web)
   'privacy.back': '‹ Retour',
+  'privacy.backLabel': 'Retour',
   'privacy.title': 'Politique de confidentialité de Gradus',
   'privacy.updated': 'Gradus Chess : apprendre les échecs, publiée par Gradus Studio. Dernière mise à jour : 7 novembre 2026.',
   'privacy.summary': 'Gradus n\'a ni comptes, ni publicités, ni outils de statistiques, et Gradus Studio ne collecte pas de données personnelles. Ta progression et tes réglages sont sauvegardés uniquement sur cet appareil.',
   'privacy.stored.title': 'Ce qui est sauvegardé sur cet appareil',
-  'privacy.stored.text': 'Ta progression (leçons, série, jetons, puzzles résolus) et tes réglages (son, langue, échiquier et pièces), ainsi que les noms d\'utilisateur utilisés pour importer des parties, sont sauvegardés dans le stockage du navigateur, sur cet appareil. Gradus Studio ne les reçoit pas et ne les voit pas. Si tu effaces les données du site, ils sont perdus : pour les conserver, utilise « Sauvegarder une copie de la progression » dans Réglages. La copie est un fichier qui reste chez toi. Gradus demande aussi au navigateur de ne pas effacer ces données de lui-même.',
+  'privacy.stored.text': 'Ta progression (leçons, série, jetons, puzzles résolus) et tes réglages (son, langue, échiquier et pièces), le commentateur choisi pour revoir les parties et les noms d\'utilisateur utilisés pour importer des parties sont sauvegardés dans le stockage du navigateur, sur cet appareil. Gradus Studio ne les reçoit pas et ne les voit pas. Si tu effaces les données du site, ils sont perdus : pour les conserver, utilise « Sauvegarder une copie de la progression » dans Réglages. La copie est un fichier qui reste chez toi. Si tu installes Gradus comme une appli, il demande aussi au navigateur de ne pas effacer ces données de lui-même.',
   'privacy.offline.title': 'Ce que l\'app garde pour fonctionner hors ligne',
   'privacy.offline.text': 'Gradus garde ses propres fichiers (le code, les leçons, les moteurs d\'échecs et les puzzles) dans la mémoire du navigateur pour fonctionner sans internet. Ils sont les mêmes pour tout le monde et ne contiennent aucune donnée de toi.',
   'privacy.leaves.title': 'Ce qui quitte cet appareil',

@@ -627,11 +627,12 @@ export const es = {
 
   // Política de privacidad (web)
   'privacy.back': '‹ Volver',
+  'privacy.backLabel': 'Volver',
   'privacy.title': 'Política de privacidad de Gradus',
   'privacy.updated': 'Gradus Chess: aprende ajedrez, publicada por Gradus Studio. Última actualización: 7 de noviembre de 2026.',
   'privacy.summary': 'Gradus no tiene cuentas, anuncios ni herramientas de estadísticas, y Gradus Studio no recopila datos personales. Tu progreso y tus ajustes se guardan solo en este dispositivo.',
   'privacy.stored.title': 'Qué se guarda en este dispositivo',
-  'privacy.stored.text': 'Tu progreso (lecciones, racha, monedas, puzzles resueltos) y tus ajustes (sonido, idioma, tablero y piezas), además de los nombres de usuario que usaste al importar partidas, se guardan en el almacenamiento del navegador, en este dispositivo. Gradus Studio no los recibe ni los ve. Si borras los datos del sitio, se pierden: para conservarlos, usa «Guardar una copia del progreso» en Ajustes. La copia es un archivo que queda en tu poder. Gradus también le pide al navegador que no borre estos datos por su cuenta.',
+  'privacy.stored.text': 'Tu progreso (lecciones, racha, monedas, puzzles resueltos) y tus ajustes (sonido, idioma, tablero y piezas), el comentarista que elegiste para revisar partidas y los nombres de usuario que usaste al importar partidas se guardan en el almacenamiento del navegador, en este dispositivo. Gradus Studio no los recibe ni los ve. Si borras los datos del sitio, se pierden: para conservarlos, usa «Guardar una copia del progreso» en Ajustes. La copia es un archivo que queda en tu poder. Si instalas Gradus como app, también le pide al navegador que no borre estos datos por su cuenta.',
   'privacy.offline.title': 'Qué guarda la app para funcionar sin conexión',
   'privacy.offline.text': 'Gradus guarda sus propios archivos (el código, las lecciones, los motores de ajedrez y los puzzles) en la memoria del navegador para que funcione sin internet. Son los mismos para todos y no contienen datos tuyos.',
   'privacy.leaves.title': 'Qué sale de este dispositivo',

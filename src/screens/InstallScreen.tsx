@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   icon: { width: 72, height: 72, borderRadius: 16 },
   brand: { fontFamily: fonts.extrabold, fontSize: 28, color: colors.text, marginTop: space.md },
   tagline: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.xs, lineHeight: 22 },
-  privacy: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary, marginTop: space.xxl, textDecorationLine: 'underline' },
+  privacy: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary, minHeight: 44, textAlignVertical: 'center', marginTop: space.xl, textDecorationLine: 'underline' },
   block: { marginTop: space.xl },
   heading: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text },
   text: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },

@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const { generateSW } = require('workbox-build');
-const { findLeaks } = require('./swChecks');
+const { findLeaks, heavyCachePlugin } = require('./swChecks');
 
 const DIST = path.join(__dirname, '..', 'dist');
 const JS_DIR = path.join(DIST, '_expo', 'static', 'js', 'web');
@@ -59,7 +59,13 @@ async function main() {
       {
         urlPattern: matchHeavy,
         handler: 'CacheFirst',
-        options: { cacheName: 'gradus-heavy', cacheableResponse: { statuses: [0, 200] } },
+        options: {
+          cacheName: 'gradus-heavy',
+          // Solo respuestas 200 que no sean HTML (swChecks.js): nunca el index.html del respaldo de SPA.
+          plugins: [heavyCachePlugin],
+          // Los nombres cambian en cada versión: quedan los 4 trozos usados más recientemente.
+          expiration: { maxEntries: 4 },
+        },
       },
     ],
   });

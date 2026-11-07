@@ -1,15 +1,10 @@
 import { useSyncExternalStore } from 'react';
 import { detectInstallPlatform, InstallPlatform } from './installPlatform';
+import { isStandalone } from './standalone.web';
 
 function read(): InstallPlatform {
-  const nav = navigator as Navigator & { standalone?: boolean };
-  let standalone = nav.standalone === true;
-  try {
-    standalone = standalone || window.matchMedia('(display-mode: standalone)').matches;
-  } catch {
-    // Sin matchMedia se usa solo la señal de Safari.
-  }
-  return detectInstallPlatform(nav.userAgent ?? '', standalone, nav.maxTouchPoints ?? 0);
+  const nav = navigator as Navigator;
+  return detectInstallPlatform(nav.userAgent ?? '', isStandalone(), nav.maxTouchPoints ?? 0);
 }
 
 const subscribe = () => () => {};

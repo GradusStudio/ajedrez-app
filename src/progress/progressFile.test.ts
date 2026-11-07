@@ -174,3 +174,23 @@ test('racha negativa o contadores sobre el tope: notGradus', () => {
   assert.equal(rejects(file({ ...sample, streak: { current: 1e300, best: 1, lastActiveDate: null } })), 'notGradus');
   assert.equal(parseProgressFile(file({ ...sample, coinLedger: { A: { earned: 1_000_000_000, spent: 0 } } })).ok, true);
 });
+
+test('claves __proto__, constructor o prototype en registros: notGradus', () => {
+  const at = '2026-11-01T00:00:00.000Z';
+  const cases: Record<string, (k: string) => Record<string, unknown>> = {
+    lessons: (k) => ({ lessons: { [k]: { done: true, errors: 0, completedAt: at, completions: 1 } } }),
+    puzzles: (k) => ({ puzzles: { [k]: { result: 'clean', at } } }),
+    drafts: (k) => ({ drafts: { [k]: { stepIndex: 1, errors: 0, mistakes: [] } } }),
+    coinLedger: (k) => ({ coinLedger: { [k]: { earned: 5, spent: 0 } } }),
+    botWins: (k) => ({ rewards: { goalDate: null, botWins: { [k]: at } } }),
+    stamps: (k) => ({ stamps: { [k]: at } }),
+  };
+  for (const [name, make] of Object.entries(cases)) {
+    // El marcador se reemplaza en el texto: un objeto de JS no puede tener una clave __proto__ propia escrita así.
+    assert.equal(parseProgressFile(file({ ...sample, ...make('CLAVE') })).ok, true, name);
+    for (const bad of ['__proto__', 'constructor', 'prototype']) {
+      const text = file({ ...sample, ...make('CLAVE') }).replace('"CLAVE"', JSON.stringify(bad));
+      assert.equal(rejects(text), 'notGradus', `${name} ${bad}`);
+    }
+  }
+});

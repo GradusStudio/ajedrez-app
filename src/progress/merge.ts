@@ -51,11 +51,14 @@ function earlierDate(a: string, b: string): string {
   return pick(a, b, cmpDate(b, a));
 }
 
-/** Une dos registros por clave; `both` decide cuando la clave está en los dos. */
+/**
+ * Une dos registros por clave; `both` decide cuando la clave está en los dos. Solo mira claves propias y arma el
+ * resultado con `Object.fromEntries`: una clave `__proto__` de un archivo queda como dato y no cambia el prototipo.
+ */
 function mergeRecord<T>(a: Record<string, T>, b: Record<string, T>, both: (x: T, y: T) => T): Record<string, T> {
-  const out: Record<string, T> = { ...a };
-  for (const [k, v] of Object.entries(b)) out[k] = k in a ? both(a[k], v) : v;
-  return out;
+  const out = new Map<string, T>(Object.entries(a));
+  for (const [k, v] of Object.entries(b)) out.set(k, Object.prototype.hasOwnProperty.call(a, k) ? both(a[k], v) : v);
+  return Object.fromEntries(out);
 }
 
 const union = (a: string[], b: string[]) => [...new Set([...a, ...b])].sort();
@@ -121,9 +124,10 @@ function lastChanged<T>(
 export function mergeProgress(local: Progress, incoming: Progress): Progress {
   // Si se borró el progreso en uno de los dos después que en el otro, gana entera esa versión.
   const resetCmp = cmpDate(local.resetAt, incoming.resetAt);
+  // Pasa por la misma combinación de campos (consigo misma) para salir normalizada: así es idempotente.
   if (resetCmp !== 0) {
     const winner = resetCmp > 0 ? local : incoming;
-    return { ...winner, deviceId: local.deviceId, coins: coinBalance(winner.coinLedger) };
+    return { ...mergeProgress(winner, winner), deviceId: local.deviceId };
   }
 
   const lessons = mergeRecord(local.lessons, incoming.lessons, mergeLesson);

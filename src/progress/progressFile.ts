@@ -21,8 +21,11 @@ const isCount = (x: unknown) => typeof x === 'number' && Number.isFinite(x) && x
 const isString = (x: unknown) => typeof x === 'string';
 const isStrings = (x: unknown) => Array.isArray(x) && x.every(isString);
 const isStringOrNull = (x: unknown) => x === null || isString(x);
+/** Claves que, usadas como `registro[clave]`, tocan prototipos: un registro del archivo no puede tenerlas. */
+const UNSAFE_KEYS = ['__proto__', 'constructor', 'prototype'];
+const isRecord = (x: unknown): x is Record<string, unknown> => isObject(x) && !Object.keys(x).some((k) => UNSAFE_KEYS.includes(k));
 const everyValue = (x: unknown, ok: (v: Record<string, unknown>) => boolean) =>
-  isObject(x) && Object.values(x).every((v) => isObject(v) && ok(v));
+  isRecord(x) && Object.values(x).every((v) => isObject(v) && ok(v));
 const everyItem = (x: unknown, ok: (v: Record<string, unknown>) => boolean) =>
   Array.isArray(x) && x.every((v) => isObject(v) && ok(v));
 
@@ -45,9 +48,9 @@ function hasUsableStructure(p: Record<string, unknown>): boolean {
   }
   if (has('deviceId') && !isString(p.deviceId)) return false;
   if (has('resetAt') && !isStringOrNull(p.resetAt)) return false;
-  if (has('stamps') && !(isObject(p.stamps) && Object.values(p.stamps).every((v) => v === undefined || isString(v)))) return false;
+  if (has('stamps') && !(isRecord(p.stamps) && Object.values(p.stamps).every((v) => v === undefined || isString(v)))) return false;
   if (has('coinLedger') && !everyValue(p.coinLedger, (c) => isCount(c.earned) && isCount(c.spent))) return false;
-  if (has('rewards') && !(isObject(p.rewards) && (!('botWins' in p.rewards) || isObject(p.rewards.botWins)))) return false;
+  if (has('rewards') && !(isObject(p.rewards) && (!('botWins' in p.rewards) || isRecord(p.rewards.botWins)))) return false;
   if (has('practice') && !isObject(p.practice)) return false;
   if (has('profile') && !isObject(p.profile)) return false;
   // La versión 1 no tenía racha.

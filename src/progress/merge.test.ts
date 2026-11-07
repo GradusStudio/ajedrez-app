@@ -393,3 +393,47 @@ test('restaurar tras borrar con compras reales: comprar después del borrado no 
   assert.equal(m.coins, 600);
   assert.deepEqual(m.boardThemes, ['madera']);
 });
+
+// ---------- Idempotencia con resetAt distintos ----------
+
+test('idempotente con resetAt distintos: merge(m, m) es igual a m = merge(a, b), en los dos órdenes', () => {
+  const [a, b] = variedPair();
+  const pairs: [Progress, Progress][] = [
+    [{ ...a, resetAt: '2026-11-03T00:00:00.000Z' }, b],
+    [a, { ...b, resetAt: '2026-11-03T00:00:00.000Z' }],
+    [{ ...a, resetAt: '2026-11-01T00:00:00.000Z' }, { ...b, resetAt: '2026-11-02T00:00:00.000Z' }],
+  ];
+  for (const [x, y] of pairs) {
+    for (const m of [mergeProgress(x, y), mergeProgress(y, x)]) {
+      assert.deepEqual(mergeProgress(m, m), m);
+    }
+  }
+});
+
+test('con resetAt distintos el ganador sale normalizado: sin borradores de lecciones hechas y con listas ordenadas', () => {
+  const winner = make({
+    deviceId: 'B',
+    resetAt: '2026-11-04T00:00:00.000Z',
+    lessons: { hecha: lesson(0, '2026-11-05T00:00:00.000Z', 1) },
+    drafts: { hecha: { stepIndex: 3, errors: 0, mistakes: [] } },
+    pieceSets: ['marmol', 'madera'],
+  });
+  const m = mergeProgress(make(), winner);
+  assert.deepEqual(m.drafts, {});
+  assert.deepEqual(m.pieceSets, ['madera', 'marmol']);
+  assert.equal(m.deviceId, 'A');
+});
+
+// ---------- Claves peligrosas ----------
+
+test('mergeRecord no toca prototipos con una clave __proto__ propia', () => {
+  const evil = JSON.parse('{"__proto__": {"done": true, "errors": 0, "completedAt": "2026-11-01T00:00:00.000Z", "completions": 1}}');
+  const a = make();
+  const b = make({ deviceId: 'B', lessons: evil });
+  const m = mergeProgress(a, b);
+  assert.equal(Object.getPrototypeOf(m.lessons), Object.prototype);
+  assert.equal(({} as Record<string, unknown>).done, undefined);
+  // Una clave heredada (`constructor`) no cuenta como presente en el otro lado.
+  const c = make({ deviceId: 'C', coinLedger: JSON.parse('{"constructor": {"earned": 5, "spent": 0}}') });
+  assert.deepEqual(mergeProgress(make(), c).coinLedger.constructor, { earned: 5, spent: 0 });
+});

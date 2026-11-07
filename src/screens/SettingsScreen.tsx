@@ -7,7 +7,10 @@ import { SettingRow } from '../components/SettingRow';
 import { useI18n } from '../i18n/I18nContext';
 import { AVAILABLE_LANGUAGES, LANGUAGE_NAMES, Language } from '../i18n/languages';
 import { resolveNotation, sanFromEnglish } from '../chess/notation';
+import { FILE_IO_SUPPORTED, pickTextFile, saveTextFile } from '../progress/fileIO';
+import { parseProgressFile, progressToFile } from '../progress/progressFile';
 import { useProgress } from '../progress/ProgressContext';
+import { todayKey } from '../progress/streak';
 import { usePieceSet } from '../settings/PieceSetContext';
 import { cancelDailyReminder, ensureReminderPermission, REMINDERS_SUPPORTED } from '../settings/reminders';
 import { useSettings } from '../settings/SettingsContext';
@@ -22,7 +25,7 @@ const REMINDER_HOURS = [9, 13, 19, 21];
 export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
   const { settings, update } = useSettings();
   const { language, t } = useI18n();
-  const { resetProgress } = useProgress();
+  const { progress, resetProgress, importProgress } = useProgress();
   const { pieceSet } = usePieceSet();
   const boardTheme = useBoardTheme();
   const pieceName = t(`pieceSet.${pieceSet}.name`);
@@ -51,6 +54,28 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
       { text: t('common.cancel'), style: 'cancel' },
       { text: t('settings.reset.confirm'), style: 'destructive', onPress: resetProgress },
     ]);
+
+  const saveCopy = () => saveTextFile(`gradus-progreso-${todayKey()}.json`, progressToFile(progress, new Date()));
+
+  const loadCopy = async () => {
+    const text = await pickTextFile();
+    if (text === null) return;
+    const result = parseProgressFile(text);
+    if (!result.ok) {
+      showDialog(t('settings.load.error.title'), t(`settings.load.error.${result.error}`));
+      return;
+    }
+    showDialog(t('settings.load.title'), t('settings.load.message'), [
+      { text: t('common.cancel'), style: 'cancel' },
+      {
+        text: t('settings.load.confirm'),
+        onPress: () => {
+          importProgress(result.progress);
+          showDialog(t('settings.load.done.title'), t('settings.load.done.message'));
+        },
+      },
+    ]);
+  };
 
   return (
     <ScrollView
@@ -122,6 +147,12 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
 
       {/* Datos */}
       <Text style={styles.section}>{t('settings.data')}</Text>
+      {FILE_IO_SUPPORTED && (
+        <>
+          <Button3D label={t('settings.save')} style={styles.dataButton} onPress={saveCopy} />
+          <Button3D label={t('settings.load')} style={styles.dataButton} onPress={loadCopy} />
+        </>
+      )}
       <Button3D label={t('settings.reset')} variant="destructive" onPress={confirmReset} />
     </ScrollView>
   );
@@ -133,6 +164,7 @@ const styles = StyleSheet.create({
   back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   section: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text, marginTop: space.xl, marginBottom: space.sm },
+  dataButton: { marginBottom: space.sm },
   label: {
     fontFamily: fonts.extrabold,
     fontSize: 12,

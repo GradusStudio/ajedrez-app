@@ -1,6 +1,9 @@
 {
   "name": "gradus",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=22"
+  },
   "license": "GPL-3.0-or-later",
   "main": "expo-router/entry",
   "dependencies": {

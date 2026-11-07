@@ -13,8 +13,7 @@ import type { Facts, MoveQuality, PieceKind } from './types';
 // Voz del comentarista. Las opiniones salen de plantillas por estilo del personaje; los hechos
 // (qué capturó, qué permite, qué se dejó pasar) vienen ya verificados con el tablero (build.ts):
 // aquí solo se ponen en palabras. Los textos de cada idioma están en `coach/<idioma>.json`
-// (de, it y fr traducidos con IA, sin revisión de nativos; las claves de `frame`, `opp`, `you` y `line`
-// están por ahora en inglés en esos tres idiomas; `intent`, `verdict` y `why` ya están traducidas). Sin React Native.
+// (de, it y fr traducidos con IA: gemma4 vía Ollama, con correcciones a mano; sin revisión de nativos). Sin React Native.
 
 export type CoachLang = 'es' | 'en' | 'de' | 'it' | 'fr';
 const LANGS: CoachLang[] = ['es', 'en', 'de', 'it', 'fr'];

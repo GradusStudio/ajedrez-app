@@ -11,6 +11,7 @@ import { coachExplanation, coachLang, coachVoice } from '../review/coachText';
 import { lineMoves, lineText } from '../review/bestLine';
 import { parseGame } from '../review/pgn';
 import { clearPendingGame, peekPendingGame, sideOf } from '../review/session';
+import { setPendingQuiz, turningPoints } from '../review/turningPoints';
 import { isBad } from '../review/types';
 import { space } from '../theme';
 import { AnalyzingView } from './review/AnalyzingView';
@@ -27,11 +28,11 @@ import { useReviewAnalysis } from './review/useReviewAnalysis';
 import { useReviewCoach } from './review/useReviewCoach';
 import { useReviewPlayback } from './review/useReviewPlayback';
 
-type Props = { onBack: () => void };
+type Props = { onBack: () => void; onPractice: () => void };
 
 const topInset = () => (RNStatusBar.currentHeight ?? 40) + space.sm;
 
-export function GameReviewScreen({ onBack }: Props) {
+export function GameReviewScreen({ onBack, onPractice }: Props) {
   const { t, tn, language } = useI18n();
   const { settings } = useSettings();
   const notation = resolveNotation(settings.notation, language);
@@ -167,6 +168,8 @@ export function GameReviewScreen({ onBack }: Props) {
   );
 
   if (!started) {
+    // Quiz de puntos de giro: pantalla aparte que solo lee esta revisión. Solo si se sabe de qué bando jugó el usuario.
+    const points = sideOf(pending?.username, game.white, game.black) ? turningPoints(review, me) : [];
     return shell(
       <SummaryView
         top={<TopBar onBack={onBack} />}
@@ -180,6 +183,14 @@ export function GameReviewScreen({ onBack }: Props) {
           pb.goTo(0);
           setStarted(true);
         }}
+        onPractice={
+          points.length > 0
+            ? () => {
+                setPendingQuiz({ points, me, coachId: coach.id });
+                onPractice();
+              }
+            : undefined
+        }
       />
     );
   }

@@ -556,4 +556,18 @@ export const de: Record<MessageKey, string> = {
   'review.cat.inaccuracy': 'Ungenauigkeit',
   'review.cat.mistake': 'Fehler',
   'review.cat.blunder': 'Grober Fehler',
+  // Quiz de puntos de giro (después de la revisión)
+  'quiz.title': 'Meine Fehler üben',
+  'quiz.progress': '{n} von {total}',
+  'quiz.prompt': 'Was ist hier der beste Zug?',
+  'quiz.playedMistake': 'In der Partie hast du {move} gespielt, das war ein Fehler.',
+  'quiz.playedBlunder': 'In der Partie hast du {move} gespielt, das war ein grober Fehler.',
+  'quiz.wrong': 'Das ist nicht der beste Zug. Versuch es nochmal.',
+  'quiz.hintText': 'Ich habe die Figur markiert, die du ziehen musst.',
+  'quiz.correct': 'Richtig: {move} ist der beste Zug',
+  'quiz.solution': 'Der beste Zug war {move}',
+  'quiz.next': 'Nächste Position',
+  'quiz.finish': 'Ergebnisse ansehen',
+  'quiz.found': 'Du hast {n} von {total} gefunden',
+  'quiz.back': 'Zurück zur Partieanalyse',
 };

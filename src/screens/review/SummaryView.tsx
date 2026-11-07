@@ -16,10 +16,12 @@ type Props = {
   nameOf: (c: 'w' | 'b') => string;
   decimal: string;
   onStart: () => void;
+  /** Abre el quiz de puntos de giro; sin errores del usuario no hay botón. */
+  onPractice?: () => void;
 };
 
 /** Resumen previo a la revisión: gráfico, precisión de cada jugador y cuenta por calidad de jugada. */
-export function SummaryView({ top, bubble, graph, review, me, nameOf, decimal, onStart }: Props) {
+export function SummaryView({ top, bubble, graph, review, me, nameOf, decimal, onStart, onPractice }: Props) {
   const { t } = useI18n();
   const counts = { w: countCats(review.plies, 'w'), b: countCats(review.plies, 'b') };
   return (
@@ -63,6 +65,7 @@ export function SummaryView({ top, bubble, graph, review, me, nameOf, decimal, o
         </View>
       </ScrollView>
       <View style={styles.bottomBar}>
+        {onPractice && <Button3D label={t('quiz.title')} onPress={onPractice} style={{ flex: 1 }} />}
         <Button3D label={t('review.start')} variant="primary" onPress={onStart} style={{ flex: 1 }} />
       </View>
     </View>

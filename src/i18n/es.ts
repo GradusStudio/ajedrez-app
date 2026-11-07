@@ -555,6 +555,20 @@ export const es = {
   'review.cat.inaccuracy': 'Imprecisión',
   'review.cat.mistake': 'Error',
   'review.cat.blunder': 'Error grave',
+  // Quiz de puntos de giro (después de la revisión)
+  'quiz.title': 'Practicar mis errores',
+  'quiz.progress': '{n} de {total}',
+  'quiz.prompt': '¿Cuál es la mejor jugada aquí?',
+  'quiz.playedMistake': 'En la partida jugaste {move}, que fue un error.',
+  'quiz.playedBlunder': 'En la partida jugaste {move}, que fue un error grave.',
+  'quiz.wrong': 'Esa no es la mejor. Inténtalo de nuevo.',
+  'quiz.hintText': 'Te marqué la pieza que tienes que mover.',
+  'quiz.correct': 'Correcto: {move} es la mejor',
+  'quiz.solution': 'La mejor era {move}',
+  'quiz.next': 'Siguiente posición',
+  'quiz.finish': 'Ver resultado',
+  'quiz.found': 'Encontraste {n} de {total}',
+  'quiz.back': 'Volver a la revisión',
 } as const;
 
 export type MessageKey = keyof typeof es;

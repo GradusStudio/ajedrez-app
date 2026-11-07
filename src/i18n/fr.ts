@@ -556,4 +556,18 @@ export const fr: Record<MessageKey, string> = {
   'review.cat.inaccuracy': 'Imprécision',
   'review.cat.mistake': 'Erreur',
   'review.cat.blunder': 'Gaffe',
+  // Quiz de puntos de giro (después de la revisión)
+  'quiz.title': 'Pratiquer mes erreurs',
+  'quiz.progress': '{n} sur {total}',
+  'quiz.prompt': 'Quel est le meilleur coup ici ?',
+  'quiz.playedMistake': 'Dans la partie, tu as joué {move}, ce qui était une erreur.',
+  'quiz.playedBlunder': 'Dans la partie, tu as joué {move}, ce qui était une gaffe.',
+  'quiz.wrong': "Ce n'est pas le meilleur coup. Essaie encore.",
+  'quiz.hintText': "J'ai marqué la pièce que tu dois bouger.",
+  'quiz.correct': 'Correct : {move} est le meilleur coup',
+  'quiz.solution': 'Le meilleur coup était {move}',
+  'quiz.next': 'Position suivante',
+  'quiz.finish': 'Voir les résultats',
+  'quiz.found': 'Tu as trouvé {n} sur {total}',
+  'quiz.back': 'Retour à la revue',
 };

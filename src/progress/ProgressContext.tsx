@@ -19,6 +19,7 @@ import {
   withProfile,
   withPuzzleFinished,
   withReviewFinished,
+  withTurningPointSolved,
   withBoardThemeBought,
 } from './progressStore';
 
@@ -44,6 +45,8 @@ type ProgressValue = {
     countsForStreak: boolean
   ) => Earned;
   finishPuzzle: (id: string, result: PuzzleResult, seconds: number) => Earned;
+  /** Punto de giro encontrado en el quiz de la revisión: devuelve las monedas (0 si ya se había cobrado). */
+  finishTurningPoint: (key: string, clean: boolean) => number;
   /** Compra un set de piezas: devuelve false si no alcanzan las monedas. */
   buyPieceSet: (id: string, price: number) => boolean;
   /** Compra un tablero: devuelve false si no alcanzan las monedas. */
@@ -129,6 +132,15 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     [commitEarned]
   );
 
+  const finishTurningPoint = useCallback(
+    (key: string, clean: boolean) => {
+      const r = withTurningPointSolved(current.current, key, clean);
+      if (r.coinsEarned) commit(r.progress);
+      return r.coinsEarned;
+    },
+    [commit]
+  );
+
   const buyPieceSet = useCallback(
     (id: string, price: number) => {
       const next = withPieceSetBought(current.current, id, price);
@@ -171,6 +183,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         addPractice,
         finishGame,
         finishPuzzle,
+        finishTurningPoint,
         buyPieceSet,
         buyBoardTheme,
         updateProfile,

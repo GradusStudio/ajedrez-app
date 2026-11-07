@@ -556,4 +556,18 @@ export const en: Record<MessageKey, string> = {
   'review.cat.inaccuracy': 'Inaccuracy',
   'review.cat.mistake': 'Mistake',
   'review.cat.blunder': 'Blunder',
+  // Quiz de puntos de giro (después de la revisión)
+  'quiz.title': 'Practice my mistakes',
+  'quiz.progress': '{n} of {total}',
+  'quiz.prompt': "What's the best move here?",
+  'quiz.playedMistake': 'In the game you played {move}, which was a mistake.',
+  'quiz.playedBlunder': 'In the game you played {move}, which was a blunder.',
+  'quiz.wrong': "That's not the best move. Try again.",
+  'quiz.hintText': "I've marked the piece you need to move.",
+  'quiz.correct': 'Correct: {move} is the best move',
+  'quiz.solution': 'The best move was {move}',
+  'quiz.next': 'Next position',
+  'quiz.finish': 'See results',
+  'quiz.found': 'You found {n} of {total}',
+  'quiz.back': 'Back to the review',
 };

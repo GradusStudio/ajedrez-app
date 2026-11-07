@@ -94,6 +94,7 @@ function AppStack() {
       <Stack.Screen name="analisis-libre" />
       <Stack.Screen name="importar-partida" />
       <Stack.Screen name="revision" />
+      <Stack.Screen name="quiz-partida" />
       <Stack.Screen name="creditos" />
       <Stack.Screen name="bienvenida" options={{ gestureEnabled: false, animation: 'fade' }} />
       {/* Sin gesto de volver: abandonar la partida pasa por la confirmación */}

@@ -60,6 +60,8 @@ export type Progress = {
   mistakes: Mistake[];
   games: GameRecord[]; // las últimas MAX_GAMES, la más reciente primero
   puzzles: Record<string, PuzzleRecord>; // por id de puzzle de Lichess
+  /** Puntos de giro (quiz de la revisión de partidas) ya cobrados, por `turningPointKey`. Se agregó sin subir la versión: si falta, vale []. */
+  turningPoints: string[];
   lastUnit?: number; // unidad de la última lección empezada en Aprender, la que se muestra al abrir la app
 };
 
@@ -88,6 +90,7 @@ export const emptyProgress: Progress = {
   mistakes: [],
   games: [],
   puzzles: {},
+  turningPoints: [],
 };
 
 // ---------- Lectura para mostrar ----------
@@ -282,6 +285,19 @@ export function withPuzzleFinished(
 export function isPuzzleSolved(p: Progress, id: string): boolean {
   const r = p.puzzles[id]?.result;
   return r === 'clean' || r === 'solved';
+}
+
+const MAX_TURNING_POINTS_SAVED = 500;
+
+/**
+ * Punto de giro encontrado en el quiz de la revisión. Paga como un puzzle (2 sin errores, 1 con errores),
+ * una sola vez por posición. No cuenta para la racha.
+ */
+export function withTurningPointSolved(p: Progress, key: string, clean: boolean): { progress: Progress; coinsEarned: number } {
+  if (p.turningPoints.includes(key)) return { progress: p, coinsEarned: 0 };
+  const coinsEarned = PUZZLE_COINS[clean ? 'clean' : 'solved'];
+  const turningPoints = [...p.turningPoints, key].slice(-MAX_TURNING_POINTS_SAVED);
+  return { progress: withCoins({ ...p, turningPoints }, coinsEarned), coinsEarned };
 }
 
 /** Victorias, derrotas y tablas contra un bot (sin contar el modo práctica). */

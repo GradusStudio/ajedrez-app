@@ -8,6 +8,16 @@ Gradus es una app gratuita para aprender ajedrez, sin anuncios ni pagos. Publica
 
 Una prueba descartable (rama local `prueba-web`) mostró que el código actual compila para la web con `react-native-web`, y que lecciones, puzzles, guardado, importación de partidas, Stockfish y Maia funcionan. Los motores solo necesitaron reemplazar el WebView invisible por un `iframe` oculto con la misma página.
 
+## Etapas (decidido por el autor el 7-11-2026)
+
+Todo en el mismo dominio, para que nadie pierda nada al pasar de una versión a la siguiente. Cada etapa se planifica, construye y revisa por separado.
+
+1. **Versión 1, lo que se comparte en TikTok:** app web instalable, funciona sin internet, progreso en el dispositivo, exportar e importar el progreso en `.json`, `/instalar`, `/privacidad`, columna centrada en pantallas anchas, publicada en `graduschess.com` desde Cloudflare. Secciones 1, 2, 3, 6, 7 y 8, más la exportación de la sección 4. El recordatorio diario se oculta en la web.
+2. **Versión 2:** sincronización con Google Drive (resto de la sección 4) y verificación de la app en Google Cloud.
+3. **Versión 3:** recordatorio diario con Web Push (sección 5).
+
+`mergeProgress`, `resetAt` y el registro de monedas por dispositivo se hacen en la versión 1, porque la importación del `.json` ya combina y conviene que el formato no cambie después.
+
 ## Objetivos
 
 1. Gradus funciona en el navegador de Android, iPhone y computadora, y se puede agregar a la pantalla de inicio como una app (pantalla completa, ícono propio).
@@ -196,6 +206,24 @@ Primera versión: la app en una columna centrada de hasta 480 px, con el fondo d
 - Cloudflare construye y publica desde `main` en cada cambio. Las ramas de prueba se publican en direcciones de vista previa (`*.workers.dev`), nunca en `graduschess.com`.
 - Verificación de la app en Google Cloud (pantalla de permiso de OAuth): nombre «Gradus», correo de soporte `gradusstudioapp@gmail.com`, página principal y política en `graduschess.com` (dominio verificado en Search Console). El constructor confirma que la pantalla de permiso no muestra datos personales del autor.
 - Cada versión publicada se etiqueta en git (`web-v1.0.0`, ...), para que el código de cualquier versión se pueda encontrar.
+
+## Interfaz nueva y antislop
+
+El autor eligió aplicar antislop durante el proyecto. La dirección visual es `docs/design.md` (paleta oscura verde, Nunito, botones 3D, textos sin exclamaciones). Las pantallas que ya existen no se rediseñan. Las partes nuevas pasan por el filtro: `/instalar`, `/privacidad`, el aviso de instalación, la bienvenida de iPhone, la exportación e importación, el fondo de pantallas anchas y (en la versión 2) el botón de Google.
+
+**Lectura de diseño:** app de aprendizaje de ajedrez para todo público, con el lenguaje de `docs/design.md` (superficies oscuras, verde de acción y botones 3D). Diales: ENERGÍA 2 / RITMO 1 / MOVIMIENTO 1.
+- **Energía 2:** amable pero sin estridencias; el tablero y el botón verde son el foco.
+- **Ritmo 1:** las pantallas nuevas son utilitarias (instalar, privacidad, exportar). La uniformidad es a propósito, para que se lean como parte de la app y no como una página de marketing.
+- **Movimiento 1:** solo los estados de los botones y el `FadeIn` que ya usa la app. Respeta `prefers-reduced-motion`.
+
+**Decisiones con su razón:**
+- **Tema oscuro fijo, sin modo claro:** es la identidad que ya tiene Gradus (`docs/design.md`); el tablero verde y crema contrasta mejor sobre fondo oscuro. No se agrega un modo claro en esta etapa.
+- **`/instalar` sin estructura de landing:** sin héroe, tarjetas de beneficios, testimonios, cifras ni preguntas frecuentes inventadas. Muestra el ícono real de Gradus, el nombre, una línea que dice qué es, y los pasos del sistema del visitante primero (detectado), con los otros sistemas plegados debajo. Un solo foco: el botón «Instalar Gradus» en Android y computadora, o el paso a paso de Safari en iPhone. Botones con verbos concretos («Instalar Gradus», «Abrir Gradus en el navegador»), nunca «Empezar» o «Saber más».
+- **Ilustraciones de los pasos:** si hacen falta, son capturas reales del navegador, que el autor aprueba antes (R-23). Mientras no estén, solo texto.
+- **Fondo de pantallas anchas:** el color `bg` liso a los costados de la columna. Sin degradados, grillas ni brillos.
+- **Íconos:** los mismos de la app; ninguno nuevo sin un motivo escrito.
+
+Cada parte nueva se entrega con el control de entrega de antislop (PASS/FAIL con pruebas), además de las revisiones `thermo-nuclear-review` y `thermo-nuclear-code-quality-review` al final de cada etapa.
 
 ## Lo que queda a criterio del constructor
 

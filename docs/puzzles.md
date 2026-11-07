@@ -5,7 +5,7 @@
 - **Licencia CC0** (dominio público): se puede usar, modificar y redistribuir sin pedir permiso, en una app gratuita o comercial, abierta o cerrada. No exige crédito, pero lo damos igual: la pantalla del puzzle muestra "Puzzle #id de Lichess" con enlace, y Créditos (hito 6) debe mencionarlo.
 
 ## Selección que trae la app
-`src/puzzles/puzzles.json`: **50.000 puzzles, 6,76 MB** (hasta octubre de 2026 eran 10.000, 1,36 MB). Lo genera `scripts/build-puzzles.js`:
+`src/puzzles/lichess-puzzles.json`: **50.000 puzzles, 6,76 MB** (hasta octubre de 2026 eran 10.000, 1,36 MB). Hasta el 7-11-2026 se llamaba `puzzles.json`; se cambió el nombre porque el servidor de desarrollo de Metro confundía el trozo `puzzles.bundle` con `puzzles.ts`, y la pestaña Puzzles siempre mostraba el error de carga. Que no vuelva a compartir nombre con otro archivo de la carpeta. Lo genera `scripts/build-puzzles.js`:
 ```
 npm run build:puzzles -- <ruta a lichess_db_puzzle.csv.zst>
 ```

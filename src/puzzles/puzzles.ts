@@ -39,8 +39,8 @@ export function createPuzzleLoader(importer: () => Promise<{ default: unknown }>
   };
 }
 
-/** Los 50.000 puzzles van en un archivo aparte (puzzles.json) que se baja la primera vez que hace falta. */
-export const loadPuzzles = createPuzzleLoader(() => import('./puzzles.json'));
+/** Los 50.000 puzzles van en un archivo aparte (lichess-puzzles.json) que se baja la primera vez que hace falta. */
+export const loadPuzzles = createPuzzleLoader(() => import('./lichess-puzzles.json'));
 
 export const findPuzzle = (puzzles: Puzzle[], id: string) => puzzles.find((p) => p.id === id);
 

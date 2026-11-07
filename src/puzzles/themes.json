@@ -1,5 +1,5 @@
 {
-  "_comment": "Temas de los puzzles de Lichess (claves de lichess). 'practice' = temas que se pueden elegir en Práctica, en este orden. 'main' = prioridad para repartir la selección entre temas (scripts/build-puzzles.js). 'known' = temas que se guardan en puzzles.json. Los nombres para mostrar están en src/i18n/es.ts (claves puzzleTheme.<tema>).",
+  "_comment": "Temas de los puzzles de Lichess (claves de lichess). 'practice' = temas que se pueden elegir en Práctica, en este orden. 'main' = prioridad para repartir la selección entre temas (scripts/build-puzzles.js). 'known' = temas que se guardan en lichess-puzzles.json. Los nombres para mostrar están en src/i18n/es.ts (claves puzzleTheme.<tema>).",
   "practice": [
     "mateIn1",
     "mateIn2",

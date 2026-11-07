@@ -1,6 +1,6 @@
 import { strict as assert } from 'node:assert';
 import { test } from 'node:test';
-import rawFile from './puzzles.json';
+import rawFile from './lichess-puzzles.json';
 import { countPuzzles, createPuzzleLoader, dailyPuzzle, findPuzzle, nextPuzzle, parsePuzzles } from './puzzles';
 
 const real = parsePuzzles(rawFile as unknown as { puzzles: [string, string, string, number, string][] });

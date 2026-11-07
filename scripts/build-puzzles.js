@@ -2,7 +2,7 @@
 //
 // Base: https://database.lichess.org/#puzzles (licencia CC0, dominio público).
 // Lee el .csv.zst descomprimiéndolo sobre la marcha (no hace falta descomprimirlo a disco)
-// y genera src/puzzles/puzzles.json. Criterios en docs/puzzles.md.
+// y genera src/puzzles/lichess-puzzles.json. Criterios en docs/puzzles.md.
 /* global __dirname */
 const fs = require('fs');
 const path = require('path');
@@ -162,7 +162,7 @@ function build() {
     criteria: { RATING_MIN, RATING_MAX, PER_BAND, MIN_POPULARITY, MIN_PLAYS, MAX_DEVIATION, MAX_PLIES },
     puzzles: chosen.map((p) => [p.id, p.fen, p.moves, p.rating, p.themes.filter((t) => known.has(t)).join(' ')]),
   };
-  const dest = path.join(root, 'src', 'puzzles', 'puzzles.json');
+  const dest = path.join(root, 'src', 'puzzles', 'lichess-puzzles.json');
   fs.writeFileSync(dest, JSON.stringify(out));
 
   console.log(`Leídos: ${total.toLocaleString('es')} puzzles; pasan los filtros: ${passed.toLocaleString('es')}`);

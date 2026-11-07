@@ -45,7 +45,7 @@ La licencia cubre el código y el contenido propio de la app: lecciones, cursos 
 | Stockfish 19 (Stockfish.js 19.0.1), sin modificar, en `src/engine/stockfish/` | GNU GPL v3 | https://github.com/official-stockfish/Stockfish · https://github.com/nmrugg/stockfish.js |
 | Maia 1100, 1500 y 1900 (redes de los bots), sin modificar, en `src/engine/maia/redes/` | GNU GPL v3 | https://github.com/CSSLab/maia-chess |
 | Tablas y cálculo de la red de Lc0, en `src/engine/maia/` | GNU GPL v3 | https://github.com/LeelaChessZero/lc0 |
-| Puzzles de Lichess (`src/puzzles/puzzles.json`) | CC0 (dominio público) | https://database.lichess.org/#puzzles |
+| Puzzles de Lichess (`src/puzzles/lichess-puzzles.json`) | CC0 (dominio público) | https://database.lichess.org/#puzzles |
 | chess.js | BSD-2-Clause | https://github.com/jhlywa/chess.js |
 | Fuente Nunito | SIL Open Font License 1.1 | https://fonts.google.com/specimen/Nunito |
 | Expo, React Native, React y demás paquetes de `package.json` | MIT (en su mayoría) | ver cada paquete en `node_modules` |

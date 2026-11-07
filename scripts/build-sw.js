@@ -6,7 +6,7 @@
 // Cómo se reconocen los trozos pesados (los nombres llevan un hash que cambia en cada compilación):
 // en dist/_expo/static/js/web, archivos de más de 1 MB cuyo comienzo trae una marca propia:
 //   - redes de Maia: `"MAIA_<elo>"` (el nombre del export, ej. MAIA_1100)
-//   - puzzles: `Lichess puzzle database` (el campo `source` de puzzles.json)
+//   - puzzles: `Lichess puzzle database` (el campo `source` de lichess-puzzles.json)
 // Si no se encuentran exactamente 4 (3 redes y los puzzles), la compilación falla para no publicar
 // una versión que precachea 14 MB de más o que deja los puzzles sin caché.
 const fs = require('fs');

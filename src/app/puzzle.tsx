@@ -4,7 +4,9 @@ import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { isPuzzleSolved } from '../progress/progressStore';
-import { findPuzzle, Level, LEVELS, nextPuzzle, themeName } from '../puzzles/puzzles';
+import { findPuzzle, Level, LEVELS, nextPuzzle, Puzzle, themeName } from '../puzzles/puzzles';
+import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
+import { usePuzzles } from '../puzzles/usePuzzles';
 import { PuzzleScreen } from '../screens/PuzzleScreen';
 import { colors } from '../theme';
 
@@ -14,6 +16,12 @@ import { colors } from '../theme';
  * (sin navegar: así no aparece un fondo blanco entre uno y otro).
  */
 export default function PuzzleRoute() {
+  const state = usePuzzles();
+  if (state.status !== 'ready') return <PuzzlesStatus state={state} />;
+  return <PuzzleLoaded puzzles={state.puzzles} />;
+}
+
+function PuzzleLoaded({ puzzles }: { puzzles: Puzzle[] }) {
   const params = useLocalSearchParams<{ modo?: string; id?: string; nivel?: string; tema?: string }>();
   const { progress } = useProgress();
   const { t } = useI18n();
@@ -23,7 +31,7 @@ export default function PuzzleRoute() {
   const solved = (id: string) => isPuzzleSolved(progress, id);
 
   const [puzzle, setPuzzle] = useState(() =>
-    params.id ? findPuzzle(params.id) : nextPuzzle(level, theme, solved)
+    params.id ? findPuzzle(puzzles, params.id) : nextPuzzle(puzzles, level, theme, solved)
   );
   if (!puzzle) return <Redirect href="/puzzles" />;
 
@@ -39,7 +47,7 @@ export default function PuzzleRoute() {
         puzzle={puzzle}
         label={label}
         onExit={() => router.back()}
-        onNext={practice ? () => setPuzzle(nextPuzzle(level, theme, solved, puzzle.id) ?? puzzle) : undefined}
+        onNext={practice ? () => setPuzzle(nextPuzzle(puzzles, level, theme, solved, puzzle.id) ?? puzzle) : undefined}
       />
     </View>
   );

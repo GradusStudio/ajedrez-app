@@ -8,7 +8,6 @@ import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, isPuzzleSolved, recordAgainst } from '../progress/progressStore';
-import { puzzles } from '../puzzles/puzzles';
 import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -35,7 +34,7 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
   };
   const unitLessons = units.flatMap((u) => u.lessons);
   const lessonsDone = unitLessons.filter((l) => progress.lessons[l.id]).length;
-  const puzzlesSolved = puzzles.filter((p) => isPuzzleSolved(progress, p.id)).length;
+  const puzzlesSolved = Object.keys(progress.puzzles).filter((id) => isPuzzleSolved(progress, id)).length;
   const startedOpenings = openings
     .map((o) => ({ course: o, done: o.lessons.filter((l) => progress.lessons[l.id]).length }))
     .filter((x) => x.done > 0);

@@ -1,5 +1,4 @@
 import { Chess } from 'chess.js';
-import puzzlesRaw from './puzzles.json';
 import themesRaw from './themes.json';
 import { es, MessageKey } from '../i18n/es';
 
@@ -17,12 +16,33 @@ export type Puzzle = {
 
 type Raw = [string, string, string, number, string];
 
-export const puzzles: Puzzle[] = (puzzlesRaw as unknown as { puzzles: Raw[] }).puzzles.map(
-  ([id, fen, moves, rating, themes]) => ({ id, fen, moves: moves.split(' '), rating, themes: themes ? themes.split(' ') : [] })
-);
+type RawFile = { puzzles: Raw[] };
 
-const byId = new Map(puzzles.map((p) => [p.id, p]));
-export const findPuzzle = (id: string) => byId.get(id);
+export const parsePuzzles = (raw: RawFile): Puzzle[] =>
+  raw.puzzles.map(([id, fen, moves, rating, themes]) => ({ id, fen, moves: moves.split(' '), rating, themes: themes ? themes.split(' ') : [] }));
+
+/**
+ * Cargador memorizado: dos llamadas comparten la promesa y, si falla, se olvida para que la siguiente reintente.
+ * `importer` se inyecta para poder probarlo sin el archivo real.
+ */
+export function createPuzzleLoader(importer: () => Promise<{ default: unknown }>): () => Promise<Puzzle[]> {
+  let memo: Promise<Puzzle[]> | null = null;
+  return () => {
+    if (!memo) {
+      const attempt = importer().then((m) => parsePuzzles(m.default as RawFile));
+      memo = attempt;
+      attempt.catch(() => {
+        if (memo === attempt) memo = null;
+      });
+    }
+    return memo;
+  };
+}
+
+/** Los 50.000 puzzles van en un archivo aparte (puzzles.json) que se baja la primera vez que hace falta. */
+export const loadPuzzles = createPuzzleLoader(() => import('./puzzles.json'));
+
+export const findPuzzle = (puzzles: Puzzle[], id: string) => puzzles.find((p) => p.id === id);
 
 /** Función de traducción de useI18n().t. Se pasa por parámetro para que este módulo siga siendo puro. */
 export type Translate = (key: MessageKey) => string;
@@ -66,7 +86,7 @@ function dayNumber(now = new Date()): number {
 }
 
 /** Puzzle del día: uno de nivel medio (1000–1600), distinto cada día y el mismo para todos. */
-export function dailyPuzzle(now = new Date()): Puzzle {
+export function dailyPuzzle(puzzles: Puzzle[], now = new Date()): Puzzle {
   const pool = puzzles.filter((p) => p.rating >= 1000 && p.rating < 1600);
   // Paso grande y "raro" para que días seguidos no den puzzles parecidos.
   const index = (dayNumber(now) * 7919) % pool.length;
@@ -77,7 +97,7 @@ export function dailyPuzzle(now = new Date()): Puzzle {
  * Siguiente puzzle de práctica: del nivel y tema pedidos, que todavía no se haya resuelto.
  * Si ya se resolvieron todos los de ese filtro, vuelve a empezar con los resueltos.
  */
-export function nextPuzzle(level: Level, theme: string | null, done: (id: string) => boolean, exclude?: string): Puzzle | undefined {
+export function nextPuzzle(puzzles: Puzzle[], level: Level, theme: string | null, done: (id: string) => boolean, exclude?: string): Puzzle | undefined {
   const { min, max } = LEVELS[level];
   const pool = puzzles.filter((p) => p.rating >= min && p.rating < max && (!theme || p.themes.includes(theme)) && p.id !== exclude);
   const pending = pool.filter((p) => !done(p.id));
@@ -86,7 +106,7 @@ export function nextPuzzle(level: Level, theme: string | null, done: (id: string
 }
 
 /** Cuántos puzzles hay para un nivel y tema (para mostrar en Práctica). */
-export function countPuzzles(level: Level, theme: string | null): number {
+export function countPuzzles(puzzles: Puzzle[], level: Level, theme: string | null): number {
   const { min, max } = LEVELS[level];
   return puzzles.filter((p) => p.rating >= min && p.rating < max && (!theme || p.themes.includes(theme))).length;
 }

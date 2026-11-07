@@ -231,6 +231,8 @@ export const it: Record<MessageKey, string> = {
 
   // Puzzles
   'puzzles.title': 'Puzzle',
+  'puzzles.loading': 'Caricamento dei puzzle…',
+  'puzzles.loadError': 'Non è stato possibile caricare i puzzle. Controlla la connessione.',
   'puzzles.subtitle': '{solved} di {total} risolti · dal database aperto di Lichess',
   'puzzles.daily': 'Puzzle del giorno',
   'puzzles.dailyFailed': 'Livello {n} · hai visto la soluzione',

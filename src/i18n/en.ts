@@ -231,6 +231,8 @@ export const en: Record<MessageKey, string> = {
 
   // Puzzles
   'puzzles.title': 'Puzzles',
+  'puzzles.loading': 'Loading puzzles…',
+  'puzzles.loadError': 'Could not load the puzzles. Check your connection.',
   'puzzles.subtitle': '{solved} of {total} solved · from the Lichess open database',
   'puzzles.daily': 'Daily puzzle',
   'puzzles.dailyFailed': 'Level {n} · you saw the solution',

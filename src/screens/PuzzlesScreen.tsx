@@ -9,11 +9,13 @@ import {
   dailyPuzzle,
   Level,
   LEVELS,
+  Puzzle,
   PRACTICE_THEMES,
   puzzleGoal,
-  puzzles,
   themeName,
 } from '../puzzles/puzzles';
+import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
+import { usePuzzles } from '../puzzles/usePuzzles';
 import { colors, fonts, radius, space } from '../theme';
 
 type Props = {
@@ -22,17 +24,23 @@ type Props = {
 };
 
 // Pestaña Puzzles: puzzle del día y práctica por nivel y tema (mapa-de-pantallas.md, 2.8).
-export function PuzzlesScreen({ onOpenDaily, onPractice }: Props) {
+export function PuzzlesScreen(props: Props) {
+  const state = usePuzzles();
+  if (state.status !== 'ready') return <PuzzlesStatus state={state} />;
+  return <PuzzlesLoaded {...props} puzzles={state.puzzles} />;
+}
+
+function PuzzlesLoaded({ onOpenDaily, onPractice, puzzles }: Props & { puzzles: Puzzle[] }) {
   const { progress } = useProgress();
   const { t, number } = useI18n();
   // Dificultad inicial según el nivel elegido en la bienvenida.
   const [level, setLevel] = useState<Level>(progress.profile.level === 'casual' ? 'medio' : 'facil');
   const [theme, setTheme] = useState<string | null>(null);
 
-  const daily = dailyPuzzle();
+  const daily = dailyPuzzle(puzzles);
   const dailyDone = progress.puzzles[daily.id];
   const solvedTotal = puzzles.filter((p) => isPuzzleSolved(progress, p.id)).length;
-  const available = countPuzzles(level, theme);
+  const available = countPuzzles(puzzles, level, theme);
 
   return (
     <ScrollView

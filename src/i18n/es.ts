@@ -230,6 +230,8 @@ export const es = {
 
   // Puzzles
   'puzzles.title': 'Puzzles',
+  'puzzles.loading': 'Cargando puzzles…',
+  'puzzles.loadError': 'No se pudieron cargar los puzzles. Revisa la conexión.',
   'puzzles.subtitle': '{solved} de {total} resueltos · de la base abierta de Lichess',
   'puzzles.daily': 'Puzzle del día',
   'puzzles.dailyFailed': 'Nivel {n} · viste la solución',

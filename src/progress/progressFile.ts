@@ -15,24 +15,45 @@ export function progressToFile(p: Progress, now: Date): string {
 }
 
 const isObject = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
-const isCount = (x: unknown) => typeof x === 'number' && Number.isFinite(x) && x >= 0;
+/** Tope de cualquier contador de un archivo (monedas, errores, jugadas): más allá es un archivo dañado o inventado. */
+const MAX_COUNT = 1_000_000_000;
+const isCount = (x: unknown) => typeof x === 'number' && Number.isFinite(x) && x >= 0 && x <= MAX_COUNT;
+const isString = (x: unknown) => typeof x === 'string';
+const isStrings = (x: unknown) => Array.isArray(x) && x.every(isString);
+const isStringOrNull = (x: unknown) => x === null || isString(x);
+const everyValue = (x: unknown, ok: (v: Record<string, unknown>) => boolean) =>
+  isObject(x) && Object.values(x).every((v) => isObject(v) && ok(v));
+const everyItem = (x: unknown, ok: (v: Record<string, unknown>) => boolean) =>
+  Array.isArray(x) && x.every((v) => isObject(v) && ok(v));
 
 /** Un archivo se puede editar a mano o llegar dañado: solo se acepta una estructura que el resto de la app pueda usar. */
 function hasUsableStructure(p: Record<string, unknown>): boolean {
-  for (const k of ['lessons', 'puzzles', 'drafts']) {
-    if (k in p && !isObject(p[k])) return false;
+  const has = (k: string) => k in p;
+  const lessonOk = (l: Record<string, unknown>) =>
+    p.version === 1
+      ? isCount(l.bestErrors) && isString(l.completedAt) && isCount(l.completions)
+      : l.done === true && isCount(l.errors) && isString(l.completedAt) && isCount(l.completions);
+  if (has('lessons') && !everyValue(p.lessons, lessonOk)) return false;
+  if (has('puzzles') && !everyValue(p.puzzles, (r) => ['clean', 'solved', 'failed'].includes(r.result as string) && isString(r.at))) return false;
+  if (has('drafts') && !everyValue(p.drafts, (d) => isCount(d.stepIndex) && isCount(d.errors) && isStrings(d.mistakes))) return false;
+  if (has('mistakes') && !everyItem(p.mistakes, (m) => isString(m.stepId) && isString(m.lessonId) && isString(m.lastSeen) && isCount(m.count))) return false;
+  const gameOk = (g: Record<string, unknown>) =>
+    isString(g.botId) && ['w', 'b'].includes(g.userColor as string) && ['win', 'loss', 'draw'].includes(g.result as string) && isString(g.playedAt) && isStrings(g.moves);
+  if (has('games') && !everyItem(p.games, gameOk)) return false;
+  for (const k of ['pieceSets', 'boardThemes', 'turningPoints']) {
+    if (has(k) && !isStrings(p[k])) return false;
   }
-  for (const k of ['mistakes', 'games', 'pieceSets', 'boardThemes', 'turningPoints']) {
-    if (k in p && !Array.isArray(p[k])) return false;
-  }
-  if ('coinLedger' in p) {
-    if (!isObject(p.coinLedger)) return false;
-    for (const c of Object.values(p.coinLedger)) {
-      if (!isObject(c) || !isCount(c.earned) || !isCount(c.spent)) return false;
-    }
-  }
+  if (has('deviceId') && !isString(p.deviceId)) return false;
+  if (has('resetAt') && !isStringOrNull(p.resetAt)) return false;
+  if (has('stamps') && !(isObject(p.stamps) && Object.values(p.stamps).every((v) => v === undefined || isString(v)))) return false;
+  if (has('coinLedger') && !everyValue(p.coinLedger, (c) => isCount(c.earned) && isCount(c.spent))) return false;
+  if (has('rewards') && !(isObject(p.rewards) && (!('botWins' in p.rewards) || isObject(p.rewards.botWins)))) return false;
+  if (has('practice') && !isObject(p.practice)) return false;
+  if (has('profile') && !isObject(p.profile)) return false;
+  // La versión 1 no tenía racha.
+  if (p.version === 1 && !has('streak')) return true;
   const s = p.streak;
-  return isObject(s) && typeof s.current === 'number' && Number.isFinite(s.current) && typeof s.best === 'number' && Number.isFinite(s.best);
+  return isObject(s) && isCount(s.current) && isCount(s.best) && (!('lastActiveDate' in s) || isStringOrNull(s.lastActiveDate));
 }
 
 export function parseProgressFile(text: string): ProgressFileResult {

@@ -70,7 +70,13 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
       {
         text: t('settings.load.confirm'),
         onPress: () => {
-          importProgress(result.progress);
+          try {
+            importProgress(result.progress);
+          } catch {
+            // Si algo del archivo rompe la combinación, no se guarda nada y se avisa como con cualquier archivo inválido.
+            showDialog(t('settings.load.error.title'), t('settings.load.error.notGradus'));
+            return;
+          }
           showDialog(t('settings.load.done.title'), t('settings.load.done.message'));
         },
       },

@@ -128,3 +128,49 @@ test('streak sin campos numéricos: notGradus', () => {
   assert.equal(rejects(file({ ...sample, streak: { current: 'x', best: 1, lastActiveDate: null } })), 'notGradus');
   assert.equal(rejects(file({ ...sample, streak: [] })), 'notGradus');
 });
+
+// ---------- Forma de cada elemento y topes ----------
+
+test('lessons con un valor que no es una lección: notGradus', () => {
+  assert.equal(rejects(file({ ...sample, lessons: { a: null } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, lessons: { a: { done: false, errors: 0, completedAt: 'x', completions: 1 } } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, lessons: { a: { done: true, errors: -1, completedAt: 'x', completions: 1 } } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, lessons: { a: { done: true, errors: 0, completedAt: 5, completions: 1 } } })), 'notGradus');
+});
+
+test('puzzles y drafts con valores mal formados: notGradus', () => {
+  assert.equal(rejects(file({ ...sample, puzzles: { a: { result: 'ganado', at: 'x' } } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, puzzles: { a: null } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, drafts: { a: { stepIndex: 'uno', errors: 0, mistakes: [] } } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, drafts: { a: { stepIndex: 1, errors: 0, mistakes: [3] } } })), 'notGradus');
+});
+
+test('mistakes y games con elementos mal formados: notGradus', () => {
+  assert.equal(rejects(file({ ...sample, mistakes: [null] })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, mistakes: [{ stepId: 's', lessonId: 'l', count: 'x', lastSeen: 'd' }] })), 'notGradus');
+  const g = { botId: 'b', userColor: 'w', result: 'win', reason: 'r', moves: ['e2e4'], playedAt: 'd' };
+  assert.equal(rejects(file({ ...sample, games: [null] })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, games: [{ ...g, userColor: 'x' }] })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, games: [{ ...g, result: 'gana' }] })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, games: [{ ...g, moves: 'e2e4' }] })), 'notGradus');
+  assert.equal(parseProgressFile(file({ ...sample, games: [g] })).ok, true);
+});
+
+test('pieceSets, boardThemes y turningPoints con elementos que no son texto: notGradus', () => {
+  for (const k of ['pieceSets', 'boardThemes', 'turningPoints']) assert.equal(rejects(file({ ...sample, [k]: [1] })), 'notGradus', k);
+});
+
+test('deviceId, resetAt, stamps y lastActiveDate con el tipo equivocado: notGradus', () => {
+  assert.equal(rejects(file({ ...sample, deviceId: 5 })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, resetAt: 5 })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, stamps: { level: 5 } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, streak: { current: 1, best: 1, lastActiveDate: 20261107 } })), 'notGradus');
+});
+
+test('racha negativa o contadores sobre el tope: notGradus', () => {
+  assert.equal(rejects(file({ ...sample, streak: { current: -1, best: 1, lastActiveDate: null } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, coinLedger: { A: { earned: 1e300, spent: 0 } } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, coinLedger: { A: { earned: 1_000_000_001, spent: 0 } } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, streak: { current: 1e300, best: 1, lastActiveDate: null } })), 'notGradus');
+  assert.equal(parseProgressFile(file({ ...sample, coinLedger: { A: { earned: 1_000_000_000, spent: 0 } } })).ok, true);
+});

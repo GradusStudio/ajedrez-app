@@ -1,6 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import {
-  clearProgress,
   emptyProgress,
   GameRecord,
   LessonDraft,
@@ -168,12 +167,8 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     [commit]
   );
 
-  const resetProgress = useCallback(() => {
-    const fresh = withReset(current.current);
-    clearProgress()
-      .catch(() => {})
-      .finally(() => commit(fresh));
-  }, [commit]);
+  // Se guarda directo, sin borrar la clave antes: si la app se cierra en medio, no se pierde la marca `resetAt`.
+  const resetProgress = useCallback(() => commit(withReset(current.current)), [commit]);
 
   const importProgress = useCallback(
     (incoming: Progress) => commit(mergeImport(current.current, incoming)),

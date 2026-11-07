@@ -146,7 +146,7 @@ test('withLastUnit marca stamps.lastUnit', () => {
 
 // ---------- Borrar ----------
 
-test('withReset conserva perfil y deviceId, pone resetAt y deja lo demás en blanco', () => {
+test('withReset conserva el perfil y el sello del nivel, da un deviceId nuevo, pone resetAt y deja lo demás en blanco', () => {
   const at = new Date('2026-11-07T10:00:00.000Z');
   const p = v4({
     profile: { onboarded: true, level: 'casual' },
@@ -156,7 +156,10 @@ test('withReset conserva perfil y deviceId, pone resetAt y deja lo demás en bla
     coinLedger: { dev1: { earned: 90, spent: 0 } },
   });
   const r = withReset(p, at);
-  assert.equal(r.deviceId, 'dev1');
+  // Id nuevo: los contadores viejos quedan bajo el id viejo y una copia restaurada se suma, no se pisa.
+  assert.notEqual(r.deviceId, 'dev1');
+  assert.ok(r.deviceId.length >= 8);
+  assert.deepEqual(r.stamps, { level: '2026-11-01T00:00:00.000Z' });
   assert.deepEqual(r.profile, p.profile);
   assert.equal(r.resetAt, at.toISOString());
   assert.deepEqual(r.lessons, {});

@@ -297,13 +297,15 @@ export function withProfile(p: Progress, patch: Partial<Progress['profile']>, no
 }
 
 /**
- * «Borrar progreso»: conserva el perfil (bienvenida y nivel, con su fecha) y el dispositivo, y anota `resetAt`
- * para que al combinar con una copia anterior (archivo o Drive) no vuelva lo borrado.
+ * «Borrar progreso»: conserva el perfil (bienvenida y nivel, con su fecha) y anota `resetAt` para que al combinar
+ * con una copia anterior (Drive) no vuelva lo borrado. El dispositivo recibe un id nuevo: lo ganado antes queda
+ * bajo el id viejo, así restaurar una copia suma sus monedas a las ganadas después en vez de taparlas
+ * (merge.ts toma, por dispositivo, el mayor de cada contador).
  */
 export function withReset(p: Progress, now = new Date()): Progress {
   return {
     ...emptyProgress,
-    deviceId: p.deviceId,
+    deviceId: randomId(),
     profile: p.profile,
     stamps: p.stamps.level ? { level: p.stamps.level } : {},
     resetAt: now.toISOString(),
@@ -459,8 +461,4 @@ export async function loadProgress(newDeviceId = randomId()): Promise<{ progress
 
 export async function saveProgress(progress: Progress): Promise<void> {
   await AsyncStorage.setItem(KEY, JSON.stringify(progress));
-}
-
-export async function clearProgress(): Promise<void> {
-  await AsyncStorage.removeItem(KEY);
 }

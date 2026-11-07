@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mergeImport, mergeProgress } from './merge';
-import { coinBalance, emptyProgress, type GameRecord, type Progress } from './progressStore';
+import { coinBalance, emptyProgress, withBoardThemeBought, withReset, type GameRecord, type Progress } from './progressStore';
 
 /** Progreso versión 4 de ejemplo; `coins` siempre sale del libro de monedas. */
 function make(over: Partial<Progress> = {}): Progress {
@@ -360,4 +360,36 @@ test('mergeImport: es idempotente', () => {
   const local = make({ resetAt: '2026-11-07T12:00:00.000Z', lessons: { z: lesson(2, '2026-11-07T13:00:00.000Z', 1) } });
   const r = mergeImport(local, backup);
   assert.deepEqual(mergeImport(r, backup), r);
+});
+
+// ---------- Restaurar una copia después de «Borrar progreso» ----------
+
+/** Este dispositivo (`A`) ganó 500 monedas y guardó una copia; después borró el progreso. */
+const before = make({ coinLedger: { A: { earned: 500, spent: 0 } } });
+const savedCopy = before;
+const at = new Date('2026-11-07T12:00:00.000Z');
+
+/** Suma lo ganado y gastado después del borrado, en el contador del dispositivo actual. */
+const afterReset = (earned: number, spent: number) => {
+  const r = withReset(before, at);
+  const coinLedger = { [r.deviceId]: { earned, spent } };
+  return { ...r, coinLedger, coins: coinBalance(coinLedger) };
+};
+
+test('restaurar tras borrar: lo ganado después del borrado se suma a la copia (500 + 300)', () => {
+  assert.equal(mergeImport(afterReset(300, 0), savedCopy).coins, 800);
+});
+
+test('restaurar tras borrar: ganar 300 y gastar 200 después del borrado, con una copia de 500, deja 600', () => {
+  assert.equal(mergeImport(afterReset(300, 200), savedCopy).coins, 600);
+});
+
+test('restaurar tras borrar con compras reales: comprar después del borrado no se pierde al restaurar', () => {
+  let p = withReset(before, at);
+  p = { ...p, coinLedger: { [p.deviceId]: { earned: 300, spent: 0 } }, coins: 300 };
+  const bought = withBoardThemeBought(p, 'madera', 200);
+  assert.ok(bought);
+  const m = mergeImport(bought, savedCopy);
+  assert.equal(m.coins, 600);
+  assert.deepEqual(m.boardThemes, ['madera']);
 });

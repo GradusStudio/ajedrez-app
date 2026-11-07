@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { Platform } from 'react-native';
 import { AudioPlayer, createAudioPlayer, setAudioModeAsync } from 'expo-audio';
-import * as Haptics from 'expo-haptics';
+import { vibrate } from './haptics';
 import { useSettings } from '../settings/SettingsContext';
 
 // Sonidos y vibración de la app. Los sonidos son los de assets/sounds, generados con ComfyUI (Stable Audio Open); los anteriores sintetizados están en assets/fuente/sonidos/previos.
@@ -34,23 +33,6 @@ function playSound(name: SoundName) {
     player.seekTo(0).then(() => player.play(), () => player.play());
   } catch {
     // Un sonido que falla no debe romper nada.
-  }
-}
-
-type Haptic = 'success' | 'error';
-
-function vibrate(kind: Haptic) {
-  if (Platform.OS === 'android' && kind === 'error') {
-    // El error usa el vibrador directo: la vibración de interfaz (performAndroidHapticsAsync) depende del
-    // ajuste "vibración al tocar" del sistema, que en muchos teléfonos está apagado. Probado en un Redmi (Android 15).
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
-  } else if (Platform.OS === 'android') {
-    // Acierto: vibración de interfaz, la recomendada en Android (no pide permisos).
-    Haptics.performAndroidHapticsAsync(Haptics.AndroidHaptics.Confirm).catch(() => {});
-  } else {
-    Haptics.notificationAsync(
-      kind === 'success' ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Error
-    ).catch(() => {});
   }
 }
 

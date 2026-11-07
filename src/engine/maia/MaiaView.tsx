@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { WebView as WebViewBase, WebViewMessageEvent } from 'react-native-webview';
-import { buildMaiaHtml } from './maiaHtml';
 import { MaiaEngine } from './maiaEngine';
-import { MaiaNetId, netBase64 } from './nets';
+import { MaiaNetId } from './nets';
+import { useMaiaHtml } from './useMaiaHtml';
 
 // Mismo arreglo de tipos que EngineView (react-native-webview 14 con TypeScript 6).
 const WebView = WebViewBase<object>;
@@ -17,20 +17,10 @@ type Props = {
   onError: (message: string) => void;
 };
 
-// La página lleva la red adentro (~1,8 MB): se arma una vez por red.
-const cache = new Map<MaiaNetId, string>();
-const htmlFor = (net: MaiaNetId) => {
-  let html = cache.get(net);
-  if (!html) {
-    html = buildMaiaHtml(netBase64(net));
-    cache.set(net, html);
-  }
-  return html;
-};
-
 /** WebView invisible donde corre Maia. Al desmontarlo, el motor se cierra con él. */
 export function MaiaView({ net, onReady, onError }: Props) {
   const [engine] = useState(() => new MaiaEngine());
+  const html = useMaiaHtml(net, onError);
 
   useEffect(() => {
     engine.setOnFailure(onError);
@@ -43,6 +33,9 @@ export function MaiaView({ net, onReady, onError }: Props) {
     return () => engine.close();
   }, [engine]);
 
+  // Mientras la red carga no se monta nada; el reloj de arm() ya corre.
+  if (!html) return null;
+
   return (
     <WebView
       ref={(web: WebViewRef | null) =>
@@ -50,7 +43,7 @@ export function MaiaView({ net, onReady, onError }: Props) {
       }
       style={styles.hidden}
       originWhitelist={['*']}
-      source={{ html: htmlFor(net), baseUrl: 'https://localhost/' }}
+      source={{ html, baseUrl: 'https://localhost/' }}
       javaScriptEnabled
       onMessage={(e: WebViewMessageEvent) => engine.receive(e.nativeEvent.data)}
       onError={(e: { nativeEvent: { description: string } }) => engine.fail(e.nativeEvent.description)}

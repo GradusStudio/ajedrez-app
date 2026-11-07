@@ -11,6 +11,7 @@ import { encodeMaia, lc0MoveIndex } from './encode';
 import { LC0_CONV_POLICY_MAP, LC0_MOVES } from './lc0Tables';
 import { MaiaEngine, wdlToCentipawns } from './maiaEngine';
 import { MAIA_WORKER_JS } from './maiaWorkerSource';
+import { loadNetBase64 } from './nets';
 
 const bit = (bits: number[], plane: number, square: number) =>
   ((bits[2 * plane + (square >= 32 ? 1 : 0)] >>> square % 32) & 1) === 1;
@@ -173,4 +174,9 @@ test('todos los bots tienen motor de respaldo con Stockfish', () => {
     const b = findBot(id)!;
     assert.ok(b.fallback, id);
   }
+});
+
+test('loadNetBase64 devuelve la misma red que el archivo generado', async () => {
+  const { MAIA_1500 } = await import('./redes/maia1500.generated');
+  assert.equal(await loadNetBase64(1500), MAIA_1500);
 });

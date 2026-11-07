@@ -12,3 +12,13 @@ test('idioma inválido vuelve a auto', () => assert.equal(sanitizeSettings({ lan
 test('conserva idioma elegido', () => assert.equal(sanitizeSettings({ language: 'de' }).language, 'de'));
 test('tema inválido', () => assert.equal(sanitizeSettings({ boardTheme: 'zzz' as never }).boardTheme, 'verde'));
 test('conserva un tema con textura', () => assert.equal(sanitizeSettings({ boardTheme: 'hielo' }).boardTheme, 'hielo'));
+test('installOffered empieza en false y se conserva', () => {
+  assert.equal(sanitizeSettings({}).installOffered, false);
+  assert.equal(sanitizeSettings({ installOffered: true }).installOffered, true);
+});
+test('ajustes guardados antes de installOffered lo reciben en false', () => {
+  const old = { sound: false, reminderOffered: true } as never;
+  const s = sanitizeSettings(old);
+  assert.equal(s.installOffered, false);
+  assert.equal(s.sound, false);
+});

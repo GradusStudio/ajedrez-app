@@ -37,6 +37,12 @@
         height: 100%;
         flex: 1;
       }
+      /* Foco visible con el teclado (react-native-web lo quita): dorado del tema, 4.9:1 o más sobre bg y surface. */
+      [tabindex]:focus-visible,
+      a:focus-visible {
+        outline: 3px solid #f7c631 !important;
+        outline-offset: 2px;
+      }
     </style>
   </head>
 

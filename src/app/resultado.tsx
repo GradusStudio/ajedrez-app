@@ -6,6 +6,7 @@ import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak } from '../progress/progressStore';
+import { useInstallPlatform } from '../pwa/useInstallPlatform';
 import { LessonResultScreen } from '../screens/LessonResultScreen';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { ensureReminderPermission, REMINDERS_SUPPORTED } from '../settings/reminders';
@@ -32,10 +33,15 @@ export default function ResultRoute() {
   );
   const accepting = useRef(false);
 
-  // Al mostrarla se marca como ofrecida: si se ignora, no vuelve a aparecer en otras lecciones.
+  // Tarjeta de instalar (solo web, una vez): como con el recordatorio, el valor de `installOffered` se toma al abrir
+  // para que la tarjeta siga visible en esta visita aunque pase a true al mostrarla. En el celular la plataforma es null.
+  const platform = useInstallPlatform();
+  const [installOfferedBefore] = useState(settings.installOffered);
+  const showInstall =
+    platform !== null && platform !== 'installed' && params.modo !== 'repaso' && !installOfferedBefore && !showOffer;
   useEffect(() => {
-    if (showOffer) update({ reminderOffered: true });
-  }, [showOffer, update]);
+    if (showInstall) update({ installOffered: true });
+  }, [showInstall, update]);
 
   const accept = async () => {
     if (accepting.current) return; // evita que un doble toque corra dos veces
@@ -63,6 +69,7 @@ export default function ResultRoute() {
       streakRecovered={params.recuperada === '1'}
       onContinue={() => router.back()}
       reminderOffer={offer}
+      installOffer={showInstall ? { onInstall: () => router.push('/instalar') } : undefined}
       onReviewMistakes={
         failed && params.modo !== 'repaso'
           ? () => router.replace({ pathname: '/leccion/[id]', params: { id: params.id, repaso: failed } })

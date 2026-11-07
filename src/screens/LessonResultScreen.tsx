@@ -26,9 +26,11 @@ type Props = {
   onReviewMistakes?: () => void;
   /** Oferta única del recordatorio diario; no bloquea Continuar. */
   reminderOffer?: { onAccept: () => void; onDecline: () => void };
+  /** Tarjeta única de instalar Gradus (solo web); no bloquea Continuar. */
+  installOffer?: { onInstall: () => void };
 };
 
-export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer }: Props) {
+export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer, installOffer }: Props) {
   const { t, tn } = useI18n();
   return (
     // Con scroll: en un teléfono chico con letra grande, «Continuar» no puede quedar afuera.
@@ -81,6 +83,14 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
         </View>
       )}
 
+      {installOffer && (
+        <View style={styles.offer}>
+          <Text accessibilityRole="header" style={styles.offerTitle}>{t('lessonResult.installTitle')}</Text>
+          <Text style={styles.offerText}>{t('lessonResult.installText')}</Text>
+          <Button3D label={t('install.button.install')} onPress={installOffer.onInstall} style={{ marginTop: space.md, minHeight: 48 }} />
+        </View>
+      )}
+
       <View style={{ flex: 1, minHeight: space.lg }} />
       <Button3D label={t('common.continue')} variant="primary" onPress={onContinue} />
       {onReviewMistakes && (
@@ -122,5 +132,6 @@ const styles = StyleSheet.create({
     padding: space.lg,
   },
   offerTitle: { fontFamily: fonts.bold, fontSize: 16, color: colors.text, textAlign: 'center' },
+  offerText: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, textAlign: 'center', marginTop: space.xs, lineHeight: 20 },
   note: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: space.lg, textAlign: 'center' },
 });

@@ -14,6 +14,8 @@ export type Settings = {
   reminder: { enabled: boolean; hour: number };
   /** Ya se ofreció el recordatorio al terminar una lección (no se vuelve a ofrecer). */
   reminderOffered: boolean;
+  /** Ya se mostró la tarjeta de instalar Gradus al terminar una lección (web; no se repite). */
+  installOffered: boolean;
 };
 
 export const defaultSettings: Settings = {
@@ -24,6 +26,7 @@ export const defaultSettings: Settings = {
   boardTheme: 'verde',
   reminder: { enabled: false, hour: 19 },
   reminderOffered: false,
+  installOffered: false,
 };
 
 const LANGUAGES = ['auto', 'es', 'en', 'de', 'it', 'fr'];

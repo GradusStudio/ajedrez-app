@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { router } from 'expo-router';
 import { Pressable, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { useI18n } from '../i18n/I18nContext';
+import { declineInstallOffer, isInstallOfferDeclined } from '../pwa/installOffer';
+import { useInstallPlatform } from '../pwa/useInstallPlatform';
 import { PlayerLevel } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -16,6 +19,10 @@ const LEVELS: PlayerLevel[] = ['nuevo', 'basico', 'casual'];
 export function OnboardingScreen({ onFinish }: Props) {
   const { t } = useI18n();
   const [step, setStep] = useState(0);
+  // Solo en Safari de iPhone: lo guardado ahí no pasa a la app instalada, así que se ofrece instalar antes de empezar.
+  const platform = useInstallPlatform();
+  const [stayInBrowser, setStayInBrowser] = useState(isInstallOfferDeclined);
+  const offerInstall = platform === 'ios' && !stayInBrowser;
 
   return (
     <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.lg }]}>
@@ -30,7 +37,18 @@ export function OnboardingScreen({ onFinish }: Props) {
         </Pressable>
       </View>
 
-      {step === 0 && (
+      {step === 0 && offerInstall && (
+        <View style={styles.body}>
+          <Text style={styles.brand}>Gradus</Text>
+          <Text accessibilityRole="header" style={styles.title}>{t('onboarding.install.title')}</Text>
+          <Text style={styles.text}>{t('onboarding.install.text')}</Text>
+          <View style={{ flex: 1 }} />
+          <Button3D label={t('onboarding.install.go')} variant="primary" onPress={() => router.push('/instalar')} />
+          <Button3D label={t('onboarding.install.stay')} onPress={() => { declineInstallOffer(); setStayInBrowser(true); }} style={{ marginTop: space.md }} />
+        </View>
+      )}
+
+      {step === 0 && !offerInstall && (
         <View style={styles.body}>
           <Text style={styles.emoji}>♞</Text>
           <Text style={styles.brand}>Gradus</Text>

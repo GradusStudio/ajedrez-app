@@ -10,7 +10,7 @@ import themes from '../puzzles/themes.json';
 // Se revisan los .tsx con el analizador de TypeScript:
 //  - texto suelto dentro de una etiqueta (<Text>Hola</Text>) y cadenas dentro de { } en los hijos;
 //  - atributos de texto (title, label, accessibilityLabel...) y propiedades de objetos con esos nombres;
-//  - argumentos de Alert.alert.
+//  - argumentos de showDialog.
 
 const SRC = path.resolve(__dirname, '..');
 
@@ -99,9 +99,8 @@ function check(file: string): string[] {
     }
     if (
       ts.isCallExpression(node) &&
-      ts.isPropertyAccessExpression(node.expression) &&
-      node.expression.expression.getText() === 'Alert' &&
-      node.expression.name.text === 'alert'
+      ts.isIdentifier(node.expression) &&
+      node.expression.text === 'showDialog'
     ) {
       node.arguments.forEach((a) => literals(a).forEach((t) => report(a, t)));
     }

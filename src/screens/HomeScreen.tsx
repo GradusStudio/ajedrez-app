@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Alert, Modal, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { showDialog } from '../components/dialog';
+import { Modal, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
 import { LessonNode, NODE_BOX } from '../components/LessonNode';
@@ -186,7 +187,7 @@ function UnitPath({
 
   const openLesson = (lesson: Lesson, i: number) => {
     if (states[i] === 'locked') {
-      Alert.alert(t('lesson.lockedTitle'), t('home.lockedMessage', { title: current?.title ?? '' }));
+      showDialog(t('lesson.lockedTitle'), t('home.lockedMessage', { title: current?.title ?? '' }));
       return;
     }
     onStartLesson(lesson);

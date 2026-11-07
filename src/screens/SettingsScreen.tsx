@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text } from 'react-native';
+import { showDialog } from '../components/dialog';
+import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { Segmented } from '../components/Segmented';
 import { SettingRow } from '../components/SettingRow';
@@ -35,18 +36,18 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
     try {
       const ok = await ensureReminderPermission(t('settings.reminder'));
       if (!ok) {
-        Alert.alert(t('settings.noPermission.title'), t('settings.noPermission.message'));
+        showDialog(t('settings.noPermission.title'), t('settings.noPermission.message'));
         update({ reminder: { enabled: false, hour } });
         return;
       }
       update({ reminder: { enabled: true, hour } });
     } catch {
-      Alert.alert(t('settings.reminderFailed.title'), t('settings.reminderFailed.message'));
+      showDialog(t('settings.reminderFailed.title'), t('settings.reminderFailed.message'));
     }
   };
 
   const confirmReset = () =>
-    Alert.alert(t('settings.reset.title'), t('settings.reset.message'), [
+    showDialog(t('settings.reset.title'), t('settings.reset.message'), [
       { text: t('common.cancel'), style: 'cancel' },
       { text: t('settings.reset.confirm'), style: 'destructive', onPress: resetProgress },
     ]);

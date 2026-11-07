@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { showDialog } from '../components/dialog';
+import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { Circle3D } from '../components/Circle3D';
@@ -35,7 +36,7 @@ export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack 
 
   const open = (lesson: Lesson, state: NodeState) => {
     if (state === 'locked') {
-      Alert.alert(t('lesson.lockedTitle'), t('openings.lockedMessage', { title: current?.title ?? '' }));
+      showDialog(t('lesson.lockedTitle'), t('openings.lockedMessage', { title: current?.title ?? '' }));
       return;
     }
     onStartLesson(lesson);

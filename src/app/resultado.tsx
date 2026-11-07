@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert } from 'react-native';
+import { showDialog } from '../components/dialog';
 import { router, useLocalSearchParams } from 'expo-router';
 import { pickPhrase, teacherForLesson } from '../data/teachers';
 import { useContent } from '../data/useContent';
@@ -47,7 +47,7 @@ export default function ResultRoute() {
         return;
       }
     } catch {}
-    Alert.alert(t('settings.noPermission.title'), t('settings.noPermission.message'));
+    showDialog(t('settings.noPermission.title'), t('settings.noPermission.message'));
   };
   const offer = showOffer ? { onAccept: accept, onDecline: () => setShowOffer(false) } : undefined;
 

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { showDialog } from '../components/dialog';
+import { BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { FeedbackPanel } from '../components/FeedbackPanel';
 import { useFeedback } from '../feedback/feedback';
 import { ProgressBar } from '../components/ProgressBar';
@@ -123,10 +124,33 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
     }
   };
 
+  // Al salir por el diálogo, quien llama guarda el avance; al desmontar sin eso (el "atrás" del
+  // navegador) se guarda aquí, salvo que la lección haya terminado.
+  const exited = useRef(false);
+  const latest = useRef<LessonState>({ stepIndex: index, errors, mistakes });
+  const onAdvanceRef = useRef(onAdvance);
+  useEffect(() => {
+    latest.current = { stepIndex: index, errors, mistakes };
+    onAdvanceRef.current = onAdvance;
+  });
+  useEffect(
+    () => () => {
+      if (!exited.current && !finished.current) onAdvanceRef.current?.(latest.current);
+    },
+    []
+  );
+
   const confirmExit = () => {
-    Alert.alert(t('lesson.exitTitle'), exitMessage, [
+    showDialog(t('lesson.exitTitle'), exitMessage, [
       { text: t('lesson.keepGoing'), style: 'cancel' },
-      { text: t('common.exit'), style: 'destructive', onPress: () => onExit({ stepIndex: index, errors, mistakes }) },
+      {
+        text: t('common.exit'),
+        style: 'destructive',
+        onPress: () => {
+          exited.current = true;
+          onExit({ stepIndex: index, errors, mistakes });
+        },
+      },
     ]);
   };
 

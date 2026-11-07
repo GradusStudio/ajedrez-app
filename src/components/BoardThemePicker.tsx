@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { showDialog } from './dialog';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
 import { boardThemePrice, isBoardThemeOwned } from '../pieces/shop';
 import { useProgress } from '../progress/ProgressContext';
@@ -25,10 +26,10 @@ export function BoardThemePicker() {
     if (isBoardThemeOwned(id, progress.boardThemes)) return update({ boardTheme: id });
     const price = boardThemePrice(id);
     if (progress.coins < price) {
-      Alert.alert(t('pieces.needCoins.title'), t('boards.needCoins.message', { price, coins: progress.coins }));
+      showDialog(t('pieces.needCoins.title'), t('boards.needCoins.message', { price, coins: progress.coins }));
       return;
     }
-    Alert.alert(t('boards.buy.title', { name }), t('pieces.buy.message', { price, left: progress.coins - price }), [
+    showDialog(t('boards.buy.title', { name }), t('pieces.buy.message', { price, left: progress.coins - price }), [
       { text: t('common.cancel'), style: 'cancel' },
       { text: t('pieces.buy.confirm'), onPress: () => buyBoardTheme(id, price) && update({ boardTheme: id }) },
     ]);

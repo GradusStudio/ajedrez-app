@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Alert, BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { showDialog } from '../components/dialog';
+import { BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { detectOpening } from '../bots/book';
 import { enginesFor, thinkMove } from '../bots/brain';
@@ -192,7 +193,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   };
 
   const resign = () =>
-    Alert.alert(t('game.resign.title'), t('game.resign.message'), [
+    showDialog(t('game.resign.title'), t('game.resign.message'), [
       { text: t('game.keepPlaying'), style: 'cancel' },
       { text: t('game.resign.confirm'), style: 'destructive', onPress: () => end({ kind: 'loss', reason: 'game.reason.resigned' }, true) },
     ]);
@@ -212,7 +213,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
       onExit();
       return;
     }
-    Alert.alert(t('game.abandon.title'), t('game.abandon.message'), [
+    showDialog(t('game.abandon.title'), t('game.abandon.message'), [
       { text: t('game.keepPlaying'), style: 'cancel' },
       {
         text: t('game.abandon.confirm'),

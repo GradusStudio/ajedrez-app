@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { showDialog } from './dialog';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
 import { AnyPieceSetId, PIECE_SET_LIST } from '../pieces/materials';
 import { isPieceSetOwned, pieceSetPrice } from '../pieces/shop';
@@ -36,10 +37,10 @@ export function PieceSetPicker() {
     if (isPieceSetOwned(id, progress.pieceSets)) return setPieceSet(id);
     const price = pieceSetPrice(id);
     if (progress.coins < price) {
-      Alert.alert(t('pieces.needCoins.title'), t('pieces.needCoins.message', { price, coins: progress.coins }));
+      showDialog(t('pieces.needCoins.title'), t('pieces.needCoins.message', { price, coins: progress.coins }));
       return;
     }
-    Alert.alert(t('pieces.buy.title', { name }), t('pieces.buy.message', { price, left: progress.coins - price }), [
+    showDialog(t('pieces.buy.title', { name }), t('pieces.buy.message', { price, left: progress.coins - price }), [
       { text: t('common.cancel'), style: 'cancel' },
       { text: t('pieces.buy.confirm'), onPress: () => buyPieceSet(id, price) && setPieceSet(id) },
     ]);

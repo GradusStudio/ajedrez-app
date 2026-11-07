@@ -27,13 +27,15 @@ export function MaiaView({ net, onReady, onError }: Props) {
     engine.setOnReady(() => onReady(engine));
   });
 
-  // Desde que se monta ya cuenta el tiempo: si la página nunca arranca, también se avisa.
-  useEffect(() => {
-    engine.arm();
-    return () => engine.close();
-  }, [engine]);
+  useEffect(() => () => engine.close(), [engine]);
 
-  // Mientras la red carga no se monta nada; el reloj de arm() ya corre.
+  // El reloj empieza cuando la página está lista: la descarga de la red (lenta con mala conexión) no cuenta.
+  // Si la descarga falla, useMaiaHtml avisa con onError.
+  useEffect(() => {
+    if (html) engine.arm();
+  }, [engine, html]);
+
+  // Mientras la red carga no se monta nada.
   if (!html) return null;
 
   return (

@@ -23,7 +23,7 @@ import {
   withBoardThemeBought,
   withReset,
 } from './progressStore';
-import { mergeProgress } from './merge';
+import { mergeImport } from './merge';
 
 /** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
 export type Earned = { coins: number; dailyBonus: number; streakRecovered: boolean };
@@ -176,7 +176,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   }, [commit]);
 
   const importProgress = useCallback(
-    (incoming: Progress) => commit(mergeProgress(current.current, incoming)),
+    (incoming: Progress) => commit(mergeImport(current.current, incoming)),
     [commit]
   );
 

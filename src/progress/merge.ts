@@ -187,3 +187,12 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
   if (lastUnit.value !== undefined) merged.lastUnit = lastUnit.value;
   return merged;
 }
+
+/**
+ * Combina una copia cargada a mano desde un archivo. Restaurar es una decisión explícita del usuario, así que
+ * la regla de `resetAt` (que sirve para llevar un borrado a los demás dispositivos sincronizados) no se aplica:
+ * no se descarta ninguno de los dos lados y el `resetAt` del resultado es el local.
+ */
+export function mergeImport(local: Progress, incoming: Progress): Progress {
+  return mergeProgress(local, { ...incoming, resetAt: local.resetAt });
+}

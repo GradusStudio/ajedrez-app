@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mergeProgress } from './merge';
+import { mergeImport, mergeProgress } from './merge';
 import { coinBalance, emptyProgress, type GameRecord, type Progress } from './progressStore';
 
 /** Progreso versión 4 de ejemplo; `coins` siempre sale del libro de monedas. */
@@ -312,4 +312,52 @@ test('el resultado tiene version 4 y coins igual al saldo del libro', () => {
   assert.equal(m.version, 4);
   assert.equal(m.coins, coinBalance(m.coinLedger));
   assert.equal(m.coins, 120 + 50 + 80 - 20);
+});
+
+// ---------- mergeImport: restaurar a mano un archivo ----------
+
+const backup = make({
+  coinLedger: { A: { earned: 120, spent: 20 } },
+  lessons: { x: lesson(1, '2026-11-02T10:00:00.000Z', 1), y: lesson(0, '2026-11-03T10:00:00.000Z', 1) },
+});
+
+test('mergeImport: tras borrar el progreso en este dispositivo, la copia vuelve con sus lecciones y monedas', () => {
+  const local = make({ resetAt: '2026-11-07T12:00:00.000Z' });
+  const m = mergeImport(local, backup);
+  assert.deepEqual(m.lessons, backup.lessons);
+  assert.equal(m.coins, 100);
+  assert.equal(m.resetAt, local.resetAt);
+});
+
+test('mergeImport: lo hecho después del borrado se conserva junto con la copia', () => {
+  const local = make({
+    resetAt: '2026-11-07T12:00:00.000Z',
+    coinLedger: { A: { earned: 150, spent: 0 } },
+    lessons: { z: lesson(2, '2026-11-07T13:00:00.000Z', 1) },
+  });
+  const m = mergeImport(local, backup);
+  assert.deepEqual(Object.keys(m.lessons).sort(), ['x', 'y', 'z']);
+  // Mismo dispositivo: de cada contador, el mayor. Ganado 150, gastado 20.
+  assert.deepEqual(m.coinLedger, { A: { earned: 150, spent: 20 } });
+  assert.equal(m.coins, 130);
+});
+
+test('mergeImport: un resetAt más nuevo en la copia no borra lo local', () => {
+  const local = make({ lessons: { z: lesson(2, '2026-11-07T13:00:00.000Z', 1) }, coinLedger: { A: { earned: 10, spent: 0 } } });
+  const m = mergeImport(local, { ...backup, resetAt: '2026-11-09T00:00:00.000Z' });
+  assert.ok(m.lessons.z);
+  assert.ok(m.lessons.x);
+  assert.equal(m.resetAt, null);
+});
+
+test('mergeImport: el resetAt del resultado es el local', () => {
+  const local = make({ resetAt: '2026-11-05T00:00:00.000Z' });
+  assert.equal(mergeImport(local, { ...backup, resetAt: '2026-11-06T00:00:00.000Z' }).resetAt, local.resetAt);
+  assert.equal(mergeImport(make(), { ...backup, resetAt: '2026-11-06T00:00:00.000Z' }).resetAt, null);
+});
+
+test('mergeImport: es idempotente', () => {
+  const local = make({ resetAt: '2026-11-07T12:00:00.000Z', lessons: { z: lesson(2, '2026-11-07T13:00:00.000Z', 1) } });
+  const r = mergeImport(local, backup);
+  assert.deepEqual(mergeImport(r, backup), r);
 });

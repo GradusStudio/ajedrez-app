@@ -190,11 +190,15 @@ Debe mostrar los motores y bases usados con su licencia (Stockfish, chess.js y l
 
 ## 4. Datos que guarda la app (en el dispositivo)
 
-Lo que ya se guarda (versión 2, `src/progress/progressStore.ts`, clave `ajedrez:progreso` en AsyncStorage):
+Lo que ya se guarda (versión 4, `src/progress/progressStore.ts`, clave `ajedrez:progreso` en AsyncStorage):
 
 ```json
 {
-  "version": 3,
+  "version": 4,
+  "deviceId": "7e28b28d-...",
+  "resetAt": null,
+  "coinLedger": { "7e28b28d-...": { "earned": 120, "spent": 0 } },
+  "stamps": { "level": "2026-10-27T10:00:00.000Z", "lastUnit": "..." },
   "profile": { "level": "basico", "onboarded": true },
   "lessons": { "u1-l01": { "done": true, "errors": 1, "completedAt": "...", "completions": 2 } },
   "drafts": { "u1-l03": { "stepIndex": 2, "errors": 1, "mistakes": ["u1-l03-s03"] } },
@@ -218,7 +222,8 @@ Lo que ya se guarda (versión 2, `src/progress/progressStore.ts`, clave `ajedrez
 - `coins` es el saldo para gastar. `rewards` evita pagar dos veces un premio: `goalDate` es el día en que ya se pagó el premio del día (conserva su nombre viejo) y `botWins`, por bot, el día de la última victoria premiada. `pieceSets` guarda los sets comprados (los gratis no se guardan).
 - Monedas (desde el 30-10-2026 reemplazan a la XP): 15 por lección nueva (ruta y aperturas), 2 por puzzle resuelto sin errores y 1 con errores (solo la primera vez), por ganarle a un bot su Elo/100 (una vez por día y por bot, no en práctica) y 10 por la primera acción válida del día (una vez por día). Se gastan en la tienda de sets de piezas (precios en `src/pieces/shop.ts`).
 - El tiempo de práctica tiene un tope de 30 minutos por sesión, por si la app queda abierta sin usar.
-- Si cambia la forma de los datos, se sube `version` y se migra en `migrate()`; las versiones 1 y 2 se migran solas (en la 2 había XP: pasa a monedas 1 a 1).
+- Si cambia la forma de los datos, se sube `version` y se migra en `migrate()`; las versiones 1 a 3 se migran solas (en la 2 había XP: pasa a monedas 1 a 1) y el resultado se guarda enseguida.
+- Versión 4 (7-11-2026, para combinar dos copias del progreso con `mergeProgress` en `src/progress/merge.ts`: archivo importado o Google Drive). `deviceId` es un id al azar de la instalación. `coinLedger` guarda por dispositivo cuánto ganó y cuánto gastó (contadores que solo crecen); `coins` es siempre su saldo (`coinBalance`). Al migrar, el saldo de la versión 3 pasa a ser lo ganado por el dispositivo; un archivo viejo importado usa el id fijo `legacy`. `stamps` guarda la fecha del último cambio de `profile.level` y `lastUnit`. `resetAt` es la fecha del último «Borrar progreso»: al combinar, gana entera la copia con el más reciente. Reglas de combinación en el diseño de la versión web (`docs/superpowers/specs/2026-11-07-version-web-design.md`, «Cómo se combinan dos versiones»).
 
 Las lecciones de apertura se guardan en el mismo `lessons` que las de las unidades (los ids no se repiten: `london-l01`, `u1-l01`). El progreso de cada apertura se calcula contando sus lecciones hechas, así que no hace falta un campo `openings` aparte.
 

@@ -41,14 +41,25 @@ export type GameRecord = {
   playedAt: string;
 };
 
+/** Monedas de un dispositivo: contadores que solo crecen, para poder combinar sin perder nada (merge.ts). */
+export type CoinCounters = { earned: number; spent: number };
+
 export type Progress = {
-  version: 3;
+  version: 4;
+  /** Id al azar de esta instalación. Las monedas se cuentan por dispositivo en `coinLedger`. */
+  deviceId: string;
+  /** Fecha ISO del último «Borrar progreso» (null si nunca). Al combinar, gana entera la versión con el más reciente. */
+  resetAt: string | null;
+  /** Por dispositivo, monedas ganadas y gastadas. */
+  coinLedger: Record<string, CoinCounters>;
+  /** Fecha ISO del último cambio de los campos que se combinan por «el último que lo cambió». Si falta, cuenta como la más vieja. */
+  stamps: { level?: string; lastUnit?: string };
   /** Se elige en la bienvenida. */
   profile: { level?: PlayerLevel; onboarded?: boolean };
   lessons: Record<string, LessonProgress>;
   drafts: Record<string, LessonDraft>;
   streak: Streak;
-  /** Monedas para gastar en la tienda (reemplazaron a la XP en la versión 3). */
+  /** Saldo para gastar en la tienda (las monedas reemplazaron a la XP en la versión 3). Siempre igual a `coinBalance(coinLedger)`. */
   coins: number;
   /** Para no pagar dos veces el mismo premio: día del premio diario (`goalDate`, nombre histórico) y, por bot, día de la última victoria premiada. */
   rewards: { goalDate: string | null; botWins: Record<string, string> };
@@ -76,8 +87,13 @@ export const DAILY_BONUS_COINS = 10;
 /** Victoria contra un bot (no en práctica): una vez por día y por bot, según su nivel (Pipo 500 → 5, Ada 2200 → 22). */
 export const botWinCoins = (elo: number) => Math.round(elo / 100);
 
+/** Progreso vacío. `deviceId` queda vacío: lo completan `loadProgress` y `migrate`. */
 export const emptyProgress: Progress = {
-  version: 3,
+  version: 4,
+  deviceId: '',
+  resetAt: null,
+  coinLedger: {},
+  stamps: {},
   profile: {},
   lessons: {},
   drafts: {},
@@ -107,8 +123,31 @@ export function currentStreak(p: Progress, today = todayKey()): number {
 
 // ---------- Cambios ----------
 
+/** Saldo: todo lo ganado menos todo lo gastado, sumando los dispositivos. */
+export function coinBalance(ledger: Progress['coinLedger']): number {
+  let total = 0;
+  for (const c of Object.values(ledger)) total += c.earned - c.spent;
+  return total;
+}
+
+/** Suma a un contador del dispositivo actual y recalcula el saldo. */
+function withLedger(p: Progress, field: keyof CoinCounters, amount: number): Progress {
+  if (!amount) return p;
+  const mine = p.coinLedger[p.deviceId] ?? { earned: 0, spent: 0 };
+  const coinLedger = { ...p.coinLedger, [p.deviceId]: { ...mine, [field]: mine[field] + amount } };
+  return { ...p, coinLedger, coins: coinBalance(coinLedger) };
+}
+
 function withCoins(p: Progress, amount: number): Progress {
-  return amount ? { ...p, coins: p.coins + amount } : p;
+  return withLedger(p, 'earned', amount);
+}
+
+/** Id al azar para esta instalación. Solo tiene que ser único, no secreto. */
+export function randomId(): string {
+  const c = (globalThis as { crypto?: { randomUUID?: () => string } }).crypto;
+  if (typeof c?.randomUUID === 'function') return c.randomUUID();
+  const part = () => Math.random().toString(36).slice(2, 10).padEnd(8, '0');
+  return `${Date.now().toString(36)}-${part()}-${part()}`;
 }
 
 /** Suma tiempo de práctica (ya no se muestra, pero se sigue guardando). */
@@ -143,8 +182,8 @@ export function withDraft(p: Progress, lessonId: string, draft: LessonDraft | nu
   return { ...p, drafts };
 }
 
-export function withLastUnit(p: Progress, unit: number): Progress {
-  return p.lastUnit === unit ? p : { ...p, lastUnit: unit };
+export function withLastUnit(p: Progress, unit: number, now = new Date()): Progress {
+  return p.lastUnit === unit ? p : { ...p, lastUnit: unit, stamps: { ...p.stamps, lastUnit: now.toISOString() } };
 }
 
 /** Suma un fallo a cada paso de `stepIds`. */
@@ -242,17 +281,33 @@ export function withGameFinished(
 /** Compra un set de piezas. Devuelve null si no alcanzan las monedas o si ya era suyo. */
 export function withPieceSetBought(p: Progress, id: string, price: number): Progress | null {
   if (p.pieceSets.includes(id) || p.coins < price) return null;
-  return { ...p, coins: p.coins - price, pieceSets: [...p.pieceSets, id] };
+  return withLedger({ ...p, pieceSets: [...p.pieceSets, id] }, 'spent', price);
 }
 
 /** Compra un tablero. Devuelve null si no alcanzan las monedas o si ya era suyo. */
 export function withBoardThemeBought(p: Progress, id: string, price: number): Progress | null {
   if (p.boardThemes.includes(id) || p.coins < price) return null;
-  return { ...p, coins: p.coins - price, boardThemes: [...p.boardThemes, id] };
+  return withLedger({ ...p, boardThemes: [...p.boardThemes, id] }, 'spent', price);
 }
 
-export function withProfile(p: Progress, patch: Partial<Progress['profile']>): Progress {
-  return { ...p, profile: { ...p.profile, ...patch } };
+/** Cambia el perfil. Si el cambio trae `level`, anota la fecha (al combinar gana el último que lo cambió). */
+export function withProfile(p: Progress, patch: Partial<Progress['profile']>, now = new Date()): Progress {
+  const stamps = 'level' in patch ? { ...p.stamps, level: now.toISOString() } : p.stamps;
+  return { ...p, profile: { ...p.profile, ...patch }, stamps };
+}
+
+/**
+ * «Borrar progreso»: conserva el perfil (bienvenida y nivel, con su fecha) y el dispositivo, y anota `resetAt`
+ * para que al combinar con una copia anterior (archivo o Drive) no vuelva lo borrado.
+ */
+export function withReset(p: Progress, now = new Date()): Progress {
+  return {
+    ...emptyProgress,
+    deviceId: p.deviceId,
+    profile: p.profile,
+    stamps: p.stamps.level ? { level: p.stamps.level } : {},
+    resetAt: now.toISOString(),
+  };
 }
 
 const PUZZLE_RANK: Record<PuzzleResult, number> = { failed: 0, solved: 1, clean: 2 };
@@ -318,53 +373,88 @@ type ProgressV1 = {
   lessons: Record<string, { completedAt: string; bestErrors: number; completions: number }>;
 };
 
+/** Versión 3: igual que la 4, pero con las monedas como un único saldo. */
+type ProgressV3 = Omit<Progress, 'version' | 'deviceId' | 'resetAt' | 'coinLedger' | 'stamps'> & { version: 3 };
+
 /** Versión 2: igual que la 3, pero con XP en lugar de monedas. */
-type ProgressV2 = Omit<Progress, 'version' | 'coins' | 'rewards' | 'pieceSets' | 'boardThemes'> & {
+type ProgressV2 = Omit<ProgressV3, 'version' | 'coins' | 'rewards' | 'pieceSets' | 'boardThemes'> & {
   version: 2;
   xp: { total: number; today: number; date: string | null };
 };
 
-function migrate(data: Progress | ProgressV2 | ProgressV1): Progress {
-  if (data.version === 3) return { ...emptyProgress, ...data };
+/** Lo que puede venir guardado (o en un archivo importado). */
+export type StoredProgress = ProgressV1 | ProgressV2 | ProgressV3 | Progress;
+
+function toV3(data: ProgressV1 | ProgressV2 | ProgressV3): ProgressV3 {
+  const { deviceId: _d, resetAt: _r, coinLedger: _l, stamps: _s, ...base } = emptyProgress;
+  if (data.version === 3) return { ...base, ...data };
   if (data.version === 2) {
     // La XP ganada pasa a monedas, 1 a 1.
     const { xp, ...rest } = data;
-    return { ...emptyProgress, ...rest, version: 3, coins: xp?.total ?? 0 };
+    return { ...base, ...rest, version: 3, coins: xp?.total ?? 0 };
   }
-  if (data.version === 1) {
-    const lessons: Record<string, LessonProgress> = {};
-    for (const [id, l] of Object.entries(data.lessons)) {
-      lessons[id] = { done: true, errors: l.bestErrors, completedAt: l.completedAt, completions: l.completions };
-    }
-    return { ...emptyProgress, lessons, coins: data.xp };
+  const lessons: Record<string, LessonProgress> = {};
+  for (const [id, l] of Object.entries(data.lessons)) {
+    lessons[id] = { done: true, errors: l.bestErrors, completedAt: l.completedAt, completions: l.completions };
   }
-  return emptyProgress;
+  return { ...base, version: 3, lessons, coins: data.xp };
+}
+
+/**
+ * Lleva cualquier versión guardada a la 4. `newDeviceId` se usa si el progreso todavía no tiene dispositivo:
+ * el saldo de las versiones 1 a 3 pasa a ser lo ganado por ese dispositivo. Un archivo viejo importado se migra
+ * con el id fijo `'legacy'`, así importarlo dos veces no suma dos veces (merge.ts toma el mayor de cada contador).
+ * En la versión 4, `coins` se recalcula desde el libro: el libro manda.
+ */
+export function migrate(data: StoredProgress, newDeviceId: string): Progress {
+  if (data.version === 4) {
+    const coinLedger = data.coinLedger ?? {};
+    return {
+      ...emptyProgress,
+      ...data,
+      deviceId: data.deviceId || newDeviceId,
+      resetAt: data.resetAt ?? null,
+      coinLedger,
+      stamps: data.stamps ?? {},
+      coins: coinBalance(coinLedger),
+    };
+  }
+  const { version: _v, coins, ...rest } = toV3(data);
+  const coinLedger = { [newDeviceId]: { earned: Number.isFinite(coins) ? coins : 0, spent: 0 } };
+  return { ...emptyProgress, ...rest, deviceId: newDeviceId, coinLedger, coins: coinBalance(coinLedger) };
 }
 
 /**
  * Lee el progreso guardado. `canSave` es false si guardar podría pisar datos que no se pudieron leer:
  * un fallo de lectura puede ser pasajero y el progreso seguiría ahí la próxima vez.
+ * Si hubo que migrar o darle un dispositivo, se guarda enseguida: así `deviceId` no cambia entre una apertura
+ * y otra, y el saldo viejo no se cuenta dos veces bajo dos ids distintos.
  */
-export async function loadProgress(): Promise<{ progress: Progress; canSave: boolean }> {
+export async function loadProgress(newDeviceId = randomId()): Promise<{ progress: Progress; canSave: boolean }> {
+  const fresh: Progress = { ...emptyProgress, deviceId: newDeviceId };
   let raw: string | null;
   try {
     raw = await AsyncStorage.getItem(KEY);
   } catch {
-    return { progress: emptyProgress, canSave: false };
+    return { progress: fresh, canSave: false };
   }
-  if (!raw) return { progress: emptyProgress, canSave: true };
+  if (!raw) return { progress: fresh, canSave: true };
+  let data: StoredProgress;
+  let progress: Progress;
   try {
-    const data = JSON.parse(raw);
-    if (![1, 2, 3].includes(data?.version)) throw new Error('versión desconocida');
-    return { progress: migrate(data), canSave: true };
+    data = JSON.parse(raw);
+    if (![1, 2, 3, 4].includes(data?.version)) throw new Error('versión desconocida');
+    progress = migrate(data, newDeviceId);
   } catch {
     // Datos dañados: se empieza de cero en vez de romper la app, pero antes se guarda una copia.
     const canSave = await AsyncStorage.setItem(BACKUP_KEY, raw).then(
       () => true,
       () => false
     );
-    return { progress: emptyProgress, canSave };
+    return { progress: fresh, canSave };
   }
+  if (data.version !== 4 || !data.deviceId) await saveProgress(progress).catch(() => {});
+  return { progress, canSave: true };
 }
 
 export async function saveProgress(progress: Progress): Promise<void> {

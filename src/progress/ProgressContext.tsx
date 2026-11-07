@@ -21,7 +21,9 @@ import {
   withReviewFinished,
   withTurningPointSolved,
   withBoardThemeBought,
+  withReset,
 } from './progressStore';
+import { mergeProgress } from './merge';
 
 /** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
 export type Earned = { coins: number; dailyBonus: number; streakRecovered: boolean };
@@ -52,8 +54,10 @@ type ProgressValue = {
   /** Compra un tablero: devuelve false si no alcanzan las monedas. */
   buyBoardTheme: (id: string, price: number) => boolean;
   updateProfile: (patch: Partial<Progress['profile']>) => void;
-  /** Borra todo el progreso. Conserva la bienvenida ya hecha y el nivel. */
+  /** Borra todo el progreso. Conserva la bienvenida ya hecha y el nivel, y anota la fecha (`resetAt`). */
   resetProgress: () => void;
+  /** Combina otra copia del progreso (archivo o Drive) con la de este dispositivo, sin perder nada (merge.ts). */
+  importProgress: (incoming: Progress) => void;
 };
 
 const ProgressContext = createContext<ProgressValue | null>(null);
@@ -165,11 +169,16 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   );
 
   const resetProgress = useCallback(() => {
-    const fresh = { ...emptyProgress, profile: current.current.profile };
+    const fresh = withReset(current.current);
     clearProgress()
       .catch(() => {})
       .finally(() => commit(fresh));
   }, [commit]);
+
+  const importProgress = useCallback(
+    (incoming: Progress) => commit(mergeProgress(current.current, incoming)),
+    [commit]
+  );
 
   return (
     <ProgressContext.Provider
@@ -188,6 +197,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         buyBoardTheme,
         updateProfile,
         resetProgress,
+        importProgress,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { coinBalance, type GameRecord, type LessonProgress, type Mistake, type Progress, type PuzzleResult } from './progressStore';
+import { PROGRESS_VERSION, PUZZLE_RANK, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress } from './progressStore';
 import type { Streak } from './streak';
 
 // Combina dos copias del progreso (la del dispositivo y una importada de un archivo o de Drive) sin perder nada.
@@ -72,8 +72,6 @@ function mergeLesson(a: LessonProgress, b: LessonProgress): LessonProgress {
   };
 }
 
-const PUZZLE_RANK: Record<PuzzleResult, number> = { failed: 0, solved: 1, clean: 2 };
-
 function mergeMistakes(a: Mistake[], b: Mistake[]): Mistake[] {
   const byStep = new Map<string, Mistake>();
   for (const m of [...a, ...b]) {
@@ -133,7 +131,7 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
   const lessons = mergeRecord(local.lessons, incoming.lessons, mergeLesson);
   const drafts = Object.fromEntries(
     Object.entries(mergeRecord(local.drafts, incoming.drafts, (a, b) => pick(a, b, a.stepIndex - b.stepIndex))).filter(
-      ([id]) => !lessons[id]
+      ([id]) => !Object.prototype.hasOwnProperty.call(lessons, id)
     )
   );
   const puzzles = mergeRecord(local.puzzles, incoming.puzzles, (a, b) =>
@@ -159,8 +157,8 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
         ? false
         : undefined;
 
-  const merged: Progress = {
-    version: 4,
+  const merged: Omit<Progress, 'coins'> = {
+    version: PROGRESS_VERSION,
     deviceId: local.deviceId,
     resetAt: laterDate(local.resetAt, incoming.resetAt),
     profile: {
@@ -175,7 +173,6 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     drafts,
     streak: mergeStreak(local.streak, incoming.streak),
     coinLedger,
-    coins: coinBalance(coinLedger),
     rewards: {
       goalDate: laterDate(local.rewards.goalDate, incoming.rewards.goalDate),
       botWins: mergeRecord(local.rewards.botWins, incoming.rewards.botWins, laterDate),
@@ -189,7 +186,7 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     turningPoints: union(local.turningPoints, incoming.turningPoints),
   };
   if (lastUnit.value !== undefined) merged.lastUnit = lastUnit.value;
-  return merged;
+  return withBalance(merged);
 }
 
 /**

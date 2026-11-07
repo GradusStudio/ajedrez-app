@@ -44,8 +44,11 @@ export type GameRecord = {
 /** Monedas de un dispositivo: contadores que solo crecen, para poder combinar sin perder nada (merge.ts). */
 export type CoinCounters = { earned: number; spent: number };
 
+/** Versión de la forma de `Progress` que guarda esta app. Si cambia, migrar en `migrate`. */
+export const PROGRESS_VERSION = 4 as const;
+
 export type Progress = {
-  version: 4;
+  version: typeof PROGRESS_VERSION;
   /** Id al azar de esta instalación. Las monedas se cuentan por dispositivo en `coinLedger`. */
   deviceId: string;
   /** Fecha ISO del último «Borrar progreso» (null si nunca). Al combinar, gana entera la versión con el más reciente. */
@@ -89,7 +92,7 @@ export const botWinCoins = (elo: number) => Math.round(elo / 100);
 
 /** Progreso vacío. `deviceId` queda vacío: lo completan `loadProgress` y `migrate`. */
 export const emptyProgress: Progress = {
-  version: 4,
+  version: PROGRESS_VERSION,
   deviceId: '',
   resetAt: null,
   coinLedger: {},
@@ -130,12 +133,16 @@ export function coinBalance(ledger: Progress['coinLedger']): number {
   return total;
 }
 
+/** `coins` siempre es el saldo del libro: el único lugar donde se recalcula. */
+export function withBalance(p: Omit<Progress, 'coins'>): Progress {
+  return { ...p, coins: coinBalance(p.coinLedger) };
+}
+
 /** Suma a un contador del dispositivo actual y recalcula el saldo. */
 function withLedger(p: Progress, field: keyof CoinCounters, amount: number): Progress {
   if (!amount) return p;
   const mine = p.coinLedger[p.deviceId] ?? { earned: 0, spent: 0 };
-  const coinLedger = { ...p.coinLedger, [p.deviceId]: { ...mine, [field]: mine[field] + amount } };
-  return { ...p, coinLedger, coins: coinBalance(coinLedger) };
+  return withBalance({ ...p, coinLedger: { ...p.coinLedger, [p.deviceId]: { ...mine, [field]: mine[field] + amount } } });
 }
 
 function withCoins(p: Progress, amount: number): Progress {
@@ -312,7 +319,7 @@ export function withReset(p: Progress, now = new Date()): Progress {
   };
 }
 
-const PUZZLE_RANK: Record<PuzzleResult, number> = { failed: 0, solved: 1, clean: 2 };
+export const PUZZLE_RANK: Record<PuzzleResult, number> = { failed: 0, solved: 1, clean: 2 };
 
 /**
  * Puzzle terminado: guarda el mejor resultado y cuenta para la racha salvo
@@ -409,21 +416,19 @@ function toV3(data: ProgressV1 | ProgressV2 | ProgressV3): ProgressV3 {
  * En la versión 4, `coins` se recalcula desde el libro: el libro manda.
  */
 export function migrate(data: StoredProgress, newDeviceId: string): Progress {
-  if (data.version === 4) {
-    const coinLedger = data.coinLedger ?? {};
-    return {
+  if (data.version === PROGRESS_VERSION) {
+    return withBalance({
       ...emptyProgress,
       ...data,
       deviceId: data.deviceId || newDeviceId,
       resetAt: data.resetAt ?? null,
-      coinLedger,
+      coinLedger: data.coinLedger ?? {},
       stamps: data.stamps ?? {},
-      coins: coinBalance(coinLedger),
-    };
+    });
   }
   const { version: _v, coins, ...rest } = toV3(data);
   const coinLedger = { [newDeviceId]: { earned: Number.isFinite(coins) ? coins : 0, spent: 0 } };
-  return { ...emptyProgress, ...rest, deviceId: newDeviceId, coinLedger, coins: coinBalance(coinLedger) };
+  return withBalance({ ...emptyProgress, ...rest, deviceId: newDeviceId, coinLedger });
 }
 
 /**
@@ -445,7 +450,8 @@ export async function loadProgress(newDeviceId = randomId()): Promise<{ progress
   let progress: Progress;
   try {
     data = JSON.parse(raw);
-    if (![1, 2, 3, 4].includes(data?.version)) throw new Error('versión desconocida');
+    const v = data?.version;
+    if (!(Number.isInteger(v) && v >= 1 && v <= PROGRESS_VERSION)) throw new Error('versión desconocida');
     progress = migrate(data, newDeviceId);
   } catch {
     // Datos dañados: se empieza de cero en vez de romper la app, pero antes se guarda una copia.
@@ -455,7 +461,7 @@ export async function loadProgress(newDeviceId = randomId()): Promise<{ progress
     );
     return { progress: fresh, canSave };
   }
-  if (data.version !== 4 || !data.deviceId) await saveProgress(progress).catch(() => {});
+  if (data.version !== PROGRESS_VERSION || !data.deviceId) await saveProgress(progress).catch(() => {});
   return { progress, canSave: true };
 }
 

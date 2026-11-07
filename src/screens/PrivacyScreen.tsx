@@ -68,5 +68,5 @@ const styles = StyleSheet.create({
   section: { marginTop: space.xl },
   heading: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text },
   text: { fontFamily: fonts.semibold, fontSize: 15, color: colors.textMuted, marginTop: space.sm, lineHeight: 23 },
-  link: { fontFamily: fonts.bold, fontSize: 15, color: colors.primary, minHeight: 44, textAlignVertical: 'center', marginTop: space.xs, textDecorationLine: 'underline' },
+  link: { fontSize: 15, marginTop: space.xs },
 });

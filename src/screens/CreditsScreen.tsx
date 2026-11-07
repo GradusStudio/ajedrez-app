@@ -3,6 +3,7 @@ import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View
 import { AppLink } from '../components/AppLink';
 import { useI18n } from '../i18n/I18nContext';
 import { SOURCE_URL } from '../links';
+import { PRIVACY_PAGE_AVAILABLE } from '../privacyPage';
 import { STOCKFISH_VERSION } from '../engine/stockfish/stockfishAssets';
 import { colors, fonts, radius, space } from '../theme';
 
@@ -87,7 +88,7 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
       <Text style={styles.title}>{t('credits.title')}</Text>
       <Text style={styles.subtitle}>{t('credits.subtitle')}</Text>
       <Text style={styles.note}>{t('credits.translationsNote')}</Text>
-      <AppLink href="/privacidad" style={styles.privacyLink}>{t('privacy.link')}</AppLink>
+      {PRIVACY_PAGE_AVAILABLE && <AppLink href="/privacidad" style={styles.privacyLink}>{t('privacy.link')}</AppLink>}
 
       {credits(t).map((c) => (
         <View key={c.name} style={styles.card}>
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
   note: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted, marginBottom: space.lg },
-  privacyLink: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary, minHeight: 44, textAlignVertical: 'center', marginBottom: space.sm, textDecorationLine: 'underline' },
+  privacyLink: { fontSize: 14, marginBottom: space.sm },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,
@@ -126,5 +127,5 @@ const styles = StyleSheet.create({
   name: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
   license: { fontFamily: fonts.bold, fontSize: 12, color: colors.gold, marginTop: 2 },
   what: { fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted, marginTop: space.xs, lineHeight: 20 },
-  link: { fontFamily: fonts.bold, fontSize: 13, color: colors.primary, marginTop: space.xs, textDecorationLine: 'underline' },
+  link: { fontSize: 13, marginTop: space.xs },
 });

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Linking, Pressable, StyleProp, Text, TextStyle } from 'react-native';
 import { router } from 'expo-router';
+import { appLinkBase } from './appLinkStyle';
 
 type Props = {
   /** Dirección externa (https:, mailto:) o ruta interna de la app (/privacidad). */
   href: string;
   children: string;
+  /** Se suma al aspecto común (appLinkStyle.ts): tamaño de letra y márgenes. */
   style?: StyleProp<TextStyle>;
 };
 
@@ -18,7 +20,7 @@ export function AppLink({ href, children, style }: Props) {
       accessibilityRole="link"
       hitSlop={6}
     >
-      <Text style={style}>{children}</Text>
+      <Text style={[appLinkBase, style]}>{children}</Text>
     </Pressable>
   );
 }

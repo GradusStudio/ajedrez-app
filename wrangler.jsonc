@@ -1,6 +1,9 @@
 {
   "name": "gradus",
   "compatibility_date": "2026-11-04",
+  "build": {
+    "command": "npm run build:web"
+  },
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"

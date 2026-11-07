@@ -18,6 +18,7 @@ import { useProgress } from '../progress/ProgressContext';
 import { isQuizAnswer, peekPendingQuiz, turningPointKey } from '../review/turningPoints';
 import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
+import { styles as reviewStyles } from './review/reviewStyles';
 
 type Props = { onExit: () => void };
 type SquareMove = { from: Square; to: Square };
@@ -157,7 +158,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
             )}
           </FadeIn>
         </ScrollView>
-        <View style={styles.bottomBar}>
+        <View style={reviewStyles.bottomBar}>
           <Button3D label={t('quiz.back')} variant="primary" onPress={onExit} style={{ flex: 1 }} />
         </View>
       </View>
@@ -239,5 +240,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   wrongTitle: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.danger },
-  bottomBar: { flexDirection: 'row', paddingHorizontal: space.lg, paddingVertical: space.md, borderTopWidth: 1, borderTopColor: colors.outline },
 });

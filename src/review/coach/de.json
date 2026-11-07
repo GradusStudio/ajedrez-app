@@ -156,90 +156,90 @@
   "opp": {
     "tranquilo": {
       "ok": [
-        "Your opponent plays {move}: correct, let us go on calmly.",
-        "A reasonable answer from your opponent: {move}."
+        "Dein Gegner spielt {move}: richtig, lass uns ruhig weitermachen.",
+        "Eine vernünftige Antwort deines Gegners: {move}."
       ],
       "inaccuracy": [
-        "Your opponent plays {move}, an inaccuracy: it gives you a little air.",
-        "With {move} your opponent does not find the best; there is something for you."
+        "Dein Gegner spielt {move}, eine Ungenauigkeit: das gibt dir etwas Luft.",
+        "Mit {move} findet dein Gegner nicht das Beste; da ist etwas für dich."
       ],
       "mistake": [
-        "Your opponent errs with {move}. Look calmly: there is a chance.",
-        "{move} is a mistake by your opponent. Take your time."
+        "Dein Gegner macht mit {move} einen Fehler. Schau ruhig hin: da ist eine Chance.",
+        "{move} ist ein Fehler deines Gegners. Nimm dir Zeit."
       ],
       "blunder": [
-        "Your opponent blundered with {move}. Calmly now: you can take advantage.",
-        "{move} is a big slip by your opponent. Breathe and see what it gave you."
+        "Dein Gegner hat mit {move} einen groben Fehler gemacht. Ruhig jetzt: du kannst das ausnutzen.",
+        "{move} ist ein großer Fehler deines Gegners. Atme durch und sieh, was es dir gegeben hat."
       ],
       "mate": [
-        "Your opponent delivers mate with {move}. The game is over.",
-        "Mate by your opponent with {move}. Time to learn from this game."
+        "Dein Gegner setzt mit {move} matt. Die Partie ist vorbei.",
+        "Dein Gegner setzt mit {move} matt. Zeit, aus dieser Partie zu lernen."
       ]
     },
     "equilibrado": {
       "ok": [
-        "Your opponent plays {move}, a correct move.",
-        "Your opponent answers with {move}."
+        "Dein Gegner spielt {move}, ein korrekter Zug.",
+        "Dein Gegner antwortet mit {move}."
       ],
       "inaccuracy": [
-        "Your opponent plays {move}, an inaccuracy: it gives you some air.",
-        "{move} is not your opponent's best: it concedes a little."
+        "Dein Gegner spielt {move}, eine Ungenauigkeit: das gibt dir etwas Luft.",
+        "{move} ist nicht der beste Zug deines Gegners: er gibt ein bisschen nach."
       ],
       "mistake": [
-        "Your opponent errs with {move}: this is your chance.",
-        "{move} is your opponent's mistake, and it has an answer."
+        "Dein Gegner macht mit {move} einen Fehler: das ist deine Chance.",
+        "{move} ist ein Fehler deines Gegners und es gibt eine Antwort."
       ],
       "blunder": [
-        "Your opponent blundered with {move}. Take advantage.",
-        "{move} is a serious mistake by your opponent: the game turns in your favor."
+        "Dein Gegner hat mit {move} einen groben Fehler gemacht. Nutze das aus.",
+        "{move} ist ein schwerer Fehler deines Gegners: Die Partie dreht sich zu deinen Gunsten."
       ],
       "mate": [
-        "Your opponent delivers mate with {move}.",
-        "Checkmate by your opponent with {move}."
+        "Dein Gegner setzt mit {move} matt.",
+        "Schachmatt durch deinen Gegner mit {move}."
       ]
     },
     "posicional": {
       "ok": [
-        "Your opponent plays {move}, a correct move that does not weaken their position.",
-        "{move}: a coherent reply from your opponent."
+        "Dein Gegner spielt {move}, ein korrekter Zug, der seine Stellung nicht schwächt.",
+        "{move}: eine kohärente Antwort deines Gegners."
       ],
       "inaccuracy": [
-        "Your opponent plays {move}, inaccurate: it gives up a little control.",
-        "With {move} your opponent loosens their position a bit."
+        "Dein Gegner spielt {move}, ungenau: er gibt ein wenig Kontrolle auf.",
+        "Mit {move} lockert dein Gegner seine Stellung ein wenig."
       ],
       "mistake": [
-        "{move} weakens your opponent's position: there is something to collect.",
-        "Your opponent errs with {move} and leaves a weak point."
+        "{move} schwächt die Stellung deines Gegners: da ist etwas zu holen.",
+        "Dein Gegner begeht mit {move} einen Fehler und lässt eine Schwachstelle."
       ],
       "blunder": [
-        "{move} is a serious mistake: your opponent's position gives way.",
-        "Your opponent breaks their own balance with {move}. Punish it."
+        "{move} ist ein schwerwiegender Fehler: die Stellung deines Gegners gibt nach.",
+        "Dein Gegner bricht sein eigenes Gleichgewicht mit {move}. Bestrafe das."
       ],
       "mate": [
-        "Your opponent delivers mate with {move}. A clean finish.",
-        "Mate with {move}: that is how the game ends."
+        "Dein Gegner setzt mit {move} matt. Ein sauberes Ende.",
+        "Matt mit {move}: So endet die Partie."
       ]
     },
     "agresivo": {
       "ok": [
-        "Your opponent plays {move}, correct. The fight goes on.",
-        "Your opponent answers with {move}. Now it is your turn to attack."
+        "Dein Gegner spielt {move}, richtig. Der Kampf geht weiter.",
+        "Dein Gegner antwortet mit {move}. Jetzt bist du dran, anzugreifen."
       ],
       "inaccuracy": [
-        "Your opponent plays {move}, an inaccuracy! They let you breathe.",
-        "With {move} your opponent loosens up: press."
+        "Dein Gegner spielt {move}, eine Ungenauigkeit! Er lässt dir Luft zum Atmen.",
+        "Mit {move} lockert dein Gegner auf: drücke an."
       ],
       "mistake": [
-        "Your opponent errs with {move}! Go get them.",
-        "{move} is a mistake: your chance to press."
+        "Dein Gegner macht mit {move} einen Fehler! Geh und nimm ihn.",
+        "{move} ist ein Fehler: deine Chance zum Druck."
       ],
       "blunder": [
-        "Your opponent blundered with {move}! Time to collect.",
-        "{move} is a huge mistake by your opponent! Do not let go."
+        "Dein Gegner hat mit {move} einen groben Fehler gemacht! Zeit, das zu holen.",
+        "{move} ist ein riesiger Fehler deines Gegners! Lass nicht locker."
       ],
       "mate": [
-        "Your opponent finishes it with {move}: checkmate.",
-        "{move} is your opponent's mate: they took the game."
+        "Dein Gegner beendet es mit {move}: Schachmatt.",
+        "{move} ist das Matt deines Gegners: Er hat die Partie gewonnen."
       ]
     }
   },
@@ -247,80 +247,80 @@
     "tranquilo": {
       "exploit": {
         "tail": [
-          "Take your time to calculate it, it is worth it.",
-          "Seen calmly, it is an easy edge to collect."
+          "Nimm dir Zeit, das zu berechnen, es lohnt sich.",
+          "Mit Ruhe betrachtet, ist das ein Vorteil, den du leicht holen kannst."
         ]
       },
       "allows": {
         "tail": [
-          "Next time, before moving, ask yourself what your opponent can do.",
-          "With practice you will spot it earlier."
+          "Nächstes Mal frag dich vor dem Zug, was dein Gegner tun kann.",
+          "Mit Übung wirst du es früher sehen."
         ]
       },
       "good": {
         "lead": [
-          "Let us look at it calmly.",
-          "It is worth understanding this move."
+          "Schauen wir es uns ruhig an.",
+          "Es lohnt sich, diesen Zug zu verstehen."
         ]
       }
     },
     "equilibrado": {
       "exploit": {
         "tail": [
-          "Better to collect it now, before your opponent fixes it.",
-          "This is the kind of chance to look for on every move."
+          "Es ist besser, es jetzt zu nehmen, bevor dein Gegner es korrigiert.",
+          "Das ist die Art von Chance, die du bei jedem Zug suchen solltest."
         ]
       },
       "allows": {
         "tail": [
-          "Before moving, check what your opponent can capture or threaten.",
-          "A quick scan of your opponent's replies avoids this kind of error."
+          "Bevor du ziehst, schau, was dein Gegner nehmen oder bedrohen kann.",
+          "Ein schneller Blick auf die Antworten deines Gegners vermeidet diese Art von Fehler."
         ]
       },
       "good": {
         "lead": [
-          "This is what the move achieves.",
-          "Let us look at the move."
+          "Das erreicht der Zug.",
+          "Schauen wir uns den Zug an."
         ]
       }
     },
     "posicional": {
       "exploit": {
         "tail": [
-          "Unsupported pieces and loose squares are what to look for.",
-          "A position breaks at its weak points: there was one here."
+          "Ungedeckte Figuren und freie Felder sind das, worauf du achten musst.",
+          "Eine Stellung bricht an ihren Schwachpunkten: hier gab es einen."
         ]
       },
       "allows": {
         "tail": [
-          "Before moving, see which pieces and squares are left unprotected.",
-          "Every move changes what each piece defends: check it before moving."
+          "Bevor du ziehst, sieh dir an, welche Figuren und Felder ungedeckt sind.",
+          "Jeder Zug ändert, was jede Figur verteidigt: überprüfe es, bevor du ziehst."
         ]
       },
       "good": {
         "lead": [
-          "Let us see what changes in the position.",
-          "Notice which pieces and squares this move touches."
+          "Mal sehen, was sich in der Stellung ändert.",
+          "Beachte, welche Figuren und Felder dieser Zug berührt."
         ]
       }
     },
     "agresivo": {
       "exploit": {
         "tail": [
-          "Do not give them time to fix it.",
-          "You attack here, you do not wait."
+          "Gib ihm keine Zeit, es zu reparieren.",
+          "Hier greift man an, man wartet nicht."
         ]
       },
       "allows": {
         "tail": [
-          "Next time, look at what your opponent attacks first, then move.",
-          "To attack well, you first have to look after your own pieces."
+          "Schau dir das nächste Mal an, was dein Gegner zuerst angreift, und dann zieh.",
+          "Um gut anzugreifen, musst du zuerst auf deine eigenen Figuren achten."
         ]
       },
       "good": {
         "lead": [
-          "Look at what this move does.",
-          "Straight to the point with this move."
+          "Schau dir an, was dieser Zug macht.",
+          "Direkt auf den Punkt mit diesem Zug."
         ]
       }
     }
@@ -530,30 +530,30 @@
   "line": {
     "removeDefender": {
       "exploit": [
-        "Remove the defender: {first} takes {removed} that was guarding {targetSq}; then {finish} takes {target} on {targetSq}.",
-        "Remove the defender: {removed} was guarding {targetSq}. Without it, {target} on {targetSq} falls: {seq}."
+        "Verteidiger entfernen: {first} nimmt den Verteidiger von {targetSq} ({removed}); danach fällt {target} auf {targetSq} mit {finish}.",
+        "Verteidiger entfernen: {removed} deckte {targetSq}. Ohne diesen Verteidiger fällt {target} auf {targetSq}: {seq}."
       ],
       "allows": [
-        "Remove the defender: with {first} your opponent takes {removed} that was guarding {targetSq}; then {finish} takes {target} on {targetSq}.",
-        "Remove the defender: {removed} was guarding {targetSq}. Your opponent takes that piece and {target} on {targetSq} falls: {seq}."
+        "Verteidiger entfernen: mit {first} nimmt dein Gegner den Verteidiger von {targetSq} ({removed}); danach fällt {target} auf {targetSq} mit {finish}.",
+        "Verteidiger entfernen: {removed} deckte {targetSq}. Dein Gegner nimmt diese Figur, und {target} auf {targetSq} fällt: {seq}."
       ],
       "missed": [
-        "You could remove the defender: {first} took {removed} that was guarding {targetSq}, and then {finish} won {target} on {targetSq}.",
-        "You could remove the defender: {removed} was guarding {targetSq}. Without it, {target} on {targetSq} fell: {seq}."
+        "Du konntest den Verteidiger entfernen: {first} nahm den Verteidiger von {targetSq} ({removed}); danach fiel {target} auf {targetSq} mit {finish}.",
+        "Du konntest den Verteidiger entfernen: {removed} deckte {targetSq}. Ohne diesen Verteidiger fiel {target} auf {targetSq}: {seq}."
       ]
     },
     "material": {
       "exploit": [
-        "The engine sees {seq}: you win {n} points of material.",
-        "{first} starts a sequence that leaves you {n} points of material ahead."
+        "Die Engine sieht {seq}: du gewinnst {n} Materialpunkte.",
+        "{first} beginnt eine Sequenz, die dir {n} Materialpunkte Vorsprung bringt."
       ],
       "allows": [
-        "The engine sees {seq}: you lose {n} points of material.",
-        "With {first}, your opponent ends up {n} points of material ahead."
+        "Die Engine sieht {seq}: du verlierst {n} Materialpunkte.",
+        "Mit {first} liegt dein Gegner {n} Materialpunkte vorn."
       ],
       "missed": [
-        "The engine saw {seq}: you won {n} points of material.",
-        "With {first} you could have won {n} points of material."
+        "Die Engine sah {seq}: Damit hättest du {n} Materialpunkte gewonnen.",
+        "Mit {first} hättest du {n} Materialpunkte gewinnen können."
       ]
     }
   },

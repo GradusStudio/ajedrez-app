@@ -64,3 +64,4 @@ assets/fuente/sonidos/referencia-chesscom.wav
 
 # Sonidos derivados de audios de chess.com (no van al repositorio)
 assets/fuente/sonidos/comfy/
+.wrangler/

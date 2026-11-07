@@ -45,7 +45,7 @@ async function main() {
   const { count, size, warnings } = await generateSW({
     globDirectory: DIST,
     globPatterns: ['**/*'],
-    globIgnores: ['sw.js', 'workbox-*.js', ...heavy],
+    globIgnores: ['sw.js', 'workbox-*.js', '_headers', ...heavy],
     swDest: path.join(DIST, 'sw.js'),
     maximumFileSizeToCacheInBytes: 12 * 1024 * 1024,
     skipWaiting: false,

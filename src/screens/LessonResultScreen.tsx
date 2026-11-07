@@ -26,8 +26,8 @@ type Props = {
   onReviewMistakes?: () => void;
   /** Oferta única del recordatorio diario; no bloquea Continuar. */
   reminderOffer?: { onAccept: () => void; onDecline: () => void };
-  /** Tarjeta única de instalar Gradus (solo web); no bloquea Continuar. */
-  installOffer?: { onInstall: () => void };
+  /** Tarjeta única de instalar Gradus (solo web); no bloquea Continuar. `copyFirst`: en iPhone, avisa que guarde una copia antes. */
+  installOffer?: { onInstall: () => void; copyFirst: boolean };
 };
 
 export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer, installOffer }: Props) {
@@ -87,6 +87,7 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
         <View style={styles.offer}>
           <Text accessibilityRole="header" style={styles.offerTitle}>{t('lessonResult.installTitle')}</Text>
           <Text style={styles.offerText}>{t('lessonResult.installText')}</Text>
+          {installOffer.copyFirst && <Text style={styles.offerText}>{t('install.iosCopyFirst')}</Text>}
           <Button3D label={t('install.button.install')} onPress={installOffer.onInstall} style={{ marginTop: space.md, minHeight: 48 }} />
         </View>
       )}

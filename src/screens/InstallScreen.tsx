@@ -4,7 +4,7 @@ import { AppLink } from '../components/AppLink';
 import { Button3D } from '../components/Button3D';
 import type { MessageKey } from '../i18n/es';
 import { useI18n } from '../i18n/I18nContext';
-import { InstallPlatform } from '../pwa/installPlatform';
+import { InstallPlatform, needsCopyBeforeInstall } from '../pwa/installPlatform';
 import { colors, fonts, radius, space } from '../theme';
 
 type System = Exclude<InstallPlatform, 'installed'>;
@@ -75,15 +75,18 @@ function Steps({ system, open, first }: { system: System; open: boolean; first?:
   const name = t(`install.system.${system}`);
 
   const list = (
-    <View accessibilityRole="list" style={styles.card}>
-      {Array.from({ length: STEP_COUNT[system] }, (_, i) => (
-        <View key={i} accessibilityRole="listitem" style={[styles.step, i > 0 && { marginTop: space.md }]}>
-          <View style={styles.num}>
-            <Text style={styles.numText}>{i + 1}</Text>
+    <View style={styles.card}>
+      {needsCopyBeforeInstall(system) && <Text style={styles.copyFirst}>{t('install.iosCopyFirst')}</Text>}
+      <View accessibilityRole="list">
+        {Array.from({ length: STEP_COUNT[system] }, (_, i) => (
+          <View key={i} accessibilityRole="listitem" style={[styles.step, i > 0 && { marginTop: space.md }]}>
+            <View style={styles.num}>
+              <Text style={styles.numText}>{i + 1}</Text>
+            </View>
+            <Text style={styles.stepText}>{t(`install.${system}.${i + 1}` as MessageKey)}</Text>
           </View>
-          <Text style={styles.stepText}>{t(`install.${system}.${i + 1}` as MessageKey)}</Text>
-        </View>
-      ))}
+        ))}
+      </View>
     </View>
   );
 
@@ -136,6 +139,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.surfaceShadow,
     padding: space.lg,
   },
+  copyFirst: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, lineHeight: 22, marginBottom: space.lg },
   step: { flexDirection: 'row', alignItems: 'flex-start', gap: space.md },
   num: { width: 28, height: 28, borderRadius: 14, backgroundColor: colors.surfaceRaised, alignItems: 'center', justifyContent: 'center' },
   numText: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text },

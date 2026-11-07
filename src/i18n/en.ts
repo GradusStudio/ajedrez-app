@@ -460,6 +460,7 @@ export const en: Record<MessageKey, string> = {
   'onboarding.install.stay': 'Stay in the browser',
   'lessonResult.installTitle': 'Gradus also installs as an app',
   'lessonResult.installText': 'Open it from your home screen, full screen and offline.',
+  'install.iosCopyFirst': 'Your progress in Safari does not carry over to the installed app. Before installing, save a copy in Settings > Data and load it in the app.',
 
   // Pantalla sin contenido todavía
   'comingSoon.badge': 'Coming soon · milestone {n}',

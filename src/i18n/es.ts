@@ -459,6 +459,7 @@ export const es = {
   'onboarding.install.stay': 'Seguir en el navegador',
   'lessonResult.installTitle': 'Gradus también se instala como app',
   'lessonResult.installText': 'Ábrela desde tu pantalla de inicio, a pantalla completa y sin conexión.',
+  'install.iosCopyFirst': 'Tu progreso en Safari no pasa a la app instalada. Antes de instalar, guarda una copia en Ajustes > Datos y cárgala en la app.',
 
   // Pantalla sin contenido todavía
   'comingSoon.badge': 'Próximamente · hito {n}',

@@ -10,3 +10,11 @@ export function detectInstallPlatform(userAgent: string, standalone: boolean, ma
   if (/Android/.test(userAgent)) return 'android';
   return 'desktop';
 }
+
+/**
+ * En iPhone y iPad la app instalada guarda sus datos aparte de Safari: hay que avisar que se guarde una copia
+ * antes de instalar y se cargue en la app (diseño web, sección 3). En los demás sistemas el progreso sigue ahí.
+ */
+export function needsCopyBeforeInstall(platform: InstallPlatform | null): boolean {
+  return platform === 'ios';
+}

@@ -6,6 +6,7 @@ import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak } from '../progress/progressStore';
+import { needsCopyBeforeInstall } from '../pwa/installPlatform';
 import { useInstallPlatform } from '../pwa/useInstallPlatform';
 import { LessonResultScreen } from '../screens/LessonResultScreen';
 import { installOfferApplies, reminderOfferApplies } from '../settings/offers';
@@ -87,7 +88,7 @@ export default function ResultRoute() {
       streakRecovered={params.recuperada === '1'}
       onContinue={() => router.back()}
       reminderOffer={offer}
-      installOffer={showInstall ? { onInstall: () => router.push('/instalar') } : undefined}
+      installOffer={showInstall ? { onInstall: () => router.push('/instalar'), copyFirst: needsCopyBeforeInstall(platform) } : undefined}
       onReviewMistakes={
         failed && params.modo !== 'repaso'
           ? () => router.replace({ pathname: '/leccion/[id]', params: { id: params.id, repaso: failed } })

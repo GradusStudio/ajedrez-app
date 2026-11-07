@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { detectInstallPlatform } from './installPlatform';
+import { detectInstallPlatform, needsCopyBeforeInstall } from './installPlatform';
 
 const CHROME_ANDROID =
   'Mozilla/5.0 (Linux; Android 14; 23129RAA4G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36';
@@ -32,3 +32,8 @@ test('instalada gana sobre el sistema', () => {
 });
 test('iPhone en modo standalone', () => assert.equal(detectInstallPlatform(SAFARI_IPHONE, true, 5), 'installed'));
 test('User-Agent vacío', () => assert.equal(detectInstallPlatform('', false, 0), 'desktop'));
+
+test('el aviso de guardar una copia antes de instalar es solo para iPhone y iPad', () => {
+  assert.equal(needsCopyBeforeInstall('ios'), true);
+  for (const p of ['android', 'desktop', 'installed', null] as const) assert.equal(needsCopyBeforeInstall(p), false, String(p));
+});

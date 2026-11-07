@@ -1,3 +1,4 @@
+import '../pwa/captureInstallPrompt';
 import React, { useEffect } from 'react';
 import { ActivityIndicator, AppState, Platform, View } from 'react-native';
 import { DarkTheme, Stack, ThemeProvider } from 'expo-router';

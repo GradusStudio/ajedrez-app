@@ -8,6 +8,7 @@ import { useProgress } from '../progress/ProgressContext';
 import { currentStreak } from '../progress/progressStore';
 import { useInstallPlatform } from '../pwa/useInstallPlatform';
 import { LessonResultScreen } from '../screens/LessonResultScreen';
+import { installOfferApplies, reminderOfferApplies } from '../settings/offers';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { ensureReminderPermission, REMINDERS_SUPPORTED } from '../settings/reminders';
 import { useSettings } from '../settings/SettingsContext';
@@ -28,17 +29,34 @@ export default function ResultRoute() {
 
   // Se decide una vez al abrir la pantalla: la oferta sigue visible en esta visita aunque
   // `reminderOffered` pase a true al mostrarla.
-  const [showOffer, setShowOffer] = useState(
-    () => REMINDERS_SUPPORTED && params.modo !== 'repaso' && !settings.reminderOffered && !settings.reminder.enabled
+  const review = params.modo === 'repaso';
+  const [showOffer, setShowOffer] = useState(() =>
+    reminderOfferApplies({
+      remindersSupported: REMINDERS_SUPPORTED,
+      review,
+      reminderOffered: settings.reminderOffered,
+      reminderEnabled: settings.reminder.enabled,
+    })
   );
+  // Lo que aplicaba al abrir: la tarjeta de instalar nunca aparece a mitad de visita porque se respondió el recordatorio.
+  const [reminderAppliedOnOpen] = useState(showOffer);
   const accepting = useRef(false);
 
-  // Tarjeta de instalar (solo web, una vez): como con el recordatorio, el valor de `installOffered` se toma al abrir
-  // para que la tarjeta siga visible en esta visita aunque pase a true al mostrarla. En el celular la plataforma es null.
+  // Al mostrarla se marca como ofrecida: si se ignora, no vuelve a aparecer en otras lecciones.
+  useEffect(() => {
+    if (showOffer) update({ reminderOffered: true });
+  }, [showOffer, update]);
+
+  // Tarjeta de instalar (solo web, una vez): igual que con el recordatorio, `installOffered` se toma al abrir para que la
+  // tarjeta siga visible en esta visita aunque pase a true al mostrarla. En el celular la plataforma es null.
   const platform = useInstallPlatform();
   const [installOfferedBefore] = useState(settings.installOffered);
-  const showInstall =
-    platform !== null && platform !== 'installed' && params.modo !== 'repaso' && !installOfferedBefore && !showOffer;
+  const showInstall = installOfferApplies({
+    platform,
+    review,
+    installOffered: installOfferedBefore,
+    reminderApplies: reminderAppliedOnOpen,
+  });
   useEffect(() => {
     if (showInstall) update({ installOffered: true });
   }, [showInstall, update]);
@@ -61,7 +79,7 @@ export default function ResultRoute() {
     <LessonResultScreen
       title={lesson?.title ?? ''}
       teacher={teacher}
-      mode={params.modo === 'repaso' ? 'review' : params.monedas === '0' ? 'replay' : 'lesson'}
+      mode={review ? 'review' : params.monedas === '0' ? 'replay' : 'lesson'}
       errors={Number(params.errors) || 0}
       coinsEarned={Number(params.monedas) || 0}
       dailyBonus={Number(params.premio) || 0}

@@ -434,7 +434,7 @@ export const es = {
   'install.label.desktop': 'Computadora',
   'install.ios.1': 'Abre esta página en Safari.',
   'install.ios.2': 'Toca Compartir, el botón del cuadrado con una flecha hacia arriba.',
-  'install.ios.3': 'Elige «Agregar a inicio».',
+  'install.ios.3': 'Elige «Agregar a pantalla de inicio».',
   'install.ios.4': 'Toca «Agregar» y abre Gradus desde el ícono nuevo.',
   'install.android.1': 'Abre el menú de Chrome, los tres puntos de arriba a la derecha.',
   'install.android.2': 'Elige «Instalar app» o «Agregar a la pantalla principal».',

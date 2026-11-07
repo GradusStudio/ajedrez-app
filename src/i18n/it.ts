@@ -435,7 +435,7 @@ export const it: Record<MessageKey, string> = {
   'install.label.desktop': 'Computer',
   'install.ios.1': 'Apri questa pagina in Safari.',
   'install.ios.2': 'Tocca Condividi, il pulsante quadrato con una freccia in su.',
-  'install.ios.3': 'Scegli «Aggiungi alla schermata Home».',
+  'install.ios.3': 'Scegli «Aggiungi a Home».',
   'install.ios.4': 'Tocca «Aggiungi» e apri Gradus dall\'icona nuova.',
   'install.android.1': 'Apri il menu di Chrome, i tre punti in alto a destra.',
   'install.android.2': 'Scegli «Installa app» o «Aggiungi alla schermata principale».',

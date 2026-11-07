@@ -63,9 +63,10 @@ export function SummaryView({ top, bubble, graph, review, me, nameOf, decimal, o
             );
           })}
         </View>
+        {/* Debajo de la tabla, junto a los errores que se van a practicar; «Empezar» sigue siendo la acción principal. */}
+        {onPractice && <Button3D label={t('quiz.title')} onPress={onPractice} style={{ marginTop: space.md }} />}
       </ScrollView>
       <View style={styles.bottomBar}>
-        {onPractice && <Button3D label={t('quiz.title')} onPress={onPractice} style={{ flex: 1 }} />}
         <Button3D label={t('review.start')} variant="primary" onPress={onStart} style={{ flex: 1 }} />
       </View>
     </View>

@@ -60,7 +60,8 @@ export function TurningPointQuizScreen({ onExit }: Props) {
   const [wrongMove, setWrongMove] = useState<SquareMove | null>(null);
   const [errors, setErrors] = useState(0);
   const [hintUsed, setHintUsed] = useState(false);
-  const [found, setFound] = useState(0);
+  /** Por posición ya jugada: true si la encontró, false si vio la solución. */
+  const [results, setResults] = useState<boolean[]>([]);
   const [coins, setCoins] = useState(0);
   const [lastCoins, setLastCoins] = useState(0);
   const [ended, setEnded] = useState(false);
@@ -71,9 +72,9 @@ export function TurningPointQuizScreen({ onExit }: Props) {
   if (!quiz || !tp) {
     return (
       <View style={[styles.screen, styles.center]}>
-        <Text style={styles.muted}>{t('review.invalid')}</Text>
+        <Text style={styles.muted}>{t('quiz.unavailable')}</Text>
         <View style={{ height: space.lg }} />
-        <Button3D label={t('common.continue')} onPress={onExit} />
+        <Button3D label={t('quiz.back')} onPress={onExit} />
       </View>
     );
   }
@@ -93,7 +94,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
     }
     feedback.correct();
     const earned = finishTurningPoint(turningPointKey(tp), errors === 0 && !hintUsed);
-    setFound((n) => n + 1);
+    setResults((r) => [...r, true]);
     setCoins((c) => c + earned);
     setLastCoins(earned);
     setStatus('solved');
@@ -111,6 +112,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
     setFen(play(tp.fen, tp.bestUci) ?? tp.fen);
     setLastMove(toSquares(tp.bestUci));
     setLastCoins(0);
+    setResults((r) => [...r, false]);
     setStatus('shown');
   };
 
@@ -131,7 +133,9 @@ export function TurningPointQuizScreen({ onExit }: Props) {
       <Pressable onPress={onExit} accessibilityRole="button" accessibilityLabel={t('puzzles.exit')} hitSlop={12}>
         <Text style={styles.close}>✕</Text>
       </Pressable>
-      <Chip label={ended ? t('quiz.title') : `${t('quiz.title')} · ${t('quiz.progress', { n: index + 1, total: points.length })}`} />
+      <View style={styles.chipBox}>
+        <Chip label={ended ? t('quiz.title') : `${t('quiz.title')} · ${t('quiz.progress', { n: index + 1, total: points.length })}`} />
+      </View>
     </View>
   );
 
@@ -146,6 +150,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
   );
 
   if (ended) {
+    const found = results.filter(Boolean).length;
     return (
       <View style={styles.screen}>
         <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
@@ -156,6 +161,16 @@ export function TurningPointQuizScreen({ onExit }: Props) {
               t('quiz.found', { n: found, total: points.length }),
               [coins > 0 ? tn('puzzles.earnedCoins', coins) : '', closing].filter(Boolean).join(' ')
             )}
+            <View style={styles.results}>
+              {points.map((p, i) => (
+                <View key={p.ply} style={styles.resultRow}>
+                  <Text style={[styles.resultStatus, { color: results[i] ? colors.primary : colors.textMuted }]}>
+                    {results[i] ? `✓ ${t('quiz.rowFound')}` : `✗ ${t('quiz.rowMissed')}`}
+                  </Text>
+                  <Text style={styles.resultText}>{t('quiz.row', { played: fmt(p.playedSan), best: fmt(p.bestSan) })}</Text>
+                </View>
+              ))}
+            </View>
           </FadeIn>
         </ScrollView>
         <View style={reviewStyles.bottomBar}>
@@ -167,9 +182,9 @@ export function TurningPointQuizScreen({ onExit }: Props) {
 
   const best = fmt(tp.bestSan);
   const face: BotExpression = status === 'solved' ? 'acierto' : wrongMove || hintUsed ? 'pista' : status === 'shown' ? 'explica' : 'piensa';
-  const bubbleText = wrongMove
-    ? t('quiz.wrong')
-    : status === 'playing' && hintUsed
+  // El globo da el contexto o la pista; el aviso de error va solo en la tarjeta roja.
+  const bubbleText =
+    status === 'playing' && hintUsed && !wrongMove
       ? t('quiz.hintText')
       : t(tp.quality === 'blunder' ? 'quiz.playedBlunder' : 'quiz.playedMistake', { move: fmt(tp.playedSan) });
 
@@ -192,12 +207,13 @@ export function TurningPointQuizScreen({ onExit }: Props) {
         {status === 'playing' && wrongMove && (
           <FadeIn style={styles.wrongCard}>
             <Text style={styles.wrongTitle}>{t('common.incorrect')}</Text>
+            <Text style={styles.wrongText}>{t('quiz.wrong')}</Text>
             <Button3D label={t('common.retry')} variant="danger" onPress={retry} style={{ marginTop: space.md }} />
           </FadeIn>
         )}
         {status === 'playing' && !wrongMove && (
           <View style={styles.actions}>
-            <Button3D label={t('puzzles.hint')} onPress={() => setHintUsed(true)} style={{ flex: 1 }} />
+            {!hintUsed && <Button3D label={t('puzzles.hint')} onPress={() => setHintUsed(true)} style={{ flex: 1 }} />}
             <Button3D label={t('puzzles.showSolution')} variant="destructive" onPress={showSolution} style={{ flex: 1 }} />
           </View>
         )}
@@ -224,7 +240,9 @@ const styles = StyleSheet.create({
   topRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginBottom: space.md },
   close: { fontFamily: fonts.extrabold, fontSize: 22, color: colors.textMuted },
   coachRow: { flexDirection: 'row', gap: space.md, alignItems: 'flex-start' },
-  bubble: { flex: 1, backgroundColor: colors.surface, borderRadius: radius.control, padding: space.md, minHeight: 64 },
+  chipBox: { flexShrink: 1 },
+  // Alto mínimo para que el tablero no salte cuando cambia el texto del globo.
+  bubble: { flex: 1, backgroundColor: colors.surface, borderRadius: radius.control, padding: space.md, minHeight: 96 },
   bubbleTitle: { fontFamily: fonts.extrabold, fontSize: 15, color: colors.text },
   bubbleText: { fontFamily: fonts.semibold, fontSize: 14, lineHeight: 20, color: colors.textMuted, marginTop: 4 },
   actions: { flexDirection: 'row', gap: space.sm, marginTop: space.lg },
@@ -240,4 +258,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   wrongTitle: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.danger },
+  wrongText: { fontFamily: fonts.semibold, fontSize: 15, color: colors.text, marginTop: 4, lineHeight: 21 },
+  results: { marginTop: space.lg, backgroundColor: colors.surface, borderRadius: radius.control, paddingVertical: space.sm, paddingHorizontal: space.md },
+  resultRow: { paddingVertical: space.sm },
+  resultStatus: { fontFamily: fonts.extrabold, fontSize: 14 },
+  resultText: { fontFamily: fonts.semibold, fontSize: 14, lineHeight: 20, color: colors.text, marginTop: 2 },
 });

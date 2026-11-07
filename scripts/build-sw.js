@@ -12,6 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const { generateSW } = require('workbox-build');
+const { findLeaks } = require('./swChecks');
 
 const DIST = path.join(__dirname, '..', 'dist');
 const JS_DIR = path.join(DIST, '_expo', 'static', 'js', 'web');
@@ -45,8 +46,10 @@ async function main() {
   const { count, size, warnings } = await generateSW({
     globDirectory: DIST,
     globPatterns: ['**/*'],
-    globIgnores: ['sw.js', 'workbox-*.js', '_headers', ...heavy],
+    globIgnores: ['sw.js', 'workbox-*.js', '_headers', '**/*.map', ...heavy],
     swDest: path.join(DIST, 'sw.js'),
+    // Los mapas de Workbox traen rutas del disco de quien compila (con su usuario): no se generan.
+    sourcemap: false,
     maximumFileSizeToCacheInBytes: 12 * 1024 * 1024,
     skipWaiting: false,
     clientsClaim: false,
@@ -61,6 +64,11 @@ async function main() {
     ],
   });
   for (const w of warnings) console.warn(w);
+  // Cloudflare publica todo dist/: si quedó un mapa o una referencia a uno, la compilación falla (no se borra nada).
+  const leaks = findLeaks(DIST);
+  if (leaks.length > 0) {
+    throw new Error(`dist/ tiene mapas de código que no se pueden publicar: ${leaks.join(', ')}`);
+  }
   console.log(`dist/sw.js: ${count} archivos en el precache (${(size / 1024 / 1024).toFixed(1)} MB); fuera del precache:`);
   for (const h of heavy) console.log(`  ${h}`);
 }

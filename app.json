@@ -29,6 +29,12 @@
       ]
     },
     "web": {
+      "output": "single",
+      "bundler": "metro",
+      "name": "Gradus",
+      "shortName": "Gradus",
+      "backgroundColor": "#262421",
+      "themeColor": "#262421",
       "favicon": "./assets/favicon.png"
     },
     "plugins": [

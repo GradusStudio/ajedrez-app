@@ -26,6 +26,7 @@
     "react-native-safe-area-context": "~5.11.1",
     "react-native-screens": "~4.30.1",
     "react-native-svg": "15.16.0",
+    "react-native-web": "^0.21.4",
     "react-native-webview": "14.0.1"
   },
   "devDependencies": {
@@ -40,6 +41,7 @@
     "typescript": "~6.0.3"
   },
   "scripts": {
+    "build:web": "expo export -p web",
     "build:avatars": "node scripts/build-avatars.js",
     "build:engine": "node scripts/build-engine.js",
     "build:maia": "node scripts/build-maia.js",

@@ -8,7 +8,7 @@ import { AVAILABLE_LANGUAGES, LANGUAGE_NAMES, Language } from '../i18n/languages
 import { resolveNotation, sanFromEnglish } from '../chess/notation';
 import { useProgress } from '../progress/ProgressContext';
 import { usePieceSet } from '../settings/PieceSetContext';
-import { cancelDailyReminder, ensureReminderPermission } from '../settings/reminders';
+import { cancelDailyReminder, ensureReminderPermission, REMINDERS_SUPPORTED } from '../settings/reminders';
 import { useSettings } from '../settings/SettingsContext';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { colors, fonts, space } from '../theme';
@@ -61,20 +61,24 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
       </Pressable>
       <Text style={styles.title}>{t('settings.title')}</Text>
 
-      {/* Práctica */}
-      <Text style={styles.section}>{t('settings.practice')}</Text>
-      <SettingRow
-        label={t('settings.reminder')}
-        description={settings.reminder.enabled ? t('settings.reminder.on', { hour: settings.reminder.hour }) : t('settings.reminder.off')}
-        value={settings.reminder.enabled}
-        onValueChange={(v) => setReminder(v)}
-      />
-      {settings.reminder.enabled && (
-        <Segmented
-          options={REMINDER_HOURS.map((h) => ({ value: h, label: `${h}:00` }))}
-          value={settings.reminder.hour}
-          onChange={(h) => setReminder(true, h)}
-        />
+      {/* Práctica: el recordatorio solo existe en el celular */}
+      {REMINDERS_SUPPORTED && (
+        <>
+          <Text style={styles.section}>{t('settings.practice')}</Text>
+          <SettingRow
+            label={t('settings.reminder')}
+            description={settings.reminder.enabled ? t('settings.reminder.on', { hour: settings.reminder.hour }) : t('settings.reminder.off')}
+            value={settings.reminder.enabled}
+            onValueChange={(v) => setReminder(v)}
+          />
+          {settings.reminder.enabled && (
+            <Segmented
+              options={REMINDER_HOURS.map((h) => ({ value: h, label: `${h}:00` }))}
+              value={settings.reminder.hour}
+              onChange={(h) => setReminder(true, h)}
+            />
+          )}
+        </>
       )}
 
       {/* Tablero */}

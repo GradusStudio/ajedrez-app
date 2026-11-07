@@ -8,6 +8,9 @@ import { createSerializer } from './serialize';
 
 // Recordatorio diario (notificación local; funciona en Expo Go). Ajustes > Recordatorio diario.
 
+/** En el celular hay notificaciones locales; en la web (reminders.web.ts) no. */
+export const REMINDERS_SUPPORTED = true;
+
 const CHANNEL_ID = 'recordatorio';
 
 // Programar y cancelar pasan por una sola cola: dos operaciones nunca se pisan.

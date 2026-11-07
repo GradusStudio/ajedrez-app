@@ -8,7 +8,8 @@ import { useProgress } from '../progress/ProgressContext';
 import { currentStreak } from '../progress/progressStore';
 import { LessonResultScreen } from '../screens/LessonResultScreen';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
-import { ensureReminderPermission } from '../settings/reminders';import { useSettings } from '../settings/SettingsContext';
+import { ensureReminderPermission, REMINDERS_SUPPORTED } from '../settings/reminders';
+import { useSettings } from '../settings/SettingsContext';
 
 export default function ResultRoute() {
   const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; premio?: string; recuperada?: string; fallos?: string; modo?: string }>();
@@ -27,7 +28,7 @@ export default function ResultRoute() {
   // Se decide una vez al abrir la pantalla: la oferta sigue visible en esta visita aunque
   // `reminderOffered` pase a true al mostrarla.
   const [showOffer, setShowOffer] = useState(
-    () => params.modo !== 'repaso' && !settings.reminderOffered && !settings.reminder.enabled
+    () => REMINDERS_SUPPORTED && params.modo !== 'repaso' && !settings.reminderOffered && !settings.reminder.enabled
   );
   const accepting = useRef(false);
 

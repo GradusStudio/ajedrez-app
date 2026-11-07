@@ -79,7 +79,8 @@ export type Progress = {
   lastUnit?: number; // unidad de la última lección empezada en Aprender, la que se muestra al abrir la app
 };
 
-const KEY = 'ajedrez:progreso';
+/** Clave del progreso en AsyncStorage (en la web, localStorage). No cambia: cambiarla perdería lo guardado. */
+export const PROGRESS_KEY = 'ajedrez:progreso';
 const BACKUP_KEY = 'ajedrez:progreso:respaldo'; // copia de datos que no se pudieron interpretar
 const MAX_GAMES = 50;
 
@@ -441,7 +442,7 @@ export async function loadProgress(newDeviceId = randomId()): Promise<{ progress
   const fresh: Progress = { ...emptyProgress, deviceId: newDeviceId };
   let raw: string | null;
   try {
-    raw = await AsyncStorage.getItem(KEY);
+    raw = await AsyncStorage.getItem(PROGRESS_KEY);
   } catch {
     return { progress: fresh, canSave: false };
   }
@@ -466,5 +467,5 @@ export async function loadProgress(newDeviceId = randomId()): Promise<{ progress
 }
 
 export async function saveProgress(progress: Progress): Promise<void> {
-  await AsyncStorage.setItem(KEY, JSON.stringify(progress));
+  await AsyncStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
 }

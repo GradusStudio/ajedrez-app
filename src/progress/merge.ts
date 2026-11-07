@@ -36,6 +36,11 @@ function stableKey(x: unknown): string {
   return JSON.stringify(x);
 }
 
+/** true si los dos progresos tienen los mismos datos (sin importar el orden de las claves). */
+export function sameProgress(a: Progress, b: Progress): boolean {
+  return stableKey(a) === stableKey(b);
+}
+
 /** El que gana según `cmp` (> 0: gana `a`); en un empate, el de clave estable mayor, para no depender del orden. */
 function pick<T>(a: T, b: T, cmp: number): T {
   if (cmp > 0) return a;

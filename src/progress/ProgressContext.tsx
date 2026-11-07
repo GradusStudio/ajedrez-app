@@ -23,6 +23,7 @@ import {
   withReset,
 } from './progressStore';
 import { mergeImport } from './merge';
+import { useCrossTabSync } from './useCrossTabSync';
 
 /** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
 export type Earned = { coins: number; dailyBonus: number; streakRecovered: boolean };
@@ -82,6 +83,9 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     setProgress(next);
     if (canSave.current) saveProgress(next).catch(() => {});
   }, []);
+
+  // En la web, lo que guarde otra pestaña o ventana se combina con lo de esta en vez de pisarse.
+  useCrossTabSync(loaded, current, commit);
 
   const finishLesson = useCallback(
     (f: LessonFinish) => {

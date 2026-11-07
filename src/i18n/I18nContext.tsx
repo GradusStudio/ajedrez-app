@@ -59,6 +59,10 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     return () => sub.remove();
   }, []);
   const value = useMemo(() => build(resolveLanguage(settings.language, device)), [settings.language, device]);
+  // En la web el documento declara el idioma de la app, para que los lectores de pantalla lean bien el texto.
+  useEffect(() => {
+    if (typeof document !== 'undefined') document.documentElement.lang = value.language;
+  }, [value.language]);
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 

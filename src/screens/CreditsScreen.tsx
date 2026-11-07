@@ -1,10 +1,12 @@
 import React from 'react';
-import { Linking, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { AppLink } from '../components/AppLink';
 import { useI18n } from '../i18n/I18nContext';
+import { SOURCE_URL } from '../links';
 import { STOCKFISH_VERSION } from '../engine/stockfish/stockfishAssets';
 import { colors, fonts, radius, space } from '../theme';
 
-type Credit = { name: string; what: string; license: string; links?: { label: string; url: string }[] };
+type Credit = { name: string; what: string; note?: string; license: string; links?: { label: string; url: string }[] };
 
 type Translate = ReturnType<typeof useI18n>['t'];
 
@@ -14,9 +16,10 @@ const credits = (t: Translate): Credit[] => [
   {
     name: t('credits.app.name'),
     what: t('credits.app.what'),
+    note: t('credits.app.codeNote'),
     license: t('credits.license.gplOrLater'),
     links: [
-      { label: t('credits.app.code'), url: 'https://github.com/GradusStudio/ajedrez-app' },
+      { label: t('credits.app.code'), url: SOURCE_URL },
       { label: t('credits.gplText'), url: 'https://www.gnu.org/licenses/gpl-3.0.html' },
     ],
   },
@@ -84,16 +87,16 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
       <Text style={styles.title}>{t('credits.title')}</Text>
       <Text style={styles.subtitle}>{t('credits.subtitle')}</Text>
       <Text style={styles.note}>{t('credits.translationsNote')}</Text>
+      <AppLink href="/privacidad" style={styles.privacyLink}>{t('privacy.link')}</AppLink>
 
       {credits(t).map((c) => (
         <View key={c.name} style={styles.card}>
           <Text style={styles.name}>{c.name}</Text>
           <Text style={styles.license}>{c.license}</Text>
           <Text style={styles.what}>{c.what}</Text>
+          {c.note && <Text style={styles.what}>{c.note}</Text>}
           {c.links?.map((l) => (
-            <Pressable key={l.url} onPress={() => Linking.openURL(l.url)} accessibilityRole="link" hitSlop={6}>
-              <Text style={styles.link}>{l.label}</Text>
-            </Pressable>
+            <AppLink key={l.url} href={l.url} style={styles.link}>{l.label}</AppLink>
           ))}
         </View>
       ))}
@@ -108,6 +111,7 @@ const styles = StyleSheet.create({
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
   note: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted, marginBottom: space.lg },
+  privacyLink: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary, marginBottom: space.lg, textDecorationLine: 'underline' },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,

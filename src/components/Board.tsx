@@ -15,6 +15,7 @@ import { useFeedback } from '../feedback/feedback';
 import { useI18n } from '../i18n/I18nContext';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { boardHighlight, boardThemes, colors } from '../theme';
+import { boardPixels } from './boardSize';
 import { Captured, computeMove, Offsets } from './boardAnimation';
 import { SquareTexture } from './SquareTexture';
 import Piece, { PieceColor, PieceType } from './Piece';
@@ -210,7 +211,7 @@ export function Board({
   onSquarePress,
 }: Props) {
   const { width } = useWindowDimensions();
-  const sq = Math.floor(Math.min(width - 32, 480) / 8);
+  const sq = boardPixels(width) / 8;
   const boardPx = sq * 8;
 
   const feedback = useFeedback();

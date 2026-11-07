@@ -5,6 +5,7 @@ import { whiteShare } from '../../engine/evalFormat';
 import { useI18n } from '../../i18n/I18nContext';
 import type { Review } from '../../review/types';
 import { boardHighlight } from '../../theme';
+import { boardPixels } from '../../components/boardSize';
 import { badgeOf, QUALITY_STYLE } from './quality';
 import { styles } from './reviewStyles';
 
@@ -22,7 +23,7 @@ type Props = {
 export function EvalGraph({ review, idx, showCursor, onSelect }: Props) {
   const { t } = useI18n();
   const { width } = useWindowDimensions();
-  const w = Math.floor(Math.min(width - 32, 480) / 8) * 8;
+  const w = boardPixels(width);
   const n = review.plies.length;
   const x = (i: number) => (n === 0 ? 0 : (i / n) * w);
   const y = (score: number) => HEIGHT - whiteShare(score) * HEIGHT;

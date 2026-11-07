@@ -17,6 +17,7 @@ import { PieceSetProvider, usePieceSet } from '../settings/PieceSetContext';
 import { SettingsProvider, useSettings } from '../settings/SettingsContext';
 import { useReminderSync } from '../settings/useReminderSync';
 import { registerServiceWorker, requestPersistentStorage } from '../pwa/register';
+import { WebColumn } from '../components/WebColumn';
 import { colors } from '../theme';
 
 // Tema de la navegación: su `background` es el fondo que se ve detrás de las pantallas mientras se deslizan
@@ -63,7 +64,9 @@ export default function RootLayout() {
             <StatusBar style="light" />
             {/* Vista raíz oscura: si algo deja ver lo que hay detrás de las pantallas, que no sea blanco. */}
             <View style={{ flex: 1, backgroundColor: colors.bg }}>
-              <ThemeProvider value={navTheme}>{fontsLoaded ? <AppStack /> : <Loading />}</ThemeProvider>
+              <WebColumn>
+                <ThemeProvider value={navTheme}>{fontsLoaded ? <AppStack /> : <Loading />}</ThemeProvider>
+              </WebColumn>
             </View>
           </PieceSetProvider>
         </I18nProvider>
@@ -104,6 +107,7 @@ function AppStack() {
       <Stack.Screen name="quiz-partida" />
       <Stack.Screen name="creditos" />
       <Stack.Screen name="instalar" />
+      <Stack.Screen name="privacidad" />
       <Stack.Screen name="bienvenida" options={{ gestureEnabled: false, animation: 'fade' }} />
       {/* Sin gesto de volver: abandonar la partida pasa por la confirmación */}
       <Stack.Screen name="partida" options={{ gestureEnabled: false }} />

@@ -624,6 +624,30 @@ export const es = {
   'quiz.finish': 'Ver resultado',
   'quiz.found': 'Encontraste {n} de {total}',
   'quiz.back': 'Volver a la revisión',
+
+  // Política de privacidad (web)
+  'privacy.back': '‹ Volver',
+  'privacy.title': 'Política de privacidad de Gradus',
+  'privacy.updated': 'Gradus Chess: aprende ajedrez, publicada por Gradus Studio. Última actualización: 7 de noviembre de 2026.',
+  'privacy.summary': 'Gradus no tiene cuentas, anuncios ni herramientas de estadísticas, y Gradus Studio no recopila datos personales. Tu progreso y tus ajustes se guardan solo en este dispositivo.',
+  'privacy.stored.title': 'Qué se guarda en este dispositivo',
+  'privacy.stored.text': 'Tu progreso (lecciones, racha, monedas, puzzles resueltos) y tus ajustes (sonido, idioma, tablero y piezas), además de los nombres de usuario que usaste al importar partidas, se guardan en el almacenamiento del navegador, en este dispositivo. Gradus Studio no los recibe ni los ve. Si borras los datos del sitio, se pierden: para conservarlos, usa «Guardar una copia del progreso» en Ajustes. La copia es un archivo que queda en tu poder. Gradus también le pide al navegador que no borre estos datos por su cuenta.',
+  'privacy.offline.title': 'Qué guarda la app para funcionar sin conexión',
+  'privacy.offline.text': 'Gradus guarda sus propios archivos (el código, las lecciones, los motores de ajedrez y los puzzles) en la memoria del navegador para que funcione sin internet. Son los mismos para todos y no contienen datos tuyos.',
+  'privacy.leaves.title': 'Qué sale de este dispositivo',
+  'privacy.leaves.text': 'Una sola función usa internet para algo más que bajar la app: importar una partida de chess.com o Lichess. Al usarla, el nombre de usuario que escribes se envía a la interfaz pública de ese servicio para descargar tus partidas. Gradus Studio no recibe ese nombre ni las partidas. Cada servicio tiene su propia política de privacidad. Los motores de ajedrez (Stockfish y Maia) y los puzzles se ejecutan en tu dispositivo.',
+  'privacy.host.title': 'Quién sirve el sitio',
+  'privacy.host.text': 'El sitio lo sirve Cloudflare. Como cualquier servicio de alojamiento web, Cloudflare puede ver los datos estándar de la conexión, como la dirección IP y el tipo de navegador, cuando te entrega los archivos. Gradus no agrega cuentas, anuncios ni herramientas de estadísticas encima de eso.',
+  'privacy.children.title': 'Menores',
+  'privacy.children.text': 'Gradus no pide la edad ni datos a nadie y no recopila información de ningún usuario, tampoco de menores.',
+  'privacy.delete.title': 'Tus derechos',
+  'privacy.delete.text': 'Como Gradus Studio no recopila datos personales, no hay datos nuestros para acceder, corregir o borrar. Puedes borrar lo que Gradus guarda en este dispositivo desde los ajustes del navegador, en los datos del sitio.',
+  'privacy.free.title': 'Software libre',
+  'privacy.free.text': 'Gradus es software libre (GPL v3 o posterior): puedes revisar el código fuente para comprobar que esto es lo que hace la app.',
+  'privacy.contact.title': 'Cambios y contacto',
+  'privacy.contact.text': 'Si esta política cambia, se actualiza en esta misma dirección con una nueva fecha. Consultas:',
+  'privacy.link': 'Política de privacidad',
+  'credits.app.codeNote': 'El código fuente de cada versión publicada está disponible en este repositorio, bajo la GPL.',
 } as const;
 
 export type MessageKey = keyof typeof es;

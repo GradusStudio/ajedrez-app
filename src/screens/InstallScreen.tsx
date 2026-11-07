@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Image, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { AppLink } from '../components/AppLink';
 import { Button3D } from '../components/Button3D';
 import type { MessageKey } from '../i18n/es';
 import { useI18n } from '../i18n/I18nContext';
@@ -60,6 +61,8 @@ export function InstallScreen({ platform, canPrompt, onInstall, justInstalled, o
             ))}
           </View>
         )}
+
+        <AppLink href="/privacidad" style={styles.privacy}>{t('privacy.link')}</AppLink>
       </View>
     </ScrollView>
   );
@@ -117,6 +120,7 @@ const styles = StyleSheet.create({
   icon: { width: 72, height: 72, borderRadius: 16 },
   brand: { fontFamily: fonts.extrabold, fontSize: 28, color: colors.text, marginTop: space.md },
   tagline: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.xs, lineHeight: 22 },
+  privacy: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary, marginTop: space.xxl, textDecorationLine: 'underline' },
   block: { marginTop: space.xl },
   heading: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text },
   text: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },

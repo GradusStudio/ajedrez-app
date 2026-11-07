@@ -1,0 +1,24 @@
+import React from 'react';
+import { Linking, Pressable, StyleProp, Text, TextStyle } from 'react-native';
+import { router } from 'expo-router';
+
+type Props = {
+  /** Dirección externa (https:, mailto:) o ruta interna de la app (/privacidad). */
+  href: string;
+  children: string;
+  style?: StyleProp<TextStyle>;
+};
+
+// Enlace en el celular: abre el navegador o el correo, o navega dentro de la app. En la web lo reemplaza AppLink.web.tsx.
+export function AppLink({ href, children, style }: Props) {
+  const external = !href.startsWith('/');
+  return (
+    <Pressable
+      onPress={() => (external ? Linking.openURL(href) : router.push(href as never))}
+      accessibilityRole="link"
+      hitSlop={6}
+    >
+      <Text style={style}>{children}</Text>
+    </Pressable>
+  );
+}

@@ -52,6 +52,8 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   const [fade] = useState(() => new Animated.Value(0));
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const startedAt = useRef(0);
+  // Un puzzle se termina una sola vez: un toque doble o «ver solución» tras el acierto no cobra otra vez.
+  const finished = useRef(false);
 
   const me = userColor(puzzle);
   const moves = puzzle.moves;
@@ -90,6 +92,8 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   }, []);
 
   const finish = (result: PuzzleResult) => {
+    if (finished.current) return;
+    finished.current = true;
     if (result !== 'failed') feedback.correct();
     setStatus(result === 'failed' ? 'failed' : 'solved');
     setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS)));

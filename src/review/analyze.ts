@@ -39,6 +39,7 @@ export async function analyzeGame(
   isCancelled: () => boolean,
   depth = REVIEW_DEPTH
 ): Promise<PositionEval[] | null> {
+  if (game.moves.length === 0) return [];
   const fens = [game.moves[0].fenBefore, ...game.moves.map((m) => m.fenAfter)];
   const out: PositionEval[] = [];
   for (let i = 0; i < fens.length; i++) {
@@ -77,6 +78,7 @@ export async function refineGame(
   isCancelled: () => boolean,
   depth = REFINE_DEPTH
 ): Promise<Refined | null> {
+  if (game.moves.length === 0) return new Map();
   const fens = [game.moves[0].fenBefore, ...game.moves.map((m) => m.fenAfter)];
   const cache = new Map<number, PositionEval>();
   const total = new Set(candidates.flatMap((i) => [i, i + 1])).size;

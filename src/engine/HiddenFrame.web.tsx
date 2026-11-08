@@ -1,6 +1,8 @@
-// Reemplazo web del WebView invisible: monta la misma página del motor en un iframe oculto del
-// mismo origen y le da el `window.ReactNativeWebView.postMessage` que esa página espera.
+// Reemplazo web del WebView invisible: monta la misma página del motor en un iframe oculto con `sandbox`
+// (origen opaco, sin acceso a la app) y le da el `window.ReactNativeWebView.postMessage` que esa página
+// espera. Todo viaja por `postMessage` (ver frameShim.ts).
 import React, { useEffect, useRef } from 'react';
+import { FRAME_SHIM } from './frameShim';
 
 export type FrameCall = { fn: 'sendToEngine' | 'sendToMaia'; arg: string };
 
@@ -10,8 +12,6 @@ type Props = {
   /** Recibe la función que llama a `fn(arg)` dentro del iframe, o null al desmontar. */
   onSend: (send: ((call: FrameCall) => void) | null) => void;
 };
-
-let seq = 0;
 
 export function HiddenFrame({ html, onMessage, onSend }: Props) {
   const ref = useRef<HTMLIFrameElement | null>(null);
@@ -23,21 +23,20 @@ export function HiddenFrame({ html, onMessage, onSend }: Props) {
   });
 
   useEffect(() => {
-    const key = `__gradusFrame${++seq}`;
-    const w = window as unknown as Record<string, unknown>;
-    w[key] = (m: string) => onMessageRef.current(m);
-    const shim = `<script>window.ReactNativeWebView={postMessage:function(m){parent[${JSON.stringify(key)}](m);}};</script>`;
     const frame = ref.current!;
-    frame.srcdoc = shim + html;
-    onSendRef.current(({ fn, arg }) => {
-      const target = frame.contentWindow as unknown as Record<string, unknown> | null;
-      const f = target?.[fn];
-      // Si la página todavía no cargó, el mensaje se descarta (igual que en un WebView).
-      if (typeof f === 'function') (f as (a: string) => void).call(target, arg);
-    });
+    const onWindowMessage = (e: MessageEvent) => {
+      // Solo se acepta lo que manda este iframe y con la forma del shim.
+      if (e.source !== frame.contentWindow) return;
+      const d = e.data as { gradus?: number; m?: unknown } | null;
+      if (d && d.gradus === 1 && typeof d.m === 'string') onMessageRef.current(d.m);
+    };
+    window.addEventListener('message', onWindowMessage);
+    frame.srcdoc = FRAME_SHIM + html;
+    // Si la página todavía no cargó, el mensaje se descarta (igual que en un WebView).
+    onSendRef.current(({ fn, arg }) => frame.contentWindow?.postMessage({ fn, arg }, '*'));
     return () => {
       onSendRef.current(null);
-      delete w[key];
+      window.removeEventListener('message', onWindowMessage);
       frame.srcdoc = '';
     };
   }, [html]);
@@ -45,6 +44,7 @@ export function HiddenFrame({ html, onMessage, onSend }: Props) {
   return (
     <iframe
       ref={ref}
+      sandbox="allow-scripts"
       aria-hidden
       tabIndex={-1}
       style={{ position: 'absolute', width: 1, height: 1, opacity: 0, border: 0 }}

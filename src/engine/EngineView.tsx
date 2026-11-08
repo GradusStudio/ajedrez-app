@@ -46,7 +46,7 @@ export function EngineView({ onReady, onError }: Props) {
       // contenedor ocupa la mitad de la pantalla cuando comparte padre con otro `flex: 1`.
       containerStyle={styles.hidden}
       style={styles.hidden}
-      originWhitelist={['*']}
+      originWhitelist={['https://localhost*']}
       source={{ html: engineHtml(), baseUrl: 'https://localhost/' }}
       javaScriptEnabled
       onMessage={(e: WebViewMessageEvent) => {

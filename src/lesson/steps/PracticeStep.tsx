@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { Board, BoardMove } from '../../components/Board';
@@ -66,7 +66,19 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
     onWrong(message, () => setWrong(null));
   };
 
+  // Mientras el motor piensa no entra otra jugada (un toque doble no debe contar dos veces).
+  const busy = useRef(false);
   const handleMove = async (m: BoardMove) => {
+    if (busy.current) return;
+    busy.current = true;
+    try {
+      await playMove(m);
+    } finally {
+      busy.current = false;
+    }
+  };
+
+  const playMove = async (m: BoardMove) => {
     if (!engine || !userTurn || locked) return;
     const probe = new Chess(chess.fen());
     let played;

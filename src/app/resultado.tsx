@@ -14,6 +14,12 @@ import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { ensureReminderPermission, REMINDERS_SUPPORTED } from '../settings/reminders';
 import { useSettings } from '../settings/SettingsContext';
 
+/** Un número de la URL: entero entre 0 y `max`; cualquier otra cosa vale 0 (un enlace manipulado no inventa cifras). */
+const urlCount = (v: string | undefined, max: number) => {
+  const n = Number(v);
+  return Number.isInteger(n) && n >= 0 && n <= max ? n : 0;
+};
+
 export default function ResultRoute() {
   const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; premio?: string; recuperada?: string; fallos?: string; modo?: string }>();
   const { progress } = useProgress();
@@ -81,9 +87,9 @@ export default function ResultRoute() {
       title={lesson?.title ?? ''}
       teacher={teacher}
       mode={review ? 'review' : params.monedas === '0' ? 'replay' : 'lesson'}
-      errors={Number(params.errors) || 0}
-      coinsEarned={Number(params.monedas) || 0}
-      dailyBonus={Number(params.premio) || 0}
+      errors={urlCount(params.errors, 999)}
+      coinsEarned={urlCount(params.monedas, 100)}
+      dailyBonus={urlCount(params.premio, 100)}
       streak={currentStreak(progress)}
       streakRecovered={params.recuperada === '1'}
       onContinue={() => router.back()}

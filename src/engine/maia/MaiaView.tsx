@@ -44,7 +44,7 @@ export function MaiaView({ net, onReady, onError }: Props) {
         engine.connect((json) => web?.injectJavaScript(`window.sendToMaia(${JSON.stringify(json)});true;`))
       }
       style={styles.hidden}
-      originWhitelist={['*']}
+      originWhitelist={['https://localhost*']}
       source={{ html, baseUrl: 'https://localhost/' }}
       javaScriptEnabled
       onMessage={(e: WebViewMessageEvent) => engine.receive(e.nativeEvent.data)}

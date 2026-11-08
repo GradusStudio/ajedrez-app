@@ -7,9 +7,10 @@ import { createSyncEngine } from './syncEngine';
 
 // Conecta el motor de sincronización con el progreso y con Google (ver docs/superpowers/specs/2026-11-07-version-web-design.md, sección 4).
 // Se sincroniza al abrir la app, cuando cambia el progreso, al volver a la pestaña y al recuperar la conexión.
-// El permiso de Google dura una hora y vive en memoria: al vencer (o al abrir la app de nuevo), el motor se pausa y
-// se pide con un toque en Ajustes («Reconectar»). Nunca se abre una ventana sola: sin un toque de la persona el
-// navegador la bloquea (probado el 8-11-2026 en Chrome de PC y de Android), y en medio de una lección molestaría.
+// El permiso de Google dura una hora y vive en memoria: al vencer (o al abrir la app de nuevo), el motor se pausa.
+// Nunca se abre una ventana sola: sin un toque de la persona el navegador la bloquea (probado el 8-11-2026 en Chrome
+// de PC y de Android). Por eso el primer toque en la app intenta recuperar el permiso sin pedir nada (`trySilent`: si
+// ya lo dio y sigue con la sesión de Google abierta, la ventana se cierra sola). Si no sale, queda «Reconectar» en Ajustes.
 
 const FLAG_KEY = 'gradus:driveSync';
 const DEBOUNCE_MS = 4000;
@@ -60,8 +61,32 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     [getProgress, mergeRemote]
   );
 
-  /** Sin permiso vigente no se intenta nada: se avisa que hace falta reconectar (un toque en Ajustes). */
+  /** Sin permiso vigente: se avisa que hace falta reconectar y se prepara el intento con el próximo toque. */
   const askToReconnect = useCallback(() => setStatus('needsAuth'), []);
+
+  // Un intento por toque; si falla (sin sesión de Google, ventana cerrada) no se repite solo: queda «Reconectar».
+  const silentTried = useRef(false);
+  const silentFailed = useRef(false);
+  const [retry, setRetry] = useState(0);
+  useEffect(() => {
+    if (!enabled || status !== 'needsAuth' || silentTried.current) return;
+    void auth.current!.warm();
+    const onTap = () => {
+      silentTried.current = true;
+      document.removeEventListener('click', onTap, true);
+      auth.current!.trySilent().then(
+        () => {
+          engine.resume();
+          void engine.syncNow();
+        },
+        () => {
+          silentFailed.current = true;
+        }
+      );
+    };
+    document.addEventListener('click', onTap, true);
+    return () => document.removeEventListener('click', onTap, true);
+  }, [enabled, status, engine, retry]);
 
   // Cada cambio del progreso pide una sincronización (el motor agrupa los pedidos seguidos).
   useEffect(() => {
@@ -74,7 +99,14 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     const wake = () => {
       if (document.visibilityState === 'hidden') return;
       if (auth.current!.hasToken()) engine.requestSync();
-      else askToReconnect();
+      else {
+        // Si el permiso venció con la app abierta, se vuelve a intentar con el próximo toque (salvo que ya haya fallado).
+        if (!silentFailed.current) {
+          silentTried.current = false;
+          setRetry((n) => n + 1);
+        }
+        askToReconnect();
+      }
     };
     document.addEventListener('visibilitychange', wake);
     window.addEventListener('online', wake);
@@ -91,6 +123,7 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
       // Ventana cerrada o permiso no dado: no cambia nada; se puede volver a intentar.
       return;
     }
+    silentFailed.current = false; // con un permiso nuevo, el próximo vencimiento vuelve a intentarse con un toque
     writeFlag(true);
     enabledRef.current = true; // sin esperar al próximo dibujo: el primer estado tiene que verse
     setEnabled(true);

@@ -51,14 +51,17 @@ export function createGoogleAuth() {
 
   const hasToken = () => !!token && Date.now() < token.expiresAt - SAFETY_MS;
 
-  /** Pide el permiso a Google. Abre su ventana, así que solo se llama desde un toque de la persona. */
-  async function request(): Promise<void> {
+  /**
+   * Pide el permiso a Google. Abre su ventana, así que solo se llama desde un toque de la persona.
+   * `prompt` '' deja que Google decida; 'none' no muestra nada si ya hay permiso y sesión (la ventana se cierra sola).
+   */
+  async function request(prompt: '' | 'none'): Promise<void> {
     const gis = await loadGis();
     await new Promise<void>((resolve, reject) => {
       const client = gis.accounts.oauth2.initTokenClient({
         client_id: GOOGLE_CLIENT_ID,
         scope: DRIVE_SCOPE,
-        prompt: '',
+        prompt,
         callback: (r) => {
           // La persona puede aceptar el ingreso pero no marcar el permiso de Drive.
           if (!r.access_token || r.error || !(r.scope ?? '').split(' ').includes(DRIVE_SCOPE)) return reject(new DriveError('auth'));
@@ -80,7 +83,11 @@ export function createGoogleAuth() {
       throw new DriveError('auth');
     },
     /** Con un toque de la persona: Google puede abrir su ventana de ingreso y de permiso. */
-    signIn: request,
+    signIn: () => request(''),
+    /** Dentro de un toque de la persona: recupera el permiso sin pedir nada si ya lo dio y sigue con la sesión abierta. */
+    trySilent: () => request('none'),
+    /** Baja el script de Google por adelantado, para que la ventana se abra a tiempo dentro del toque. */
+    warm: () => loadGis().then(() => undefined, () => undefined),
     /** Quita el permiso en Google y olvida el que había en memoria. */
     async revoke(): Promise<void> {
       const old = token?.value;

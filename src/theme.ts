@@ -3,8 +3,6 @@
 export const colors = {
   primary: '#81B64C',
   primaryShadow: '#45753C',
-  // Texto sobre `primary`: el blanco daba 2,41:1; este da 6,43:1 (WCAG AA pide 4,5:1).
-  onPrimary: '#262421',
   gold: '#F7C631',
   danger: '#FA412D',
   dangerShadow: '#A02A1E',

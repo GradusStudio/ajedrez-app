@@ -15,8 +15,8 @@ export const NODE_BOX = NODE_SIZE + 2 * (RING_GAP + RING_WIDTH);
 type Props = { state: NodeState; order: number; label: string; onPress: () => void };
 
 const LOOK: Record<NodeState, { bg: string; edge: string; text: string }> = {
-  done: { bg: colors.primary, edge: colors.primaryShadow, text: colors.onPrimary },
-  current: { bg: colors.primary, edge: colors.primaryShadow, text: colors.onPrimary },
+  done: { bg: colors.primary, edge: colors.primaryShadow, text: '#FFFFFF' },
+  current: { bg: colors.primary, edge: colors.primaryShadow, text: '#FFFFFF' },
   open: { bg: colors.surfaceRaised, edge: colors.surfaceShadow, text: colors.text },
   locked: { bg: colors.surfaceRaised, edge: colors.surfaceShadow, text: colors.outline },
 };

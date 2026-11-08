@@ -10,7 +10,6 @@ Este archivo es la fuente de verdad visual. Cualquier pantalla o componente nuev
 |---|---|---|
 | `primary` | `#81B64C` | Botón principal, progreso, estados correctos |
 | `primary-shadow` | `#45753C` | Borde inferior 3D del botón principal |
-| `on-primary` | `#262421` | Texto e íconos sobre `primary` (6,43:1) |
 | `gold` | `#F7C631` | Rachas, puntos, logros |
 | `danger` | `#FA412D` | Errores, acciones destructivas |
 | `danger-shadow` | `#A02A1E` | Borde inferior 3D de estados incorrectos |
@@ -68,7 +67,7 @@ Todos: `border-radius: 16px`, padding `12px 18px`, borde inferior de **4px** (ef
 
 | Variante | Fondo | Texto | Borde inferior | Uso |
 |---|---|---|---|---|
-| Primario | `primary` | `on-primary` `#262421` (6,43:1; el blanco daba 2,41:1) | `primary-shadow` | Acción principal (máximo uno por pantalla) |
+| Primario | `primary` | `#FFFFFF` | `primary-shadow` | Acción principal (máximo uno por pantalla) |
 | Secundario | `surface-raised` | `#FFFFFF` | `surface-shadow` | Acciones alternativas |
 | Destructivo | transparente, borde 2px `surface-raised` | `danger` | 4px `surface-raised` | Salir, abandonar |
 | Opción de respuesta | `surface-raised` | `#FFFFFF` | `surface-shadow` | Jugadas en lecciones y puzzles |

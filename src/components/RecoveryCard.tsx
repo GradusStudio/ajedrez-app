@@ -53,5 +53,5 @@ const styles = StyleSheet.create({
   },
   itemDone: { backgroundColor: colors.primary },
   itemText: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted },
-  itemTextDone: { color: colors.onPrimary },
+  itemTextDone: { color: colors.text },
 });

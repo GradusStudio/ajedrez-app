@@ -273,12 +273,12 @@ const styles = StyleSheet.create({
   unitCaption: {
     fontFamily: fonts.extrabold,
     fontSize: 12,
-    color: colors.onPrimary,
+    color: '#FFFFFF',
     opacity: 0.85,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
-  unitTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.onPrimary },
+  unitTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: '#FFFFFF' },
   nodeWrap: { position: 'absolute', width: 160, alignItems: 'center' },
   // Fondo del color de la pantalla: la línea que une los nodos pasa por detrás del título sin cortarlo.
   nodeLabel: {

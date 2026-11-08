@@ -15,7 +15,7 @@ const VARIANTS: Record<
   Variant,
   { bg: string; text: string; edge: string; outlined: boolean }
 > = {
-  primary: { bg: colors.primary, text: colors.onPrimary, edge: colors.primaryShadow, outlined: false },
+  primary: { bg: colors.primary, text: '#FFFFFF', edge: colors.primaryShadow, outlined: false },
   secondary: { bg: colors.surfaceRaised, text: '#FFFFFF', edge: colors.surfaceShadow, outlined: false },
   destructive: { bg: 'transparent', text: colors.danger, edge: colors.surfaceRaised, outlined: true },
   // Botón de los avisos de error (panel rojo): rojo como el aviso.

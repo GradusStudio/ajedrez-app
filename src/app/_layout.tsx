@@ -19,6 +19,7 @@ import { useReminderSync } from '../settings/useReminderSync';
 import { registerServiceWorker, requestPersistentStorage } from '../pwa/register';
 import { WebColumn } from '../components/WebColumn';
 import { useRouteMeta } from '../seo/useRouteMeta';
+import { DriveSyncProvider } from '../sync/DriveSyncContext';
 import { colors } from '../theme';
 
 // Tema de la navegación: su `background` es el fondo que se ve detrás de las pantallas mientras se deslizan
@@ -61,15 +62,17 @@ export default function RootLayout() {
     <ProgressProvider>
       <SettingsProvider>
         <I18nProvider>
-          <PieceSetProvider>
-            <StatusBar style="light" />
-            {/* Vista raíz oscura: si algo deja ver lo que hay detrás de las pantallas, que no sea blanco. */}
-            <View style={{ flex: 1, backgroundColor: colors.bg }}>
-              <WebColumn>
-                <ThemeProvider value={navTheme}>{fontsLoaded ? <AppStack /> : <Loading />}</ThemeProvider>
-              </WebColumn>
-            </View>
-          </PieceSetProvider>
+          <DriveSyncProvider>
+            <PieceSetProvider>
+              <StatusBar style="light" />
+              {/* Vista raíz oscura: si algo deja ver lo que hay detrás de las pantallas, que no sea blanco. */}
+              <View style={{ flex: 1, backgroundColor: colors.bg }}>
+                <WebColumn>
+                  <ThemeProvider value={navTheme}>{fontsLoaded ? <AppStack /> : <Loading />}</ThemeProvider>
+                </WebColumn>
+              </View>
+            </PieceSetProvider>
+          </DriveSyncProvider>
         </I18nProvider>
       </SettingsProvider>
     </ProgressProvider>

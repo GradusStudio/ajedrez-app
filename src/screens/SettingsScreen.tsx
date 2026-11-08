@@ -3,6 +3,7 @@ import { showDialog } from '../components/dialog';
 import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { Segmented } from '../components/Segmented';
+import { SyncSection } from './SyncSection';
 import { SettingRow } from '../components/SettingRow';
 import { useI18n } from '../i18n/I18nContext';
 import { AVAILABLE_LANGUAGES, LANGUAGE_NAMES, Language } from '../i18n/languages';
@@ -153,6 +154,7 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
 
       {/* Datos */}
       <Text style={styles.section}>{t('settings.data')}</Text>
+      <SyncSection />
       {FILE_IO_SUPPORTED && (
         <>
           <Button3D label={t('settings.save')} style={styles.dataButton} onPress={saveCopy} />

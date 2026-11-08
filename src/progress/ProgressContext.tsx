@@ -22,7 +22,7 @@ import {
   withBoardThemeBought,
   withReset,
 } from './progressStore';
-import { mergeImport } from './merge';
+import { mergeImport, mergeProgress, sameProgress } from './merge';
 import { useCrossTabSync } from './useCrossTabSync';
 
 /** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
@@ -58,6 +58,10 @@ type ProgressValue = {
   resetProgress: () => void;
   /** Combina otra copia del progreso (archivo o Drive) con la de este dispositivo, sin perder nada (merge.ts). */
   importProgress: (incoming: Progress) => void;
+  /** El progreso de este momento, sin esperar a que React termine de dibujar (lo usa la sincronización). */
+  getProgress: () => Progress;
+  /** Combina lo bajado de Drive con lo local (con la regla de `resetAt`), lo guarda si cambió y devuelve el resultado. */
+  mergeRemote: (remote: Progress) => Progress;
 };
 
 const ProgressContext = createContext<ProgressValue | null>(null);
@@ -179,6 +183,17 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     [commit]
   );
 
+  const getProgress = useCallback(() => current.current, []);
+
+  const mergeRemote = useCallback(
+    (remote: Progress) => {
+      const merged = mergeProgress(current.current, remote);
+      if (!sameProgress(merged, current.current)) commit(merged);
+      return merged;
+    },
+    [commit]
+  );
+
   return (
     <ProgressContext.Provider
       value={{
@@ -197,6 +212,8 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         updateProfile,
         resetProgress,
         importProgress,
+        getProgress,
+        mergeRemote,
       }}
     >
       {children}

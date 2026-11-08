@@ -119,7 +119,7 @@ function mergeStreak(a: Streak, b: Streak): Streak {
   return { ...rest, best: Math.max(a.best, b.best), ...(actions ? { actions } : {}) };
 }
 
-/** Clave del libro donde se devuelven las monedas cuando dos dispositivos gastaron lo mismo sin conexión. */
+/** Entrada del libro que recibe las monedas devueltas. */
 export const REFUND_ID = '_refund';
 
 /** El saldo nunca queda negativo: si dos dispositivos gastaron las mismas monedas, se devuelve la diferencia. */

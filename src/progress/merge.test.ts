@@ -251,7 +251,7 @@ test('resetAt: iguales, se combinan los campos', () => {
   assert.deepEqual(Object.keys(mergeProgress(a, b).lessons).sort(), ['x', 'y']);
 });
 
-// ---------- Racha: acciones del día ----------
+// Racha: acciones del día
 
 test('streak: el mismo día con la misma racha junta las acciones de los dos dispositivos', () => {
   const day = '2026-11-06';

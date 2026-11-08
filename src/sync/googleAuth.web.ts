@@ -64,12 +64,18 @@ export function createGoogleAuth() {
         prompt,
         callback: (r) => {
           // La persona puede aceptar el ingreso pero no marcar el permiso de Drive.
-          if (!r.access_token || r.error || !(r.scope ?? '').split(' ').includes(DRIVE_SCOPE)) return reject(new DriveError('auth'));
+          if (!r.access_token || r.error || !(r.scope ?? '').split(' ').includes(DRIVE_SCOPE)) {
+            console.warn('[gradus-sync] Google no dio el permiso', { prompt, error: r.error, scope: r.scope, token: !!r.access_token });
+            return reject(new DriveError('auth'));
+          }
           token = { value: r.access_token, expiresAt: Date.now() + (r.expires_in ?? 3600) * 1000 };
           resolve();
         },
         // Ventana cerrada, bloqueada por el navegador o sin sesión de Google.
-        error_callback: () => reject(new DriveError('auth')),
+        error_callback: (e) => {
+          console.warn('[gradus-sync] la ventana de Google fallo', { prompt, type: e?.type });
+          reject(new DriveError('auth'));
+        },
       });
       client.requestAccessToken();
     });

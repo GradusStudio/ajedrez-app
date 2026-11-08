@@ -1,6 +1,7 @@
 import React from 'react';
 import { Linking, Pressable, StyleProp, Text, TextStyle } from 'react-native';
 import { router } from 'expo-router';
+import { isSafeHref } from '../links';
 import { appLinkBase } from './appLinkStyle';
 
 type Props = {
@@ -13,6 +14,7 @@ type Props = {
 
 // Enlace en el celular: abre el navegador o el correo, o navega dentro de la app. En la web lo reemplaza AppLink.web.tsx.
 export function AppLink({ href, children, style }: Props) {
+  if (!isSafeHref(href)) return null;
   const external = !href.startsWith('/');
   return (
     <Pressable

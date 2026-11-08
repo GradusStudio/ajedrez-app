@@ -8,7 +8,7 @@ import { bookPositions, positionKey } from './book';
 import { coachExplanation, coachVoice } from './coachText';
 import { parseGame } from './pgn';
 import { clearPendingGame, peekPendingGame, setPendingGame, sideOf } from './session';
-import { parseChessComMonth, parseLichessNdjson, validUsername } from './sources';
+import { isChessComArchiveUrl, MAX_RESPONSE_CHARS, parseChessComMonth, parseLichessNdjson, parseStoredUsers, tooBigResponse, validUsername } from './sources';
 import type { GameMove, PositionEval } from './types';
 
 const PGN = `[Event "Test"]
@@ -444,4 +444,37 @@ test('ratePly: la variante de la mejor jugada se guarda solo en jugadas malas', 
   assert.equal(good.bestPv, undefined);
   const noPv = ratePly(3, g.moves[2], { score: 30, best: 'g1f3' }, { score: -250, best: 'b8c6' }, new Set());
   assert.equal(noPv.bestPv, undefined);
+});
+
+// ---------- endurecimiento (auditoría de seguridad) ----------
+
+test('solo se piden archivos mensuales del propio chess.com', () => {
+  assert.equal(isChessComArchiveUrl('https://api.chess.com/pub/player/magnus/games/2026/10'), true);
+  for (const u of [
+    'http://api.chess.com/pub/player/magnus/games/2026/10',
+    'https://evil.com/pub/player/magnus/games/2026/10',
+    'https://api.chess.com.evil.com/pub/player/magnus/games/2026/10',
+    'https://api.chess.com/pub/player/magnus/games/2026/10/../../x',
+    'https://api.chess.com/pub/player/magnus/games/2026/10?x=1',
+    'https://api.chess.com/pub/player/magnus/games/2026',
+    'https://user:pass@api.chess.com/pub/player/magnus/games/2026/10',
+    'https://api.chess.com@evil.com/pub/player/magnus/games/2026/10',
+    'javascript:alert(1)',
+    '',
+    5,
+    null,
+  ]) {
+    assert.equal(isChessComArchiveUrl(u as never), false, String(u));
+  }
+});
+test('una respuesta demasiado grande se descarta', () => {
+  assert.equal(tooBigResponse('x'.repeat(MAX_RESPONSE_CHARS)), false);
+  assert.equal(tooBigResponse('x'.repeat(MAX_RESPONSE_CHARS + 1)), true);
+});
+test('usuarios guardados: solo se aceptan nombres válidos de los dos sitios', () => {
+  assert.deepEqual(parseStoredUsers('{"chesscom":"magnus","lichess":"DrNykterstein"}'), { chesscom: 'magnus', lichess: 'DrNykterstein' });
+  assert.deepEqual(parseStoredUsers('{"chesscom":5,"lichess":["a"],"otro":"x"}'), {});
+  assert.deepEqual(parseStoredUsers('{"chesscom":"a b c!","lichess":"ok_name"}'), { lichess: 'ok_name' });
+  for (const raw of ['null', '5', '"x"', '[1]', '{roto', '']) assert.deepEqual(parseStoredUsers(raw), {}, raw);
+  assert.deepEqual(parseStoredUsers('{"__proto__":{"chesscom":"x"}}'), {});
 });

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { showDialog } from '../components/dialog';
+import { usableDraft } from './draft';
 import { BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
 import { FeedbackPanel } from '../components/FeedbackPanel';
 import { useFeedback } from '../feedback/feedback';
@@ -42,7 +43,7 @@ type Props = {
 type Status = 'idle' | 'correct' | 'wrong';
 
 export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage, onExit, onAdvance, onFinish }: Props) {
-  const start = initial && initial.stepIndex < lesson.steps.length ? initial : undefined;
+  const start = usableDraft(initial, lesson.steps.length);
   const [index, setIndex] = useState(start?.stepIndex ?? 0);
   const [status, setStatus] = useState<Status>('idle');
   const [message, setMessage] = useState('');

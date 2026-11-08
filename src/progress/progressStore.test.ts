@@ -240,15 +240,6 @@ test('comprar con un precio negativo, NaN, infinito o fraccionario no se acepta'
   assert.ok(withPieceSetBought(p, 'madera', 100));
 });
 
-test('loadProgress: un progreso guardado con la forma rota (lessons: null) va al respaldo y se empieza de cero', async () => {
-  const stored = JSON.stringify({ ...emptyProgress, deviceId: 'x', lessons: null });
-  const { map } = fakeStorage({ [KEY]: stored });
-  const r = await loadProgress('dev1');
-  assert.equal(map.get('ajedrez:progreso:respaldo'), stored);
-  assert.deepEqual(r.progress.lessons, {});
-  assert.equal(r.progress.deviceId, 'dev1');
-});
-
 test('loadProgress: rewards sin botWins se completa y no copia claves desconocidas', async () => {
   const stored = JSON.stringify({ ...emptyProgress, deviceId: 'x', rewards: { goalDate: null }, evil: 1 });
   fakeStorage({ [KEY]: stored });
@@ -274,4 +265,92 @@ test('loadProgress: un progreso sano guardado por la app se lee igual', async ()
   fakeStorage({ [KEY]: JSON.stringify(sano) });
   const r = await loadProgress('dev1');
   assert.deepEqual(r.progress, sano);
+});
+
+// ---------- progreso guardado de cada versión: nada se pierde por un campo viejo o raro ----------
+
+const BACKUP = 'ajedrez:progreso:respaldo';
+const lessonA = { done: true, errors: 0, completedAt: '2026-11-01T00:00:00.000Z', completions: 1 };
+
+test('loadProgress lee un progreso guardado de la versión 1 sin perder lecciones ni monedas', async () => {
+  const stored = JSON.stringify({ version: 1, xp: 45, lessons: { a: { completedAt: '2026-10-01T00:00:00.000Z', bestErrors: 2, completions: 1 } } });
+  const { map } = fakeStorage({ [KEY]: stored });
+  const r = await loadProgress('dev1');
+  assert.equal(r.progress.version, 4);
+  assert.equal(r.progress.coins, 45);
+  assert.equal(r.progress.lessons.a.errors, 2);
+  assert.equal(map.has(BACKUP), false);
+});
+
+test('loadProgress lee la versión 2 (xp como objeto, sin rewards ni sets)', async () => {
+  const stored = JSON.stringify({
+    version: 2,
+    profile: { level: 'casual', onboarded: true },
+    lessons: { a: lessonA },
+    drafts: {},
+    streak: { current: 2, best: 4, lastActiveDate: '2026-10-20' },
+    xp: { total: 80, today: 0, date: null },
+    practice: { seconds: 30, date: '2026-10-20' },
+    mistakes: [],
+    games: [],
+    puzzles: {},
+  });
+  const { map } = fakeStorage({ [KEY]: stored });
+  const r = await loadProgress('dev1');
+  assert.equal(r.progress.coins, 80);
+  assert.deepEqual(r.progress.lessons.a, lessonA);
+  assert.equal(r.progress.streak.best, 4);
+  assert.equal(map.has(BACKUP), false);
+});
+
+test('loadProgress lee la versión 3 con rewards viejo (sin botWins) y la completa', async () => {
+  const stored = JSON.stringify({ ...v3, rewards: { goalDate: '2026-10-27' } });
+  const { map } = fakeStorage({ [KEY]: stored });
+  const r = await loadProgress('dev1');
+  assert.equal(r.progress.coins, 120);
+  assert.deepEqual(r.progress.rewards, { goalDate: '2026-10-27', botWins: {} });
+  assert.equal(map.has(BACKUP), false);
+});
+
+test('loadProgress: una sola lección dañada se quita y las demás se conservan, con copia de respaldo', async () => {
+  const stored = JSON.stringify({ ...emptyProgress, deviceId: 'x', coinLedger: { x: { earned: 50, spent: 0 } }, coins: 50, lessons: { buena: lessonA, rota: { done: 'si' } } });
+  const { map } = fakeStorage({ [KEY]: stored });
+  const r = await loadProgress('dev1');
+  assert.deepEqual(Object.keys(r.progress.lessons), ['buena']);
+  assert.equal(r.progress.coins, 50);
+  assert.equal(r.progress.deviceId, 'x');
+  assert.equal(map.get(BACKUP), stored);
+});
+
+test('loadProgress: un campo con valor desconocido (nivel de perfil) se quita y el resto se conserva', async () => {
+  const stored = JSON.stringify({ ...emptyProgress, deviceId: 'x', lessons: { a: lessonA }, profile: { level: 'experto', onboarded: true } });
+  const { map } = fakeStorage({ [KEY]: stored });
+  const r = await loadProgress('dev1');
+  assert.deepEqual(r.progress.profile, {});
+  assert.deepEqual(Object.keys(r.progress.lessons), ['a']);
+  assert.equal(map.get(BACKUP), stored);
+});
+
+test('loadProgress: lessons: null deja el valor por defecto y conserva monedas y racha', async () => {
+  const stored = JSON.stringify({ ...emptyProgress, deviceId: 'x', lessons: null, coinLedger: { x: { earned: 30, spent: 0 } }, coins: 30, streak: { current: 3, best: 3, lastActiveDate: '2026-11-01' } });
+  const { map } = fakeStorage({ [KEY]: stored });
+  const r = await loadProgress('dev1');
+  assert.deepEqual(r.progress.lessons, {});
+  assert.equal(r.progress.coins, 30);
+  assert.equal(r.progress.streak.current, 3);
+  assert.equal(map.get(BACKUP), stored);
+});
+
+test('loadProgress: si no se puede guardar la copia de respaldo, no se pisa lo guardado', async () => {
+  const stored = JSON.stringify({ ...emptyProgress, deviceId: 'x', lessons: null });
+  const map = new Map([[KEY, stored]]);
+  const setItem = mock.method(AsyncStorage, 'setItem', async (k: string) => {
+    if (k === BACKUP) throw new Error('disco lleno');
+    map.set(k, 'PISADO');
+  });
+  mock.method(AsyncStorage, 'getItem', async (k: string) => map.get(k) ?? null);
+  const r = await loadProgress('dev1');
+  assert.equal(r.canSave, false);
+  assert.equal(map.get(KEY), stored);
+  assert.equal(setItem.mock.calls.every((c) => c.arguments[0] === BACKUP), true);
 });

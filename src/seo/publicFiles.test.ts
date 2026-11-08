@@ -32,3 +32,14 @@ test('index.html trae título, descripción, canónica y datos estructurados vá
   assert.equal(data['@type'], 'WebApplication');
   assert.equal(data.url, `${SITE_URL}/`);
 });
+
+test('_headers fuerza HTTPS (HSTS) y mantiene la política de contenido cerrada', () => {
+  const headers = read('_headers');
+  assert.match(headers, /^\s*Strict-Transport-Security: max-age=\d{7,}\s*$/m);
+  // Sin includeSubDomains ni preload: no se compromete el resto de subdominios del dominio.
+  assert.doesNotMatch(headers, /Strict-Transport-Security:.*(includeSubDomains|preload)/);
+  for (const d of ["object-src 'none'", "base-uri 'none'", "frame-ancestors 'none'", "form-action 'none'"]) assert.ok(headers.includes(d), d);
+});
+test('index.html no usa httpEquiv (es de JSX, en HTML no hace nada)', () => {
+  assert.doesNotMatch(read('index.html'), /httpEquiv/);
+});

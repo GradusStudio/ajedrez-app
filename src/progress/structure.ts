@@ -62,3 +62,39 @@ export function hasUsableStructure(p: Record<string, unknown>): boolean {
   const s = p.streak;
   return isObject(s) && isCount(s.current) && isCount(s.best) && (!('lastActiveDate' in s) || isStringOrNull(s.lastActiveDate));
 }
+
+/** Campos que son un registro de entradas independientes: si una está dañada, se quita solo esa. */
+const RECORD_FIELDS = ['lessons', 'puzzles', 'drafts', 'coinLedger', 'stamps'];
+/** Campos que son una lista de elementos independientes. */
+const LIST_FIELDS = ['mistakes', 'games', 'pieceSets', 'boardThemes', 'turningPoints'];
+
+/**
+ * Para el progreso que la propia app guardó (no para un archivo ajeno): en vez de descartarlo entero porque un campo
+ * no pasa `hasUsableStructure` (datos de una versión vieja, una edición a mano), se quita solo lo dañado (la entrada
+ * de una lección, el campo `profile`…) y se conserva el resto. Lo quitado queda con su valor por defecto al migrar.
+ * Devuelve `repaired` con los nombres de los campos que se tocaron.
+ */
+export function repairStructure(p: Record<string, unknown>): { data: Record<string, unknown>; repaired: string[] } {
+  const data: Record<string, unknown> = {};
+  const repaired: string[] = [];
+  // Las comprobaciones dependen de la versión y exigen racha: se prueba cada pieza con una racha válida de relleno.
+  const filler = { current: 0, best: 0 };
+  const ok = (key: string, value: unknown) =>
+    hasUsableStructure({ version: p.version, streak: key === 'streak' ? value : filler, ...(key === 'streak' ? {} : { [key]: value }) });
+  for (const key of Object.keys(p)) {
+    if (UNSAFE_KEYS.includes(key)) continue;
+    const value = p[key];
+    if (key === 'version' || ok(key, value)) {
+      data[key] = value;
+    } else if (RECORD_FIELDS.includes(key) && isRecord(value)) {
+      data[key] = Object.fromEntries(Object.entries(value).filter(([id, v]) => ok(key, { [id]: v })));
+      repaired.push(key);
+    } else if (LIST_FIELDS.includes(key) && Array.isArray(value)) {
+      data[key] = value.filter((item) => ok(key, [item]));
+      repaired.push(key);
+    } else {
+      repaired.push(key); // el campo se descarta entero
+    }
+  }
+  return { data, repaired };
+}

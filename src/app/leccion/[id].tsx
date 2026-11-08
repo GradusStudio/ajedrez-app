@@ -58,7 +58,8 @@ export default function LessonRoute() {
         if (isReview) {
           earned = finishReview({
             lessonId: base.id,
-            stepIds: reviewIds,
+            // Solo los pasos que la lección tiene de verdad: el parámetro de la ruta puede traer cualquier cosa.
+            stepIds: lesson.steps.map((s) => s.id),
             failed: result.mistakes,
             seconds: seconds(),
           });

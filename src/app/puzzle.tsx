@@ -4,7 +4,7 @@ import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { isPuzzleSolved } from '../progress/progressStore';
-import { findPuzzle, Level, LEVELS, nextPuzzle, Puzzle, themeName } from '../puzzles/puzzles';
+import { findPuzzle, Level, LEVELS, nextPuzzle, PRACTICE_THEMES, Puzzle, themeName } from '../puzzles/puzzles';
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
 import { usePuzzles } from '../puzzles/usePuzzles';
 import { PuzzleScreen } from '../screens/PuzzleScreen';
@@ -27,7 +27,8 @@ function PuzzleLoaded({ puzzles }: { puzzles: Puzzle[] }) {
   const { t } = useI18n();
   const practice = params.modo === 'practica';
   const level: Level = params.nivel && params.nivel in LEVELS ? (params.nivel as Level) : 'facil';
-  const theme = params.tema ?? null;
+  // Un tema que no existe (un enlace escrito a mano) se ignora en vez de dejar la práctica vacía.
+  const theme = params.tema && PRACTICE_THEMES.includes(params.tema) ? params.tema : null;
   const solved = (id: string) => isPuzzleSolved(progress, id);
 
   const [puzzle, setPuzzle] = useState(() =>

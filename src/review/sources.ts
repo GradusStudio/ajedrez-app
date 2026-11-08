@@ -28,6 +28,31 @@ export const GAMES_SHOWN = 30;
 export const cleanUsername = (s: string) => s.trim().replace(/^@/, '');
 export const validUsername = (s: string) => /^[A-Za-z0-9_-]{2,40}$/.test(s);
 
+/** Tope del texto de una respuesta: unas 30 partidas con su PGN pesan unos cientos de KB. */
+export const MAX_RESPONSE_CHARS = 10_000_000;
+export const tooBigResponse = (text: string) => text.length > MAX_RESPONSE_CHARS;
+
+/** El índice de archivos de chess.com trae las URLs de cada mes: solo se piden las de su propia API. */
+const CHESSCOM_ARCHIVE_URL = /^https:\/\/api\.chess\.com\/pub\/player\/[A-Za-z0-9_-]{1,40}\/games\/\d{4}\/\d{2}$/;
+export const isChessComArchiveUrl = (url: unknown): boolean => typeof url === 'string' && CHESSCOM_ARCHIVE_URL.test(url);
+
+/** Último usuario usado en cada sitio, tal como quedó guardado: se descarta lo que no sea un nombre válido. */
+export function parseStoredUsers(raw: string): Partial<Record<GameSource, string>> {
+  let data: unknown;
+  try {
+    data = JSON.parse(raw);
+  } catch {
+    return {};
+  }
+  if (typeof data !== 'object' || data === null || Array.isArray(data)) return {};
+  const out: Partial<Record<GameSource, string>> = {};
+  for (const k of ['chesscom', 'lichess'] as const) {
+    const v = Object.hasOwn(data, k) ? (data as Record<string, unknown>)[k] : undefined;
+    if (typeof v === 'string' && validUsername(v)) out[k] = v;
+  }
+  return out;
+}
+
 type ChessComGame = {
   url?: string;
   pgn?: string;
@@ -106,7 +131,13 @@ export function parseLichessNdjson(text: string): ListedGame[] {
 async function getJson(url: string): Promise<{ status: number; json?: unknown }> {
   const res = await fetch(url, { headers: fetchHeaders('application/json') });
   if (!res.ok) return { status: res.status };
-  return { status: res.status, json: await res.json() };
+  const text = await res.text();
+  if (tooBigResponse(text)) return { status: res.status };
+  try {
+    return { status: res.status, json: JSON.parse(text) };
+  } catch {
+    return { status: res.status };
+  }
 }
 
 export async function fetchChessComGames(username: string): Promise<FetchResult> {
@@ -115,7 +146,7 @@ export async function fetchChessComGames(username: string): Promise<FetchResult>
     const archives = await getJson(`https://api.chess.com/pub/player/${user}/games/archives`);
     if (archives.status === 404 || archives.status === 410) return { ok: false, error: 'notFound' };
     if (!archives.json) return { ok: false, error: 'network' };
-    const urls = ((archives.json as { archives?: string[] }).archives ?? []).slice(-3).reverse();
+    const urls = ((archives.json as { archives?: unknown[] }).archives ?? []).filter(isChessComArchiveUrl).slice(-3).reverse() as string[];
     const games: ListedGame[] = [];
     for (const url of urls) {
       if (games.length >= GAMES_SHOWN) break;
@@ -137,7 +168,9 @@ export async function fetchLichessGames(username: string): Promise<FetchResult> 
     );
     if (res.status === 404) return { ok: false, error: 'notFound' };
     if (!res.ok) return { ok: false, error: 'network' };
-    const games = parseLichessNdjson(await res.text());
+    const text = await res.text();
+    if (tooBigResponse(text)) return { ok: false, error: 'network' };
+    const games = parseLichessNdjson(text);
     return games.length ? { ok: true, games } : { ok: false, error: 'empty' };
   } catch {
     return { ok: false, error: 'network' };

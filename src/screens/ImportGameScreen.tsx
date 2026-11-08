@@ -17,7 +17,7 @@ import { Segmented } from '../components/Segmented';
 import { MessageKey, useI18n } from '../i18n/I18nContext';
 import { parseGame } from '../review/pgn';
 import { setPendingGame } from '../review/session';
-import { cleanUsername, fetchGames, FetchError, GameSource, ListedGame, validUsername } from '../review/sources';
+import { cleanUsername, fetchGames, FetchError, GameSource, ListedGame, parseStoredUsers, validUsername } from '../review/sources';
 import { colors, fonts, radius, space } from '../theme';
 
 type Tab = GameSource | 'pgn';
@@ -50,7 +50,7 @@ export function ImportGameScreen({ onBack, onReview }: Props) {
   // El último usuario que se usó en cada sitio queda guardado.
   useEffect(() => {
     AsyncStorage.getItem(USERS_KEY)
-      .then((raw) => raw && setUsers(JSON.parse(raw) as Users))
+      .then((raw) => raw && setUsers(parseStoredUsers(raw)))
       .catch(() => {});
   }, []);
 

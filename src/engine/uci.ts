@@ -1,6 +1,15 @@
 // Habla con un motor UCI por texto. No sabe nada de dónde corre el motor (hoy, un WebView):
 // para cambiar de motor (por ejemplo, a Arasan) alcanza con cambiar quién recibe `send`.
 
+/** Un FEN solo lleva letras, números, barras, puntos, guiones y espacios. Con otra cosa (un salto de línea, por ejemplo) se colarían comandos al motor. */
+const FEN_PATTERN = /^[A-Za-z0-9/ .-]{1,100}$/;
+
+/** Comando que fija la posición. Lanza un error si el FEN no tiene la forma de un FEN. */
+export function positionCommand(fen: string): string {
+  if (typeof fen !== 'string' || !FEN_PATTERN.test(fen)) throw new Error('FEN inválido');
+  return `position fen ${fen}`;
+}
+
 export type EngineLine = {
   rank: number; // 1 = la mejor
   /** Evaluación en centipeones para el bando que mueve. Mate: ±(10000 − jugadas hasta el mate). */
@@ -139,7 +148,7 @@ export class UciEngine {
       this.send(`setoption name UCI_LimitStrength value ${o.elo ? 'true' : 'false'}`);
       if (o.elo) this.send(`setoption name UCI_Elo value ${o.elo}`);
       await this.ready();
-      this.send(`position fen ${o.fen}`);
+      this.send(positionCommand(o.fen));
       const done = this.waitFor((l) => l.startsWith('bestmove'));
       // Ojo: "go movetime 0" es "pensar sin límite" para Stockfish. Por eso hay un mínimo.
       this.send(o.depth ? `go depth ${o.depth}` : `go movetime ${Math.max(MIN_MOVETIME_MS, o.movetime ?? 1000)}`);
@@ -160,7 +169,7 @@ export class UciEngine {
       this.send('setoption name UCI_LimitStrength value false');
       await this.ready();
       if (stopped) return;
-      this.send(`position fen ${o.fen}`);
+      this.send(positionCommand(o.fen));
       const byRank = new Map<number, EngineLine>();
       let depth = 0;
       let lastUpdate = 0;

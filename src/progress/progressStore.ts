@@ -1,4 +1,4 @@
-import { hasUsableStructure } from './structure';
+import { hasUsableStructure, repairStructure } from './structure';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { puzzleCountsForStreak, Streak, streakStatus, StreakStatus, StreakAction, todayKey, withStreakAction } from './streak';
 
@@ -464,11 +464,24 @@ export async function loadProgress(newDeviceId = randomId()): Promise<{ progress
   if (!raw) return { progress: fresh, canSave: true };
   let data: StoredProgress;
   let progress: Progress;
+  let repaired = false;
   try {
     data = JSON.parse(raw);
     const v = data?.version;
     if (!(Number.isInteger(v) && v >= 1 && v <= PROGRESS_VERSION)) throw new Error('versión desconocida');
-    if (!hasUsableStructure(data as unknown as Record<string, unknown>)) throw new Error('forma inválida');
+    let fields = data as unknown as Record<string, unknown>;
+    if (!hasUsableStructure(fields)) {
+      // Un campo viejo o dañado no tiene por qué costar todo el progreso: se quita solo eso, y antes se guarda la copia.
+      fields = repairStructure(fields).data;
+      if (!hasUsableStructure(fields)) throw new Error('forma inválida');
+      const saved = await AsyncStorage.setItem(BACKUP_KEY, raw).then(
+        () => true,
+        () => false
+      );
+      if (!saved) return { progress: migrate(fields as unknown as StoredProgress, newDeviceId), canSave: false };
+      repaired = true;
+    }
+    data = fields as unknown as StoredProgress;
     progress = migrate(data, newDeviceId);
   } catch {
     // Datos dañados: se empieza de cero en vez de romper la app, pero antes se guarda una copia.
@@ -478,7 +491,7 @@ export async function loadProgress(newDeviceId = randomId()): Promise<{ progress
     );
     return { progress: fresh, canSave };
   }
-  if (data.version !== PROGRESS_VERSION || !data.deviceId) await saveProgress(progress).catch(() => {});
+  if (repaired || data.version !== PROGRESS_VERSION || !data.deviceId) await saveProgress(progress).catch(() => {});
   return { progress, canSave: true };
 }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { Board, BoardMove } from '../components/Board';
 import { Button3D } from '../components/Button3D';
@@ -12,6 +12,7 @@ import { Earned, useProgress } from '../progress/ProgressContext';
 import { PuzzleResult } from '../progress/progressStore';
 import { displayThemes, Puzzle, puzzleGoal, userColor } from '../puzzles/puzzles';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
   puzzle: Puzzle;
@@ -54,6 +55,8 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   const startedAt = useRef(0);
   // Un toque doble o «ver solución» tras el acierto no cobra otra vez.
   const finished = useRef(false);
+  // «Reintentar» deshace una sola jugada aunque se toque dos veces antes de que la pantalla se redibuje.
+  const hasWrongMove = useRef(false);
 
   const me = userColor(puzzle);
   const moves = puzzle.moves;
@@ -122,6 +125,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
       // La jugada queda en el tablero; "Reintentar" la deshace.
       feedback.wrong();
       setErrors((e) => e + 1);
+      hasWrongMove.current = true;
       setWrongMove({ from: m.from, to: m.to });
       return;
     }
@@ -136,6 +140,8 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
 
   /** Deshace la jugada equivocada y vuelve a la posición anterior. */
   const retry = () => {
+    if (!hasWrongMove.current) return;
+    hasWrongMove.current = false;
     chess.undo();
     setFen(chess.fen());
     setLastMove(ply > 0 ? toSquares(moves[ply - 1]) : null);
@@ -169,7 +175,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
 
   return (
     <Animated.View style={[styles.screen, { opacity: fade }]}>
-      <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+      <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
         <View style={styles.topRow}>
           <Pressable onPress={onExit} accessibilityRole="button" accessibilityLabel={t('puzzles.exit')} hitSlop={12}>
             <Text style={styles.close}>✕</Text>

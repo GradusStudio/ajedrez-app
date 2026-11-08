@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   Pressable,
   ScrollView,
-  StatusBar as RNStatusBar,
   StyleSheet,
   Switch,
   Text,
@@ -20,6 +19,7 @@ import { formatScore, whiteScore } from '../engine/evalFormat';
 import { AnalysisUpdate } from '../engine/uci';
 import { useUciEngine } from '../engine/useUciEngine';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type LastMove = { from: Square; to: Square } | null;
 type Translate = (key: MessageKey, values?: Record<string, string | number>) => string;
@@ -137,7 +137,7 @@ export function FreePlayScreen({ onBack }: { onBack?: () => void } = {}) {
     <View style={styles.screen}>
       {engineView}
 
-      <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+      <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
         {onBack && (
           <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('analysisMenu.title')} hitSlop={12}>
             <Text style={styles.back}>{t('analysisMenu.back')}</Text>

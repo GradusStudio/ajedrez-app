@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { Board, BoardMove } from '../components/Board';
 import { BotAvatar } from '../components/BotAvatar';
@@ -19,6 +19,7 @@ import { isQuizAnswer, peekPendingQuiz, turningPointKey } from '../review/turnin
 import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
 import { styles as reviewStyles } from './review/reviewStyles';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { onExit: () => void };
 type SquareMove = { from: Square; to: Square };
@@ -153,7 +154,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
     const found = results.filter(Boolean).length;
     return (
       <View style={styles.screen}>
-        <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+        <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
           {top}
           <FadeIn>
             {bubble(
@@ -190,7 +191,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
 
   return (
     <View style={styles.screen}>
-      <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+      <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
         {top}
         {bubble(face, t('quiz.prompt'), bubbleText)}
         <View style={{ height: space.md }} />

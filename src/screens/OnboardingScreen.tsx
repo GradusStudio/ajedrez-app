@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { router } from 'expo-router';
-import { Pressable, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { useI18n } from '../i18n/I18nContext';
 import { declineInstallOffer, isInstallOfferDeclined } from '../pwa/installOffer';
 import { useInstallPlatform } from '../pwa/useInstallPlatform';
 import { PlayerLevel } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
   onFinish: (choice: { level?: PlayerLevel }) => void;
@@ -25,7 +26,7 @@ export function OnboardingScreen({ onFinish }: Props) {
   const offerInstall = platform === 'ios' && !stayInBrowser;
 
   return (
-    <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.lg }]}>
+    <View style={[styles.screen, { paddingTop: statusBarTop(space.lg) }]}>
       <View style={styles.top}>
         <View style={styles.dots} accessibilityLabel={t('onboarding.step', { n: step + 1 })}>
           {[0, 1].map((i) => (

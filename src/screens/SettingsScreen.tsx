@@ -1,6 +1,6 @@
 import React from 'react';
 import { showDialog } from '../components/dialog';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { Segmented } from '../components/Segmented';
 import { SyncSection } from './SyncSection';
@@ -17,6 +17,7 @@ import { cancelDailyReminder, ensureReminderPermission, REMINDERS_SUPPORTED } fr
 import { useSettings } from '../settings/SettingsContext';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { colors, fonts, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { onBack: () => void; onOpenPieces: () => void; onOpenBoards: () => void };
 
@@ -87,7 +88,7 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
   return (
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
       <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('common.backToProfile')} hitSlop={12}>
         <Text style={styles.back}>{t('common.backProfile')}</Text>

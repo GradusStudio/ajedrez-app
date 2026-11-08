@@ -1,11 +1,12 @@
 import React from 'react';
-import { ScrollView, StatusBar as RNStatusBar, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { Button3D } from '../../components/Button3D';
 import { MessageKey, useI18n } from '../../i18n/I18nContext';
 import type { Review } from '../../review/types';
 import { space } from '../../theme';
 import { CATS, countCats, QUALITY_STYLE } from './quality';
 import { styles } from './reviewStyles';
+import { statusBarTop } from '../../components/statusBarTop';
 
 type Props = {
   top: React.ReactNode;
@@ -26,7 +27,7 @@ export function SummaryView({ top, bubble, graph, review, me, nameOf, decimal, o
   const counts = { w: countCats(review.plies, 'w'), b: countCats(review.plies, 'b') };
   return (
     <View style={styles.screen}>
-      <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+      <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
         {top}
         {bubble}
         <View style={{ height: space.lg }} />

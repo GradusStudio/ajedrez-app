@@ -1,11 +1,12 @@
 import React from 'react';
-import { Pressable, StatusBar as RNStatusBar, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { Button3D } from '../../components/Button3D';
 import { ProgressBar } from '../../components/ProgressBar';
 import { useI18n } from '../../i18n/I18nContext';
 import { space } from '../../theme';
 import { styles } from './reviewStyles';
 import type { AnalysisPhase } from './useReviewAnalysis';
+import { statusBarTop } from '../../components/statusBarTop';
 
 type Props = {
   /** El motor o el análisis fallaron: se ofrece reintentar. */
@@ -21,7 +22,7 @@ type Props = {
 export function AnalyzingView({ down, engineReady, progress, phase, onBack, onRetry }: Props) {
   const { t } = useI18n();
   return (
-    <View style={[styles.screen, { paddingHorizontal: space.lg, paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+    <View style={[styles.screen, { paddingHorizontal: space.lg, paddingTop: statusBarTop(space.sm) }]}>
       <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('review.chooseOther')} hitSlop={12}>
         <Text style={styles.back}>{t('analysisMenu.back')}</Text>
       </Pressable>

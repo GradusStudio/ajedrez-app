@@ -1,10 +1,11 @@
 import React from 'react';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { AppLink } from '../components/AppLink';
 import type { MessageKey } from '../i18n/es';
 import { useI18n } from '../i18n/I18nContext';
 import { CONTACT_EMAIL, SOURCE_URL } from '../links';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 // Cada sección es un título y un párrafo: terms.<id>.title / terms.<id>.text. `extra` agrega un enlace debajo.
 const SECTIONS = ['service', 'free', 'content', 'progress', 'thirdparty', 'code', 'conduct', 'liability', 'privacy', 'changes', 'contact'] as const;
@@ -24,7 +25,7 @@ export function TermsScreen({ onBack }: { onBack: () => void }) {
   return (
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
       <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('terms.backLabel')} hitSlop={12} style={styles.backButton}>
         <Text style={styles.back}>{t('terms.back')}</Text>

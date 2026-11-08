@@ -1,7 +1,8 @@
 import React from 'react';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useI18n, MessageKey } from '../i18n/I18nContext';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { onGame: () => void; onFree: () => void };
 
@@ -15,7 +16,7 @@ export function AnalysisMenuScreen({ onGame, onFree }: Props) {
     { glyph: '♜', title: 'analysisMenu.free', desc: 'analysisMenu.freeDesc', onPress: onFree, accent: '#4FA3E0', edge: '#2F6FA0' },
   ];
   return (
-    <ScrollView style={styles.screen} contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+    <ScrollView style={styles.screen} contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
       <Text style={styles.title}>{t('analysisMenu.title')}</Text>
       <Text style={styles.subtitle}>{t('analysisMenu.subtitle')}</Text>
       <View style={{ height: space.lg }} />

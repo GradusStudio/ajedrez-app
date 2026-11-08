@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { StatusBar as RNStatusBar, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { Square } from 'chess.js';
 import { Board } from '../components/Board';
 import { Button3D } from '../components/Button3D';
@@ -27,10 +27,11 @@ import { useBranchPlay } from './review/useBranchPlay';
 import { useReviewAnalysis } from './review/useReviewAnalysis';
 import { useReviewCoach } from './review/useReviewCoach';
 import { useReviewPlayback } from './review/useReviewPlayback';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { onBack: () => void; onPractice: () => void };
 
-const topInset = () => (RNStatusBar.currentHeight ?? 40) + space.sm;
+const topInset = () => statusBarTop(space.sm);
 
 export function GameReviewScreen({ onBack, onPractice }: Props) {
   const { t, tn, language } = useI18n();
@@ -58,7 +59,7 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
 
   if (!game) {
     return (
-      <View style={[styles.screen, styles.center, { paddingTop: RNStatusBar.currentHeight ?? 40 }]}>
+      <View style={[styles.screen, styles.center, { paddingTop: statusBarTop() }]}>
         <Text style={styles.muted}>{t('review.invalid')}</Text>
         <View style={{ height: space.lg }} />
         <Button3D label={t('review.chooseOther')} onPress={onBack} />

@@ -1,7 +1,8 @@
 import React from 'react';
-import { StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { title: string; description: string; milestone: number };
 
@@ -9,7 +10,7 @@ type Props = { title: string; description: string; milestone: number };
 export function ComingSoonScreen({ title, description, milestone }: Props) {
   const { t } = useI18n();
   return (
-    <View style={[styles.screen, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}>
+    <View style={[styles.screen, { paddingTop: statusBarTop(space.md) }]}>
       <Text style={styles.title}>{title}</Text>
       <View style={{ height: space.lg }} />
       <View style={styles.card}>

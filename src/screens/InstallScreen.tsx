@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Image, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { AppLink } from '../components/AppLink';
 import { Button3D } from '../components/Button3D';
 import type { MessageKey } from '../i18n/es';
 import { useI18n } from '../i18n/I18nContext';
 import { InstallPlatform, needsCopyBeforeInstall } from '../pwa/installPlatform';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type System = Exclude<InstallPlatform, 'installed'>;
 
@@ -31,7 +32,7 @@ export function InstallScreen({ platform, canPrompt, onInstall, justInstalled, o
   const own: System | null = platform && platform !== 'installed' ? platform : null;
 
   return (
-    <ScrollView style={styles.screen} contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.xxl }]}>
+    <ScrollView style={styles.screen} contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.xxl) }]}>
       <View style={styles.column}>
         <Image source={require('../../assets/icon.png')} style={styles.icon} accessibilityLabel={t('install.logoLabel')} />
         <Text accessibilityRole="header" aria-level={1} style={styles.brand}>Gradus</Text>

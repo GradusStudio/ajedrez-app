@@ -1,10 +1,11 @@
 import React from 'react';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { PieceSetPicker } from '../components/PieceSetPicker';
 import { StatIcon } from '../components/StatIcon';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { colors, fonts, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 // Pantalla "Piezas" (también la tienda de sets): se abre desde Perfil y desde Ajustes. El cambio se aplica al tocar un set.
 export function PieceSetScreen({ onBack }: { onBack: () => void }) {
@@ -13,7 +14,7 @@ export function PieceSetScreen({ onBack }: { onBack: () => void }) {
   return (
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
       <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('pieces.backLabel')} hitSlop={12}>
         <Text style={styles.back}>{t('pieces.back')}</Text>

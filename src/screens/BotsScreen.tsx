@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { BotAvatar } from '../components/BotAvatar';
 import { Chip } from '../components/Chip';
 import { Bot } from '../data/bots';
@@ -8,6 +8,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { recordAgainst } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { onOpenBot: (bot: Bot) => void };
 
@@ -19,7 +20,7 @@ export function BotsScreen({ onOpenBot }: Props) {
   return (
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
       <Text style={styles.title}>{t('bots.title')}</Text>
       <Text style={styles.subtitle}>{t('bots.subtitle')}</Text>

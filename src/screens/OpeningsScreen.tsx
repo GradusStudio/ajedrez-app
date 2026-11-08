@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Chip } from '../components/Chip';
 import { ProgressBar } from '../components/ProgressBar';
 import { BotStyle } from '../data/bots';
@@ -8,6 +8,7 @@ import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { onOpenCourse: (course: OpeningCourse) => void };
 
@@ -23,7 +24,7 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
   return (
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
       <Text style={styles.title}>{t('openings.title')}</Text>
       <Text style={styles.subtitle}>{t('openings.subtitle')}</Text>

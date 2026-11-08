@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { showDialog } from '../components/dialog';
 import { usableDraft } from './draft';
-import { BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { FeedbackPanel } from '../components/FeedbackPanel';
 import { useFeedback } from '../feedback/feedback';
 import { ProgressBar } from '../components/ProgressBar';
@@ -18,6 +18,7 @@ import { SelectSquaresStep } from './steps/SelectSquaresStep';
 import { TeacherContext } from './TeacherContext';
 import { teacherExpression } from './teacherExpression';
 import { colors, fonts, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 export type LessonResult = { errors: number; xp: number; mistakes: string[] }; // xp: monedas de la lección
 
@@ -187,7 +188,7 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
 
   return (
     <View style={styles.screen}>
-      <View style={[styles.header, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+      <View style={[styles.header, { paddingTop: statusBarTop(space.sm) }]}>
         <Pressable onPress={confirmExit} accessibilityRole="button" accessibilityLabel={t('common.exit')} hitSlop={12}>
           <Text style={styles.close}>✕</Text>
         </Pressable>

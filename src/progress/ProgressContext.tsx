@@ -31,6 +31,8 @@ export type Earned = { coins: number; dailyBonus: number; streakRecovered: boole
 type ProgressValue = {
   progress: Progress;
   loaded: boolean;
+  /** true si lo guardado no se pudo leer: esta sesión no guarda nada para no pisarlo. */
+  saveBlocked: boolean;
   /** Guarda la lección como terminada y devuelve las monedas ganadas (0 si ya estaba hecha). */
   finishLesson: (f: LessonFinish) => Earned;
   /** Guarda el repaso y devuelve el premio del día y si con él se recuperó la racha. */
@@ -72,11 +74,14 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   // Copia sincrónica del estado, para encadenar cambios y calcular resultados en el mismo toque.
   const current = useRef<Progress>(emptyProgress);
   const canSave = useRef(true);
+  // Para avisar a la persona (fuera de este archivo, donde ya hay idioma) que lo de esta sesión no se va a guardar.
+  const [saveBlocked, setSaveBlocked] = useState(false);
 
   useEffect(() => {
     loadProgress().then((r) => {
       current.current = r.progress;
       canSave.current = r.canSave;
+      setSaveBlocked(!r.canSave);
       setProgress(r.progress);
       setLoaded(true);
     });
@@ -199,6 +204,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
       value={{
         progress,
         loaded,
+        saveBlocked,
         finishLesson,
         finishReview,
         saveDraft,

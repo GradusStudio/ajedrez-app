@@ -1,6 +1,6 @@
 import React from 'react';
 import { showDialog } from '../components/dialog';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { Circle3D } from '../components/Circle3D';
@@ -12,6 +12,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { lessonStates, NodeState } from '../progress/path';
 import { useProgress } from '../progress/ProgressContext';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
   course: OpeningCourse;
@@ -45,7 +46,7 @@ export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack 
   return (
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
       <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('openings.backLabel')} hitSlop={12}>
         <Text style={styles.back}>{t('openings.back')}</Text>

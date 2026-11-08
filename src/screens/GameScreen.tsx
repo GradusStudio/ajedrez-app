@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { showDialog } from '../components/dialog';
-import { BackHandler, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { detectOpening } from '../bots/book';
 import { enginesFor, thinkMove } from '../bots/brain';
@@ -24,6 +24,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { es, MessageKey } from '../i18n/es';
 import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
   bot: Bot;
@@ -273,7 +274,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
         />
       )}
 
-      <ScrollView contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}>
+      <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
         <View style={styles.topRow}>
           <Pressable onPress={exit} accessibilityRole="button" accessibilityLabel={t('game.exitLabel')} hitSlop={12}>
             <Text style={styles.close}>✕</Text>

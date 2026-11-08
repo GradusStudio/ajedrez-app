@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { BotAvatar } from '../components/BotAvatar';
 import { ProgressBar } from '../components/ProgressBar';
 import { SettingRow } from '../components/SettingRow';
@@ -10,6 +10,7 @@ import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, isPuzzleSolved, recordAgainst } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
   onOpenSettings: () => void;
@@ -45,7 +46,7 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
   return (
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
       <Text style={styles.title}>{t('profile.title')}</Text>
 

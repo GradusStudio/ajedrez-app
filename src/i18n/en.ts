@@ -705,5 +705,7 @@ export const en: Record<MessageKey, string> = {
   'sync.nudge.title': 'Sync your data so you do not lose your progress',
   'sync.nudge.now': 'Sync',
   'sync.nudge.later': 'Later',
+  'progress.saveBlocked.title': 'Your progress cannot be saved',
+  'progress.saveBlocked.message': 'Gradus could not read what you had saved, so it will not save anything in this session to avoid overwriting it. Close and reopen the app.',
   'credits.app.codeNote': 'The source code of each published version is available in this repository, under the GPL.',
 };

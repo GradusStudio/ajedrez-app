@@ -11,7 +11,8 @@ import {
   Nunito_700Bold,
   Nunito_800ExtraBold,
 } from '@expo-google-fonts/nunito';
-import { I18nProvider } from '../i18n/I18nContext';
+import { showDialog } from '../components/dialog';
+import { I18nProvider, useI18n } from '../i18n/I18nContext';
 import { ProgressProvider, useProgress } from '../progress/ProgressContext';
 import { PieceSetProvider, usePieceSet } from '../settings/PieceSetContext';
 import { SettingsProvider, useSettings } from '../settings/SettingsContext';
@@ -80,12 +81,18 @@ export default function RootLayout() {
 }
 
 function AppStack() {
-  const { loaded } = useProgress();
+  const { loaded, saveBlocked } = useProgress();
   const { loaded: piecesLoaded } = usePieceSet();
   const { loaded: settingsLoaded } = useSettings();
+  const { t } = useI18n();
   const ready = loaded && piecesLoaded && settingsLoaded;
   useReminderSync(ready);
   useRouteMeta();
+
+  // Si lo guardado no se pudo leer, la persona tiene que saber que esta sesión no se guarda.
+  useEffect(() => {
+    if (ready && saveBlocked) showDialog(t('progress.saveBlocked.title'), t('progress.saveBlocked.message'));
+  }, [ready, saveBlocked, t]);
 
   // La pantalla de carga (el caballo) se va cuando el progreso y los ajustes ya están listos.
   useEffect(() => {

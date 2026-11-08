@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { StatIcon } from '../components/StatIcon';
 import { Bot } from '../data/bots';
@@ -7,6 +7,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { BubbleRow } from '../lesson/TeacherBubble';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
   title: string;
@@ -38,7 +39,7 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
     // Con scroll: en un teléfono chico con letra grande, «Continuar» no puede quedar afuera.
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.xxl }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.xxl) }]}
     >
       <Text style={styles.heading}>{t(`lessonResult.heading.${mode}`)}</Text>
       <Text style={styles.lesson}>{title}</Text>

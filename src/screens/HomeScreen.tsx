@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { showDialog } from '../components/dialog';
-import { Modal, Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
 import { LessonNode, NODE_BOX } from '../components/LessonNode';
@@ -14,6 +14,7 @@ import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
   onStartLesson: (lesson: Lesson) => void;
@@ -61,7 +62,7 @@ export function HomeScreen({ onStartLesson }: Props) {
       <ScrollView
         contentContainerStyle={[
           styles.content,
-          { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md, paddingBottom: floatingHeight + space.xl * 2 },
+          { paddingTop: statusBarTop(space.md), paddingBottom: floatingHeight + space.xl * 2 },
         ]}
       >
         {/* Racha y monedas */}
@@ -135,7 +136,7 @@ function UnitMenu({
     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} accessibilityLabel={t('home.closeMenu')}>
         {/* Tocar dentro del menú (fuera de una unidad) no lo cierra */}
-        <View style={[styles.menu, { marginTop: (RNStatusBar.currentHeight ?? 40) + 96 }]} onStartShouldSetResponder={() => true}>
+        <View style={[styles.menu, { marginTop: statusBarTop(96) }]} onStartShouldSetResponder={() => true}>
           <Text style={styles.menuTitle}>{t('home.chooseUnit')}</Text>
           <ScrollView>
             {units.map((u) => {

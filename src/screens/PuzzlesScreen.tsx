@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
@@ -17,6 +17,7 @@ import {
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
 import { usePuzzles } from '../puzzles/usePuzzles';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
   onOpenDaily: (id: string) => void;
@@ -45,7 +46,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, puzzles }: Props & { puzzles: 
   return (
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.md }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
       <Text style={styles.title}>{t('puzzles.title')}</Text>
       <Text style={styles.subtitle}>{t('puzzles.subtitle', { solved: solvedTotal, total: number(puzzles.length) })}</Text>

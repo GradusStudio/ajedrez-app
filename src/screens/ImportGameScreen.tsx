@@ -5,7 +5,6 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  StatusBar as RNStatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -19,6 +18,7 @@ import { parseGame } from '../review/pgn';
 import { setPendingGame } from '../review/session';
 import { cleanUsername, fetchGames, FetchError, GameSource, ListedGame, parseStoredUsers, validUsername } from '../review/sources';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Tab = GameSource | 'pgn';
 
@@ -105,7 +105,7 @@ export function ImportGameScreen({ onBack, onReview }: Props) {
   return (
     <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView
-        contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
+        contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
         keyboardShouldPersistTaps="handled"
       >
         <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('analysisMenu.title')} hitSlop={12}>

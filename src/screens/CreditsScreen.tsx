@@ -1,11 +1,12 @@
 import React from 'react';
-import { Pressable, ScrollView, StatusBar as RNStatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { AppLink } from '../components/AppLink';
 import { useI18n } from '../i18n/I18nContext';
 import { SOURCE_URL } from '../links';
 import { PRIVACY_PAGE_AVAILABLE } from '../privacyPage';
 import { STOCKFISH_VERSION } from '../engine/stockfish/stockfishAssets';
 import { colors, fonts, radius, space } from '../theme';
+import { statusBarTop } from '../components/statusBarTop';
 
 type Credit = { name: string; what: string; note?: string; license: string; links?: { label: string; url: string }[] };
 
@@ -80,7 +81,7 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
   return (
     <ScrollView
       style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingTop: (RNStatusBar.currentHeight ?? 40) + space.sm }]}
+      contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
       <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('common.backToProfile')} hitSlop={12}>
         <Text style={styles.back}>{t('common.backProfile')}</Text>

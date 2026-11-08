@@ -704,6 +704,8 @@ export const es = {
   'sync.nudge.title': 'Sincroniza tus datos para no perder tu progreso',
   'sync.nudge.now': 'Sincronizar',
   'sync.nudge.later': 'Más tarde',
+  'progress.saveBlocked.title': 'No se puede guardar tu progreso',
+  'progress.saveBlocked.message': 'Gradus no pudo leer lo que tenías guardado, así que no va a guardar nada en esta sesión para no pisarlo. Cierra y vuelve a abrir la app.',
   'credits.app.codeNote': 'El código fuente de cada versión publicada está disponible en este repositorio, bajo la GPL.',
 } as const;
 

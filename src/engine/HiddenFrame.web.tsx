@@ -1,6 +1,5 @@
-// Reemplazo web del WebView invisible: monta la misma página del motor en un iframe oculto con `sandbox`
-// (origen opaco, sin acceso a la app) y le da el `window.ReactNativeWebView.postMessage` que esa página
-// espera. Todo viaja por `postMessage` (ver frameShim.ts).
+// Reemplazo web del WebView invisible: la misma página del motor en un iframe oculto con `sandbox`,
+// que habla con la app solo por `postMessage` (ver frameShim.ts).
 import React, { useEffect, useRef } from 'react';
 import { FRAME_SHIM } from './frameShim';
 
@@ -25,7 +24,7 @@ export function HiddenFrame({ html, onMessage, onSend }: Props) {
   useEffect(() => {
     const frame = ref.current!;
     const onWindowMessage = (e: MessageEvent) => {
-      // Solo se acepta lo que manda este iframe y con la forma del shim.
+      // Ignora lo que no venga de este iframe.
       if (e.source !== frame.contentWindow) return;
       const d = e.data as { gradus?: number; m?: unknown } | null;
       if (d && d.gradus === 1 && typeof d.m === 'string') onMessageRef.current(d.m);

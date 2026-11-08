@@ -66,7 +66,7 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
     onWrong(message, () => setWrong(null));
   };
 
-  // Mientras el motor piensa no entra otra jugada (un toque doble no debe contar dos veces).
+  // Un toque doble mientras el motor piensa no cuenta dos veces.
   const busy = useRef(false);
   const handleMove = async (m: BoardMove) => {
     if (busy.current) return;

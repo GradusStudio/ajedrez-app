@@ -52,7 +52,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   const [fade] = useState(() => new Animated.Value(0));
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const startedAt = useRef(0);
-  // Un puzzle se termina una sola vez: un toque doble o «ver solución» tras el acierto no cobra otra vez.
+  // Un toque doble o «ver solución» tras el acierto no cobra otra vez.
   const finished = useRef(false);
 
   const me = userColor(puzzle);

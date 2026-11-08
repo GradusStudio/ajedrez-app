@@ -1,5 +1,4 @@
-// Hashes CSP de los scripts en línea de los iframes ocultos del motor (web). Esas páginas van en `srcdoc`
-// y heredan la CSP de la app, así que sus scripts se permiten por hash en vez de con 'unsafe-inline'.
+// Hashes CSP de los scripts en línea de los iframes del motor: van en `srcdoc`, heredan la CSP y entran por hash.
 // Uso: `npx tsx scripts/frameCsp.ts` imprime los hashes; con `--write` los pone en public/_headers.
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
@@ -11,7 +10,6 @@ import { loadNetBase64, MAIA_NETS } from '../src/engine/maia/nets';
 
 export const HEADERS_FILE = path.join(__dirname, '..', 'public', '_headers');
 
-/** Contenido de cada `<script>` en línea, tal como lo ve la CSP (texto exacto entre las etiquetas). */
 const inlineScripts = (html: string) => [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
 const hash = (js: string) => `'sha256-${createHash('sha256').update(js, 'utf8').digest('base64')}'`;
 

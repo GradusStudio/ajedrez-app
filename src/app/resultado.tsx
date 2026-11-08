@@ -14,7 +14,7 @@ import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { ensureReminderPermission, REMINDERS_SUPPORTED } from '../settings/reminders';
 import { useSettings } from '../settings/SettingsContext';
 
-/** Un número de la URL: entero entre 0 y `max`; cualquier otra cosa vale 0 (un enlace manipulado no inventa cifras). */
+/** Número de la URL: entero de 0 a `max`; si no, 0. */
 const urlCount = (v: string | undefined, max: number) => {
   const n = Number(v);
   return Number.isInteger(n) && n >= 0 && n <= max ? n : 0;

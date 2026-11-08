@@ -7,8 +7,9 @@ import { createSyncEngine } from './syncEngine';
 
 // Conecta el motor de sincronización con el progreso y con Google (ver docs/superpowers/specs/2026-11-07-version-web-design.md, sección 4).
 // Se sincroniza al abrir la app, cuando cambia el progreso, al volver a la pestaña y al recuperar la conexión.
-// El permiso de Google dura una hora y vive en memoria: al vencer, el motor se pausa y se vuelve a pedir sin ventana
-// (si Google lo permite) o con un toque en Ajustes. Nunca se abre una ventana sola en medio de una lección.
+// El permiso de Google dura una hora y vive en memoria: al vencer (o al abrir la app de nuevo), el motor se pausa y
+// se pide con un toque en Ajustes («Reconectar»). Nunca se abre una ventana sola: sin un toque de la persona el
+// navegador la bloquea (probado el 8-11-2026 en Chrome de PC y de Android), y en medio de una lección molestaría.
 
 const FLAG_KEY = 'gradus:driveSync';
 const DEBOUNCE_MS = 4000;
@@ -35,7 +36,7 @@ const DriveSyncContext = createContext<DriveSyncValue | null>(null);
 export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
   const { progress, loaded, getProgress, mergeRemote } = useProgress();
   const [enabled, setEnabled] = useState(readFlag);
-  const [status, setStatus] = useState<DriveSyncState>(() => (readFlag() ? 'idle' : 'off'));
+  const [status, setStatus] = useState<DriveSyncState>(() => (readFlag() ? 'needsAuth' : 'off')); // al abrir con la copia activada aún no hay permiso
   const enabledRef = useRef(enabled);
   enabledRef.current = enabled;
 
@@ -59,33 +60,8 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     [getProgress, mergeRemote]
   );
 
-  /** Intenta recuperar el permiso sin ventana y, si sale, sigue sincronizando. Devuelve si lo logró. */
-  const resumeQuietly = useCallback(async (): Promise<boolean> => {
-    try {
-      await auth.current!.trySilent();
-    } catch {
-      return false;
-    }
-    engine.resume();
-    void engine.syncNow();
-    return true;
-  }, [engine]);
-
-  /** Como `resumeQuietly`, y si no se pudo avisa que hace falta reconectar (un toque en Ajustes). */
-  const resumeOrAsk = useCallback(
-    () =>
-      void resumeQuietly().then((ok) => {
-        if (!ok) setStatus('needsAuth');
-      }),
-    [resumeQuietly]
-  );
-
-  // Al abrir la app con la sincronización ya activada.
-  useEffect(() => {
-    if (loaded && enabled) resumeOrAsk();
-    // Solo cuando el progreso termina de cargar: activar o desactivar después lo manejan `enable` y `disable`.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loaded]);
+  /** Sin permiso vigente no se intenta nada: se avisa que hace falta reconectar (un toque en Ajustes). */
+  const askToReconnect = useCallback(() => setStatus('needsAuth'), []);
 
   // Cada cambio del progreso pide una sincronización (el motor agrupa los pedidos seguidos).
   useEffect(() => {
@@ -98,7 +74,7 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     const wake = () => {
       if (document.visibilityState === 'hidden') return;
       if (auth.current!.hasToken()) engine.requestSync();
-      else resumeOrAsk();
+      else askToReconnect();
     };
     document.addEventListener('visibilitychange', wake);
     window.addEventListener('online', wake);
@@ -106,7 +82,7 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
       document.removeEventListener('visibilitychange', wake);
       window.removeEventListener('online', wake);
     };
-  }, [enabled, engine, resumeOrAsk]);
+  }, [enabled, engine, askToReconnect]);
 
   const connect = useCallback(async () => {
     try {

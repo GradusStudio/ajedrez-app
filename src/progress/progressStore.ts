@@ -1,3 +1,4 @@
+import { hasUsableStructure } from './structure';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { puzzleCountsForStreak, Streak, streakStatus, StreakStatus, StreakAction, todayKey, withStreakAction } from './streak';
 
@@ -286,15 +287,18 @@ export function withGameFinished(
   return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered };
 }
 
+/** Un precio es un entero no negativo: con uno negativo o NaN, «gastar» sumaría monedas o rompería el saldo. */
+const isValidPrice = (price: number) => Number.isInteger(price) && price >= 0;
+
 /** Compra un set de piezas. Devuelve null si no alcanzan las monedas o si ya era suyo. */
 export function withPieceSetBought(p: Progress, id: string, price: number): Progress | null {
-  if (p.pieceSets.includes(id) || p.coins < price) return null;
+  if (!isValidPrice(price) || p.pieceSets.includes(id) || p.coins < price) return null;
   return withLedger({ ...p, pieceSets: [...p.pieceSets, id] }, 'spent', price);
 }
 
 /** Compra un tablero. Devuelve null si no alcanzan las monedas o si ya era suyo. */
 export function withBoardThemeBought(p: Progress, id: string, price: number): Progress | null {
-  if (p.boardThemes.includes(id) || p.coins < price) return null;
+  if (!isValidPrice(price) || p.boardThemes.includes(id) || p.coins < price) return null;
   return withLedger({ ...p, boardThemes: [...p.boardThemes, id] }, 'spent', price);
 }
 
@@ -410,6 +414,16 @@ function toV3(data: ProgressV1 | ProgressV2 | ProgressV3): ProgressV3 {
   return { ...base, version: 3, lessons, coins: data.xp };
 }
 
+/** Campos que tiene un progreso. Lo que traiga de más un archivo o un respaldo no se copia al estado, que se guarda y se vuelve a subir a Drive. */
+const KNOWN_FIELDS = [...Object.keys(emptyProgress), 'lastUnit'];
+function knownFields<T extends object>(data: T): Partial<T> {
+  const out: Record<string, unknown> = {};
+  for (const k of KNOWN_FIELDS) if (Object.hasOwn(data, k)) out[k] = (data as Record<string, unknown>)[k];
+  return out as Partial<T>;
+}
+/** `botWins` y `goalDate` pueden faltar en lo guardado: se completan para que mezclar no falle. */
+const withRewardDefaults = (r: Partial<Progress['rewards']> | undefined): Progress['rewards'] => ({ ...emptyProgress.rewards, ...r });
+
 /**
  * Lleva cualquier versión guardada a la 4. `newDeviceId` se usa si el progreso todavía no tiene dispositivo:
  * el saldo de las versiones 1 a 3 pasa a ser lo ganado por ese dispositivo. Un archivo viejo importado se migra
@@ -420,7 +434,8 @@ export function migrate(data: StoredProgress, newDeviceId: string): Progress {
   if (data.version === PROGRESS_VERSION) {
     return withBalance({
       ...emptyProgress,
-      ...data,
+      ...knownFields(data),
+      rewards: withRewardDefaults(data.rewards),
       deviceId: data.deviceId || newDeviceId,
       resetAt: data.resetAt ?? null,
       coinLedger: data.coinLedger ?? {},
@@ -429,7 +444,7 @@ export function migrate(data: StoredProgress, newDeviceId: string): Progress {
   }
   const { version: _v, coins, ...rest } = toV3(data);
   const coinLedger = { [newDeviceId]: { earned: Number.isFinite(coins) ? coins : 0, spent: 0 } };
-  return withBalance({ ...emptyProgress, ...rest, deviceId: newDeviceId, coinLedger });
+  return withBalance({ ...emptyProgress, ...knownFields(rest), rewards: withRewardDefaults(rest.rewards), deviceId: newDeviceId, coinLedger });
 }
 
 /**
@@ -453,6 +468,7 @@ export async function loadProgress(newDeviceId = randomId()): Promise<{ progress
     data = JSON.parse(raw);
     const v = data?.version;
     if (!(Number.isInteger(v) && v >= 1 && v <= PROGRESS_VERSION)) throw new Error('versión desconocida');
+    if (!hasUsableStructure(data as unknown as Record<string, unknown>)) throw new Error('forma inválida');
     progress = migrate(data, newDeviceId);
   } catch {
     // Datos dañados: se empieza de cero en vez de romper la app, pero antes se guarda una copia.

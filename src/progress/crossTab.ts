@@ -1,3 +1,4 @@
+import { hasUsableStructure } from './structure';
 import { mergeProgress, sameProgress } from './merge';
 import { migrate, PROGRESS_VERSION, type Progress, type StoredProgress } from './progressStore';
 
@@ -22,6 +23,7 @@ export function absorbOtherTab(current: Progress, raw: string | null): Progress 
     const data = JSON.parse(raw) as StoredProgress | null;
     const v = data?.version;
     if (!data || typeof v !== 'number' || !Number.isInteger(v) || v < 1 || v > PROGRESS_VERSION) return null;
+    if (!hasUsableStructure(data as unknown as Record<string, unknown>)) return null;
     incoming = migrate(data, current.deviceId);
     merged = mergeProgress(current, incoming);
   } catch {

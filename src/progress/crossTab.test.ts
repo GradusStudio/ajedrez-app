@@ -81,3 +81,9 @@ test('dos pestañas que se avisan una a la otra terminan iguales y en pocos paso
   assert.deepEqual(Object.keys(a.lessons), ['x']);
   assert.deepEqual(Object.keys(a.puzzles), ['p1']);
 });
+
+test('otra pestaña con la forma rota (lessons: null) se ignora', () => {
+  const p = make();
+  assert.equal(absorbOtherTab(p, raw({ ...p, deviceId: 'B', lessons: null })), null);
+  assert.equal(absorbOtherTab(p, raw({ ...p, deviceId: 'B', rewards: { goalDate: 5, botWins: {} } })), null);
+});

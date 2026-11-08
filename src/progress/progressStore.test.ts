@@ -228,3 +228,50 @@ test('datos dañados: copia de respaldo y progreso vacío', async () => {
   assert.equal(map.get('ajedrez:progreso:respaldo'), '{roto');
   assert.equal(map.get(KEY), '{roto');
 });
+
+// ---------- endurecimiento (auditoría de seguridad) ----------
+
+test('comprar con un precio negativo, NaN, infinito o fraccionario no se acepta', () => {
+  const p: Progress = { ...emptyProgress, deviceId: 'A', coinLedger: { A: { earned: 100, spent: 0 } }, coins: 100 };
+  for (const price of [-50, NaN, Infinity, 2.5]) {
+    assert.equal(withPieceSetBought(p, 'madera', price), null, `set ${price}`);
+    assert.equal(withBoardThemeBought(p, 'madera', price), null, `tablero ${price}`);
+  }
+  assert.ok(withPieceSetBought(p, 'madera', 100));
+});
+
+test('loadProgress: un progreso guardado con la forma rota (lessons: null) va al respaldo y se empieza de cero', async () => {
+  const stored = JSON.stringify({ ...emptyProgress, deviceId: 'x', lessons: null });
+  const { map } = fakeStorage({ [KEY]: stored });
+  const r = await loadProgress('dev1');
+  assert.equal(map.get('ajedrez:progreso:respaldo'), stored);
+  assert.deepEqual(r.progress.lessons, {});
+  assert.equal(r.progress.deviceId, 'dev1');
+});
+
+test('loadProgress: rewards sin botWins se completa y no copia claves desconocidas', async () => {
+  const stored = JSON.stringify({ ...emptyProgress, deviceId: 'x', rewards: { goalDate: null }, evil: 1 });
+  fakeStorage({ [KEY]: stored });
+  const r = await loadProgress('dev1');
+  assert.deepEqual(r.progress.rewards.botWins, {});
+  assert.equal('evil' in r.progress, false);
+});
+
+test('loadProgress: un progreso sano guardado por la app se lee igual', async () => {
+  const sano: Progress = {
+    ...emptyProgress,
+    deviceId: 'x',
+    coinLedger: { x: { earned: 30, spent: 10 } },
+    coins: 20,
+    lessons: { l1: { done: true, errors: 0, completedAt: '2026-11-01T00:00:00.000Z', completions: 1 } },
+    puzzles: { p1: { result: 'clean', at: '2026-11-02T00:00:00.000Z' } },
+    rewards: { goalDate: '2026-11-03', botWins: { pipo: '2026-11-03' } },
+    practice: { seconds: 60, date: '2026-11-03' },
+    profile: { level: 'basico', onboarded: true },
+    stamps: { level: '2026-11-01T00:00:00.000Z' },
+    lastUnit: 2,
+  };
+  fakeStorage({ [KEY]: JSON.stringify(sano) });
+  const r = await loadProgress('dev1');
+  assert.deepEqual(r.progress, sano);
+});

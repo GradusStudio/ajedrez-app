@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseProgressFile, progressToFile } from './progressFile';
+import { mergeProgress } from './merge';
 import { coinBalance, emptyProgress, type Progress } from './progressStore';
 
 function make(over: Partial<Progress> = {}): Progress {
@@ -193,4 +194,52 @@ test('claves __proto__, constructor o prototype en registros: notGradus', () => 
       assert.equal(rejects(text), 'notGradus', `${name} ${bad}`);
     }
   }
+});
+
+// ---------- endurecimiento (auditoría de seguridad) ----------
+
+test('rewards sin botWins se importa y queda con botWins vacío (no rompe la mezcla ni la sincronización)', () => {
+  const r = parseProgressFile(file({ ...sample, rewards: { goalDate: null } }));
+  assert.equal(r.ok, true);
+  if (!r.ok) return;
+  assert.deepEqual(r.progress.rewards.botWins, {});
+  assert.doesNotThrow(() => mergeProgress(sample, r.progress));
+});
+test('rewards: goalDate que no es texto ni nulo, o botWins con valores que no son texto, se rechazan', () => {
+  assert.equal(rejects(file({ ...sample, rewards: { goalDate: 5, botWins: {} } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, rewards: { goalDate: null, botWins: { b1: 7 } } })), 'notGradus');
+});
+test('practice con seconds que no es contador o date que no es texto se rechaza', () => {
+  assert.equal(rejects(file({ ...sample, practice: { date: null } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, practice: { seconds: 'x', date: null } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, practice: { seconds: 5, date: 3 } })), 'notGradus');
+});
+test('profile: nivel desconocido u onboarded que no es booleano se rechazan; lastUnit tiene que ser entero', () => {
+  assert.equal(rejects(file({ ...sample, profile: { level: 'dios' } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, profile: { onboarded: 'si' } })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, lastUnit: 1.5 })), 'notGradus');
+  assert.equal(rejects(file({ ...sample, lastUnit: 'x' })), 'notGradus');
+});
+test('profile y lastUnit válidos se conservan', () => {
+  const r = parseProgressFile(file({ ...sample, profile: { level: 'casual', onboarded: true }, lastUnit: 3 }));
+  assert.equal(r.ok, true);
+  if (r.ok) {
+    assert.deepEqual(r.progress.profile, { level: 'casual', onboarded: true });
+    assert.equal(r.progress.lastUnit, 3);
+  }
+});
+test('un borrador con stepIndex fraccionario se rechaza', () => {
+  assert.equal(rejects(file({ ...sample, drafts: { l1: { stepIndex: 1.5, errors: 0, mistakes: [] } } })), 'notGradus');
+});
+test('claves desconocidas del nivel superior no pasan al progreso', () => {
+  const r = parseProgressFile(file({ ...sample, evil: { x: 1 }, otra: 'cosa' }));
+  assert.equal(r.ok, true);
+  if (r.ok) {
+    assert.equal('evil' in r.progress, false);
+    assert.equal('otra' in r.progress, false);
+  }
+});
+test('un archivo enorme se rechaza sin intentar leerlo', () => {
+  const big = file({ ...sample }, { relleno: 'x'.repeat(6_000_000) });
+  assert.equal(rejects(big), 'notGradus');
 });

@@ -53,19 +53,21 @@ export function createGoogleAuth() {
 
   /**
    * Pide el permiso a Google. Abre su ventana, así que solo se llama desde un toque de la persona.
-   * `prompt` '' deja que Google decida; 'none' no muestra nada si ya hay permiso y sesión (la ventana se cierra sola).
+   * `prompt` queda en '' (Google decide): si ya se dio el permiso y hay una sola sesión, devuelve el token y la ventana
+   * se cierra sola; si no, muestra el ingreso o el permiso. Con 'none' (probado el 8-11-2026) Google cierra la ventana
+   * sin devolver nada (`popup_closed`), así que no sirve para renovar.
    */
-  async function request(prompt: '' | 'none'): Promise<void> {
+  async function request(): Promise<void> {
     const gis = await loadGis();
     await new Promise<void>((resolve, reject) => {
       const client = gis.accounts.oauth2.initTokenClient({
         client_id: GOOGLE_CLIENT_ID,
         scope: DRIVE_SCOPE,
-        prompt,
+        prompt: '',
         callback: (r) => {
           // La persona puede aceptar el ingreso pero no marcar el permiso de Drive.
           if (!r.access_token || r.error || !(r.scope ?? '').split(' ').includes(DRIVE_SCOPE)) {
-            console.warn('[gradus-sync] Google no dio el permiso', { prompt, error: r.error, scope: r.scope, token: !!r.access_token });
+            console.warn('[gradus-sync] Google no dio el permiso', { error: r.error, scope: r.scope, token: !!r.access_token });
             return reject(new DriveError('auth'));
           }
           token = { value: r.access_token, expiresAt: Date.now() + (r.expires_in ?? 3600) * 1000 };
@@ -73,7 +75,7 @@ export function createGoogleAuth() {
         },
         // Ventana cerrada, bloqueada por el navegador o sin sesión de Google.
         error_callback: (e) => {
-          console.warn('[gradus-sync] la ventana de Google fallo', { prompt, type: e?.type });
+          console.warn('[gradus-sync] la ventana de Google fallo', { type: e?.type });
           reject(new DriveError('auth'));
         },
       });
@@ -89,9 +91,8 @@ export function createGoogleAuth() {
       throw new DriveError('auth');
     },
     /** Con un toque de la persona: Google puede abrir su ventana de ingreso y de permiso. */
-    signIn: () => request(''),
-    /** Dentro de un toque de la persona: recupera el permiso sin pedir nada si ya lo dio y sigue con la sesión abierta. */
-    trySilent: () => request('none'),
+    /** Con un toque de la persona: para activar, reconectar o renovar (si ya lo dio, la ventana se cierra sola). */
+    signIn: request,
     /** Baja el script de Google por adelantado, para que la ventana se abra a tiempo dentro del toque. */
     warm: () => loadGis().then(() => undefined, () => undefined),
     /** Quita el permiso en Google y olvida el que había en memoria. */

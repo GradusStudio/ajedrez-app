@@ -9,8 +9,8 @@ import { createSyncEngine } from './syncEngine';
 // Se sincroniza al abrir la app, cuando cambia el progreso, al volver a la pestaña y al recuperar la conexión.
 // El permiso de Google dura una hora y vive en memoria: al vencer (o al abrir la app de nuevo), el motor se pausa.
 // Nunca se abre una ventana sola: sin un toque de la persona el navegador la bloquea (probado el 8-11-2026 en Chrome
-// de PC y de Android). Por eso el primer toque en la app intenta recuperar el permiso sin pedir nada (`trySilent`: si
-// ya lo dio y sigue con la sesión de Google abierta, la ventana se cierra sola). Si no sale, queda «Reconectar» en Ajustes.
+// de PC y de Android). Por eso el primer toque en la app vuelve a pedir el permiso (`signIn`: si ya lo dio y hay una sola
+// sesión de Google, la ventana se cierra sola). Si no sale, queda «Reconectar» en Ajustes.
 
 const FLAG_KEY = 'gradus:driveSync';
 const DEBOUNCE_MS = 4000;
@@ -74,7 +74,7 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     const onTap = () => {
       silentTried.current = true;
       document.removeEventListener('click', onTap, true);
-      auth.current!.trySilent().then(
+      auth.current!.signIn().then(
         () => {
           engine.resume();
           void engine.syncNow();

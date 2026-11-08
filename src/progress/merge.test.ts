@@ -196,6 +196,30 @@ test('monedas: una copia vieja del mismo dispositivo no suma de nuevo', () => {
   assert.equal(m.coins, 170);
 });
 
+test('monedas: si dos dispositivos gastan lo mismo sin conexión, el saldo no queda negativo', () => {
+  // Los dos arrancaron con 200 monedas ganadas en A y compraron cada uno un tablero distinto sin conexión.
+  const base = { A: { earned: 200, spent: 0 }, B: { earned: 0, spent: 0 } };
+  const a = make({ coinLedger: { ...base, A: { earned: 200, spent: 200 } }, boardThemes: ['madera'] });
+  const b = make({ deviceId: 'B', coinLedger: { ...base, B: { earned: 0, spent: 200 } }, boardThemes: ['hielo'] });
+  const ab = mergeProgress(a, b);
+  const ba = mergeProgress(b, a);
+  assert.equal(ab.coins, 0);
+  assert.deepEqual(ab.boardThemes, ['hielo', 'madera']);
+  assert.equal(coinBalance(ab.coinLedger), ab.coins);
+  assert.deepEqual(sinDevice(ab), sinDevice(ba));
+  assert.deepEqual(mergeProgress(ab, ab), ab);
+  assert.deepEqual(mergeProgress(ab, b), ab);
+  assert.deepEqual(mergeProgress(ab, a), ab);
+});
+
+test('monedas: lo que se gana después de devolver la diferencia cuenta entero', () => {
+  const a = make({ coinLedger: { A: { earned: 200, spent: 200 }, B: { earned: 0, spent: 0 } } });
+  const b = make({ deviceId: 'B', coinLedger: { A: { earned: 200, spent: 0 }, B: { earned: 0, spent: 200 } } });
+  const m = mergeProgress(a, b);
+  const earned = { ...m, coinLedger: { ...m.coinLedger, A: { ...m.coinLedger.A, earned: m.coinLedger.A.earned + 15 } } };
+  assert.equal(coinBalance(earned.coinLedger), 15);
+});
+
 // ---------- Borrar progreso (resetAt) ----------
 
 test('resetAt: si el de incoming es más reciente, gana entero y se conserva el deviceId local', () => {
@@ -225,6 +249,39 @@ test('resetAt: iguales, se combinan los campos', () => {
   const a = make({ resetAt: at, lessons: { x: lesson(0, at, 1) } });
   const b = make({ deviceId: 'B', resetAt: at, lessons: { y: lesson(0, at, 1) } });
   assert.deepEqual(Object.keys(mergeProgress(a, b).lessons).sort(), ['x', 'y']);
+});
+
+// ---------- Racha: acciones del día ----------
+
+test('streak: el mismo día con la misma racha junta las acciones de los dos dispositivos', () => {
+  const day = '2026-11-06';
+  const a = make({ streak: { current: 3, best: 3, lastActiveDate: day, actions: { date: day, lesson: true, puzzle: false, bot: false } } });
+  const b = make({ deviceId: 'B', streak: { current: 3, best: 3, lastActiveDate: day, actions: { date: day, lesson: false, puzzle: true, bot: false } } });
+  const want = { current: 3, best: 3, lastActiveDate: day, actions: { date: day, lesson: true, puzzle: true, bot: false } };
+  assert.deepEqual(mergeProgress(a, b).streak, want);
+  assert.deepEqual(mergeProgress(b, a).streak, want);
+});
+
+test('streak: gana la racha mayor pero conserva las acciones que solo hizo el otro ese día', () => {
+  const day = '2026-11-06';
+  const a = make({ streak: { current: 5, best: 5, lastActiveDate: day, actions: { date: day, lesson: true, puzzle: false, bot: false } } });
+  const b = make({ deviceId: 'B', streak: { current: 3, best: 3, lastActiveDate: day, actions: { date: day, lesson: false, puzzle: true, bot: true } } });
+  const m = mergeProgress(a, b).streak;
+  assert.equal(m.current, 5);
+  assert.deepEqual(m.actions, { date: day, lesson: true, puzzle: true, bot: true });
+});
+
+test('streak: con acciones de días distintos queda la del día más reciente', () => {
+  const a = make({ streak: { current: 5, best: 5, lastActiveDate: '2026-11-06', actions: { date: '2026-11-05', lesson: true, puzzle: true, bot: true } } });
+  const b = make({ deviceId: 'B', streak: { current: 3, best: 3, lastActiveDate: '2026-11-06', actions: { date: '2026-11-06', lesson: true, puzzle: false, bot: false } } });
+  assert.deepEqual(mergeProgress(a, b).streak.actions, { date: '2026-11-06', lesson: true, puzzle: false, bot: false });
+});
+
+test('streak: si solo un lado tiene acciones, se conservan', () => {
+  const day = '2026-11-06';
+  const a = make({ streak: { current: 5, best: 5, lastActiveDate: day } });
+  const b = make({ deviceId: 'B', streak: { current: 3, best: 3, lastActiveDate: day, actions: { date: day, lesson: true, puzzle: false, bot: false } } });
+  assert.deepEqual(mergeProgress(a, b).streak.actions, { date: day, lesson: true, puzzle: false, bot: false });
 });
 
 // ---------- Propiedades ----------

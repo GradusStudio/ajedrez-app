@@ -1,5 +1,5 @@
-import { PROGRESS_VERSION, PUZZLE_RANK, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress } from './progressStore';
-import type { Streak } from './streak';
+import { PROGRESS_VERSION, PUZZLE_RANK, coinBalance, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress } from './progressStore';
+import type { DayActions, Streak } from './streak';
 
 // Combina dos copias del progreso (la del dispositivo y una importada de un archivo o de Drive) sin perder nada.
 // Reglas en docs/superpowers/specs/2026-11-07-version-web-design.md, «Cómo se combinan dos versiones».
@@ -103,9 +103,31 @@ function mergeGames(a: GameRecord[], b: GameRecord[]): GameRecord[] {
     .slice(0, MAX_GAMES);
 }
 
+/** Acciones del día: gana el día más reciente; el mismo día se juntan las de los dos dispositivos. */
+function mergeActions(a: DayActions | undefined, b: DayActions | undefined): DayActions | undefined {
+  if (!a || !b) return a ?? b;
+  const c = cmpDate(a.date, b.date);
+  if (c > 0) return a;
+  if (c < 0) return b;
+  return { date: a.date, lesson: a.lesson || b.lesson, puzzle: a.puzzle || b.puzzle, bot: a.bot || b.bot };
+}
+
 function mergeStreak(a: Streak, b: Streak): Streak {
   const winner = pick(a, b, cmpDate(a.lastActiveDate, b.lastActiveDate) || a.current - b.current);
-  return { ...winner, best: Math.max(a.best, b.best) };
+  const { actions: _own, ...rest } = winner;
+  const actions = mergeActions(a.actions, b.actions);
+  return { ...rest, best: Math.max(a.best, b.best), ...(actions ? { actions } : {}) };
+}
+
+/** Clave del libro donde se devuelven las monedas cuando dos dispositivos gastaron lo mismo sin conexión. */
+export const REFUND_ID = '_refund';
+
+/** El saldo nunca queda negativo: si dos dispositivos gastaron las mismas monedas, se devuelve la diferencia. */
+function refundOverspend(ledger: Progress['coinLedger']): Progress['coinLedger'] {
+  const deficit = -coinBalance(ledger);
+  if (deficit <= 0) return ledger;
+  const prev = ledger[REFUND_ID] ?? { earned: 0, spent: 0 };
+  return { ...ledger, [REFUND_ID]: { ...prev, earned: prev.earned + deficit } };
 }
 
 function mergePractice(a: Progress['practice'], b: Progress['practice']): Progress['practice'] {
@@ -142,10 +164,10 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
   const puzzles = mergeRecord(local.puzzles, incoming.puzzles, (a, b) =>
     a.result === b.result ? { result: a.result, at: laterDate(a.at, b.at) } : pick(a, b, PUZZLE_RANK[a.result] - PUZZLE_RANK[b.result])
   );
-  const coinLedger = mergeRecord(local.coinLedger, incoming.coinLedger, (a, b) => ({
+  const coinLedger = refundOverspend(mergeRecord(local.coinLedger, incoming.coinLedger, (a, b) => ({
     earned: Math.max(a.earned, b.earned),
     spent: Math.max(a.spent, b.spent),
-  }));
+  })));
 
   const level = lastChanged(
     { value: local.profile.level, stamp: local.stamps.level },

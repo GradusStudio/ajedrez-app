@@ -55,6 +55,8 @@ async function main() {
     clientsClaim: false,
     cleanupOutdatedCaches: true,
     navigateFallback: '/index.html',
+    // Estos dos son archivos de verdad, no pantallas de la app: sin esto, con la app instalada el navegador recibiría el index.
+    navigateFallbackDenylist: [/^\/robots\.txt$/, /^\/sitemap\.xml$/],
     runtimeCaching: [
       {
         urlPattern: matchHeavy,

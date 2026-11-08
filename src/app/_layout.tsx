@@ -18,6 +18,7 @@ import { SettingsProvider, useSettings } from '../settings/SettingsContext';
 import { useReminderSync } from '../settings/useReminderSync';
 import { registerServiceWorker, requestPersistentStorage } from '../pwa/register';
 import { WebColumn } from '../components/WebColumn';
+import { useRouteMeta } from '../seo/useRouteMeta';
 import { colors } from '../theme';
 
 // Tema de la navegación: su `background` es el fondo que se ve detrás de las pantallas mientras se deslizan
@@ -81,6 +82,7 @@ function AppStack() {
   const { loaded: settingsLoaded } = useSettings();
   const ready = loaded && piecesLoaded && settingsLoaded;
   useReminderSync(ready);
+  useRouteMeta();
 
   // La pantalla de carga (el caballo) se va cuando el progreso y los ajustes ya están listos.
   useEffect(() => {
@@ -108,6 +110,7 @@ function AppStack() {
       <Stack.Screen name="creditos" />
       <Stack.Screen name="instalar" />
       <Stack.Screen name="privacidad" />
+      <Stack.Screen name="terminos" />
       <Stack.Screen name="bienvenida" options={{ gestureEnabled: false, animation: 'fade' }} />
       {/* Sin gesto de volver: abandonar la partida pasa por la confirmación */}
       <Stack.Screen name="partida" options={{ gestureEnabled: false }} />

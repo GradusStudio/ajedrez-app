@@ -63,6 +63,7 @@ export function InstallScreen({ platform, canPrompt, onInstall, justInstalled, o
         )}
 
         <AppLink href="/privacidad" style={styles.privacy}>{t('privacy.link')}</AppLink>
+        <AppLink href="/terminos" style={styles.terms}>{t('terms.link')}</AppLink>
       </View>
     </ScrollView>
   );
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
   brand: { fontFamily: fonts.extrabold, fontSize: 28, color: colors.text, marginTop: space.md },
   tagline: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.xs, lineHeight: 22 },
   privacy: { fontSize: 14, marginTop: space.xl },
+  terms: { fontSize: 14, marginTop: space.sm },
   block: { marginTop: space.xl },
   heading: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text },
   text: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },

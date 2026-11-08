@@ -89,6 +89,7 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
       <Text style={styles.subtitle}>{t('credits.subtitle')}</Text>
       <Text style={styles.note}>{t('credits.translationsNote')}</Text>
       {PRIVACY_PAGE_AVAILABLE && <AppLink href="/privacidad" style={styles.privacyLink}>{t('privacy.link')}</AppLink>}
+      {PRIVACY_PAGE_AVAILABLE && <AppLink href="/terminos" style={styles.privacyLink}>{t('terms.link')}</AppLink>}
 
       {credits(t).map((c) => (
         <View key={c.name} style={styles.card}>

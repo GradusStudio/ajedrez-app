@@ -9,12 +9,12 @@ import { createSyncEngine } from './syncEngine';
 // Se sincroniza al abrir la app, cuando cambia el progreso, al volver a la pestaña y al recuperar la conexión.
 // El permiso de Google dura una hora y vive en memoria: al vencer (o al abrir la app de nuevo), el motor se pausa.
 // Nunca se abre una ventana sola: sin un toque de la persona el navegador la bloquea (probado el 8-11-2026 en Chrome
-// de PC y de Android). Por eso, con el permiso vencido solo queda «Reconectar» en Ajustes y, cada 3 lecciones o partidas
+// de PC y de Android). Por eso, con el permiso vencido solo queda «Reconectar» en Ajustes y, cada 6 lecciones o partidas
 // terminadas, un cartel con el mismo botón en la pantalla de resultado (`noteCompletion`).
 
 const FLAG_KEY = 'gradus:driveSync';
 const COUNT_KEY = 'gradus:syncNudgeCount';
-const NUDGE_EVERY = 3;
+const NUDGE_EVERY = 6;
 const DEBOUNCE_MS = 4000;
 
 /** Suma una acción terminada y devuelve el total (por dispositivo, no se sincroniza). */

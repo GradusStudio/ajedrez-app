@@ -702,8 +702,8 @@ export const it: Record<MessageKey, string> = {
   'sync.status.corrupt': 'La copia di Drive è danneggiata e non è stata toccata.',
   'sync.status.tooNew': 'La copia di Drive è di una versione più recente di Gradus.',
   'sync.status.error': 'Non è stato possibile sincronizzare. Si riproverà più tardi.',
-  'sync.nudge.title': 'I tuoi progressi non vengono salvati su Drive',
-  'sync.nudge.text': 'Riconnettiti a Google per sincronizzare ciò che hai fatto su questo dispositivo.',
-  'sync.nudge.later': 'Non ora',
+  'sync.nudge.title': 'Sincronizza i tuoi dati per non perdere i tuoi progressi',
+  'sync.nudge.now': 'Sincronizza',
+  'sync.nudge.later': 'Più tardi',
   'credits.app.codeNote': 'Il codice sorgente di ogni versione pubblicata è disponibile in questo repository, con licenza GPL.',
 };

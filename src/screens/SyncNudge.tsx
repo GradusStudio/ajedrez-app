@@ -5,7 +5,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { useDriveSync } from '../sync/DriveSyncContext';
 import { colors, fonts, radius, space } from '../theme';
 
-// Cartel de las pantallas de resultado: cada 3 lecciones o partidas terminadas, si la copia en Drive está activada pero
+// Cartel de las pantallas de resultado: cada 6 lecciones o partidas terminadas, si la copia en Drive está activada pero
 // falta el permiso. El botón es un toque de la persona, así que el navegador deja abrir la ventana de Google.
 // Se monta una vez por resultado: al montarse cuenta la acción terminada.
 export function SyncNudge() {
@@ -28,8 +28,7 @@ export function SyncNudge() {
   return (
     <View style={styles.card}>
       <Text accessibilityRole="header" style={styles.title}>{t('sync.nudge.title')}</Text>
-      <Text style={styles.text}>{t('sync.nudge.text')}</Text>
-      <Button3D label={t('sync.reconnect')} onPress={() => void sync.reconnect()} style={{ marginTop: space.md, minHeight: 48 }} />
+      <Button3D label={t('sync.nudge.now')} variant="primary" onPress={() => void sync.reconnect()} style={{ marginTop: space.md, minHeight: 48 }} />
       <Button3D label={t('sync.nudge.later')} variant="secondary" onPress={() => setDismissed(true)} style={{ marginTop: space.sm }} />
     </View>
   );
@@ -47,5 +46,4 @@ const styles = StyleSheet.create({
     padding: space.lg,
   },
   title: { fontFamily: fonts.bold, fontSize: 16, color: colors.text, textAlign: 'center' },
-  text: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, textAlign: 'center', marginTop: space.xs, lineHeight: 20 },
 });

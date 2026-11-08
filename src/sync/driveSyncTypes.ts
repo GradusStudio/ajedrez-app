@@ -14,7 +14,7 @@ export type DriveSyncValue = {
   reconnect: () => Promise<void>;
   /** Deja de sincronizar y quita el permiso. El progreso del dispositivo queda. */
   disable: () => Promise<void>;
-  /** Se llama una vez por lección o partida terminada. Devuelve true cada 3 y con la copia activada: toca mostrar el cartel. */
+  /** Se llama una vez por lección o partida terminada. Devuelve true cada 6y con la copia activada: toca mostrar el cartel. */
   noteCompletion: () => boolean;
 };
 

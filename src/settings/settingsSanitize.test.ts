@@ -22,3 +22,41 @@ test('ajustes guardados antes de installOffered lo reciben en false', () => {
   assert.equal(s.installOffered, false);
   assert.equal(s.sound, false);
 });
+
+test('tema con clave heredada del prototipo vuelve al verde', () => {
+  for (const t of ['constructor', 'toString', '__proto__', 'hasOwnProperty']) {
+    assert.equal(sanitizeSettings({ boardTheme: t as never }).boardTheme, 'verde', t);
+  }
+});
+test('la hora del recordatorio fuera de 0-23 o no entera vuelve a la de por defecto', () => {
+  for (const h of [-1, 24, 25, 7.5, NaN, Infinity, '7', null, undefined, {}]) {
+    assert.equal(sanitizeSettings({ reminder: { enabled: true, hour: h as never } }).reminder.hour, 19, String(h));
+  }
+});
+test('conserva una hora válida', () => {
+  assert.equal(sanitizeSettings({ reminder: { enabled: true, hour: 0 } }).reminder.hour, 0);
+  assert.equal(sanitizeSettings({ reminder: { enabled: true, hour: 23 } }).reminder.hour, 23);
+});
+test('los booleanos que no son booleanos vuelven al valor por defecto', () => {
+  const s = sanitizeSettings({
+    sound: 'no' as never,
+    vibration: 0 as never,
+    reminderOffered: 'si' as never,
+    installOffered: 1 as never,
+    reminder: { enabled: 'x' as never, hour: 10 },
+  });
+  assert.equal(s.sound, true);
+  assert.equal(s.vibration, true);
+  assert.equal(s.reminderOffered, false);
+  assert.equal(s.installOffered, false);
+  assert.equal(s.reminder.enabled, false);
+});
+test('un valor guardado que no es objeto (null, número, texto) da los ajustes por defecto', () => {
+  for (const raw of [null, 5, 'x', true, [1, 2]]) {
+    assert.deepEqual(sanitizeSettings(raw as never), sanitizeSettings({}), String(raw));
+  }
+});
+test('un recordatorio guardado que no es objeto usa el de por defecto', () => {
+  assert.deepEqual(sanitizeSettings({ reminder: 'x' as never }).reminder, { enabled: false, hour: 19 });
+  assert.deepEqual(sanitizeSettings({ reminder: null as never }).reminder, { enabled: false, hour: 19 });
+});

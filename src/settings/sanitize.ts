@@ -31,10 +31,28 @@ export const defaultSettings: Settings = {
 
 const LANGUAGES = ['auto', 'es', 'en', 'de', 'it', 'fr'];
 
-/** Mezcla lo guardado con los valores por defecto (por si se agregan ajustes nuevos). */
+const isObject = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
+const bool = (x: unknown, fallback: boolean) => (typeof x === 'boolean' ? x : fallback);
+
+/** Mezcla lo guardado con los valores por defecto (por si se agregan ajustes nuevos) y descarta lo que no tiene la forma esperada. */
 export function sanitizeSettings(raw: Partial<Settings>): Settings {
-  const s = { ...defaultSettings, ...raw, reminder: { ...defaultSettings.reminder, ...raw.reminder } };
-  if (!(s.boardTheme in boardThemes)) s.boardTheme = defaultSettings.boardTheme;
+  const r: Record<string, unknown> = isObject(raw) ? raw : {};
+  const rr: Record<string, unknown> = isObject(r.reminder) ? r.reminder : {};
+  const d = defaultSettings;
+  const s: Settings = {
+    ...d,
+    ...(r as Partial<Settings>),
+    sound: bool(r.sound, d.sound),
+    vibration: bool(r.vibration, d.vibration),
+    reminderOffered: bool(r.reminderOffered, d.reminderOffered),
+    installOffered: bool(r.installOffered, d.installOffered),
+    reminder: {
+      enabled: bool(rr.enabled, d.reminder.enabled),
+      hour: Number.isInteger(rr.hour) && (rr.hour as number) >= 0 && (rr.hour as number) <= 23 ? (rr.hour as number) : d.reminder.hour,
+    },
+  };
+  // hasOwn: con el operador `in`, claves heredadas como 'constructor' o 'toString' pasarían por temas válidos.
+  if (typeof s.boardTheme !== 'string' || !Object.hasOwn(boardThemes, s.boardTheme)) s.boardTheme = d.boardTheme;
   // Un 'es' guardado (ajuste viejo) no se distingue de no haber tocado nada: pasa a 'auto'.
   if (s.notation !== 'en') s.notation = 'auto';
   if (!LANGUAGES.includes(s.language)) s.language = 'auto';

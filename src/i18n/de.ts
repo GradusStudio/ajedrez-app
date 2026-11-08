@@ -702,5 +702,8 @@ export const de: Record<MessageKey, string> = {
   'sync.status.corrupt': 'Die Kopie in Drive ist beschädigt und wurde nicht verändert.',
   'sync.status.tooNew': 'Die Kopie in Drive stammt von einer neueren Version von Gradus.',
   'sync.status.error': 'Synchronisierung nicht möglich. Gradus versucht es später erneut.',
+  'sync.nudge.title': 'Dein Fortschritt wird nicht in Drive gespeichert',
+  'sync.nudge.text': 'Verbinde dich neu mit Google, um zu synchronisieren, was du auf diesem Gerät gemacht hast.',
+  'sync.nudge.later': 'Jetzt nicht',
   'credits.app.codeNote': 'Der Quellcode jeder veröffentlichten Version ist in diesem Repository unter der GPL verfügbar.',
 };

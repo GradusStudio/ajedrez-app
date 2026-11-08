@@ -28,9 +28,11 @@ type Props = {
   reminderOffer?: { onAccept: () => void; onDecline: () => void };
   /** Tarjeta única de instalar Gradus (solo web); no bloquea Continuar. `copyFirst`: en iPhone, avisa que guarde una copia antes. */
   installOffer?: { onInstall: () => void; copyFirst: boolean };
+  /** Tarjeta extra debajo de las ofertas (el cartel de sincronizar). */
+  extra?: React.ReactNode;
 };
 
-export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer, installOffer }: Props) {
+export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer, installOffer, extra }: Props) {
   const { t, tn } = useI18n();
   return (
     // Con scroll: en un teléfono chico con letra grande, «Continuar» no puede quedar afuera.
@@ -91,6 +93,8 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
           <Button3D label={t('install.button.install')} onPress={installOffer.onInstall} style={{ marginTop: space.md, minHeight: 48 }} />
         </View>
       )}
+
+      {extra}
 
       <View style={{ flex: 1, minHeight: space.lg }} />
       <Button3D label={t('common.continue')} variant="primary" onPress={onContinue} />

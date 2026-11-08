@@ -702,5 +702,8 @@ export const fr: Record<MessageKey, string> = {
   'sync.status.corrupt': 'La copie Drive est corrompue et n\'a pas été touchée.',
   'sync.status.tooNew': 'La copie Drive est d\'une version plus récente de Gradus.',
   'sync.status.error': 'Synchronisation impossible. Une nouvelle tentative aura lieu plus tard.',
+  'sync.nudge.title': 'Ta progression n\'est pas sauvegardée sur Drive',
+  'sync.nudge.text': 'Reconnecte-toi à Google pour synchroniser ce que tu as fait sur cet appareil.',
+  'sync.nudge.later': 'Pas maintenant',
   'credits.app.codeNote': 'Le code source de chaque version publiée est disponible dans ce dépôt, sous licence GPL.',
 };

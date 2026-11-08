@@ -701,6 +701,9 @@ export const es = {
   'sync.status.corrupt': 'La copia de Drive está dañada y no se tocó.',
   'sync.status.tooNew': 'La copia de Drive es de una versión más nueva de Gradus.',
   'sync.status.error': 'No se pudo sincronizar. Se intentará de nuevo más tarde.',
+  'sync.nudge.title': 'Tu progreso no se está guardando en Drive',
+  'sync.nudge.text': 'Reconecta con Google para sincronizar lo que hiciste en este dispositivo.',
+  'sync.nudge.later': 'Ahora no',
   'credits.app.codeNote': 'El código fuente de cada versión publicada está disponible en este repositorio, bajo la GPL.',
 } as const;
 

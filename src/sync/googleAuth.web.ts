@@ -90,7 +90,6 @@ export function createGoogleAuth() {
       if (token && hasToken()) return token.value;
       throw new DriveError('auth');
     },
-    /** Con un toque de la persona: Google puede abrir su ventana de ingreso y de permiso. */
     /** Con un toque de la persona: para activar, reconectar o renovar (si ya lo dio, la ventana se cierra sola). */
     signIn: request,
     /** Baja el script de Google por adelantado, para que la ventana se abra a tiempo dentro del toque. */

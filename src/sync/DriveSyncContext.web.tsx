@@ -9,11 +9,24 @@ import { createSyncEngine } from './syncEngine';
 // Se sincroniza al abrir la app, cuando cambia el progreso, al volver a la pestaña y al recuperar la conexión.
 // El permiso de Google dura una hora y vive en memoria: al vencer (o al abrir la app de nuevo), el motor se pausa.
 // Nunca se abre una ventana sola: sin un toque de la persona el navegador la bloquea (probado el 8-11-2026 en Chrome
-// de PC y de Android). Por eso el primer toque en la app vuelve a pedir el permiso (`signIn`: si ya lo dio y hay una sola
-// sesión de Google, la ventana se cierra sola). Si no sale, queda «Reconectar» en Ajustes.
+// de PC y de Android). Por eso, con el permiso vencido solo queda «Reconectar» en Ajustes y, cada 3 lecciones o partidas
+// terminadas, un cartel con el mismo botón en la pantalla de resultado (`noteCompletion`).
 
 const FLAG_KEY = 'gradus:driveSync';
+const COUNT_KEY = 'gradus:syncNudgeCount';
+const NUDGE_EVERY = 3;
 const DEBOUNCE_MS = 4000;
+
+/** Suma una acción terminada y devuelve el total (por dispositivo, no se sincroniza). */
+function bumpCount(): number {
+  try {
+    const n = (Number(window.localStorage.getItem(COUNT_KEY)) || 0) + 1;
+    window.localStorage.setItem(COUNT_KEY, String(n));
+    return n;
+  } catch {
+    return 0; // sin almacenamiento no se puede contar: no se avisa
+  }
+}
 
 function readFlag(): boolean {
   try {
@@ -61,32 +74,13 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     [getProgress, mergeRemote]
   );
 
-  /** Sin permiso vigente: se avisa que hace falta reconectar y se prepara el intento con el próximo toque. */
+  /** Sin permiso vigente: se avisa que hace falta reconectar. */
   const askToReconnect = useCallback(() => setStatus('needsAuth'), []);
 
-  // Un intento por toque; si falla (sin sesión de Google, ventana cerrada) no se repite solo: queda «Reconectar».
-  const silentTried = useRef(false);
-  const silentFailed = useRef(false);
-  const [retry, setRetry] = useState(0);
+  // Con el script de Google ya bajado, la ventana se abre dentro del toque en «Reconectar» y el navegador no la bloquea.
   useEffect(() => {
-    if (!enabled || status !== 'needsAuth' || silentTried.current) return;
-    void auth.current!.warm();
-    const onTap = () => {
-      silentTried.current = true;
-      document.removeEventListener('click', onTap, true);
-      auth.current!.signIn().then(
-        () => {
-          engine.resume();
-          void engine.syncNow();
-        },
-        () => {
-          silentFailed.current = true;
-        }
-      );
-    };
-    document.addEventListener('click', onTap, true);
-    return () => document.removeEventListener('click', onTap, true);
-  }, [enabled, status, engine, retry]);
+    if (enabled && status === 'needsAuth') void auth.current!.warm();
+  }, [enabled, status]);
 
   // Cada cambio del progreso pide una sincronización (el motor agrupa los pedidos seguidos).
   useEffect(() => {
@@ -99,14 +93,7 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     const wake = () => {
       if (document.visibilityState === 'hidden') return;
       if (auth.current!.hasToken()) engine.requestSync();
-      else {
-        // Si el permiso venció con la app abierta, se vuelve a intentar con el próximo toque (salvo que ya haya fallado).
-        if (!silentFailed.current) {
-          silentTried.current = false;
-          setRetry((n) => n + 1);
-        }
-        askToReconnect();
-      }
+      else askToReconnect(); // el permiso venció con la app abierta
     };
     document.addEventListener('visibilitychange', wake);
     window.addEventListener('online', wake);
@@ -123,7 +110,6 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
       // Ventana cerrada o permiso no dado: no cambia nada; se puede volver a intentar.
       return;
     }
-    silentFailed.current = false; // con un permiso nuevo, el próximo vencimiento vuelve a intentarse con un toque
     writeFlag(true);
     enabledRef.current = true; // sin esperar al próximo dibujo: el primer estado tiene que verse
     setEnabled(true);
@@ -139,9 +125,14 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     await auth.current!.revoke();
   }, []);
 
+  const noteCompletion = useCallback(() => {
+    const n = bumpCount();
+    return n > 0 && n % NUDGE_EVERY === 0 && enabledRef.current;
+  }, []);
+
   const value = useMemo<DriveSyncValue>(
-    () => ({ supported: true, enabled, status, enable: connect, reconnect: connect, disable }),
-    [enabled, status, connect, disable]
+    () => ({ supported: true, enabled, status, enable: connect, reconnect: connect, disable, noteCompletion }),
+    [enabled, status, connect, disable, noteCompletion]
   );
   return <DriveSyncContext.Provider value={value}>{children}</DriveSyncContext.Provider>;
 }

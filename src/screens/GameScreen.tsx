@@ -12,6 +12,7 @@ import { Chip } from '../components/Chip';
 import { StatIcon } from '../components/StatIcon';
 import { Bot } from '../data/bots';
 import { OpeningCourse } from '../data/lessonTypes';
+import { SyncNudge } from './SyncNudge';
 import { EngineView } from '../engine/EngineView';
 import { MaiaEngine } from '../engine/maia/maiaEngine';
 import { MaiaView } from '../engine/maia/MaiaView';
@@ -364,6 +365,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
             <Text style={styles.coinsText}>{t('common.dailyBonus', { n: result.dailyBonus })}</Text>
           )}
           {result.streakRecovered && <Text style={styles.coinsText}>{t('common.streakRecovered')}</Text>}
+          <SyncNudge />
           <Button3D
             label={practiceCourse ? t('game.rematchPractice') : t('game.rematch')}
             variant="primary"

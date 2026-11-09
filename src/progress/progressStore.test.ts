@@ -477,6 +477,20 @@ test('migrate conserva la partida en curso', () => {
 
 // ---------- Puzzles abiertos sin terminar ----------
 
+test('una lista de puzzles abiertos rota se descarta al reparar, sin romper', () => {
+  for (const bad of ['hola', 5, [1, 'a'], { a: 1 }]) {
+    const { data, repaired } = repairStructure({ ...v4(), puzzlesOpened: bad });
+    assert.equal(data.puzzlesOpened, undefined);
+    assert.ok(repaired.includes('puzzlesOpened'));
+  }
+  assert.deepEqual(migrate(v4({ puzzlesOpened: ['a', 'b'] }) as never, 'dev1').puzzlesOpened, ['a', 'b']);
+});
+
+test('withPuzzleOpened ignora un puzzle que ya está en puzzles', () => {
+  const p = v4({ puzzles: { r: { result: 'failed', at: '2026-11-09T10:00:00.000Z' } } });
+  assert.equal(withPuzzleOpened(p, 'r').puzzlesOpened, undefined);
+});
+
 test('withPuzzleOpened lo pone primero sin repetir', () => {
   let p = withPuzzleOpened(v4(), 'a');
   p = withPuzzleOpened(p, 'b');

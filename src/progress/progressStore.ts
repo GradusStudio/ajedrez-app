@@ -327,8 +327,9 @@ export function withOngoingGame(p: Progress, game: OngoingGame | null, now = new
   return { ...rest, ...(game ? { ongoingGame: game } : {}), stamps: { ...p.stamps, ongoingGame: now.toISOString() } };
 }
 
-/** Anota que se mostró un puzzle de práctica: primero, sin repetir y con tope. */
+/** Anota que se mostró un puzzle de práctica: primero, sin repetir y con tope. Si ya está en `puzzles` (resuelto o con la solución vista), no hace falta recordarlo. */
 export function withPuzzleOpened(p: Progress, id: string): Progress {
+  if (p.puzzles[id]) return p;
   return { ...p, puzzlesOpened: [id, ...(p.puzzlesOpened ?? []).filter((x) => x !== id)].slice(0, MAX_OPENED) };
 }
 

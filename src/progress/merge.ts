@@ -147,6 +147,25 @@ function lastChanged<T>(
 }
 
 /**
+ * Puzzles abiertos (el más reciente primero): intercala por posición desde el frente de cada lista. En cada posición
+ * toma el par (a[i], b[i]) en orden alfabético y salta repetidos. Es conmutativa e idempotente, y al cortar la cola
+ * se pierden los más viejos de las dos listas, no los recién abandonados.
+ */
+function mergeOpened(a: string[], b: string[]): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    const pair = [a[i], b[i]].filter((x): x is string => x !== undefined).sort();
+    for (const id of pair) {
+      if (seen.has(id)) continue;
+      seen.add(id);
+      out.push(id);
+    }
+  }
+  return out;
+}
+
+/**
  * Nivel de puzzles: gana el que contó más puzzles (`rated`); si empatan, el cambiado más tarde. `pending` se une, sin
  * los puzzles que ya están terminados en `puzzles` (tope MAX_PENDING).
  */
@@ -236,8 +255,7 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     puzzles,
     turningPoints: union(local.turningPoints, incoming.turningPoints),
   };
-  // Unión de los puzzles abiertos sin terminar (ordenada, como las demás listas), sin los que ya están en `puzzles`.
-  const opened = union(local.puzzlesOpened ?? [], incoming.puzzlesOpened ?? []).filter((id) => !puzzles[id]).slice(-MAX_OPENED);
+  const opened = mergeOpened(local.puzzlesOpened ?? [], incoming.puzzlesOpened ?? []).filter((id) => !puzzles[id]).slice(0, MAX_OPENED);
   if (opened.length) merged.puzzlesOpened = opened;
   if (lastUnit.value !== undefined) merged.lastUnit = lastUnit.value;
   if (ongoingGame.value !== undefined) merged.ongoingGame = ongoingGame.value;

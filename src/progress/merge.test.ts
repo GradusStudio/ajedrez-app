@@ -546,19 +546,28 @@ test('merge: quitarla después le gana a una vieja; una nueva después de quitar
   assert.deepEqual(mergeProgress(m, m), m);
 });
 
-test('merge: puzzlesOpened une, respeta el tope y quita los ya terminados', () => {
+test('merge: puzzlesOpened intercala por posición, quita los ya terminados y es conmutativo e idempotente', () => {
   const a = make({ puzzles: { r: { result: 'clean', at: '2026-11-09T10:00:00.000Z' } } });
   const b = make({ deviceId: 'B' });
-  const conA = withPuzzleOpened(withPuzzleOpened(a, 'x'), 'y');
-  const conB = withPuzzleOpened(withPuzzleOpened(b, 'z'), 'r'); // 'r' se resolvió en el otro dispositivo
+  const conA = withPuzzleOpened(withPuzzleOpened(a, 'x'), 'y'); // ['y','x']
+  const conB = { ...b, puzzlesOpened: ['r', 'z'] }; // 'r' se resolvió en el otro dispositivo
   const m = mergeProgress(conA, conB);
-  assert.deepEqual(m.puzzlesOpened, ['x', 'y', 'z']);
-  assert.deepEqual(mergeProgress(conB, conA).puzzlesOpened, ['x', 'y', 'z']);
+  assert.deepEqual(m.puzzlesOpened, ['y', 'x', 'z']);
+  assert.deepEqual(mergeProgress(conB, conA).puzzlesOpened, ['y', 'x', 'z']);
+  assert.deepEqual(sinDevice(mergeProgress(conA, conB)), sinDevice(mergeProgress(conB, conA)));
   assert.deepEqual(mergeProgress(m, m), m);
-  let grande = make();
-  for (let i = 0; i < 150; i++) grande = withPuzzleOpened(grande, `a${i}`);
-  let otro = make({ deviceId: 'B' });
-  for (let i = 0; i < 150; i++) otro = withPuzzleOpened(otro, `b${i}`);
-  assert.equal(mergeProgress(grande, otro).puzzlesOpened?.length, 200);
+  assert.deepEqual(mergeProgress(conA, conA).puzzlesOpened, ['y', 'x']);
   assert.equal('puzzlesOpened' in mergeProgress(make(), make({ deviceId: 'B' })), false);
+});
+
+test('merge: puzzlesOpened con más de 200 corta la cola (los más viejos), no los recientes', () => {
+  const lista = (pref: string) => Array.from({ length: 150 }, (_, i) => `${pref}${i}`);
+  const grande = make({ puzzlesOpened: lista('a') });
+  const otro = make({ deviceId: 'B', puzzlesOpened: lista('b') });
+  const m = mergeProgress(grande, otro);
+  assert.equal(m.puzzlesOpened?.length, 200);
+  assert.deepEqual(m.puzzlesOpened?.slice(0, 4), ['a0', 'b0', 'a1', 'b1']);
+  assert.ok(!m.puzzlesOpened?.includes('a149'));
+  assert.ok(!m.puzzlesOpened?.includes('b149'));
+  assert.deepEqual(mergeProgress(otro, grande).puzzlesOpened, m.puzzlesOpened);
 });

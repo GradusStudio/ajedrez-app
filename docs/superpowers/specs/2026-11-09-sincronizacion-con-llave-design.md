@@ -1,6 +1,6 @@
 # Sincronización con llave (sin ventana de Google cada vez)
 
-Fecha: 9-11-2026. Estado: diseño acordado con el usuario y revisado por un lector aparte (9-11-2026); sin código.
+Fecha: 9-11-2026. Estado: implementado en la rama `sync-llave` (9-11-2026); pendiente la verificación con Google real y publicar el Worker.
 
 ## Por qué
 
@@ -47,7 +47,7 @@ Drive pasa a ser solo la caja fuerte de una **llave**. El progreso vive en nuest
 Sin ventanas periódicas, la sincronización puede ser casi continua (pedido del autor, 9-11-2026):
 
 - **Cada paso de lección**: el avance a medias ya se guarda en cada paso (`saveDraft`, `progress.drafts`), así que cada paso pide una sincronización. Se baja la espera para agrupar pedidos (hoy 4 s) lo justo para que se note, sin escribir en cada toque.
-- **Partida contra un bot sin terminar**: hoy no se guarda. Se agrega al progreso (versión 5) **una** partida en curso: bot, color, jugadas y fecha. Se guarda en cada jugada, se borra al terminar o abandonar, y la pestaña Bots (o la ficha del bot) ofrece «Continuar partida» en cualquier dispositivo. Al fusionar, gana la más reciente. Las reglas de racha y monedas de partida terminada o abandonada no cambian.
+- **Partida contra un bot sin terminar**: hoy no se guarda. Se agrega al progreso (campo opcional `ongoingGame`, sin subir la versión) **una** partida en curso: bot, color, jugadas y fecha. Se guarda en cada jugada, se borra al terminar o abandonar, y la pestaña Bots (o la ficha del bot) ofrece «Continuar partida» en cualquier dispositivo. Al fusionar, gana la más reciente. Las reglas de racha y monedas de partida terminada o abandonada no cambian.
 - **Puzzle sin terminar**: salir sin resolverlo no lo marca como resuelto (ya es así: solo `finishPuzzle` lo marca). Al volver a Puzzles se asigna otro, no el mismo: los puzzles abiertos y abandonados se recuerdan en el progreso (lista corta de los últimos, sincronizada) y la elección (`pickPending`, `nextNear`) los salta. El puzzle del día es la excepción: siempre es el mismo. Abandonar no cambia el nivel de puzzles (decisión del autor, 9-11-2026); lo que ya se cobró en el momento (error, pista o «Ver solución») queda cobrado.
 
 ## Queda para el constructor

@@ -39,6 +39,8 @@ Guarda el progreso por llave (solo el SHA-256 de la llave, el texto del progreso
 
 Para probar en la PC: `npx wrangler d1 execute gradus-sync --local --file workers/sync/schema.sql` y `npx wrangler dev -c wrangler.sync.jsonc --port 8790`. Las pruebas del manejador corren con `npm test`.
 
+Safari en iPhone: si la app no está instalada, Safari puede borrar el almacenamiento tras unos 7 días sin visitas y entonces la ventana de Google vuelve a aparecer una vez para recuperar la llave. Instalada en la pantalla de inicio no pasa. Está aceptado.
+
 ## Comprobaciones en producción
 ```bash
 curl -sI https://graduschess.com/
@@ -57,7 +59,7 @@ curl -sI https://graduschess.com/leccion/u1-l02
 - Abrir el sitio en Chrome: consola sin avisos de CSP, instalar la app en el Redmi, escuchar una vez un sonido de jugada (se verificó que carga, no que se oiga) y activar HSTS desde el panel (SSL/TLS > Servidor perimetral > HSTS) cuando el sitio ande bien.
 
 ## Qué no hace la versión 1
-Sin sincronización con Google Drive (versión 2) ni recordatorio diario (versión 3). El progreso vive en el navegador de cada dispositivo; Ajustes > Datos permite guardar y cargar una copia. En iPhone, Safari y la app instalada no comparten datos: por eso se ofrece instalar antes de empezar y se recuerda guardar una copia.
+Sin recordatorio diario (versión 3). La sincronización (versión 2) se hizo después, con llave y servidor propio (ver arriba). El progreso vive en el navegador de cada dispositivo; Ajustes > Datos permite guardar y cargar una copia. En iPhone, Safari y la app instalada no comparten datos: por eso se ofrece instalar antes de empezar y se recuerda guardar una copia.
 
 ## Probar la rama en el Redmi con Expo Go
 La versión web sube el progreso guardado a la versión 4 y lo guarda al abrir. Expo Go comparte almacenamiento entre ramas: si se prueba `web-v1` en el teléfono y después se vuelve a `main`, `main` lee la versión 4 como dañada y el progreso queda en la clave de respaldo. Fusionar a `main` antes de probar en el teléfono, o no volver a una rama vieja con el mismo Expo Go.

@@ -4,8 +4,12 @@
 /** Primer tramo de las rutas donde una recarga cortaría algo a medias. */
 const ACTIVITY_ROUTES = ['leccion', 'puzzle', 'partida', 'quiz-partida', 'revision', 'analisis-libre'];
 
+/** Prefijo de la versión web publicada (experiments.baseUrl en app.json). */
+const BASE = 'app';
+
 /** true si `pathname` es una lección, un puzzle, una partida, una revisión, el quiz de la revisión o el análisis libre. */
 export function isInsideActivity(pathname: string): boolean {
-  const first = pathname.split('/').find((part) => part !== '') ?? '';
+  const parts = pathname.split('/').filter((part) => part !== '');
+  const first = (parts[0] === BASE ? parts[1] : parts[0]) ?? '';
   return ACTIVITY_ROUTES.includes(first);
 }

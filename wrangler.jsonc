@@ -6,6 +6,9 @@
   },
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
+    // La raíz es la portada estática y la app vive en /app. Una ruta de la app que no es un archivo
+    // (/app/leccion/u1-l02) recibe el 404.html más cercano: dist/app/404.html, que es el index.html de la app.
+    // No sirve "single-page-application": siempre responde con /index.html, que es la portada.
+    "not_found_handling": "404-page"
   }
 }

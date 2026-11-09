@@ -14,7 +14,11 @@ const path = require('path');
 const { generateSW } = require('workbox-build');
 const { findLeaks, heavyCachePlugin } = require('./swChecks');
 
-const DIST = path.join(__dirname, '..', 'dist');
+// La app se publica en /app (experiments.baseUrl en app.json): su service worker es dist/app/sw.js y solo controla
+// /app/. La portada (dist/index.html, la arma scripts/build-portada.js) queda fuera: no necesita abrir sin internet.
+const ROOT = path.join(__dirname, '..', 'dist');
+const DIST = path.join(ROOT, 'app');
+const BASE = '/app/';
 const JS_DIR = path.join(DIST, '_expo', 'static', 'js', 'web');
 const HEAVY_MIN_BYTES = 1024 * 1024;
 const MARKERS = [/"MAIA_\d+"/, /Lichess puzzle database/];
@@ -40,13 +44,15 @@ async function main() {
     throw new Error(`Se esperaban 4 trozos pesados (3 redes de Maia y los puzzles) y hay ${heavy.length}: ${heavy.join(', ')}`);
   }
   // Workbox copia esta función al service worker como texto: no puede usar variables de afuera.
-  const heavyPathsJson = JSON.stringify(heavy.map((p) => '/' + p));
+  const heavyPathsJson = JSON.stringify(heavy.map((p) => BASE + p));
   const matchHeavy = new Function('ctx', `return ${heavyPathsJson}.includes(ctx.url.pathname);`);
 
   const { count, size, warnings } = await generateSW({
     globDirectory: DIST,
     globPatterns: ['**/*'],
-    globIgnores: ['sw.js', 'workbox-*.js', '_headers', '**/*.map', ...heavy],
+    // 404.html y */index.html son copias del index.html que deja build-portada.js para Cloudflare: el service worker
+    // ya responde esas rutas con navigateFallback.
+    globIgnores: ['sw.js', 'workbox-*.js', '404.html', '*/index.html', '**/*.map', ...heavy],
     swDest: path.join(DIST, 'sw.js'),
     // Los mapas de Workbox traen rutas del disco de quien compila (con su usuario): no se generan.
     sourcemap: false,
@@ -54,9 +60,7 @@ async function main() {
     skipWaiting: false,
     clientsClaim: false,
     cleanupOutdatedCaches: true,
-    navigateFallback: '/index.html',
-    // Estos dos son archivos de verdad, no pantallas de la app: sin esto, con la app instalada el navegador recibiría el index.
-    navigateFallbackDenylist: [/^\/robots\.txt$/, /^\/sitemap\.xml$/],
+    navigateFallback: BASE + 'index.html',
     runtimeCaching: [
       {
         urlPattern: matchHeavy,
@@ -73,11 +77,11 @@ async function main() {
   });
   for (const w of warnings) console.warn(w);
   // Cloudflare publica todo dist/: si quedó un mapa o una referencia a uno, la compilación falla (no se borra nada).
-  const leaks = findLeaks(DIST);
+  const leaks = [...findLeaks(ROOT), ...findLeaks(DIST).map((f) => 'app/' + f)];
   if (leaks.length > 0) {
     throw new Error(`dist/ tiene mapas de código que no se pueden publicar: ${leaks.join(', ')}`);
   }
-  console.log(`dist/sw.js: ${count} archivos en el precache (${(size / 1024 / 1024).toFixed(1)} MB); fuera del precache:`);
+  console.log(`dist/app/sw.js: ${count} archivos en el precache (${(size / 1024 / 1024).toFixed(1)} MB); fuera del precache:`);
   for (const h of heavy) console.log(`  ${h}`);
 }
 

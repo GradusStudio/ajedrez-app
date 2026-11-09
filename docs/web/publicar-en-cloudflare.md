@@ -1,6 +1,10 @@
 # Publicar la versión web en Cloudflare
 
-Gradus web se sirve como archivos estáticos desde `dist/` con Cloudflare (`wrangler.jsonc`, `public/_headers`). Dominio: `graduschess.com` (comprado en Cloudflare, datos del titular ocultos). Correo público: `gradusstudioapp@gmail.com`.
+Gradus web se sirve como archivos estáticos desde `dist/` con Cloudflare (`wrangler.jsonc`, `public/_headers`).
+
+**Desde el 8-11-2026 la raíz es la portada y la app vive en `/app`** (spec: `docs/superpowers/specs/2026-11-08-portada-y-bienvenida-design.md`). `npm run build:web` exporta la app a `dist/app` (`experiments.baseUrl` en `app.json`), arma la portada estática desde `sitio/` con `scripts/build-portada.ts` y genera `dist/app/sw.js` (solo controla `/app/`). Cloudflare usa `not_found_handling: "404-page"`: una ruta de la app que no es un archivo (`/app/leccion/u1-l02`) recibe `dist/app/404.html`, que es el HTML de la app (responde con estado 404, pero la página funciona; `instalar`, `privacidad` y `terminos` tienen su propio `.html` y responden 200). Las rutas viejas de la raíz redirigen a `/app/...` (`public/_redirects`). La portada manda directo a `/app/` a quien tiene la app instalada o progreso guardado; con `?portada` se ve igual.
+
+Para probar lo compilado en la PC como lo sirve Cloudflare: `npm run build:web` y después `npx wrangler dev -c wrangler.local.jsonc --port 8788` (en el navegador integrado: la configuración `web-compilada` de `.claude/launch.json`). Dominio: `graduschess.com` (comprado en Cloudflare, datos del titular ocultos). Correo público: `gradusstudioapp@gmail.com`.
 
 ## Antes de conectar
 1. El código de la versión web está en la rama `web-v1`. Hay que fusionarla a `main` (o elegir otra rama de producción a propósito): `main` sin esa fusión no tiene el script `build:web` ni `public/_headers`.
@@ -18,16 +22,18 @@ Gradus web se sirve como archivos estáticos desde `dist/` con Cloudflare (`wran
 ## Comprobaciones en producción
 ```bash
 curl -sI https://graduschess.com/
-curl -sI https://graduschess.com/sw.js
-curl -sI https://graduschess.com/manifest.webmanifest
-curl -sI https://graduschess.com/instalar
-curl -sI https://graduschess.com/privacidad
+curl -sI https://graduschess.com/app/
+curl -sI https://graduschess.com/app/sw.js
+curl -sI https://graduschess.com/app/manifest.webmanifest
+curl -sI https://graduschess.com/app/instalar
+curl -sI https://graduschess.com/app/privacidad
+curl -sI https://graduschess.com/app/leccion/u1-l02
 curl -sI https://graduschess.com/leccion/u1-l02
 ```
-- `/`, `/instalar`, `/privacidad` y las rutas profundas: 200 con `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer` y `Permissions-Policy`.
-- `/sw.js` y `/`: `Cache-Control: no-cache`. `/manifest.webmanifest`: `application/manifest+json`.
-- Un archivo de `/_expo/static/js/web/` (tomar el nombre del código fuente de la página): `Cache-Control: public, max-age=31536000, immutable`.
-- Un trozo que no existe debajo de `/_expo/static/` no debería devolver el `index.html` con 200: si lo hace, el service worker ya lo rechaza (`cacheWillUpdate`), pero conviene saberlo.
+- `/`, `/app/`, `/app/instalar` y `/app/privacidad`: 200; `/app/leccion/u1-l02`: 404 con el HTML de la app; `/leccion/u1-l02`: 301 a `/app/leccion/u1-l02`. Todas con `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer` y `Permissions-Policy`.
+- `/app/sw.js`, `/app/` y `/`: `Cache-Control: no-cache`. `/app/manifest.webmanifest`: `application/manifest+json`.
+- Un archivo de `/app/_expo/static/js/web/` (tomar el nombre del código fuente de la página): `Cache-Control: public, max-age=31536000, immutable`.
+- Un trozo que no existe debajo de `/app/_expo/static/` no debería devolver un HTML con 200: si lo hace, el service worker ya lo rechaza (`cacheWillUpdate`), pero conviene saberlo.
 - Abrir el sitio en Chrome: consola sin avisos de CSP, instalar la app en el Redmi, escuchar una vez un sonido de jugada (se verificó que carga, no que se oiga) y activar HSTS desde el panel (SSL/TLS > Servidor perimetral > HSTS) cuando el sitio ande bien.
 
 ## Qué no hace la versión 1

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cleanPath, routeMeta } from './routeMeta';
+import { cleanPath, publicUrl, routeMeta } from './routeMeta';
 
 const texts: Record<string, string> = {
   'meta.title': 'Gradus Chess: aprende ajedrez',
@@ -18,7 +18,7 @@ test('cleanPath: sin barra final, parámetros ni ancla', () => {
   assert.equal(cleanPath('/privacidad?x=1#a'), '/privacidad');
 });
 
-test('inicio: título del sitio y canónica en la raíz', () => {
+test('inicio de la app: título del sitio y canónica en la portada', () => {
   const m = routeMeta('/', false, t as never);
   assert.equal(m.title, 'Gradus Chess: aprende ajedrez');
   assert.equal(m.canonical, 'https://graduschess.com/');
@@ -28,15 +28,15 @@ test('inicio: título del sitio y canónica en la raíz', () => {
 test('privacidad y términos: título propio y canónica propia', () => {
   const p = routeMeta('/privacidad', false, t as never);
   assert.equal(p.title, 'Política de privacidad · Gradus');
-  assert.equal(p.canonical, 'https://graduschess.com/privacidad');
+  assert.equal(p.canonical, 'https://graduschess.com/app/privacidad');
   const s = routeMeta('/terminos/', false, t as never);
   assert.equal(s.title, 'Términos y condiciones · Gradus');
-  assert.equal(s.canonical, 'https://graduschess.com/terminos');
+  assert.equal(s.canonical, 'https://graduschess.com/app/terminos');
 });
 
 test('instalar: indexable, con el título del sitio', () => {
   const m = routeMeta('/instalar', false, t as never);
-  assert.equal(m.canonical, 'https://graduschess.com/instalar');
+  assert.equal(m.canonical, 'https://graduschess.com/app/instalar');
   assert.equal(m.noindex, false);
 });
 
@@ -53,4 +53,9 @@ test('ruta inexistente: título propio y noindex', () => {
   assert.equal(m.title, 'Página no encontrada · Gradus');
   assert.equal(m.noindex, true);
   assert.equal(m.canonical, 'https://graduschess.com/');
+});
+
+test('publicUrl: la portada en la raíz y las páginas de la app bajo /app', () => {
+  assert.equal(publicUrl('/'), 'https://graduschess.com/');
+  assert.equal(publicUrl('/instalar'), 'https://graduschess.com/app/instalar');
 });

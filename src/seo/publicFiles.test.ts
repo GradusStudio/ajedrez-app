@@ -2,10 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { INDEXABLE_PATHS, SITE_URL } from './routeMeta';
+import { es } from '../i18n/es';
+import { INDEXABLE_PATHS, publicUrl, SITE_URL } from './routeMeta';
 
 const publicDir = path.join(__dirname, '..', '..', 'public');
 const read = (name: string) => fs.readFileSync(path.join(publicDir, name), 'utf8');
+// La portada (graduschess.com/) es estática y vive aparte de la app: sitio/index.html.
+const readPortada = () => fs.readFileSync(path.join(__dirname, '..', '..', 'sitio', 'index.html'), 'utf8');
 
 test('robots.txt deja pasar a todos y apunta al sitemap', () => {
   const robots = read('robots.txt');
@@ -16,15 +19,16 @@ test('robots.txt deja pasar a todos y apunta al sitemap', () => {
 
 test('sitemap.xml lista exactamente las páginas indexables', () => {
   const urls = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  const expected = INDEXABLE_PATHS.map((p) => (p === '/' ? `${SITE_URL}/` : `${SITE_URL}${p}`));
+  const expected = INDEXABLE_PATHS.map(publicUrl);
   assert.deepEqual(urls, expected);
 });
 
-test('index.html trae título, descripción, canónica y datos estructurados válidos', () => {
-  const html = read('index.html');
-  assert.doesNotMatch(html, /%WEB_TITLE%/);
-  assert.match(html, /<title>[^<]+<\/title>/);
-  assert.match(html, /<meta name="description" content="[^"]{50,160}"/);
+test('la portada trae título, descripción, canónica y datos estructurados válidos', () => {
+  const html = readPortada();
+  // Título y descripción los completa scripts/build-portada.ts con los de la app (meta.title y meta.description).
+  assert.match(html, /<title>\{\{meta\.title\}\}<\/title>/);
+  assert.match(html, /<meta name="description" content="\{\{meta\.description\}\}"/);
+  assert.ok(es['meta.description'].length >= 50 && es['meta.description'].length <= 160, 'meta.description: entre 50 y 160 caracteres');
   assert.match(html, new RegExp(`<link rel="canonical" href="${SITE_URL}/"`));
   const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
   assert.ok(ld, 'falta el JSON-LD');

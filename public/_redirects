@@ -1,0 +1,17 @@
+# La app pasó de la raíz a /app el 8-11-2026 (la raíz es la portada). Los enlaces viejos llevan a la ruta nueva.
+/leccion/* /app/leccion/:splat 301
+/apertura/* /app/apertura/:splat 301
+/bot/* /app/bot/:splat 301
+/instalar /app/instalar 301
+/privacidad /app/privacidad 301
+/terminos /app/terminos 301
+/creditos /app/creditos 301
+/ajustes /app/ajustes 301
+/aperturas /app/aperturas 301
+/puzzles /app/puzzles 301
+/bots /app/bots 301
+/analisis /app/analisis 301
+/perfil /app/perfil 301
+/puzzle /app/puzzle 301
+/importar-partida /app/importar-partida 301
+/analisis-libre /app/analisis-libre 301

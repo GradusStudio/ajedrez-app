@@ -1,0 +1,73 @@
+{
+  "_nota": "Textos propios de la portada (graduschess.com/). El resto sale de la app al compilar: título, descripción, onboarding, privacidad y términos de src/i18n/<idioma>.ts; la lección del peón de src/data; las frases de Pipo de bots.json. de, it y fr: traducidos con gemma4 vía Ollama, sin revisión de nativos.",
+  "es": {
+    "open": "Abrir Gradus",
+    "continue": "Seguir la lección del peón",
+    "boardLabel": "Tablero de ajedrez. Rey blanco en e1, peón blanco en e2 y rey negro en e8. Juegan las blancas.",
+    "pawnLabel": "Peón blanco en {sq}",
+    "moveTo": "Mover el peón a {sq}",
+    "right": "Correcto. En la lección sigues con las capturas y la coronación.",
+    "bots": "Juega contra 10 bots que juegan como personas, de {min} a {max} de Elo.",
+    "botLabel": "Jugar contra {name}, Elo {elo}",
+    "free": "Gratis. Sin anuncios. Sin cuenta.",
+    "install": "Funciona en el navegador y se puede instalar como app en el celular o en la computadora.",
+    "installLink": "Cómo instalarla",
+    "source": "Código fuente (GPL v3)"
+  },
+  "en": {
+    "open": "Open Gradus",
+    "continue": "Continue the pawn lesson",
+    "boardLabel": "Chessboard. White king on e1, white pawn on e2 and black king on e8. White to move.",
+    "pawnLabel": "White pawn on {sq}",
+    "moveTo": "Move the pawn to {sq}",
+    "right": "Correct. The lesson goes on with captures and promotion.",
+    "bots": "Play 10 bots that play like people, rated {min} to {max} Elo.",
+    "botLabel": "Play {name}, Elo {elo}",
+    "free": "Free. No ads. No account.",
+    "install": "It works in the browser and you can install it as an app on your phone or computer.",
+    "installLink": "How to install it",
+    "source": "Source code (GPL v3)"
+  },
+  "de": {
+    "open": "Gradus öffnen",
+    "continue": "Die Bauernlektion fortsetzen",
+    "boardLabel": "Schachbrett. Weißer König auf e1, weißer Bauer auf e2 und schwarzer König auf e8. Weiß am Zug.",
+    "pawnLabel": "Weißer Bauer auf {sq}",
+    "moveTo": "Bauer nach {sq} ziehen",
+    "right": "Richtig. In der Lektion geht es weiter mit dem Schlagen und der Bauernumwandlung.",
+    "bots": "Spiele gegen 10 Bots, die wie Menschen spielen, mit Elo von {min} bis {max}.",
+    "botLabel": "Spiele gegen {name}, Elo {elo}",
+    "free": "Kostenlos. Keine Werbung. Kein Konto.",
+    "install": "Es funktioniert im Browser und du kannst es als App auf dein Handy oder deinen Computer installieren.",
+    "installLink": "So installierst du es",
+    "source": "Quellcode (GPL v3)"
+  },
+  "it": {
+    "open": "Apri Gradus",
+    "continue": "Continua la lezione del pedone",
+    "boardLabel": "Scacchiera. Re bianco in e1, pedone bianco in e2 e re nero in e8. Muove il Bianco.",
+    "pawnLabel": "Pedone bianco in {sq}",
+    "moveTo": "Muovi il pedone in {sq}",
+    "right": "Corretto. La lezione prosegue con catture e promozione.",
+    "bots": "Gioca contro 10 bot che giocano come persone, dal {min} al {max} Elo.",
+    "botLabel": "Gioca contro {name}, Elo {elo}",
+    "free": "Gratis. Senza pubblicità. Senza account.",
+    "install": "Funziona nel browser e puoi installarla come app sul tuo cellulare o computer.",
+    "installLink": "Come installarla",
+    "source": "Codice sorgente (GPL v3)"
+  },
+  "fr": {
+    "open": "Ouvrir Gradus",
+    "continue": "Continuer la leçon sur le pion",
+    "boardLabel": "Échiquier. Roi blanc en e1, pion blanc en e2 et roi noir en e8. Les Blancs jouent.",
+    "pawnLabel": "Pion blanc en {sq}",
+    "moveTo": "Déplacer le pion en {sq}",
+    "right": "Correct. La leçon continue avec les captures et la promotion.",
+    "bots": "Joue contre 10 bots qui jouent comme des humains, classés de {min} à {max} Elo.",
+    "botLabel": "Jouer contre {name}, Elo {elo}",
+    "free": "Gratuit. Sans pub. Sans compte.",
+    "install": "Ça marche dans le navigateur et tu peux l'installer comme une appli sur ton téléphone ou ton ordinateur.",
+    "installLink": "Comment l'installer",
+    "source": "Code source (GPL v3)"
+  }
+}

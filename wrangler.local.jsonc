@@ -1,0 +1,10 @@
+// Para probar en la PC la web ya compilada (dist/), tal como la sirve Cloudflare: `npx wrangler dev -c wrangler.local.jsonc`.
+// Igual que wrangler.jsonc pero sin `build`, para no recompilar cada vez. Primero: `npm run build:web`.
+{
+  "name": "gradus",
+  "compatibility_date": "2026-11-04",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

@@ -65,6 +65,9 @@
         "projectId": "be11559c-6b9d-4f5f-a091-2f011dac930a"
       }
     },
-    "owner": "gradusstudio"
+    "owner": "gradusstudio",
+    "experiments": {
+      "baseUrl": "/app"
+    }
   }
 }

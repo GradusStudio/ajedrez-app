@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Quien ya usa Gradus (app instalada o progreso guardado) pasa directo a /app. Va primero para no pintar la portada. -->
+    <script src="/portada/inicio.js"></script>
+    <title>{{meta.title}}</title>
+    <meta name="description" content="{{meta.description}}" />
+    <link rel="canonical" href="https://graduschess.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gradus" />
+    <meta property="og:title" content="{{meta.title}}" />
+    <meta property="og:description" content="{{meta.description}}" />
+    <meta property="og:url" content="https://graduschess.com/" />
+    <meta property="og:image" content="https://graduschess.com/app/icons/icon-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#262421" />
+    <link rel="icon" type="image/png" href="/app/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/app/icons/apple-touch-icon-180.png" />
+    <link rel="preload" href="/portada/fuentes/Nunito_800ExtraBold.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="/portada/portada.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gradus Chess",
+        "alternateName": "Gradus",
+        "url": "https://graduschess.com/",
+        "description": "Aprende ajedrez gratis con lecciones, aperturas, puzzles y bots con personalidad.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "inLanguage": ["es", "en", "de", "it", "fr"],
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "publisher": { "@type": "Organization", "name": "Gradus Studio", "email": "gradusstudioapp@gmail.com" }
+      }
+    </script>
+    <script src="/portada/datos.js" defer></script>
+    <script src="/portada/portada.js" defer></script>
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="/">
+        <img src="/app/icons/icon-192.png" alt="" width="36" height="36" />
+        <span>Gradus</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1 data-t="h1">{{h1}}</h1>
+        <p class="lede" data-t="lede">{{lede}}</p>
+
+        <div class="board-wrap">
+          <div class="board" id="board" role="group" aria-label="{{boardLabel}}" data-t-label="boardLabel">
+            {{board}}
+          </div>
+        </div>
+
+        <div class="teacher" aria-live="polite">
+          <div class="face"><img id="face" src="/portada/pipo-explica.webp" alt="Pipo" width="72" height="72" /></div>
+          <div class="bubble">
+            <p class="who">Pipo</p>
+            <p id="say">{{say}}</p>
+            <p id="ask" class="ask">{{ask}}</p>
+          </div>
+        </div>
+
+        <a class="btn" id="cta" href="/app/" data-t="open">{{open}}</a>
+      </section>
+
+      <section class="bots">
+        <h2 data-t="bots">{{bots}}</h2>
+        <ul class="bot-row">
+          {{botList}}
+        </ul>
+      </section>
+
+      <section class="free">
+        <p class="free-line" data-t="free">{{free}}</p>
+        <p class="install"><span data-t="install">{{install}}</span> <a href="/app/instalar" data-t="installLink">{{installLink}}</a></p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <a href="/app/privacidad" data-t="privacy">{{privacy}}</a>
+      <a href="/app/terminos" data-t="terms">{{terms}}</a>
+      <a href="https://github.com/GradusStudio/ajedrez-app" data-t="source">{{source}}</a>
+      <a href="mailto:gradusstudioapp@gmail.com">gradusstudioapp@gmail.com</a>
+      <span>Gradus Studio</span>
+    </footer>
+  </body>
+</html>

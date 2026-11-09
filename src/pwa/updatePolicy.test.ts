@@ -22,3 +22,12 @@ test('fuera de una actividad: pestañas, ajustes, resultados de listas y página
     assert.equal(isInsideActivity(path), false, path);
   }
 });
+
+test('la app publicada vive en /app: el prefijo no cuenta como ruta', () => {
+  for (const path of ['/app/leccion/u1-l01', '/app/puzzle', '/app/revision/']) {
+    assert.equal(isInsideActivity(path), true, path);
+  }
+  for (const path of ['/app', '/app/', '/app/bots', '/app/instalar']) {
+    assert.equal(isInsideActivity(path), false, path);
+  }
+});

@@ -65,7 +65,7 @@ export function registerServiceWorker(): void {
       controllerChanged = true;
       applyUpdate();
     });
-    sw.register('/sw.js')
+    sw.register('/app/sw.js', { scope: '/app/' })
       .then((reg) => {
         registration = reg;
         watchInstalling(reg);

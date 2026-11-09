@@ -19,6 +19,7 @@ import { UciEngine } from '../engine/uci';
 import { useFeedback } from '../feedback/feedback';
 import { useProgress } from '../progress/ProgressContext';
 import { replayMoves, uciMoves } from '../progress/ongoingGame';
+import { ownsOngoing, shouldSaveOngoing } from '../progress/ongoingGuard';
 import { gameCountsForStreak } from '../progress/streak';
 import { useI18n } from '../i18n/I18nContext';
 import { es, MessageKey } from '../i18n/es';
@@ -57,9 +58,12 @@ const GOOD_MOVE_EVERY = 3;
 const BLUNDER_DELTA = 200;
 const GOOD_MOVE_DELTA = 150;
 
+/** Identidad de la partida de esta pantalla para decidir si puede escribir la guardada (ver ongoingGuard.ts). */
+const idOf = (startedIso: string) => (startedIso ? { startedAt: startedIso } : null);
+
 // Partida contra un bot (mapa-de-pantallas.md, 2.10).
 export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initialStartedAt, onExit, onRematch, onOtherBot }: Props) {
-  const { finishGame, saveOngoingGame } = useProgress();
+  const { finishGame, saveOngoingGame, getProgress } = useProgress();
   const { settings } = useSettings();
   const { language, t } = useI18n();
   const feedback = useFeedback();
@@ -92,6 +96,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
   const inBook = useRef(!initialMoves?.length);
   const startedIso = useRef(initialStartedAt ?? ''); // fecha de inicio de la partida guardada; se completa al montar
   const finished = useRef(false); // la partida se guarda una sola vez
+  const savedOngoing = useRef(false); // esta pantalla ya guardó su partida sin terminar al menos una vez
 
   useEffect(() => {
     startedAt.current = Date.now();
@@ -117,7 +122,8 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     (r: Result, quit = false) => {
       if (finished.current) return;
       finished.current = true;
-      saveOngoingGame(null);
+      // Solo se quita lo guardado si es esta misma partida: otro dispositivo pudo haber empezado otra.
+      if (ownsOngoing(getProgress().ongoingGame, idOf(startedIso.current))) saveOngoingGame(null);
       if (r.kind === 'win') feedback.correct();
       else if (r.kind === 'loss') feedback.wrong();
       setSpeech(r.kind === 'win' ? bot.lines.onLose : r.kind === 'loss' ? bot.lines.onWin : t('game.drawSpeech'));
@@ -136,13 +142,16 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
       );
       setResult({ ...r, ...earned });
     },
-    [bot, chess, finishGame, saveOngoingGame, practiceCourse, userColor, feedback, t]
+    [bot, chess, finishGame, saveOngoingGame, getProgress, practiceCourse, userColor, feedback, t]
   );
 
   /** Después de cada jugada (del usuario o del bot): si la partida terminó la cierra y, si sigue, la guarda para continuarla. */
   const checkEnd = () => {
     checkResult();
-    if (!finished.current) {
+    // `getProgress` lee lo último guardado (con lo que llegó de otros dispositivos). Si otro dispositivo retomó, terminó o
+    // reemplazó la partida, esta pantalla sigue jugando pero deja de escribirla.
+    if (!finished.current && shouldSaveOngoing(getProgress().ongoingGame, idOf(startedIso.current), savedOngoing.current)) {
+      savedOngoing.current = true;
       saveOngoingGame({ botId: bot.id, userColor, practiceCourseId: practiceCourse?.id, moves: uciMoves(chess), startedAt: startedIso.current });
     }
   };

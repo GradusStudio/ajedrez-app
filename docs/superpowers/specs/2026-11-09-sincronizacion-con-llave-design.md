@@ -1,6 +1,6 @@
 # Sincronización con llave (sin ventana de Google cada vez)
 
-Fecha: 9-11-2026. Estado: diseño acordado con el usuario, **sin revisión del lector aparte** (se pospuso por falta de tokens) y sin código.
+Fecha: 9-11-2026. Estado: diseño acordado con el usuario y revisado por un lector aparte (9-11-2026); sin código.
 
 ## Por qué
 
@@ -20,7 +20,7 @@ Drive pasa a ser solo la caja fuerte de una **llave**. El progreso vive en nuest
 4. **Datos del navegador borrados**: se pierde la llave local; al volver a activar (una ventana) se recupera desde Drive.
 5. **Migración**: la primera vez, el progreso que ya está en Drive se fusiona con el del servidor (`mergeProgress`) y después Drive deja de escribirse.
 6. **Desactivar**: el dispositivo deja de sincronizar y olvida la llave local. **Los datos del servidor no se borran.**
-7. **Borrar mis datos del servidor**: botón aparte en Ajustes, con una confirmación clara («¿Seguro? Se borra tu progreso guardado en la nube; el de este dispositivo queda»). Borra el registro del servidor y desactiva la sincronización. La llave en Drive puede quedar o borrarse (decisión del constructor; recomendado borrarla también para que una nueva activación empiece limpia).
+7. **Borrar mis datos del servidor**: botón aparte en Ajustes, con una confirmación clara («¿Seguro? Se borra tu progreso guardado en la nube; el de este dispositivo queda»). Borra el registro del servidor y desactiva la sincronización. La llave de Drive también se borra (ver abajo).
 
 ## Restricciones
 
@@ -34,6 +34,14 @@ Drive pasa a ser solo la caja fuerte de una **llave**. El progreso vive en nuest
 
 - Servidor: un Worker de Cloudflare nuevo (como `gradus-puzzles`) con D1 o KV.
 - Las funciones puras (fusión, decisión de qué subir) siguen en `syncEngine.ts` con pruebas; cambia el cliente (de Drive REST a nuestro servidor).
+
+## Resuelto tras la revisión del lector (decisiones de Claude, revisables)
+
+- **Borrado en los demás dispositivos**: el servidor guarda una marca de «borrado» para ese hash (sin progreso). Un dispositivo que sincroniza con esa llave recibe la marca, desactiva la sincronización, olvida la llave y avisa en Ajustes. «Borrar mis datos» borra también la llave de Drive, así una nueva activación empieza limpia. El motor suma un estado nuevo (llave revocada) en vez de `needsAuth`.
+- **Migración desde Drive**: se lee el archivo de progreso de Drive en **cada** activación (ya hay ventana y es barato) y se fusiona. Así no se pierde lo que haya escrito un dispositivo con la versión vieja en caché. El archivo viejo no se borra ni se pisa. No hace falta guardar «ya migrado».
+- **Quienes hoy tienen la sincronización activada**: al actualizar, Ajustes muestra «Activar la nueva sincronización» y el cartel de la pantalla de resultado (`SyncNudge`) aparece una sola vez más con ese botón. Después, `SyncNudge`, `noteCompletion` y «Reconectar» se borran.
+- **Escrituras simultáneas**: el servidor no entiende el progreso, solo lo guarda con un número de versión. La escritura es condicional (si la versión cambió, responde conflicto) y el cliente vuelve a bajar, fusiona con `mergeProgress` y reintenta.
+- **Safari en iOS**: sin instalar la app, Safari puede borrar el almacenamiento tras unos 7 días sin visitas, y entonces la ventana vuelve a aparecer una vez. Instalada (PWA), no pasa. Se documenta.
 
 ## Queda para el constructor
 

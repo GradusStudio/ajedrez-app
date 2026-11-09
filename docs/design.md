@@ -95,8 +95,12 @@ Casillas `board-light` y `board-dark`. Valores en `boardHighlight` de `src/theme
 | Pieza seleccionada | `gold` al 60% |
 | Jugada legal sugerida | punto `primary` al 60% |
 | Jaque o error | `danger` al 40% |
+| Rey vencido en jaque mate | `danger` al 75% (aparece con fundido después de la jugada) |
+| Casillas vacías alrededor del rey vencido | `danger` al 30% |
 | Casilla marcada en una explicación o ejercicio | `gold` al 70% con borde `gold` |
 | Casilla tocada antes de comprobar (`select_squares`) | azul `#4FA3E0` al 70% con borde `#4FA3E0` |
+
+Animaciones de las piezas (9-11-2026, spec `docs/superpowers/specs/2026-11-09-animaciones-de-piezas-design.md`): la pieza arrastrada se inclina hasta 12° hacia donde se mueve; la que se desliza sola se inclina 8°; las dos se asientan con un resorte corto; en el mate el rey vencido cae de costado. Con «reducir movimiento» del sistema no hay inclinación ni vaivén y el rey aparece ya caído.
 
 El azul es la única excepción a la paleta: se eligió en el hito 1 (v2) para que la casilla tocada no se confunda con las marcadas en dorado.
 

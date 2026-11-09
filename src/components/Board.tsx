@@ -15,6 +15,8 @@ import { useI18n } from '../i18n/I18nContext';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { boardHighlight, boardThemes, colors } from '../theme';
 import { useBoardSide } from './BoardSizeContext';
+import { dragTilt, mateSquares, slideTilt } from './boardMotion';
+import { useReducedMotion } from './useReducedMotion';
 import { Captured, computeMove, Offsets } from './boardAnimation';
 import { SquareTexture } from './SquareTexture';
 import Piece, { PieceColor, PieceType } from './Piece';
@@ -80,12 +82,28 @@ const DRAG_LIFT = 0.45; // y va un poco por encima del dedo (en casillas), para 
 /** Celda de chess.board() ("fila columna") de una casilla. */
 const cellOf = (s: Square) => `${8 - Number(s[1])}${s.charCodeAt(0) - 97}`;
 
-/** Pieza que se desliza desde su casilla anterior hasta la actual. */
-function MovingPiece({ type, color, size, dx, dy }: { type: PieceType; color: PieceColor; size: number; dx: number; dy: number }) {
+/** Grados -> rotación de un transform. */
+const degrees = (v: Animated.Value) => v.interpolate({ inputRange: [-90, 90], outputRange: ['-90deg', '90deg'] });
+/** Resorte del aterrizaje: poco amortiguado, para que la pieza se asiente con un vaivén corto. */
+const SETTLE_SPRING = { toValue: 0, friction: 3.2, tension: 130, useNativeDriver: true } as const;
+
+/**
+ * Pieza que se desliza desde su casilla anterior hasta la actual. Se inclina hacia donde va y se asienta con un resorte
+ * (spec: docs/superpowers/specs/2026-11-09-animaciones-de-piezas-design.md). `still`: sin inclinación (reducir movimiento).
+ */
+function MovingPiece({ type, color, size, dx, dy, still }: { type: PieceType; color: PieceColor; size: number; dx: number; dy: number; still: boolean }) {
   const [t] = useState(() => new Animated.Value(1));
+  const [rot] = useState(() => new Animated.Value(0));
+  const tilt = still ? 0 : slideTilt(dx);
   useEffect(() => {
     Animated.timing(t, { toValue: 0, duration: SLIDE_MS, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
-  }, [t]);
+    if (tilt !== 0) {
+      Animated.sequence([
+        Animated.timing(rot, { toValue: tilt, duration: SLIDE_MS * 0.45, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+        Animated.spring(rot, SETTLE_SPRING),
+      ]).start();
+    }
+  }, [t, rot, tilt]);
   return (
     <Animated.View
       pointerEvents="none"
@@ -93,12 +111,52 @@ function MovingPiece({ type, color, size, dx, dy }: { type: PieceType; color: Pi
         transform: [
           { translateX: t.interpolate({ inputRange: [0, 1], outputRange: [0, dx] }) },
           { translateY: t.interpolate({ inputRange: [0, 1], outputRange: [0, dy] }) },
+          { rotate: degrees(rot) },
         ],
       }}
     >
       <Piece type={type} color={color} size={size} />
     </Animated.View>
   );
+}
+
+/** Pieza recién soltada arrastrando: ya está en su casilla y se endereza desde la inclinación que traía, con un resorte. */
+function SettlingPiece({ type, color, size, angle }: { type: PieceType; color: PieceColor; size: number; angle: number }) {
+  const [rot] = useState(() => new Animated.Value(angle));
+  useEffect(() => {
+    if (angle !== 0) Animated.spring(rot, SETTLE_SPRING).start();
+  }, [rot, angle]);
+  return (
+    <Animated.View pointerEvents="none" style={{ transform: [{ rotate: degrees(rot) }] }}>
+      <Piece type={type} color={color} size={size} />
+    </Animated.View>
+  );
+}
+
+/** Rey vencido en jaque mate: se cae de costado cuando termina de llegar la pieza que da mate. */
+function FallenKing({ color, size, still }: { color: PieceColor; size: number; still: boolean }) {
+  const [rot] = useState(() => new Animated.Value(still ? 90 : 0));
+  useEffect(() => {
+    if (still) return;
+    Animated.sequence([
+      Animated.delay(SLIDE_MS + 80),
+      Animated.spring(rot, { toValue: 90, friction: 5, tension: 70, useNativeDriver: true }),
+    ]).start();
+  }, [rot, still]);
+  return (
+    <Animated.View pointerEvents="none" style={{ transform: [{ rotate: degrees(rot) }] }}>
+      <Piece type="k" color={color} size={size} />
+    </Animated.View>
+  );
+}
+
+/** Color de una casilla que aparece con un fundido corto (las casillas del mate, después de la jugada). */
+function FadeSquare({ color, still }: { color: string; still: boolean }) {
+  const [o] = useState(() => new Animated.Value(still ? 1 : 0));
+  useEffect(() => {
+    if (!still) Animated.timing(o, { toValue: 1, duration: 260, delay: SLIDE_MS, useNativeDriver: true }).start();
+  }, [o, still]);
+  return <Animated.View pointerEvents="none" style={[styles.fill, { backgroundColor: color, opacity: o }]} />;
 }
 
 /** Pieza capturada: se achica y se desvanece en su casilla mientras llega la otra. */
@@ -223,9 +281,13 @@ export function Board({
   const [drag, setDrag] = useState<{ from: Square; over: Square | null } | null>(null);
   const [dragPos] = useState(() => new Animated.ValueXY());
   // Jugada que se acaba de soltar arrastrando: la pieza ya está en su destino, así que no se desliza.
-  const [dropped, setDropped] = useState<BoardMove | null>(null);
+  // `angle`: inclinación con la que aterrizó, para enderezarla con un resorte.
+  const [dropped, setDropped] = useState<(BoardMove & { angle?: number }) | null>(null);
   // Coronación a la espera de que se elija la pieza. `dragged`: el peón llegó arrastrado.
   const [promo, setPromo] = useState<{ from: Square; to: Square; dragged: boolean } | null>(null);
+  // Inclinación de la pieza arrastrada (grados).
+  const [dragRot] = useState(() => new Animated.Value(0));
+  const reduced = useReducedMotion();
 
   const chess = useMemo(() => new Chess(fen), [fen]);
   const grid = useMemo(() => chess.board(), [chess]);
@@ -240,22 +302,26 @@ export function Board({
     offsets: {} as Offsets,
     captured: null as Captured,
     moved: false,
+    /** Pieza recién soltada que se endereza en su casilla. */
+    settle: null as { cell: string; angle: number } | null,
     id: 0,
   }));
   if (anim.fen !== fen || anim.orientation !== orientation) {
     const move = anim.orientation === orientation ? computeMove(anim.grid, grid, orientation) : { offsets: {}, captured: null };
     const moved = Object.keys(move.offsets).length > 0;
     const newOffsets: Offsets = { ...move.offsets };
+    let settle: { cell: string; angle: number } | null = null;
     if (dropped) {
-      // La pieza soltada no se desliza (en el enroque, la torre sí).
+      // La pieza soltada no se desliza (en el enroque, la torre sí): se endereza en su casilla.
       delete newOffsets[cellOf(dropped.to)];
+      if (!reduced) settle = { cell: cellOf(dropped.to), angle: dropped.angle ?? 5 };
       setDropped(null);
     }
-    setAnim({ fen, orientation, grid, offsets: newOffsets, captured: move.captured, moved, id: anim.id + 1 });
+    setAnim({ fen, orientation, grid, offsets: newOffsets, captured: move.captured, moved, settle, id: anim.id + 1 });
     if (selected) setSelected(null);
     if (promo) setPromo(null);
   }
-  const { offsets, captured } = anim;
+  const { offsets, captured, settle } = anim;
 
   // Sonido de la jugada (solo si hubo una jugada, no al cargar otra posición).
   useEffect(() => {
@@ -296,6 +362,9 @@ export function Board({
     }
     return null;
   }, [chess, grid, turn]);
+
+  // Jaque mate: el rey vencido y las casillas vacías a su alrededor (spec de animaciones de piezas).
+  const mate = useMemo(() => mateSquares(fen), [fen]);
 
   const handlePress = (square: Square) => {
     if (!interactive) {
@@ -344,8 +413,12 @@ export function Board({
       setPromo({ from, to, dragged: true });
       return;
     }
+    // Inclinación con la que aterriza: la que traía o, si venía casi derecha, una chica hacia donde iba.
+    const screenDx = (orientation === 'w' ? 1 : -1) * (to.charCodeAt(0) - from.charCodeAt(0));
+    const tilt = gesture.current.tilt;
+    const angle = Math.abs(tilt) >= 4 ? tilt : screenDx > 0 ? 6 : screenDx < 0 ? -6 : 5;
     const played: BoardMove = { from, to };
-    setDropped(played);
+    setDropped({ ...played, angle });
     onMove?.(played);
   };
 
@@ -361,7 +434,21 @@ export function Board({
 
   // Los toques y arrastres los recibe una capa transparente encima del tablero. Se guarda dónde empezó
   // el dedo (en el tablero y en la pantalla) para seguir el arrastre con el desplazamiento en la pantalla.
-  const gesture = useRef({ x: 0, y: 0, pageX: 0, pageY: 0, from: null as Square | null, over: null as Square | null, dragging: false });
+  // `lastX`/`lastT`/`tilt`: velocidad horizontal del dedo y la inclinación que resulta; `idle`: si el dedo se queda
+  // quieto, la pieza vuelve a quedar derecha.
+  const gesture = useRef({
+    x: 0,
+    y: 0,
+    pageX: 0,
+    pageY: 0,
+    from: null as Square | null,
+    over: null as Square | null,
+    dragging: false,
+    lastX: 0,
+    lastT: 0,
+    tilt: 0,
+    idle: undefined as ReturnType<typeof setTimeout> | undefined,
+  });
   const pointOf = (e: GestureResponderEvent) => {
     const g = gesture.current;
     return { x: g.x + e.nativeEvent.pageX - g.pageX, y: g.y + e.nativeEvent.pageY - g.pageY };
@@ -373,7 +460,8 @@ export function Board({
     onResponderGrant: (e: GestureResponderEvent) => {
       const { locationX: x, locationY: y, pageX, pageY } = e.nativeEvent;
       const from = squareAt(x, y);
-      gesture.current = { x, y, pageX, pageY, from, over: null, dragging: false };
+      clearTimeout(gesture.current.idle);
+      gesture.current = { x, y, pageX, pageY, from, over: null, dragging: false, lastX: x, lastT: Date.now(), tilt: 0, idle: undefined };
       if (dropped) setDropped(null);
       // Devolver true impide que el ScrollView nativo de Android se quede con el dedo. Solo sobre una pieza
       // que se puede mover: empezando en otra casilla, la pantalla se sigue pudiendo desplazar.
@@ -389,8 +477,23 @@ export function Board({
         if (!piece || piece.color !== turn) return; // solo se arrastran las piezas del bando que mueve
         g.dragging = true;
         setSelected(g.from);
+        dragRot.setValue(0);
       }
       placeDragged(x, y);
+      if (!reduced) {
+        // Inclinación según la velocidad horizontal, suavizada para que no tiemble.
+        const now = Date.now();
+        const speedX = (x - g.lastX) / Math.max(1, now - g.lastT);
+        g.lastX = x;
+        g.lastT = now;
+        g.tilt = g.tilt * 0.6 + dragTilt(speedX) * 0.4;
+        dragRot.setValue(g.tilt);
+        clearTimeout(g.idle);
+        g.idle = setTimeout(() => {
+          g.tilt = 0;
+          Animated.spring(dragRot, { toValue: 0, friction: 6, tension: 120, useNativeDriver: false }).start();
+        }, 90);
+      }
       const over = squareAt(x, y);
       if (over !== g.over || !drag) {
         g.over = over;
@@ -399,6 +502,7 @@ export function Board({
     },
     onResponderRelease: (e: GestureResponderEvent) => {
       const g = gesture.current;
+      clearTimeout(g.idle);
       if (g.dragging && g.from) {
         const { x, y } = pointOf(e);
         drop(g.from, squareAt(x, y));
@@ -408,7 +512,9 @@ export function Board({
       g.dragging = false;
     },
     onResponderTerminate: () => {
+      clearTimeout(gesture.current.idle);
       gesture.current.dragging = false;
+      dragRot.setValue(0);
       setDrag(null);
     },
   };
@@ -432,6 +538,7 @@ export function Board({
       const isMarked = highlight.includes(square);
       const isPicked = pickedSquares.includes(square);
       const isCheck = checkSquare === square;
+      const isMateKing = mate?.king === square;
 
       const isTarget = targets.has(square) || hintTargets.has(square);
       const isCaptureTarget = targets.get(square) === true || hintTargets.get(square) === true;
@@ -470,7 +577,9 @@ export function Board({
             />
           )}
           {isSelected && <View style={[styles.fill, { backgroundColor: boardHighlight.selected }]} />}
-          {isCheck && <View style={[styles.fill, { backgroundColor: boardHighlight.check }]} />}
+          {isCheck && !mate && <View style={[styles.fill, { backgroundColor: boardHighlight.check }]} />}
+          {isMateKing && <FadeSquare key={`mate-${anim.id}`} color={boardHighlight.mate} still={reduced} />}
+          {mate?.escapes.includes(square) && <FadeSquare key={`esc-${anim.id}`} color={boardHighlight.mateEscape} still={reduced} />}
 
           {c === 0 && (
             <Text style={[styles.rank, { color: labelColor, fontSize: Math.max(9, sq * 0.2) }]}>{8 - br}</Text>
@@ -491,7 +600,12 @@ export function Board({
                 size={sq}
                 dx={offsets[`${br}${bc}`].dc * sq}
                 dy={offsets[`${br}${bc}`].dr * sq}
+                still={reduced}
               />
+            ) : settle?.cell === `${br}${bc}` ? (
+              <SettlingPiece key={`settle-${anim.id}`} type={cell.type} color={cell.color} size={sq} angle={settle.angle} />
+            ) : isMateKing && cell.type === 'k' ? (
+              <FallenKing key={`fall-${anim.id}`} color={cell.color} size={sq} still={reduced} />
             ) : (
               // Mientras se arrastra, en la casilla de origen queda solo una sombra de la pieza.
               <View style={isDragOrigin ? { opacity: 0.3 } : undefined}>
@@ -554,7 +668,7 @@ export function Board({
       {draggedCell && (
         <Animated.View
           pointerEvents="none"
-          style={{ position: 'absolute', left: 0, top: 0, zIndex: 20, transform: dragPos.getTranslateTransform() }}
+          style={{ position: 'absolute', left: 0, top: 0, zIndex: 20, transform: [...dragPos.getTranslateTransform(), { rotate: degrees(dragRot) }] }}
         >
           <Piece type={draggedCell.type} color={draggedCell.color} size={dragSize} />
         </Animated.View>

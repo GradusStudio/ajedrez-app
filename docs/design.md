@@ -95,8 +95,8 @@ Casillas `board-light` y `board-dark`. Valores en `boardHighlight` de `src/theme
 | Pieza seleccionada | `gold` al 60% |
 | Jugada legal sugerida | punto `primary` al 60% |
 | Jaque o error | `danger` al 40% |
-| Rey vencido en jaque mate | `danger` al 75% (aparece con fundido después de la jugada) |
-| Casillas vacías alrededor del rey vencido | `danger` al 30% |
+| Rey vencido en jaque mate | `danger` al 92% (aparece con fundido después de la jugada) |
+| Casillas vacías alrededor del rey vencido | `danger` al 55% |
 | Casilla marcada en una explicación o ejercicio | `gold` al 70% con borde `gold` |
 | Casilla tocada antes de comprobar (`select_squares`) | azul `#4FA3E0` al 70% con borde `#4FA3E0` |
 

@@ -16,8 +16,8 @@ Lo que se vio:
 |---|---|
 | Inclinación al arrastrar | Según la velocidad horizontal del dedo, hasta 12° (`dragTilt`). Vuelve a 0° si el dedo se queda quieto. |
 | Aterrizaje con resorte | La pieza soltada se asienta desde su inclinación con un resorte corto. La pieza que se desliza sola (jugada del bot, de una lección, tocando destino) se inclina 8° hacia donde va y se asienta igual (`slideTilt`). |
-| Rey caído en el mate | El rey vencido cae de costado (90°) al terminar la jugada; su casilla, roja fuerte (`boardHighlight.mate`). |
-| Casillas de escape en el mate | Idea del autor: las casillas vacías alrededor del rey se tiñen de rojo suave (`boardHighlight.mateEscape`) (`mateSquares`). |
+| Rey caído en el mate | El rey vencido cae de costado (90°) al terminar la jugada; su casilla, roja casi llena (`boardHighlight.mate`, 92 %; subido desde 75 % el 9-11-2026 porque se veía pálido). |
+| Casillas de escape en el mate | Idea del autor: las casillas vacías alrededor del rey se tiñen de rojo (`boardHighlight.mateEscape`, 55 %) (`mateSquares`). |
 
 Vale para todo `Board`: lecciones, puzzles, partidas, revisión, análisis libre y quiz. Una posición de mate que se muestra quieta (una explicación) también muestra el rey caído.
 

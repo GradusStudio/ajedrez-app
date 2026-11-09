@@ -65,6 +65,6 @@ export const boardHighlight = {
   pick: 'rgba(79, 163, 224, 0.7)', // casilla tocada por el usuario antes de comprobar
   pickBorder: '#4FA3E0',
   dragOver: 'rgba(255, 255, 255, 0.75)', // casilla bajo la pieza que se arrastra
-  mate: 'rgba(250, 65, 45, 0.75)', // rey vencido en jaque mate
-  mateEscape: 'rgba(250, 65, 45, 0.3)', // casillas vacías alrededor del rey vencido (no puede escapar)
+  mate: 'rgba(250, 65, 45, 0.92)', // rey vencido en jaque mate (casi lleno: tiene que verse sobre cualquier tablero)
+  mateEscape: 'rgba(250, 65, 45, 0.55)', // casillas vacías alrededor del rey vencido (no puede escapar)
 } as const;

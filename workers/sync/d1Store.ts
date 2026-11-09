@@ -19,16 +19,24 @@ export function createD1Store(db: D1Like): ProgressStore {
   return {
     get,
     async put(id, expected, data, now) {
-      // Con expected = 0 y sin fila inserta con version 1; si la fila existe, solo actualiza si la versión coincide
-      // y no está borrada. (Con expected = 0 y fila existente la condición falla: la versión mínima guardada es 1.)
-      const res = await db
-        .prepare(
-          `INSERT INTO progress (id, version, data, deleted, updated_at) VALUES (?1, ?2 + 1, ?3, 0, ?4)
-           ON CONFLICT(id) DO UPDATE SET version = progress.version + 1, data = excluded.data, updated_at = excluded.updated_at
-           WHERE progress.version = ?2 AND progress.deleted = 0`,
-        )
-        .bind(id, expected, data, now)
-        .run();
+      // Solo expected = 0 puede crear la fila (versión 1); si ya existe, no cambia nada. Con expected > 0 solo se
+      // actualiza una fila existente cuya versión coincida y no esté borrada: sin fila no se inventa una (conflicto).
+      const res =
+        expected === 0
+          ? await db
+              .prepare(
+                `INSERT INTO progress (id, version, data, deleted, updated_at) VALUES (?1, 1, ?2, 0, ?3)
+                 ON CONFLICT(id) DO NOTHING`,
+              )
+              .bind(id, data, now)
+              .run()
+          : await db
+              .prepare(
+                `UPDATE progress SET version = version + 1, data = ?3, updated_at = ?4
+                 WHERE id = ?1 AND version = ?2 AND deleted = 0`,
+              )
+              .bind(id, expected, data, now)
+              .run();
       if (res.meta.changes > 0) return 'ok';
       const row = await get(id);
       return row?.deleted ? 'deleted' : 'conflict';

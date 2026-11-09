@@ -125,3 +125,45 @@ test('otra ruta da 404', async () => {
   const res = await handle(new Request('https://sync.graduschess.com/otra', { headers: { Authorization: `Bearer ${KEY}` } }), store);
   assert.equal(res.status, 404);
 });
+
+test('PUT con version mayor que 0 y sin fila da 409, no crea nada', async () => {
+  const { store, rows } = memoryStore();
+  const res = await handle(req('PUT', KEY, { version: 5, data: 'x' }), store);
+  assert.equal(res.status, 409);
+  assert.equal(rows.size, 0);
+});
+
+test('Content-Length mayor que el tope da 413 sin leer el cuerpo', async () => {
+  const { store } = memoryStore();
+  let read = false;
+  const fake = {
+    method: 'PUT',
+    url: URL,
+    headers: new Headers({ Authorization: `Bearer ${KEY}`, 'Content-Length': String(3 * 1024 * 1024) }),
+    json: async () => {
+      read = true;
+      return {};
+    },
+  } as unknown as Request;
+  assert.equal((await handle(fake, store)).status, 413);
+  assert.equal(read, false);
+});
+
+test('un PUT normal con Content-Length razonable sigue funcionando', async () => {
+  const { store } = memoryStore();
+  const withLen = new Request(URL, { method: 'PUT', headers: { Authorization: `Bearer ${KEY}`, 'Content-Length': '30' }, body: JSON.stringify({ version: 0, data: 'hola' }) });
+  assert.equal((await handle(withLen, store)).status, 200);
+  assert.equal((await handle(req('PUT', KEY2, { version: 0, data: 'hola' }), store)).status, 200);
+});
+
+test('si el almacén falla responde 500 con las cabeceras CORS', async () => {
+  const boom = async () => {
+    throw new Error('D1 caído');
+  };
+  const store: ProgressStore = { get: boom, put: boom, remove: boom };
+  for (const m of ['GET', 'PUT', 'DELETE']) {
+    const res = await handle(req(m, KEY, m === 'PUT' ? { version: 0, data: 'x' } : undefined, 'https://graduschess.com'), store);
+    assert.equal(res.status, 500, m);
+    assert.equal(res.headers.get('Access-Control-Allow-Origin'), 'https://graduschess.com', m);
+  }
+});

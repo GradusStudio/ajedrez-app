@@ -12,6 +12,8 @@ export type ProgressStore = {
 
 const KEY_FORMAT = /^[A-Za-z0-9_-]{43}$/;
 const MAX_DATA_BYTES = 512 * 1024;
+// Tope del cuerpo entero (el JSON escapa comillas y suma las claves): se mira el Content-Length antes de leer nada.
+const MAX_BODY_BYTES = 2 * MAX_DATA_BYTES;
 const ALLOWED_ORIGINS = ['https://graduschess.com', 'http://localhost:8081', 'http://localhost:8788'];
 
 function corsHeaders(req: Request): Record<string, string> {
@@ -46,6 +48,21 @@ export async function handle(req: Request, store: ProgressStore, now: () => Date
   if (!match || !KEY_FORMAT.test(match[1])) return reply(400, { error: 'llave inválida' });
   const id = await sha256Hex(match[1]);
 
+  // Un fallo del almacén responde 500 con las cabeceras CORS: sin ellas el navegador lo mostraría como un fallo opaco de red.
+  try {
+    return await route(req, store, id, now, reply);
+  } catch {
+    return reply(500, { error: 'error del servidor' });
+  }
+}
+
+async function route(
+  req: Request,
+  store: ProgressStore,
+  id: string,
+  now: () => Date,
+  reply: (status: number, body?: unknown) => Response
+): Promise<Response> {
   if (req.method === 'GET') {
     const row = await store.get(id);
     if (!row) return reply(404);
@@ -54,6 +71,9 @@ export async function handle(req: Request, store: ProgressStore, now: () => Date
   }
 
   if (req.method === 'PUT') {
+    // Sin leer el cuerpo si ya anuncia de más. Los cuerpos sin Content-Length (chunked) o con uno falso se frenan al medir `data`.
+    const declared = Number(req.headers.get('Content-Length'));
+    if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) return reply(413);
     let body: { version?: unknown; data?: unknown };
     try {
       body = await req.json();

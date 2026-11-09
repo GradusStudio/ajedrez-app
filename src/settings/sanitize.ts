@@ -1,6 +1,7 @@
 // Mezcla lo guardado con los valores por defecto. Módulo puro (sin React Native) para poder probarlo.
 import { Language } from '../i18n/languages';
 import { BoardThemeId, boardThemes } from '../theme';
+import { LEVELS, type Level } from '../puzzles/puzzles';
 
 export type Settings = {
   sound: boolean;
@@ -16,6 +17,12 @@ export type Settings = {
   reminderOffered: boolean;
   /** Ya se mostró la tarjeta de instalar Gradus al terminar una lección (web; no se repite). */
   installOffered: boolean;
+  /** Mostrar el nivel de puzzles propio (oculto, se sigue calculando y la práctica se sigue ajustando). */
+  showPuzzleRating: boolean;
+  /** Práctica de puzzles: dificultad automática según el nivel o elegida a mano. */
+  puzzleMode: 'auto' | 'manual';
+  /** Último nivel elegido a mano (null: el que contiene el nivel de puzzles). */
+  puzzleLevel: Level | null;
 };
 
 export const defaultSettings: Settings = {
@@ -27,6 +34,9 @@ export const defaultSettings: Settings = {
   reminder: { enabled: false, hour: 19 },
   reminderOffered: false,
   installOffered: false,
+  showPuzzleRating: true,
+  puzzleMode: 'auto',
+  puzzleLevel: null,
 };
 
 const LANGUAGES = ['auto', 'es', 'en', 'de', 'it', 'fr'];
@@ -46,6 +56,9 @@ export function sanitizeSettings(raw: Partial<Settings>): Settings {
     vibration: bool(r.vibration, d.vibration),
     reminderOffered: bool(r.reminderOffered, d.reminderOffered),
     installOffered: bool(r.installOffered, d.installOffered),
+    showPuzzleRating: bool(r.showPuzzleRating, d.showPuzzleRating),
+    puzzleMode: r.puzzleMode === 'manual' ? 'manual' : 'auto',
+    puzzleLevel: typeof r.puzzleLevel === 'string' && Object.hasOwn(LEVELS, r.puzzleLevel) ? (r.puzzleLevel as Level) : null,
     reminder: {
       enabled: bool(rr.enabled, d.reminder.enabled),
       hour: Number.isInteger(rr.hour) && (rr.hour as number) >= 0 && (rr.hour as number) <= 23 ? (rr.hour as number) : d.reminder.hour,

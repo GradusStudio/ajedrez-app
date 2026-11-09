@@ -60,3 +60,21 @@ test('un recordatorio guardado que no es objeto usa el de por defecto', () => {
   assert.deepEqual(sanitizeSettings({ reminder: 'x' as never }).reminder, { enabled: false, hour: 19 });
   assert.deepEqual(sanitizeSettings({ reminder: null as never }).reminder, { enabled: false, hour: 19 });
 });
+
+test('nivel de puzzles: valores por defecto', () => {
+  const s = sanitizeSettings({});
+  assert.equal(s.showPuzzleRating, true);
+  assert.equal(s.puzzleMode, 'auto');
+  assert.equal(s.puzzleLevel, null);
+});
+
+test('nivel de puzzles: valores inválidos vuelven al defecto y un nivel válido se conserva', () => {
+  const bad = sanitizeSettings({ showPuzzleRating: 'x', puzzleMode: 'otro', puzzleLevel: 'imposible' } as never);
+  assert.equal(bad.showPuzzleRating, true);
+  assert.equal(bad.puzzleMode, 'auto');
+  assert.equal(bad.puzzleLevel, null);
+  const ok = sanitizeSettings({ showPuzzleRating: false, puzzleMode: 'manual', puzzleLevel: 'experto' });
+  assert.equal(ok.showPuzzleRating, false);
+  assert.equal(ok.puzzleMode, 'manual');
+  assert.equal(ok.puzzleLevel, 'experto');
+});

@@ -96,10 +96,16 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
       </Pressable>
       <Text style={styles.title}>{t('settings.title')}</Text>
 
-      {/* Práctica: el recordatorio solo existe en el celular */}
+      {/* Práctica: el nivel de puzzles en las dos plataformas; el recordatorio solo existe en el celular */}
+      <Text style={styles.section}>{t('settings.practice')}</Text>
+      <SettingRow
+        label={t('settings.showPuzzleRating')}
+        description={t('settings.showPuzzleRating.description')}
+        value={settings.showPuzzleRating}
+        onValueChange={(v) => update({ showPuzzleRating: v })}
+      />
       {REMINDERS_SUPPORTED && (
         <>
-          <Text style={styles.section}>{t('settings.practice')}</Text>
           <SettingRow
             label={t('settings.reminder')}
             description={settings.reminder.enabled ? t('settings.reminder.on', { hour: settings.reminder.hour }) : t('settings.reminder.off')}

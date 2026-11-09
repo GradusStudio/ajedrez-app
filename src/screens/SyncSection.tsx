@@ -16,11 +16,12 @@ export function SyncSection() {
   const sync = useDriveSync();
   // La ventana de Google no se abrió o se cerró (no se distingue un bloqueo de un cierre): se avisa en lugar de no hacer nada.
   const [popupFailed, setPopupFailed] = useState(false);
-  const { supported, enabled, prepare } = sync;
-  // Sin activar, al mostrar la sección se baja el script de Google para que la ventana se abra dentro del toque.
+  const { supported, prepare } = sync;
+  // Al mostrar la sección se baja el script de Google (también con la sincronización activa, para «Borrar mis datos»):
+  // si se descargara dentro del toque, Safari bloquearía la ventana. Quien nunca abre Ajustes no carga nada de Google.
   useEffect(() => {
-    if (supported && !enabled) prepare();
-  }, [supported, enabled, prepare]);
+    if (supported) prepare();
+  }, [supported, prepare]);
   if (!sync.supported) return null;
 
   const problem = sync.status === 'revoked' || sync.status === 'corrupt' || sync.status === 'tooNew' || sync.status === 'error';
@@ -52,7 +53,8 @@ export function SyncSection() {
       {showStatus && (
         // aria-live: el lector de pantalla avisa cuando cambia el estado sin que la persona lo busque.
         <Text accessibilityRole="text" aria-live="polite" style={[styles.status, problem && styles.statusProblem]}>
-          {t(`sync.status.${sync.status}` as MessageKey)}
+          {/* Sin activar, un 'error' es una activación fallida: no hay nada que se reintente solo. */}
+          {t(!sync.enabled && sync.status === 'error' ? 'sync.enable.failed' : (`sync.status.${sync.status}` as MessageKey))}
         </Text>
       )}
       {popupFailed && (

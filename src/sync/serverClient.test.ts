@@ -113,3 +113,21 @@ test('cuerpo que falla al leerse a mitad de la respuesta lanza offline', async (
   const { client } = make([res]);
   await failsWith(client.read(), 'offline');
 });
+
+test('deleteProgress manda DELETE con Bearer y acepta 204 y 410', async () => {
+  const { client, calls } = make([new Response(null, { status: 204 }), new Response(null, { status: 410 })]);
+  await client.deleteProgress();
+  await client.deleteProgress();
+  assert.equal(calls[0].method, 'DELETE');
+  assert.equal(calls[0].url, 'https://sync.test/v1/progress');
+  assert.equal(calls[0].headers.Authorization, 'Bearer LLAVE');
+});
+
+test('deleteProgress sin red lanza offline, con 500 other y sin llave revoked', async () => {
+  const a = make([new TypeError('Failed to fetch')]);
+  await failsWith(a.client.deleteProgress(), 'offline');
+  const b = make([new Response(null, { status: 500 })]);
+  await failsWith(b.client.deleteProgress(), 'other');
+  const c = make([], null);
+  await failsWith(c.client.deleteProgress(), 'revoked');
+});

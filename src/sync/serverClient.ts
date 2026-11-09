@@ -29,7 +29,10 @@ async function readJson(res: Response): Promise<Record<string, unknown>> {
 
 const isVersion = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v) && v >= 0;
 
-export function createServerClient({ fetch: doFetch, baseUrl, getKey }: Deps): SyncClient {
+/** El cliente de sincronización más el borrado de todo lo guardado con la llave (lo usa Ajustes > Borrar mis datos). */
+export type ServerClient = SyncClient & { deleteProgress: () => Promise<void> };
+
+export function createServerClient({ fetch: doFetch, baseUrl, getKey }: Deps): ServerClient {
   async function call(init: RequestInit = {}): Promise<Response> {
     const key = getKey();
     if (!key) throw new SyncError('revoked');
@@ -45,6 +48,13 @@ export function createServerClient({ fetch: doFetch, baseUrl, getKey }: Deps): S
   }
 
   return {
+    /** Borra el progreso del servidor. 204 es lo normal; 410 (ya borrado) deja todo como se quería. */
+    async deleteProgress() {
+      const res = await call({ method: 'DELETE' });
+      if (res.status === 410) return;
+      if (!res.ok) throw new SyncError('other', `Servidor respondió ${res.status}`);
+    },
+
     async read() {
       const res = await call();
       if (res.status === 404) return null;

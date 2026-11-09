@@ -4,6 +4,7 @@ import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { isPuzzleSolved } from '../progress/progressStore';
+import { currentRating } from '../progress/puzzleRating';
 import { Level, LEVELS, PRACTICE_THEMES, Puzzle, themeName } from '../puzzles/puzzles';
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
 import { PuzzleSource } from '../puzzles/source';
@@ -13,6 +14,7 @@ import { colors } from '../theme';
 
 /**
  * Un puzzle. Parámetros: modo (dia | practica), id (puzzle del día), nivel y tema (práctica).
+ * En práctica, `nivel` ausente o `auto` es la dificultad automática: puzzles cerca del nivel de puzzles.
  * En práctica, "Siguiente puzzle" cambia el puzzle dentro de esta misma pantalla
  * (sin navegar: así no aparece un fondo blanco entre uno y otro).
  */
@@ -29,7 +31,8 @@ function PuzzleLoaded({ source }: { source: PuzzleSource }) {
   const { progress } = useProgress();
   const { t } = useI18n();
   const practice = params.modo === 'practica';
-  const level: Level = params.nivel && params.nivel in LEVELS ? (params.nivel as Level) : 'facil';
+  // Un nivel válido elige la dificultad a mano; si no (`auto`, ausente o inventado), Automático.
+  const level: Level | null = params.nivel && params.nivel in LEVELS ? (params.nivel as Level) : null;
   // Un tema que no existe (un enlace escrito a mano) se ignora en vez de dejar la práctica vacía.
   const theme = params.tema && PRACTICE_THEMES.includes(params.tema) ? params.tema : null;
   // El progreso más reciente, para que «Siguiente» no vuelva a dar el puzzle recién resuelto.
@@ -54,14 +57,18 @@ function PuzzleLoaded({ source }: { source: PuzzleSource }) {
       ),
     []
   );
-  const next = useCallback(
-    () => show(source.next(level, theme, (id) => isPuzzleSolved(progressRef.current, id), seen.current)),
-    [show, source, level, theme]
-  );
+  /** Siguiente de práctica: a mano, del nivel elegido; en Automático, cerca del nivel de puzzles ya actualizado. */
+  const request = useCallback(() => {
+    const solved = (id: string) => isPuzzleSolved(progressRef.current, id);
+    return level
+      ? source.next(level, theme, solved, seen.current)
+      : source.nextNear(currentRating(progressRef.current), theme, solved, seen.current);
+  }, [source, level, theme]);
+  const next = useCallback(() => show(request()), [show, request]);
 
   useEffect(() => {
     // El primero: el pedido por id (puzzle del día) o uno de práctica.
-    show(byId.current ? source.byId(byId.current) : source.next(level, theme, (id) => isPuzzleSolved(progressRef.current, id), seen.current));
+    show(byId.current ? source.byId(byId.current) : request());
     // Solo al montar y al reintentar: «Siguiente» llama a `next` directamente.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attempt]);
@@ -77,7 +84,7 @@ function PuzzleLoaded({ source }: { source: PuzzleSource }) {
   }
 
   const label = practice
-    ? [t('puzzles.practice'), t(`puzzles.level.${level}`), theme ? themeName(theme, t) : null].filter(Boolean).join(' · ')
+    ? [t('puzzles.practice'), level ? t(`puzzles.level.${level}`) : t('puzzles.mode.auto'), theme ? themeName(theme, t) : null].filter(Boolean).join(' · ')
     : t('puzzles.daily');
 
   return (

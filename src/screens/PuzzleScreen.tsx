@@ -10,6 +10,8 @@ import { useFeedback } from '../feedback/feedback';
 import { useI18n } from '../i18n/I18nContext';
 import { Earned, useProgress } from '../progress/ProgressContext';
 import { PuzzleResult } from '../progress/progressStore';
+import { currentRating, formatDelta } from '../progress/puzzleRating';
+import { useSettings } from '../settings/SettingsContext';
 import { displayThemes, Puzzle, puzzleGoal, userColor } from '../puzzles/puzzles';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
@@ -40,7 +42,8 @@ const toSquares = (uci: string): SquareMove => ({ from: uci.slice(0, 2) as Squar
 
 // Puzzle de Lichess: el rival hace la primera jugada y el usuario busca la solución (mapa-de-pantallas.md, 2.8).
 export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
-  const { finishPuzzle } = useProgress();
+  const { finishPuzzle, failPuzzle, progress } = useProgress();
+  const { settings } = useSettings();
   const { t, tn } = useI18n();
   const feedback = useFeedback();
   const [chess] = useState(() => new Chess(puzzle.fen));
@@ -61,6 +64,9 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   const finished = useRef(false);
   // «Reintentar» deshace una sola jugada aunque se toque dos veces antes de que la pantalla se redibuje.
   const hasWrongMove = useRef(false);
+  // El fallo se cobra en el nivel una sola vez: con el primer error, la pista o «Ver solución» (spec del nivel).
+  const charged = useRef(false);
+  const [failDelta, setFailDelta] = useState<number | null>(null);
 
   const me = userColor(puzzle);
   const moves = puzzle.moves;
@@ -106,6 +112,13 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
     setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS), puzzle.rating));
   };
 
+  /** Baja el nivel de puzzles ahora, aunque después se salga sin terminar. */
+  const chargeFail = () => {
+    if (charged.current || finished.current) return;
+    charged.current = true;
+    setFailDelta(failPuzzle(puzzle.id, puzzle.rating));
+  };
+
   const handleMove = (m: BoardMove) => {
     if (!expected || wrongMove) return;
     // Como en Lichess: cualquier jugada que dé mate también resuelve el puzzle.
@@ -128,6 +141,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
     if (!correct) {
       // La jugada queda en el tablero; "Reintentar" la deshace.
       feedback.wrong();
+      chargeFail();
       setErrors((e) => e + 1);
       hasWrongMove.current = true;
       setWrongMove({ from: m.from, to: m.to });
@@ -153,11 +167,13 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   };
 
   const hint = () => {
+    chargeFail();
     setHintUsed(true);
     setShowHint(true);
   };
 
   const showSolution = () => {
+    chargeFail();
     setShowHint(false);
     finish('failed');
     for (let i = ply, step = 1; i < moves.length; i++, step++) {
@@ -168,6 +184,13 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
 
   const side = me === 'w' ? t('common.whiteToMove') : t('common.blackToMove');
   const done = status !== 'playing';
+
+  /** «Nivel 1340 (+8)» si el nivel está visible y este puzzle lo movió (al terminar o con el fallo cobrado antes). */
+  const ratingMessage = () => {
+    const delta = earned?.rating?.delta ?? failDelta;
+    if (!settings.showPuzzleRating || delta === null || delta === undefined) return [];
+    return [t('puzzles.ratingChange', { rating: currentRating(progress), delta: formatDelta(delta) })];
+  };
 
   /** Frases de las monedas ganadas, para sumar al mensaje del panel. */
   const coinsMessage = (e: Earned | null) =>
@@ -243,6 +266,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
           message={[
             errors === 0 && !hintUsed ? t('puzzles.solvedClean') : errors > 0 ? tn('puzzles.solvedErrors', errors) : t('puzzles.solvedHint'),
             ...coinsMessage(earned),
+            ...ratingMessage(),
           ].join(' ')}
           buttonLabel={onNext ? t('puzzles.next') : t('common.continue')}
           onButton={onNext ?? onExit}
@@ -253,7 +277,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
         <FeedbackPanel
           kind="neutral"
           title={t('puzzles.solution')}
-          message={[t('puzzles.solutionMessage'), ...coinsMessage(earned)].join(' ')}
+          message={[t('puzzles.solutionMessage'), ...coinsMessage(earned), ...ratingMessage()].join(' ')}
           buttonLabel={onNext ? t('puzzles.next') : t('common.continue')}
           onButton={onNext ?? onExit}
           contentWidth={contentWidth}

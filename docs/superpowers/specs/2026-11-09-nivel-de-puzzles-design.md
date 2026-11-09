@@ -81,6 +81,22 @@ Para cada puzzle: un objetivo `nivel + azar entre −100 y +100` (variedad, y qu
 
 **Textos**: todos nuevos en los cinco idiomas, de/it/fr con gemma4 vía Ollama revisando términos y puntuación (memoria del proyecto). Sin exclamaciones (design.md).
 
+### Diseño visual (antislop, modo «durante»)
+
+Dirección: `docs/design.md`. Nada de esto inventa estilo nuevo: la pantalla ya existe y se extiende con sus mismos componentes.
+
+> Lectura: ampliación de una pantalla existente (Puzzles › Práctica) para quien aprende ajedrez, en el lenguaje de Gradus (oscuro verde, botones 3D, Nunito). Diales: ENERGÍA 2 / RITMO 1 / MOVIMIENTO 1.
+
+- **Diales:** ENERGÍA 2 porque la app ya tiene el tono de Duolingo y esto no debe destacar más que el puzzle del día; RITMO 1 porque es una sección más de una lista de ajustes y tiene que parecerse a las otras; MOVIMIENTO 1 porque no se suma ninguna animación nueva (solo los estados de presionado de siempre).
+- **Botones «Automático» / «Elegir dificultad»:** el selector de dos opciones de design.md (§5, el de Blancas/Negras y Dificultad). Motivo: es exactamente una elección entre dos modos, y así se lee igual que el selector de nivel de abajo. En alemán y francés el texto se achica para entrar en una línea, nunca se corta (design.md §7).
+- **Recuadro del nivel:** tarjeta `surface` con borde 2px `surface-raised` y borde inferior 4px `surface-shadow` (la tarjeta de design.md), sin sombras difusas. «Tu nivel de puzzles:» en cuerpo (14px, 700, `text-muted`) y el número en 20px, 800, color `gold`. Motivo del dorado: design.md lo reserva para «rachas, puntos, logros», y el nivel es un logro; es el único acento de la sección (el verde ya marca la opción elegida). Contraste: dorado `#F7C631` sobre `#302E2B` supera 4,5:1.
+- **Cambio de nivel al terminar:** una línea más en el panel del resultado, «Nivel 1340 (+8)» o «Nivel 1322 (−18)», con el mismo color de texto que el resto del panel (blanco sobre el verde de «Resuelto»: 7,8:1). El signo dice si subió o bajó; no se usa color. Motivo: el verde `primary` sobre el panel verde da 3,2:1 y `text-muted` 4,4:1, los dos por debajo de 4,5:1; y el rojo para una bajada repetiría el castigo que el usuario quiere evitar para quien se frustra con su nivel. Se usa el signo menos (−), no un guion largo.
+- **Accesibilidad:** los dos botones son `radio` con estado elegido (como el selector de nivel de hoy); el recuadro se lee como un solo texto («Tu nivel de puzzles: 1340»); la fila de Ajustes es la `SettingRow` con interruptor de siempre, con nombre accesible. Toques de 44px como mínimo. En la web, foco visible y uso con teclado como el resto de los botones de la pantalla.
+- **Estados:** el nivel sale del progreso guardado, que ya está cargado cuando se dibuja la pestaña (no hay estado de carga propio). Sin puzzles con nivel todavía: se muestra el nivel inicial, sin texto extra. Los estados de carga y error de los puzzles (`PuzzlesStatus`) no cambian.
+- **Sin recursos nuevos:** no se crean íconos, imágenes ni ilustraciones.
+- **Celular:** a 375px los dos botones entran en una fila (ya entran los cuatro niveles); el recuadro ocupa el ancho de la columna.
+- **Antes de entregar:** compuerta de entrega de antislop con la prueba en el navegador (web compilada, 375px y escritorio) y el recorrido de cada control: Automático, Elegir dificultad, cada nivel, el interruptor de Ajustes, Practicar y Siguiente puzzle.
+
 ## 6. Dónde se guarda
 
 - **Nivel** en el progreso (`progress.puzzleRating = { rating, rated, at }`: valor, cuántos puzzles lo movieron y fecha del último cambio). Es un campo opcional: si no está, se usa el nivel inicial de la bienvenida. No hace falta subir la versión del progreso (sigue siendo la 4) si el campo es opcional y `migrate`/`merge` lo aceptan.

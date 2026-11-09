@@ -151,3 +151,33 @@ export function createSyncEngine(deps: Deps) {
 
   return { syncNow, requestSync, resume, idle, isPaused: () => paused };
 }
+
+// Tipos del servidor de sincronización propio (`serverClient.ts`). El motor se reescribe sobre ellos en la tarea 3;
+// hasta entonces `DriveError` sigue siendo lo que usan el cliente de Drive y el motor actual.
+
+/** Por qué falló una llamada al servidor de sincronización. */
+export type SyncErrorKind = 'offline' | 'revoked' | 'tooLarge' | 'other';
+
+export class SyncError extends Error {
+  constructor(
+    readonly kind: SyncErrorKind,
+    message?: string
+  ) {
+    super(message ?? `Sync: ${kind}`);
+    this.name = 'SyncError';
+  }
+}
+
+/** Otro dispositivo guardó antes: trae la versión y el texto que hay en el servidor. */
+export class SyncConflict extends Error {
+  constructor(readonly remote: { version: number; text: string }) {
+    super('Sync: conflicto de versión');
+    this.name = 'SyncConflict';
+  }
+}
+
+/** El progreso en el servidor. `read` devuelve null si todavía no hay nada; `write` devuelve la versión nueva. */
+export type SyncClient = {
+  read: () => Promise<{ version: number; text: string } | null>;
+  write: (text: string, expected: number) => Promise<number>;
+};

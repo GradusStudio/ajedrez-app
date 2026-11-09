@@ -160,3 +160,21 @@ test('fileName con comilla simple y barra se escapa en la búsqueda', async () =
   await drive.read();
   assert.equal(new URL(calls[0].url).searchParams.get('q'), "name='a\\'b\\\\c.json' and trashed=false");
 });
+
+test('con dos archivos, busca ordenado por creación y lee el primero (el más antiguo)', async () => {
+  const { drive, calls } = client([json({ files: [{ id: 'VIEJO' }] }), text('del viejo')]);
+  assert.equal(await drive.read(), 'del viejo');
+  assert.equal(new URL(calls[0].url).searchParams.get('orderBy'), 'createdTime');
+  assert.equal(new URL(calls[0].url).searchParams.get('pageSize'), '1');
+  assert.match(calls[1].url, /files\/VIEJO\?alt=media/);
+});
+
+test('después de crear, el siguiente read busca de nuevo en vez de usar el id guardado', async () => {
+  const { drive, calls } = client([json({ files: [] }), json({ id: 'MIO' }), json({ files: [{ id: 'VIEJO' }] }), text('x')]);
+  await drive.write('mio');
+  await drive.read();
+  assert.equal(calls.length, 4);
+  assert.equal(calls[2].method, 'GET');
+  assert.match(calls[2].url, /spaces=appDataFolder/);
+  assert.match(calls[3].url, /files\/VIEJO\?alt=media/);
+});

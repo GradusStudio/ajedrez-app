@@ -77,3 +77,21 @@ test('newSyncKey con bytes fijos: ceros dan 43 A y 0xFB/0xFF dan - y _', () => {
   });
   assert.equal(k.slice(0, 3), '-_8');
 });
+
+test('si la relectura tras escribir lanza, devuelve la llave generada', async () => {
+  let reads = 0;
+  const file: DriveFile = {
+    read: async () => {
+      if (reads++ === 0) return null;
+      throw new Error('red caída');
+    },
+    write: async () => {},
+    remove: async () => {},
+  };
+  assert.equal(await fetchOrCreateKey(file, () => 'B'.repeat(43)), 'B'.repeat(43));
+});
+
+test('si la relectura tras escribir da null, devuelve la llave generada', async () => {
+  const file: DriveFile = { read: async () => null, write: async () => {}, remove: async () => {} };
+  assert.equal(await fetchOrCreateKey(file, () => 'B'.repeat(43)), 'B'.repeat(43));
+});

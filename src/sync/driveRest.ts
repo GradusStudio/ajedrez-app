@@ -64,8 +64,9 @@ export function createDriveRestClient({ fetch: doFetch, getToken, fileName }: De
   async function find(): Promise<string | null> {
     if (fileId) return fileId;
     const escaped = fileName.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    // El más antiguo: si dos dispositivos crearon el archivo a la vez, todos convergen en el mismo.
     const q = `name='${escaped}' and trashed=false`;
-    const url = `${FILES_URL}?spaces=appDataFolder&q=${encodeURIComponent(q)}&fields=${encodeURIComponent('files(id)')}&pageSize=1`;
+    const url = `${FILES_URL}?spaces=appDataFolder&q=${encodeURIComponent(q)}&fields=${encodeURIComponent('files(id)')}&orderBy=createdTime&pageSize=1`;
     const res = await call(url);
     if (!res.ok) throw await toError(res);
     const data = (await res.json()) as { files?: { id: string }[] };
@@ -85,7 +86,9 @@ export function createDriveRestClient({ fetch: doFetch, getToken, fileName }: De
       body,
     });
     if (!res.ok) throw await toError(res);
-    fileId = ((await res.json()) as { id?: string }).id ?? null;
+    // No se recuerda el id recién creado: la próxima vez se busca y se elige el más antiguo.
+    await res.body?.cancel?.().catch(() => {});
+    fileId = null;
   }
 
   const api: DriveFile = {

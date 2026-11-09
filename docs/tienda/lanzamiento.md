@@ -28,7 +28,7 @@ Estado al 3-11-2026. Textos de la ficha en `ficha.md`; política de privacidad e
 - **Categoría**: Educación (alternativa: Juegos de mesa). **Etiquetas**: educación, ajedrez.
 - **Clasificación de contenido (IARC)**: sin violencia, sin contenido sexual, sin lenguaje fuerte, sin drogas, sin apuestas, sin compras, sin contenido generado por usuarios, sin ubicación compartida. Resultado esperado: apto para todo público.
 - **Público objetivo**: 13 años o más (evita las reglas extra de «Diseñada para familias»; la app no pide datos de nadie).
-- **Seguridad de los datos**: no recopila ni comparte datos. Una sola salida a internet: el nombre de usuario que el usuario escribe para importar una partida de chess.com o Lichess va directo a ese servicio (no a Gradus Studio). Datos cifrados en tránsito: sí (HTTPS). Se puede pedir borrar datos: no hay datos en un servidor; se borran desinstalando.
+- **Seguridad de los datos**: no recopila ni comparte datos en la versión Android (la web tiene sincronización opcional con llave al azar; ver `privacy.*` en `src/i18n/`). Una sola salida a internet: el nombre de usuario que el usuario escribe para importar una partida de chess.com o Lichess va directo a ese servicio (no a Gradus Studio). Datos cifrados en tránsito: sí (HTTPS). Se puede pedir borrar datos: no hay datos en un servidor; se borran desinstalando.
 - **Anuncios**: no. **Aplicación de noticias**: no. **Gobierno / salud / finanzas**: no.
 - **ID de publicidad**: la app no lo usa.
 - **Permisos**: notificaciones (recordatorio local), vibración, internet. Al subir el primer `.aab`, Play Console muestra los permisos del manifiesto: comprobar que coincidan.

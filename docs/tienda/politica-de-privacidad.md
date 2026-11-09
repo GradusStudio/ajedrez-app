@@ -10,7 +10,7 @@ Este texto describe lo que hace la app hoy (comprobado en el código el 3-11-202
 
 **Gradus Chess: aprende ajedrez** — publicada por Gradus Studio. Última actualización: 4 de noviembre de 2026.
 
-**Resumen:** Gradus no tiene cuentas, no tiene anuncios, no usa herramientas de estadísticas y no recopila ningún dato personal. Todo lo que guarda se queda en tu teléfono.
+**Resumen:** Gradus no tiene cuentas, no tiene anuncios, no usa herramientas de estadísticas y no te pide tu nombre ni tu correo. Todo lo que guarda se queda en tu teléfono (en la versión web, salvo la sincronización opcional: ver la política vigente).
 
 ### Qué se guarda en tu teléfono
 Tu progreso (lecciones, racha, monedas, puzzles resueltos), tus ajustes (sonido, vibración, idioma, tablero, piezas, recordatorio) y los avisos que elijas. Se guarda solo en el almacenamiento de la app, en tu dispositivo. No lo recibimos ni lo vemos. Si desinstalas la app o borras sus datos, se pierde.
@@ -24,10 +24,10 @@ Una sola función usa internet: **importar una partida de chess.com o Lichess**.
 - **Internet:** para la función de importar partidas.
 
 ### Menores
-Gradus no pide edad ni datos a nadie y no recopila información de ningún usuario, tampoco de menores.
+Gradus no pide edad ni datos a nadie y no pide datos personales ni siquiera a menores; sin la sincronización opcional de la versión web, nada sale del dispositivo.
 
 ### Tus derechos
-Como no recopilamos datos personales, no hay datos nuestros para acceder, corregir o borrar. Puedes borrar todo lo guardado desde los ajustes de Android (Almacenamiento > Borrar datos) o desinstalando la app.
+Como en esta versión no recopilamos datos personales, no hay datos nuestros para acceder, corregir o borrar. Puedes borrar todo lo guardado desde los ajustes de Android (Almacenamiento > Borrar datos) o desinstalando la app.
 
 ### Software libre
 Gradus es software libre (GPL v3 o posterior): puedes revisar en el código fuente que esto es lo que hace la app.
@@ -41,7 +41,7 @@ Si esta política cambia, se actualiza en esta misma dirección con una nueva fe
 
 **Gradus Chess: learn chess** — published by Gradus Studio. Last updated: November 4, 2026.
 
-**Summary:** Gradus has no accounts, no ads, no analytics tools and collects no personal data. Everything it stores stays on your phone.
+**Summary:** Gradus has no accounts, no ads, no analytics tools and does not ask for your name or email. Everything it stores stays on your phone (on the web version, except the optional sync: see the current policy).
 
 ### What is stored on your phone
 Your progress (lessons, streak, coins, solved puzzles), your settings (sound, vibration, language, board, pieces, reminder) and the reminders you choose. It is stored only in the app's storage on your device. We do not receive or see it. If you uninstall the app or clear its data, it is lost.
@@ -55,10 +55,10 @@ Only one feature uses the internet: **importing a game from chess.com or Lichess
 - **Internet:** for the game import feature.
 
 ### Children
-Gradus does not ask anyone's age or personal data and collects no information from any user, including children.
+Gradus does not ask anyone's age or personal data and asks no one for personal data, children included; without the web version's optional sync, nothing leaves the device.
 
 ### Your rights
-Since we do not collect personal data, there is no data of ours to access, correct or delete. You can erase everything stored from Android settings (Storage > Clear data) or by uninstalling the app.
+Since this version does not collect personal data, there is no data of ours to access, correct or delete. You can erase everything stored from Android settings (Storage > Clear data) or by uninstalling the app.
 
 ### Free software
 Gradus is free software (GPL v3 or later): you can check in the source code that this is what the app does.

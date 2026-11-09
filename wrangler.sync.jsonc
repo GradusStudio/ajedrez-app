@@ -12,6 +12,6 @@
   "routes": [{ "pattern": "sync.graduschess.com", "custom_domain": true }],
   "workers_dev": false,
   "d1_databases": [
-    { "binding": "DB", "database_name": "gradus-sync", "database_id": "PEGAR_AQUI_EL_DATABASE_ID" }
+    { "binding": "DB", "database_name": "gradus-sync", "database_id": "79939dd3-fd74-4724-b393-a82eda310794" }
   ]
 }

@@ -28,7 +28,7 @@ type Current = { status: 'loading' } | { status: 'error'; offline: boolean } | {
 
 function PuzzleLoaded({ source }: { source: PuzzleSource }) {
   const params = useLocalSearchParams<{ modo?: string; id?: string; nivel?: string; tema?: string }>();
-  const { progress } = useProgress();
+  const { progress, openPuzzle } = useProgress();
   const { t } = useI18n();
   const practice = params.modo === 'practica';
   // Un nivel válido elige la dificultad a mano; si no (`auto`, ausente o inventado), Automático.
@@ -46,29 +46,32 @@ function PuzzleLoaded({ source }: { source: PuzzleSource }) {
   const byId = useRef(params.id);
 
   const show = useCallback(
-    (request: Promise<Puzzle | undefined>) =>
+    (request: Promise<Puzzle | undefined>, track = false) =>
       request.then(
         (puzzle) => {
           if (!puzzle) return setCurrent({ status: 'missing' });
           seen.current.add(puzzle.id);
+          // Solo la práctica: el puzzle del día es siempre el mismo y no se salta.
+          if (track) openPuzzle(puzzle.id);
           setCurrent({ status: 'ready', puzzle });
         },
         (e) => setCurrent({ status: 'error', offline: isOfflineError(e) })
       ),
-    []
+    [openPuzzle]
   );
   /** Siguiente de práctica: a mano, del nivel elegido; en Automático, cerca del nivel de puzzles ya actualizado. */
   const request = useCallback(() => {
     const solved = (id: string) => isPuzzleSolved(progressRef.current, id);
-    return level
-      ? source.next(level, theme, solved, seen.current)
-      : source.nextNear(currentRating(progressRef.current), theme, solved, seen.current);
+    // Se arma en cada pedido: lo visto en esta pantalla más los puzzles abiertos y abandonados (también en otro dispositivo).
+    const skip: ReadonlySet<string> = new Set([...seen.current, ...(progressRef.current.puzzlesOpened ?? [])]);
+    return level ? source.next(level, theme, solved, skip) : source.nextNear(currentRating(progressRef.current), theme, solved, skip);
   }, [source, level, theme]);
-  const next = useCallback(() => show(request()), [show, request]);
+  const next = useCallback(() => show(request(), true), [show, request]);
 
   useEffect(() => {
     // El primero: el pedido por id (puzzle del día) o uno de práctica.
-    show(byId.current ? source.byId(byId.current) : request());
+    if (byId.current) show(source.byId(byId.current));
+    else show(request(), true);
     // Solo al montar y al reintentar: «Siguiente» llama a `next` directamente.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attempt]);

@@ -11,6 +11,7 @@ import {
   withBoardThemeBought,
   withLastUnit,
   withOngoingGame,
+  withPuzzleOpened,
   type OngoingGame,
   withLessonFinished,
   withPieceSetBought,
@@ -472,4 +473,21 @@ test('structure: ongoingGame con moves que no es lista (u otro campo roto) se de
 
 test('migrate conserva la partida en curso', () => {
   assert.deepEqual(migrate(v4({ ongoingGame: enCurso }) as never, 'dev1').ongoingGame, enCurso);
+});
+
+// ---------- Puzzles abiertos sin terminar ----------
+
+test('withPuzzleOpened lo pone primero sin repetir', () => {
+  let p = withPuzzleOpened(v4(), 'a');
+  p = withPuzzleOpened(p, 'b');
+  p = withPuzzleOpened(p, 'a');
+  assert.deepEqual(p.puzzlesOpened, ['a', 'b']);
+});
+
+test('withPuzzleOpened guarda como mucho 200, los más recientes', () => {
+  let p = v4();
+  for (let i = 0; i < 205; i++) p = withPuzzleOpened(p, `p${i}`);
+  assert.equal(p.puzzlesOpened?.length, 200);
+  assert.equal(p.puzzlesOpened?.[0], 'p204');
+  assert.equal(p.puzzlesOpened?.[199], 'p5');
 });

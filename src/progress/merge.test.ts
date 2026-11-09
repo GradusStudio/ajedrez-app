@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mergeImport, mergeProgress } from './merge';
-import { coinBalance, emptyProgress, withBoardThemeBought, withOngoingGame, withReset, type GameRecord, type Progress } from './progressStore';
+import { coinBalance, emptyProgress, withBoardThemeBought, withOngoingGame, withPuzzleOpened, withReset, type GameRecord, type Progress } from './progressStore';
 
 /** Progreso versión 4 de ejemplo; `coins` siempre sale del libro de monedas. */
 function make(over: Partial<Progress> = {}): Progress {
@@ -544,4 +544,21 @@ test('merge: quitarla después le gana a una vieja; una nueva después de quitar
   const nueva = withOngoingGame(quitada, juego(['d2d4']), new Date('2026-11-09T10:09:00.000Z'));
   assert.deepEqual(mergeProgress(quitada, nueva).ongoingGame?.moves, ['d2d4']);
   assert.deepEqual(mergeProgress(m, m), m);
+});
+
+test('merge: puzzlesOpened une, respeta el tope y quita los ya terminados', () => {
+  const a = make({ puzzles: { r: { result: 'clean', at: '2026-11-09T10:00:00.000Z' } } });
+  const b = make({ deviceId: 'B' });
+  const conA = withPuzzleOpened(withPuzzleOpened(a, 'x'), 'y');
+  const conB = withPuzzleOpened(withPuzzleOpened(b, 'z'), 'r'); // 'r' se resolvió en el otro dispositivo
+  const m = mergeProgress(conA, conB);
+  assert.deepEqual(m.puzzlesOpened, ['x', 'y', 'z']);
+  assert.deepEqual(mergeProgress(conB, conA).puzzlesOpened, ['x', 'y', 'z']);
+  assert.deepEqual(mergeProgress(m, m), m);
+  let grande = make();
+  for (let i = 0; i < 150; i++) grande = withPuzzleOpened(grande, `a${i}`);
+  let otro = make({ deviceId: 'B' });
+  for (let i = 0; i < 150; i++) otro = withPuzzleOpened(otro, `b${i}`);
+  assert.equal(mergeProgress(grande, otro).puzzlesOpened?.length, 200);
+  assert.equal('puzzlesOpened' in mergeProgress(make(), make({ deviceId: 'B' })), false);
 });

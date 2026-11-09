@@ -83,7 +83,12 @@ export type Progress = {
   puzzleRating?: PuzzleRating;
   /** Partida contra un bot sin terminar, para seguirla desde otro dispositivo. Se agregó sin subir la versión: si falta, no hay partida. Su fecha va en `stamps.ongoingGame`. */
   ongoingGame?: OngoingGame;
+  /** Puzzles de práctica que se mostraron, el último primero (hasta MAX_OPENED), para no repetir uno abandonado en otro dispositivo. Se agregó sin subir la versión: si falta, ninguno. */
+  puzzlesOpened?: string[];
 };
+
+/** Cuántos puzzles abiertos se recuerdan. */
+export const MAX_OPENED = 200;
 
 /** Partida contra un bot en curso: solo lo necesario para rearmarla jugando las jugadas (UCI) desde el inicio. */
 export type OngoingGame = { botId: string; userColor: 'w' | 'b'; practiceCourseId?: string; moves: string[]; startedAt: string };
@@ -322,6 +327,11 @@ export function withOngoingGame(p: Progress, game: OngoingGame | null, now = new
   return { ...rest, ...(game ? { ongoingGame: game } : {}), stamps: { ...p.stamps, ongoingGame: now.toISOString() } };
 }
 
+/** Anota que se mostró un puzzle de práctica: primero, sin repetir y con tope. */
+export function withPuzzleOpened(p: Progress, id: string): Progress {
+  return { ...p, puzzlesOpened: [id, ...(p.puzzlesOpened ?? []).filter((x) => x !== id)].slice(0, MAX_OPENED) };
+}
+
 /**
  * «Borrar progreso»: conserva el perfil (bienvenida y nivel, con su fecha) y anota `resetAt` para que al combinar
  * con una copia anterior (Drive) no vuelva lo borrado. El dispositivo recibe un id nuevo: lo ganado antes queda
@@ -455,7 +465,7 @@ function toV3(data: ProgressV1 | ProgressV2 | ProgressV3): ProgressV3 {
 }
 
 /** Campos que tiene un progreso. Lo que traiga de más un archivo o un respaldo no se copia al estado, que se guarda y se vuelve a subir a Drive. */
-const KNOWN_FIELDS = [...Object.keys(emptyProgress), 'lastUnit', 'puzzleRating', 'ongoingGame'];
+const KNOWN_FIELDS = [...Object.keys(emptyProgress), 'lastUnit', 'puzzleRating', 'ongoingGame', 'puzzlesOpened'];
 function knownFields<T extends object>(data: T): Partial<T> {
   const out: Record<string, unknown> = {};
   for (const k of KNOWN_FIELDS) if (Object.hasOwn(data, k)) out[k] = (data as Record<string, unknown>)[k];

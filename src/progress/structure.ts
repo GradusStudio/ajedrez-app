@@ -61,6 +61,7 @@ export function hasUsableStructure(p: Record<string, unknown>): boolean {
     const r = p.puzzleRating;
     if (!(isObject(r) && isCount(r.rating) && isInt(r.rated) && isStringOrNull(r.at) && isStrings(r.pending))) return false;
   }
+  if (has('puzzlesOpened') && !isStrings(p.puzzlesOpened)) return false;
   if (has('ongoingGame')) {
     const g = p.ongoingGame;
     const ok =

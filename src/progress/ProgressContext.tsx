@@ -15,6 +15,7 @@ import {
   withLastUnit,
   withLessonFinished,
   withOngoingGame,
+  withPuzzleOpened,
   withPieceSetBought,
   withPractice,
   withProfile,
@@ -48,6 +49,8 @@ type ProgressValue = {
   addPractice: (seconds: number) => void;
   /** Guarda (o quita, con null) la partida contra un bot sin terminar, para seguirla después o desde otro dispositivo. */
   saveOngoingGame: (game: OngoingGame | null) => void;
+  /** Anota que se mostró un puzzle de práctica; si se abandona, no vuelve a salir. No toca el nivel de puzzles. */
+  openPuzzle: (id: string) => void;
   finishGame: (
     game: Omit<GameRecord, 'playedAt'>,
     seconds: number,
@@ -135,6 +138,15 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
       // Quitarla cuando no hay ninguna no cambia nada: no se anota fecha ni se dispara una sincronización.
       if (!game && !current.current.ongoingGame) return;
       commit(withOngoingGame(current.current, game));
+    },
+    [commit]
+  );
+
+  const openPuzzle = useCallback(
+    (id: string) => {
+      // Ya anotado como el último: no hay nada que guardar ni sincronizar.
+      if (current.current.puzzlesOpened?.[0] === id) return;
+      commit(withPuzzleOpened(current.current, id));
     },
     [commit]
   );
@@ -240,6 +252,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         setLastUnit,
         addPractice,
         saveOngoingGame,
+        openPuzzle,
         finishGame,
         finishPuzzle,
         failPuzzle,

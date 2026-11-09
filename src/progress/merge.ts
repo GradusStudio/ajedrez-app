@@ -1,4 +1,4 @@
-import { PROGRESS_VERSION, PUZZLE_RANK, coinBalance, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress, type PuzzleRecord } from './progressStore';
+import { MAX_OPENED, PROGRESS_VERSION, PUZZLE_RANK, coinBalance, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress, type PuzzleRecord } from './progressStore';
 import { MAX_PENDING, type PuzzleRating } from './puzzleRating';
 import type { DayActions, Streak } from './streak';
 
@@ -236,6 +236,9 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     puzzles,
     turningPoints: union(local.turningPoints, incoming.turningPoints),
   };
+  // Unión de los puzzles abiertos sin terminar (ordenada, como las demás listas), sin los que ya están en `puzzles`.
+  const opened = union(local.puzzlesOpened ?? [], incoming.puzzlesOpened ?? []).filter((id) => !puzzles[id]).slice(-MAX_OPENED);
+  if (opened.length) merged.puzzlesOpened = opened;
   if (lastUnit.value !== undefined) merged.lastUnit = lastUnit.value;
   if (ongoingGame.value !== undefined) merged.ongoingGame = ongoingGame.value;
   const puzzleRating = mergePuzzleRating(local.puzzleRating, incoming.puzzleRating, puzzles);

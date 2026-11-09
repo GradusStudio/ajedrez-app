@@ -1,4 +1,4 @@
-import { autoTarget, countPuzzles, dailyPuzzle, findPuzzle, Level, LEVELS, nextPuzzle, pickAny, pickNear, pickPending, Puzzle } from './puzzles';
+import { autoTarget, countPuzzles, dailyPuzzle, findPuzzle, Level, levelOf, LEVELS, nextPuzzle, pickAny, pickNear, pickPending, Puzzle } from './puzzles';
 
 /**
  * De dónde salen los puzzles. En el celular, de la lista de 50.000 que trae la app (`listSource`); en la web, de la
@@ -47,7 +47,17 @@ export function listSource(puzzles: Puzzle[]): PuzzleSource {
     async nextNear(rating, theme, done, seen) {
       // Todos los niveles: en el celular no hay Experto y un nivel de 2600 tiene que dar puzzles de Difícil.
       const pool = theme ? puzzles.filter((p) => p.themes.includes(theme)) : puzzles;
-      return pickNear(pool, autoTarget(rating), done, seen) ?? pickPending(pool, done, seen) ?? pickAny(pool, seen);
+      const target = autoTarget(rating);
+      const near = pickNear(pool, target, done, seen);
+      if (near) return near;
+      // Sin pendientes cerca: el nivel de dificultad más cercano al objetivo que tenga puzzles del tema (como la web).
+      const all = Object.keys(LEVELS) as Level[];
+      const i = all.indexOf(levelOf(target));
+      for (const level of [...all].sort((a, b) => Math.abs(all.indexOf(a) - i) - Math.abs(all.indexOf(b) - i))) {
+        const inLevel = pool.filter((p) => p.rating >= LEVELS[level].min && p.rating < LEVELS[level].max);
+        if (inLevel.length) return pickPending(inLevel, done, seen) ?? pickAny(inLevel, seen);
+      }
+      return undefined;
     },
     prepareOffline() {},
   };

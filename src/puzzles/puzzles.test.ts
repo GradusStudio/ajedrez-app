@@ -89,3 +89,11 @@ test('listSource.nextNear: con nivel por encima de la lista igual da uno, y resp
   const p = await src.nextNear(1300, 'fork', () => false, new Set());
   assert.ok(p?.themes.includes('fork'));
 });
+
+test('listSource.nextNear sin puzzles cerca usa el nivel de dificultad más cercano, no uno al azar', async () => {
+  const src = listSource([at('facil1', 600), at('facil2', 700), at('facil3', 800), at('dificil', 2400)]);
+  for (let i = 0; i < 20; i++) {
+    const p = await src.nextNear(3000, null, () => false, new Set());
+    assert.equal(p?.id, 'dificil');
+  }
+});

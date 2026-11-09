@@ -102,6 +102,47 @@
         }
       }
     },
+    "u3-l09": {
+      "title": "Der Spieß",
+      "summary": "Die Fesselung andersherum",
+      "steps": {
+        "u3-l09-s01": { "text": "Der Turm gibt dem König Schach und hinter ihm, auf derselben Linie, steht die Dame. Der König muss ausweichen und der Turm schlägt die Dame. Das ist ein Spieß: Du greifst zuerst die wertvollere Figur an und, wenn sie ausweicht, fällt die dahinterstehende." },
+        "u3-l09-s02": { "text": "Es ist das Gegenteil der Fesselung. Hier fesselt der Läufer den Springer auf c6: Die Figur vorne ist weniger wert als die dahinter und kann nicht ziehen. Beim Spieß ist die vordere Figur wertvoller: Sie muss ausweichen und lässt die dahinter ungedeckt." },
+        "u3-l09-s03": {
+          "prompt": "Der Läufer auf f3 greift die Dame an und hinter ihm steht der Turm auf a8. Ist das eine Fesselung oder ein Spieß?",
+          "options": ["Fesselung", "Spieß"],
+          "explanation": "Es ist ein Spieß: Die Dame ist mehr wert als der Turm und steht vorne. Weicht sie aus, schlägt der Läufer den Turm.",
+          "feedback": ["Schau, welche Figur vorne ist: die, die mehr wert ist oder die, die weniger wert ist?", ""]
+        },
+        "u3-l09-s04": {
+          "prompt": "Gib mit dem Turm Schach, damit der König weicht und du die Dame schlagen kannst.",
+          "hint": "Der König und die Dame stehen in der 5. Reihe. Setze den Turm in diese Reihe, auf die Seite gegenüber der Dame, um Schach zu geben.",
+          "success": "Richtig. Th5+ ist Schach: Der König weicht aus und der Turm schlägt die Dame auf b5."
+        },
+        "u3-l09-s05": {
+          "prompt": "Spieße den König und den Turm mit deinem Läufer.",
+          "hint": "Der schwarze König und der Turm auf a8 stehen auf derselben Diagonale. Setze den Läufer auf diese Diagonale, auf die Seite gegenüber dem Turm.",
+          "success": "Richtig. Lg2+ ist Schach: Der König weicht aus und der Läufer schlägt den Turm auf a8."
+        },
+        "u3-l09-s06": {
+          "prompt": "Tippe auf die beiden schwarzen Figuren, die der Läufer spießt.",
+          "hint": "Folge der Diagonale des Läufers: er geht durch eine Figur und erreicht eine andere dahinter."
+        },
+        "u3-l09-s07": { "text": "Um einen Spieß zu vermeiden, schau dir vor dem Ziehen die Reihen, Linien und Diagonalen an. Wenn dein König und eine andere wertvolle Figur auf derselben Linie stehen und der Gegner dort einen Turm, eine Dame oder einen Läufer hat, der darauf zielt, trenne sie. Hier droht der Turm auf h1 mit Th5+: Wenn du den König oder die Dame von der 5. Reihe wegziehst, vermeidest du es." },
+        "u3-l09-s08": {
+          "prompt": "Nutze den Spieß aus.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche einen Schachzug, der den König zwingt, sich zu entfernen und die Figur dahinter ungedeckt lässt.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l09-s09": {
+          "prompt": "Nutze den Spieß aus.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche einen Schachzug, der den König zwingt, sich zu entfernen und die Figur dahinter ungedeckt lässt.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
     "u3-l03": {
       "title": "Der Abzugsangriff",
       "summary": "Eine Figur zieht weg und gibt eine andere frei",

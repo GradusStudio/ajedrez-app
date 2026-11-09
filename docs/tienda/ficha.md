@@ -11,7 +11,7 @@ Las traducciones se hicieron con IA y no las revisaron hablantes nativos.
 Gradus es una app gratuita para aprender ajedrez desde cero, con lecciones cortas al estilo de los cursos de idiomas.
 
 Qué incluye:
-- 41 lecciones en una ruta de 6 unidades: lo básico, reglas especiales, táctica, apertura y estrategia, finales y conceptos avanzados.
+- 44 lecciones en una ruta de 6 unidades: lo básico, reglas especiales, táctica, apertura y estrategia, finales y conceptos avanzados.
 - 28 cursos de aperturas, con las jugadas explicadas una por una.
 - 50.000 puzzles de la base abierta de Lichess, con puzzle del día y práctica por nivel y tema.
 - 10 bots con personalidad, de principiante a experto, que juegan las aperturas que enseñan.
@@ -31,7 +31,7 @@ Gradus es software libre (GPL v3 o posterior). Las traducciones se hicieron con 
 Gradus is a free app for learning chess from scratch, with short lessons in the style of language courses.
 
 What it includes:
-- 41 lessons in a path of 6 units: the basics, special rules, tactics, opening and strategy, endgames and advanced concepts.
+- 44 lessons in a path of 6 units: the basics, special rules, tactics, opening and strategy, endgames and advanced concepts.
 - 28 opening courses, with each move explained.
 - 50,000 puzzles from the open Lichess database, with a daily puzzle and practice by level and theme.
 - 10 bots with personality, from beginner to expert, that play the openings they teach.
@@ -51,7 +51,7 @@ Gradus is free software (GPL v3 or later). The translations were made with artif
 Gradus ist eine kostenlose App, um Schach von Grund auf zu lernen, mit kurzen Lektionen wie in Sprachkursen.
 
 Das ist drin:
-- 41 Lektionen in einem Lernpfad mit 6 Einheiten: Grundlagen, Sonderregeln, Taktik, Eröffnung und Strategie, Endspiele und fortgeschrittene Konzepte.
+- 44 Lektionen in einem Lernpfad mit 6 Einheiten: Grundlagen, Sonderregeln, Taktik, Eröffnung und Strategie, Endspiele und fortgeschrittene Konzepte.
 - 28 Eröffnungskurse, in denen jeder Zug erklärt wird.
 - 50.000 Aufgaben aus der offenen Lichess-Datenbank, mit Tagesaufgabe und Training nach Stufe und Thema.
 - 10 Bots mit eigener Persönlichkeit, vom Anfänger bis zum Experten, die die Eröffnungen spielen, die sie lehren.
@@ -71,7 +71,7 @@ Gradus ist freie Software (GPL v3 oder neuer). Die Übersetzungen wurden mit kü
 Gradus è un'app gratuita per imparare gli scacchi da zero, con lezioni brevi in stile corsi di lingua.
 
 Cosa include:
-- 41 lezioni in un percorso di 6 unità: le basi, regole speciali, tattica, apertura e strategia, finali e concetti avanzati.
+- 44 lezioni in un percorso di 6 unità: le basi, regole speciali, tattica, apertura e strategia, finali e concetti avanzati.
 - 28 corsi di apertura, con ogni mossa spiegata.
 - 50.000 problemi dal database aperto di Lichess, con problema del giorno e allenamento per livello e tema.
 - 10 bot con personalità, da principiante a esperto, che giocano le aperture che insegnano.
@@ -91,7 +91,7 @@ Gradus è software libero (GPL v3 o successiva). Le traduzioni sono state realiz
 Gradus est une application gratuite pour apprendre les échecs à partir de zéro, avec de courtes leçons dans le style des cours de langues.
 
 Au programme :
-- 41 leçons dans un parcours de 6 unités : les bases, règles spéciales, tactique, ouverture et stratégie, finales et notions avancées.
+- 44 leçons dans un parcours de 6 unités : les bases, règles spéciales, tactique, ouverture et stratégie, finales et notions avancées.
 - 28 cours d'ouverture, avec chaque coup expliqué.
 - 50 000 problèmes issus de la base ouverte de Lichess, avec problème du jour et entraînement par niveau et par thème.
 - 10 bots avec leur personnalité, du débutant à l'expert, qui jouent les ouvertures qu'ils enseignent.

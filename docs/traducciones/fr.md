@@ -272,3 +272,11 @@ Los nombres y su ortografía no cambian (Tomás, Sofía, Don Ramiro, Maestro Ivo
 | Ada | La Machine | Mínima y exacta: frases cortísimas, sin adornos, pero amable. |
 
 En los avisos: `risk` empieza por *Jours de série : {n}.* para leerse bien con cualquier número y después nombra *ta série* en vez de un pronombre (*jours* es plural y masculino, no hay antecedente); `recovery` nombra *une leçon, un puzzle et une partie contre un bot* y dice que es hoy (*aujourd'hui*); `general` no da datos de ajedrez.
+
+## Agregados el 9-11-2026 (lecciones del bloque A)
+| Español | Français |
+|---|---|
+| mate en escalera | mat de l’escalier |
+| gambito Englund | gambit Englund |
+| trampa Blackburne-Shilling | piège Blackburne-Shilling |
+| carnada | appât |

@@ -1,6 +1,40 @@
 {
   "title": "Endgames",
   "lessons": {
+    "u5-l06": {
+      "title": "Ladder mate",
+      "summary": "Two rooks, check after check",
+      "steps": {
+        "u5-l06-s01": { "text": "With two rooks, mate is a ladder: one rook gives check and pushes the king to the next rank, the other gives check from behind and pushes it to the next one, until it reaches the edge of the board." },
+        "u5-l06-s02": { "text": "Each rook cuts off a rank and doesn't let the king through. The one giving check stays far from the king, so it can't be captured. The rooks take turns: when one gives check, the other already covers the rank behind." },
+        "u5-l06-s03": {
+          "prompt": "The black king is on e6. Give check with the rook on b4 to push it to the next rank.",
+          "hint": "Move the rook up the b-file to the 6th rank. The rook on a5 blocks the king's way down.",
+          "success": "Correct. Rb6+ gives check and the rook on a5 cuts off the 5th rank: the king can only go up."
+        },
+        "u5-l06-s04": {
+          "prompt": "The king went up to the 7th rank. Give check with the other rook to push it to the last rank.",
+          "hint": "Bring the rook from a5 to the 7th rank. The rook on b6 keeps it from returning to the 6th rank.",
+          "success": "Correct. Ra7+ pushes it to the 8th rank and the rook on b6 keeps it from coming back."
+        },
+        "u5-l06-s05": {
+          "prompt": "The king reached the edge. Give mate.",
+          "hint": "The rook on a7 already covers the 7th rank. Give check along the 8th rank with the rook on b6.",
+          "success": "Correct. Rb8 is mate: the rook on a7 covers the 7th rank and the one on b8 gives check."
+        },
+        "u5-l06-s06": {
+          "prompt": "The black king came close to your rooks. Win in two moves without letting it capture one.",
+          "hint": "Don't put a rook next to the king: if it isn't protected, the king takes it. Keep the 7th rank and the b-file covered, and move the rook away.",
+          "success": "Correct. The king has only one square left and mate comes on the next move."
+        },
+        "u5-l06-s07": {
+          "prompt": "Give mate with two rooks. Stockfish defends the black king.",
+          "success": "Correct. You gave ladder mate.",
+          "hint": "That move lets the win slip away. Take care of your rooks: if the black king can capture one, protect it or move it away. And always leave the king a free square until the mate, so you don't stalemate it."
+        },
+        "u5-l06-s08": { "text": "Summary: one rook gives check from far away, the other cuts off the rank behind, and they take turns until the edge. If the king gets close, move the rook away. With queen and rook, or with two queens, the idea is the same." }
+      }
+    },
     "u5-l01": {
       "title": "Checkmate with the queen",
       "summary": "King and queen vs. king",

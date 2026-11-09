@@ -1,6 +1,40 @@
 {
   "title": "Endspiele",
   "lessons": {
+    "u5-l06": {
+      "title": "Leitermatt",
+      "summary": "Zwei Türme, Schach auf Schach",
+      "steps": {
+        "u5-l06-s01": { "text": "Mit zwei Türmen ist das Matt eine Leiter: Ein Turm gibt Schach und drängt den König auf die nächste Reihe, der andere gibt von hinten Schach und drängt ihn auf die nächste, bis er am Rand des Bretts ankommt." },
+        "u5-l06-s02": { "text": "Jeder Turm schneidet eine Reihe ab und lässt den König nicht durch. Der Turm, der Schach gibt, bleibt weit vom König entfernt, damit er nicht geschlagen werden kann. Die Türme wechseln sich ab: Wenn einer Schach gibt, deckt der andere schon die Reihe dahinter." },
+        "u5-l06-s03": {
+          "prompt": "Der schwarze König steht auf e6. Gib mit dem Turm auf b4 Schach, um ihn auf die nächste Reihe zu drängen.",
+          "hint": "Ziehe den Turm auf der b-Linie bis zur 6. Reihe. Der Turm auf a5 sperrt ihm den Weg nach unten.",
+          "success": "Richtig. Tb6+ gibt Schach und der Turm auf a5 schneidet die 5. Reihe ab: Der König kann nur nach oben."
+        },
+        "u5-l06-s04": {
+          "prompt": "Der König ist auf die 7. Reihe gestiegen. Gib mit dem anderen Turm Schach, um ihn auf die letzte Reihe zu drängen.",
+          "hint": "Bringe den Turm von a5 auf die 7. Reihe. Der Turm auf b6 hindert ihn daran, auf die 6. Reihe zurückzukehren.",
+          "success": "Richtig. Ta7+ drängt ihn auf die 8. Reihe und der Turm auf b6 hindert ihn daran, zurückzukehren."
+        },
+        "u5-l06-s05": {
+          "prompt": "Der König hat den Rand erreicht. Setze Matt.",
+          "hint": "Der Turm auf a7 deckt bereits die 7. Reihe. Gib Schach entlang der 8. Reihe mit dem Turm auf b6.",
+          "success": "Richtig. Tb8 ist Matt: Der Turm auf a7 deckt die 7. Reihe und der Turm auf b8 gibt Schach."
+        },
+        "u5-l06-s06": {
+          "prompt": "Der schwarze König ist deinen Türmen nahegekommen. Gewinne in zwei Zügen, ohne dass er einen Turm schlägt.",
+          "hint": "Stelle keinen Turm neben den König: Wenn er nicht gedeckt ist, schlägt der König ihn. Halte die 7. Reihe und die b-Linie gedeckt und ziehe den Turm weg.",
+          "success": "Richtig. Dem König bleibt nur noch ein Feld und das Matt kommt im nächsten Zug."
+        },
+        "u5-l06-s07": {
+          "prompt": "Setze mit zwei Türmen Matt. Stockfish verteidigt den schwarzen König.",
+          "success": "Richtig. Du hast ein Leitermatt gesetzt.",
+          "hint": "Mit diesem Zug entgeht dir der Sieg. Pass auf die Türme auf: Wenn der schwarze König einen schlagen kann, decke ihn oder ziehe ihn weg. Und lass dem König bis zum Matt immer ein Fluchtfeld, damit du ihn nicht patt setzt."
+        },
+        "u5-l06-s08": { "text": "Zusammenfassung: Ein Turm gibt von weitem Schach, der andere schneidet die Reihe dahinter ab, und sie wechseln sich bis zum Rand ab. Wenn der König näherkommt, ziehe den Turm weg. Mit Dame und Turm oder mit zwei Damen ist die Idee dieselbe." }
+      }
+    },
     "u5-l01": {
       "title": "Matt mit der Dame",
       "summary": "König und Dame gegen König",

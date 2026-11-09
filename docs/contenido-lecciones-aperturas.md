@@ -4,7 +4,7 @@ Notación en español: R rey, D dama, T torre, A alfil, C caballo. Todas las lí
 
 ---
 
-## Parte 1 · Ruta rápida de lecciones (6 unidades, 41 lecciones, todas escritas)
+## Parte 1 · Ruta rápida de lecciones (6 unidades, 44 lecciones, todas escritas)
 
 Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzado) y en los cuatro niveles de chess.com (nuevo, principiante, intermedio, avanzado). Los títulos son propios.
 
@@ -32,9 +32,10 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 17. Otras tablas: repetición y jaque perpetuo, material insuficiente, 50 jugadas
 18. Cómo se escriben las jugadas (notación)
 
-### Unidad 3 · Táctica básica (8 lecciones, ya escritas en `src/data/unidad-3-tactica-basica.json`)
+### Unidad 3 · Táctica básica (9 lecciones, ya escritas en `src/data/unidad-3-tactica-basica.json`)
 19. La horquilla
 20. La clavada
+- La enfilada (agregada el 9-11-2026, id `u3-l09`, va después de «La clavada»)
 21. El ataque a la descubierta
 22. Jaque doble y ataque doble
 23. Eliminar al defensor
@@ -44,15 +45,17 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 
 «Valor de las piezas» se quitó: ya está en «Intercambios» (Unidad 1). «Piezas colgadas» pasó a ser «Antes de mover», porque lo básico ya está en «Proteger piezas». Cada lección termina con puzzles reales de Lichess del mismo tema.
 
-### Unidad 4 · Apertura y estrategia (6 lecciones, ya escritas en `src/data/unidad-4-apertura-y-estrategia.json`)
+### Unidad 4 · Apertura y estrategia (7 lecciones, ya escritas en `src/data/unidad-4-apertura-y-estrategia.json`)
 28. Principios de apertura: centro, desarrollo, enroque
 29. Errores típicos de apertura (dama temprana, mover la misma pieza dos veces)
+- Trampas que vas a ver (agregada el 9-11-2026, id `u4-l07`): Blackburne-Shilling y gambito Englund
 30. Estructura de peones: aislado, doblado, pasado
 31. Columnas abiertas y torres activas
 32. Casillas débiles y puestos avanzados para caballos
 33. La pareja de alfiles
 
-### Unidad 5 · Finales (5 lecciones, ya escritas en `src/data/unidad-5-finales.json`)
+### Unidad 5 · Finales (6 lecciones, ya escritas en `src/data/unidad-5-finales.json`)
+- Mate en escalera (agregada el 9-11-2026, id `u5-l06`, va primera de la unidad)
 34. Mate con dama y rey contra rey
 35. Mate con torre y rey contra rey
 36. Oposición entre reyes
@@ -65,7 +68,7 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 - Sacrificio de calidad (torre por pieza menor)
 - Repaso final: puzzles de todos los temas de la ruta (agregado al escribir la unidad)
 
-Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 41 (Unidad 6: 38 a 41).
+Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 44 (Unidad 6: 41 a 44). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
 
 ### Formato de cada lección
 1. Explicación corta con tablero interactivo (máx. 3 pantallas).

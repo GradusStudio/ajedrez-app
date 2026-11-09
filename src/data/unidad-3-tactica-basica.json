@@ -369,9 +369,164 @@
       ]
     },
     {
-      "id": "u3-l03",
+      "id": "u3-l09",
       "unit": 3,
       "order": 21,
+      "title": "La enfilada",
+      "summary": "La clavada al revés",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La torre da jaque al rey y, detrás de él, en la misma columna, está la dama. El rey tiene que apartarse y la torre captura la dama. Eso es una enfilada: atacas primero a la pieza que más vale y, cuando se aparta, cae la que estaba detrás.",
+          "fen": "3q4/8/8/8/3k4/8/8/K2R4 b - - 0 1",
+          "highlight": [
+            "d1",
+            "d4",
+            "d8"
+          ],
+          "play": [
+            "d4e5",
+            "d1d8"
+          ],
+          "id": "u3-l09-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Es lo contrario de la clavada. Aquí el alfil clava al caballo de c6: la pieza de adelante vale menos que la de atrás y no puede moverse. En la enfilada, la de adelante vale más: tiene que apartarse y deja sin protección a la que queda detrás.",
+          "fen": "r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 4",
+          "arrows": [
+            "b5e8"
+          ],
+          "id": "u3-l09-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "El alfil de f3 ataca la dama y detrás está la torre de a8. ¿Es una clavada o una enfilada?",
+          "fen": "r6k/8/8/3q4/8/5B2/6P1/6K1 w - - 0 1",
+          "highlight": [
+            "f3",
+            "d5",
+            "a8"
+          ],
+          "options": [
+            "Clavada",
+            "Enfilada"
+          ],
+          "answer": 1,
+          "explanation": "Es una enfilada: la dama vale más que la torre y va delante. Si se aparta, el alfil captura la torre.",
+          "feedback": [
+            "Fíjate en qué pieza va delante: ¿la que vale más o la que vale menos?",
+            ""
+          ],
+          "id": "u3-l09-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Da jaque con la torre para que el rey se aparte y puedas capturar la dama.",
+          "fen": "8/8/8/1q2k3/8/8/8/K6R w - - 0 1",
+          "solutions": [
+            "h1h5"
+          ],
+          "hint": "El rey y la dama están en la fila 5. Pon la torre en esa fila, del lado contrario a la dama, para dar jaque.",
+          "success": "Correcto. Th5+ es jaque: el rey se aparta y la torre captura la dama de b5.",
+          "id": "u3-l09-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Enfila el rey y la torre con tu alfil.",
+          "fen": "r7/8/8/3k4/8/7B/PP6/7K w - - 0 1",
+          "solutions": [
+            "h3g2"
+          ],
+          "hint": "El rey negro y la torre de a8 están en la misma diagonal. Pon el alfil en esa diagonal, del lado contrario a la torre.",
+          "success": "Correcto. Ag2+ es jaque: el rey se aparta y el alfil captura la torre de a8.",
+          "id": "u3-l09-s05"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca las dos piezas negras que el alfil tiene enfiladas.",
+          "fen": "r7/8/8/3k4/8/8/PP4B1/7K b - - 0 1",
+          "squares": [
+            "d5",
+            "a8"
+          ],
+          "hint": "Sigue la diagonal del alfil: pasa por una pieza y llega a otra, más atrás.",
+          "id": "u3-l09-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Para evitar una enfilada, mira las filas, columnas y diagonales antes de mover. Si tu rey y otra pieza valiosa quedan en la misma línea y el rival tiene torre, dama o alfil apuntando a ella, sepáralos. Aquí la torre de h1 amenaza Th5+: con mover el rey o la dama fuera de la fila 5 se evita.",
+          "fen": "8/8/8/1q2k3/8/8/8/K6R b - - 0 1",
+          "arrows": [
+            "h1h5"
+          ],
+          "id": "u3-l09-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la enfilada.",
+          "fen": "4kbnr/1p2pppp/p7/8/3B4/1P5P/P1rP1PP1/RN2K2R w KQk - 0 13",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d4c3",
+              "san": "Ac3"
+            },
+            {
+              "uci": "c2c1",
+              "san": "Tc1+"
+            },
+            {
+              "uci": "e1e2",
+              "san": "Re2"
+            },
+            {
+              "uci": "c1h1",
+              "san": "Txh1"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque que obligue al rey a apartarse y deje sin protección a la pieza que está detrás.",
+          "id": "u3-l09-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la enfilada.",
+          "fen": "rnb1k2r/pp2n1pp/2p1p3/4qp2/4B3/2PQB3/P1P2PPP/2KR2NR b kq - 1 11",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e5e4",
+              "san": "Dxe4"
+            },
+            {
+              "uci": "d3d8",
+              "san": "Dd8+"
+            },
+            {
+              "uci": "e8f7",
+              "san": "Rf7"
+            },
+            {
+              "uci": "d8h8",
+              "san": "Dxh8"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque que obligue al rey a apartarse y deje sin protección a la pieza que está detrás.",
+          "id": "u3-l09-s09"
+        }
+      ]
+    },
+    {
+      "id": "u3-l03",
+      "unit": 3,
+      "order": 22,
       "title": "El ataque a la descubierta",
       "summary": "Una pieza se aparta y destapa otra",
       "xp": 15,
@@ -552,7 +707,7 @@
     {
       "id": "u3-l04",
       "unit": 3,
-      "order": 22,
+      "order": 23,
       "title": "Jaque doble y ataque doble",
       "summary": "Dos amenazas en una jugada",
       "xp": 15,
@@ -706,7 +861,7 @@
     {
       "id": "u3-l05",
       "unit": 3,
-      "order": 23,
+      "order": 24,
       "title": "Eliminar al defensor",
       "summary": "Captura a quien defiende",
       "xp": 15,
@@ -883,7 +1038,7 @@
     {
       "id": "u3-l06",
       "unit": 3,
-      "order": 24,
+      "order": 25,
       "title": "La desviación",
       "summary": "Saca al defensor de su lugar",
       "xp": 15,
@@ -1078,7 +1233,7 @@
     {
       "id": "u3-l07",
       "unit": 3,
-      "order": 25,
+      "order": 26,
       "title": "Mate del pasillo y mate del pastor",
       "summary": "Dos mates que hay que conocer",
       "xp": 15,
@@ -1253,7 +1408,7 @@
     {
       "id": "u3-l08",
       "unit": 3,
-      "order": 26,
+      "order": 27,
       "title": "Antes de mover: jaques, capturas y amenazas",
       "summary": "La rutina para no perder piezas",
       "xp": 15,

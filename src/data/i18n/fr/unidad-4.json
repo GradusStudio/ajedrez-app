@@ -49,6 +49,33 @@
         "u4-l02-s08": { "text": "En résumé : ne sors pas la dame trop tôt, ne déplace pas plusieurs fois la même pièce et ne laisse pas le roi au centre." }
       }
     },
+    "u4-l07": {
+      "title": "Les pièges que tu vas rencontrer",
+      "summary": "Des cadeaux piégés dans l'ouverture",
+      "steps": {
+        "u4-l07-s01": { "text": "Un piège d'ouverture te donne quelque chose, presque toujours un pion, pour que tu le prennes sans regarder. Ici le cavalier noir en d4 laisse le pion en e5 à ta portée. Le prendre semble gratuit." },
+        "u4-l07-s02": { "text": "Si tu prends en e5, la dame noire sort en g5 et attaque e5 et g2. Si tu continues avec Cxf7, la dame prend en g2, puis en e4 avec échec, et le cavalier donne mat en f3. Une prise a mené à la suivante et le roi s'est retrouvé sans défense. C'est le piège Blackburne-Shilling." },
+        "u4-l07-s03": {
+          "prompt": "Les Noirs ont joué 3...Cd4. Joue avec les Blancs sans mordre à l'appât en e5.",
+          "hint": "Le pion en e5 est l'appât. Échange le cavalier en d4, roque ou développe une autre pièce.",
+          "success": "Correct. Tu n'as pas besoin d'accepter le cadeau : avec un coup tranquille, ta position est meilleure et sans risque."
+        },
+        "u4-l07-s04": { "text": "Un autre piège est le gambit Englund : d4 e5, dxe5 Cc6, Cf3 De7, Ff4 Db4+, Fd2 Dxb2. Les Noirs ont donné un pion et maintenant leur dame en a pris un autre et attaque la tour en a1. Il semble que les Noirs aient gagné du matériel, mais leur dame est loin de chez elle. Le piège fonctionne si tu réponds avec le coup qui semble naturel." },
+        "u4-l07-s05": {
+          "prompt": "La dame noire a pris le pion en b2 et attaque ta tour en a1. Comment continues-tu ?",
+          "hint": "N'attaque pas la dame avec le fou. Déplace le cavalier de b1 pour que ta dame protège la tour en a1.",
+          "success": "Correct. Cc3 libère la première rangée : ta dame défend la tour en a1 et tu as un avantage."
+        },
+        "u4-l07-s06": { "text": "Si tu joues Fc3, tu attaques la dame, mais les Noirs répondent Fb4 : le fou en c3 est cloué au roi et ne peut pas la prendre. Si tu essaies de le déclouer avec Dd2 et que tu échanges en c3, la dame noire prend ta tour en a1 avec échec. Attaquer la dame n'est pas toujours la meilleure idée." },
+        "u4-l07-s07": {
+          "prompt": "On te donne un pion à l'ouverture. Avant de prendre, qu'est-ce que tu dois vérifier ?",
+          "options": ["Quels échecs, prises et menaces l'adversaire peut faire après ma prise", "Combien de pions j'ai gagnés jusqu'à présent", "Si c'est le coup le plus facile à calculer"],
+          "explanation": "Avant de prendre, regarde ce que l'adversaire peut faire en réponse : ses échecs, ses prises et ses menaces. Cette habitude te sauve de presque tous les pièges.",
+          "feedback": ["", "Les pions pris ne comptent pas si après tu perds quelque chose de plus grand.", "Ce qui est facile à calculer n'est pas ce qui est sûr : un piège semble presque toujours facile."]
+        },
+        "u4-l07-s08": { "text": "En résumé : un cadeau dans l'ouverture a presque toujours un prix. Avant de prendre, regarde les échecs, les prises et les menaces de l'adversaire. Face à 3...Cd4, ne prends pas en e5 sans réfléchir, et face au gambit Englund, n'attaque pas la dame avec le fou." }
+      }
+    },
     "u4-l03": {
       "title": "Structure de pions",
       "summary": "Pions isolés, doublés et passés",

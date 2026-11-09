@@ -72,6 +72,33 @@
         "u4-l02-s08": { "text": "To sum up: don't bring your queen out too early, don't move the same piece many times, and don't leave your king in the center." }
       }
     },
+    "u4-l07": {
+      "title": "Traps you'll run into",
+      "summary": "Gifts with strings attached in the opening",
+      "steps": {
+        "u4-l07-s01": { "text": "An opening trap offers you something, usually a pawn, so that you capture it without looking. Here the black knight on d4 leaves the pawn on e5 within your reach. Capturing it looks free." },
+        "u4-l07-s02": { "text": "If you capture on e5, the black queen comes out to g5 and attacks e5 and g2. If you keep going with Nxf7, the queen takes on g2, then on e4 with check, and the knight delivers mate on f3. One capture led to the next and the king was left without defenders. It's the Blackburne-Shilling trap." },
+        "u4-l07-s03": {
+          "prompt": "Black played 3...Nd4. Play as White without taking the bait on e5.",
+          "hint": "The pawn on e5 is the bait. Trade the knight on d4, castle or develop another piece.",
+          "success": "Correct. You don't have to accept the gift: a quiet move leaves your position better and free of risk."
+        },
+        "u4-l07-s04": { "text": "Another trap is the Englund Gambit: d4 e5, dxe5 Nc6, Nf3 Qe7, Bf4 Qb4+, Bd2 Qxb2. Black gave up a pawn and now the queen has taken another and attacks the rook on a1. It looks like Black won material, but the queen is far from home. The trap works if you answer with what looks natural." },
+        "u4-l07-s05": {
+          "prompt": "The black queen took the pawn on b2 and attacks your rook on a1. How do you continue?",
+          "hint": "Don't attack the queen with the bishop. Move the knight from b1 so your queen protects the rook on a1.",
+          "success": "Correct. Nc3 frees the first rank: your queen defends the rook on a1 and you have the advantage."
+        },
+        "u4-l07-s06": { "text": "If you play Bc3, you attack the queen, but Black answers Bb4: the bishop on c3 is pinned to the king and can't capture it. If you try to unpin it with Qd2 and trade on c3, the black queen takes your rook on a1 with check. Attacking the queen isn't always best." },
+        "u4-l07-s07": {
+          "prompt": "Someone gifts you a pawn in the opening. Before capturing, what should you check?",
+          "options": ["Which checks, captures and threats my opponent can make after my capture", "How many pawns I've won so far", "Whether it's the easiest move to calculate"],
+          "explanation": "Before capturing, look at what your opponent can do in reply: their checks, captures and threats. That habit saves you from almost every trap.",
+          "feedback": ["", "Pawns won don't count if you then lose something bigger.", "Easy to calculate isn't the same as safe: a trap almost always looks easy."]
+        },
+        "u4-l07-s08": { "text": "Summary: a gift in the opening almost always has a price. Before capturing, look at your opponent's checks, captures and threats. Against 3...Nd4 don't take on e5 without thinking, and against the Englund Gambit don't attack the queen with the bishop." }
+      }
+    },
     "u4-l03": {
       "title": "Pawn structure",
       "summary": "Isolated, doubled and passed pawns",

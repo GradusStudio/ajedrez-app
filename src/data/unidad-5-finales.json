@@ -3,9 +3,114 @@
   "title": "Finales",
   "lessons": [
     {
+      "id": "u5-l06",
+      "unit": 5,
+      "order": 35,
+      "title": "Mate en escalera",
+      "summary": "Dos torres, jaque tras jaque",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Con dos torres, el mate es una escalera: una torre da jaque y empuja al rey a la fila siguiente, la otra da jaque desde atrás y lo empuja a la siguiente, hasta llegar al borde del tablero.",
+          "fen": "8/8/4k3/R7/1R6/8/8/7K w - - 0 1",
+          "play": [
+            "b4b6",
+            "e6e7",
+            "a5a7",
+            "e7e8",
+            "b6b8"
+          ],
+          "id": "u5-l06-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Cada torre corta una fila y no deja pasar al rey. La que da jaque se queda lejos de él, para que no la pueda capturar. Las torres se turnan: cuando una da jaque, la otra ya tapa la fila de atrás.",
+          "fen": "8/8/4k3/R7/1R6/8/8/7K w - - 0 1",
+          "arrows": [
+            "b4b6",
+            "a5a7"
+          ],
+          "id": "u5-l06-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "El rey negro está en e6. Da jaque con la torre de b4 para empujarlo a la fila siguiente.",
+          "fen": "8/8/4k3/R7/1R6/8/8/7K w - - 0 1",
+          "solutions": [
+            "b4b6"
+          ],
+          "hint": "Sube la torre por la columna b hasta la fila 6. La torre de a5 le cierra el paso hacia abajo.",
+          "success": "Correcto. Tb6+ da jaque y la torre de a5 le corta la fila 5: el rey solo puede subir.",
+          "id": "u5-l06-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "El rey subió a la fila 7. Da jaque con la otra torre para empujarlo a la última fila.",
+          "fen": "8/4k3/1R6/R7/8/8/8/7K w - - 0 1",
+          "solutions": [
+            "a5a7"
+          ],
+          "hint": "Lleva la torre de a5 a la fila 7. La torre de b6 le impide volver a la fila 6.",
+          "success": "Correcto. Ta7+ lo empuja a la fila 8 y la torre de b6 le impide volver.",
+          "id": "u5-l06-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "El rey llegó al borde. Da mate.",
+          "fen": "4k3/R7/1R6/8/8/8/8/7K w - - 0 1",
+          "solutions": [
+            "b6b8"
+          ],
+          "hint": "La torre de a7 ya tapa la fila 7. Da jaque por la fila 8 con la torre de b6.",
+          "success": "Correcto. Tb8 es mate: la torre de a7 tapa la fila 7 y la de b8 da jaque.",
+          "id": "u5-l06-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "El rey negro se acercó a tus torres. Gana en dos jugadas sin dejar que se coma una.",
+          "fen": "2k5/R7/1R6/8/8/8/8/7K w - - 0 1",
+          "solutions": [
+            "b6b1",
+            "h1h2",
+            "b6b3",
+            "b6b4",
+            "b6b2",
+            "b6b5",
+            "h1g1",
+            "b6b7",
+            "h1g2",
+            "a7h7",
+            "a7g7",
+            "a7f7"
+          ],
+          "hint": "No pongas una torre junto al rey: si no está protegida, se la come. Mantén la fila 7 y la columna b cubiertas, y aleja la torre.",
+          "success": "Correcto. Al rey le queda una sola casilla y el mate llega en la jugada siguiente.",
+          "id": "u5-l06-s06"
+        },
+        {
+          "type": "practice",
+          "prompt": "Da mate con dos torres. Stockfish defiende al rey negro.",
+          "fen": "8/8/8/3k4/8/8/R7/1R5K w - - 0 1",
+          "side": "w",
+          "goal": "mate",
+          "maxMoves": 20,
+          "success": "Correcto. Diste mate en escalera.",
+          "hint": "Con esa jugada se escapa la victoria. Cuida las torres: si el rey negro puede capturar una, protégela o aléjala. Y deja siempre una casilla libre al rey hasta el mate, para no ahogarlo.",
+          "id": "u5-l06-s07"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: una torre da jaque desde lejos, la otra corta la fila de atrás, y se turnan hasta el borde. Si el rey se acerca, aleja la torre. Con dama y torre, o con dos damas, la idea es la misma.",
+          "fen": "1R2k3/R7/8/8/8/8/8/7K b - - 0 1",
+          "id": "u5-l06-s08"
+        }
+      ]
+    },
+    {
       "id": "u5-l01",
       "unit": 5,
-      "order": 33,
+      "order": 36,
       "title": "Mate con dama",
       "summary": "Rey y dama contra rey",
       "xp": 15,
@@ -115,7 +220,7 @@
     {
       "id": "u5-l02",
       "unit": 5,
-      "order": 34,
+      "order": 37,
       "title": "Mate con torre",
       "summary": "Rey y torre contra rey",
       "xp": 15,
@@ -218,7 +323,7 @@
     {
       "id": "u5-l03",
       "unit": 5,
-      "order": 35,
+      "order": 38,
       "title": "La oposición",
       "summary": "El duelo entre los reyes",
       "xp": 15,
@@ -333,7 +438,7 @@
     {
       "id": "u5-l04",
       "unit": 5,
-      "order": 36,
+      "order": 39,
       "title": "La regla del cuadrado",
       "summary": "¿El rey alcanza al peón?",
       "xp": 15,
@@ -545,7 +650,7 @@
     {
       "id": "u5-l05",
       "unit": 5,
-      "order": 37,
+      "order": 40,
       "title": "La posición de Lucena",
       "summary": "Torre y peón contra torre",
       "xp": 15,

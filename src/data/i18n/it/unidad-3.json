@@ -96,6 +96,47 @@
         }
       }
     },
+    "u3-l09": {
+      "title": "L'infilata",
+      "summary": "L'inchiodatura al contrario",
+      "steps": {
+        "u3-l09-s01": { "text": "La torre dà scacco al re e, dietro di lui, sulla stessa colonna, c'è la donna. Il re deve spostarsi e la torre prende la donna. Questa è un'infilata: attacchi prima il pezzo che vale di più e, quando si sposta, cade quello che c'era dietro." },
+        "u3-l09-s02": { "text": "È il contrario dell'inchiodatura. Qui l'alfiere inchioda il cavallo in c6: il pezzo davanti vale meno di quello dietro e non può muoversi. Nell'infilata, quello davanti vale di più: deve allontanarsi e lascia senza protezione quello che resta dietro." },
+        "u3-l09-s03": {
+          "prompt": "L'alfiere in f3 attacca la donna e dietro c'è la torre in a8. È un'inchiodatura o un'infilata?",
+          "options": ["Inchiodatura", "Infilata"],
+          "explanation": "È un'infilata: la donna vale più della torre e va davanti. Se si sposta, l'alfiere cattura la torre.",
+          "feedback": ["Guarda quale pezzo è davanti: quello che vale di più o quello che vale di meno?", ""]
+        },
+        "u3-l09-s04": {
+          "prompt": "Dai scacco con la torre affinché il re si sposti e tu possa catturare la donna.",
+          "hint": "Il re e la donna sono sulla traversa 5. Metti la torre su quella traversa, sul lato opposto alla donna, per dare scacco.",
+          "success": "Corretto. Th5+ è scacco: il re si sposta e la torre prende la donna in b5."
+        },
+        "u3-l09-s05": {
+          "prompt": "Infila il re e la torre con il tuo alfiere.",
+          "hint": "Il re nero e la torre in a8 sono sulla stessa diagonale. Metti l'alfiere su quella diagonale, sul lato opposto alla torre.",
+          "success": "Corretto. Ag2+ è scacco: il re si sposta e l'alfiere prende la torre in a8."
+        },
+        "u3-l09-s06": {
+          "prompt": "Tocca i due pezzi neri che l'alfiere ha infilati.",
+          "hint": "Segui la diagonale dell'alfiere: passa per un pezzo e arriva a un altro, più indietro."
+        },
+        "u3-l09-s07": { "text": "Per evitare un'infilata, guarda le traverse, le colonne e le diagonali prima di muovere. Se il tuo re e un altro pezzo prezioso rimangono sulla stessa linea e l'avversario ha una torre, una donna o un alfiere che punta su quella linea, separali. Qui la torre in h1 minaccia Th5+: se sposti il re o la donna fuori dalla traversa 5, la eviti." },
+        "u3-l09-s08": {
+          "prompt": "Sfrutta l'infilata.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco che obblighi il re ad allontanarsi e lasci senza protezione il pezzo che è dietro.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l09-s09": {
+          "prompt": "Sfrutta l'infilata.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco che obblighi il re ad allontanarsi e lasci senza protezione il pezzo che è dietro.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
     "u3-l03": {
       "title": "L'attacco di scoperta",
       "summary": "Un pezzo si sposta e ne scopre un altro",

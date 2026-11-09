@@ -238,3 +238,11 @@ Los nombres y su ortografía no cambian (Tomás, Sofía, Don Ramiro, Maestro Ivo
 | Ada | The Machine | Mínima y exacta: frases cortísimas, sin adornos ni contracciones en las sentencias, pero amable. |
 
 En los avisos: `risk` empieza por *Streak days: {n}.* para leerse bien con cualquier número; `recovery` nombra *a lesson, a puzzle and a game against a bot* y dice que es hoy (*today*); `general` no da datos de ajedrez.
+
+## Agregados el 9-11-2026 (lecciones del bloque A)
+| Español | English |
+|---|---|
+| mate en escalera | ladder mate |
+| gambito Englund | Englund Gambit |
+| trampa Blackburne-Shilling | Blackburne-Shilling trap |
+| carnada | bait |

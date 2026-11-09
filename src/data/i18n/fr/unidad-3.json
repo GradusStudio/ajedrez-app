@@ -48,6 +48,47 @@
         "u3-l02-s10": { "prompt": "Profite du clouage.", "hint": "Cherche une pièce qui ne peut pas bouger parce que le roi ou la dame est derrière elle.", "success": "Bien résolu : cette position vient d'une vraie partie." }
       }
     },
+    "u3-l09": {
+      "title": "L'enfilade",
+      "summary": "Le clouage à l'envers",
+      "steps": {
+        "u3-l09-s01": { "text": "La tour donne échec au roi et, derrière lui, sur la même colonne, se trouve la dame. Le roi doit s'écarter et la tour prend la dame. C'est une enfilade : tu attaques d'abord la pièce la plus précieuse et, quand elle s'éloigne, celle qui était derrière tombe." },
+        "u3-l09-s02": { "text": "C'est l'inverse du clouage. Ici le fou cloue le cavalier en c6 : la pièce de devant vaut moins que celle de derrière et ne peut pas bouger. Dans l'enfilade, celle de devant vaut plus : elle doit s'éloigner et laisse sans défense celle qui reste derrière." },
+        "u3-l09-s03": {
+          "prompt": "Le fou en f3 attaque la dame et derrière se trouve la tour en a8. Est-ce un clouage ou une enfilade ?",
+          "options": ["Clouage", "Enfilade"],
+          "explanation": "C'est une enfilade : la dame vaut plus que la tour et va devant. Si elle s'éloigne, le fou prend la tour.",
+          "feedback": ["Regarde quelle pièce est devant : celle qui vaut le plus ou celle qui vaut le moins ?", ""]
+        },
+        "u3-l09-s04": {
+          "prompt": "Donne échec avec la tour pour que le roi s'écarte et que tu puisses prendre la dame.",
+          "hint": "Le roi et la dame sont sur la rangée 5. Mets la tour sur cette rangée, du côté opposé à la dame, pour donner échec.",
+          "success": "Correct. Th5+ est échec : le roi s'écarte et la tour prend la dame en b5."
+        },
+        "u3-l09-s05": {
+          "prompt": "Enfile le roi et la tour avec ton fou.",
+          "hint": "Le roi noir et la tour en a8 sont sur la même diagonale. Mets le fou sur cette diagonale, du côté opposé à la tour.",
+          "success": "Correct. Fg2+ est échec : le roi s'écarte et le fou prend la tour en a8."
+        },
+        "u3-l09-s06": {
+          "prompt": "Touche les deux pièces noires que le fou enfile.",
+          "hint": "Suis la diagonale du fou : il passe par une pièce et atteint une autre, plus loin."
+        },
+        "u3-l09-s07": { "text": "Pour éviter une enfilade, regarde les rangées, les colonnes et les diagonales avant de bouger. Si ton roi et une autre pièce précieuse restent sur la même ligne et que l'adversaire a une tour, une dame ou un fou qui vise celle-ci, sépare-les. Ici la tour en h1 menace Th5+ : en déplaçant le roi ou la dame hors de la rangée 5, on l'évite." },
+        "u3-l09-s08": {
+          "prompt": "Profite de l'enfilade.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Cherche un échec qui oblige le roi à s'écarter et laisse la pièce derrière sans défense.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l09-s09": {
+          "prompt": "Profite de l'enfilade.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Cherche un échec qui oblige le roi à s'écarter et laisse la pièce derrière sans défense.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
     "u3-l03": {
       "title": "L'attaque à la découverte",
       "summary": "Une pièce s'écarte et en découvre une autre",

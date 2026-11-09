@@ -5,7 +5,7 @@
     {
       "id": "u6-l01",
       "unit": 6,
-      "order": 38,
+      "order": 41,
       "title": "Zugzwang",
       "summary": "Cuando mover es perder",
       "xp": 15,
@@ -203,7 +203,7 @@
     {
       "id": "u6-l02",
       "unit": 6,
-      "order": 39,
+      "order": 42,
       "title": "Profilaxis",
       "summary": "Anticipar el plan del rival",
       "xp": 15,
@@ -329,7 +329,7 @@
     {
       "id": "u6-l03",
       "unit": 6,
-      "order": 40,
+      "order": 43,
       "title": "Sacrificio de calidad",
       "summary": "Torre por alfil o caballo",
       "xp": 15,
@@ -504,7 +504,7 @@
     {
       "id": "u6-l04",
       "unit": 6,
-      "order": 41,
+      "order": 44,
       "title": "Repaso final",
       "summary": "Puzzles de toda la ruta",
       "xp": 15,

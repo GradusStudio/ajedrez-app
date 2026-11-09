@@ -102,6 +102,47 @@
         }
       }
     },
+    "u3-l09": {
+      "title": "The skewer",
+      "summary": "The pin in reverse",
+      "steps": {
+        "u3-l09-s01": { "text": "The rook gives check to the king and, behind it on the same file, is the queen. The king has to step aside and the rook captures the queen. That's a skewer: you attack the more valuable piece first and, when it moves away, the one behind it falls." },
+        "u3-l09-s02": { "text": "It's the opposite of the pin. Here the bishop pins the knight on c6: the piece in front is worth less than the one behind it and can't move. In a skewer, the piece in front is worth more: it has to move away and leaves the one behind it unprotected." },
+        "u3-l09-s03": {
+          "prompt": "The bishop on f3 attacks the queen and the rook on a8 is behind it. Is this a pin or a skewer?",
+          "options": ["Pin", "Skewer"],
+          "explanation": "It's a skewer: the queen is worth more than the rook and stands in front. If it moves away, the bishop captures the rook.",
+          "feedback": ["Look at which piece is in front: the one worth more or the one worth less?", ""]
+        },
+        "u3-l09-s04": {
+          "prompt": "Give check with the rook so the king steps aside and you can capture the queen.",
+          "hint": "The king and the queen are on the 5th rank. Put the rook on that rank, on the side opposite the queen, to give check.",
+          "success": "Correct. Rh5+ is check: the king steps aside and the rook captures the queen on b5."
+        },
+        "u3-l09-s05": {
+          "prompt": "Skewer the king and the rook with your bishop.",
+          "hint": "The black king and the rook on a8 are on the same diagonal. Put the bishop on that diagonal, on the side opposite the rook.",
+          "success": "Correct. Bg2+ is check: the king steps aside and the bishop captures the rook on a8."
+        },
+        "u3-l09-s06": {
+          "prompt": "Tap the two black pieces the bishop is skewering.",
+          "hint": "Follow the bishop's diagonal: it passes through one piece and reaches another one behind it."
+        },
+        "u3-l09-s07": { "text": "To avoid a skewer, look at the ranks, files and diagonals before you move. If your king and another valuable piece end up on the same line and your opponent has a rook, queen or bishop aiming at it, separate them. Here the rook on h1 threatens Rh5+: moving the king or the queen off the 5th rank avoids it." },
+        "u3-l09-s08": {
+          "prompt": "Take advantage of the skewer.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for a check that forces the king to step aside and leaves the piece behind it unprotected.",
+          "notes": ["", "", "", ""]
+        },
+        "u3-l09-s09": {
+          "prompt": "Take advantage of the skewer.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for a check that forces the king to step aside and leaves the piece behind it unprotected.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
     "u3-l03": {
       "title": "The discovered attack",
       "summary": "One piece steps aside and uncovers another",

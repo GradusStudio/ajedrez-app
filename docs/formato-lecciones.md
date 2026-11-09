@@ -171,7 +171,7 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 
 ## Contenido de la Unidad 3 · Táctica básica
 
-`src/data/unidad-3-tactica-basica.json`: 8 lecciones, 75 pasos. Sin «El valor de las piezas» (ya está en «Intercambios», Unidad 1) y con «Antes de mover» en lugar de «Piezas colgadas» (lo básico está en «Proteger piezas»).
+`src/data/unidad-3-tactica-basica.json`: 9 lecciones, 84 pasos. Sin «El valor de las piezas» (ya está en «Intercambios», Unidad 1) y con «Antes de mover» en lugar de «Piezas colgadas» (lo básico está en «Proteger piezas»).
 
 - **Combinaciones:** pasos `line` en modo `drill` con `success` y `hint` propios.
 - **Puzzles reales de Lichess (CC0):** cada lección termina con 2, y «La horquilla», «La descubierta» y «La desviación» tienen uno más en el medio (0TCrY, MZ2x1, dvqbx), en lugar de posiciones propias que no funcionaban. El enunciado muestra el número del puzzle.
@@ -194,10 +194,11 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 6 | u3-l06 | La desviación | 9 |
 | 7 | u3-l07 | Mate del pasillo y mate del pastor | 10 |
 | 8 | u3-l08 | Antes de mover: jaques, capturas y amenazas | 9 |
+| 9 | u3-l09 | La enfilada (va después de «La clavada») | 9 |
 
 ## Contenido de la Unidad 4 · Apertura y estrategia
 
-`src/data/unidad-4-apertura-y-estrategia.json`: 6 lecciones, 47 pasos. En estrategia casi nunca hay una sola jugada correcta: hay más preguntas y casillas para tocar, y los ejercicios de jugada aceptan todas las que cumplen la idea.
+`src/data/unidad-4-apertura-y-estrategia.json`: 7 lecciones, 55 pasos. En estrategia casi nunca hay una sola jugada correcta: hay más preguntas y casillas para tocar, y los ejercicios de jugada aceptan todas las que cumplen la idea.
 
 - **Posiciones de apertura reales:** se arman jugando desde el inicio (Italiana, Escandinava, Siciliana con ...e5, Stonewall).
 - **Validación con chess.js:** cada posición y jugada, y lo que nombran los textos. Peón aislado, peones doblados, único peón pasado, única columna abierta, casillas débiles (que ningún peón rival las pueda atacar nunca), clavada del alfil de e7, quién tiene la pareja de alfiles.
@@ -217,6 +218,7 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 4 | u4-l04 | Columnas abiertas y torres activas | 7 |
 | 5 | u4-l05 | Casillas débiles y puestos avanzados | 7 |
 | 6 | u4-l06 | La pareja de alfiles | 7 |
+| 7 | u4-l07 | Trampas que vas a ver (va después de «Errores típicos de apertura») | 8 |
 
 ## Paso `practice` (práctica contra Stockfish)
 
@@ -240,7 +242,7 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 
 ## Contenido de la Unidad 5 · Finales
 
-`src/data/unidad-5-finales.json`: 5 lecciones, 39 pasos. Las lecciones de mates, oposición y Lucena terminan con prácticas contra Stockfish.
+`src/data/unidad-5-finales.json`: 6 lecciones, 47 pasos. Las lecciones de mates, oposición y Lucena terminan con prácticas contra Stockfish.
 
 - **Validación con chess.js:**
   - Los ejercicios de «da mate» aceptan todas las jugadas que dan mate.
@@ -264,10 +266,11 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 3 | u5-l03 | La oposición | 8 |
 | 4 | u5-l04 | La regla del cuadrado | 8 |
 | 5 | u5-l05 | La posición de Lucena | 7 |
+| 6 | u5-l06 | Mate en escalera (va primera de la unidad) | 8 |
 
 ## Contenido de la Unidad 6 · Conceptos avanzados
 
-`src/data/unidad-6-conceptos-avanzados.json`: 4 lecciones, 40 pasos (órdenes 38 a 41). Cierra la ruta de Aprender con un repaso final de puzzles de todos los temas.
+`src/data/unidad-6-conceptos-avanzados.json`: 4 lecciones, 40 pasos (órdenes 41 a 44). Cierra la ruta de Aprender con un repaso final de puzzles de todos los temas.
 
 - **Validación con chess.js:**
   - Mate por zugzwang (Tg6): es el único mate en 2, no da jaque, la única respuesta negra es Ra8, Ta6 es el único mate y, si las negras pudieran pasar, no habría mate.
@@ -289,6 +292,16 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 2 | u6-l02 | Profilaxis | 10 |
 | 3 | u6-l03 | Sacrificio de calidad | 9 |
 | 4 | u6-l04 | Repaso final | 10 |
+
+## Lecciones agregadas el 9-11-2026 (bloque A del temario nuevo)
+
+Salen de la comparación con los libros de `C:devmaterial para lecciones` (propuesta en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`). Textos escritos de cero, sin copiar de los libros. Se insertaron sin renumerar ids; `order` se recalculó para toda la ruta (1 a 44).
+
+- **La enfilada** (`u3-l09`, después de «La clavada»): enfilada de rey y dama con torre, comparación con la clavada, identificar, dos ejercicios (torre contra rey y dama; alfil contra rey y torre), tocar las piezas enfiladas, cómo evitarla y dos puzzles de Lichess (DPWEJ y 43RQr).
+- **Trampas que vas a ver** (`u4-l07`, después de «Errores típicos de apertura»): trampa Blackburne-Shilling (3...Cd4) y gambito Englund (la trampa es 6.Ac3, que clava el alfil al rey tras ...Ab4; lo correcto es 6.Cc3). Frente a 3...Cd4 se aceptan todas las jugadas con evaluación de +0,3 o más.
+- **Mate en escalera** (`u5-l06`, primera de la Unidad 5): dos torres; pasos de jaque, jaque y mate, una posición con el rey cerca de las torres (todas las jugadas que dan mate en dos) y práctica contra Stockfish.
+- **Validación:** cada posición, solución y jugada reproducida con chess.js; la línea de Blackburne-Shilling termina en mate real y la escalera también. Stockfish 19 (lite, profundidad 16 a 18, todas las jugadas legales): las soluciones únicas son claramente mejores que cualquier otra (Th5+ +4,7 contra -3,2; Ag2+ +7,7 contra -0,1; Cc3 +2,3 contra -2,7; Tb6+ mate en 4 contra mate en 5 o más); en los dos puzzles, la jugada del usuario es la mejor.
+- **Profesores:** Sofía (enfilada), Tomás (trampas) e Ivo (mate en escalera), según lo que enseña cada uno en su ficha.
 
 ## Pendiente
 - Revisión de redacción (los textos son una primera versión).

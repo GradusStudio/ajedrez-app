@@ -263,3 +263,11 @@ Los nombres y su ortografía no cambian (Tomás, Sofía, Don Ramiro, Maestro Ivo
 | Ada | Die Maschine | Mínima y exacta: frases cortísimas, sin adornos, pero amable. |
 
 En los avisos: `risk` empieza por *Serientage: {n}.* para leerse bien con cualquier número y después nombra *deine Serie* en vez de *sie* (*Serientage* es plural y no hay sustantivo singular al que refiera); `recovery` nombra *eine Lektion, ein Puzzle und eine Partie gegen einen Bot* y dice que es hoy (*heute*); `general` no da datos de ajedrez.
+
+## Agregados el 9-11-2026 (lecciones del bloque A)
+| Español | Deutsch |
+|---|---|
+| mate en escalera | Leitermatt |
+| gambito Englund | Englund-Gambit |
+| trampa Blackburne-Shilling | Blackburne-Shilling-Falle |
+| carnada | Köder |

@@ -269,3 +269,11 @@ Los nombres y su ortografía no cambian (Tomás, Sofía, Don Ramiro, Maestro Ivo
 | Ada | La Macchina | Mínima y exacta: frases cortísimas, sin adornos, pero amable. |
 
 En los avisos: `risk` empieza por *Giorni di serie: {n}.* para leerse bien con cualquier número; el pronombre o el verbo que sigue se refiere a *la serie* (*per continuarla*, *resta al sicuro*); `recovery` nombra *una lezione, un puzzle e una partita contro un bot* y dice que es hoy (*oggi*); `general` no da datos de ajedrez.
+
+## Agregados el 9-11-2026 (lecciones del bloque A)
+| Español | Italiano |
+|---|---|
+| mate en escalera | matto a scala |
+| gambito Englund | Gambetto Englund |
+| trampa Blackburne-Shilling | trappola Blackburne-Shilling |
+| carnada | esca |

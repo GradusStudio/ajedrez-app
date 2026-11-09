@@ -1,6 +1,40 @@
 {
   "title": "Finali",
   "lessons": {
+    "u5-l06": {
+      "title": "Matto a scala",
+      "summary": "Due torri, scacco dopo scacco",
+      "steps": {
+        "u5-l06-s01": { "text": "Con due torri, il matto è una scala: una torre dà scacco e spinge il re alla traversa successiva, l'altra dà scacco da dietro e lo spinge alla successiva, fino a raggiungere il bordo della scacchiera." },
+        "u5-l06-s02": { "text": "Ogni torre taglia una traversa e non lascia passare il re. Quella che dà scacco resta lontana da lui, così non può essere catturata. Le torri si alternano: quando una dà scacco, l'altra copre già la traversa dietro." },
+        "u5-l06-s03": {
+          "prompt": "Il re nero è in e6. Dai scacco con la torre in b4 per spingerlo alla traversa successiva.",
+          "hint": "Porta la torre in su lungo la colonna b fino alla traversa 6. La torre in a5 gli blocca la strada verso il basso.",
+          "success": "Corretto. Tb6+ dà scacco e la torre in a5 gli taglia la traversa 5: il re può solo salire."
+        },
+        "u5-l06-s04": {
+          "prompt": "Il re è salito sulla traversa 7. Dai scacco con l'altra torre per spingerlo sull'ultima traversa.",
+          "hint": "Porta la torre da a5 alla traversa 7. La torre in b6 le impedisce di tornare alla traversa 6.",
+          "success": "Corretto. Ta7+ lo spinge sulla traversa 8 e la torre in b6 gli impedisce di tornare."
+        },
+        "u5-l06-s05": {
+          "prompt": "Il re è arrivato al bordo. Dai matto.",
+          "hint": "La torre in a7 copre già la traversa 7. Dai scacco lungo la traversa 8 con la torre in b6.",
+          "success": "Corretto. Tb8 è matto: la torre in a7 copre la traversa 7 e quella in b8 dà scacco."
+        },
+        "u5-l06-s06": {
+          "prompt": "Il re nero si è avvicinato alle tue torri. Vinci in due mosse senza lasciare che il re ne prenda una.",
+          "hint": "Non mettere una torre vicino al re: se non è protetta, la prende. Mantieni la traversa 7 e la colonna b coperte, e allontana la torre.",
+          "success": "Corretto. Al re rimane una sola casella e il matto arriva alla mossa successiva."
+        },
+        "u5-l06-s07": {
+          "prompt": "Dai matto con due torri. Stockfish difende il re nero.",
+          "success": "Corretto. Hai dato il matto a scala.",
+          "hint": "Con quella mossa scappa la vittoria. Presta attenzione alle torri: se il re nero può catturarne una, difendila o allontanala. E lascia sempre una casella di fuga al re fino al matto, per non metterlo in stallo."
+        },
+        "u5-l06-s08": { "text": "Riassunto: una torre dà scacco da lontano, l'altra taglia la traversa dietro, e si alternano fino al bordo. Se il re si avvicina, allontana la torre. Con donna e torre, o con due donne, l'idea è la stessa." }
+      }
+    },
     "u5-l01": {
       "title": "Matto con la donna",
       "summary": "Re e donna contro re",

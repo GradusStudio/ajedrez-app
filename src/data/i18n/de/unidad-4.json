@@ -72,6 +72,33 @@
         "u4-l02-s08": { "text": "Zusammenfassung: Bringe die Dame nicht zu früh heraus, ziehe nicht mehrmals dieselbe Figur und lass den König nicht im Zentrum." }
       }
     },
+    "u4-l07": {
+      "title": "Fallen, die dir begegnen",
+      "summary": "Geschenke mit Haken in der Eröffnung",
+      "steps": {
+        "u4-l07-s01": { "text": "Eine Eröffnungsfalle bietet dir etwas, fast immer einen Bauern, damit du ihn schlägst, ohne hinzusehen. Hier lässt der schwarze Springer auf d4 den Bauern auf e5 in deiner Reichweite. Ihn zu schlagen sieht kostenlos aus." },
+        "u4-l07-s02": { "text": "Wenn du auf e5 schlägst, kommt die schwarze Dame nach g5 und greift e5 und g2 an. Wenn du mit Sxf7 weitermachst, nimmt die Dame auf g2, dann auf e4 mit Schach, und der Springer setzt auf f3 Matt. Ein Schlagzug führte zum nächsten und der König blieb ohne Verteidigung. Das ist die Blackburne-Shilling-Falle." },
+        "u4-l07-s03": {
+          "prompt": "Schwarz hat 3...Sd4 gespielt. Spiele mit Weiß, ohne auf den Köder auf e5 hereinzufallen.",
+          "hint": "Der Bauer auf e5 ist der Köder. Tausche den Springer auf d4, rochiere oder entwickle eine andere Figur.",
+          "success": "Richtig. Du musst das Geschenk nicht annehmen: Mit einem ruhigen Zug steht deine Stellung besser und ohne Risiko."
+        },
+        "u4-l07-s04": { "text": "Eine weitere Falle ist das Englund-Gambit: d4 e5, dxe5 Sc6, Sf3 De7, Lf4 Db4+, Ld2 Dxb2. Schwarz hat einen Bauern geopfert, jetzt hat seine Dame einen weiteren geschlagen und greift den Turm auf a1 an. Es sieht aus, als hätte Schwarz Material gewonnen, aber seine Dame ist weit von zu Hause entfernt. Die Falle funktioniert, wenn du mit dem Zug antwortest, der natürlich aussieht." },
+        "u4-l07-s05": {
+          "prompt": "Die schwarze Dame hat den Bauern auf b2 geschlagen und greift deinen Turm auf a1 an. Wie machst du weiter?",
+          "hint": "Greife die Dame nicht mit dem Läufer an. Ziehe den Springer von b1 weg, damit deine Dame den Turm auf a1 deckt.",
+          "success": "Richtig. Sc3 macht die 1. Reihe frei: Deine Dame deckt den Turm auf a1 und du hast einen Vorteil."
+        },
+        "u4-l07-s06": { "text": "Wenn du Lc3 spielst, greifst du die Dame an, aber Schwarz antwortet mit Lb4: Der Läufer auf c3 ist an den König gefesselt und kann sie nicht schlagen. Wenn du versuchst, ihn mit Dd2 zu entfesseln und auf c3 tauschst, nimmt die schwarze Dame mit Schach deinen Turm auf a1. Die Dame anzugreifen ist nicht immer das Beste." },
+        "u4-l07-s07": {
+          "prompt": "Dir wird ein Bauer in der Eröffnung geschenkt. Bevor du schlägst, was solltest du überprüfen?",
+          "options": ["Welche Schachgebote, Schlagzüge und Drohungen der Gegner nach meinem Schlag haben kann", "Wie viele Bauern ich bisher gewonnen habe", "Ob es der am leichtesten zu berechnende Zug ist"],
+          "explanation": "Bevor du schlägst, schau, was der Gegner mit seiner Antwort tun kann: seine Schachgebote, seine Schlagzüge und seine Drohungen. Diese Gewohnheit rettet dich vor fast allen Fallen.",
+          "feedback": ["", "Gewonnene Bauern zählen nicht, wenn du danach etwas Größeres verlierst.", "Was leicht zu berechnen ist, ist nicht sicher: Eine Falle sieht fast immer einfach aus."]
+        },
+        "u4-l07-s08": { "text": "Zusammenfassung: Ein Geschenk in der Eröffnung hat fast immer einen Preis. Bevor du schlägst, schau dir die Schachgebote, Schlagzüge und Drohungen des Gegners an. Gegen 3...Sd4 schlage nicht ohne nachzudenken auf e5, und gegen das Englund-Gambit greife die Dame nicht mit dem Läufer an." }
+      }
+    },
     "u4-l03": {
       "title": "Bauernstruktur",
       "summary": "Isolierte Bauern, Doppelbauern und Freibauern",

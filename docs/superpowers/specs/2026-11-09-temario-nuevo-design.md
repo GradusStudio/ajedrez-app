@@ -141,9 +141,13 @@ Los cursos nuevos siguen el formato de `aperturas-v3.json` (Idea, Línea princip
 - Puzzles reales de Lichess del tema al final de cada lección.
 - Agregar las lecciones nuevas a `docs/contenido-lecciones-aperturas.md` y a `docs/formato-lecciones.md`.
 
-## Preguntas para decidir antes de empezar
+## Decisiones (9-11-2026)
 
-1. **¿Cuatro unidades nuevas o menos?** Se podría juntar D y E en una sola unidad de medio juego, más larga.
-2. **¿Dónde queda el «Repaso final» de la Unidad 6?** Opción 1: se queda donde está y cada unidad nueva trae su propio repaso. Opción 2: pasa a ser la última lección de la última unidad.
-3. **¿Qué profesor enseña cada unidad nueva?**
-4. **¿Por dónde se empieza?** La propuesta sugiere el bloque A (tres lecciones sueltas) y después la Unidad 7.
+1. **Unidades separadas:** D (Piezas y peones) y E (Ataque, defensa y plan) quedan como dos unidades distintas. En total serán 10 unidades.
+2. **Repaso final:** pasa al fondo de la ruta, como última lección de la Unidad 10, y repasa los temas de todas las unidades. Hasta que exista la Unidad 10 se queda donde está (final de la Unidad 6).
+3. **Profesores:** diez unidades y diez bots, una unidad por bot en orden de nivel: Unidad 1 Pipo, 2 Lola, 3 Tomás, 4 Valentina, 5 Don Ramiro, 6 Camila, 7 Bruno, 8 Sofía, 9 Maestro Ivo y 10 Ada. **Pendiente de confirmar:** hoy cada bot enseña lo que dice su ficha (`teaches` en bots.json y `2026-10-30-personajes-design.md`: Sofía tácticas, Ivo finales, Tomás trampas, Ramiro principios de apertura, Camila peones) y la regla por unidad contradice esas fichas (por ejemplo Don Ramiro enseñaría finales y Sofía la Unidad 8, de finales). Hay que decidir si se cambia la regla, las fichas o ambas antes de crear las unidades 7 a 10.
+
+## Estado
+
+- **Bloque A hecho el 9-11-2026:** La enfilada (`u3-l09`), Trampas que vas a ver (`u4-l07`) y Mate en escalera (`u5-l06`). Cinco idiomas (de, it y fr traducidos con gemma4 vía Ollama y corregidos a mano, sin revisión de nativos). Los profesores de esas tres siguen las fichas actuales: Sofía, Tomás e Ivo. Detalle de la validación en `docs/formato-lecciones.md`.
+- Falta: bloques B a F.

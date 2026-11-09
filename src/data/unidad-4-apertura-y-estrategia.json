@@ -5,7 +5,7 @@
     {
       "id": "u4-l01",
       "unit": 4,
-      "order": 27,
+      "order": 28,
       "title": "Principios de apertura",
       "summary": "Centro, desarrollo y enroque",
       "xp": 15,
@@ -127,7 +127,7 @@
     {
       "id": "u4-l02",
       "unit": 4,
-      "order": 28,
+      "order": 29,
       "title": "Errores típicos de apertura",
       "summary": "Lo que conviene evitar",
       "xp": 15,
@@ -242,9 +242,130 @@
       ]
     },
     {
+      "id": "u4-l07",
+      "unit": 4,
+      "order": 30,
+      "title": "Trampas que vas a ver",
+      "summary": "Regalos con trampa en la apertura",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Una trampa de apertura te ofrece algo, casi siempre un peón, para que lo captures sin mirar. Aquí el caballo negro de d4 deja el peón de e5 a tu alcance. Capturarlo parece gratis.",
+          "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+          "highlight": [
+            "e5",
+            "d4"
+          ],
+          "arrows": [
+            "f3e5"
+          ],
+          "id": "u4-l07-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Si capturas en e5, la dama negra sale a g5 y ataca e5 y g2. Si sigues con Cxf7, la dama toma en g2, luego en e4 con jaque, y el caballo da mate en f3. Una captura llevó a la siguiente y el rey se quedó sin defensa. Es la trampa Blackburne-Shilling.",
+          "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+          "play": [
+            "f3e5",
+            "d8g5",
+            "e5f7",
+            "g5g2",
+            "h1f1",
+            "g2e4",
+            "c4e2",
+            "d4f3"
+          ],
+          "id": "u4-l07-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Las negras jugaron 3...Cd4. Juega con las blancas sin tomar la carnada de e5.",
+          "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+          "solutions": [
+            "f3d4",
+            "e1g1",
+            "b1c3",
+            "d2d3",
+            "a2a4",
+            "h2h3",
+            "c2c3",
+            "c4b3",
+            "a2a3"
+          ],
+          "hint": "El peón de e5 es la carnada. Cambia el caballo de d4, enroca o desarrolla otra pieza.",
+          "success": "Correcto. No hace falta aceptar el regalo: tu posición es mejor sin riesgos.",
+          "id": "u4-l07-s03"
+        },
+        {
+          "type": "explain",
+          "text": "Otra trampa es el gambito Englund: d4 e5, dxe5 Cc6, Cf3 De7, Af4 Db4+, Ad2 Dxb2. Las negras dieron un peón y ahora su dama se comió otro y ataca la torre de a1. Parece que ganaron material, pero su dama está lejos de casa. La trampa funciona si respondes con lo que parece natural.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "play": [
+            "d2d4",
+            "e7e5",
+            "d4e5",
+            "b8c6",
+            "g1f3",
+            "d8e7",
+            "c1f4",
+            "e7b4",
+            "f4d2",
+            "b4b2"
+          ],
+          "id": "u4-l07-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "La dama negra se comió el peón de b2 y ataca tu torre de a1. ¿Cómo sigues?",
+          "fen": "r1b1kbnr/pppp1ppp/2n5/4P3/8/5N2/PqPBPPPP/RN1QKB1R w KQkq - 0 6",
+          "solutions": [
+            "b1c3"
+          ],
+          "hint": "No ataques la dama con el alfil. Mueve el caballo de b1 para que tu dama proteja la torre de a1.",
+          "success": "Correcto. Cc3 libera la fila 1: tu dama defiende la torre de a1 y tienes ventaja.",
+          "id": "u4-l07-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Si juegas Ac3, atacas la dama, pero las negras responden Ab4: el alfil de c3 queda clavado al rey y no puede capturarla. Si intentas desclavarlo con Dd2 y cambias en c3, la dama negra se lleva la torre de a1 con jaque. Atacar a la dama no siempre es lo mejor.",
+          "fen": "r1b1k1nr/pppp1ppp/2n5/4P3/1b6/2B2N2/PqP1PPPP/RN1QKB1R w KQkq - 2 7",
+          "arrows": [
+            "b4e1",
+            "b2a1"
+          ],
+          "id": "u4-l07-s06"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Te regalan un peón en la apertura. Antes de capturar, ¿qué te conviene revisar?",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "options": [
+            "Qué jaques, capturas y amenazas puede hacer el rival después de mi captura",
+            "Cuántos peones llevo ganados hasta ahora",
+            "Si es la jugada más fácil de calcular"
+          ],
+          "answer": 0,
+          "explanation": "Antes de capturar, mira lo que el rival puede hacer con su respuesta: sus jaques, sus capturas y sus amenazas. Ese hábito te salva de casi todas las trampas.",
+          "feedback": [
+            "",
+            "Los peones ganados no cuentan si después pierdes algo mayor.",
+            "Lo fácil de calcular no es lo seguro: una trampa casi siempre parece fácil."
+          ],
+          "id": "u4-l07-s07"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: un regalo en la apertura casi siempre tiene un precio. Antes de capturar, mira los jaques, las capturas y las amenazas del rival. Frente a 3...Cd4 no tomes en e5 sin pensar, y frente al gambito Englund no ataques la dama con el alfil.",
+          "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+          "id": "u4-l07-s08"
+        }
+      ]
+    },
+    {
       "id": "u4-l03",
       "unit": 4,
-      "order": 29,
+      "order": 31,
       "title": "Estructura de peones",
       "summary": "Peones aislados, doblados y pasados",
       "xp": 15,
@@ -410,7 +531,7 @@
     {
       "id": "u4-l04",
       "unit": 4,
-      "order": 30,
+      "order": 32,
       "title": "Columnas abiertas y torres activas",
       "summary": "Dónde juegan mejor las torres",
       "xp": 15,
@@ -508,7 +629,7 @@
     {
       "id": "u4-l05",
       "unit": 4,
-      "order": 31,
+      "order": 33,
       "title": "Casillas débiles y puestos avanzados",
       "summary": "Casillas que los peones ya no cubren",
       "xp": 15,
@@ -605,7 +726,7 @@
     {
       "id": "u4-l06",
       "unit": 4,
-      "order": 32,
+      "order": 34,
       "title": "La pareja de alfiles",
       "summary": "Dos alfiles juntos valen más",
       "xp": 15,

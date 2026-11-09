@@ -72,6 +72,33 @@
         "u4-l02-s08": { "text": "Riassunto: non far uscire la donna troppo presto, non muovere tante volte lo stesso pezzo e non lasciare il re al centro." }
       }
     },
+    "u4-l07": {
+      "title": "Trappole che incontrerai",
+      "summary": "Regali con la sorpresa nell'apertura",
+      "steps": {
+        "u4-l07-s01": { "text": "Una trappola di apertura ti offre qualcosa, quasi sempre un pedone, affinché tu lo catturi senza guardare. Qui il cavallo nero in d4 lascia il pedone in e5 alla tua portata. Catturarlo sembra gratis." },
+        "u4-l07-s02": { "text": "Se prendi in e5, la donna nera esce in g5 e attacca e5 e g2. Se continui con Cxf7, la donna prende in g2, poi in e4 con scacco, e il cavallo dà matto in f3. Una presa ha portato alla successiva e il re è rimasto senza difese. È la trappola Blackburne-Shilling." },
+        "u4-l07-s03": {
+          "prompt": "Il Nero ha giocato 3...Cd4. Gioca con il Bianco senza prendere l'esca in e5.",
+          "hint": "Il pedone in e5 è l'esca. Cambia il cavallo in d4, arrocca o sviluppa un altro pezzo.",
+          "success": "Corretto. Non devi accettare il dono: la tua posizione è migliore senza rischi."
+        },
+        "u4-l07-s04": { "text": "Un'altra trappola è il Gambetto Englund: d4 e5, dxe5 Cc6, Cf3 De7, Af4 Db4+, Ad2 Dxb2. Il Nero ha ceduto un pedone e ora la sua donna ne ha preso un altro e attacca la torre in a1. Sembra che il Nero abbia vinto materiale, ma la sua donna è lontana da casa. La trappola funziona se rispondi con la mossa che sembra naturale." },
+        "u4-l07-s05": {
+          "prompt": "La donna nera ha preso il pedone in b2 e attacca la tua torre in a1. Come continui?",
+          "hint": "Non attaccare la donna con l'alfiere. Muovi il cavallo da b1 affinché la tua donna protegga la torre in a1.",
+          "success": "Corretto. Cc3 libera la traversa 1: la tua donna difende la torre in a1 e hai vantaggio."
+        },
+        "u4-l07-s06": { "text": "Se giochi Ac3, attacchi la donna, ma il Nero risponde Ab4: l'alfiere in c3 è inchiodato al re e non può catturarla. Se provi a disinchiodarlo con Dd2 e cambi in c3, la donna nera prende la torre in a1 con scacco. Attaccare la donna non è sempre la mossa migliore." },
+        "u4-l07-s07": {
+          "prompt": "Ti regalano un pedone nell'apertura. Prima di catturare, cosa ti conviene controllare?",
+          "options": ["Quali scacchi, catture e minacce può fare l'avversario dopo la mia cattura", "Quanti pedoni ho preso finora", "Se è la mossa più facile da calcolare"],
+          "explanation": "Prima di catturare, guarda cosa può fare l'avversario con la sua risposta: i suoi scacchi, le sue catture e le sue minacce. Quell'abitudine ti salva da quasi tutte le trappole.",
+          "feedback": ["", "I pedoni presi non contano se poi perdi qualcosa di più grande.", "Ciò che è facile da calcolare non è ciò che è sicuro: una trappola sembra quasi sempre facile."]
+        },
+        "u4-l07-s08": { "text": "Riassunto: un regalo nell'apertura ha quasi sempre un prezzo. Prima di catturare, guarda scacchi, catture e minacce dell'avversario. Contro 3...Cd4 non prendere in e5 senza pensare, e contro il Gambetto Englund non attaccare la donna con l'alfiere." }
+      }
+    },
     "u4-l03": {
       "title": "Struttura pedonale",
       "summary": "Pedoni isolati, doppiati e passati",

@@ -1,6 +1,40 @@
 {
   "title": "Finales",
   "lessons": {
+    "u5-l06": {
+      "title": "Mat de l'escalier",
+      "summary": "Deux tours, échec après échec",
+      "steps": {
+        "u5-l06-s01": { "text": "Avec deux tours, le mat se donne comme on monte un escalier : une tour donne échec et pousse le roi à la rangée suivante, l'autre donne échec par derrière et le pousse à la suivante, jusqu'à atteindre le bord de l'échiquier." },
+        "u5-l06-s02": { "text": "Chaque tour coupe une rangée et ne laisse pas passer le roi. Celle qui donne échec reste loin de lui, pour qu'on ne puisse pas la prendre. Les tours s'alternent : quand une donne échec, l'autre couvre déjà la rangée derrière." },
+        "u5-l06-s03": {
+          "prompt": "Le roi noir est en e6. Donne échec avec la tour en b4 pour le pousser à la rangée suivante.",
+          "hint": "Monte la tour par la colonne b jusqu'à la rangée 6. La tour en a5 lui ferme le passage vers le bas.",
+          "success": "Correct. Tb6+ donne échec et la tour en a5 coupe la 5e rangée : le roi ne peut que monter."
+        },
+        "u5-l06-s04": {
+          "prompt": "Le roi est monté sur la rangée 7. Donne échec avec l'autre tour pour le pousser sur la dernière rangée.",
+          "hint": "Amène la tour de a5 à la rangée 7. La tour en b6 l'empêche de revenir à la rangée 6.",
+          "success": "Correct. Ta7+ le pousse sur la 8e rangée et la tour en b6 l'empêche de revenir."
+        },
+        "u5-l06-s05": {
+          "prompt": "Le roi a atteint le bord. Donne mat.",
+          "hint": "La tour en a7 couvre déjà la 7e rangée. Donne échec sur la 8e rangée avec la tour en b6.",
+          "success": "Correct. Tb8 est mat : la tour en a7 couvre la rangée 7 et celle en b8 donne échec."
+        },
+        "u5-l06-s06": {
+          "prompt": "Le roi noir s'est approché de tes tours. Gagne en deux coups sans le laisser en prendre une.",
+          "hint": "Ne mets pas une tour à côté du roi : si elle n'est pas protégée, il la prend. Garde la rangée 7 et la colonne b couvertes, et éloigne la tour.",
+          "success": "Correct. Le roi n'a qu'une seule case et le mat arrive au prochain coup."
+        },
+        "u5-l06-s07": {
+          "prompt": "Donne mat avec deux tours. Stockfish défend le roi noir.",
+          "success": "Correct. Tu as donné le mat de l'escalier.",
+          "hint": "Avec ce coup, la victoire t'échappe. Fais attention aux tours : si le roi noir peut prendre une, protège-la ou éloigne-la. Et laisse toujours une case de fuite au roi jusqu'au mat, pour ne pas le mettre pat."
+        },
+        "u5-l06-s08": { "text": "En résumé : une tour donne échec de loin, l'autre coupe la rangée derrière, et ils s'alternent jusqu'au bord. Si le roi s'approche, éloigne la tour. Avec dame et tour, ou avec deux dames, l'idée est la même." }
+      }
+    },
     "u5-l01": {
       "title": "Mat avec la dame",
       "summary": "Roi et dame contre roi",

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DriveError } from './syncEngine';
+import { SyncError } from './syncEngine';
 import { createDriveRestClient, DRIVE_FILE_NAME } from './driveRest';
 
 type Call = { url: string; method: string; headers: Record<string, string>; body?: string };
@@ -33,8 +33,8 @@ const client = (responses: (Response | Error)[]) => {
   return { calls, drive: createDriveRestClient({ fetch: f, getToken: async () => 'TOKEN' }) };
 };
 
-async function failsWith(p: Promise<unknown>, kind: DriveError['kind']) {
-  await assert.rejects(p, (e: unknown) => e instanceof DriveError && e.kind === kind, kind);
+async function failsWith(p: Promise<unknown>, kind: SyncError['kind']) {
+  await assert.rejects(p, (e: unknown) => e instanceof SyncError && e.kind === kind, kind);
 }
 
 test('read: si no hay archivo en la carpeta oculta devuelve null', async () => {
@@ -96,15 +96,15 @@ test('read: un 404 al bajar el archivo cuenta como que no existe', async () => {
 });
 
 test('errores: 401 es auth', async () => {
-  await failsWith(client([apiError(401, 'authError')]).drive.read(), 'auth');
+  await failsWith(client([apiError(401, 'authError')]).drive.read(), 'other');
 });
 
 test('errores: 403 con cuota llena es quota', async () => {
-  await failsWith(client([json({ files: [] }), apiError(403, 'storageQuotaExceeded')]).drive.write('x'), 'quota');
+  await failsWith(client([json({ files: [] }), apiError(403, 'storageQuotaExceeded')]).drive.write('x'), 'other');
 });
 
 test('errores: otro 403 es forbidden (cuenta que no lo permite)', async () => {
-  await failsWith(client([apiError(403, 'forbidden')]).drive.read(), 'forbidden');
+  await failsWith(client([apiError(403, 'forbidden')]).drive.read(), 'other');
 });
 
 test('errores: 429 y 500 son other', async () => {
@@ -121,8 +121,8 @@ test('errores: si no hay permiso vigente se propaga como auth', async () => {
   const drive = createDriveRestClient({
     fetch: f,
     getToken: async () => {
-      throw new DriveError('auth');
+      throw new SyncError('other');
     },
   });
-  await failsWith(drive.read(), 'auth');
+  await failsWith(drive.read(), 'other');
 });

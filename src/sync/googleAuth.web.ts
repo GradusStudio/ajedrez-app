@@ -1,5 +1,5 @@
 import { DRIVE_SCOPE, GOOGLE_CLIENT_ID } from './googleConfig';
-import { DriveError } from './syncEngine';
+import { SyncError } from './syncEngine';
 
 // Permiso de Google para la web, con Google Identity Services (modelo de token). El script de Google se baja
 // solo cuando hace falta (al activar la sincronización o al abrir la app con ella ya activada), y el permiso
@@ -39,7 +39,7 @@ function loadGis(): Promise<Gis> {
     script.onerror = () => {
       loading = null;
       script.remove();
-      reject(new DriveError('offline'));
+      reject(new SyncError('offline'));
     };
     document.head.appendChild(script);
   });
@@ -68,7 +68,7 @@ export function createGoogleAuth() {
           // La persona puede aceptar el ingreso pero no marcar el permiso de Drive.
           if (!r.access_token || r.error || !(r.scope ?? '').split(' ').includes(DRIVE_SCOPE)) {
             console.warn('[gradus-sync] Google no dio el permiso', { error: r.error, scope: r.scope, token: !!r.access_token });
-            return reject(new DriveError('auth'));
+            return reject(new SyncError('other', 'Google: sin permiso vigente'));
           }
           token = { value: r.access_token, expiresAt: Date.now() + (r.expires_in ?? 3600) * 1000 };
           resolve();
@@ -76,7 +76,7 @@ export function createGoogleAuth() {
         // Ventana cerrada, bloqueada por el navegador o sin sesión de Google.
         error_callback: (e) => {
           console.warn('[gradus-sync] la ventana de Google fallo', { type: e?.type });
-          reject(new DriveError('auth'));
+          reject(new SyncError('other', 'Google: sin permiso vigente'));
         },
       });
       client.requestAccessToken();
@@ -88,7 +88,7 @@ export function createGoogleAuth() {
     /** Para el cliente de Drive: el permiso vigente o `auth` si venció o no hay. */
     async getToken(): Promise<string> {
       if (token && hasToken()) return token.value;
-      throw new DriveError('auth');
+      throw new SyncError('other', 'Google: sin permiso vigente');
     },
     /** Con un toque de la persona: para activar, reconectar o renovar (si ya lo dio, la ventana se cierra sola). */
     signIn: request,

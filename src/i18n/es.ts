@@ -277,6 +277,8 @@ export const es = {
   // Bots
   'bots.title': 'Bots',
   'bots.subtitle': 'Cada bot juega las aperturas que aprendes',
+  'bots.resumeTitle': 'Partida sin terminar contra {name}',
+  'bots.resumeButton': 'Continuar',
   'bots.cardLabel': '{name}, {tagline}, nivel {elo}',
   'bots.record': 'Le ganaste {wins} de {played}',
   'bots.back': '‹ Bots',

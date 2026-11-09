@@ -18,6 +18,7 @@ import { MaiaView } from '../engine/maia/MaiaView';
 import { UciEngine } from '../engine/uci';
 import { useFeedback } from '../feedback/feedback';
 import { useProgress } from '../progress/ProgressContext';
+import { replayMoves, uciMoves } from '../progress/ongoingGame';
 import { gameCountsForStreak } from '../progress/streak';
 import { useI18n } from '../i18n/I18nContext';
 import { es, MessageKey } from '../i18n/es';
@@ -35,6 +36,9 @@ type Props = {
   userColor: 'w' | 'b';
   /** Modo práctica: el bot sigue la línea de esta apertura mientras el usuario la respete. */
   practiceCourse?: OpeningCourse;
+  /** Partida guardada que se retoma: jugadas UCI desde el inicio y cuándo se empezó. Sin ellas, empieza de cero. */
+  initialMoves?: string[];
+  initialStartedAt?: string;
   onExit: () => void;
   onRematch: () => void;
   onOtherBot: () => void;
@@ -54,14 +58,18 @@ const BLUNDER_DELTA = 200;
 const GOOD_MOVE_DELTA = 150;
 
 // Partida contra un bot (mapa-de-pantallas.md, 2.10).
-export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, onOtherBot }: Props) {
-  const { finishGame } = useProgress();
+export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initialStartedAt, onExit, onRematch, onOtherBot }: Props) {
+  const { finishGame, saveOngoingGame } = useProgress();
   const { settings } = useSettings();
   const { language, t } = useI18n();
   const feedback = useFeedback();
-  const [chess] = useState(() => new Chess());
+  // Si se retoma una partida, se rearma con sus jugadas (partida.tsx ya comprobó que son legales; si no, empieza de cero).
+  const [chess] = useState(() => (initialMoves?.length ? replayMoves(initialMoves) : null) ?? new Chess());
   const [fen, setFen] = useState(chess.fen());
-  const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(null);
+  const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(() => {
+    const last = chess.history({ verbose: true }).at(-1);
+    return last ? { from: last.from, to: last.to } : null;
+  });
   const [engine, setEngine] = useState<UciEngine | null>(null);
   const [engineError, setEngineError] = useState<string | null>(null);
   const [engineKey, setEngineKey] = useState(0);
@@ -81,17 +89,19 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
   const alive = useRef(true);
   const prevScore = useRef<number | undefined>(undefined); // evaluación de la última jugada del bot
   const sincePhrase = useRef(0);
-  const inBook = useRef(true);
+  const inBook = useRef(!initialMoves?.length);
+  const startedIso = useRef(initialStartedAt ?? ''); // fecha de inicio de la partida guardada; se completa al montar
   const finished = useRef(false); // la partida se guarda una sola vez
 
   useEffect(() => {
     startedAt.current = Date.now();
+    if (!startedIso.current) startedIso.current = new Date().toISOString();
     return () => {
       alive.current = false;
     };
   }, []);
 
-  const uciHistory = () => chess.history({ verbose: true }).map((m) => m.from + m.to + (m.promotion ?? ''));
+  const uciHistory = () => uciMoves(chess);
   const sans = chess.history();
   const opening = detectOpening(uciHistory());
 
@@ -107,6 +117,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
     (r: Result, quit = false) => {
       if (finished.current) return;
       finished.current = true;
+      saveOngoingGame(null);
       if (r.kind === 'win') feedback.correct();
       else if (r.kind === 'loss') feedback.wrong();
       setSpeech(r.kind === 'win' ? bot.lines.onLose : r.kind === 'loss' ? bot.lines.onWin : t('game.drawSpeech'));
@@ -116,7 +127,7 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           userColor,
           result: r.kind,
           reason: es[r.reason],
-          moves: chess.history({ verbose: true }).map((m) => m.from + m.to + (m.promotion ?? '')),
+          moves: uciMoves(chess),
           practiceCourseId: practiceCourse?.id,
         },
         Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS),
@@ -125,11 +136,18 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
       );
       setResult({ ...r, ...earned });
     },
-    [bot, chess, finishGame, practiceCourse, userColor, feedback, t]
+    [bot, chess, finishGame, saveOngoingGame, practiceCourse, userColor, feedback, t]
   );
 
-  /** Revisa si la partida terminó después de una jugada. */
+  /** Después de cada jugada (del usuario o del bot): si la partida terminó la cierra y, si sigue, la guarda para continuarla. */
   const checkEnd = () => {
+    checkResult();
+    if (!finished.current) {
+      saveOngoingGame({ botId: bot.id, userColor, practiceCourseId: practiceCourse?.id, moves: uciMoves(chess), startedAt: startedIso.current });
+    }
+  };
+
+  const checkResult = () => {
     if (chess.isCheckmate()) {
       end({ kind: chess.turn() === userColor ? 'loss' : 'win', reason: 'game.reason.checkmate' });
     } else if (chess.isStalemate()) {

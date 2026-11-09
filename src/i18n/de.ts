@@ -278,6 +278,8 @@ export const de: Record<MessageKey, string> = {
   // Bots
   'bots.title': 'Bots',
   'bots.subtitle': 'Jeder Bot spielt die Eröffnungen, die du lernst',
+  'bots.resumeTitle': 'Nicht beendete Partie gegen {name}',
+  'bots.resumeButton': 'Fortsetzen',
   'bots.cardLabel': '{name}, {tagline}, Stufe {elo}',
   'bots.record': '{wins} von {played} gewonnen',
   'bots.back': '‹ Bots',

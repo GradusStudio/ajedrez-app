@@ -44,10 +44,11 @@ Para probar en la PC: `npx wrangler d1 execute gradus-sync --local -c wrangler.s
 
 El Worker no limita peticiones por su cuenta, y cualquiera puede mandar PUT con llaves al azar: una inundación llenaría la cuota gratuita de D1 y dejaría sin sincronización a todos. Se frena en Cloudflare, sin código:
 
-1. Panel de Cloudflare > el dominio `graduschess.com` > Seguridad > WAF > «Rate limiting rules» > Crear regla.
+1. Panel de Cloudflare > el dominio `graduschess.com` > Seguridad > «Security rules» (o WAF) > Crear regla > «Rate limiting rules».
 2. Cuando coincida: Nombre de host igual a `sync.graduschess.com` y Método es uno de `PUT`, `DELETE`.
-3. Límite sugerido: 60 peticiones por minuto por IP; acción: bloquear durante 10 minutos. Son valores sugeridos: se pueden ajustar (la app manda un PUT unos segundos después de cada cambio de progreso, así que un uso normal queda muy por debajo).
+3. Según la documentación de Cloudflare, el plan gratuito incluye **1 regla**, con período fijo de **10 segundos**, conteo por IP, acción «Block» y duración de **10 segundos** (las opciones más largas, como 60 por minuto y bloqueo de 10 minutos, son de planes de pago). Valor sugerido para el plan gratuito: **20 peticiones cada 10 segundos por IP** (un uso normal manda un PUT unos segundos después de cada cambio de progreso, así que queda muy por debajo). Se puede ajustar.
 4. Desplegar la regla y recién después publicar el Worker.
+5. Si el panel no deja crear la regla en tu plan, la alternativa gratuita es el binding de límite de peticiones del propio Worker (`ratelimits` en `wrangler.sync.jsonc`, período de 10 o 60 segundos, clave = IP de `CF-Connecting-IP`). Requiere un cambio pequeño en `workers/sync/index.ts` y es aproximado: el conteo es por ubicación de Cloudflare.
 
 Capacidad conocida: el plan gratuito de Workers admite unas 100.000 peticiones por día, y cada paso de lección o jugada de bot que cambia el progreso dispara una sincronización. Con muchos usuarios activos puede quedarse corto; se vigila en el panel y, si hace falta, se pasa al plan de pago.
 

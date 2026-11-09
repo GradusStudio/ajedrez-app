@@ -1,21 +1,19 @@
 import type { SyncStatus } from './syncEngine';
 
-/** Lo que ve la pantalla de Ajustes de la sincronización con Google Drive. `off`: no está activada. */
+/** Lo que ve la pantalla de Ajustes de la sincronización. `off`: no está activada. */
 export type DriveSyncState = SyncStatus | 'off';
 
 export type DriveSyncValue = {
-  /** Solo la web sincroniza (en el celular no hay Drive: ver el diseño de la versión web). */
+  /** Solo la web sincroniza (en el celular no hay sincronización: ver el diseño de la versión web). */
   supported: boolean;
   enabled: boolean;
   status: DriveSyncState;
-  /** Con un toque de la persona: pide el permiso a Google y empieza a sincronizar. */
+  /** Con un toque de la persona: Google pide el permiso (la única ventana), se obtiene la llave y empieza a sincronizar. */
   enable: () => Promise<void>;
-  /** Vuelve a pedir el permiso cuando venció. */
-  reconnect: () => Promise<void>;
-  /** Deja de sincronizar y quita el permiso. El progreso del dispositivo queda. */
+  /** Este dispositivo deja de sincronizar y olvida la llave. El progreso del dispositivo y el del servidor quedan. */
   disable: () => Promise<void>;
-  /** Se llama una vez por lección o partida terminada. Devuelve true cada 6y con la copia activada: toca mostrar el cartel. */
-  noteCompletion: () => boolean;
+  /** Con un toque, después de confirmar: borra el progreso del servidor y la llave de Drive. Si no se pudo (sin conexión), lanza y no cambia nada. */
+  deleteServerData: () => Promise<void>;
 };
 
 export const NOT_SUPPORTED: DriveSyncValue = {
@@ -23,7 +21,6 @@ export const NOT_SUPPORTED: DriveSyncValue = {
   enabled: false,
   status: 'off',
   enable: async () => {},
-  reconnect: async () => {},
   disable: async () => {},
-  noteCompletion: () => false,
+  deleteServerData: async () => {},
 };

@@ -1,138 +1,172 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useProgress } from '../progress/ProgressContext';
-import { createDriveRestClient } from './driveRest';
+import { createDriveRestClient, KEY_FILE_NAME } from './driveRest';
 import type { DriveSyncState, DriveSyncValue } from './driveSyncTypes';
 import { createGoogleAuth } from './googleAuth.web';
-import { createSyncEngine } from './syncEngine';
+import { readKey, writeKey } from './keyStorage';
+import { createServerClient, SYNC_URL } from './serverClient';
+import { createSyncEngine, type SyncStatus } from './syncEngine';
+import { fetchOrCreateKey } from './syncKey';
 
-// Conecta el motor de sincronización con el progreso y con Google (ver docs/superpowers/specs/2026-11-07-version-web-design.md, sección 4).
-// Se sincroniza al abrir la app, cuando cambia el progreso, al volver a la pestaña y al recuperar la conexión.
-// El permiso de Google dura una hora y vive en memoria: al vencer (o al abrir la app de nuevo), el motor se pausa.
-// Nunca se abre una ventana sola: sin un toque de la persona el navegador la bloquea (probado el 8-11-2026 en Chrome
-// de PC y de Android). Por eso, con el permiso vencido solo queda «Reconectar» en Ajustes y, cada 6 lecciones o partidas
-// terminadas, un cartel con el mismo botón en la pantalla de resultado (`noteCompletion`).
+// Conecta el motor de sincronización con el progreso y con Google (ver docs/superpowers/specs/2026-11-09-sincronizacion-con-llave-design.md).
+// El progreso vive en el servidor de Gradus y se sincroniza con una llave guardada en este navegador. Google solo se usa
+// al activar (una ventana) para guardar o leer esa llave en el Drive de la persona: después nunca vuelve a abrirse una ventana.
+// Se sincroniza al abrir la app, a poco de cambiar el progreso, al volver a la pestaña, al recuperar la conexión y,
+// al quedar oculta la pestaña, enseguida.
 
-const FLAG_KEY = 'gradus:driveSync';
-const COUNT_KEY = 'gradus:syncNudgeCount';
-const NUDGE_EVERY = 6;
-const DEBOUNCE_MS = 4000;
-
-/** Suma una acción terminada y devuelve el total (por dispositivo, no se sincroniza). */
-function bumpCount(): number {
-  try {
-    const n = (Number(window.localStorage.getItem(COUNT_KEY)) || 0) + 1;
-    window.localStorage.setItem(COUNT_KEY, String(n));
-    return n;
-  } catch {
-    return 0; // sin almacenamiento no se puede contar: no se avisa
-  }
-}
-
-function readFlag(): boolean {
-  try {
-    return window.localStorage.getItem(FLAG_KEY) === '1';
-  } catch {
-    return false;
-  }
-}
-
-function writeFlag(on: boolean): void {
-  try {
-    if (on) window.localStorage.setItem(FLAG_KEY, '1');
-    else window.localStorage.removeItem(FLAG_KEY);
-  } catch {
-    // Sin almacenamiento: la sincronización sigue esta sesión pero no se recuerda.
-  }
-}
+const DEBOUNCE_MS = 1500;
+/** Para probar en la PC: EXPO_PUBLIC_SYNC_URL=http://localhost:8790 al compilar (como EXPO_PUBLIC_PUZZLES_URL). */
+const BASE_URL = process.env.EXPO_PUBLIC_SYNC_URL || SYNC_URL;
 
 const DriveSyncContext = createContext<DriveSyncValue | null>(null);
 
+const storage = (): Storage | null => {
+  try {
+    return window.localStorage;
+  } catch {
+    return null; // algunos navegadores lanzan con solo tocar el almacenamiento
+  }
+};
+
 export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
   const { progress, loaded, getProgress, mergeRemote } = useProgress();
-  const [enabled, setEnabled] = useState(readFlag);
-  const [status, setStatus] = useState<DriveSyncState>(() => (readFlag() ? 'needsAuth' : 'off')); // al abrir con la copia activada aún no hay permiso
-  const enabledRef = useRef(enabled);
-  enabledRef.current = enabled;
+  const keyRef = useRef<string | null>(null);
+  const [enabled, setEnabled] = useState(() => {
+    const s = storage();
+    keyRef.current = s ? readKey(s) : null;
+    return keyRef.current !== null;
+  });
+  const [status, setStatus] = useState<DriveSyncState>(enabled ? 'idle' : 'off');
 
   const auth = useRef<ReturnType<typeof createGoogleAuth> | null>(null);
   auth.current ??= createGoogleAuth();
 
+  const drive = useMemo(
+    () => createDriveRestClient({ fetch: (...a) => window.fetch(...a), getToken: () => auth.current!.getToken(), fileName: KEY_FILE_NAME }),
+    []
+  );
+  const server = useMemo(
+    () => createServerClient({ fetch: (...a) => window.fetch(...a), baseUrl: BASE_URL, getKey: () => keyRef.current }),
+    []
+  );
+
+  /** Deja este dispositivo sin llave: no sincroniza más y no recuerda nada. */
+  const forgetKey = useCallback(() => {
+    keyRef.current = null;
+    const s = storage();
+    if (s) writeKey(s, null);
+    setEnabled(false);
+  }, []);
+
+  const onStatus = useCallback(
+    (s: SyncStatus) => {
+      // Sin llave (se desactivó mientras corría una sincronización) no se muestra el resultado.
+      if (keyRef.current === null) return;
+      if (s === 'revoked') forgetKey(); // se borraron los datos desde otro dispositivo: queda el aviso hasta activar de nuevo
+      setStatus(s);
+    },
+    [forgetKey]
+  );
+
   const engine = useMemo(
     () =>
       createSyncEngine({
-        client: createDriveRestClient({ fetch: (...a) => window.fetch(...a), getToken: () => auth.current!.getToken() }),
+        client: server,
         getLocal: getProgress,
         mergeIntoLocal: mergeRemote,
-        // Si se desactivó mientras corría, no se muestra el resultado.
-        onStatus: (s) => enabledRef.current && setStatus(s),
+        onStatus,
         schedule: (fn, ms) => {
           const id = window.setTimeout(fn, ms);
           return () => window.clearTimeout(id);
         },
         debounceMs: DEBOUNCE_MS,
       }),
-    [getProgress, mergeRemote]
+    [server, getProgress, mergeRemote, onStatus]
   );
-
-  /** Sin permiso vigente: se avisa que hace falta reconectar. */
-  const askToReconnect = useCallback(() => setStatus('needsAuth'), []);
-
-  // Con el script de Google ya bajado, la ventana se abre dentro del toque en «Reconectar» y el navegador no la bloquea.
-  useEffect(() => {
-    if (enabled && status === 'needsAuth') void auth.current!.warm();
-  }, [enabled, status]);
 
   // Cada cambio del progreso pide una sincronización (el motor agrupa los pedidos seguidos).
   useEffect(() => {
-    if (loaded && enabled && auth.current!.hasToken()) engine.requestSync();
+    if (loaded && enabled) engine.requestSync();
   }, [progress, loaded, enabled, engine]);
 
-  // Al volver a la pestaña o recuperar la conexión.
+  // Al volver a la pestaña o recuperar la conexión se pide una; al ocultarla o cerrarla se sincroniza sin esperar.
   useEffect(() => {
     if (!enabled) return;
-    const wake = () => {
-      if (document.visibilityState === 'hidden') return;
-      if (auth.current!.hasToken()) engine.requestSync();
-      else askToReconnect(); // el permiso venció con la app abierta
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') void engine.flush();
+      else engine.requestSync();
     };
-    document.addEventListener('visibilitychange', wake);
-    window.addEventListener('online', wake);
+    const onHide = () => void engine.flush();
+    const onOnline = () => engine.requestSync();
+    document.addEventListener('visibilitychange', onVisibility);
+    window.addEventListener('pagehide', onHide);
+    window.addEventListener('online', onOnline);
     return () => {
-      document.removeEventListener('visibilitychange', wake);
-      window.removeEventListener('online', wake);
+      document.removeEventListener('visibilitychange', onVisibility);
+      window.removeEventListener('pagehide', onHide);
+      window.removeEventListener('online', onOnline);
     };
-  }, [enabled, engine, askToReconnect]);
+  }, [enabled, engine]);
 
-  const connect = useCallback(async () => {
+  // Con el script de Google ya bajado, la ventana se abre dentro del toque y el navegador no la bloquea.
+  useEffect(() => {
+    void auth.current!.warm();
+  }, []);
+
+  const enable = useCallback(async () => {
+    // Lo primero que pasa en el toque es abrir la ventana de Google: después de un await de red el navegador la bloquea.
     try {
       await auth.current!.signIn();
     } catch {
-      // Ventana cerrada o permiso no dado: no cambia nada; se puede volver a intentar.
+      return; // ventana cerrada o permiso no dado: no cambia nada; se puede volver a intentar
+    }
+    let key: string;
+    try {
+      key = await fetchOrCreateKey(drive);
+    } catch {
+      setStatus('error'); // Drive sin conexión, lleno o sin permiso: no cambia nada más; se puede volver a intentar
+      await auth.current!.revoke();
       return;
     }
-    writeFlag(true);
-    enabledRef.current = true; // sin esperar al próximo dibujo: el primer estado tiene que verse
+    const s = storage();
+    if (s) writeKey(s, key);
+    keyRef.current = key;
     setEnabled(true);
+    setStatus('syncing');
+    // El permiso de Drive ya no hace falta: con la llave se sincroniza sin volver a pedirle nada a Google.
+    await auth.current!.revoke();
     engine.resume();
     await engine.syncNow();
-  }, [engine]);
+  }, [drive, engine]);
 
   const disable = useCallback(async () => {
-    writeFlag(false);
-    enabledRef.current = false;
-    setEnabled(false);
+    forgetKey();
     setStatus('off');
-    await auth.current!.revoke();
-  }, []);
+  }, [forgetKey]);
 
-  const noteCompletion = useCallback(() => {
-    const n = bumpCount();
-    return n > 0 && n % NUDGE_EVERY === 0 && enabledRef.current;
-  }, []);
+  const deleteServerData = useCallback(async () => {
+    // Igual que en `enable`: la ventana de Google primero, antes de cualquier espera de red.
+    try {
+      await auth.current!.signIn();
+    } catch {
+      return; // ventana cerrada: no se borra nada
+    }
+    try {
+      // Si algo falla (por ejemplo sin conexión) no cambia nada y se puede repetir: el DELETE del servidor se puede repetir sin problema.
+      await server.deleteProgress();
+      await drive.remove();
+    } catch (e) {
+      await auth.current!.revoke();
+      throw e;
+    }
+    await auth.current!.revoke();
+    forgetKey();
+    setStatus('off');
+  }, [server, drive, forgetKey]);
 
   const value = useMemo<DriveSyncValue>(
-    () => ({ supported: true, enabled, status, enable: connect, reconnect: connect, disable, noteCompletion }),
-    [enabled, status, connect, disable, noteCompletion]
+    () => ({ supported: true, enabled, status, enable, disable, deleteServerData }),
+    [enabled, status, enable, disable, deleteServerData]
   );
   return <DriveSyncContext.Provider value={value}>{children}</DriveSyncContext.Provider>;
 }

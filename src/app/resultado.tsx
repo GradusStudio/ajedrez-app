@@ -9,7 +9,6 @@ import { currentStreak } from '../progress/progressStore';
 import { needsCopyBeforeInstall } from '../pwa/installPlatform';
 import { useInstallPlatform } from '../pwa/useInstallPlatform';
 import { LessonResultScreen } from '../screens/LessonResultScreen';
-import { SyncNudge } from '../screens/SyncNudge';
 import { installOfferApplies, reminderOfferApplies } from '../settings/offers';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { ensureReminderPermission, REMINDERS_SUPPORTED } from '../settings/reminders';
@@ -95,7 +94,7 @@ export default function ResultRoute() {
       streakRecovered={params.recuperada === '1'}
       onContinue={() => router.back()}
       reminderOffer={offer}
-      extra={review ? undefined : <SyncNudge />}
+     
       installOffer={showInstall ? { onInstall: () => router.push('/instalar'), copyFirst: needsCopyBeforeInstall(platform) } : undefined}
       onReviewMistakes={
         failed && params.modo !== 'repaso'

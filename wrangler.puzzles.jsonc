@@ -7,6 +7,9 @@
 {
   "name": "gradus-puzzles",
   "compatibility_date": "2026-11-04",
+  // El dominio se conecta solo al publicar (graduschess.com ya está en la cuenta de Cloudflare).
+  "routes": [{ "pattern": "puzzles.graduschess.com", "custom_domain": true }],
+  "workers_dev": false,
   "assets": {
     "directory": "../datos-lichess/trozos",
     "not_found_handling": "none"

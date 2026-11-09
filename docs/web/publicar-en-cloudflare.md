@@ -24,7 +24,7 @@ La web saca los puzzles de la base completa de Lichess (6,16 millones), partida 
 1. Armar los trozos (una vez, o cuando cambie la base): `npm run build:puzzles -- C:\dev\datos-lichess\lichess_db_puzzle.csv.zst`. Tarda unos 5 minutos y deja todo en `C:\dev\datos-lichess\trozos` (con su `_headers`). Si cambia `src/puzzles/manifest.json`, guardarlo en git: la app tiene que coincidir con los trozos publicados.
 2. Iniciar sesión en wrangler (una vez): `npx wrangler login`.
 3. Publicar: `npx wrangler deploy -c wrangler.puzzles.jsonc`. La primera vez sube 1,5 GB y puede tardar; después sube solo lo que cambió.
-4. Panel de Cloudflare > Worker `gradus-puzzles` > Ajustes > Dominios y rutas > Agregar > Dominio personalizado > `puzzles.graduschess.com`.
+4. El dominio `puzzles.graduschess.com` se conecta solo al publicar (`routes` en `wrangler.puzzles.jsonc`). Si falla, conectarlo a mano: panel de Cloudflare > Worker `gradus-puzzles` > Ajustes > Dominios y rutas > Agregar > Dominio personalizado.
 5. Comprobar: `curl -sI https://puzzles.graduschess.com/v1/dia/2026.json` da 200 con `Access-Control-Allow-Origin: *`, `Cache-Control: public, max-age=31536000, immutable` y `X-Robots-Tag: noindex`.
 
 Si algún día se vuelve a armar la base con otro formato, se publica como `v2` (constante `VERSION` de `scripts/build-puzzles.js`) junto con la versión de la app que trae el índice nuevo.

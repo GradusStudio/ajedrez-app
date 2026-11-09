@@ -1,6 +1,7 @@
 import React from 'react';
 import { showDialog } from '../components/dialog';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { Circle3D } from '../components/Circle3D';
@@ -44,7 +45,7 @@ export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack 
   };
 
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
@@ -109,7 +110,7 @@ export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack 
       <View style={{ height: space.lg }} />
       <Button3D label={t('openings.practice')} onPress={onPractice} />
       <Text style={styles.practiceNote}>{t(course.color === 'w' ? 'openings.practiceNoteWhite' : 'openings.practiceNoteBlack')}</Text>
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

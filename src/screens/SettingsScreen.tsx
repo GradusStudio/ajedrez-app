@@ -1,6 +1,7 @@
 import React from 'react';
 import { showDialog } from '../components/dialog';
-import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
 import { Segmented } from '../components/Segmented';
 import { SyncSection } from './SyncSection';
@@ -86,7 +87,7 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
   };
 
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
@@ -163,7 +164,7 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
         </>
       )}
       <Button3D label={t('settings.reset')} variant="destructive" onPress={confirmReset} />
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

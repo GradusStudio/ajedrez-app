@@ -4,7 +4,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -12,6 +11,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button3D } from '../components/Button3D';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Segmented } from '../components/Segmented';
 import { MessageKey, useI18n } from '../i18n/I18nContext';
 import { parseGame } from '../review/pgn';
@@ -104,7 +104,7 @@ export function ImportGameScreen({ onBack, onReview }: Props) {
 
   return (
     <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView
+      <ColumnScrollView
         contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
         keyboardShouldPersistTaps="handled"
       >
@@ -198,7 +198,7 @@ export function ImportGameScreen({ onBack, onReview }: Props) {
             })}
           </>
         )}
-      </ScrollView>
+      </ColumnScrollView>
     </KeyboardAvoidingView>
   );
 }

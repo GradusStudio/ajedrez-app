@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
 import { StatIcon } from '../components/StatIcon';
 import { Bot } from '../data/bots';
@@ -37,7 +38,7 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
   const { t, tn } = useI18n();
   return (
     // Con scroll: en un teléfono chico con letra grande, «Continuar» no puede quedar afuera.
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.xxl) }]}
     >
@@ -102,7 +103,7 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
       {onReviewMistakes && (
         <Button3D label={t('common.reviewMistakes')} onPress={onReviewMistakes} style={{ marginTop: space.md }} />
       )}
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

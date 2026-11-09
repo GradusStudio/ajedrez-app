@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { AppLink } from '../components/AppLink';
 import { useI18n } from '../i18n/I18nContext';
 import { SOURCE_URL } from '../links';
@@ -79,7 +80,7 @@ const credits = (t: Translate): Credit[] => [
 export function CreditsScreen({ onBack }: { onBack: () => void }) {
   const { t } = useI18n();
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
@@ -103,7 +104,7 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
           ))}
         </View>
       ))}
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

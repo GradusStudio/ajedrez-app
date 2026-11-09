@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Chip } from '../components/Chip';
 import { ProgressBar } from '../components/ProgressBar';
 import { BotStyle } from '../data/bots';
@@ -22,7 +23,7 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
   const list = openings.filter((o) => o.color === color);
 
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
@@ -77,7 +78,7 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
           </Pressable>
         );
       })}
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

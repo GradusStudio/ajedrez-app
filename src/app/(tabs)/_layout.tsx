@@ -9,6 +9,7 @@ import { TabIcon, TabIconName } from '../../components/TabIcon';
 import { colors, fonts } from '../../theme';
 import { useWideLayout } from '../../components/useWideLayout';
 import { WideSidebar } from '../../components/WideSidebar';
+import { ColumnContext } from '../../components/ColumnScrollView';
 import { SIDEBAR_LABELS_MIN_WIDTH, WIDE_LIST_COLUMN } from '../../components/wideLayout';
 
 // Las 5 pestañas de mapa-de-pantallas.md más Análisis (tablero libre).
@@ -24,13 +25,14 @@ export default function TabsLayout() {
   // al borde (las esquinas redondeadas la cortan). Por eso la altura y el margen se fijan aquí.
   const insets = useSafeAreaInsets();
   const bottom = Math.max(insets.bottom, 10);
-  // Web en pantalla ancha: barra lateral y el contenido de cada pestaña en una columna de 640 px.
+  // Web en pantalla ancha: barra lateral y el contenido de cada pestaña en una columna de 640 px (ColumnScrollView).
   const wide = useWideLayout();
   const { width } = useWindowDimensions();
   const labels = width >= SIDEBAR_LABELS_MIN_WIDTH;
   // La primera vez, antes de las pestañas, la bienvenida.
   if (!progress.profile.onboarded) return <Redirect href="/bienvenida" />;
   return (
+    <ColumnContext.Provider value={wide ? WIDE_LIST_COLUMN : null}>
     <Tabs
       tabBar={wide ? (props) => <WideSidebar {...props} labels={labels} /> : undefined}
       screenOptions={{
@@ -54,9 +56,7 @@ export default function TabsLayout() {
             {children}
           </Text>
         ),
-        sceneStyle: wide
-          ? { backgroundColor: colors.bg, width: '100%', maxWidth: WIDE_LIST_COLUMN, alignSelf: 'center' }
-          : { backgroundColor: colors.bg },
+        sceneStyle: { backgroundColor: colors.bg },
         // Cambio de pestaña con un fundido corto, en vez del corte seco.
         animation: 'fade',
       }}
@@ -68,5 +68,6 @@ export default function TabsLayout() {
       <Tabs.Screen name="analisis" options={{ title: t('tabs.analysis'), tabBarIcon: icon('analysis') }} />
       <Tabs.Screen name="perfil" options={{ title: t('tabs.profile'), tabBarIcon: icon('profile') }} />
     </Tabs>
+    </ColumnContext.Provider>
   );
 }

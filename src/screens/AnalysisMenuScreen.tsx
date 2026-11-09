@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { useI18n, MessageKey } from '../i18n/I18nContext';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
@@ -16,7 +17,7 @@ export function AnalysisMenuScreen({ onGame, onFree }: Props) {
     { glyph: '♜', title: 'analysisMenu.free', desc: 'analysisMenu.freeDesc', onPress: onFree, accent: '#4FA3E0', edge: '#2F6FA0' },
   ];
   return (
-    <ScrollView style={styles.screen} contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
+    <ColumnScrollView style={styles.screen} contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
       <Text style={styles.title}>{t('analysisMenu.title')}</Text>
       <Text style={styles.subtitle}>{t('analysisMenu.subtitle')}</Text>
       <View style={{ height: space.lg }} />
@@ -37,7 +38,7 @@ export function AnalysisMenuScreen({ onGame, onFree }: Props) {
           </View>
         </Pressable>
       ))}
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

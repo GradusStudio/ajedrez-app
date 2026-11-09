@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { showDialog } from '../components/dialog';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView, useColumnWidth } from '../components/ColumnScrollView';
 import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
 import { LessonNode, NODE_BOX } from '../components/LessonNode';
@@ -56,10 +57,15 @@ export function HomeScreen({ onStartLesson }: Props) {
   const status = streakStatusNow(progress, today);
   // Alto del botón flotante: el final de la ruta se puede subir por encima de él.
   const [floatingHeight, setFloatingHeight] = useState(140);
+  // Pantalla ancha: la tarjeta flotante va centrada en la columna, no de borde a borde de la ventana.
+  const column = useColumnWidth();
+  const floatingWide = column
+    ? { left: '50%' as const, right: undefined, width: column - space.lg * 2, marginLeft: -(column - space.lg * 2) / 2 }
+    : null;
 
   return (
     <View style={styles.screen}>
-      <ScrollView
+      <ColumnScrollView
         contentContainerStyle={[
           styles.content,
           { paddingTop: statusBarTop(space.md), paddingBottom: floatingHeight + space.xl * 2 },
@@ -79,7 +85,7 @@ export function HomeScreen({ onStartLesson }: Props) {
         {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
 
         <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
-      </ScrollView>
+      </ColumnScrollView>
 
       <UnitMenu
         visible={menuOpen}
@@ -93,7 +99,7 @@ export function HomeScreen({ onStartLesson }: Props) {
 
       {/* Botón flotante con la lección sugerida */}
       {suggested && (
-        <View style={styles.floating} onLayout={(e) => setFloatingHeight(e.nativeEvent.layout.height)}>
+        <View style={[styles.floating, floatingWide]} onLayout={(e) => setFloatingHeight(e.nativeEvent.layout.height)}>
           <Text style={styles.floatingCaption} numberOfLines={2}>
             {t('home.lessonCaption', { order: suggested.order, title: suggested.title })}
           </Text>

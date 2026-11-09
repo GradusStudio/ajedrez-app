@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { BotAvatar } from '../components/BotAvatar';
 import { ProgressBar } from '../components/ProgressBar';
 import { SettingRow } from '../components/SettingRow';
@@ -44,7 +45,7 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
     .filter((x) => x.r.wins + x.r.losses + x.r.draws > 0);
 
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
@@ -105,7 +106,7 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
       <SettingRow label={t('profile.pieces')} description={t('profile.pieces.description')} onPress={onOpenPieces} />
       <SettingRow label={t('profile.settings')} description={t('profile.settings.description')} onPress={onOpenSettings} />
       <SettingRow label={t('credits.title')} onPress={onOpenCredits} />
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

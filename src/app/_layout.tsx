@@ -20,6 +20,7 @@ import { useReminderSync } from '../settings/useReminderSync';
 import { registerServiceWorker, requestPersistentStorage } from '../pwa/register';
 import { WebColumn } from '../components/WebColumn';
 import { useWideLayout } from '../components/useWideLayout';
+import { ColumnContext } from '../components/ColumnScrollView';
 import { COLUMN_MAX } from '../components/boardSize';
 import { useRouteMeta } from '../seo/useRouteMeta';
 import { DriveSyncProvider } from '../sync/DriveSyncContext';
@@ -90,11 +91,13 @@ function AppStack() {
   const ready = loaded && piecesLoaded && settingsLoaded;
   useReminderSync(ready);
   useRouteMeta();
-  // Pantalla ancha (web): las pantallas siguen en la columna de 480 px, salvo las pestañas (barra lateral) y las
-  // que ya ponen el tablero con un panel al costado (BoardLayout), que usan toda la ventana.
+  // Pantalla ancha (web): las pantallas ocupan toda la ventana y su contenido va en una columna de 480 px
+  // (ColumnScrollView, así la barra de desplazamiento queda contra el borde). Las que todavía ponen el tablero
+  // arriba y el resto abajo, sin BoardLayout, siguen encerradas en la columna entera (`inColumn`).
   const wide = useWideLayout();
-  const column = wide ? { width: '100%' as const, maxWidth: COLUMN_MAX, alignSelf: 'center' as const } : null;
-  const fullWidth = { contentStyle: { backgroundColor: colors.bg } };
+  const inColumn = {
+    contentStyle: { backgroundColor: colors.bg, ...(wide ? { width: '100%' as const, maxWidth: COLUMN_MAX, alignSelf: 'center' as const } : null) },
+  };
 
   // Si lo guardado no se pudo leer, la persona tiene que saber que esta sesión no se guarda.
   useEffect(() => {
@@ -110,31 +113,33 @@ function AppStack() {
   return (
     // Las pantallas entran deslizándose desde la derecha, con la de abajo corriéndose un poco (más suave
     // que la animación por defecto de Android). La bienvenida y el resultado aparecen con un fundido.
+    <ColumnContext.Provider value={wide ? COLUMN_MAX : null}>
     <Stack
-      screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg, ...column }, animation: 'ios_from_right' }}
+      screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg }, animation: 'ios_from_right' }}
     >
-      <Stack.Screen name="(tabs)" options={fullWidth} />
+      <Stack.Screen name="(tabs)" />
       <Stack.Screen name="apertura/[id]" />
       <Stack.Screen name="bot/[id]" />
       <Stack.Screen name="piezas" />
       <Stack.Screen name="tableros" />
-      <Stack.Screen name="puzzle" options={fullWidth} />
+      <Stack.Screen name="puzzle" />
       <Stack.Screen name="ajustes" />
-      <Stack.Screen name="analisis-libre" />
+      <Stack.Screen name="analisis-libre" options={inColumn} />
       <Stack.Screen name="importar-partida" />
-      <Stack.Screen name="revision" />
-      <Stack.Screen name="quiz-partida" />
+      <Stack.Screen name="revision" options={inColumn} />
+      <Stack.Screen name="quiz-partida" options={inColumn} />
       <Stack.Screen name="creditos" />
       <Stack.Screen name="instalar" />
       <Stack.Screen name="privacidad" />
       <Stack.Screen name="terminos" />
-      <Stack.Screen name="bienvenida" options={{ gestureEnabled: false, animation: 'fade' }} />
+      <Stack.Screen name="bienvenida" options={{ gestureEnabled: false, animation: 'fade', ...inColumn }} />
       {/* Sin gesto de volver: abandonar la partida pasa por la confirmación */}
-      <Stack.Screen name="partida" options={{ gestureEnabled: false }} />
+      <Stack.Screen name="partida" options={{ gestureEnabled: false, ...inColumn }} />
       {/* Sin gesto de volver: la salida de la lección pasa por la confirmación */}
-      <Stack.Screen name="leccion/[id]" options={{ gestureEnabled: false, ...fullWidth }} />
+      <Stack.Screen name="leccion/[id]" options={{ gestureEnabled: false }} />
       <Stack.Screen name="resultado" options={{ gestureEnabled: false, animation: 'fade' }} />
     </Stack>
+    </ColumnContext.Provider>
   );
 }
 

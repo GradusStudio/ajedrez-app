@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { BotAvatar } from '../components/BotAvatar';
 import { Chip } from '../components/Chip';
 import { Bot } from '../data/bots';
@@ -18,7 +19,7 @@ export function BotsScreen({ onOpenBot }: Props) {
   const { bots } = useContent();
   const { t } = useI18n();
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
@@ -54,7 +55,7 @@ export function BotsScreen({ onOpenBot }: Props) {
           </Pressable>
         );
       })}
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

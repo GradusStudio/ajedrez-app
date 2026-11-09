@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { AppLink } from '../components/AppLink';
 import type { MessageKey } from '../i18n/es';
 import { useI18n } from '../i18n/I18nContext';
@@ -23,7 +24,7 @@ export function TermsScreen({ onBack }: { onBack: () => void }) {
   };
 
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
@@ -45,7 +46,7 @@ export function TermsScreen({ onBack }: { onBack: () => void }) {
           {extra(id)}
         </View>
       ))}
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

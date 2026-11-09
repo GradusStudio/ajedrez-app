@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
@@ -35,7 +36,7 @@ export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
   const play = () => onPlay(choice === 'random' ? (Math.random() < 0.5 ? 'w' : 'b') : choice);
 
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
@@ -87,7 +88,7 @@ export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
       </View>
 
       <Button3D label={t('common.play')} variant="primary" onPress={play} style={{ marginTop: space.lg }} />
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

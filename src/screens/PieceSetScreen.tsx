@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { PieceSetPicker } from '../components/PieceSetPicker';
 import { StatIcon } from '../components/StatIcon';
 import { useI18n } from '../i18n/I18nContext';
@@ -12,7 +13,7 @@ export function PieceSetScreen({ onBack }: { onBack: () => void }) {
   const { progress } = useProgress();
   const { t } = useI18n();
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
@@ -28,7 +29,7 @@ export function PieceSetScreen({ onBack }: { onBack: () => void }) {
       </View>
       <Text style={styles.subtitle}>{t('pieces.subtitle')}</Text>
       <PieceSetPicker />
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

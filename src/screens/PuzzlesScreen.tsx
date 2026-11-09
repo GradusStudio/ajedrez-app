@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
@@ -44,7 +45,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, puzzles }: Props & { puzzles: 
   const available = countPuzzles(puzzles, level, theme);
 
   return (
-    <ScrollView
+    <ColumnScrollView
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
@@ -112,7 +113,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, puzzles }: Props & { puzzles: 
 
       <Button3D label={t('puzzles.practiceButton')} variant="primary" onPress={() => onPractice(level, theme)} style={{ marginTop: space.lg }} />
       <Text style={styles.count}>{t('puzzles.count', { n: available })}</Text>
-    </ScrollView>
+    </ColumnScrollView>
   );
 }
 

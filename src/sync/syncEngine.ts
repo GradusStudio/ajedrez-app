@@ -91,14 +91,14 @@ export function createSyncEngine(deps: Deps) {
     try {
       let remote = await client.read();
       for (let conflicts = 0; ; conflicts++) {
-        if (remote === null) {
-          await client.write(progressToFile(getLocal(), now()), 0);
-          return report('ok');
-        }
-        const parsed = parseProgressFile(remote.text);
-        if (!parsed.ok) return report(parsed.error === 'tooNew' ? 'tooNew' : 'corrupt');
-        const merged = mergeIntoLocal(parsed.progress);
         try {
+          if (remote === null) {
+            await client.write(progressToFile(getLocal(), now()), 0);
+            return report('ok');
+          }
+          const parsed = parseProgressFile(remote.text);
+          if (!parsed.ok) return report(parsed.error === 'tooNew' ? 'tooNew' : 'corrupt');
+          const merged = mergeIntoLocal(parsed.progress);
           // Lo que ya está en el servidor (normalizado como lo deja la combinación) no se vuelve a subir.
           if (!sameData(merged, mergeProgress(parsed.progress, parsed.progress))) {
             await client.write(progressToFile(merged, now()), remote.version);
@@ -155,6 +155,8 @@ export function createSyncEngine(deps: Deps) {
   function flush(): Promise<SyncResult> {
     cancelTimer?.();
     cancelTimer = null;
+    // Con la llave revocada no se llama al servidor ni se vuelve a informar: queda como está hasta `resume()`.
+    if (paused) return Promise.resolve({ status: 'revoked' });
     return syncNow();
   }
 

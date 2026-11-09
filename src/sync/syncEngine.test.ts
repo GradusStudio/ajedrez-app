@@ -266,3 +266,46 @@ test('un borrado reciente (resetAt) llega al servidor y reemplaza lo viejo', asy
   await engine.syncNow();
   assert.deepEqual(box.local.lessons, {});
 });
+
+test('flush con la llave revocada no llama al servidor hasta resume', async () => {
+  const drive = fakeServer();
+  drive.state.failWith = new SyncError('revoked');
+  const { engine, timer, statuses } = setup(make(), drive);
+  await engine.syncNow();
+  const reads = drive.state.reads;
+  const seen = statuses.length;
+  assert.deepEqual(await engine.flush(), { status: 'revoked' });
+  assert.equal(drive.state.reads, reads);
+  assert.equal(statuses.length, seen, 'no informa de nuevo');
+  assert.equal(timer.hasPending(), false);
+  drive.state.failWith = null;
+  engine.resume();
+  assert.equal((await engine.flush()).status, 'ok');
+  assert.ok(drive.state.reads > reads);
+});
+
+test('conflicto en la primera escritura (servidor vacío): fusiona y reintenta', async () => {
+  const mine = make({ lessons: { a: lesson('2026-11-01T00:00:00.000Z') } });
+  const theirs = file(make({ deviceId: 'B', lessons: { x: lesson('2026-11-02T00:00:00.000Z') } }));
+  const { engine, drive, box } = setup(mine, fakeServer());
+  drive.state.interleave = [theirs];
+  assert.equal((await engine.syncNow()).status, 'ok');
+  assert.deepEqual(drive.state.expected, [0, 1]);
+  assert.deepEqual(Object.keys(box.local.lessons).sort(), ['a', 'x']);
+});
+
+test('un conflicto con texto dañado o de versión más nueva no se pisa', async () => {
+  const tooNew = JSON.stringify({ app: 'gradus', kind: 'progress', exportedAt: 'x', progress: { version: 99 } });
+  for (const [text, status] of [
+    ['basura', 'corrupt'],
+    [tooNew, 'tooNew'],
+  ] as const) {
+    const local = make({ lessons: { a: lesson('2026-11-01T00:00:00.000Z') } });
+    const { engine, drive } = setup(local, fakeServer(file(make({ deviceId: 'B' }))));
+    drive.state.interleave = [text];
+    // El local tiene algo que subir, así que la primera escritura choca.
+    assert.equal((await engine.syncNow()).status, status);
+    assert.equal(drive.state.text, text);
+    assert.equal(drive.state.writes, 1);
+  }
+});

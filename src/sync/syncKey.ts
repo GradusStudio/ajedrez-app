@@ -56,3 +56,22 @@ export async function fetchOrCreateKey(file: DriveFile, make: () => string = () 
     return key;
   }
 }
+
+/**
+ * La llave de Drive ya comprobada con el servidor. Si el servidor dice que esa llave está revocada (se borraron los
+ * datos y el archivo de Drive no llegó a borrarse), se borra el archivo y se crea una llave nueva, que también se
+ * comprueba: si vuelve a salir revocada se lanza en vez de repetir. Un fallo de `probe` que no sea «revoked»
+ * (por ejemplo sin conexión) se propaga y el archivo de Drive no se toca.
+ */
+export async function resolveActiveKey(
+  file: DriveFile,
+  probe: (key: string) => Promise<'ok' | 'revoked'>,
+  make?: () => string
+): Promise<string> {
+  const key = await fetchOrCreateKey(file, make);
+  if ((await probe(key)) === 'ok') return key;
+  await file.remove();
+  const fresh = await fetchOrCreateKey(file, make);
+  if ((await probe(fresh)) !== 'ok') throw new Error('El servidor rechaza también la llave nueva');
+  return fresh;
+}

@@ -714,6 +714,7 @@ export const en: Record<MessageKey, string> = {
   'sync.delete.message': 'Your progress saved on our server is deleted and sync is turned off on all your devices. The progress on this device stays. This cannot be undone.',
   'sync.delete.confirm': 'Delete',
   'sync.delete.failed': 'Could not delete: check your connection.',
+  'sync.delete.partial': "Your data was deleted from the server, but the key could not be removed from your Drive. This device no longer syncs; if you turn it on again, a new key is created.",
   'sync.popup.failed': 'Could not open the Google window. Tap the button again and allow the window.',
   'progress.saveBlocked.title': 'Your progress cannot be saved',
   'progress.saveBlocked.message': 'Gradus could not read what you had saved, so it will not save anything in this session to avoid overwriting it. Close and reopen the app.',

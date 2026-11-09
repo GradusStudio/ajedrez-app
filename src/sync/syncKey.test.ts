@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { fetchOrCreateKey, isSyncKey, keyFromFile, keyToFile, newSyncKey } from './syncKey';
+import { fetchOrCreateKey, isSyncKey, keyFromFile, keyToFile, newSyncKey, resolveActiveKey } from './syncKey';
 import type { DriveFile } from './driveRest';
 
 const KEY = 'A'.repeat(43);
@@ -94,4 +94,51 @@ test('si la relectura tras escribir lanza, devuelve la llave generada', async ()
 test('si la relectura tras escribir da null, devuelve la llave generada', async () => {
   const file: DriveFile = { read: async () => null, write: async () => {}, remove: async () => {} };
   assert.equal(await fetchOrCreateKey(file, () => 'B'.repeat(43)), 'B'.repeat(43));
+});
+
+// Archivo de Drive en memoria: remove lo vacía.
+function memoryFile(initial: string | null) {
+  let text = initial;
+  let removed = 0;
+  const file: DriveFile = {
+    read: async () => text,
+    write: async (t) => {
+      text = t;
+    },
+    remove: async () => {
+      removed++;
+      text = null;
+    },
+  };
+  return { file, removed: () => removed, text: () => text };
+}
+
+test('resolveActiveKey: llave aceptada se devuelve y Drive no se toca', async () => {
+  const m = memoryFile(keyToFile(KEY));
+  assert.equal(await resolveActiveKey(m.file, async () => 'ok'), KEY);
+  assert.equal(m.removed(), 0);
+});
+
+test('resolveActiveKey: llave revocada borra el archivo una vez y devuelve otra, ya guardada', async () => {
+  const m = memoryFile(keyToFile(KEY));
+  const key = await resolveActiveKey(m.file, async (k) => (k === KEY ? 'revoked' : 'ok'));
+  assert.equal(m.removed(), 1);
+  assert.notEqual(key, KEY);
+  assert.ok(isSyncKey(key));
+  assert.equal(keyFromFile(m.text()!), key);
+});
+
+test('resolveActiveKey: sin conexión se propaga y Drive no se toca', async () => {
+  const m = memoryFile(keyToFile(KEY));
+  await assert.rejects(resolveActiveKey(m.file, async () => { throw new Error('offline'); }), /offline/);
+  assert.equal(m.removed(), 0);
+  assert.equal(keyFromFile(m.text()!), KEY);
+});
+
+test('resolveActiveKey: si la llave nueva también sale revocada, lanza sin repetir', async () => {
+  const m = memoryFile(keyToFile(KEY));
+  let calls = 0;
+  await assert.rejects(resolveActiveKey(m.file, async () => { calls++; return 'revoked'; }));
+  assert.equal(calls, 2);
+  assert.equal(m.removed(), 1);
 });

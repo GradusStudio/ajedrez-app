@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { showDialog } from '../components/dialog';
 import type { MessageKey } from '../i18n/es';
 import { useI18n } from '../i18n/I18nContext';
+import { DriveKeyLeftError } from '../sync/driveSyncTypes';
 import { isPopupError } from '../sync/popupError';
 import { useDriveSync } from '../sync/DriveSyncContext';
 import { colors, fonts, space } from '../theme';
@@ -15,6 +16,11 @@ export function SyncSection() {
   const sync = useDriveSync();
   // La ventana de Google no se abrió o se cerró (no se distingue un bloqueo de un cierre): se avisa en lugar de no hacer nada.
   const [popupFailed, setPopupFailed] = useState(false);
+  const { supported, enabled, prepare } = sync;
+  // Sin activar, al mostrar la sección se baja el script de Google para que la ventana se abra dentro del toque.
+  useEffect(() => {
+    if (supported && !enabled) prepare();
+  }, [supported, enabled, prepare]);
   if (!sync.supported) return null;
 
   const problem = sync.status === 'revoked' || sync.status === 'corrupt' || sync.status === 'tooNew' || sync.status === 'error';
@@ -32,7 +38,7 @@ export function SyncSection() {
           setPopupFailed(false);
           sync.deleteServerData().catch((e) => {
             if (isPopupError(e)) setPopupFailed(true);
-            else showDialog(t('sync.section'), t('sync.delete.failed'));
+            else showDialog(t('sync.section'), t(e instanceof DriveKeyLeftError ? 'sync.delete.partial' : 'sync.delete.failed'));
           });
         },
       },

@@ -1,13 +1,13 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useProgress } from '../progress/ProgressContext';
 import { createDriveRestClient, KEY_FILE_NAME } from './driveRest';
-import type { DriveSyncState, DriveSyncValue } from './driveSyncTypes';
+import { DriveKeyLeftError, type DriveSyncState, type DriveSyncValue } from './driveSyncTypes';
 import { createGoogleAuth } from './googleAuth.web';
 import { readKey, writeKey } from './keyStorage';
 import { PopupError } from './popupError';
 import { createServerClient, SYNC_URL } from './serverClient';
-import { createSyncEngine, type SyncStatus } from './syncEngine';
-import { fetchOrCreateKey } from './syncKey';
+import { createSyncEngine, SyncError, type SyncStatus } from './syncEngine';
+import { resolveActiveKey } from './syncKey';
 
 // Conecta el motor de sincronización con el progreso y con Google (ver docs/superpowers/specs/2026-11-09-sincronizacion-con-llave-design.md).
 // El progreso vive en el servidor de Gradus y se sincroniza con una llave guardada en este navegador. Google solo se usa
@@ -59,8 +59,12 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     setEnabled(false);
   }, []);
 
+  // Mientras `enable` arma el estado, lo que diga el motor sobre la llave vieja no debe borrarlo.
+  const activating = useRef(false);
+
   const onStatus = useCallback(
     (s: SyncStatus) => {
+      if (activating.current) return;
       // Sin llave (se desactivó mientras corría una sincronización) no se muestra el resultado.
       if (keyRef.current === null) return;
       if (s === 'revoked') forgetKey(); // se borraron los datos desde otro dispositivo: queda el aviso hasta activar de nuevo
@@ -110,7 +114,8 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
   }, [enabled, engine]);
 
   // Con el script de Google ya bajado, la ventana se abre dentro del toque y el navegador no la bloquea.
-  useEffect(() => {
+  // Ajustes lo pide al mostrar la sección: quien no mira ahí no carga nada de Google.
+  const prepare = useCallback(() => {
     void auth.current!.warm();
   }, []);
 
@@ -123,10 +128,25 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
       throw new PopupError(); // ventana cerrada o bloqueada: no cambia nada; Ajustes avisa y se puede volver a intentar
     }
     let key: string;
+    activating.current = true;
     try {
-      key = await fetchOrCreateKey(drive);
+      // Antes de quedarse con la llave de Drive se comprueba con el servidor: si ya la dio por borrada (el borrado de
+      // los datos llegó al servidor pero no a Drive) se crea una nueva en vez de caer siempre en «revocada».
+      key = await resolveActiveKey(drive, async (k) => {
+        keyRef.current = k;
+        try {
+          await server.read();
+          return 'ok';
+        } catch (e) {
+          if (e instanceof SyncError && e.kind === 'revoked') return 'revoked';
+          throw e;
+        } finally {
+          keyRef.current = null;
+        }
+      });
     } catch {
-      setStatus('error'); // Drive sin conexión, lleno o sin permiso: no cambia nada más; el próximo intento lo limpia
+      activating.current = false;
+      setStatus('error'); // Drive o servidor sin conexión, Drive lleno o sin permiso: no cambia nada más; el próximo intento lo limpia
       await auth.current!.revoke().catch(() => {});
       return;
     }
@@ -137,9 +157,10 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     setStatus('syncing');
     // El permiso de Drive ya no hace falta: con la llave se sincroniza sin volver a pedirle nada a Google.
     await auth.current!.revoke().catch(() => {});
+    activating.current = false;
     engine.resume();
     await engine.syncNow();
-  }, [drive, engine]);
+  }, [drive, server, engine]);
 
   const disable = useCallback(async () => {
     forgetKey();
@@ -154,12 +175,21 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
       throw new PopupError(); // ventana cerrada o bloqueada: no se borra nada y Ajustes avisa
     }
     try {
-      // Si algo falla (por ejemplo sin conexión) no cambia nada y se puede repetir: el DELETE del servidor se puede repetir sin problema.
+      // Si el servidor falla (por ejemplo sin conexión) no cambia nada y se puede repetir: el DELETE se puede repetir sin problema.
       await server.deleteProgress();
-      await drive.remove();
     } catch (e) {
       await auth.current!.revoke().catch(() => {});
       throw e;
+    }
+    // Desde acá el servidor ya no reconoce la llave. Si Drive falla, no se deja el estado a medias: este dispositivo
+    // se queda sin llave, y al activar de nuevo `enable` ve que el servidor rechaza la de Drive y crea otra.
+    try {
+      await drive.remove();
+    } catch {
+      await auth.current!.revoke().catch(() => {});
+      forgetKey();
+      setStatus('off');
+      throw new DriveKeyLeftError();
     }
     await auth.current!.revoke().catch(() => {});
     forgetKey();
@@ -167,8 +197,8 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
   }, [server, drive, forgetKey]);
 
   const value = useMemo<DriveSyncValue>(
-    () => ({ supported: true, enabled, status, enable, disable, deleteServerData }),
-    [enabled, status, enable, disable, deleteServerData]
+    () => ({ supported: true, enabled, status, prepare, enable, disable, deleteServerData }),
+    [enabled, status, prepare, enable, disable, deleteServerData]
   );
   return <DriveSyncContext.Provider value={value}>{children}</DriveSyncContext.Provider>;
 }

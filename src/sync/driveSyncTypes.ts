@@ -8,6 +8,8 @@ export type DriveSyncValue = {
   supported: boolean;
   enabled: boolean;
   status: DriveSyncState;
+  /** Baja por adelantado el script de Google (solo si la persona está en Ajustes y no activó): así la ventana se abre dentro del toque. Sin esto la web no le pide nada a Google. */
+  prepare: () => void;
   /** Con un toque de la persona: Google pide el permiso (la única ventana), se obtiene la llave y empieza a sincronizar. Lanza `PopupError` si la ventana no se abrió. */
   enable: () => Promise<void>;
   /** Este dispositivo deja de sincronizar y olvida la llave. El progreso del dispositivo y el del servidor quedan. */
@@ -16,10 +18,19 @@ export type DriveSyncValue = {
   deleteServerData: () => Promise<void>;
 };
 
+/** El servidor ya borró los datos pero la llave de Drive no se pudo quitar: este dispositivo quedó sin llave y al activar de nuevo se crea una nueva. */
+export class DriveKeyLeftError extends Error {
+  constructor() {
+    super('Drive: no se pudo quitar la llave');
+    this.name = 'DriveKeyLeftError';
+  }
+}
+
 export const NOT_SUPPORTED: DriveSyncValue = {
   supported: false,
   enabled: false,
   status: 'off',
+  prepare: () => {},
   enable: async () => {},
   disable: async () => {},
   deleteServerData: async () => {},

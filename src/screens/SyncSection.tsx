@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { showDialog } from '../components/dialog';
 import type { MessageKey } from '../i18n/es';
 import { useI18n } from '../i18n/I18nContext';
+import { isPopupError } from '../sync/popupError';
 import { useDriveSync } from '../sync/DriveSyncContext';
 import { colors, fonts, space } from '../theme';
 
@@ -12,6 +13,8 @@ import { colors, fonts, space } from '../theme';
 export function SyncSection() {
   const { t } = useI18n();
   const sync = useDriveSync();
+  // La ventana de Google no se abrió o se cerró (no se distingue un bloqueo de un cierre): se avisa en lugar de no hacer nada.
+  const [popupFailed, setPopupFailed] = useState(false);
   if (!sync.supported) return null;
 
   const problem = sync.status === 'revoked' || sync.status === 'corrupt' || sync.status === 'tooNew' || sync.status === 'error';
@@ -26,7 +29,11 @@ export function SyncSection() {
         style: 'destructive',
         onPress: () => {
           // Sin await antes de `deleteServerData`: la ventana de Google tiene que abrirse dentro del toque.
-          sync.deleteServerData().catch(() => showDialog(t('sync.section'), t('sync.delete.failed')));
+          setPopupFailed(false);
+          sync.deleteServerData().catch((e) => {
+            if (isPopupError(e)) setPopupFailed(true);
+            else showDialog(t('sync.section'), t('sync.delete.failed'));
+          });
         },
       },
     ]);
@@ -42,8 +49,14 @@ export function SyncSection() {
           {t(`sync.status.${sync.status}` as MessageKey)}
         </Text>
       )}
+      {popupFailed && (
+        <Text accessibilityRole="alert" aria-live="assertive" style={[styles.status, styles.statusProblem]}>{t('sync.popup.failed')}</Text>
+      )}
       {!sync.enabled ? (
-        <Button3D label={t('sync.enable')} style={styles.button} onPress={() => void sync.enable()} />
+        <Button3D label={t('sync.enable')} style={styles.button} onPress={() => {
+          setPopupFailed(false);
+          sync.enable().catch((e) => isPopupError(e) && setPopupFailed(true));
+        }} />
       ) : (
         <>
           <Button3D label={t('sync.disable')} variant="secondary" style={styles.button} onPress={() => void sync.disable()} />

@@ -712,6 +712,7 @@ export const it: Record<MessageKey, string> = {
   'sync.delete.message': 'I tuoi progressi salvati sul nostro server vengono eliminati e la sincronizzazione si disattiva su tutti i tuoi dispositivi. I progressi di questo dispositivo restano. Questa azione non si può annullare.',
   'sync.delete.confirm': 'Elimina',
   'sync.delete.failed': 'Impossibile eliminare: controlla la connessione.',
+  'sync.popup.failed': 'Non è stato possibile aprire la finestra di Google. Tocca di nuovo il pulsante e consenti la finestra.',
   'progress.saveBlocked.title': 'Non è possibile salvare i tuoi progressi',
   'progress.saveBlocked.message': 'Gradus non è riuscito a leggere ciò che avevi salvato, quindi in questa sessione non salverà nulla per non sovrascriverlo. Chiudi e riapri l\'app.',
   'credits.app.codeNote': 'Il codice sorgente di ogni versione pubblicata è disponibile in questo repository, con licenza GPL.',

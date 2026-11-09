@@ -712,6 +712,7 @@ export const de: Record<MessageKey, string> = {
   'sync.delete.message': 'Dein auf unserem Server gespeicherter Fortschritt wird gelöscht, und die Synchronisierung wird auf allen deinen Geräten deaktiviert. Der Fortschritt auf diesem Gerät bleibt erhalten. Das lässt sich nicht rückgängig machen.',
   'sync.delete.confirm': 'Löschen',
   'sync.delete.failed': 'Löschen nicht möglich: Prüfe deine Verbindung.',
+  'sync.popup.failed': 'Das Google-Fenster konnte nicht geöffnet werden. Tippe die Schaltfläche noch einmal an und erlaube das Fenster.',
   'progress.saveBlocked.title': 'Dein Fortschritt kann nicht gespeichert werden',
   'progress.saveBlocked.message': 'Gradus konnte deinen gespeicherten Stand nicht lesen und speichert deshalb in dieser Sitzung nichts, um ihn nicht zu überschreiben. Schließe die App und öffne sie neu.',
   'credits.app.codeNote': 'Der Quellcode jeder veröffentlichten Version ist in diesem Repository unter der GPL verfügbar.',

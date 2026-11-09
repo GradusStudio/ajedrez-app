@@ -712,6 +712,7 @@ export const fr: Record<MessageKey, string> = {
   'sync.delete.message': 'Ta progression sauvegardée sur notre serveur est supprimée et la synchronisation est désactivée sur tous tes appareils. La progression de cet appareil reste. Cette action est irréversible.',
   'sync.delete.confirm': 'Supprimer',
   'sync.delete.failed': 'Suppression impossible : vérifie ta connexion.',
+  'sync.popup.failed': 'Impossible d\'ouvrir la fenêtre de Google. Touche à nouveau le bouton et autorise la fenêtre.',
   'progress.saveBlocked.title': 'Ta progression ne peut pas être sauvegardée',
   'progress.saveBlocked.message': 'Gradus n\'a pas pu lire ce que tu avais enregistré et ne sauvegardera donc rien pendant cette session pour ne pas l\'écraser. Ferme puis rouvre l\'app.',
   'credits.app.codeNote': 'Le code source de chaque version publiée est disponible dans ce dépôt, sous licence GPL.',

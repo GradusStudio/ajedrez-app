@@ -4,6 +4,7 @@ import { createDriveRestClient, KEY_FILE_NAME } from './driveRest';
 import type { DriveSyncState, DriveSyncValue } from './driveSyncTypes';
 import { createGoogleAuth } from './googleAuth.web';
 import { readKey, writeKey } from './keyStorage';
+import { PopupError } from './popupError';
 import { createServerClient, SYNC_URL } from './serverClient';
 import { createSyncEngine, type SyncStatus } from './syncEngine';
 import { fetchOrCreateKey } from './syncKey';
@@ -115,17 +116,18 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
 
   const enable = useCallback(async () => {
     // Lo primero que pasa en el toque es abrir la ventana de Google: después de un await de red el navegador la bloquea.
+    setStatus('off'); // un fallo anterior no queda pegado
     try {
       await auth.current!.signIn();
     } catch {
-      return; // ventana cerrada o permiso no dado: no cambia nada; se puede volver a intentar
+      throw new PopupError(); // ventana cerrada o bloqueada: no cambia nada; Ajustes avisa y se puede volver a intentar
     }
     let key: string;
     try {
       key = await fetchOrCreateKey(drive);
     } catch {
-      setStatus('error'); // Drive sin conexión, lleno o sin permiso: no cambia nada más; se puede volver a intentar
-      await auth.current!.revoke();
+      setStatus('error'); // Drive sin conexión, lleno o sin permiso: no cambia nada más; el próximo intento lo limpia
+      await auth.current!.revoke().catch(() => {});
       return;
     }
     const s = storage();
@@ -134,7 +136,7 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     setEnabled(true);
     setStatus('syncing');
     // El permiso de Drive ya no hace falta: con la llave se sincroniza sin volver a pedirle nada a Google.
-    await auth.current!.revoke();
+    await auth.current!.revoke().catch(() => {});
     engine.resume();
     await engine.syncNow();
   }, [drive, engine]);
@@ -149,17 +151,17 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     try {
       await auth.current!.signIn();
     } catch {
-      return; // ventana cerrada: no se borra nada
+      throw new PopupError(); // ventana cerrada o bloqueada: no se borra nada y Ajustes avisa
     }
     try {
       // Si algo falla (por ejemplo sin conexión) no cambia nada y se puede repetir: el DELETE del servidor se puede repetir sin problema.
       await server.deleteProgress();
       await drive.remove();
     } catch (e) {
-      await auth.current!.revoke();
+      await auth.current!.revoke().catch(() => {});
       throw e;
     }
-    await auth.current!.revoke();
+    await auth.current!.revoke().catch(() => {});
     forgetKey();
     setStatus('off');
   }, [server, drive, forgetKey]);

@@ -711,6 +711,7 @@ export const es = {
   'sync.delete.message': 'Se borra tu progreso guardado en nuestro servidor y la sincronización se desactiva en todos tus dispositivos. El progreso de este dispositivo queda. No se puede deshacer.',
   'sync.delete.confirm': 'Borrar',
   'sync.delete.failed': 'No se pudo borrar: revisá la conexión.',
+  'sync.popup.failed': 'No se pudo abrir la ventana de Google. Tocá de nuevo el botón y permití la ventana.',
   'progress.saveBlocked.title': 'No se puede guardar tu progreso',
   'progress.saveBlocked.message': 'Gradus no pudo leer lo que tenías guardado, así que no va a guardar nada en esta sesión para no pisarlo. Cierra y vuelve a abrir la app.',
   'credits.app.codeNote': 'El código fuente de cada versión publicada está disponible en este repositorio, bajo la GPL.',

@@ -1,0 +1,10 @@
+// Pantalla ancha de la web (docs/superpowers/specs/2026-11-08-web-pantalla-ancha-design.md). Sin React Native: se puede probar.
+
+/** Desde este ancho de ventana la web pasa a barra lateral y tablero con panel al costado. */
+export const WIDE_MIN_WIDTH = 960;
+/** Por debajo de este ancho, la barra lateral muestra solo los íconos, para dejarle lugar al tablero. */
+export const SIDEBAR_LABELS_MIN_WIDTH = 1200;
+/** Columna de las pantallas de lista en pantalla ancha (en el celular ocupan todo el ancho). */
+export const WIDE_LIST_COLUMN = 640;
+
+export const isWideWidth = (width: number) => width >= WIDE_MIN_WIDTH;

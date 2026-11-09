@@ -13,6 +13,10 @@ import { PuzzleResult } from '../progress/progressStore';
 import { displayThemes, Puzzle, puzzleGoal, userColor } from '../puzzles/puzzles';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
+import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
+
+/** Alto fuera del tablero en pantalla ancha: fila de arriba, panel de abajo y márgenes. */
+const PUZZLE_RESERVE = 200;
 
 type Props = {
   puzzle: Puzzle;
@@ -173,55 +177,63 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
       e?.streakRecovered ? t('common.streakRecovered') : '',
     ].filter(Boolean);
 
+  // Pantalla ancha: la fila de arriba y el panel de abajo se alinean con el tablero y su panel.
+  const contentWidth = useBoardLayoutWidth(PUZZLE_RESERVE);
+
   return (
     <Animated.View style={[styles.screen, { opacity: fade }]}>
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
-        <View style={styles.topRow}>
+        <View style={[styles.topRow, contentWidth ? { width: contentWidth, alignSelf: 'center' } : null]}>
           <Pressable onPress={onExit} accessibilityRole="button" accessibilityLabel={t('puzzles.exit')} hitSlop={12}>
             <Text style={styles.close}>✕</Text>
           </Pressable>
           <Chip label={label} />
         </View>
 
-        <Board
-          fen={fen}
-          orientation={me}
-          interactive={userTurn && !wrongMove}
-          lastMove={lastMove}
-          highlight={showHint && expected ? [expected.slice(0, 2)] : undefined}
-          onMove={handleMove}
-        />
+        <BoardLayout
+          reserveHeight={PUZZLE_RESERVE}
+          narrowGap={0}
+          board={
+            <Board
+              fen={fen}
+              orientation={me}
+              interactive={userTurn && !wrongMove}
+              lastMove={lastMove}
+              highlight={showHint && expected ? [expected.slice(0, 2)] : undefined}
+              onMove={handleMove}
+            />
+          }
+        >
+          <Text style={[styles.prompt, contentWidth ? { marginTop: 0 } : null]}>{t('puzzles.prompt', { side, goal: puzzleGoal(puzzle, t) })}</Text>
+          <Text style={styles.meta}>
+            {ply === 0 ? t('puzzles.opponentToPlay') : done ? t('common.level', { n: puzzle.rating }) : t('common.yourTurn')}
+          </Text>
 
-        <Text style={styles.prompt}>{t('puzzles.prompt', { side, goal: puzzleGoal(puzzle, t) })}</Text>
-        <Text style={styles.meta}>
-          {ply === 0 ? t('puzzles.opponentToPlay') : done ? t('common.level', { n: puzzle.rating }) : t('common.yourTurn')}
-        </Text>
-
-        {done && displayThemes(puzzle, t).length > 0 && (
-          <View style={styles.chips}>
-            {displayThemes(puzzle, t).map((name) => (
-              <Chip key={name} label={name} />
-            ))}
-          </View>
-        )}
-
-        {/* En el lugar de los botones: el aviso de error con "Reintentar", o Pista / Ver solución. */}
-        {!done && wrongMove && (
-          <FadeIn style={styles.wrongCard}>
-            <View accessibilityLiveRegion="polite">
-              <Text style={styles.wrongTitle}>{t('common.incorrect')}</Text>
-              <Text style={styles.wrongText}>{t('puzzles.wrongText')}</Text>
-              <Button3D label={t('common.retry')} variant="danger" onPress={retry} style={{ marginTop: space.md }} />
+          {done && displayThemes(puzzle, t).length > 0 && (
+            <View style={styles.chips}>
+              {displayThemes(puzzle, t).map((name) => (
+                <Chip key={name} label={name} />
+              ))}
             </View>
-          </FadeIn>
-        )}
-        {!done && !wrongMove && (
-          <View style={styles.actions}>
-            <Button3D label={t('puzzles.hint')} onPress={hint} style={{ flex: 1 }} />
-            <Button3D label={t('puzzles.showSolution')} variant="destructive" onPress={showSolution} style={{ flex: 1 }} />
-          </View>
-        )}
+          )}
 
+          {/* En el lugar de los botones: el aviso de error con "Reintentar", o Pista / Ver solución. */}
+          {!done && wrongMove && (
+            <FadeIn style={styles.wrongCard}>
+              <View accessibilityLiveRegion="polite">
+                <Text style={styles.wrongTitle}>{t('common.incorrect')}</Text>
+                <Text style={styles.wrongText}>{t('puzzles.wrongText')}</Text>
+                <Button3D label={t('common.retry')} variant="danger" onPress={retry} style={{ marginTop: space.md }} />
+              </View>
+            </FadeIn>
+          )}
+          {!done && !wrongMove && (
+            <View style={styles.actions}>
+              <Button3D label={t('puzzles.hint')} onPress={hint} style={{ flex: 1 }} />
+              <Button3D label={t('puzzles.showSolution')} variant="destructive" onPress={showSolution} style={{ flex: 1 }} />
+            </View>
+          )}
+        </BoardLayout>
       </ScrollView>
 
       {status === 'solved' && (
@@ -234,6 +246,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
           ].join(' ')}
           buttonLabel={onNext ? t('puzzles.next') : t('common.continue')}
           onButton={onNext ?? onExit}
+          contentWidth={contentWidth}
         />
       )}
       {status === 'failed' && (
@@ -243,6 +256,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
           message={[t('puzzles.solutionMessage'), ...coinsMessage(earned)].join(' ')}
           buttonLabel={onNext ? t('puzzles.next') : t('common.continue')}
           onButton={onNext ?? onExit}
+          contentWidth={contentWidth}
         />
       )}
     </Animated.View>

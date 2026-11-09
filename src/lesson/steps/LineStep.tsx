@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { resolveNotation, sanFromSpanish } from '../../chess/notation';
+import { BoardLayout } from '../../components/BoardLayout';
 import { Board, BoardMove } from '../../components/Board';
 import { FadeIn } from '../../components/FadeIn';
 import { useI18n } from '../../i18n/I18nContext';
 import { useSettings } from '../../settings/SettingsContext';
 import { LineStep as LineStepData } from '../../data/lessonTypes';
-import { StepCallbacks } from '../stepTypes';
+import { LESSON_RESERVE, StepCallbacks } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
 import { colors, fonts, radius, space } from '../../theme';
 
@@ -103,18 +104,23 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
   const [cardBefore, cardAfter] = t(cardPlayed ? 'lesson.line.played' : 'lesson.line.yourMove', { san: SAN_MARK }).split(SAN_MARK);
 
   return (
-    <View>
-      <Board
-        fen={wrong?.fen ?? fen}
-        orientation={step.orientation ?? step.side}
-        interactive={userTurn && !locked}
-        lastMove={wrong?.move ?? lastMove}
-        // En guiado se marcan el origen y el destino de la jugada que toca (no mientras se ve el error).
-        highlight={guided && expected && !wrong ? [expected.uci.slice(0, 2), expected.uci.slice(2, 4)] : undefined}
-        arrows={showHint && expected && !wrong ? [expected.uci.slice(0, 4)] : undefined}
-        onMove={handleMove}
-      />
-      <View style={{ height: space.lg }} />
+    <BoardLayout
+      reserveHeight={LESSON_RESERVE}
+      board={
+        <>
+          <Board
+            fen={wrong?.fen ?? fen}
+            orientation={step.orientation ?? step.side}
+            interactive={userTurn && !locked}
+            lastMove={wrong?.move ?? lastMove}
+            // En guiado se marcan el origen y el destino de la jugada que toca (no mientras se ve el error).
+            highlight={guided && expected && !wrong ? [expected.uci.slice(0, 2), expected.uci.slice(2, 4)] : undefined}
+            arrows={showHint && expected && !wrong ? [expected.uci.slice(0, 4)] : undefined}
+            onMove={handleMove}
+          />
+        </>
+      }
+    >
       <FadeIn>
         <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
@@ -141,7 +147,7 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
       )}
 
       <Text style={styles.notation}>{ply === 0 ? t('lesson.line.noMoves') : notation(step, ply, san)}</Text>
-    </View>
+    </BoardLayout>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
+import { BoardLayout } from '../../components/BoardLayout';
 import { Board, BoardMove } from '../../components/Board';
 import { Button3D } from '../../components/Button3D';
 import { FadeIn } from '../../components/FadeIn';
@@ -8,7 +9,7 @@ import { EngineView } from '../../engine/EngineView';
 import { useI18n } from '../../i18n/I18nContext';
 import { UciEngine } from '../../engine/uci';
 import { PracticeStep as PracticeStepData } from '../../data/lessonTypes';
-import { StepCallbacks } from '../stepTypes';
+import { LESSON_RESERVE, StepCallbacks } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
 import { colors, fonts, space } from '../../theme';
 
@@ -173,18 +174,23 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
             : t('lesson.practice.moveOf', { n: moves + 1, total: step.maxMoves });
 
   return (
-    <View>
-      {!engineError && (
-        <EngineView key={engineKey} onReady={setEngine} onError={() => setEngineError(true)} />
-      )}
-      <Board
-        fen={wrong?.fen ?? fen}
-        orientation={step.orientation ?? step.side}
-        interactive={userTurn && !locked}
-        lastMove={wrong?.move ?? lastMove}
-        onMove={handleMove}
-      />
-      <View style={{ height: space.lg }} />
+    <BoardLayout
+      reserveHeight={LESSON_RESERVE}
+      board={
+        <>
+          {!engineError && (
+            <EngineView key={engineKey} onReady={setEngine} onError={() => setEngineError(true)} />
+          )}
+          <Board
+            fen={wrong?.fen ?? fen}
+            orientation={step.orientation ?? step.side}
+            interactive={userTurn && !locked}
+            lastMove={wrong?.move ?? lastMove}
+            onMove={handleMove}
+          />
+        </>
+      }
+    >
       <FadeIn>
         <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
@@ -211,7 +217,7 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
       {!!engine && moves > 0 && !done && !thinking && !locked && (
         <Button3D label={t('lesson.practice.restart')} onPress={restart} style={{ marginTop: space.md }} />
       )}
-    </View>
+    </BoardLayout>
   );
 }
 

@@ -19,6 +19,8 @@ import { TeacherContext } from './TeacherContext';
 import { teacherExpression } from './teacherExpression';
 import { colors, fonts, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
+import { useBoardLayoutWidth } from '../components/BoardLayout';
+import { LESSON_RESERVE } from './stepTypes';
 
 export type LessonResult = { errors: number; xp: number; mistakes: string[] }; // xp: monedas de la lección
 
@@ -184,11 +186,13 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
   };
 
   const continueLabel = isLast ? t('lesson.finish') : t('common.continue');
+  // Pantalla ancha: encabezado y panel de abajo alineados con el tablero y su panel.
+  const contentWidth = useBoardLayoutWidth(LESSON_RESERVE);
   const progress = (index + (status === 'correct' ? 1 : 0)) / total;
 
   return (
     <View style={styles.screen}>
-      <View style={[styles.header, { paddingTop: statusBarTop(space.sm) }]}>
+      <View style={[styles.header, { paddingTop: statusBarTop(space.sm) }, contentWidth ? { width: contentWidth + space.lg * 2, alignSelf: 'center' } : null]}>
         <Pressable onPress={confirmExit} accessibilityRole="button" accessibilityLabel={t('common.exit')} hitSlop={12}>
           <Text style={styles.close}>✕</Text>
         </Pressable>
@@ -202,12 +206,12 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
         </ScrollView>
       </TeacherContext.Provider>
 
-      {step.type === 'explain' && <FeedbackPanel kind="neutral" buttonLabel={continueLabel} onButton={next} />}
+      {step.type === 'explain' && <FeedbackPanel kind="neutral" buttonLabel={continueLabel} onButton={next} contentWidth={contentWidth} />}
       {step.type !== 'explain' && status === 'correct' && (
-        <FeedbackPanel kind="correct" title={t('lesson.correct')} message={message} buttonLabel={continueLabel} onButton={next} />
+        <FeedbackPanel kind="correct" title={t('lesson.correct')} message={message} buttonLabel={continueLabel} onButton={next} contentWidth={contentWidth} />
       )}
       {step.type !== 'explain' && status === 'wrong' && (
-        <FeedbackPanel kind="wrong" title={t('common.incorrect')} message={message} buttonLabel={t('common.retry')} onButton={retry} />
+        <FeedbackPanel kind="wrong" title={t('common.incorrect')} message={message} buttonLabel={t('common.retry')} onButton={retry} contentWidth={contentWidth} />
       )}
     </View>
   );

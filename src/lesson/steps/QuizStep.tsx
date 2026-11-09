@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { BoardLayout } from '../../components/BoardLayout';
 import { Board } from '../../components/Board';
 import { FadeIn } from '../../components/FadeIn';
 import { QuizStep as QuizStepData } from '../../data/lessonTypes';
 import { useI18n } from '../../i18n/I18nContext';
-import { StepCallbacks } from '../stepTypes';
+import { LESSON_RESERVE, StepCallbacks } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
 import { colors, fonts, radius, space } from '../../theme';
 
@@ -28,9 +29,14 @@ export function QuizStep({ step, onCorrect, onWrong, locked }: Props) {
   };
 
   return (
-    <View>
-      <Board fen={step.fen} orientation={step.orientation ?? 'w'} interactive={false} highlight={step.highlight} />
-      <View style={{ height: space.lg }} />
+    <BoardLayout
+      reserveHeight={LESSON_RESERVE}
+      board={
+        <>
+          <Board fen={step.fen} orientation={step.orientation ?? 'w'} interactive={false} highlight={step.highlight} />
+        </>
+      }
+    >
       <FadeIn>
         <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
@@ -56,7 +62,7 @@ export function QuizStep({ step, onCorrect, onWrong, locked }: Props) {
           </FadeIn>
         );
       })}
-    </View>
+    </BoardLayout>
   );
 }
 

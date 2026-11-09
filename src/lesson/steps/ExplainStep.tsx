@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
 import { Chess, Square } from 'chess.js';
+import { BoardLayout } from '../../components/BoardLayout';
 import { Board } from '../../components/Board';
 import { FadeIn } from '../../components/FadeIn';
 import { ExplainStep as ExplainStepData } from '../../data/lessonTypes';
+import { LESSON_RESERVE } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
-import { space } from '../../theme';
 
-// El tablero va siempre arriba, en el mismo lugar; el texto va debajo.
+// El tablero va siempre arriba, en el mismo lugar; el texto va debajo (en pantalla ancha, a su derecha).
 export function ExplainStep({ step }: { step: ExplainStepData }) {
   const [fen, setFen] = useState(step.fen);
   const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(null);
@@ -36,20 +36,25 @@ export function ExplainStep({ step }: { step: ExplainStepData }) {
   }, [step]);
 
   return (
-    <View>
-      <Board
-        fen={fen}
-        orientation={step.orientation ?? 'w'}
-        interactive={false}
-        lastMove={lastMove}
-        highlight={step.play ? undefined : step.highlight}
-        arrows={step.play ? undefined : step.arrows}
-        showMovesFrom={step.play ? undefined : step.showMovesFrom}
-      />
-      <View style={{ height: space.lg }} />
+    <BoardLayout
+      reserveHeight={LESSON_RESERVE}
+      board={
+        <>
+          <Board
+            fen={fen}
+            orientation={step.orientation ?? 'w'}
+            interactive={false}
+            lastMove={lastMove}
+            highlight={step.play ? undefined : step.highlight}
+            arrows={step.play ? undefined : step.arrows}
+            showMovesFrom={step.play ? undefined : step.showMovesFrom}
+          />
+        </>
+      }
+    >
       <FadeIn>
         <TeacherBubble>{step.text}</TeacherBubble>
       </FadeIn>
-    </View>
+    </BoardLayout>
   );
 }

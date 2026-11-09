@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
 import { Chess, Square } from 'chess.js';
+import { BoardLayout } from '../../components/BoardLayout';
 import { Board, BoardMove } from '../../components/Board';
 import { FadeIn } from '../../components/FadeIn';
 import { MoveStep as MoveStepData } from '../../data/lessonTypes';
-import { StepCallbacks } from '../stepTypes';
+import { LESSON_RESERVE, StepCallbacks } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
-import { space } from '../../theme';
 
 type Props = { step: MoveStepData } & StepCallbacks;
 
@@ -42,19 +41,24 @@ export function MoveStep({ step, onCorrect, onWrong, locked }: Props) {
   };
 
   return (
-    <View>
-      <Board
-        fen={fen}
-        orientation={step.orientation ?? 'w'}
-        interactive={!solved && !locked}
-        lastMove={lastMove}
-        highlight={step.highlight}
-        onMove={handleMove}
-      />
-      <View style={{ height: space.lg }} />
+    <BoardLayout
+      reserveHeight={LESSON_RESERVE}
+      board={
+        <>
+          <Board
+            fen={fen}
+            orientation={step.orientation ?? 'w'}
+            interactive={!solved && !locked}
+            lastMove={lastMove}
+            highlight={step.highlight}
+            onMove={handleMove}
+          />
+        </>
+      }
+    >
       <FadeIn>
         <TeacherBubble>{step.prompt}</TeacherBubble>
       </FadeIn>
-    </View>
+    </BoardLayout>
   );
 }

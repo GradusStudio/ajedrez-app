@@ -32,7 +32,7 @@
 
 ---
 
-### Tarea 1: Worker `gradus-sync`
+### Task 1: Worker `gradus-sync`
 
 **Archivos:**
 - Crear: `workers/sync/handler.ts` (lógica pura: recibe `Request` y un `ProgressStore`), `workers/sync/d1Store.ts` (adaptador D1), `workers/sync/index.ts` (entrada del Worker), `workers/sync/schema.sql`, `wrangler.sync.jsonc`
@@ -64,7 +64,7 @@
 - [ ] **Paso 4:** `npm test` → pasan. Probar en la PC: `npx wrangler d1 execute gradus-sync --local --file workers/sync/schema.sql` y `npx wrangler dev -c wrangler.sync.jsonc --port 8790`; un `curl` con PUT y GET da 200.
 - [ ] **Paso 5:** sumar a `docs/web/publicar-en-cloudflare.md` una sección «Servidor de sincronización» (crear la base, aplicar `schema.sql` con `--remote`, `npx wrangler deploy -c wrangler.sync.jsonc`). Commit: «Sincronización: Worker gradus-sync con D1».
 
-### Tarea 2: cliente del servidor
+### Task 2: cliente del servidor
 
 **Archivos:**
 - Crear: `src/sync/serverClient.ts`, `src/sync/serverClient.test.ts`
@@ -83,7 +83,7 @@
 - [ ] **Paso 3:** implementar.
 - [ ] **Paso 4:** `npm test` → pasan (incluidas las de `driveRest.test.ts`, ajustadas a `SyncError`). Commit: «Sincronización: cliente del servidor».
 
-### Tarea 3: motor con versión, conflictos y llave revocada
+### Task 3: motor con versión, conflictos y llave revocada
 
 **Archivos:**
 - Modificar: `src/sync/syncEngine.ts`, `src/sync/syncEngine.test.ts`
@@ -103,7 +103,7 @@
 - [ ] **Paso 3:** implementar. El reintento usa el `{ version, text }` del conflicto como si fuera un `read` (no vuelve a pedir).
 - [ ] **Paso 4:** `npm test` → pasan. Commit: «Sincronización: motor con versión y conflictos».
 
-### Tarea 4: la llave en Drive
+### Task 4: la llave en Drive
 
 **Archivos:**
 - Crear: `src/sync/syncKey.ts`, `src/sync/syncKey.test.ts`
@@ -122,7 +122,7 @@
 - [ ] **Paso 3:** implementar.
 - [ ] **Paso 4:** `npm test` → pasan. Commit: «Sincronización: llave guardada en Drive».
 
-### Tarea 5: contexto web, Ajustes, privacidad y CSP
+### Task 5: contexto web, Ajustes, privacidad y CSP
 
 **Archivos:**
 - Modificar: `src/sync/DriveSyncContext.web.tsx`, `src/sync/driveSyncTypes.ts`, `src/sync/DriveSyncContext.tsx` (solo `NOT_SUPPORTED`), `src/screens/SyncSection.tsx`, `src/screens/PrivacyScreen.tsx`, `src/app/resultado.tsx`, `src/screens/GameScreen.tsx` (quitar `SyncNudge`), `src/i18n/{es,en,de,it,fr}.ts`, `public/_headers`
@@ -150,7 +150,7 @@
 - [ ] **Paso 5: verificar en el navegador** con el Worker local (tarea 1) y la app web en desarrollo, con `SYNC_URL` apuntando a `http://localhost:8790` solo en desarrollo (`__DEV__`): activar (una ventana de Google), hacer un paso de lección y ver el PUT en las peticiones de red; cerrar y abrir la pestaña: sin ventana y sincroniza; «Borrar mis datos del servidor» → diálogo → GET da 410. Capturas para el autor.
 - [ ] **Paso 6:** commit: «Sincronización: llave en el dispositivo, sin ventanas periódicas».
 
-### Tarea 6: partida contra un bot en curso
+### Task 6: partida contra un bot en curso
 
 **Archivos:**
 - Modificar: `src/progress/progressStore.ts`, `src/progress/merge.ts`, `src/progress/structure.ts`, `src/progress/ProgressContext.tsx`, `src/screens/GameScreen.tsx`, `src/app/partida.tsx`, `src/screens/BotsScreen.tsx`, `src/i18n/{es,en,de,it,fr}.ts`
@@ -171,7 +171,7 @@
 - [ ] **Paso 4:** `npm test` y `npx expo lint` → sin errores. Verificar en el navegador: jugar 3 jugadas, cerrar la pestaña, abrir Bots → «Continuar» deja la misma posición; terminarla → la tarjeta desaparece.
 - [ ] **Paso 5:** commit: «Bots: la partida sin terminar se guarda y se puede continuar».
 
-### Tarea 7: puzzles abandonados
+### Task 7: puzzles abandonados
 
 **Archivos:**
 - Modificar: `src/progress/progressStore.ts`, `src/progress/merge.ts`, `src/progress/structure.ts`, `src/progress/ProgressContext.tsx`, `src/app/puzzle.tsx`
@@ -191,6 +191,6 @@
 - [ ] **Paso 4:** `npm test` y `npx expo lint` → sin errores. Verificar en el navegador: abrir un puzzle de práctica, salir sin resolverlo, volver a Practicar → sale otro; el nivel no cambió.
 - [ ] **Paso 5:** commit: «Puzzles: el que se abandona no vuelve a salir».
 
-### Tarea 8: documentos
+### Task 8: documentos
 
 - [ ] Actualizar `CLAUDE.md` (Versión web: la sincronización ya no es con Drive sino con llave y servidor; Pruebas: los nuevos archivos de prueba), `docs/superpowers/specs/2026-11-07-version-web-design.md` (sección 4: remitir al diseño nuevo) , `docs/web/` (Safari en iPhone sin instalar puede pedir la ventana de nuevo tras unos 7 días sin visitas) y el estado del diseño nuevo («implementado»; la partida en curso entró sin subir la versión del progreso, no como versión 5). Commit: «Sincronización con llave: documentos».

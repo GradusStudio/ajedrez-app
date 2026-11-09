@@ -105,6 +105,8 @@ Un solo código para web y Android. Lo específico de la web va en archivos `.we
 
 ### 4. Progreso y sincronización con Google Drive
 
+> Reemplazada por `docs/superpowers/specs/2026-11-09-sincronizacion-con-llave-design.md`: el token de Drive dura una hora y renovarlo exige abrir la ventana de Google tras un toque, así que Drive pasa a guardar solo una llave y el progreso vive en el servidor de Gradus.
+
 **Guardado local:** igual que hoy, en `localStorage` con AsyncStorage.
 
 **Activar la sincronización:** botón «Guardar mi progreso con Google» en Perfil y en Ajustes, y una sugerencia única al terminar la primera lección (como hoy se ofrece el recordatorio). Al tocarlo, Google Identity Services pide el permiso `https://www.googleapis.com/auth/drive.appdata` (solo la carpeta oculta de la app; Google lo clasifica como no sensible). Gradus no pide el correo ni el perfil.

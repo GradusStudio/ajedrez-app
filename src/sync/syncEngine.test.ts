@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mergeProgress, sameProgress } from '../progress/merge';
 import { coinBalance, emptyProgress, type Progress } from '../progress/progressStore';
 import { progressToFile } from '../progress/progressFile';
-import { createSyncEngine, DriveError, type DriveClient, type SyncStatus } from './syncEngine';
+import { createSyncEngine, SyncConflict, SyncError, type SyncClient, type SyncStatus } from './syncEngine';
 
 function make(over: Partial<Progress> = {}): Progress {
   const p: Progress = { ...emptyProgress, deviceId: 'A', ...over };
@@ -12,19 +12,37 @@ function make(over: Partial<Progress> = {}): Progress {
 const lesson = (completedAt: string) => ({ done: true, errors: 0, completedAt, completions: 1 }) as const;
 const file = (p: Progress) => progressToFile(p, new Date('2026-11-08T00:00:00.000Z'));
 
-/** Drive de mentira: un solo archivo en memoria. */
-function fakeDrive(initial: string | null = null) {
-  const state = { text: initial, reads: 0, writes: 0, failWith: null as DriveError | null };
-  const client: DriveClient = {
+/** Servidor de mentira: un solo texto con versión en memoria. */
+function fakeServer(initial: string | null = null) {
+  const state = {
+    text: initial,
+    version: initial === null ? 0 : 1,
+    reads: 0,
+    writes: 0,
+    expected: [] as number[],
+    failWith: null as Error | null,
+    /** Textos que "otro dispositivo" guarda justo antes de las próximas escrituras (uno por conflicto). */
+    interleave: [] as string[],
+  };
+  const client: SyncClient = {
     async read() {
       state.reads++;
       if (state.failWith) throw state.failWith;
-      return state.text;
+      return state.text === null ? null : { version: state.version, text: state.text };
     },
-    async write(text) {
+    async write(text, expected) {
       state.writes++;
+      state.expected.push(expected);
       if (state.failWith) throw state.failWith;
+      const other = state.interleave.shift();
+      if (other !== undefined) {
+        state.text = other;
+        state.version++;
+      }
+      if (expected !== state.version) throw new SyncConflict({ version: state.version, text: state.text ?? '' });
       state.text = text;
+      state.version++;
+      return state.version;
     },
   };
   return { state, client };
@@ -49,7 +67,7 @@ function fakeTimer() {
   };
 }
 
-function setup(local: Progress, drive = fakeDrive()) {
+function setup(local: Progress, drive = fakeServer()) {
   const box = { local };
   const statuses: SyncStatus[] = [];
   const timer = fakeTimer();
@@ -67,37 +85,34 @@ function setup(local: Progress, drive = fakeDrive()) {
   return { box, statuses, timer, engine, drive };
 }
 
-test('sin archivo en Drive: sube el progreso local', async () => {
+test('sin datos en el servidor escribe con version 0', async () => {
   const local = make({ lessons: { a: lesson('2026-11-01T00:00:00.000Z') } });
   const { engine, drive } = setup(local);
   const r = await engine.syncNow();
   assert.equal(r.status, 'ok');
-  assert.equal(drive.state.writes, 1);
+  assert.deepEqual(drive.state.expected, [0]);
   assert.match(drive.state.text ?? '', /"app":"gradus"/);
 });
 
-test('con archivo en Drive: baja, combina con lo local y sube el resultado', async () => {
+test('con datos, fusiona y escribe con la versión leída solo si cambió algo', async () => {
   const remote = make({ deviceId: 'B', lessons: { b: lesson('2026-11-02T00:00:00.000Z') } });
   const local = make({ lessons: { a: lesson('2026-11-01T00:00:00.000Z') } });
-  const { engine, drive, box } = setup(local, fakeDrive(file(remote)));
+  const { engine, drive, box } = setup(local, fakeServer(file(remote)));
   await engine.syncNow();
+  assert.deepEqual(drive.state.expected, [1]);
   assert.deepEqual(Object.keys(box.local.lessons).sort(), ['a', 'b']);
   const uploaded = JSON.parse(drive.state.text ?? '').progress as Progress;
   assert.deepEqual(Object.keys(uploaded.lessons).sort(), ['a', 'b']);
-});
 
-test('si Drive ya tiene todo, no vuelve a subir', async () => {
-  const p = make({ lessons: { a: lesson('2026-11-01T00:00:00.000Z') } });
-  const { engine, drive } = setup(p, fakeDrive(file(p)));
-  const r = await engine.syncNow();
-  assert.equal(r.status, 'ok');
-  assert.equal(drive.state.writes, 0);
+  const same = setup(remote, fakeServer(file(remote)));
+  assert.equal((await same.engine.syncNow()).status, 'ok');
+  assert.equal(same.drive.state.writes, 0);
 });
 
 test('dos sincronizaciones seguidas convergen: la segunda no cambia nada', async () => {
   const remote = make({ deviceId: 'B', coinLedger: { B: { earned: 40, spent: 0 } } });
   const local = make({ coinLedger: { A: { earned: 15, spent: 0 } } });
-  const { engine, drive, box } = setup(local, fakeDrive(file(remote)));
+  const { engine, drive, box } = setup(local, fakeServer(file(remote)));
   await engine.syncNow();
   const writesAfterFirst = drive.state.writes;
   const afterFirst = box.local;
@@ -107,8 +122,25 @@ test('dos sincronizaciones seguidas convergen: la segunda no cambia nada', async
   assert.equal(box.local.coins, 55);
 });
 
-test('un archivo dañado en Drive no se pisa', async () => {
-  const drive = fakeDrive('esto no es json');
+test('con 409, fusiona lo que trae el conflicto y reintenta con su versión; al tercer conflicto seguido informa error', async () => {
+  const mine = make({ lessons: { a: lesson('2026-11-01T00:00:00.000Z') } });
+  const other = (k: string) => file(make({ deviceId: 'B', lessons: { [k]: lesson('2026-11-02T00:00:00.000Z') } }));
+
+  const ok = setup(mine, fakeServer(file(make({ deviceId: 'B' }))));
+  ok.drive.state.interleave = [other('x')];
+  assert.equal((await ok.engine.syncNow()).status, 'ok');
+  assert.equal(ok.drive.state.reads, 1, 'el reintento no vuelve a leer');
+  assert.deepEqual(ok.drive.state.expected, [1, 2]);
+  assert.deepEqual(Object.keys(ok.box.local.lessons).sort(), ['a', 'x']);
+
+  const bad = setup(mine, fakeServer(file(make({ deviceId: 'B' }))));
+  bad.drive.state.interleave = [other('x'), other('y'), other('z')];
+  assert.equal((await bad.engine.syncNow()).status, 'error');
+  assert.equal(bad.drive.state.writes, 3);
+});
+
+test('un archivo dañado en el servidor no se pisa', async () => {
+  const drive = fakeServer('esto no es json');
   const { engine } = setup(make(), drive);
   const r = await engine.syncNow();
   assert.equal(r.status, 'corrupt');
@@ -118,32 +150,22 @@ test('un archivo dañado en Drive no se pisa', async () => {
 
 test('un archivo de una versión más nueva no se pisa', async () => {
   const text = JSON.stringify({ app: 'gradus', kind: 'progress', exportedAt: 'x', progress: { version: 99 } });
-  const drive = fakeDrive(text);
+  const drive = fakeServer(text);
   const { engine } = setup(make(), drive);
   const r = await engine.syncNow();
   assert.equal(r.status, 'tooNew');
   assert.equal(drive.state.writes, 0);
 });
 
-test('errores de Drive se traducen a un estado y no tiran la app', async () => {
-  const cases: [DriveError['kind'], SyncStatus][] = [
-    ['offline', 'offline'],
-    ['auth', 'needsAuth'],
-    ['quota', 'quota'],
-    ['forbidden', 'blocked'],
-    ['other', 'error'],
-  ];
-  for (const [kind, status] of cases) {
-    const drive = fakeDrive();
-    drive.state.failWith = new DriveError(kind);
-    const { engine } = setup(make(), drive);
-    const r = await engine.syncNow();
-    assert.equal(r.status, status, kind);
-  }
+test('offline informa offline', async () => {
+  const drive = fakeServer();
+  drive.state.failWith = new SyncError('offline');
+  const { engine } = setup(make(), drive);
+  assert.equal((await engine.syncNow()).status, 'offline');
 });
 
-test('un error que no es de Drive también queda como error', async () => {
-  const drive = fakeDrive();
+test('un error que no es de sincronización también queda como error', async () => {
+  const drive = fakeServer();
   drive.client.read = async () => {
     throw new TypeError('boom');
   };
@@ -151,11 +173,12 @@ test('un error que no es de Drive también queda como error', async () => {
   assert.equal((await engine.syncNow()).status, 'error');
 });
 
-test('sin permiso vigente se pausa: no insiste hasta que se reanude', async () => {
-  const drive = fakeDrive();
-  drive.state.failWith = new DriveError('auth');
+test('con revoked informa revoked, se pausa y requestSync no hace nada hasta resume', async () => {
+  const drive = fakeServer();
+  drive.state.failWith = new SyncError('revoked');
   const { engine, timer } = setup(make(), drive);
-  await engine.syncNow();
+  assert.equal((await engine.syncNow()).status, 'revoked');
+  assert.equal(engine.isPaused(), true);
   const reads = drive.state.reads;
   engine.requestSync();
   assert.equal(timer.hasPending(), false);
@@ -166,6 +189,25 @@ test('sin permiso vigente se pausa: no insiste hasta que se reanude', async () =
   timer.fire();
   await engine.idle();
   assert.equal(drive.state.writes, 1);
+});
+
+test('con tooLarge informa error y no reintenta solo', async () => {
+  const drive = fakeServer();
+  drive.state.failWith = new SyncError('tooLarge');
+  const { engine, timer } = setup(make(), drive);
+  assert.equal((await engine.syncNow()).status, 'error');
+  assert.equal(timer.hasPending(), false);
+  assert.equal(engine.isPaused(), false);
+});
+
+test('flush sincroniza sin esperar el debounce', async () => {
+  const { engine, timer, drive } = setup(make());
+  engine.requestSync();
+  assert.equal(timer.hasPending(), true);
+  const r = await engine.flush();
+  assert.equal(r.status, 'ok');
+  assert.equal(timer.hasPending(), false);
+  assert.equal(drive.state.reads, 1);
 });
 
 test('requestSync agrupa varios pedidos en una sola sincronización', async () => {
@@ -180,7 +222,7 @@ test('requestSync agrupa varios pedidos en una sola sincronización', async () =
 });
 
 test('un pedido que llega durante una sincronización dispara otra después', async () => {
-  const drive = fakeDrive();
+  const drive = fakeServer();
   let release: () => void = () => {};
   const gate = new Promise<void>((r) => (release = r));
   const realRead = drive.client.read;
@@ -217,10 +259,53 @@ test('informa el estado: syncing y luego ok', async () => {
   assert.deepEqual(statuses, ['syncing', 'ok']);
 });
 
-test('un borrado reciente (resetAt) llega a Drive y reemplaza lo viejo', async () => {
+test('un borrado reciente (resetAt) llega al servidor y reemplaza lo viejo', async () => {
   const remote = make({ deviceId: 'B', lessons: { viejo: lesson('2026-11-01T00:00:00.000Z') } });
   const local = make({ resetAt: '2026-11-05T00:00:00.000Z' });
-  const { engine, box } = setup(local, fakeDrive(file(remote)));
+  const { engine, box } = setup(local, fakeServer(file(remote)));
   await engine.syncNow();
   assert.deepEqual(box.local.lessons, {});
+});
+
+test('flush con la llave revocada no llama al servidor hasta resume', async () => {
+  const drive = fakeServer();
+  drive.state.failWith = new SyncError('revoked');
+  const { engine, timer, statuses } = setup(make(), drive);
+  await engine.syncNow();
+  const reads = drive.state.reads;
+  const seen = statuses.length;
+  assert.deepEqual(await engine.flush(), { status: 'revoked' });
+  assert.equal(drive.state.reads, reads);
+  assert.equal(statuses.length, seen, 'no informa de nuevo');
+  assert.equal(timer.hasPending(), false);
+  drive.state.failWith = null;
+  engine.resume();
+  assert.equal((await engine.flush()).status, 'ok');
+  assert.ok(drive.state.reads > reads);
+});
+
+test('conflicto en la primera escritura (servidor vacío): fusiona y reintenta', async () => {
+  const mine = make({ lessons: { a: lesson('2026-11-01T00:00:00.000Z') } });
+  const theirs = file(make({ deviceId: 'B', lessons: { x: lesson('2026-11-02T00:00:00.000Z') } }));
+  const { engine, drive, box } = setup(mine, fakeServer());
+  drive.state.interleave = [theirs];
+  assert.equal((await engine.syncNow()).status, 'ok');
+  assert.deepEqual(drive.state.expected, [0, 1]);
+  assert.deepEqual(Object.keys(box.local.lessons).sort(), ['a', 'x']);
+});
+
+test('un conflicto con texto dañado o de versión más nueva no se pisa', async () => {
+  const tooNew = JSON.stringify({ app: 'gradus', kind: 'progress', exportedAt: 'x', progress: { version: 99 } });
+  for (const [text, status] of [
+    ['basura', 'corrupt'],
+    [tooNew, 'tooNew'],
+  ] as const) {
+    const local = make({ lessons: { a: lesson('2026-11-01T00:00:00.000Z') } });
+    const { engine, drive } = setup(local, fakeServer(file(make({ deviceId: 'B' }))));
+    drive.state.interleave = [text];
+    // El local tiene algo que subir, así que la primera escritura choca.
+    assert.equal((await engine.syncNow()).status, status);
+    assert.equal(drive.state.text, text);
+    assert.equal(drive.state.writes, 1);
+  }
 });

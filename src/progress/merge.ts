@@ -1,4 +1,4 @@
-import { PROGRESS_VERSION, PUZZLE_RANK, coinBalance, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress, type PuzzleRecord } from './progressStore';
+import { MAX_OPENED, PROGRESS_VERSION, PUZZLE_RANK, coinBalance, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress, type PuzzleRecord } from './progressStore';
 import { MAX_PENDING, type PuzzleRating } from './puzzleRating';
 import type { DayActions, Streak } from './streak';
 
@@ -147,6 +147,25 @@ function lastChanged<T>(
 }
 
 /**
+ * Puzzles abiertos (el más reciente primero): intercala por posición desde el frente de cada lista. En cada posición
+ * toma el par (a[i], b[i]) en orden alfabético y salta repetidos. Es conmutativa e idempotente, y al cortar la cola
+ * se pierden los más viejos de las dos listas, no los recién abandonados.
+ */
+function mergeOpened(a: string[], b: string[]): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    const pair = [a[i], b[i]].filter((x): x is string => x !== undefined).sort();
+    for (const id of pair) {
+      if (seen.has(id)) continue;
+      seen.add(id);
+      out.push(id);
+    }
+  }
+  return out;
+}
+
+/**
  * Nivel de puzzles: gana el que contó más puzzles (`rated`); si empatan, el cambiado más tarde. `pending` se une, sin
  * los puzzles que ya están terminados en `puzzles` (tope MAX_PENDING).
  */
@@ -196,6 +215,10 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     { value: local.lastUnit, stamp: local.stamps.lastUnit },
     { value: incoming.lastUnit, stamp: incoming.stamps.lastUnit }
   );
+  const ongoingGame = lastChanged(
+    { value: local.ongoingGame, stamp: local.stamps.ongoingGame },
+    { value: incoming.ongoingGame, stamp: incoming.stamps.ongoingGame }
+  );
   const onboarded =
     local.profile.onboarded || incoming.profile.onboarded
       ? true
@@ -214,6 +237,7 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     stamps: {
       ...(level.stamp !== undefined ? { level: level.stamp } : {}),
       ...(lastUnit.stamp !== undefined ? { lastUnit: lastUnit.stamp } : {}),
+      ...(ongoingGame.stamp !== undefined ? { ongoingGame: ongoingGame.stamp } : {}),
     },
     lessons,
     drafts,
@@ -231,7 +255,10 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     puzzles,
     turningPoints: union(local.turningPoints, incoming.turningPoints),
   };
+  const opened = mergeOpened(local.puzzlesOpened ?? [], incoming.puzzlesOpened ?? []).filter((id) => !puzzles[id]).slice(0, MAX_OPENED);
+  if (opened.length) merged.puzzlesOpened = opened;
   if (lastUnit.value !== undefined) merged.lastUnit = lastUnit.value;
+  if (ongoingGame.value !== undefined) merged.ongoingGame = ongoingGame.value;
   const puzzleRating = mergePuzzleRating(local.puzzleRating, incoming.puzzleRating, puzzles);
   if (puzzleRating) merged.puzzleRating = puzzleRating;
   return withBalance(merged);

@@ -1,18 +1,27 @@
-import { DriveError, type DriveClient } from './syncEngine';
+import { SyncError } from './syncEngine';
 
-// Cliente de la API REST de Google Drive para el archivo único de Gradus en la carpeta oculta de la app
+// Cliente de la API REST de Google Drive para un archivo de Gradus (hoy, la llave de sincronización) en la carpeta oculta de la app
 // (`appDataFolder`, permiso `drive.appdata`). No sabe de dónde viene el permiso: lo pide con `getToken`.
 // Sin React ni navegador: `fetch` entra como parámetro, así que se prueba entero en `npm test`.
 
-export const DRIVE_FILE_NAME = 'gradus-progreso.json';
+export const KEY_FILE_NAME = 'gradus-llave.json';
 
 const FILES_URL = 'https://www.googleapis.com/drive/v3/files';
 const UPLOAD_URL = 'https://www.googleapis.com/upload/drive/v3/files';
 
+/** Un archivo en Drive. `read` devuelve null si todavía no existe; `remove` sin archivo no hace nada. */
+export type DriveFile = {
+  read: () => Promise<string | null>;
+  write: (text: string) => Promise<void>;
+  remove: () => Promise<void>;
+};
+
 type Deps = {
   fetch: typeof fetch;
-  /** Permiso vigente de Google; si no hay, lanza `DriveError('auth')`. */
+  /** Permiso vigente de Google; si no hay, lanza `SyncError('other')`. */
   getToken: () => Promise<string>;
+  /** Nombre del archivo en la carpeta oculta (p. ej. `KEY_FILE_NAME`). */
+  fileName: string;
 };
 
 /** Motivos de un error de la API de Google (`error.errors[].reason`), o [] si la respuesta no los trae. */
@@ -26,18 +35,18 @@ async function reasons(res: Response): Promise<string[]> {
 }
 
 /** Traduce una respuesta que no fue buena al tipo de error que entiende el motor de sincronización. */
-async function toError(res: Response): Promise<DriveError> {
-  if (res.status === 401) return new DriveError('auth');
+async function toError(res: Response): Promise<SyncError> {
+  if (res.status === 401) return new SyncError('other', 'Google: el permiso venció o falta');
   if (res.status === 403) {
     const why = await reasons(res);
-    if (why.includes('storageQuotaExceeded')) return new DriveError('quota');
-    if (why.some((r) => r === 'rateLimitExceeded' || r === 'userRateLimitExceeded')) return new DriveError('other');
-    return new DriveError('forbidden');
+    if (why.includes('storageQuotaExceeded')) return new SyncError('other', 'Drive lleno');
+    if (why.some((r) => r === 'rateLimitExceeded' || r === 'userRateLimitExceeded')) return new SyncError('other');
+    return new SyncError('other', 'La cuenta de Google no permite guardar en Drive');
   }
-  return new DriveError('other', `Drive respondió ${res.status}`);
+  return new SyncError('other', `Drive respondió ${res.status}`);
 }
 
-export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): DriveClient {
+export function createDriveRestClient({ fetch: doFetch, getToken, fileName }: Deps): DriveFile {
   // Id del archivo una vez encontrado o creado: evita buscarlo en cada sincronización.
   let fileId: string | null = null;
 
@@ -47,15 +56,17 @@ export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): Drive
       return await doFetch(url, { ...init, headers: { ...(init.headers as Record<string, string>), Authorization: `Bearer ${token}` } });
     } catch (e) {
       // `fetch` solo rechaza cuando no hay red (o la bloquea el navegador).
-      if (e instanceof DriveError) throw e;
-      throw new DriveError('offline');
+      if (e instanceof SyncError) throw e;
+      throw new SyncError('offline');
     }
   }
 
   async function find(): Promise<string | null> {
     if (fileId) return fileId;
-    const q = `name='${DRIVE_FILE_NAME}' and trashed=false`;
-    const url = `${FILES_URL}?spaces=appDataFolder&q=${encodeURIComponent(q)}&fields=${encodeURIComponent('files(id)')}&pageSize=1`;
+    const escaped = fileName.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    // El más antiguo: si dos dispositivos crearon el archivo a la vez, todos convergen en el mismo.
+    const q = `name='${escaped}' and trashed=false`;
+    const url = `${FILES_URL}?spaces=appDataFolder&q=${encodeURIComponent(q)}&fields=${encodeURIComponent('files(id)')}&orderBy=createdTime&pageSize=1`;
     const res = await call(url);
     if (!res.ok) throw await toError(res);
     const data = (await res.json()) as { files?: { id: string }[] };
@@ -65,7 +76,7 @@ export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): Drive
 
   async function create(text: string): Promise<void> {
     const boundary = `gradus-${Math.random().toString(36).slice(2)}`;
-    const meta = JSON.stringify({ name: DRIVE_FILE_NAME, parents: ['appDataFolder'], mimeType: 'application/json' });
+    const meta = JSON.stringify({ name: fileName, parents: ['appDataFolder'], mimeType: 'application/json' });
     const body =
       `--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${meta}\r\n` +
       `--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${text}\r\n--${boundary}--`;
@@ -75,10 +86,12 @@ export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): Drive
       body,
     });
     if (!res.ok) throw await toError(res);
-    fileId = ((await res.json()) as { id?: string }).id ?? null;
+    // No se recuerda el id recién creado: la próxima vez se busca y se elige el más antiguo.
+    await res.body?.cancel?.().catch(() => {});
+    fileId = null;
   }
 
-  const api: DriveClient = {
+  const api: DriveFile = {
     async read() {
       const id = await find();
       if (!id) return null;
@@ -107,6 +120,15 @@ export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): Drive
         return create(text);
       }
       if (!res.ok) throw await toError(res);
+    },
+
+    async remove() {
+      const id = await find();
+      if (!id) return;
+      const res = await call(`${FILES_URL}/${id}`, { method: 'DELETE' });
+      fileId = null;
+      // 404: ya no estaba, que es lo que se quería.
+      if (!res.ok && res.status !== 404) throw await toError(res);
     },
   };
   return api;

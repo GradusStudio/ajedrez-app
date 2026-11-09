@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DriveError } from './syncEngine';
-import { createDriveRestClient, DRIVE_FILE_NAME } from './driveRest';
+import { SyncError } from './syncEngine';
+import { createDriveRestClient, KEY_FILE_NAME } from './driveRest';
 
 type Call = { url: string; method: string; headers: Record<string, string>; body?: string };
 
@@ -30,11 +30,11 @@ const apiError = (status: number, reason: string) => json({ error: { code: statu
 
 const client = (responses: (Response | Error)[]) => {
   const { f, calls } = fakeFetch(responses);
-  return { calls, drive: createDriveRestClient({ fetch: f, getToken: async () => 'TOKEN' }) };
+  return { calls, drive: createDriveRestClient({ fetch: f, getToken: async () => 'TOKEN', fileName: KEY_FILE_NAME }) };
 };
 
-async function failsWith(p: Promise<unknown>, kind: DriveError['kind']) {
-  await assert.rejects(p, (e: unknown) => e instanceof DriveError && e.kind === kind, kind);
+async function failsWith(p: Promise<unknown>, kind: SyncError['kind']) {
+  await assert.rejects(p, (e: unknown) => e instanceof SyncError && e.kind === kind, kind);
 }
 
 test('read: si no hay archivo en la carpeta oculta devuelve null', async () => {
@@ -44,7 +44,7 @@ test('read: si no hay archivo en la carpeta oculta devuelve null', async () => {
   const url = new URL(calls[0].url);
   assert.equal(url.origin + url.pathname, 'https://www.googleapis.com/drive/v3/files');
   assert.equal(url.searchParams.get('spaces'), 'appDataFolder');
-  assert.match(url.searchParams.get('q') ?? '', new RegExp(DRIVE_FILE_NAME.replace('.', '\\.')));
+  assert.match(url.searchParams.get('q') ?? '', new RegExp(KEY_FILE_NAME.replace('.', '\\.')));
   assert.equal(calls[0].headers.Authorization, 'Bearer TOKEN');
 });
 
@@ -62,7 +62,7 @@ test('write: sin archivo lo crea en appDataFolder con subida multipart', async (
   assert.match(create.url, /upload\/drive\/v3\/files\?uploadType=multipart/);
   assert.match(create.headers['Content-Type'], /^multipart\/related; boundary=/);
   assert.match(create.body ?? '', /"parents":\["appDataFolder"\]/);
-  assert.match(create.body ?? '', new RegExp(`"name":"${DRIVE_FILE_NAME}"`));
+  assert.match(create.body ?? '', new RegExp(`"name":"${KEY_FILE_NAME}"`));
   assert.match(create.body ?? '', /\{"a":1\}/);
 });
 
@@ -96,15 +96,15 @@ test('read: un 404 al bajar el archivo cuenta como que no existe', async () => {
 });
 
 test('errores: 401 es auth', async () => {
-  await failsWith(client([apiError(401, 'authError')]).drive.read(), 'auth');
+  await failsWith(client([apiError(401, 'authError')]).drive.read(), 'other');
 });
 
 test('errores: 403 con cuota llena es quota', async () => {
-  await failsWith(client([json({ files: [] }), apiError(403, 'storageQuotaExceeded')]).drive.write('x'), 'quota');
+  await failsWith(client([json({ files: [] }), apiError(403, 'storageQuotaExceeded')]).drive.write('x'), 'other');
 });
 
 test('errores: otro 403 es forbidden (cuenta que no lo permite)', async () => {
-  await failsWith(client([apiError(403, 'forbidden')]).drive.read(), 'forbidden');
+  await failsWith(client([apiError(403, 'forbidden')]).drive.read(), 'other');
 });
 
 test('errores: 429 y 500 son other', async () => {
@@ -120,9 +120,61 @@ test('errores: si no hay permiso vigente se propaga como auth', async () => {
   const { f } = fakeFetch([]);
   const drive = createDriveRestClient({
     fetch: f,
+    fileName: KEY_FILE_NAME,
     getToken: async () => {
-      throw new DriveError('auth');
+      throw new SyncError('other');
     },
   });
-  await failsWith(drive.read(), 'auth');
+  await failsWith(drive.read(), 'other');
+});
+
+test('usa fileName en la búsqueda', async () => {
+  const { f, calls } = fakeFetch([json({ files: [] })]);
+  const drive = createDriveRestClient({ fetch: f, getToken: async () => 'T', fileName: 'otro.json' });
+  await drive.read();
+  assert.match(new URL(calls[0].url).searchParams.get('q') ?? '', /name='otro\.json'/);
+});
+
+test('remove borra el archivo encontrado', async () => {
+  const { drive, calls } = client([json({ files: [{ id: 'F1' }] }), new Response(null, { status: 204 })]);
+  await drive.remove();
+  assert.equal(calls[1].method, 'DELETE');
+  assert.match(calls[1].url, /\/drive\/v3\/files\/F1$/);
+});
+
+test('remove sin archivo no llama a DELETE', async () => {
+  const { drive, calls } = client([json({ files: [] })]);
+  await drive.remove();
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].method, 'GET');
+});
+
+test('remove: un 404 al borrar cuenta como borrado y un fallo es SyncError', async () => {
+  await client([json({ files: [{ id: 'F1' }] }), apiError(404, 'notFound')]).drive.remove();
+  await failsWith(client([json({ files: [{ id: 'F1' }] }), json({}, 500)]).drive.remove(), 'other');
+});
+
+test('fileName con comilla simple y barra se escapa en la búsqueda', async () => {
+  const { f, calls } = fakeFetch([json({ files: [] })]);
+  const drive = createDriveRestClient({ fetch: f, getToken: async () => 'T', fileName: "a'b\\c.json" });
+  await drive.read();
+  assert.equal(new URL(calls[0].url).searchParams.get('q'), "name='a\\'b\\\\c.json' and trashed=false");
+});
+
+test('con dos archivos, busca ordenado por creación y lee el primero (el más antiguo)', async () => {
+  const { drive, calls } = client([json({ files: [{ id: 'VIEJO' }] }), text('del viejo')]);
+  assert.equal(await drive.read(), 'del viejo');
+  assert.equal(new URL(calls[0].url).searchParams.get('orderBy'), 'createdTime');
+  assert.equal(new URL(calls[0].url).searchParams.get('pageSize'), '1');
+  assert.match(calls[1].url, /files\/VIEJO\?alt=media/);
+});
+
+test('después de crear, el siguiente read busca de nuevo en vez de usar el id guardado', async () => {
+  const { drive, calls } = client([json({ files: [] }), json({ id: 'MIO' }), json({ files: [{ id: 'VIEJO' }] }), text('x')]);
+  await drive.write('mio');
+  await drive.read();
+  assert.equal(calls.length, 4);
+  assert.equal(calls[2].method, 'GET');
+  assert.match(calls[2].url, /spaces=appDataFolder/);
+  assert.match(calls[3].url, /files\/VIEJO\?alt=media/);
 });

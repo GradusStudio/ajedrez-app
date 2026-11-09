@@ -10,6 +10,9 @@ import {
   randomId,
   withBoardThemeBought,
   withLastUnit,
+  withOngoingGame,
+  withPuzzleOpened,
+  type OngoingGame,
   withLessonFinished,
   withPieceSetBought,
   withProfile,
@@ -423,4 +426,82 @@ test('una copia sin nivel no lo inventa; un nivel roto se descarta al reparar', 
     assert.equal(data.puzzleRating, undefined);
     assert.ok(repaired.includes('puzzleRating'));
   }
+});
+
+// ---------- Partida en curso ----------
+
+const enCurso: OngoingGame = { botId: 'pipo', userColor: 'w', moves: ['e2e4', 'e7e5'], startedAt: '2026-11-09T10:00:00.000Z' };
+
+test('withOngoingGame guarda la partida y pone stamp', () => {
+  const now = new Date('2026-11-09T10:05:00.000Z');
+  const p = withOngoingGame(v4(), enCurso, now);
+  assert.deepEqual(p.ongoingGame, enCurso);
+  assert.equal(p.stamps.ongoingGame, now.toISOString());
+});
+
+test('withOngoingGame(null) la quita y pone stamp', () => {
+  const p = withOngoingGame(v4(), enCurso, new Date('2026-11-09T10:05:00.000Z'));
+  const now = new Date('2026-11-09T10:09:00.000Z');
+  const q = withOngoingGame(p, null, now);
+  assert.equal(q.ongoingGame, undefined);
+  assert.equal('ongoingGame' in q, false);
+  assert.equal(q.stamps.ongoingGame, now.toISOString());
+});
+
+test('borrar el progreso borra la partida en curso', () => {
+  assert.equal(withReset(withOngoingGame(v4(), enCurso)).ongoingGame, undefined);
+});
+
+test('structure: ongoingGame con moves que no es lista (u otro campo roto) se descarta al reparar; una buena se conserva', () => {
+  const ok = repairStructure({ ...v4(), ongoingGame: enCurso });
+  assert.deepEqual(ok.data.ongoingGame, enCurso);
+  const malas = [
+    { ...enCurso, moves: 'e2e4' },
+    { ...enCurso, moves: [1, 2] },
+    { ...enCurso, botId: 5 },
+    { ...enCurso, userColor: 'x' },
+    { ...enCurso, startedAt: 7 },
+    { ...enCurso, practiceCourseId: 3 },
+    'hola',
+  ];
+  for (const bad of malas) {
+    const { data, repaired } = repairStructure({ ...v4(), ongoingGame: bad });
+    assert.equal(data.ongoingGame, undefined);
+    assert.ok(repaired.includes('ongoingGame'));
+  }
+});
+
+test('migrate conserva la partida en curso', () => {
+  assert.deepEqual(migrate(v4({ ongoingGame: enCurso }) as never, 'dev1').ongoingGame, enCurso);
+});
+
+// ---------- Puzzles abiertos sin terminar ----------
+
+test('una lista de puzzles abiertos rota se descarta al reparar, sin romper', () => {
+  for (const bad of ['hola', 5, [1, 'a'], { a: 1 }]) {
+    const { data, repaired } = repairStructure({ ...v4(), puzzlesOpened: bad });
+    assert.equal(data.puzzlesOpened, undefined);
+    assert.ok(repaired.includes('puzzlesOpened'));
+  }
+  assert.deepEqual(migrate(v4({ puzzlesOpened: ['a', 'b'] }) as never, 'dev1').puzzlesOpened, ['a', 'b']);
+});
+
+test('withPuzzleOpened ignora un puzzle que ya está en puzzles', () => {
+  const p = v4({ puzzles: { r: { result: 'failed', at: '2026-11-09T10:00:00.000Z' } } });
+  assert.equal(withPuzzleOpened(p, 'r').puzzlesOpened, undefined);
+});
+
+test('withPuzzleOpened lo pone primero sin repetir', () => {
+  let p = withPuzzleOpened(v4(), 'a');
+  p = withPuzzleOpened(p, 'b');
+  p = withPuzzleOpened(p, 'a');
+  assert.deepEqual(p.puzzlesOpened, ['a', 'b']);
+});
+
+test('withPuzzleOpened guarda como mucho 200, los más recientes', () => {
+  let p = v4();
+  for (let i = 0; i < 205; i++) p = withPuzzleOpened(p, `p${i}`);
+  assert.equal(p.puzzlesOpened?.length, 200);
+  assert.equal(p.puzzlesOpened?.[0], 'p204');
+  assert.equal(p.puzzlesOpened?.[199], 'p5');
 });

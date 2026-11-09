@@ -12,6 +12,23 @@ type Deps = {
   getKey: () => string | null;
 };
 
+/**
+ * Lee el cuerpo JSON de una respuesta. Un cuerpo que no es JSON (portal cautivo, proxy) es `other`; un fallo al leerlo
+ * (corte de red a mitad de la respuesta) es `offline`.
+ */
+async function readJson(res: Response): Promise<Record<string, unknown>> {
+  let body: unknown;
+  try {
+    body = await res.json();
+  } catch (e) {
+    throw e instanceof SyntaxError ? new SyncError('other', 'Respuesta que no es JSON') : new SyncError('offline');
+  }
+  if (typeof body !== 'object' || body === null) throw new SyncError('other', 'Respuesta inesperada');
+  return body as Record<string, unknown>;
+}
+
+const isVersion = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v) && v >= 0;
+
 export function createServerClient({ fetch: doFetch, baseUrl, getKey }: Deps): SyncClient {
   async function call(init: RequestInit = {}): Promise<Response> {
     const key = getKey();
@@ -33,7 +50,8 @@ export function createServerClient({ fetch: doFetch, baseUrl, getKey }: Deps): S
       if (res.status === 404) return null;
       if (res.status === 410) throw new SyncError('revoked');
       if (!res.ok) throw new SyncError('other', `Servidor respondió ${res.status}`);
-      const body = (await res.json()) as { version: number; data: string };
+      const body = await readJson(res);
+      if (!isVersion(body.version) || typeof body.data !== 'string') throw new SyncError('other', 'Respuesta inesperada');
       return { version: body.version, text: body.data };
     },
 
@@ -44,13 +62,18 @@ export function createServerClient({ fetch: doFetch, baseUrl, getKey }: Deps): S
         body: JSON.stringify({ version: expected, data: text }),
       });
       if (res.status === 409) {
-        const body = (await res.json()) as { version: number; data: string | null };
+        const body = await readJson(res);
+        if (!isVersion(body.version) || (body.data !== null && typeof body.data !== 'string')) {
+          throw new SyncError('other', 'Respuesta inesperada');
+        }
         throw new SyncConflict({ version: body.version, text: body.data ?? '' });
       }
       if (res.status === 410) throw new SyncError('revoked');
       if (res.status === 413) throw new SyncError('tooLarge');
       if (!res.ok) throw new SyncError('other', `Servidor respondió ${res.status}`);
-      return ((await res.json()) as { version: number }).version;
+      const body = await readJson(res);
+      if (!isVersion(body.version)) throw new SyncError('other', 'Respuesta inesperada');
+      return body.version;
     },
   };
 }

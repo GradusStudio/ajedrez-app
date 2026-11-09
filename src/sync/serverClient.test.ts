@@ -87,3 +87,29 @@ test('sin llave lanza revoked sin llamar a fetch', async () => {
   await failsWith(client.write('x', 0), 'revoked');
   assert.equal(calls.length, 0);
 });
+
+const html = (status: number) => new Response('<html>portal</html>', { status });
+
+test('read con 200 que no es JSON lanza other', async () => {
+  const { client } = make([html(200)]);
+  await failsWith(client.read(), 'other');
+});
+
+test('write con 409 que no es JSON lanza other, no SyncConflict', async () => {
+  const { client } = make([html(409)]);
+  await failsWith(client.write('x', 1), 'other');
+});
+
+test('200 con tipos incorrectos lanza other (read y write)', async () => {
+  const { client } = make([json({ version: 'a', data: 'x' }), json({ version: 1, data: 5 }), json({ version: null })]);
+  await failsWith(client.read(), 'other');
+  await failsWith(client.read(), 'other');
+  await failsWith(client.write('x', 1), 'other');
+});
+
+test('cuerpo que falla al leerse a mitad de la respuesta lanza offline', async () => {
+  const res = new Response('{}', { status: 200 });
+  res.json = () => Promise.reject(new TypeError('terminated'));
+  const { client } = make([res]);
+  await failsWith(client.read(), 'offline');
+});

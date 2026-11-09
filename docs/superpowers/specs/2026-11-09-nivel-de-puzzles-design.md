@@ -1,6 +1,6 @@
 # Nivel de puzzles: práctica automática según tu nivel
 
-Fecha: 9-11-2026. Estado: **borrador, espera aprobación**.
+Fecha: 9-11-2026. Estado: **implementada el 9-11-2026** (plan `docs/superpowers/plans/2026-11-09-nivel-de-puzzles.md`).
 
 ## 1. Para qué
 

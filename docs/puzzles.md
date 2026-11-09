@@ -48,7 +48,7 @@ El script lee el archivo descomprimiéndolo sobre la marcha (con `fzstd`), sin d
 
 ## Cómo funciona en la app
 - **Puzzle del día:** sale de los 15.000 puzzles de nivel 1000–1600. Cambia a medianoche y es el mismo para todos. No se repite en más de 40 años.
-- **Práctica:** dificultad Fácil, Medio, Difícil o Experto (solo en la web), y "Todos" o un tema. En el celular: Fácil 500–1200 (17.500 puzzles), Medio 1200–1800 (15.000), Difícil 1800–2500 (17.500); el tema con menos puzzles es "Mate del pasillo" en Difícil (50). En la web, la base completa (ver arriba): el tema con menos, sin contar Experto, es "Mate del pasillo" en Difícil (1.730). Toca un puzzle pendiente al azar, que no haya salido en esta sesión; cuando no queda ninguno, se repiten.
+- **Práctica:** dificultad **Automático** (por defecto, ver «Nivel de puzzles» abajo) o **Elegir dificultad**: Fácil, Medio, Difícil o Experto (solo en la web), y "Todos" o un tema. En el celular: Fácil 500–1200 (17.500 puzzles), Medio 1200–1800 (15.000), Difícil 1800–2500 (17.500); el tema con menos puzzles es "Mate del pasillo" en Difícil (50). En la web, la base completa (ver arriba): el tema con menos, sin contar Experto, es "Mate del pasillo" en Difícil (1.730). Toca un puzzle pendiente al azar, que no haya salido en esta sesión; cuando no queda ninguno, se repiten.
 - **Pantalla del puzzle:**
   - El rival juega la primera jugada.
   - El usuario busca la solución. Si se equivoca, la jugada se hace en el tablero y, en el lugar de los botones "Pista" y "Ver solución", aparece el aviso "Incorrecto" con el botón "Reintentar". "Reintentar" deshace la jugada equivocada y se sigue desde ahí. Mientras tanto, el tablero no acepta otras jugadas.
@@ -62,6 +62,16 @@ El script lee el archivo descomprimiéndolo sobre la marcha (con `fzstd`), sin d
 
   Se guarda el mejor resultado de cada puzzle. Cada puzzle cuenta para la racha salvo que se haya mirado la solución. La primera vez que se resuelve da monedas: 2 sin errores ni pista, 1 con errores o pista (mirar la solución no da, pero el puzzle puede dar monedas después, al resolverlo).
 - **Temas:** `src/puzzles/themes.json` (claves de Lichess y orden de la práctica). Los nombres en español son traducciones propias, no copiadas de Lichess, y están en `src/i18n/es.ts` (claves `puzzleTheme.<tema>`).
+
+## Nivel de puzzles (9-11-2026)
+Spec: `docs/superpowers/specs/2026-11-09-nivel-de-puzzles-design.md`. Cálculo en `src/progress/puzzleRating.ts` (probado).
+- **Elo sencillo** con el rating de Lichess del puzzle como rival: `E = 1 / (1 + 10^((ratingPuzzle − nivel) / 400))`, cambio `round(K × (resultado − E))`, K = 40 en los primeros 20 puzzles y 20 después, entre 400 y 3000. Arranca en 800 (`nuevo`), 1100 (`basico`), 1400 (`casual`) o 1000 sin bienvenida.
+- **Suma solo sin errores ni pista.** El fallo se cobra en el momento: con la primera jugada equivocada, la pista o «Ver solución» (`withPuzzleFailedNow`), aunque después se salga sin terminar. El acierto se cobra al resolverlo.
+- **Solo la primera vez** que se juega cada puzzle. Los que bajaron el nivel y se abandonaron quedan en `progress.puzzleRating.pending` (tope 500) y salen de ahí al terminarlos.
+- Todos los puzzles de Lichess mueven el nivel: Automático, Elegir dificultad y el puzzle del día. Los ejercicios de las lecciones y el quiz de la revisión no.
+- **Automático** (`PuzzleSource.nextNear`): objetivo = nivel ± 100 al azar; busca un pendiente del tema a ±100, ±200 y ±400 del objetivo; si no hay, lo de siempre del nivel de dificultad del objetivo (en el celular, de toda la lista). En la web pide el trozo del nivel de dificultad del objetivo (el más cercano que tenga puzzles del tema).
+- Se guarda en el progreso (campo opcional; la versión sigue siendo la 4). Al combinar copias gana el que contó más puzzles (`rated`), y si empatan el más reciente; `pending` se une. «Borrar progreso» lo borra.
+- Ajustes › Práctica › «Mostrar mi nivel de puzzles» (`showPuzzleRating`): oculto, no se ve el número propio en ningún lado (el rating de cada puzzle sí) y se sigue calculando. La opción Automático / Elegir dificultad y el último nivel elegido a mano se recuerdan (`puzzleMode`, `puzzleLevel`).
 
 ## Pendiente
 - Rating de puzzles del usuario: hoy no hay puntuación, solo resuelto o no resuelto, como pedía el mapa.

@@ -25,6 +25,11 @@ import { es, MessageKey } from '../i18n/es';
 import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
+import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
+import { useWideLayout } from '../components/useWideLayout';
+
+/** Alto fuera del tablero en pantalla ancha: la fila de arriba y los márgenes (el resultado va en el panel). */
+const GAME_RESERVE = 110;
 
 type Props = {
   bot: Bot;
@@ -249,6 +254,88 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
           ? t('game.status.thinking')
           : t('game.status.yourTurn');
 
+  // Pantalla ancha (web): el tablero va a la izquierda y todo lo demás en un panel a la derecha (BoardLayout).
+  const wide = useWideLayout();
+  const contentWidth = useBoardLayoutWidth(GAME_RESERVE);
+
+  const board = <Board fen={fen} orientation={userColor} interactive={userTurn} lastMove={lastMove} onMove={onUserMove} />;
+  const botBlock = (
+    <>
+      <View style={styles.playerRow}>
+        <BotAvatar bot={bot} size={40} />
+        <View style={{ flex: 1 }}>
+          <Text style={styles.playerName}>
+            {bot.name} <Text style={styles.playerMeta}>· {bot.elo}</Text>
+          </Text>
+          <Text style={styles.status}>{status}</Text>
+        </View>
+      </View>
+      <View style={styles.bubble}>
+        <Text style={styles.bubbleText}>{speech}</Text>
+      </View>
+    </>
+  );
+  const youBlock = (
+    <>
+      <View style={styles.youRow}>
+        <Text style={styles.playerName}>{t('game.you')}</Text>
+        <Text style={styles.playerMeta}>{userColor === 'w' ? t('game.colorWhite') : t('game.colorBlack')}</Text>
+        {opening && <Text style={styles.opening}>{t('game.opening', { name: opening.name })}</Text>}
+      </View>
+      <Text style={styles.notation}>{sans.length === 0 ? t('lesson.line.noMoves') : movesText(sans, 8, resolveNotation(settings.notation, language))}</Text>
+    </>
+  );
+  const errorBlock = engineError && (
+    <View style={styles.errorCard}>
+      <Text style={styles.errorText}>{t('game.engineError')}</Text>
+      <Button3D
+        label={t('common.retry')}
+        variant="danger"
+        onPress={() => {
+          setEngineError(null);
+          setEngine(null);
+          setMaia(null);
+          setMaiaFailed(false);
+          setEngineKey((k) => k + 1);
+        }}
+        style={{ marginTop: space.sm }}
+      />
+    </View>
+  );
+  const actionsBlock = !result && !engineError && (
+    <View style={styles.actions}>
+      <Button3D label={t('game.offerDraw')} onPress={offerDraw} style={{ flex: 1 }} />
+      <Button3D label={t('game.resignButton')} variant="destructive" onPress={resign} style={{ flex: 1 }} />
+    </View>
+  );
+  const resultBg = result?.kind === 'win' ? colors.correctBg : result?.kind === 'loss' ? colors.incorrectBg : colors.surface;
+  // Resultado: en el celular, panel al pie; en pantalla ancha, una tarjeta en el panel de la derecha.
+  const resultBody = result && (
+    <>
+      <Text style={[styles.resultTitle, { color: result.kind === 'win' ? colors.primary : result.kind === 'loss' ? colors.danger : colors.text }]}>
+        {result.kind === 'win' ? t('game.win') : result.kind === 'loss' ? t('game.loss') : t('game.draw')}
+      </Text>
+      <Text style={styles.resultReason}>{t(result.reason)}</Text>
+      {result.coins > 0 && (
+        <View style={styles.coinsRow}>
+          <StatIcon name="coin" size={18} />
+          <Text style={[styles.coinsText, { marginTop: 0 }]}>{t('game.coins', { n: result.coins })}</Text>
+        </View>
+      )}
+      {result.kind === 'win' && result.coins === 0 && !practiceCourse && <Text style={styles.coinsNote}>{t('game.coinsNote')}</Text>}
+      {result.dailyBonus > 0 && <Text style={styles.coinsText}>{t('common.dailyBonus', { n: result.dailyBonus })}</Text>}
+      {result.streakRecovered && <Text style={styles.coinsText}>{t('common.streakRecovered')}</Text>}
+      <SyncNudge />
+      <Button3D
+        label={practiceCourse ? t('game.rematchPractice') : t('game.rematch')}
+        variant="primary"
+        onPress={onRematch}
+        style={{ marginTop: space.md }}
+      />
+      <Button3D label={practiceCourse ? t('game.backToOpening') : t('game.otherBot')} onPress={onOtherBot} style={{ marginTop: space.sm }} />
+    </>
+  );
+
   return (
     <View style={styles.screen}>
       {!engineError && !maiaFailed && bot.engine.type === 'maia' && (
@@ -275,111 +362,36 @@ export function GameScreen({ bot, userColor, practiceCourse, onExit, onRematch, 
       )}
 
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
-        <View style={styles.topRow}>
+        <View style={[styles.topRow, contentWidth ? { width: contentWidth, alignSelf: 'center' } : null]}>
           <Pressable onPress={exit} accessibilityRole="button" accessibilityLabel={t('game.exitLabel')} hitSlop={12}>
             <Text style={styles.close}>✕</Text>
           </Pressable>
           {practiceCourse && <Chip label={t('game.practiceChip', { name: practiceCourse.name })} />}
         </View>
 
-        {/* El bot: arriba, como en un tablero real */}
-        <View style={styles.playerRow}>
-          <BotAvatar bot={bot} size={40} />
-          <View style={{ flex: 1 }}>
-            <Text style={styles.playerName}>
-              {bot.name} <Text style={styles.playerMeta}>· {bot.elo}</Text>
-            </Text>
-            <Text style={styles.status}>{status}</Text>
-          </View>
-        </View>
-        <View style={styles.bubble}>
-          <Text style={styles.bubbleText}>{speech}</Text>
-        </View>
-
-        <Board
-          fen={fen}
-          orientation={userColor}
-          interactive={userTurn}
-          lastMove={lastMove}
-          onMove={onUserMove}
-        />
-
-        <View style={styles.youRow}>
-          <Text style={styles.playerName}>{t('game.you')}</Text>
-          <Text style={styles.playerMeta}>{userColor === 'w' ? t('game.colorWhite') : t('game.colorBlack')}</Text>
-          {opening && <Text style={styles.opening}>{t('game.opening', { name: opening.name })}</Text>}
-        </View>
-        <Text style={styles.notation}>{sans.length === 0 ? t('lesson.line.noMoves') : movesText(sans, 8, resolveNotation(settings.notation, language))}</Text>
-
-        {engineError && (
-          <View style={styles.errorCard}>
-            <Text style={styles.errorText}>{t('game.engineError')}</Text>
-            <Button3D
-              label={t('common.retry')}
-              variant="danger"
-              onPress={() => {
-                setEngineError(null);
-                setEngine(null);
-                setMaia(null);
-                setMaiaFailed(false);
-                setEngineKey((k) => k + 1);
-              }}
-              style={{ marginTop: space.sm }}
-            />
-          </View>
-        )}
-
-        {!result && !engineError && (
-          <View style={styles.actions}>
-            <Button3D label={t('game.offerDraw')} onPress={offerDraw} style={{ flex: 1 }} />
-            <Button3D label={t('game.resignButton')} variant="destructive" onPress={resign} style={{ flex: 1 }} />
-          </View>
+        {wide ? (
+          // Pantalla ancha: tablero a la izquierda; el bot, tus datos, las jugadas y el resultado en el panel.
+          <BoardLayout reserveHeight={GAME_RESERVE} board={board}>
+            {botBlock}
+            <View style={{ height: space.lg }} />
+            {youBlock}
+            {errorBlock}
+            {actionsBlock}
+            {result && <View style={[styles.resultCard, { backgroundColor: resultBg }]}>{resultBody}</View>}
+          </BoardLayout>
+        ) : (
+          <>
+            {/* El bot: arriba, como en un tablero real */}
+            {botBlock}
+            {board}
+            {youBlock}
+            {errorBlock}
+            {actionsBlock}
+          </>
         )}
       </ScrollView>
 
-      {result && (
-        <View
-          style={[
-            styles.resultPanel,
-            { backgroundColor: result.kind === 'win' ? colors.correctBg : result.kind === 'loss' ? colors.incorrectBg : colors.surface },
-          ]}
-        >
-          <Text
-            style={[
-              styles.resultTitle,
-              { color: result.kind === 'win' ? colors.primary : result.kind === 'loss' ? colors.danger : colors.text },
-            ]}
-          >
-            {result.kind === 'win' ? t('game.win') : result.kind === 'loss' ? t('game.loss') : t('game.draw')}
-          </Text>
-          <Text style={styles.resultReason}>{t(result.reason)}</Text>
-          {result.coins > 0 && (
-            <View style={styles.coinsRow}>
-              <StatIcon name="coin" size={18} />
-              <Text style={[styles.coinsText, { marginTop: 0 }]}>{t('game.coins', { n: result.coins })}</Text>
-            </View>
-          )}
-          {result.kind === 'win' && result.coins === 0 && !practiceCourse && (
-            <Text style={styles.coinsNote}>{t('game.coinsNote')}</Text>
-          )}
-          {result.dailyBonus > 0 && (
-            <Text style={styles.coinsText}>{t('common.dailyBonus', { n: result.dailyBonus })}</Text>
-          )}
-          {result.streakRecovered && <Text style={styles.coinsText}>{t('common.streakRecovered')}</Text>}
-          <SyncNudge />
-          <Button3D
-            label={practiceCourse ? t('game.rematchPractice') : t('game.rematch')}
-            variant="primary"
-            onPress={onRematch}
-            style={{ marginTop: space.md }}
-          />
-          <Button3D
-            label={practiceCourse ? t('game.backToOpening') : t('game.otherBot')}
-            onPress={onOtherBot}
-            style={{ marginTop: space.sm }}
-          />
-        </View>
-      )}
+      {result && !wide && <View style={[styles.resultPanel, { backgroundColor: resultBg }]}>{resultBody}</View>}
     </View>
   );
 }
@@ -416,6 +428,7 @@ const styles = StyleSheet.create({
   },
   errorText: { fontFamily: fonts.bold, fontSize: 14, color: colors.text },
   resultPanel: { paddingHorizontal: space.lg, paddingTop: space.lg, paddingBottom: space.xl },
+  resultCard: { marginTop: space.lg, borderRadius: radius.control, padding: space.lg },
   resultTitle: { fontFamily: fonts.extrabold, fontSize: 22 },
   resultReason: { fontFamily: fonts.semibold, fontSize: 15, color: colors.text, marginTop: 4 },
   coinsRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.sm },

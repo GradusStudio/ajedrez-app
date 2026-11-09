@@ -17,13 +17,15 @@ type Props = {
   /** Con la revisión empezada se marca la jugada actual. */
   showCursor: boolean;
   onSelect: (ply: number) => void;
+  /** Ancho en px; si no se indica, el del tablero en el celular. */
+  width?: number;
 };
 
 /** Gráfico de ventaja: el área blanca es la ventaja de las blancas. Tocarlo salta a esa jugada. */
-export function EvalGraph({ review, idx, showCursor, onSelect }: Props) {
+export function EvalGraph({ review, idx, showCursor, onSelect, width: fixedWidth }: Props) {
   const { t } = useI18n();
   const { width } = useWindowDimensions();
-  const w = boardPixels(width);
+  const w = fixedWidth ?? boardPixels(width);
   const n = review.plies.length;
   const x = (i: number) => (n === 0 ? 0 : (i / n) * w);
   const y = (score: number) => HEIGHT - whiteShare(score) * HEIGHT;

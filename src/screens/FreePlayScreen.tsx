@@ -20,6 +20,10 @@ import { AnalysisUpdate } from '../engine/uci';
 import { useUciEngine } from '../engine/useUciEngine';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
+import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
+
+/** Alto fuera del tablero en pantalla ancha: encabezado, barra de evaluación y márgenes. */
+const FREE_RESERVE = 230;
 
 type LastMove = { from: Square; to: Square } | null;
 type Translate = (key: MessageKey, values?: Record<string, string | number>) => string;
@@ -133,29 +137,41 @@ export function FreePlayScreen({ onBack }: { onBack?: () => void } = {}) {
     if (!on) setAnalysis(null);
   };
 
+  // Pantalla ancha (web): tablero con la barra de evaluación a la izquierda y Stockfish, jugadas y botones a la derecha.
+  const contentWidth = useBoardLayoutWidth(FREE_RESERVE);
+
   return (
     <View style={styles.screen}>
       {engineView}
 
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
-        {onBack && (
-          <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('analysisMenu.title')} hitSlop={12}>
-            <Text style={styles.back}>{t('analysisMenu.back')}</Text>
-          </Pressable>
-        )}
-        <Text style={styles.title}>{t('analysis.title')}</Text>
-        <Text style={styles.subtitle}>{t('analysis.subtitle')}</Text>
+        {/* En pantalla ancha, el encabezado se alinea con el tablero y su panel. */}
+        <View style={contentWidth ? { width: contentWidth, alignSelf: 'center' } : null}>
+          {onBack && (
+            <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('analysisMenu.title')} hitSlop={12}>
+              <Text style={styles.back}>{t('analysisMenu.back')}</Text>
+            </Pressable>
+          )}
+          <Text style={styles.title}>{t('analysis.title')}</Text>
+          <Text style={styles.subtitle}>{t('analysis.subtitle')}</Text>
+        </View>
 
         <View style={{ height: space.lg }} />
-        {engineOn && <EvalBar score={barScore} decimal={decimal} />}
-        <Board
-          fen={fen}
-          orientation={orientation}
-          lastMove={lastMove}
-          onMove={handleMove}
-          arrows={engineOn && best && !gameOver ? [best.move.slice(0, 4)] : undefined}
-        />
-        <View style={{ height: space.lg }} />
+        <BoardLayout
+          reserveHeight={FREE_RESERVE}
+          board={
+            <>
+              {engineOn && <EvalBar score={barScore} decimal={decimal} />}
+              <Board
+                fen={fen}
+                orientation={orientation}
+                lastMove={lastMove}
+                onMove={handleMove}
+                arrows={engineOn && best && !gameOver ? [best.move.slice(0, 4)] : undefined}
+              />
+            </>
+          }
+        >
 
         <View style={styles.card}>
           <View style={styles.engineHeader}>
@@ -226,6 +242,7 @@ export function FreePlayScreen({ onBack }: { onBack?: () => void } = {}) {
           <Button3D label={t('analysis.flip')} onPress={() => setOrientation((o) => (o === 'w' ? 'b' : 'w'))} />
           {!gameOver && <Button3D label={t('analysis.reset')} variant="destructive" onPress={reset} />}
         </View>
+        </BoardLayout>
       </ScrollView>
     </View>
   );

@@ -92,8 +92,8 @@ function AppStack() {
   useReminderSync(ready);
   useRouteMeta();
   // Pantalla ancha (web): las pantallas ocupan toda la ventana y su contenido va en una columna de 480 px
-  // (ColumnScrollView, así la barra de desplazamiento queda contra el borde). Las que todavía ponen el tablero
-  // arriba y el resto abajo, sin BoardLayout, siguen encerradas en la columna entera (`inColumn`).
+  // (ColumnScrollView, así la barra de desplazamiento queda contra el borde). La bienvenida, que no se desplaza,
+  // va encerrada en la columna entera (`inColumn`).
   const wide = useWideLayout();
   const inColumn = {
     contentStyle: { backgroundColor: colors.bg, ...(wide ? { width: '100%' as const, maxWidth: COLUMN_MAX, alignSelf: 'center' as const } : null) },
@@ -124,17 +124,17 @@ function AppStack() {
       <Stack.Screen name="tableros" />
       <Stack.Screen name="puzzle" />
       <Stack.Screen name="ajustes" />
-      <Stack.Screen name="analisis-libre" options={inColumn} />
+      <Stack.Screen name="analisis-libre" />
       <Stack.Screen name="importar-partida" />
-      <Stack.Screen name="revision" options={inColumn} />
-      <Stack.Screen name="quiz-partida" options={inColumn} />
+      <Stack.Screen name="revision" />
+      <Stack.Screen name="quiz-partida" />
       <Stack.Screen name="creditos" />
       <Stack.Screen name="instalar" />
       <Stack.Screen name="privacidad" />
       <Stack.Screen name="terminos" />
       <Stack.Screen name="bienvenida" options={{ gestureEnabled: false, animation: 'fade', ...inColumn }} />
       {/* Sin gesto de volver: abandonar la partida pasa por la confirmación */}
-      <Stack.Screen name="partida" options={{ gestureEnabled: false, ...inColumn }} />
+      <Stack.Screen name="partida" options={{ gestureEnabled: false }} />
       {/* Sin gesto de volver: la salida de la lección pasa por la confirmación */}
       <Stack.Screen name="leccion/[id]" options={{ gestureEnabled: false }} />
       <Stack.Screen name="resultado" options={{ gestureEnabled: false, animation: 'fade' }} />

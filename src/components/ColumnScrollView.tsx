@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { ScrollView, ScrollViewProps } from 'react-native';
+import { ScrollView, ScrollViewProps, useWindowDimensions } from 'react-native';
 
 /**
  * Ancho de la columna de contenido en pantalla ancha (web): 640 px en las pestañas, 480 px en las demás pantallas.
@@ -22,4 +22,14 @@ export function ColumnScrollView({ contentContainerStyle, ...props }: ScrollView
       contentContainerStyle={column ? [contentContainerStyle, { width: '100%', maxWidth: column, alignSelf: 'center' }] : contentContainerStyle}
     />
   );
+}
+
+/**
+ * Margen de los costados para una barra fija (fuera del ScrollView) que tiene que alinearse con el contenido de la
+ * columna en pantalla ancha. El 16 extra es el margen interno que también tiene el contenido. Null en el celular.
+ */
+export function useColumnBarPadding(): { paddingHorizontal: number } | null {
+  const column = useColumnWidth();
+  const { width } = useWindowDimensions();
+  return column ? { paddingHorizontal: Math.max(16, (width - column) / 2 + 16) } : null;
 }

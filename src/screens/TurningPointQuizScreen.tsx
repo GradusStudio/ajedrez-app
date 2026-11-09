@@ -20,6 +20,12 @@ import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
 import { styles as reviewStyles } from './review/reviewStyles';
 import { statusBarTop } from '../components/statusBarTop';
+import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
+import { ColumnScrollView, useColumnBarPadding } from '../components/ColumnScrollView';
+import { useWideLayout } from '../components/useWideLayout';
+
+/** Alto fuera del tablero en pantalla ancha: fila de arriba, panel de abajo y márgenes. */
+const QUIZ_RESERVE = 200;
 
 type Props = { onExit: () => void };
 type SquareMove = { from: Square; to: Square };
@@ -66,6 +72,10 @@ export function TurningPointQuizScreen({ onExit }: Props) {
   const [coins, setCoins] = useState(0);
   const [lastCoins, setLastCoins] = useState(0);
   const [ended, setEnded] = useState(false);
+  // Pantalla ancha (web): tablero a la izquierda y el globo y los botones en el panel; el final, en la columna.
+  const wide = useWideLayout();
+  const contentWidth = useBoardLayoutWidth(QUIZ_RESERVE);
+  const barPadding = useColumnBarPadding();
 
   const points = quiz?.points ?? [];
   const tp = points[index];
@@ -154,7 +164,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
     const found = results.filter(Boolean).length;
     return (
       <View style={styles.screen}>
-        <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
+        <ColumnScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
           {top}
           <FadeIn>
             {bubble(
@@ -173,8 +183,8 @@ export function TurningPointQuizScreen({ onExit }: Props) {
               ))}
             </View>
           </FadeIn>
-        </ScrollView>
-        <View style={reviewStyles.bottomBar}>
+        </ColumnScrollView>
+        <View style={[reviewStyles.bottomBar, barPadding]}>
           <Button3D label={t('quiz.back')} variant="primary" onPress={onExit} style={{ flex: 1 }} />
         </View>
       </View>
@@ -189,34 +199,52 @@ export function TurningPointQuizScreen({ onExit }: Props) {
       ? t('quiz.hintText')
       : t(tp.quality === 'blunder' ? 'quiz.playedBlunder' : 'quiz.playedMistake', { move: fmt(tp.playedSan) });
 
+  const board = (
+    <Board
+      key={index}
+      fen={fen}
+      orientation={quiz.me}
+      interactive={status === 'playing' && !wrongMove}
+      lastMove={lastMove}
+      highlight={status === 'playing' && hintUsed && !wrongMove ? [tp.bestUci.slice(0, 2)] : undefined}
+      onMove={handleMove}
+    />
+  );
+  const coachBubble = bubble(face, t('quiz.prompt'), bubbleText);
+  const controls = (
+    <>
+      {status === 'playing' && wrongMove && (
+        <FadeIn style={styles.wrongCard}>
+          <Text style={styles.wrongTitle}>{t('common.incorrect')}</Text>
+          <Text style={styles.wrongText}>{t('quiz.wrong')}</Text>
+          <Button3D label={t('common.retry')} variant="danger" onPress={retry} style={{ marginTop: space.md }} />
+        </FadeIn>
+      )}
+      {status === 'playing' && !wrongMove && (
+        <View style={styles.actions}>
+          {!hintUsed && <Button3D label={t('puzzles.hint')} onPress={() => setHintUsed(true)} style={{ flex: 1 }} />}
+          <Button3D label={t('puzzles.showSolution')} variant="destructive" onPress={showSolution} style={{ flex: 1 }} />
+        </View>
+      )}
+    </>
+  );
+
   return (
     <View style={styles.screen}>
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
-        {top}
-        {bubble(face, t('quiz.prompt'), bubbleText)}
-        <View style={{ height: space.md }} />
-        <Board
-          key={index}
-          fen={fen}
-          orientation={quiz.me}
-          interactive={status === 'playing' && !wrongMove}
-          lastMove={lastMove}
-          highlight={status === 'playing' && hintUsed && !wrongMove ? [tp.bestUci.slice(0, 2)] : undefined}
-          onMove={handleMove}
-        />
-
-        {status === 'playing' && wrongMove && (
-          <FadeIn style={styles.wrongCard}>
-            <Text style={styles.wrongTitle}>{t('common.incorrect')}</Text>
-            <Text style={styles.wrongText}>{t('quiz.wrong')}</Text>
-            <Button3D label={t('common.retry')} variant="danger" onPress={retry} style={{ marginTop: space.md }} />
-          </FadeIn>
-        )}
-        {status === 'playing' && !wrongMove && (
-          <View style={styles.actions}>
-            {!hintUsed && <Button3D label={t('puzzles.hint')} onPress={() => setHintUsed(true)} style={{ flex: 1 }} />}
-            <Button3D label={t('puzzles.showSolution')} variant="destructive" onPress={showSolution} style={{ flex: 1 }} />
-          </View>
+        <View style={contentWidth ? { width: contentWidth, alignSelf: 'center' } : null}>{top}</View>
+        {wide ? (
+          <BoardLayout reserveHeight={QUIZ_RESERVE} board={board}>
+            {coachBubble}
+            {controls}
+          </BoardLayout>
+        ) : (
+          <>
+            {coachBubble}
+            <View style={{ height: space.md }} />
+            {board}
+            {controls}
+          </>
         )}
       </ScrollView>
 
@@ -227,6 +255,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
           message={status === 'solved' && lastCoins > 0 ? tn('puzzles.earnedCoins', lastCoins) : ''}
           buttonLabel={index + 1 < points.length ? t('quiz.next') : t('quiz.finish')}
           onButton={goNext}
+          contentWidth={contentWidth}
         />
       )}
     </View>

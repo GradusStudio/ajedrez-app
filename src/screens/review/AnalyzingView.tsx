@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
+import { useColumnWidth } from '../../components/ColumnScrollView';
 import { Button3D } from '../../components/Button3D';
 import { ProgressBar } from '../../components/ProgressBar';
 import { useI18n } from '../../i18n/I18nContext';
@@ -21,8 +22,16 @@ type Props = {
 /** Pantalla mientras Stockfish recorre la partida. */
 export function AnalyzingView({ down, engineReady, progress, phase, onBack, onRetry }: Props) {
   const { t } = useI18n();
+  // Pantalla ancha: en la columna, como el resumen (sin esto la barra de progreso cruzaría toda la ventana).
+  const column = useColumnWidth();
   return (
-    <View style={[styles.screen, { paddingHorizontal: space.lg, paddingTop: statusBarTop(space.sm) }]}>
+    <View
+      style={[
+        styles.screen,
+        { paddingHorizontal: space.lg, paddingTop: statusBarTop(space.sm) },
+        column ? { width: '100%', maxWidth: column, alignSelf: 'center' } : null,
+      ]}
+    >
       <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('review.chooseOther')} hitSlop={12}>
         <Text style={styles.back}>{t('analysisMenu.back')}</Text>
       </Pressable>

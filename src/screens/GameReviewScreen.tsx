@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import { Square } from 'chess.js';
 import { Board } from '../components/Board';
 import { Button3D } from '../components/Button3D';
@@ -28,6 +28,11 @@ import { useReviewAnalysis } from './review/useReviewAnalysis';
 import { useReviewCoach } from './review/useReviewCoach';
 import { useReviewPlayback } from './review/useReviewPlayback';
 import { statusBarTop } from '../components/statusBarTop';
+import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
+import { useWideLayout } from '../components/useWideLayout';
+
+/** Alto fuera del tablero en pantalla ancha: barra de arriba, barra de evaluación, barra de abajo y márgenes. */
+const REVIEW_RESERVE = 240;
 
 type Props = { onBack: () => void; onPractice: () => void };
 
@@ -56,6 +61,10 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
   const fen =
     !game || !review ? '' : lastVar ? lastVar.move.fenAfter : idx === 0 ? game.startFen : review.plies[idx - 1].move.fenAfter;
   const playOwn = useBranchPlay(review, engine, pb, fen);
+  // Pantalla ancha (web): tablero a la izquierda; comentarista y jugadas en el panel; barras alineadas con ellos.
+  const wide = useWideLayout();
+  const contentWidth = useBoardLayoutWidth(REVIEW_RESERVE);
+  const { width: windowWidth } = useWindowDimensions();
 
   if (!game) {
     return (
@@ -198,35 +207,55 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
 
   // ── Revisión jugada a jugada ──
   const canBest = bad && !!ply?.bestSan;
+  const boardBlock = (
+    <>
+      <EvalBar score={scoreHere} decimal={decimal} />
+      <Board
+        fen={shownFen}
+        orientation={me}
+        interactive={!pb.fast && !pb.autoplaying && !pv}
+        onMove={playOwn}
+        lastMove={lastMove}
+        colorArrows={colorArrows}
+        badge={!pv && ply && badge && lastMove ? { square: lastMove.to, color: badge.color, label: badge.label } : undefined}
+      />
+    </>
+  );
+  const moveStrip = (
+    <MoveStrip
+      plies={review.plies}
+      idx={idx}
+      inBranch={!!branch}
+      fmt={fmt}
+      onGo={pb.goTo}
+      onPrev={pb.stepBack}
+      onNext={pb.stepForward}
+    />
+  );
   return shell(
     <View style={styles.screen}>
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: topInset() }]}>
-        <TopBar onBack={onBack} onSettings={() => setSheet(true)} />
-        {coachBubble}
-        <View style={{ height: space.md }} />
-        <EvalBar score={scoreHere} decimal={decimal} />
-        <Board
-          fen={shownFen}
-          orientation={me}
-          interactive={!pb.fast && !pb.autoplaying && !pv}
-          onMove={playOwn}
-          lastMove={lastMove}
-          colorArrows={colorArrows}
-          badge={!pv && ply && badge && lastMove ? { square: lastMove.to, color: badge.color, label: badge.label } : undefined}
-        />
-        <MoveStrip
-          plies={review.plies}
-          idx={idx}
-          inBranch={!!branch}
-          fmt={fmt}
-          onGo={pb.goTo}
-          onPrev={pb.stepBack}
-          onNext={pb.stepForward}
-        />
+        <View style={contentWidth ? { width: contentWidth, alignSelf: 'center' } : null}>
+          <TopBar onBack={onBack} onSettings={() => setSheet(true)} />
+        </View>
+        {wide ? (
+          <BoardLayout reserveHeight={REVIEW_RESERVE} board={boardBlock}>
+            {coachBubble}
+            <View style={{ height: space.md }} />
+            {moveStrip}
+          </BoardLayout>
+        ) : (
+          <>
+            {coachBubble}
+            <View style={{ height: space.md }} />
+            {boardBlock}
+            {moveStrip}
+          </>
+        )}
       </ScrollView>
 
-      {/* Barra inferior: Mejor · Reproducir · Siguiente / Finalizar */}
-      <View style={styles.bottomBar}>
+      {/* Barra inferior: Mejor · Reproducir · Siguiente / Finalizar. En pantalla ancha, alineada con el tablero. */}
+      <View style={[styles.bottomBar, contentWidth ? { paddingHorizontal: Math.max(space.lg, (windowWidth - contentWidth) / 2) } : null]}>
         <ToolBtn
           icon="star"
           label={pb.showBest ? t('review.hide') : t('review.best')}

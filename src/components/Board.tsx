@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Text,
   View,
-  useWindowDimensions,
 } from 'react-native';
 import Svg, { Line, Polygon } from 'react-native-svg';
 import { Chess, Square } from 'chess.js';
@@ -15,8 +14,7 @@ import { useFeedback } from '../feedback/feedback';
 import { useI18n } from '../i18n/I18nContext';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { boardHighlight, boardThemes, colors } from '../theme';
-import { boardPixels } from './boardSize';
-import { BoardSizeContext } from './BoardSizeContext';
+import { useBoardSide } from './BoardSizeContext';
 import { Captured, computeMove, Offsets } from './boardAnimation';
 import { SquareTexture } from './SquareTexture';
 import Piece, { PieceColor, PieceType } from './Piece';
@@ -211,10 +209,8 @@ export function Board({
   pickedSquares = [],
   onSquarePress,
 }: Props) {
-  const { width } = useWindowDimensions();
   // En pantalla ancha el tamaño lo fija BoardLayout; si no, sale del ancho de la ventana.
-  const fixedSize = useContext(BoardSizeContext);
-  const sq = (fixedSize ?? boardPixels(width)) / 8;
+  const sq = useBoardSide() / 8;
   const boardPx = sq * 8;
 
   const feedback = useFeedback();

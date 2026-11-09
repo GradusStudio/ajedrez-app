@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Animated, Easing, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
 import { formatScore, whiteShare } from '../engine/evalFormat';
-import { boardPixels } from './boardSize';
+import { useBoardSide } from './BoardSizeContext';
 import { colors, fonts, radius } from '../theme';
 
 /** Barra de evaluación: blanco a la izquierda, negro a la derecha; se desliza al cambiar. */
@@ -15,9 +15,8 @@ export function EvalBar({ score, decimal }: { score: number | null; decimal: str
   }, [w, share]);
   const label = score === null ? '' : formatScore(score, decimal);
   const whiteAhead = score === null || score >= 0;
-  // Mismo ancho que el tablero (Board calcula su tamaño igual).
-  const { width } = useWindowDimensions();
-  const boardPx = boardPixels(width);
+  // Mismo ancho que el tablero (en pantalla ancha, el que fija BoardLayout).
+  const boardPx = useBoardSide();
   return (
     <View style={[styles.bar, { width: boardPx }]} accessibilityLabel={label ? t('analysis.evalLabel', { score: label }) : t('analysis.evalPending')}>
       <Animated.View style={[styles.barWhite, { width: w.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }) }]} />

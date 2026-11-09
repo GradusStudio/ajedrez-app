@@ -1,6 +1,6 @@
 # Gradus web en pantalla ancha
 
-Fecha: 8-11-2026. Estado: **aprobada; etapa 1 hecha el 8-11-2026** (ver sección 8). Es uno de los cinco puntos de interfaz del vault («Rediseño de bots», sección «Los cinco puntos de interfaz»).
+Fecha: 8-11-2026. Estado: **aprobada; etapas 1 y 2 hechas el 8-11-2026** (ver secciones 8 y 9). Es uno de los cinco puntos de interfaz del vault («Rediseño de bots», sección «Los cinco puntos de interfaz»).
 
 ## 1. Problema
 
@@ -96,3 +96,12 @@ Cada etapa termina en un commit, probada en el navegador a 1440 × 900, 1280 × 
 - Medido en el navegador (servidor de desarrollo): 1440 × 900, tablero de 664 px; 1280 × 720, 488 px; 1024 × 768, 560 px con la barra lateral solo con íconos; ninguna se desplaza. A 375 px, lección, puzzle e inicio quedan como antes. Sin probar todavía en el sitio publicado.
 - Nota para desarrollar: `expo start --web` sirve la app en la raíz (`/`), no en `/app` (el prefijo solo se aplica al compilar). No arrancarlo con `CI=1`: apaga la recarga al guardar.
 - **Barra de desplazamiento (8-11-2026, pedido del autor):** en pantalla ancha la barra quedaba pegada a la columna. Ahora las pantallas de lista usan `ColumnScrollView`: la zona que se desplaza ocupa toda la ventana (la barra queda contra el borde derecho) y solo el contenido se centra en la columna, cuyo ancho llega por `ColumnContext` (640 px en las pestañas, 480 en la pila). La tarjeta flotante del inicio se centra en la columna. Partida, revisión, análisis libre, quiz y bienvenida siguen encerradas en la columna entera hasta la etapa 2.
+
+## 9. Etapa 2, hecha (8-11-2026)
+- **Partida** (`GameScreen`): en pantalla ancha, el bot, su globo, tus datos, las jugadas y los botones van al panel; el resultado aparece como tarjeta en el panel (en el celular sigue al pie). Reserva de alto 110 px.
+- **Análisis libre** (`FreePlayScreen`): barra de evaluación y tablero a la izquierda; Stockfish, jugadas y botones a la derecha. Reserva 230 px.
+- **Revisión** (`GameReviewScreen`): barra de evaluación y tablero a la izquierda; comentarista y lista de jugadas a la derecha; la barra de herramientas de abajo alineada con el tablero. Reserva 240 px (con menos, la zona se desbordaba unos píxeles, aparecía la barra de desplazamiento y corría todo 8 px). El resumen y «Analizando» van en la columna de 480 px (`ColumnScrollView`, `useColumnWidth`) y su botón de abajo se alinea con ella (`useColumnBarPadding`).
+- **Quiz de errores** (`TurningPointQuizScreen`): como los puzzles; el final, en la columna.
+- `useBoardSide` (`BoardSizeContext.ts`) da el lado del tablero a `Board` y `EvalBar`; `EvalGraph` acepta un ancho.
+- En el celular cada pantalla conserva su orden (en la partida el bot sigue arriba del tablero).
+- Medido en 1440 × 900: partida con tablero de 720 px y el resultado en el panel; análisis libre 664 px; revisión 656 px; ninguna se desplaza. A 375 px, la partida igual que antes. **El quiz no se probó en el navegador**: solo aparece después de importar una partida por usuario de chess.com o Lichess (con un PGN pegado no se sabe de qué bando se jugó).

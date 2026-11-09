@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { ColumnScrollView, useColumnBarPadding } from '../../components/ColumnScrollView';
 import { Button3D } from '../../components/Button3D';
 import { MessageKey, useI18n } from '../../i18n/I18nContext';
 import type { Review } from '../../review/types';
@@ -24,10 +25,12 @@ type Props = {
 /** Resumen previo a la revisión: gráfico, precisión de cada jugador y cuenta por calidad de jugada. */
 export function SummaryView({ top, bubble, graph, review, me, nameOf, decimal, onStart, onPractice }: Props) {
   const { t } = useI18n();
+  // Pantalla ancha: el botón de abajo se alinea con la columna del resumen.
+  const barPadding = useColumnBarPadding();
   const counts = { w: countCats(review.plies, 'w'), b: countCats(review.plies, 'b') };
   return (
     <View style={styles.screen}>
-      <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
+      <ColumnScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
         {top}
         {bubble}
         <View style={{ height: space.lg }} />
@@ -66,8 +69,8 @@ export function SummaryView({ top, bubble, graph, review, me, nameOf, decimal, o
         </View>
         {/* Debajo de la tabla, junto a los errores que se van a practicar; «Empezar» sigue siendo la acción principal. */}
         {onPractice && <Button3D label={t('quiz.title')} onPress={onPractice} style={{ marginTop: space.md }} />}
-      </ScrollView>
-      <View style={styles.bottomBar}>
+      </ColumnScrollView>
+      <View style={[styles.bottomBar, barPadding]}>
         <Button3D label={t('review.start')} variant="primary" onPress={onStart} style={{ flex: 1 }} />
       </View>
     </View>

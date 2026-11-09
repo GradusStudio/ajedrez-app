@@ -63,7 +63,8 @@ export function createDriveRestClient({ fetch: doFetch, getToken, fileName }: De
 
   async function find(): Promise<string | null> {
     if (fileId) return fileId;
-    const q = `name='${fileName}' and trashed=false`;
+    const escaped = fileName.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const q = `name='${escaped}' and trashed=false`;
     const url = `${FILES_URL}?spaces=appDataFolder&q=${encodeURIComponent(q)}&fields=${encodeURIComponent('files(id)')}&pageSize=1`;
     const res = await call(url);
     if (!res.ok) throw await toError(res);

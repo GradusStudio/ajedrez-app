@@ -153,3 +153,10 @@ test('remove: un 404 al borrar cuenta como borrado y un fallo es SyncError', asy
   await client([json({ files: [{ id: 'F1' }] }), apiError(404, 'notFound')]).drive.remove();
   await failsWith(client([json({ files: [{ id: 'F1' }] }), json({}, 500)]).drive.remove(), 'other');
 });
+
+test('fileName con comilla simple y barra se escapa en la búsqueda', async () => {
+  const { f, calls } = fakeFetch([json({ files: [] })]);
+  const drive = createDriveRestClient({ fetch: f, getToken: async () => 'T', fileName: "a'b\\c.json" });
+  await drive.read();
+  assert.equal(new URL(calls[0].url).searchParams.get('q'), "name='a\\'b\\\\c.json' and trashed=false");
+});

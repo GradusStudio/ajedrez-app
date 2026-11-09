@@ -56,3 +56,24 @@ test('con archivo dañado lo reemplaza', async () => {
   assert.equal(await fetchOrCreateKey(file, () => nueva), nueva);
   assert.deepEqual(writes, [keyToFile(nueva)]);
 });
+
+test('si tras escribir Drive tiene otra llave válida (ganó otro dispositivo), devuelve esa', async () => {
+  const ajena = 'Z'.repeat(43);
+  let reads = 0;
+  const file: DriveFile = {
+    read: async () => (reads++ === 0 ? null : keyToFile(ajena)),
+    write: async () => {},
+    remove: async () => {},
+  };
+  assert.equal(await fetchOrCreateKey(file, () => 'B'.repeat(43)), ajena);
+});
+
+test('newSyncKey con bytes fijos: ceros dan 43 A y 0xFB/0xFF dan - y _', () => {
+  assert.equal(newSyncKey((b) => b.fill(0)), 'A'.repeat(43));
+  const k = newSyncKey((b) => {
+    b[0] = 0xfb;
+    b[1] = 0xff;
+    return b;
+  });
+  assert.equal(k.slice(0, 3), '-_8');
+});

@@ -37,12 +37,18 @@ export function keyFromFile(text: string): string | null {
   }
 }
 
-/** La llave de Drive si es válida; si no hay archivo o está dañado, crea una, la guarda y la devuelve. */
+/**
+ * La llave de Drive si es válida; si no hay archivo o está dañado, crea una, la guarda y la devuelve.
+ * Limitación conocida: si dos dispositivos o pestañas se activan en el mismo instante pueden crearse dos
+ * archivos. Por eso, tras escribir se vuelve a leer y se usa lo que quedó en Drive. La ventana es mínima y
+ * lo peor que pasa es que un dispositivo quede con otro progreso hasta que se vuelva a activar.
+ */
 export async function fetchOrCreateKey(file: DriveFile, make: () => string = () => newSyncKey()): Promise<string> {
   const text = await file.read();
   const existing = text === null ? null : keyFromFile(text);
   if (existing) return existing;
   const key = make();
   await file.write(keyToFile(key));
-  return key;
+  const after = await file.read();
+  return (after === null ? null : keyFromFile(after)) ?? key;
 }

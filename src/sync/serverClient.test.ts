@@ -131,3 +131,9 @@ test('deleteProgress sin red lanza offline, con 500 other y sin llave revoked', 
   const c = make([], null);
   await failsWith(c.client.deleteProgress(), 'revoked');
 });
+
+test('429 (límite de altas) lanza other, nunca offline', async () => {
+  const { client } = make([json({ error: 'demasiadas altas' }, 429), new Response(null, { status: 429 })]);
+  await failsWith(client.write('x', 0), 'other');
+  await failsWith(client.read(), 'other');
+});

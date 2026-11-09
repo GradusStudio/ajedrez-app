@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { handle, type ProgressStore } from './handler';
+import { handle, type CreateLimiter, type ProgressStore } from './handler';
+import { isProgressFile } from './progressMarker';
 
 type Row = { version: number; data: string | null; deleted: boolean };
 
@@ -31,6 +32,8 @@ function memoryStore() {
   return { store, rows };
 }
 
+// Un archivo de progreso mínimo válido (las marcas de progressToFile); `pad` lo agranda.
+const file = (tag = 'a', pad = '') => JSON.stringify({ app: 'gradus', kind: 'progress', progress: { version: 4, tag, pad } });
 const KEY = 'A'.repeat(43);
 const KEY2 = 'B'.repeat(43);
 const URL = 'https://sync.graduschess.com/v1/progress';
@@ -49,29 +52,29 @@ test('GET sin datos da 404', async () => {
 
 test('PUT con version 0 crea y devuelve version 1; GET devuelve version y data', async () => {
   const { store } = memoryStore();
-  const put = await handle(req('PUT', KEY, { version: 0, data: 'hola' }), store);
+  const put = await handle(req('PUT', KEY, { version: 0, data: file('hola') }), store);
   assert.equal(put.status, 200);
   assert.deepEqual(await put.json(), { version: 1 });
   const get = await handle(req('GET', KEY), store);
   assert.equal(get.status, 200);
-  assert.deepEqual(await get.json(), { version: 1, data: 'hola' });
+  assert.deepEqual(await get.json(), { version: 1, data: file('hola') });
 });
 
 test('PUT con version vieja da 409 con lo actual', async () => {
   const { store } = memoryStore();
-  await handle(req('PUT', KEY, { version: 0, data: 'a' }), store);
-  await handle(req('PUT', KEY, { version: 1, data: 'b' }), store);
-  const res = await handle(req('PUT', KEY, { version: 1, data: 'c' }), store);
+  await handle(req('PUT', KEY, { version: 0, data: file('a') }), store);
+  await handle(req('PUT', KEY, { version: 1, data: file('b') }), store);
+  const res = await handle(req('PUT', KEY, { version: 1, data: file('c') }), store);
   assert.equal(res.status, 409);
-  assert.deepEqual(await res.json(), { version: 2, data: 'b' });
+  assert.deepEqual(await res.json(), { version: 2, data: file('b') });
 });
 
 test('DELETE deja 410 en GET y en PUT, y repetir DELETE da 204', async () => {
   const { store } = memoryStore();
-  await handle(req('PUT', KEY, { version: 0, data: 'a' }), store);
+  await handle(req('PUT', KEY, { version: 0, data: file('a') }), store);
   assert.equal((await handle(req('DELETE', KEY), store)).status, 204);
   assert.equal((await handle(req('GET', KEY), store)).status, 410);
-  assert.equal((await handle(req('PUT', KEY, { version: 1, data: 'x' }), store)).status, 410);
+  assert.equal((await handle(req('PUT', KEY, { version: 1, data: file('x') }), store)).status, 410);
   assert.equal((await handle(req('DELETE', KEY), store)).status, 204);
 });
 
@@ -85,21 +88,21 @@ test('llave de 42 caracteres o con caracteres fuera de base64url da 400', async 
 
 test('data de 512 * 1024 + 1 bytes da 413', async () => {
   const { store } = memoryStore();
-  const ok = await handle(req('PUT', KEY, { version: 0, data: 'a'.repeat(512 * 1024) }), store);
+  const ok = await handle(req('PUT', KEY, { version: 0, data: file('a', 'a'.repeat(512 * 1024 - file().length)) }), store);
   assert.equal(ok.status, 200);
-  const big = await handle(req('PUT', KEY2, { version: 0, data: 'a'.repeat(512 * 1024 + 1) }), store);
+  const big = await handle(req('PUT', KEY2, { version: 0, data: file('a', 'a'.repeat(512 * 1024 + 1 - file().length)) }), store);
   assert.equal(big.status, 413);
 });
 
 test('dos llaves distintas no ven el progreso de la otra', async () => {
   const { store } = memoryStore();
-  await handle(req('PUT', KEY, { version: 0, data: 'a' }), store);
+  await handle(req('PUT', KEY, { version: 0, data: file('a') }), store);
   assert.equal((await handle(req('GET', KEY2), store)).status, 404);
 });
 
 test('el store recibe el SHA-256 hex de la llave, nunca la llave', async () => {
   const { store, rows } = memoryStore();
-  await handle(req('PUT', KEY, { version: 0, data: 'a' }), store);
+  await handle(req('PUT', KEY, { version: 0, data: file('a') }), store);
   const ids = [...rows.keys()];
   assert.equal(ids.length, 1);
   assert.notEqual(ids[0], KEY);
@@ -128,7 +131,7 @@ test('otra ruta da 404', async () => {
 
 test('PUT con version mayor que 0 y sin fila da 409, no crea nada', async () => {
   const { store, rows } = memoryStore();
-  const res = await handle(req('PUT', KEY, { version: 5, data: 'x' }), store);
+  const res = await handle(req('PUT', KEY, { version: 5, data: file('x') }), store);
   assert.equal(res.status, 409);
   assert.equal(rows.size, 0);
 });
@@ -151,9 +154,9 @@ test('Content-Length mayor que el tope da 413 sin leer el cuerpo', async () => {
 
 test('un PUT normal con Content-Length razonable sigue funcionando', async () => {
   const { store } = memoryStore();
-  const withLen = new Request(URL, { method: 'PUT', headers: { Authorization: `Bearer ${KEY}`, 'Content-Length': '30' }, body: JSON.stringify({ version: 0, data: 'hola' }) });
+  const withLen = new Request(URL, { method: 'PUT', headers: { Authorization: `Bearer ${KEY}`, 'Content-Length': '30' }, body: JSON.stringify({ version: 0, data: file('hola') }) });
   assert.equal((await handle(withLen, store)).status, 200);
-  assert.equal((await handle(req('PUT', KEY2, { version: 0, data: 'hola' }), store)).status, 200);
+  assert.equal((await handle(req('PUT', KEY2, { version: 0, data: file('hola') }), store)).status, 200);
 });
 
 test('si el almacén falla responde 500 con las cabeceras CORS', async () => {
@@ -162,8 +165,86 @@ test('si el almacén falla responde 500 con las cabeceras CORS', async () => {
   };
   const store: ProgressStore = { get: boom, put: boom, remove: boom };
   for (const m of ['GET', 'PUT', 'DELETE']) {
-    const res = await handle(req(m, KEY, m === 'PUT' ? { version: 0, data: 'x' } : undefined, 'https://graduschess.com'), store);
+    const res = await handle(req(m, KEY, m === 'PUT' ? { version: 0, data: file('x') } : undefined, 'https://graduschess.com'), store);
     assert.equal(res.status, 500, m);
     assert.equal(res.headers.get('Access-Control-Allow-Origin'), 'https://graduschess.com', m);
   }
+});
+
+test('PUT con data que no es un progreso de Gradus da 400 y no guarda nada', async () => {
+  const { store, rows } = memoryStore();
+  const malos = [
+    'texto cualquiera',
+    '{}',
+    '[]',
+    'null',
+    JSON.stringify({ app: 'otra', kind: 'progress', progress: { version: 4 } }),
+    JSON.stringify({ app: 'gradus', kind: 'otra', progress: { version: 4 } }),
+    JSON.stringify({ app: 'gradus', kind: 'progress' }),
+    JSON.stringify({ app: 'gradus', kind: 'progress', progress: 'x' }),
+    JSON.stringify({ app: 'gradus', kind: 'progress', progress: [] }),
+    JSON.stringify({ app: 'gradus', kind: 'progress', progress: {} }),
+    JSON.stringify({ app: 'gradus', kind: 'progress', progress: { version: 0 } }),
+    JSON.stringify({ app: 'gradus', kind: 'progress', progress: { version: 1.5 } }),
+    JSON.stringify({ app: 'gradus', kind: 'progress', progress: { version: '4' } }),
+  ];
+  for (const data of malos) {
+    const res = await handle(req('PUT', KEY, { version: 0, data }), store);
+    assert.equal(res.status, 400, data);
+  }
+  assert.equal(rows.size, 0);
+  assert.equal(isProgressFile(file()), true);
+});
+
+function fakeLimiter(success: boolean) {
+  const calls: string[] = [];
+  const limiter: CreateLimiter = {
+    async limit({ key }) {
+      calls.push(key);
+      return { success };
+    },
+  };
+  return { limiter, calls };
+}
+
+function reqIp(method: string, body?: unknown, ip?: string) {
+  const headers: Record<string, string> = { Authorization: `Bearer ${KEY}`, Origin: 'https://graduschess.com' };
+  if (ip) headers['CF-Connecting-IP'] = ip;
+  return new Request(URL, { method, headers, body: body === undefined ? undefined : JSON.stringify(body) });
+}
+
+test('si el limitador dice que no, el alta da 429 con CORS y no guarda', async () => {
+  const { store, rows } = memoryStore();
+  const { limiter, calls } = fakeLimiter(false);
+  const res = await handle(reqIp('PUT', { version: 0, data: file() }, '1.2.3.4'), store, undefined, limiter);
+  assert.equal(res.status, 429);
+  assert.equal(res.headers.get('Access-Control-Allow-Origin'), 'https://graduschess.com');
+  assert.equal(res.headers.get('Content-Type'), 'application/json');
+  assert.deepEqual(calls, ['1.2.3.4']);
+  assert.equal(rows.size, 0);
+});
+
+test('si el limitador dice que sí, el alta pasa; sin cabecera de IP usa unknown', async () => {
+  const { store } = memoryStore();
+  const { limiter, calls } = fakeLimiter(true);
+  const res = await handle(reqIp('PUT', { version: 0, data: file() }), store, undefined, limiter);
+  assert.equal(res.status, 200);
+  assert.deepEqual(calls, ['unknown']);
+});
+
+test('el limitador no se consulta en PUT con version mayor que 0, GET ni DELETE', async () => {
+  const { store } = memoryStore();
+  await handle(reqIp('PUT', { version: 0, data: file() }), store);
+  const { limiter, calls } = fakeLimiter(false);
+  assert.equal((await handle(reqIp('PUT', { version: 1, data: file('b') }), store, undefined, limiter)).status, 200);
+  assert.equal((await handle(reqIp('GET'), store, undefined, limiter)).status, 200);
+  assert.equal((await handle(reqIp('DELETE'), store, undefined, limiter)).status, 204);
+  assert.deepEqual(calls, []);
+});
+
+test('un PUT inválido no gasta el cupo del limitador', async () => {
+  const { store } = memoryStore();
+  const { limiter, calls } = fakeLimiter(true);
+  assert.equal((await handle(reqIp('PUT', { version: 0, data: 'basura' }), store, undefined, limiter)).status, 400);
+  assert.deepEqual(calls, []);
 });

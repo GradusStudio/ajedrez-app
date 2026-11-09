@@ -42,13 +42,16 @@ Para probar en la PC: `npx wrangler d1 execute gradus-sync --local -c wrangler.s
 
 ### Límite de peticiones (hacer antes de publicar el Worker)
 
-El Worker no limita peticiones por su cuenta, y cualquiera puede mandar PUT con llaves al azar: una inundación llenaría la cuota gratuita de D1 y dejaría sin sincronización a todos. Se frena en Cloudflare, sin código:
+Dos defensas, porque un abuso puede agotar dos cosas distintas: la base D1 (el plan gratuito admite 500 MB por base: con altas masivas se llena en minutos y entonces fallan todas las actualizaciones) y la cuota diaria de peticiones del plan gratuito de Workers (la agotaría también un bucle de GET, no solo de PUT).
 
-1. Panel de Cloudflare > el dominio `graduschess.com` > Seguridad > «Security rules» (o WAF) > Crear regla > «Rate limiting rules».
-2. Cuando coincida: Nombre de host igual a `sync.graduschess.com` y Método es uno de `PUT`, `DELETE`.
-3. Según la documentación de Cloudflare, el plan gratuito incluye **1 regla**, con período fijo de **10 segundos**, conteo por IP, acción «Block» y duración de **10 segundos** (las opciones más largas, como 60 por minuto y bloqueo de 10 minutos, son de planes de pago). Valor sugerido para el plan gratuito: **20 peticiones cada 10 segundos por IP** (un uso normal manda un PUT unos segundos después de cada cambio de progreso, así que queda muy por debajo). Se puede ajustar.
-4. Desplegar la regla y recién después publicar el Worker.
-5. Si el panel no deja crear la regla en tu plan, la alternativa gratuita es el binding de límite de peticiones del propio Worker (`ratelimits` en `wrangler.sync.jsonc`, período de 10 o 60 segundos, clave = IP de `CF-Connecting-IP`). Requiere un cambio pequeño en `workers/sync/index.ts` y es aproximado: el conteo es por ubicación de Cloudflare.
+1. **En el Worker (código, ya hecho):** el PUT solo guarda archivos de progreso de Gradus (marcas `app`, `kind` y `progress.version`; cualquier otro texto da 400) y las altas (PUT con `version` 0) se limitan a **5 por minuto y por IP** con el binding `CREATE_LIMITER` de `wrangler.sync.jsonc` (Workers Rate Limiting). Pasado el tope responde 429. El cliente lo trata como un error reintentable, no como «Sin conexión». El conteo es por ubicación de Cloudflare, así que es aproximado.
+2. **En Cloudflare (regla, a mano):** panel > el dominio `graduschess.com` > Seguridad > «Security rules» (o WAF) > Crear regla > «Rate limiting rules».
+   - Cuando coincida: **todas** las peticiones a ese host, sin condición de método. Expresión: `(http.host eq "sync.graduschess.com")`. No restringir a PUT y DELETE: un bucle de GET gasta la cuota diaria igual.
+   - Según la documentación de Cloudflare, el plan gratuito incluye **1 regla**, con período fijo de **10 segundos**, conteo por IP, acción «Block» y duración de **10 segundos** (las opciones más largas son de planes de pago). Valor sugerido: **20 peticiones cada 10 segundos por IP** (un uso normal manda un PUT unos segundos después de cada cambio de progreso, así que queda muy por debajo). Se puede ajustar.
+   - Desplegar la regla y recién después publicar el Worker.
+   - Una respuesta 429 de esta regla llega **sin cabeceras CORS**: el navegador la ve como un fallo de red y la app la muestra como «Sin conexión». Es esperable y se reintenta solo.
+
+**Si ya tenías la regla anterior (solo PUT y DELETE):** editarla en el panel de Cloudflare para dejar la expresión de arriba, y volver a publicar el Worker para que tome el limitador de altas: `npx wrangler deploy -c wrangler.sync.jsonc`.
 
 Capacidad conocida: el plan gratuito de Workers admite unas 100.000 peticiones por día, y cada paso de lección o jugada de bot que cambia el progreso dispara una sincronización. Con muchos usuarios activos puede quedarse corto; se vigila en el panel y, si hace falta, se pasa al plan de pago.
 

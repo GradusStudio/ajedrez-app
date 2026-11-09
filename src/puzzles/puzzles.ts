@@ -39,9 +39,6 @@ export function createPuzzleLoader(importer: () => Promise<{ default: unknown }>
   };
 }
 
-/** Los 50.000 puzzles van en un archivo aparte (lichess-puzzles.json) que se baja la primera vez que hace falta. */
-export const loadPuzzles = createPuzzleLoader(() => import('./lichess-puzzles.json'));
-
 export const findPuzzle = (puzzles: Puzzle[], id: string) => puzzles.find((p) => p.id === id);
 
 /** Función de traducción de useI18n().t. Se pasa por parámetro para que este módulo siga siendo puro. */
@@ -57,11 +54,20 @@ export const PRACTICE_THEMES = themeData.practice;
 
 /** Niveles de la práctica (rating de Lichess). El nombre de cada uno es la clave `puzzles.level.<nivel>`. */
 export const LEVELS = {
-  facil: { min: 500, max: 1200 },
+  facil: { min: 0, max: 1200 },
   medio: { min: 1200, max: 1800 },
   dificil: { min: 1800, max: 2500 },
+  experto: { min: 2500, max: 4000 },
 } as const;
 export type Level = keyof typeof LEVELS;
+
+/** Rango para mostrar debajo del nivel: «< 1200», «1200–1800», «2500+». */
+export function levelRange(level: Level): string {
+  const { min, max } = LEVELS[level];
+  if (min === 0) return `< ${max}`;
+  if (level === 'experto') return `${min}+`;
+  return `${min}–${max}`;
+}
 
 /** Color que juega el usuario: el contrario al que mueve en la posición inicial (el rival mueve primero). */
 export function userColor(p: Puzzle): 'w' | 'b' {
@@ -81,7 +87,7 @@ export function displayThemes(p: Puzzle, translate: Translate): string[] {
 }
 
 /** Número de día (días desde 1970, hora local): cambia a medianoche. */
-function dayNumber(now = new Date()): number {
+export function dayNumber(now = new Date()): number {
   return Math.floor((now.getTime() - now.getTimezoneOffset() * 60000) / 86400000);
 }
 
@@ -94,15 +100,32 @@ export function dailyPuzzle(puzzles: Puzzle[], now = new Date()): Puzzle {
 }
 
 /**
- * Siguiente puzzle de práctica: del nivel y tema pedidos, que todavía no se haya resuelto.
- * Si ya se resolvieron todos los de ese filtro, vuelve a empezar con los resueltos.
+ * Siguiente puzzle de práctica: del nivel y tema pedidos, que todavía no se haya resuelto ni haya salido en esta
+ * sesión (`seen`). Si ya no queda ninguno así, acepta uno repetido (de los que no salieron, si hay).
  */
-export function nextPuzzle(puzzles: Puzzle[], level: Level, theme: string | null, done: (id: string) => boolean, exclude?: string): Puzzle | undefined {
+export function nextPuzzle(
+  puzzles: Puzzle[],
+  level: Level,
+  theme: string | null,
+  done: (id: string) => boolean,
+  seen: ReadonlySet<string> = new Set()
+): Puzzle | undefined {
   const { min, max } = LEVELS[level];
-  const pool = puzzles.filter((p) => p.rating >= min && p.rating < max && (!theme || p.themes.includes(theme)) && p.id !== exclude);
-  const pending = pool.filter((p) => !done(p.id));
-  const from = pending.length > 0 ? pending : pool;
-  return from[Math.floor(Math.random() * from.length)];
+  const pool = puzzles.filter((p) => p.rating >= min && p.rating < max && (!theme || p.themes.includes(theme)));
+  return pickPending(pool, done, seen) ?? pickAny(pool, seen);
+}
+
+/** Uno al azar que no esté resuelto ni haya salido en esta sesión. */
+export function pickPending(list: Puzzle[], done: (id: string) => boolean, seen: ReadonlySet<string>, random = Math.random): Puzzle | undefined {
+  const pending = list.filter((p) => !done(p.id) && !seen.has(p.id));
+  return pending.length > 0 ? pending[Math.floor(random() * pending.length)] : undefined;
+}
+
+/** Uno al azar, repetido si hace falta: primero de los que no salieron en esta sesión. */
+export function pickAny(list: Puzzle[], seen: ReadonlySet<string>, random = Math.random): Puzzle | undefined {
+  const fresh = list.filter((p) => !seen.has(p.id));
+  const from = fresh.length > 0 ? fresh : list;
+  return from.length > 0 ? from[Math.floor(random() * from.length)] : undefined;
 }
 
 /** Cuántos puzzles hay para un nivel y tema (para mostrar en Práctica). */

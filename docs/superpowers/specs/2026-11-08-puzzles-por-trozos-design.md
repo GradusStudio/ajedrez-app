@@ -1,6 +1,6 @@
 # Toda la base de puzzles de Lichess, por trozos
 
-Fecha: 8-11-2026. Estado: **borrador, espera aprobación**. Las decisiones que tiene que tomar el usuario están en la sección 11.
+Fecha: 8-11-2026. Estado: **implementada el 9-11-2026** con las cuatro opciones recomendadas de la sección 11 (toda la base en capas, nivel Experto y los de menos de 500 en Fácil, puzzles largos incluidos, segundo Worker en puzzles.graduschess.com).
 
 ## 1. Problema
 

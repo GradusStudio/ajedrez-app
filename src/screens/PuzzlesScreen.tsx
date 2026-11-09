@@ -1,22 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { isPuzzleSolved } from '../progress/progressStore';
-import {
-  countPuzzles,
-  dailyPuzzle,
-  Level,
-  LEVELS,
-  Puzzle,
-  PRACTICE_THEMES,
-  puzzleGoal,
-  themeName,
-} from '../puzzles/puzzles';
+import { Level, levelRange, Puzzle, PRACTICE_THEMES, puzzleGoal, themeName } from '../puzzles/puzzles';
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
-import { usePuzzles } from '../puzzles/usePuzzles';
+import { levelsWithPuzzles, PuzzleSource } from '../puzzles/source';
+import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
@@ -27,22 +19,39 @@ type Props = {
 
 // Pestaña Puzzles: puzzle del día y práctica por nivel y tema (mapa-de-pantallas.md, 2.8).
 export function PuzzlesScreen(props: Props) {
-  const state = usePuzzles();
+  const state = usePuzzleSource();
   if (state.status !== 'ready') return <PuzzlesStatus state={state} />;
-  return <PuzzlesLoaded {...props} puzzles={state.puzzles} />;
+  return <PuzzlesLoaded {...props} source={state.source} />;
 }
 
-function PuzzlesLoaded({ onOpenDaily, onPractice, puzzles }: Props & { puzzles: Puzzle[] }) {
+type Daily = { status: 'loading' } | { status: 'error'; offline: boolean } | { status: 'ready'; puzzle: Puzzle };
+
+function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: PuzzleSource }) {
   const { progress } = useProgress();
   const { t, number } = useI18n();
   // Dificultad inicial según el nivel elegido en la bienvenida.
   const [level, setLevel] = useState<Level>(progress.profile.level === 'casual' ? 'medio' : 'facil');
   const [theme, setTheme] = useState<string | null>(null);
+  const [daily, setDaily] = useState<Daily>({ status: 'loading' });
+  const [dailyAttempt, setDailyAttempt] = useState(0);
 
-  const daily = dailyPuzzle(puzzles);
-  const dailyDone = progress.puzzles[daily.id];
-  const solvedTotal = puzzles.filter((p) => isPuzzleSolved(progress, p.id)).length;
-  const available = countPuzzles(puzzles, level, theme);
+  useEffect(() => {
+    let cancelled = false;
+    source.daily().then(
+      (puzzle) => !cancelled && setDaily({ status: 'ready', puzzle }),
+      (e) => !cancelled && setDaily({ status: 'error', offline: isOfflineError(e) })
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [source, dailyAttempt]);
+  // En la web, baja en segundo plano lo necesario para jugar sin conexión.
+  useEffect(() => source.prepareOffline(), [source]);
+
+  const levels = levelsWithPuzzles(source);
+  const dailyDone = daily.status === 'ready' ? progress.puzzles[daily.puzzle.id] : undefined;
+  const solvedTotal = Object.keys(progress.puzzles).filter((id) => isPuzzleSolved(progress, id)).length;
+  const available = source.count(level, theme);
 
   return (
     <ColumnScrollView
@@ -50,30 +59,51 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, puzzles }: Props & { puzzles: 
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
       <Text style={styles.title}>{t('puzzles.title')}</Text>
-      <Text style={styles.subtitle}>{t('puzzles.subtitle', { solved: solvedTotal, total: number(puzzles.length) })}</Text>
+      <Text style={styles.subtitle}>{t('puzzles.subtitle', { solved: number(solvedTotal), total: number(source.total) })}</Text>
 
       {/* Puzzle del día */}
       <View style={[styles.card, styles.dailyCard]}>
         <Text style={styles.caption}>{t('puzzles.daily')}</Text>
-        <Text style={styles.cardTitle}>{puzzleGoal(daily, t)}</Text>
-        <Text style={styles.cardText}>
-          {dailyDone
-            ? t(dailyDone.result === 'failed' ? 'puzzles.dailyFailed' : 'puzzles.dailySolved', { n: daily.rating })
-            : t('common.level', { n: daily.rating })}
-        </Text>
-        <Button3D
-          label={dailyDone ? t('puzzles.seeAgain') : t('puzzles.solve')}
-          variant={dailyDone ? 'secondary' : 'primary'}
-          onPress={() => onOpenDaily(daily.id)}
-          style={{ marginTop: space.md }}
-        />
+        {daily.status === 'ready' ? (
+          <>
+            <Text style={styles.cardTitle}>{puzzleGoal(daily.puzzle, t)}</Text>
+            <Text style={styles.cardText}>
+              {dailyDone
+                ? t(dailyDone.result === 'failed' ? 'puzzles.dailyFailed' : 'puzzles.dailySolved', { n: daily.puzzle.rating })
+                : t('common.level', { n: daily.puzzle.rating })}
+            </Text>
+            <Button3D
+              label={dailyDone ? t('puzzles.seeAgain') : t('puzzles.solve')}
+              variant={dailyDone ? 'secondary' : 'primary'}
+              onPress={() => onOpenDaily(daily.puzzle.id)}
+              style={{ marginTop: space.md }}
+            />
+          </>
+        ) : daily.status === 'loading' ? (
+          <Text style={styles.cardText}>{t('puzzles.loading')}</Text>
+        ) : (
+          <>
+            <Text accessibilityRole="alert" style={styles.cardText}>
+              {daily.offline ? t('puzzles.offline') : t('puzzles.loadError')}
+            </Text>
+            <Button3D
+              label={t('common.retry')}
+              variant="secondary"
+              onPress={() => {
+                setDaily({ status: 'loading' });
+                setDailyAttempt((n) => n + 1);
+              }}
+              style={{ marginTop: space.md }}
+            />
+          </>
+        )}
       </View>
 
       {/* Práctica */}
       <Text style={styles.section}>{t('puzzles.practice')}</Text>
       <Text style={styles.label}>{t('puzzles.difficulty')}</Text>
       <View style={styles.segmented}>
-        {(Object.keys(LEVELS) as Level[]).map((l) => {
+        {levels.map((l) => {
           const selected = l === level;
           return (
             <Pressable
@@ -81,13 +111,11 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, puzzles }: Props & { puzzles: 
               onPress={() => setLevel(l)}
               accessibilityRole="radio"
               accessibilityState={{ selected }}
-              accessibilityLabel={t('puzzles.levelLabel', { label: t(`puzzles.level.${l}`), min: LEVELS[l].min, max: LEVELS[l].max })}
+              accessibilityLabel={t('puzzles.levelLabel', { label: t(`puzzles.level.${l}`), range: levelRange(l) })}
               style={[styles.segment, selected && styles.segmentSelected]}
             >
               <Text style={[styles.segmentText, selected && { color: colors.text }]}>{t(`puzzles.level.${l}`)}</Text>
-              <Text style={styles.segmentSub}>
-                {LEVELS[l].min}–{LEVELS[l].max}
-              </Text>
+              <Text style={styles.segmentSub}>{levelRange(l)}</Text>
             </Pressable>
           );
         })}
@@ -111,8 +139,10 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, puzzles }: Props & { puzzles: 
         })}
       </View>
 
-      <Button3D label={t('puzzles.practiceButton')} variant="primary" onPress={() => onPractice(level, theme)} style={{ marginTop: space.lg }} />
-      <Text style={styles.count}>{t('puzzles.count', { n: available })}</Text>
+      {available > 0 && (
+        <Button3D label={t('puzzles.practiceButton')} variant="primary" onPress={() => onPractice(level, theme)} style={{ marginTop: space.lg }} />
+      )}
+      <Text style={styles.count}>{t('puzzles.count', { n: number(available) })}</Text>
     </ColumnScrollView>
   );
 }

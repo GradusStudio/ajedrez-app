@@ -45,4 +45,21 @@ const heavyCachePlugin = {
   },
 };
 
-module.exports = { findLeaks, heavyCachePlugin };
+const CONNECT_SRC = /connect-src ([^;\n]*)/;
+
+/**
+ * Suma `origin` al `connect-src` de la CSP de un _headers (para probar en la PC con los trozos de puzzles en
+ * localhost). Falla si no encuentra la directiva.
+ */
+function addConnectSrc(headers, origin) {
+  if (!CONNECT_SRC.test(headers)) throw new Error('El _headers no tiene connect-src');
+  return headers.replace(CONNECT_SRC, (m, list) => (list.split(' ').includes(origin) ? m : `${m} ${origin}`));
+}
+
+/** El `connect-src` de la CSP permite `origin`. */
+function allowsConnect(headers, origin) {
+  const m = CONNECT_SRC.exec(headers);
+  return !!m && m[1].split(' ').includes(origin);
+}
+
+module.exports = { findLeaks, heavyCachePlugin, addConnectSrc, allowsConnect };

@@ -1,0 +1,7 @@
+# Cabeceras del Worker gradus-puzzles (solo archivos: los trozos de puzzles de la web).
+# Datos CC0 y públicos: cualquier origen puede leerlos. Las rutas llevan versión (v1/...), así que no cambian nunca.
+/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: noindex
+  X-Content-Type-Options: nosniff

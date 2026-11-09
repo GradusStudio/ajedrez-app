@@ -1,0 +1,400 @@
+{
+ "_comment": "Índice de los puzzles por trozos de la web (lo genera scripts/build-puzzles.js; ver docs/puzzles.md). levels.<nivel>.<grupo> = puzzles de cada capa de calidad [A, B, C].",
+ "version": "v1",
+ "base": "https://puzzles.graduschess.com/",
+ "chunkSize": 1000,
+ "generated": "2026-11-09",
+ "total": 6157341,
+ "invalid": 0,
+ "daily": {
+  "from": 2026,
+  "to": 2075
+ },
+ "themes": [
+  "mate",
+  "mateIn1",
+  "mateIn2",
+  "mateIn3",
+  "mateIn4",
+  "mateIn5",
+  "fork",
+  "pin",
+  "skewer",
+  "discoveredAttack",
+  "doubleCheck",
+  "deflection",
+  "attraction",
+  "clearance",
+  "interference",
+  "intermezzo",
+  "xRayAttack",
+  "hangingPiece",
+  "trappedPiece",
+  "capturingDefender",
+  "sacrifice",
+  "backRankMate",
+  "smotheredMate",
+  "hookMate",
+  "arabianMate",
+  "anastasiaMate",
+  "bodenMate",
+  "doubleBishopMate",
+  "dovetailMate",
+  "promotion",
+  "advancedPawn",
+  "exposedKing",
+  "kingsideAttack",
+  "queensideAttack",
+  "defensiveMove",
+  "quietMove",
+  "zugzwang",
+  "castling",
+  "enPassant",
+  "opening",
+  "middlegame",
+  "endgame",
+  "rookEndgame",
+  "pawnEndgame",
+  "queenEndgame",
+  "bishopEndgame",
+  "knightEndgame",
+  "queenRookEndgame",
+  "oneMove",
+  "short",
+  "long",
+  "veryLong",
+  "advantage",
+  "crushing",
+  "equality"
+ ],
+ "levels": {
+  "facil": {
+   "todos": [
+    195118,
+    1564301,
+    523810
+   ],
+   "mateIn1": [
+    29350,
+    521831,
+    194219
+   ],
+   "mateIn2": [
+    44376,
+    354820,
+    122841
+   ],
+   "mateIn3": [
+    10414,
+    55530,
+    13227
+   ],
+   "fork": [
+    35081,
+    230219,
+    69364
+   ],
+   "pin": [
+    11713,
+    43891,
+    10501
+   ],
+   "skewer": [
+    5648,
+    42115,
+    11255
+   ],
+   "discoveredAttack": [
+    13841,
+    62881,
+    15177
+   ],
+   "doubleCheck": [
+    1337,
+    4433,
+    668
+   ],
+   "hangingPiece": [
+    7227,
+    64262,
+    20123
+   ],
+   "capturingDefender": [
+    1412,
+    2874,
+    350
+   ],
+   "deflection": [
+    11690,
+    42226,
+    9227
+   ],
+   "attraction": [
+    5071,
+    13120,
+    2577
+   ],
+   "backRankMate": [
+    5630,
+    122647,
+    53869
+   ],
+   "sacrifice": [
+    11160,
+    61566,
+    14977
+   ],
+   "endgame": [
+    96057,
+    845929,
+    296883
+   ]
+  },
+  "medio": {
+   "todos": [
+    853991,
+    845829,
+    432413
+   ],
+   "mateIn1": [
+    30812,
+    81663,
+    45040
+   ],
+   "mateIn2": [
+    101254,
+    98898,
+    50203
+   ],
+   "mateIn3": [
+    40010,
+    33524,
+    13540
+   ],
+   "fork": [
+    130287,
+    104789,
+    54765
+   ],
+   "pin": [
+    71319,
+    60846,
+    28844
+   ],
+   "skewer": [
+    21240,
+    19108,
+    9941
+   ],
+   "discoveredAttack": [
+    58698,
+    48543,
+    24161
+   ],
+   "doubleCheck": [
+    5635,
+    6205,
+    1812
+   ],
+   "hangingPiece": [
+    28536,
+    29887,
+    17159
+   ],
+   "capturingDefender": [
+    10937,
+    8313,
+    3145
+   ],
+   "deflection": [
+    50416,
+    44466,
+    21267
+   ],
+   "attraction": [
+    55716,
+    41799,
+    16644
+   ],
+   "backRankMate": [
+    5782,
+    12086,
+    6337
+   ],
+   "sacrifice": [
+    85850,
+    71071,
+    29845
+   ],
+   "endgame": [
+    385305,
+    406403,
+    212818
+   ]
+  },
+  "dificil": {
+   "todos": [
+    386465,
+    706030,
+    416198
+   ],
+   "mateIn1": [
+    1289,
+    3512,
+    527
+   ],
+   "mateIn2": [
+    14612,
+    21854,
+    6337
+   ],
+   "mateIn3": [
+    14308,
+    13495,
+    3941
+   ],
+   "fork": [
+    45220,
+    65647,
+    36805
+   ],
+   "pin": [
+    33365,
+    55017,
+    34169
+   ],
+   "skewer": [
+    7442,
+    10766,
+    5876
+   ],
+   "discoveredAttack": [
+    23560,
+    35333,
+    19618
+   ],
+   "doubleCheck": [
+    3724,
+    5370,
+    1846
+   ],
+   "hangingPiece": [
+    11533,
+    25324,
+    14109
+   ],
+   "capturingDefender": [
+    3559,
+    5787,
+    2607
+   ],
+   "deflection": [
+    21448,
+    35932,
+    19537
+   ],
+   "attraction": [
+    25060,
+    36122,
+    17658
+   ],
+   "backRankMate": [
+    777,
+    847,
+    106
+   ],
+   "sacrifice": [
+    49414,
+    73043,
+    40205
+   ],
+   "endgame": [
+    178065,
+    338875,
+    202485
+   ]
+  },
+  "experto": {
+   "todos": [
+    2621,
+    144126,
+    86439
+   ],
+   "mateIn1": [
+    0,
+    1,
+    0
+   ],
+   "mateIn2": [
+    6,
+    63,
+    3
+   ],
+   "mateIn3": [
+    23,
+    354,
+    42
+   ],
+   "fork": [
+    203,
+    10245,
+    6135
+   ],
+   "pin": [
+    226,
+    12121,
+    7425
+   ],
+   "skewer": [
+    51,
+    1774,
+    960
+   ],
+   "discoveredAttack": [
+    130,
+    5858,
+    3374
+   ],
+   "doubleCheck": [
+    20,
+    777,
+    383
+   ],
+   "hangingPiece": [
+    62,
+    3509,
+    2292
+   ],
+   "capturingDefender": [
+    11,
+    754,
+    459
+   ],
+   "deflection": [
+    130,
+    6587,
+    3725
+   ],
+   "attraction": [
+    152,
+    6271,
+    3183
+   ],
+   "backRankMate": [
+    0,
+    10,
+    2
+   ],
+   "sacrifice": [
+    383,
+    16987,
+    9755
+   ],
+   "endgame": [
+    1513,
+    80423,
+    46083
+   ]
+  }
+ }
+}

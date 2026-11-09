@@ -19,6 +19,16 @@ Para probar lo compilado en la PC como lo sirve Cloudflare: `npm run build:web` 
 5. Tras el primer despliegue: Worker > Ajustes > Dominios y rutas > Agregar > Dominio personalizado > `graduschess.com`.
 6. Si `wrangler deploy` rechaza `compatibility_date`, bajarla a la fecha que indique el mensaje (hoy es la del runtime incluido, 2026-11-04).
 
+## Puzzles: el Worker `gradus-puzzles` (puzzles.graduschess.com)
+La web saca los puzzles de la base completa de Lichess (6,16 millones), partida en 14.388 archivos (1,5 GB) que no van en git ni en la compilación de Cloudflare. Se publican desde la PC en un segundo Worker, sin código, solo con archivos (gratis: los pedidos a archivos estáticos no tienen límite; el plan gratis admite 20.000 archivos por versión). Hay que hacerlo **antes** de abrir el sitio: sin él, Puzzles muestra el error de carga.
+1. Armar los trozos (una vez, o cuando cambie la base): `npm run build:puzzles -- C:\dev\datos-lichess\lichess_db_puzzle.csv.zst`. Tarda unos 5 minutos y deja todo en `C:\dev\datos-lichess\trozos` (con su `_headers`). Si cambia `src/puzzles/manifest.json`, guardarlo en git: la app tiene que coincidir con los trozos publicados.
+2. Iniciar sesión en wrangler (una vez): `npx wrangler login`.
+3. Publicar: `npx wrangler deploy -c wrangler.puzzles.jsonc`. La primera vez sube 1,5 GB y puede tardar; después sube solo lo que cambió.
+4. Panel de Cloudflare > Worker `gradus-puzzles` > Ajustes > Dominios y rutas > Agregar > Dominio personalizado > `puzzles.graduschess.com`.
+5. Comprobar: `curl -sI https://puzzles.graduschess.com/v1/dia/2026.json` da 200 con `Access-Control-Allow-Origin: *`, `Cache-Control: public, max-age=31536000, immutable` y `X-Robots-Tag: noindex`.
+
+Si algún día se vuelve a armar la base con otro formato, se publica como `v2` (constante `VERSION` de `scripts/build-puzzles.js`) junto con la versión de la app que trae el índice nuevo.
+
 ## Comprobaciones en producción
 ```bash
 curl -sI https://graduschess.com/

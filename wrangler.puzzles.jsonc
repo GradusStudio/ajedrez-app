@@ -1,0 +1,14 @@
+// Worker `gradus-puzzles`: solo archivos, sin código. Sirve la base completa de puzzles de Lichess por trozos para la
+// web (puzzles.graduschess.com). Los trozos no van en git ni en la compilación de Cloudflare: se arman en la PC con
+// `npm run build:puzzles -- <archivo.csv.zst>` (quedan en C:\dev\datos-lichess\trozos) y se publican desde la PC:
+//   npx wrangler deploy -c wrangler.puzzles.jsonc
+// Para probar en la PC: npx wrangler dev -c wrangler.puzzles.jsonc --port 8789
+// Pasos y dominio en docs/web/publicar-en-cloudflare.md; cabeceras (CORS, caché, noindex) en puzzles-public/_headers.
+{
+  "name": "gradus-puzzles",
+  "compatibility_date": "2026-11-04",
+  "assets": {
+    "directory": "../datos-lichess/trozos",
+    "not_found_handling": "none"
+  }
+}

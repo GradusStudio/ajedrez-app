@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { isPuzzleSolved } from '../progress/progressStore';
-import { findPuzzle, Level, LEVELS, nextPuzzle, PRACTICE_THEMES, Puzzle, themeName } from '../puzzles/puzzles';
+import { Level, LEVELS, PRACTICE_THEMES, Puzzle, themeName } from '../puzzles/puzzles';
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
-import { usePuzzles } from '../puzzles/usePuzzles';
+import { PuzzleSource } from '../puzzles/source';
+import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
 import { PuzzleScreen } from '../screens/PuzzleScreen';
 import { colors } from '../theme';
 
@@ -16,12 +17,14 @@ import { colors } from '../theme';
  * (sin navegar: así no aparece un fondo blanco entre uno y otro).
  */
 export default function PuzzleRoute() {
-  const state = usePuzzles();
+  const state = usePuzzleSource();
   if (state.status !== 'ready') return <PuzzlesStatus state={state} />;
-  return <PuzzleLoaded puzzles={state.puzzles} />;
+  return <PuzzleLoaded source={state.source} />;
 }
 
-function PuzzleLoaded({ puzzles }: { puzzles: Puzzle[] }) {
+type Current = { status: 'loading' } | { status: 'error'; offline: boolean } | { status: 'missing' } | { status: 'ready'; puzzle: Puzzle };
+
+function PuzzleLoaded({ source }: { source: PuzzleSource }) {
   const params = useLocalSearchParams<{ modo?: string; id?: string; nivel?: string; tema?: string }>();
   const { progress } = useProgress();
   const { t } = useI18n();
@@ -29,12 +32,49 @@ function PuzzleLoaded({ puzzles }: { puzzles: Puzzle[] }) {
   const level: Level = params.nivel && params.nivel in LEVELS ? (params.nivel as Level) : 'facil';
   // Un tema que no existe (un enlace escrito a mano) se ignora en vez de dejar la práctica vacía.
   const theme = params.tema && PRACTICE_THEMES.includes(params.tema) ? params.tema : null;
-  const solved = (id: string) => isPuzzleSolved(progress, id);
+  // El progreso más reciente, para que «Siguiente» no vuelva a dar el puzzle recién resuelto.
+  const progressRef = useRef(progress);
+  useEffect(() => {
+    progressRef.current = progress;
+  }, [progress]);
+  const seen = useRef(new Set<string>());
+  const [current, setCurrent] = useState<Current>({ status: 'loading' });
+  const [attempt, setAttempt] = useState(0);
+  const byId = useRef(params.id);
 
-  const [puzzle, setPuzzle] = useState(() =>
-    params.id ? findPuzzle(puzzles, params.id) : nextPuzzle(puzzles, level, theme, solved)
+  const show = useCallback(
+    (request: Promise<Puzzle | undefined>) =>
+      request.then(
+        (puzzle) => {
+          if (!puzzle) return setCurrent({ status: 'missing' });
+          seen.current.add(puzzle.id);
+          setCurrent({ status: 'ready', puzzle });
+        },
+        (e) => setCurrent({ status: 'error', offline: isOfflineError(e) })
+      ),
+    []
   );
-  if (!puzzle) return <Redirect href="/puzzles" />;
+  const next = useCallback(
+    () => show(source.next(level, theme, (id) => isPuzzleSolved(progressRef.current, id), seen.current)),
+    [show, source, level, theme]
+  );
+
+  useEffect(() => {
+    // El primero: el pedido por id (puzzle del día) o uno de práctica.
+    show(byId.current ? source.byId(byId.current) : source.next(level, theme, (id) => isPuzzleSolved(progressRef.current, id), seen.current));
+    // Solo al montar y al reintentar: «Siguiente» llama a `next` directamente.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [attempt]);
+
+  if (current.status === 'missing') return <Redirect href="/puzzles" />;
+  if (current.status === 'loading') return <PuzzlesStatus state={{ status: 'loading' }} />;
+  if (current.status === 'error') {
+    const retry = () => {
+      setCurrent({ status: 'loading' });
+      setAttempt((n) => n + 1);
+    };
+    return <PuzzlesStatus state={{ status: 'error', offline: current.offline, retry }} />;
+  }
 
   const label = practice
     ? [t('puzzles.practice'), t(`puzzles.level.${level}`), theme ? themeName(theme, t) : null].filter(Boolean).join(' · ')
@@ -44,11 +84,11 @@ function PuzzleLoaded({ puzzles }: { puzzles: Puzzle[] }) {
     // Fondo oscuro debajo del fundido de entrada de cada puzzle.
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       <PuzzleScreen
-        key={puzzle.id}
-        puzzle={puzzle}
+        key={current.puzzle.id}
+        puzzle={current.puzzle}
         label={label}
         onExit={() => router.back()}
-        onNext={practice ? () => setPuzzle(nextPuzzle(puzzles, level, theme, solved, puzzle.id) ?? puzzle) : undefined}
+        onNext={practice ? next : undefined}
       />
     </View>
   );

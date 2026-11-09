@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { findLeaks, heavyCachePlugin } from './swChecks';
+import { addConnectSrc, allowsConnect, findLeaks, heavyCachePlugin } from './swChecks';
 
 /** Carpeta temporal con los archivos dados ({ ruta relativa: contenido }). */
 function tempDist(files: Record<string, string>): string {
@@ -63,4 +63,23 @@ test('cacheWillUpdate: rechaza lo que no sea 200 (opaca, 404, 204)', async () =>
   assert.equal(await cacheWillUpdate({ response: res(204, 'application/javascript') }), null);
   const opaque = { status: 0, headers: new Headers() } as unknown as Response;
   assert.equal(await cacheWillUpdate({ response: opaque }), null);
+});
+
+const HEADERS = "/*\n  Content-Security-Policy: default-src 'self'; connect-src 'self' https://a.com; img-src 'self'\n  X-Frame: x\n";
+
+test('addConnectSrc suma el origen al connect-src y no lo repite', () => {
+  const out = addConnectSrc(HEADERS, 'http://localhost:8789');
+  assert.ok(out.includes("connect-src 'self' https://a.com http://localhost:8789; img-src"));
+  assert.equal(addConnectSrc(out, 'http://localhost:8789'), out);
+  assert.throws(() => addConnectSrc('/*\n  X: y\n', 'http://localhost:8789'), /connect-src/);
+});
+
+test('allowsConnect mira solo la lista de connect-src', () => {
+  assert.ok(allowsConnect(HEADERS, 'https://a.com'));
+  assert.ok(!allowsConnect(HEADERS, 'https://puzzles.graduschess.com'));
+  assert.ok(!allowsConnect("img-src https://puzzles.graduschess.com", 'https://puzzles.graduschess.com'));
+});
+
+test('la CSP de public/_headers permite los trozos de puzzles', () => {
+  assert.ok(allowsConnect(fs.readFileSync(path.join(__dirname, '..', 'public', '_headers'), 'utf8'), 'https://puzzles.graduschess.com'));
 });

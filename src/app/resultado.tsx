@@ -94,7 +94,6 @@ export default function ResultRoute() {
       streakRecovered={params.recuperada === '1'}
       onContinue={() => router.back()}
       reminderOffer={offer}
-     
       installOffer={showInstall ? { onInstall: () => router.push('/instalar'), copyFirst: needsCopyBeforeInstall(platform) } : undefined}
       onReviewMistakes={
         failed && params.modo !== 'repaso'

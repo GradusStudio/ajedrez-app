@@ -34,10 +34,22 @@ Si algún día se vuelve a armar la base con otro formato, se publica como `v2` 
 Guarda el progreso por llave (solo el SHA-256 de la llave, el texto del progreso, la versión y la fecha). Código en `workers/sync/`, configuración en `wrangler.sync.jsonc`. Todo se hace desde la PC, una sola vez:
 
 1. Crear la base: `npx wrangler d1 create gradus-sync`. Copiar el `database_id` que muestra y pegarlo en `wrangler.sync.jsonc`.
-2. Crear la tabla: `npx wrangler d1 execute gradus-sync --remote --file workers/sync/schema.sql`.
-3. Publicar: `npx wrangler deploy -c wrangler.sync.jsonc` (el dominio `sync.graduschess.com` se conecta solo).
+2. Crear la tabla: `npx wrangler d1 execute gradus-sync --remote -c wrangler.sync.jsonc --file workers/sync/schema.sql`.
+3. **Antes de publicar**, crear la regla de límite de peticiones (ver «Límite de peticiones» abajo).
+4. Publicar: `npx wrangler deploy -c wrangler.sync.jsonc` (el dominio `sync.graduschess.com` se conecta solo).
 
-Para probar en la PC: `npx wrangler d1 execute gradus-sync --local --file workers/sync/schema.sql` y `npx wrangler dev -c wrangler.sync.jsonc --port 8790`. Las pruebas del manejador corren con `npm test`.
+Para probar en la PC: `npx wrangler d1 execute gradus-sync --local -c wrangler.sync.jsonc --file workers/sync/schema.sql` y `npx wrangler dev -c wrangler.sync.jsonc --port 8790`. Las pruebas del manejador corren con `npm test`.
+
+### Límite de peticiones (hacer antes de publicar el Worker)
+
+El Worker no limita peticiones por su cuenta, y cualquiera puede mandar PUT con llaves al azar: una inundación llenaría la cuota gratuita de D1 y dejaría sin sincronización a todos. Se frena en Cloudflare, sin código:
+
+1. Panel de Cloudflare > el dominio `graduschess.com` > Seguridad > WAF > «Rate limiting rules» > Crear regla.
+2. Cuando coincida: Nombre de host igual a `sync.graduschess.com` y Método es uno de `PUT`, `DELETE`.
+3. Límite sugerido: 60 peticiones por minuto por IP; acción: bloquear durante 10 minutos. Son valores sugeridos: se pueden ajustar (la app manda un PUT unos segundos después de cada cambio de progreso, así que un uso normal queda muy por debajo).
+4. Desplegar la regla y recién después publicar el Worker.
+
+Capacidad conocida: el plan gratuito de Workers admite unas 100.000 peticiones por día, y cada paso de lección o jugada de bot que cambia el progreso dispara una sincronización. Con muchos usuarios activos puede quedarse corto; se vigila en el panel y, si hace falta, se pasa al plan de pago.
 
 Safari en iPhone: si la app no está instalada, Safari puede borrar el almacenamiento tras unos 7 días sin visitas y entonces la ventana de Google vuelve a aparecer una vez para recuperar la llave. Instalada en la pantalla de inicio no pasa. Está aceptado.
 

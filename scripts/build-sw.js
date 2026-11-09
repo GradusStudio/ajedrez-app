@@ -11,7 +11,8 @@
 //
 // Para probar en la PC con los trozos en localhost: EXPO_PUBLIC_PUZZLES_URL=http://localhost:8789/ al compilar.
 // La app pide los trozos ahí y el _headers de dist/ (solo el de esa compilación) lo permite en la CSP. En la
-// compilación de Cloudflare (WORKERS_CI) esa variable hace fallar la compilación.
+// compilación de Cloudflare (WORKERS_CI) esa variable hace fallar la compilación. Igual con EXPO_PUBLIC_SYNC_URL
+// (servidor de sincronización, ej. http://localhost:8790).
 const fs = require('fs');
 const path = require('path');
 const { generateSW } = require('workbox-build');
@@ -66,12 +67,32 @@ function puzzlesOrigin() {
   return origin;
 }
 
+/**
+ * Servidor de sincronización. Con EXPO_PUBLIC_SYNC_URL (prueba en la PC, ej. http://localhost:8790) suma ese origen a la
+ * CSP de dist/_headers; sin ella, comprueba que la CSP permite sync.graduschess.com.
+ */
+function syncOrigin() {
+  const headersFile = path.join(ROOT, '_headers');
+  const headers = fs.readFileSync(headersFile, 'utf8');
+  const override = process.env.EXPO_PUBLIC_SYNC_URL;
+  if (override) {
+    if (process.env.WORKERS_CI) throw new Error('EXPO_PUBLIC_SYNC_URL es solo para probar en la PC: no puede estar en la compilación de Cloudflare');
+    const origin = new URL(override).origin;
+    if (!/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) throw new Error(`EXPO_PUBLIC_SYNC_URL tiene que ser localhost: ${origin}`);
+    fs.writeFileSync(headersFile, addConnectSrc(headers, origin));
+    console.log(`Sincronización contra ${origin} (compilación local: la CSP de dist/_headers lo permite)`);
+    return;
+  }
+  if (!allowsConnect(headers, 'https://sync.graduschess.com')) throw new Error('La CSP de public/_headers no permite https://sync.graduschess.com en connect-src');
+}
+
 async function main() {
   const heavy = findHeavyChunks();
   if (heavy.length !== 3) {
     throw new Error(`Se esperaban 3 trozos pesados (las redes de Maia) y hay ${heavy.length}: ${heavy.join(', ')}`);
   }
   const matchPuzzles = new Function('ctx', `return ctx.url.origin === ${JSON.stringify(puzzlesOrigin())};`);
+  syncOrigin();
   // Workbox copia esta función al service worker como texto: no puede usar variables de afuera.
   const heavyPathsJson = JSON.stringify(heavy.map((p) => BASE + p));
   const matchHeavy = new Function('ctx', `return ${heavyPathsJson}.includes(ctx.url.pathname);`);

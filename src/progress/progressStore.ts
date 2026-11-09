@@ -58,7 +58,7 @@ export type Progress = {
   /** Por dispositivo, monedas ganadas y gastadas. */
   coinLedger: Record<string, CoinCounters>;
   /** Fecha ISO del último cambio de los campos que se combinan por «el último que lo cambió». Si falta, cuenta como la más vieja. */
-  stamps: { level?: string; lastUnit?: string };
+  stamps: { level?: string; lastUnit?: string; ongoingGame?: string };
   /** Se elige en la bienvenida. */
   profile: { level?: PlayerLevel; onboarded?: boolean };
   lessons: Record<string, LessonProgress>;
@@ -81,7 +81,12 @@ export type Progress = {
   lastUnit?: number; // unidad de la última lección empezada en Aprender, la que se muestra al abrir la app
   /** Nivel de puzzles (puzzleRating.ts). Se agregó sin subir la versión: si falta, vale el nivel inicial de la bienvenida. */
   puzzleRating?: PuzzleRating;
+  /** Partida contra un bot sin terminar, para seguirla desde otro dispositivo. Se agregó sin subir la versión: si falta, no hay partida. Su fecha va en `stamps.ongoingGame`. */
+  ongoingGame?: OngoingGame;
 };
+
+/** Partida contra un bot en curso: solo lo necesario para rearmarla jugando las jugadas (UCI) desde el inicio. */
+export type OngoingGame = { botId: string; userColor: 'w' | 'b'; practiceCourseId?: string; moves: string[]; startedAt: string };
 
 /** Clave del progreso en AsyncStorage (en la web, localStorage). No cambia: cambiarla perdería lo guardado. */
 export const PROGRESS_KEY = 'ajedrez:progreso';
@@ -311,6 +316,12 @@ export function withProfile(p: Progress, patch: Partial<Progress['profile']>, no
   return { ...p, profile: { ...p.profile, ...patch }, stamps };
 }
 
+/** Guarda (o quita, con null) la partida en curso y anota la fecha: al combinar gana el último cambio, también si fue quitarla. */
+export function withOngoingGame(p: Progress, game: OngoingGame | null, now = new Date()): Progress {
+  const { ongoingGame: _old, ...rest } = p;
+  return { ...rest, ...(game ? { ongoingGame: game } : {}), stamps: { ...p.stamps, ongoingGame: now.toISOString() } };
+}
+
 /**
  * «Borrar progreso»: conserva el perfil (bienvenida y nivel, con su fecha) y anota `resetAt` para que al combinar
  * con una copia anterior (Drive) no vuelva lo borrado. El dispositivo recibe un id nuevo: lo ganado antes queda
@@ -444,7 +455,7 @@ function toV3(data: ProgressV1 | ProgressV2 | ProgressV3): ProgressV3 {
 }
 
 /** Campos que tiene un progreso. Lo que traiga de más un archivo o un respaldo no se copia al estado, que se guarda y se vuelve a subir a Drive. */
-const KNOWN_FIELDS = [...Object.keys(emptyProgress), 'lastUnit', 'puzzleRating'];
+const KNOWN_FIELDS = [...Object.keys(emptyProgress), 'lastUnit', 'puzzleRating', 'ongoingGame'];
 function knownFields<T extends object>(data: T): Partial<T> {
   const out: Record<string, unknown> = {};
   for (const k of KNOWN_FIELDS) if (Object.hasOwn(data, k)) out[k] = (data as Record<string, unknown>)[k];

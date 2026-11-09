@@ -61,6 +61,12 @@ export function hasUsableStructure(p: Record<string, unknown>): boolean {
     const r = p.puzzleRating;
     if (!(isObject(r) && isCount(r.rating) && isInt(r.rated) && isStringOrNull(r.at) && isStrings(r.pending))) return false;
   }
+  if (has('ongoingGame')) {
+    const g = p.ongoingGame;
+    const ok =
+      isObject(g) && isString(g.botId) && ['w', 'b'].includes(g.userColor as string) && isStrings(g.moves) && isString(g.startedAt) && (!('practiceCourseId' in g) || g.practiceCourseId === undefined || isString(g.practiceCourseId));
+    if (!ok) return false;
+  }
   // La versión 1 no tenía racha.
   if (p.version === 1 && !has('streak')) return true;
   const s = p.streak;

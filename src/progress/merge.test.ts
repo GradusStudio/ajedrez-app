@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mergeImport, mergeProgress } from './merge';
-import { coinBalance, emptyProgress, withBoardThemeBought, withReset, type GameRecord, type Progress } from './progressStore';
+import { coinBalance, emptyProgress, withBoardThemeBought, withOngoingGame, withReset, type GameRecord, type Progress } from './progressStore';
 
 /** Progreso versión 4 de ejemplo; `coins` siempre sale del libro de monedas. */
 function make(over: Partial<Progress> = {}): Progress {
@@ -519,4 +519,29 @@ test('nivel de puzzles: pending se une sin los que ya están terminados; un lado
   assert.equal(mergeProgress(make(), make()).puzzleRating, undefined);
   const once = mergeProgress(a, b);
   assert.deepEqual(mergeProgress(once, once), once);
+});
+
+// ---------- Partida en curso ----------
+
+const juego = (moves: string[]) => ({ botId: 'pipo', userColor: 'w' as const, moves, startedAt: '2026-11-09T10:00:00.000Z' });
+
+test('merge: gana la partida en curso más reciente', () => {
+  const a = withOngoingGame(make(), juego(['e2e4']), new Date('2026-11-09T10:01:00.000Z'));
+  const b = withOngoingGame(make({ deviceId: 'B' }), juego(['e2e4', 'e7e5']), new Date('2026-11-09T10:02:00.000Z'));
+  assert.deepEqual(mergeProgress(a, b).ongoingGame?.moves, ['e2e4', 'e7e5']);
+  assert.deepEqual(mergeProgress(b, a).ongoingGame?.moves, ['e2e4', 'e7e5']);
+  assert.equal(mergeProgress(a, b).stamps.ongoingGame, '2026-11-09T10:02:00.000Z');
+});
+
+test('merge: quitarla después le gana a una vieja; una nueva después de quitarla le gana a la quitada', () => {
+  const vieja = withOngoingGame(make(), juego(['e2e4']), new Date('2026-11-09T10:01:00.000Z'));
+  const quitada = withOngoingGame(vieja, null, new Date('2026-11-09T10:05:00.000Z'));
+  const m = mergeProgress(vieja, quitada);
+  assert.equal(m.ongoingGame, undefined);
+  assert.equal('ongoingGame' in m, false);
+  assert.equal(m.stamps.ongoingGame, '2026-11-09T10:05:00.000Z');
+  assert.equal(mergeProgress(quitada, vieja).ongoingGame, undefined);
+  const nueva = withOngoingGame(quitada, juego(['d2d4']), new Date('2026-11-09T10:09:00.000Z'));
+  assert.deepEqual(mergeProgress(quitada, nueva).ongoingGame?.moves, ['d2d4']);
+  assert.deepEqual(mergeProgress(m, m), m);
 });

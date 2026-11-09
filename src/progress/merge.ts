@@ -196,6 +196,10 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     { value: local.lastUnit, stamp: local.stamps.lastUnit },
     { value: incoming.lastUnit, stamp: incoming.stamps.lastUnit }
   );
+  const ongoingGame = lastChanged(
+    { value: local.ongoingGame, stamp: local.stamps.ongoingGame },
+    { value: incoming.ongoingGame, stamp: incoming.stamps.ongoingGame }
+  );
   const onboarded =
     local.profile.onboarded || incoming.profile.onboarded
       ? true
@@ -214,6 +218,7 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     stamps: {
       ...(level.stamp !== undefined ? { level: level.stamp } : {}),
       ...(lastUnit.stamp !== undefined ? { lastUnit: lastUnit.stamp } : {}),
+      ...(ongoingGame.stamp !== undefined ? { ongoingGame: ongoingGame.stamp } : {}),
     },
     lessons,
     drafts,
@@ -232,6 +237,7 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     turningPoints: union(local.turningPoints, incoming.turningPoints),
   };
   if (lastUnit.value !== undefined) merged.lastUnit = lastUnit.value;
+  if (ongoingGame.value !== undefined) merged.ongoingGame = ongoingGame.value;
   const puzzleRating = mergePuzzleRating(local.puzzleRating, incoming.puzzleRating, puzzles);
   if (puzzleRating) merged.puzzleRating = puzzleRating;
   return withBalance(merged);

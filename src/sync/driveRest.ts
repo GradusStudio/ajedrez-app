@@ -1,24 +1,27 @@
 import { SyncError } from './syncEngine';
 
-// Cliente de la API REST de Google Drive para el archivo único de Gradus en la carpeta oculta de la app
+// Cliente de la API REST de Google Drive para un archivo de Gradus (hoy, la llave de sincronización) en la carpeta oculta de la app
 // (`appDataFolder`, permiso `drive.appdata`). No sabe de dónde viene el permiso: lo pide con `getToken`.
 // Sin React ni navegador: `fetch` entra como parámetro, así que se prueba entero en `npm test`.
 
-export const DRIVE_FILE_NAME = 'gradus-progreso.json';
+export const KEY_FILE_NAME = 'gradus-llave.json';
 
 const FILES_URL = 'https://www.googleapis.com/drive/v3/files';
 const UPLOAD_URL = 'https://www.googleapis.com/upload/drive/v3/files';
 
-/** El archivo único en Drive (la tarea 4 lo parametriza). `read` devuelve null si todavía no existe. */
-type DriveFileClient = {
+/** Un archivo en Drive. `read` devuelve null si todavía no existe; `remove` sin archivo no hace nada. */
+export type DriveFile = {
   read: () => Promise<string | null>;
   write: (text: string) => Promise<void>;
+  remove: () => Promise<void>;
 };
 
 type Deps = {
   fetch: typeof fetch;
   /** Permiso vigente de Google; si no hay, lanza `SyncError('other')`. */
   getToken: () => Promise<string>;
+  /** Nombre del archivo en la carpeta oculta (p. ej. `KEY_FILE_NAME`). */
+  fileName: string;
 };
 
 /** Motivos de un error de la API de Google (`error.errors[].reason`), o [] si la respuesta no los trae. */
@@ -43,7 +46,7 @@ async function toError(res: Response): Promise<SyncError> {
   return new SyncError('other', `Drive respondió ${res.status}`);
 }
 
-export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): DriveFileClient {
+export function createDriveRestClient({ fetch: doFetch, getToken, fileName }: Deps): DriveFile {
   // Id del archivo una vez encontrado o creado: evita buscarlo en cada sincronización.
   let fileId: string | null = null;
 
@@ -60,7 +63,7 @@ export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): Drive
 
   async function find(): Promise<string | null> {
     if (fileId) return fileId;
-    const q = `name='${DRIVE_FILE_NAME}' and trashed=false`;
+    const q = `name='${fileName}' and trashed=false`;
     const url = `${FILES_URL}?spaces=appDataFolder&q=${encodeURIComponent(q)}&fields=${encodeURIComponent('files(id)')}&pageSize=1`;
     const res = await call(url);
     if (!res.ok) throw await toError(res);
@@ -71,7 +74,7 @@ export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): Drive
 
   async function create(text: string): Promise<void> {
     const boundary = `gradus-${Math.random().toString(36).slice(2)}`;
-    const meta = JSON.stringify({ name: DRIVE_FILE_NAME, parents: ['appDataFolder'], mimeType: 'application/json' });
+    const meta = JSON.stringify({ name: fileName, parents: ['appDataFolder'], mimeType: 'application/json' });
     const body =
       `--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${meta}\r\n` +
       `--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${text}\r\n--${boundary}--`;
@@ -84,7 +87,7 @@ export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): Drive
     fileId = ((await res.json()) as { id?: string }).id ?? null;
   }
 
-  const api: DriveFileClient = {
+  const api: DriveFile = {
     async read() {
       const id = await find();
       if (!id) return null;
@@ -113,6 +116,15 @@ export function createDriveRestClient({ fetch: doFetch, getToken }: Deps): Drive
         return create(text);
       }
       if (!res.ok) throw await toError(res);
+    },
+
+    async remove() {
+      const id = await find();
+      if (!id) return;
+      const res = await call(`${FILES_URL}/${id}`, { method: 'DELETE' });
+      fileId = null;
+      // 404: ya no estaba, que es lo que se quería.
+      if (!res.ok && res.status !== 404) throw await toError(res);
     },
   };
   return api;

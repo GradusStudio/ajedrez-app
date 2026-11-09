@@ -29,6 +29,16 @@ La web saca los puzzles de la base completa de Lichess (6,16 millones), partida 
 
 Si algún día se vuelve a armar la base con otro formato, se publica como `v2` (constante `VERSION` de `scripts/build-puzzles.js`) junto con la versión de la app que trae el índice nuevo.
 
+## Servidor de sincronización: el Worker `gradus-sync` (sync.graduschess.com)
+
+Guarda el progreso por llave (solo el SHA-256 de la llave, el texto del progreso, la versión y la fecha). Código en `workers/sync/`, configuración en `wrangler.sync.jsonc`. Todo se hace desde la PC, una sola vez:
+
+1. Crear la base: `npx wrangler d1 create gradus-sync`. Copiar el `database_id` que muestra y pegarlo en `wrangler.sync.jsonc`.
+2. Crear la tabla: `npx wrangler d1 execute gradus-sync --remote --file workers/sync/schema.sql`.
+3. Publicar: `npx wrangler deploy -c wrangler.sync.jsonc` (el dominio `sync.graduschess.com` se conecta solo).
+
+Para probar en la PC: `npx wrangler d1 execute gradus-sync --local --file workers/sync/schema.sql` y `npx wrangler dev -c wrangler.sync.jsonc --port 8790`. Las pruebas del manejador corren con `npm test`.
+
 ## Comprobaciones en producción
 ```bash
 curl -sI https://graduschess.com/

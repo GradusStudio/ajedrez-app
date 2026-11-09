@@ -47,3 +47,13 @@ test('_headers fuerza HTTPS (HSTS) y mantiene la política de contenido cerrada'
 test('index.html no usa httpEquiv (es de JSX, en HTML no hace nada)', () => {
   assert.doesNotMatch(read('index.html'), /httpEquiv/);
 });
+
+test('/sw.js de la raíz se borra solo: libera a quien tenía el service worker de antes de /app', () => {
+  const sw = fs.readFileSync(path.join(__dirname, '..', '..', 'sitio', 'sw.js'), 'utf8');
+  assert.match(sw, /self\.skipWaiting\(\)/);
+  assert.match(sw, /self\.registration\.unregister\(\)/);
+  assert.doesNotMatch(sw, /caches\.delete\('gradus-heavy'\)/, 'no borra la caché de la app nueva');
+  const build = fs.readFileSync(path.join(__dirname, '..', '..', 'scripts', 'build-portada.ts'), 'utf8');
+  assert.match(build, /'sw\.js'/, 'build-portada.ts tiene que copiar sitio/sw.js a dist/sw.js');
+  assert.match(read('_headers'), /^\/sw\.js\n\s+Cache-Control: no-cache$/m);
+});

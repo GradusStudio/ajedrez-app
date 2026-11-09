@@ -184,6 +184,8 @@ function arrangeApp(): void {
   }
   for (const f of SITE_FILES) {
     const from = path.join(APP, f);
+    // Ya movido por una corrida anterior (`npm run build:portada` sobre una compilación hecha): no hay nada que hacer.
+    if (!fs.existsSync(from) && fs.existsSync(path.join(DIST, f))) continue;
     if (!fs.existsSync(from)) throw new Error(`Falta dist/app/${f} (debería venir de public/${f})`);
     fs.renameSync(from, path.join(DIST, f));
   }
@@ -208,6 +210,8 @@ async function main(): Promise<void> {
     `// GENERADO por scripts/build-portada.ts. No editar.\nwindow.GRADUS_PORTADA = ${JSON.stringify({ langs: all })};\n`,
   );
   for (const f of ['portada.css', 'portada.js', 'inicio.js']) fs.copyFileSync(path.join(SITIO, f), path.join(OUT, f));
+  // /sw.js que se borra solo: libera a los navegadores que tenían el service worker de cuando la app vivía en la raíz.
+  fs.copyFileSync(path.join(SITIO, 'sw.js'), path.join(DIST, 'sw.js'));
   const notFound = render(fs.readFileSync(path.join(SITIO, '404.html'), 'utf8'), {
     title: esc(CATALOGS.es['meta.notFound']),
   });

@@ -22,6 +22,18 @@ export function readKey(storage: Pick<Storage, 'getItem'> & Partial<Pick<Storage
   }
 }
 
+/**
+ * Borra la llave guardada solo si es `key`. Con varias pestañas, una que se quedó con una llave vieja no debe borrar la
+ * nueva que otra pestaña acaba de escribir.
+ */
+export function clearKeyIf(storage: Pick<Storage, 'getItem' | 'removeItem'>, key: string): void {
+  try {
+    if (storage.getItem(KEY_STORAGE) === key) storage.removeItem(KEY_STORAGE);
+  } catch {
+    // Sin almacenamiento: no hay nada que borrar.
+  }
+}
+
 /** Guarda la llave; con null la borra. */
 export function writeKey(storage: Pick<Storage, 'setItem' | 'removeItem'>, key: string | null): void {
   try {

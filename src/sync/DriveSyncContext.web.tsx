@@ -3,7 +3,7 @@ import { useProgress } from '../progress/ProgressContext';
 import { createDriveRestClient, KEY_FILE_NAME } from './driveRest';
 import { DriveKeyLeftError, type DriveSyncState, type DriveSyncValue } from './driveSyncTypes';
 import { createGoogleAuth } from './googleAuth.web';
-import { readKey, writeKey } from './keyStorage';
+import { clearKeyIf, readKey, writeKey } from './keyStorage';
 import { PopupError } from './popupError';
 import { createServerClient, SYNC_URL } from './serverClient';
 import { createSyncEngine, SyncError, type SyncStatus } from './syncEngine';
@@ -51,11 +51,17 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
     []
   );
 
-  /** Deja este dispositivo sin llave: no sincroniza más y no recuerda nada. */
-  const forgetKey = useCallback(() => {
+  /**
+   * Deja este dispositivo sin llave: no sincroniza más y no recuerda nada. Con `onlyIfStored` (la llave que usaba esta
+   * pestaña) solo se borra el almacenamiento si sigue siendo esa: otra pestaña pudo haber guardado una nueva.
+   */
+  const forgetKey = useCallback((onlyIfStored?: string) => {
     keyRef.current = null;
     const s = storage();
-    if (s) writeKey(s, null);
+    if (s) {
+      if (onlyIfStored) clearKeyIf(s, onlyIfStored);
+      else writeKey(s, null);
+    }
     setEnabled(false);
   }, []);
 
@@ -67,7 +73,7 @@ export function DriveSyncProvider({ children }: { children: React.ReactNode }) {
       if (activating.current) return;
       // Sin llave (se desactivó mientras corría una sincronización) no se muestra el resultado.
       if (keyRef.current === null) return;
-      if (s === 'revoked') forgetKey(); // se borraron los datos desde otro dispositivo: queda el aviso hasta activar de nuevo
+      if (s === 'revoked') forgetKey(keyRef.current); // se borraron los datos desde otro dispositivo: queda el aviso hasta activar de nuevo
       setStatus(s);
     },
     [forgetKey]

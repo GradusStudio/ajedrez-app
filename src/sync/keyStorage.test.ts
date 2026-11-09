@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { KEY_STORAGE, OLD_FLAG_KEY, readKey, writeKey } from './keyStorage';
+import { clearKeyIf, KEY_STORAGE, OLD_FLAG_KEY, readKey, writeKey } from './keyStorage';
 import { newSyncKey } from './syncKey';
 
 /** Almacenamiento de mentira en memoria. */
@@ -48,4 +48,26 @@ test('readKey borra la clave vieja gradus:driveSync', () => {
   const s = fakeStorage({ [OLD_FLAG_KEY]: '1' });
   assert.equal(readKey(s), null);
   assert.equal(s.data.has(OLD_FLAG_KEY), false);
+});
+
+test('clearKeyIf borra la llave guardada si es la misma', () => {
+  const key = newSyncKey();
+  const s = fakeStorage({ [KEY_STORAGE]: key });
+  clearKeyIf(s, key);
+  assert.equal(s.data.has(KEY_STORAGE), false);
+});
+
+test('clearKeyIf deja la llave guardada si es otra (la escribió otra pestaña)', () => {
+  const nueva = newSyncKey();
+  const s = fakeStorage({ [KEY_STORAGE]: nueva });
+  clearKeyIf(s, newSyncKey());
+  assert.equal(s.data.get(KEY_STORAGE), nueva);
+});
+
+test('clearKeyIf sin nada guardado no hace nada, y con almacenamiento que lanza no lanza', () => {
+  const s = fakeStorage();
+  clearKeyIf(s, newSyncKey());
+  assert.equal(s.data.size, 0);
+  const broken = { getItem: () => { throw new Error('bloqueado'); }, removeItem: () => { throw new Error('bloqueado'); } };
+  assert.doesNotThrow(() => clearKeyIf(broken, newSyncKey()));
 });

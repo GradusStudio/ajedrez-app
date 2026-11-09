@@ -96,7 +96,9 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
   const inBook = useRef(!initialMoves?.length);
   const startedIso = useRef(initialStartedAt ?? ''); // fecha de inicio de la partida guardada; se completa al montar
   const finished = useRef(false); // la partida se guarda una sola vez
-  const savedOngoing = useRef(false); // esta pantalla ya guardó su partida sin terminar al menos una vez
+  // Al retomar con «Continuar» la partida ya estaba guardada: si desapareció antes de la primera jugada (terminada o
+  // borrada en otro dispositivo) no se vuelve a guardar. Una partida nueva sí guarda su primera vez.
+  const savedOngoing = useRef(!!initialStartedAt);
 
   useEffect(() => {
     startedAt.current = Date.now();

@@ -5,7 +5,9 @@ import { Button3D } from '../components/Button3D';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { isPuzzleSolved } from '../progress/progressStore';
-import { Level, levelRange, Puzzle, PRACTICE_THEMES, puzzleGoal, themeName } from '../puzzles/puzzles';
+import { currentRating } from '../progress/puzzleRating';
+import { useSettings } from '../settings/SettingsContext';
+import { Level, levelOf, levelRange, LEVELS, Puzzle, PRACTICE_THEMES, puzzleGoal, themeName } from '../puzzles/puzzles';
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
 import { levelsWithPuzzles, PuzzleSource } from '../puzzles/source';
 import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
@@ -14,7 +16,8 @@ import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
   onOpenDaily: (id: string) => void;
-  onPractice: (level: Level, theme: string | null) => void;
+  /** `auto`: dificultad automática según el nivel de puzzles. */
+  onPractice: (level: Level | 'auto', theme: string | null) => void;
 };
 
 // Pestaña Puzzles: puzzle del día y práctica por nivel y tema (mapa-de-pantallas.md, 2.8).
@@ -29,8 +32,7 @@ type Daily = { status: 'loading' } | { status: 'error'; offline: boolean } | { s
 function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: PuzzleSource }) {
   const { progress } = useProgress();
   const { t, number } = useI18n();
-  // Dificultad inicial según el nivel elegido en la bienvenida.
-  const [level, setLevel] = useState<Level>(progress.profile.level === 'casual' ? 'medio' : 'facil');
+  const { settings, update } = useSettings();
   const [theme, setTheme] = useState<string | null>(null);
   const [daily, setDaily] = useState<Daily>({ status: 'loading' });
   const [dailyAttempt, setDailyAttempt] = useState(0);
@@ -49,6 +51,10 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
   useEffect(() => source.prepareOffline(), [source]);
 
   const levels = levelsWithPuzzles(source);
+  const rating = currentRating(progress);
+  const auto = settings.puzzleMode === 'auto';
+  // A mano: el último nivel elegido o, la primera vez, el que contiene el nivel de puzzles (el más cercano que exista).
+  const level = settings.puzzleLevel && levels.includes(settings.puzzleLevel) ? settings.puzzleLevel : nearest(levelOf(rating), levels);
   const dailyDone = daily.status === 'ready' ? progress.puzzles[daily.puzzle.id] : undefined;
   const solvedTotal = Object.keys(progress.puzzles).filter((id) => isPuzzleSolved(progress, id)).length;
   const available = source.count(level, theme);
@@ -103,12 +109,39 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
       <Text style={styles.section}>{t('puzzles.practice')}</Text>
       <Text style={styles.label}>{t('puzzles.difficulty')}</Text>
       <View style={styles.segmented}>
+        {(['auto', 'manual'] as const).map((mode) => {
+          const selected = settings.puzzleMode === mode;
+          return (
+            <Pressable
+              key={mode}
+              onPress={() => update({ puzzleMode: mode })}
+              accessibilityRole="radio"
+              accessibilityState={{ selected }}
+              accessibilityLabel={t(`puzzles.mode.${mode}`)}
+              style={[styles.segment, styles.mode, selected && styles.segmentSelected]}
+            >
+              <Text numberOfLines={1} adjustsFontSizeToFit style={[styles.segmentText, selected && { color: colors.text }]}>
+                {t(`puzzles.mode.${mode}`)}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+      {auto && settings.showPuzzleRating && (
+        <View style={[styles.card, styles.ratingCard]} accessible accessibilityLabel={`${t('puzzles.myRating')} ${rating}`}>
+          <Text style={styles.ratingText}>
+            {t('puzzles.myRating')} <Text style={styles.ratingNumber}>{rating}</Text>
+          </Text>
+        </View>
+      )}
+      {!auto && (
+      <View style={[styles.segmented, { marginTop: space.sm }]}>
         {levels.map((l) => {
           const selected = l === level;
           return (
             <Pressable
               key={l}
-              onPress={() => setLevel(l)}
+              onPress={() => update({ puzzleLevel: l })}
               accessibilityRole="radio"
               accessibilityState={{ selected }}
               accessibilityLabel={t('puzzles.levelLabel', { label: t(`puzzles.level.${l}`), range: levelRange(l) })}
@@ -120,6 +153,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
           );
         })}
       </View>
+      )}
 
       <Text style={styles.label}>{t('puzzles.theme')}</Text>
       <View style={styles.themes}>
@@ -139,12 +173,25 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
         })}
       </View>
 
-      {available > 0 && (
-        <Button3D label={t('puzzles.practiceButton')} variant="primary" onPress={() => onPractice(level, theme)} style={{ marginTop: space.lg }} />
+      {(auto ? source.total > 0 : available > 0) && (
+        <Button3D
+          label={t('puzzles.practiceButton')}
+          variant="primary"
+          onPress={() => onPractice(auto ? 'auto' : level, theme)}
+          style={{ marginTop: space.lg }}
+        />
       )}
-      <Text style={styles.count}>{t('puzzles.count', { n: number(available) })}</Text>
+      {/* En Automático la cantidad depende del nivel y confunde: solo se muestra a mano. */}
+      {!auto && <Text style={styles.count}>{t('puzzles.count', { n: number(available) })}</Text>}
     </ColumnScrollView>
   );
+}
+
+/** El nivel de `levels` más cercano a `level` (en el celular no hay Experto). */
+function nearest(level: Level, levels: Level[]): Level {
+  const all = Object.keys(LEVELS) as Level[];
+  const i = all.indexOf(level);
+  return [...levels].sort((a, b) => Math.abs(all.indexOf(a) - i) - Math.abs(all.indexOf(b) - i))[0] ?? level;
 }
 
 const styles = StyleSheet.create({
@@ -183,6 +230,10 @@ const styles = StyleSheet.create({
     marginBottom: space.sm,
   },
   segmented: { flexDirection: 'row', gap: space.sm },
+  mode: { minHeight: 44, justifyContent: 'center', paddingHorizontal: space.sm },
+  ratingCard: { marginTop: space.sm },
+  ratingText: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
+  ratingNumber: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.gold },
   segment: {
     flex: 1,
     alignItems: 'center',

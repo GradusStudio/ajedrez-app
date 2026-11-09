@@ -180,3 +180,28 @@ test('prepareOffline no hace nada sin red', async () => {
   await new Promise((r) => setTimeout(r, 10));
   assert.deepEqual(state.fetched, []);
 });
+
+// ---------- Automático: cerca del nivel ----------
+
+test('nextNear pide el trozo del nivel de dificultad del objetivo', async () => {
+  const { io, state } = fakeIO();
+  const src = createChunkSource(manifest, io, first);
+  const p = await src.nextNear(1300, null, none, new Set());
+  assert.ok(p);
+  assert.ok(state.fetched[0].startsWith('medio/todos/'));
+});
+
+test('nextNear: si el nivel del objetivo no tiene puzzles del tema, usa el más cercano que tenga', async () => {
+  const { io, state } = fakeIO();
+  const src = createChunkSource(manifest, io, first);
+  const p = await src.nextNear(2700, 'fork', none, new Set());
+  assert.ok(p?.themes.includes('fork'));
+  assert.ok(state.fetched.includes('medio/fork/0.json'));
+});
+
+test('nextNear sin red busca en los trozos guardados filtrando por el tema', async () => {
+  const { io } = fakeIO({ net: false, cache: { 'medio/todos/1.json': files['medio/todos/1.json'] } });
+  const src = createChunkSource(manifest, io, first);
+  const p = await src.nextNear(1300, 'pin', none, new Set());
+  assert.equal(p?.id, 'a4');
+});

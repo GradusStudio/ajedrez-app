@@ -1,4 +1,4 @@
-import { countPuzzles, dailyPuzzle, findPuzzle, Level, LEVELS, nextPuzzle, Puzzle } from './puzzles';
+import { autoTarget, countPuzzles, dailyPuzzle, findPuzzle, Level, LEVELS, nextPuzzle, pickAny, pickNear, pickPending, Puzzle } from './puzzles';
 
 /**
  * De dónde salen los puzzles. En el celular, de la lista de 50.000 que trae la app (`listSource`); en la web, de la
@@ -15,6 +15,8 @@ export type PuzzleSource = {
   byId(id: string): Promise<Puzzle | undefined>;
   /** Siguiente de práctica: pendiente y que no haya salido en esta sesión (`seen`); si no queda, uno repetido. */
   next(level: Level, theme: string | null, done: (id: string) => boolean, seen: ReadonlySet<string>): Promise<Puzzle | undefined>;
+  /** Práctica automática: uno pendiente cerca de `rating` (el nivel de puzzles); si no hay, el más parecido posible. */
+  nextNear(rating: number, theme: string | null, done: (id: string) => boolean, seen: ReadonlySet<string>): Promise<Puzzle | undefined>;
   /** Baja en segundo plano lo necesario para jugar sin conexión (solo en la web). */
   prepareOffline(): void;
 };
@@ -42,6 +44,11 @@ export function listSource(puzzles: Puzzle[]): PuzzleSource {
     daily: async (now) => dailyPuzzle(puzzles, now),
     byId: async (id) => findPuzzle(puzzles, id),
     next: async (level, theme, done, seen) => nextPuzzle(puzzles, level, theme, done, seen),
+    async nextNear(rating, theme, done, seen) {
+      // Todos los niveles: en el celular no hay Experto y un nivel de 2600 tiene que dar puzzles de Difícil.
+      const pool = theme ? puzzles.filter((p) => p.themes.includes(theme)) : puzzles;
+      return pickNear(pool, autoTarget(rating), done, seen) ?? pickPending(pool, done, seen) ?? pickAny(pool, seen);
+    },
     prepareOffline() {},
   };
 }

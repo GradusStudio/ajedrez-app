@@ -1,4 +1,4 @@
-import { dayNumber, Level, LEVELS, pickAny, pickPending, Puzzle } from './puzzles';
+import { autoTarget, dayNumber, Level, levelOf, LEVELS, pickAny, pickNear, pickPending, Puzzle } from './puzzles';
 import { PuzzleSource, PuzzlesUnavailable } from './source';
 
 // Puzzles de la web: la base completa de Lichess partida en trozos de 1.000 (scripts/build-puzzles.js) que se piden
@@ -167,9 +167,13 @@ export function createChunkSource(m: Manifest, io: ChunkIO, random = Math.random
     if (path) loadChunk(path).catch(() => {});
   }
 
-  async function offline(level: Level, group: string, done: (id: string) => boolean, seen: ReadonlySet<string>): Promise<Puzzle> {
+  /** Cómo se elige dentro de un trozo: pendiente (`next`) o pendiente cerca del nivel (`nextNear`). */
+  type Choose = (list: Puzzle[]) => Puzzle | undefined;
+
+  async function offline(level: Level, group: string, done: (id: string) => boolean, seen: ReadonlySet<string>, choose: Choose): Promise<Puzzle> {
     const order = offlineOrder(await io.cachedPaths().catch(() => []), level, group);
     let fallback: Puzzle[] = [];
+    let pending: Puzzle | undefined;
     for (const { path, filter } of order) {
       let list = memory.get(path);
       if (!list) {
@@ -179,13 +183,70 @@ export function createChunkSource(m: Manifest, io: ChunkIO, random = Math.random
         remember(path, list);
       }
       if (filter) list = list.filter((p) => p.themes.includes(filter));
-      const p = pickPending(list, done, seen, random);
+      const p = choose(list);
       if (p) return p;
+      pending ??= pickPending(list, done, seen, random);
       if (!fallback.length) fallback = list;
     }
-    const p = pickAny(fallback, seen, random);
+    const p = pending ?? pickAny(fallback, seen, random);
     if (p) return p;
     throw new PuzzlesUnavailable(!io.online());
+  }
+
+  /**
+   * Recorre los trozos del grupo en memoria y hasta ATTEMPTS trozos nuevos (de la mejor capa con trozos sin probar),
+   * eligiendo con `choose`. Un trozo sin ningún pendiente queda agotado para la sesión. Si falla la red, lanza.
+   */
+  async function walk(level: Level, group: string, done: (id: string) => boolean, seen: ReadonlySet<string>, choose: Choose) {
+    const prefix = `${level}/${group}/`;
+    const pick = (list: Puzzle[]) => {
+      const p = choose(list);
+      if (p) prefetch(level, group, list, done, seen, p.id);
+      return p;
+    };
+    const tryList = (path: string, list: Puzzle[]) => {
+      const p = pick(list);
+      if (!p && !pickPending(list, done, seen, random)) exhausted.add(path);
+      return p;
+    };
+    for (const [path, list] of [...memory]) {
+      if (!path.startsWith(prefix) || exhausted.has(path)) continue;
+      const p = tryList(path, list);
+      if (p) return { picked: p };
+    }
+    let last: Puzzle[] | undefined;
+    for (let attempt = 0; attempt < ATTEMPTS; attempt++) {
+      const path = freshPath(level, group);
+      if (!path) break;
+      last = await loadChunk(path);
+      const p = tryList(path, last);
+      if (p) return { picked: p };
+    }
+    return { last };
+  }
+
+  async function next(level: Level, theme: string | null, done: (id: string) => boolean, seen: ReadonlySet<string>): Promise<Puzzle | undefined> {
+    const group = groupOf(theme);
+    if (groupCount(m, level, group) === 0) return undefined;
+    const choose: Choose = (list) => pickPending(list, done, seen, random);
+    try {
+      const { picked, last } = await walk(level, group, done, seen, choose);
+      if (picked) return picked;
+      // Sin pendientes a mano: uno repetido.
+      const prefix = `${level}/${group}/`;
+      let pool = last ?? [...memory].filter(([path]) => path.startsWith(prefix)).flatMap(([, list]) => list);
+      if (!pool.length) pool = await loadChunk(chunkPath(level, group, pickFrom(layerChunks(m, level, group).flat())));
+      return pickAny(pool, seen, random);
+    } catch {
+      return offline(level, group, done, seen, choose);
+    }
+  }
+
+  /** El nivel de dificultad más cercano a `level` que tiene puzzles del grupo (en el celular no hay Experto). */
+  function nearestLevel(level: Level, group: string): Level | undefined {
+    const all = Object.keys(LEVELS) as Level[];
+    const i = all.indexOf(level);
+    return [...all].sort((a, b) => Math.abs(all.indexOf(a) - i) - Math.abs(all.indexOf(b) - i)).find((l) => groupCount(m, l, group) > 0);
   }
 
   return {
@@ -217,44 +278,22 @@ export function createChunkSource(m: Manifest, io: ChunkIO, random = Math.random
       return undefined;
     },
 
-    async next(level, theme, done, seen) {
-      const group = groupOf(theme);
-      if (groupCount(m, level, group) === 0) return undefined;
-      const prefix = `${level}/${group}/`;
-      const pick = (list: Puzzle[]) => {
-        const p = pickPending(list, done, seen, random);
-        if (p) prefetch(level, group, list, done, seen, p.id);
-        return p;
-      };
+    next,
 
-      // 1. Los trozos que ya están en memoria.
-      for (const [path, list] of [...memory]) {
-        if (!path.startsWith(prefix) || exhausted.has(path)) continue;
-        const p = pick(list);
-        if (p) return p;
-        exhausted.add(path);
-      }
-      // 2. Trozos nuevos, de la mejor capa con trozos sin probar.
-      let last: Puzzle[] | undefined;
+    async nextNear(rating, theme, done, seen) {
+      const group = groupOf(theme);
+      const target = autoTarget(rating, random);
+      const level = nearestLevel(levelOf(target), group);
+      if (!level) return undefined;
+      const choose: Choose = (list) => pickNear(list, target, done, seen, random);
       try {
-        for (let attempt = 0; attempt < ATTEMPTS; attempt++) {
-          const path = freshPath(level, group);
-          if (!path) break;
-          last = await loadChunk(path);
-          const p = pick(last);
-          if (p) return p;
-          exhausted.add(path);
-        }
-        // 3. Sin pendientes a mano: uno repetido.
-        let pool = last ?? [...memory].filter(([path]) => path.startsWith(prefix)).flatMap(([, list]) => list);
-        if (!pool.length) {
-          const all = layerChunks(m, level, group).flat();
-          pool = await loadChunk(chunkPath(level, group, pickFrom(all)));
-        }
-        return pickAny(pool, seen, random);
+        const { picked } = await walk(level, group, done, seen, choose);
+        if (picked) return picked;
       } catch {
-        return offline(level, group, done, seen);
+        return offline(level, group, done, seen, choose);
       }
+      // Ningún pendiente cerca en los trozos probados: el de siempre del nivel (pendiente, si no repetido).
+      return next(level, theme, done, seen);
     },
 
     prepareOffline() {

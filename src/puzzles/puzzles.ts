@@ -121,6 +121,32 @@ export function pickPending(list: Puzzle[], done: (id: string) => boolean, seen:
   return pending.length > 0 ? pending[Math.floor(random() * pending.length)] : undefined;
 }
 
+/** Ventanas alrededor del objetivo para la práctica automática, de la más chica a la más grande. */
+export const NEAR_WINDOWS = [100, 200, 400];
+
+/** Objetivo de la práctica automática: el nivel ± 100 al azar (variedad, y a veces uno un poco más difícil). */
+export const autoTarget = (rating: number, random = Math.random): number => rating + Math.round((random() * 2 - 1) * 100);
+
+/** Nivel de dificultad que contiene un rating. */
+export function levelOf(rating: number): Level {
+  const found = (Object.keys(LEVELS) as Level[]).find((l) => rating >= LEVELS[l].min && rating < LEVELS[l].max);
+  return found ?? (rating < LEVELS.facil.min ? 'facil' : 'experto');
+}
+
+/** Uno pendiente cerca del objetivo: el primero que aparezca en las ventanas NEAR_WINDOWS; undefined si ninguno. */
+export function pickNear(list: Puzzle[], target: number, done: (id: string) => boolean, seen: ReadonlySet<string>, random = Math.random): Puzzle | undefined {
+  for (const w of NEAR_WINDOWS) {
+    const p = pickPending(
+      list.filter((x) => Math.abs(x.rating - target) <= w),
+      done,
+      seen,
+      random
+    );
+    if (p) return p;
+  }
+  return undefined;
+}
+
 /** Uno al azar, repetido si hace falta: primero de los que no salieron en esta sesión. */
 export function pickAny(list: Puzzle[], seen: ReadonlySet<string>, random = Math.random): Puzzle | undefined {
   const fresh = list.filter((p) => !seen.has(p.id));

@@ -16,6 +16,7 @@ import {
   withPieceSetBought,
   withPractice,
   withProfile,
+  withPuzzleFailedNow,
   withPuzzleFinished,
   withReviewFinished,
   withTurningPointSolved,
@@ -26,7 +27,8 @@ import { mergeImport, mergeProgress, sameProgress } from './merge';
 import { useCrossTabSync } from './useCrossTabSync';
 
 /** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
-export type Earned = { coins: number; dailyBonus: number; streakRecovered: boolean };
+/** `rating`: nivel de puzzles después del puzzle y cuánto cambió (solo `finishPuzzle`; null si no lo movió). */
+export type Earned = { coins: number; dailyBonus: number; streakRecovered: boolean; rating?: { rating: number; delta: number } | null };
 
 type ProgressValue = {
   progress: Progress;
@@ -48,7 +50,10 @@ type ProgressValue = {
     botElo: number,
     countsForStreak: boolean
   ) => Earned;
-  finishPuzzle: (id: string, result: PuzzleResult, seconds: number) => Earned;
+  /** `puzzleRating`: rating de Lichess del puzzle (mueve el nivel de puzzles la primera vez). */
+  finishPuzzle: (id: string, result: PuzzleResult, seconds: number, puzzleRating: number) => Earned;
+  /** Fallo cobrado en el momento (error, pista o «Ver solución»): devuelve cuánto bajó el nivel, o null si no cuenta. */
+  failPuzzle: (id: string, puzzleRating: number) => number | null;
   /** Punto de giro encontrado en el quiz de la revisión: devuelve las monedas (0 si ya se había cobrado). */
   finishTurningPoint: (key: string, clean: boolean) => number;
   /** Compra un set de piezas: devuelve false si no alcanzan las monedas. */
@@ -143,9 +148,20 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   );
 
   const finishPuzzle = useCallback(
-    (id: string, result: PuzzleResult, seconds: number) =>
-      commitEarned(current.current, withPuzzleFinished(current.current, id, result, seconds)),
+    (id: string, result: PuzzleResult, seconds: number, puzzleRating: number) => {
+      const r = withPuzzleFinished(current.current, id, result, seconds, puzzleRating);
+      return { ...commitEarned(current.current, r), rating: r.ratingChange };
+    },
     [commitEarned]
+  );
+
+  const failPuzzle = useCallback(
+    (id: string, puzzleRating: number) => {
+      const r = withPuzzleFailedNow(current.current, id, puzzleRating);
+      if (r.delta !== null) commit(r.progress);
+      return r.delta;
+    },
+    [commit]
   );
 
   const finishTurningPoint = useCallback(
@@ -212,6 +228,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         addPractice,
         finishGame,
         finishPuzzle,
+        failPuzzle,
         finishTurningPoint,
         buyPieceSet,
         buyBoardTheme,

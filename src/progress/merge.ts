@@ -1,4 +1,5 @@
-import { PROGRESS_VERSION, PUZZLE_RANK, coinBalance, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress } from './progressStore';
+import { PROGRESS_VERSION, PUZZLE_RANK, coinBalance, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress, type PuzzleRecord } from './progressStore';
+import { MAX_PENDING, type PuzzleRating } from './puzzleRating';
 import type { DayActions, Streak } from './streak';
 
 // Combina dos copias del progreso (la del dispositivo y una importada de un archivo o de Drive) sin perder nada.
@@ -145,6 +146,24 @@ function lastChanged<T>(
   return { value: winner, stamp: laterDate(a.stamp, b.stamp) };
 }
 
+/**
+ * Nivel de puzzles: gana el que contó más puzzles (`rated`); si empatan, el cambiado más tarde. `pending` se une, sin
+ * los puzzles que ya están terminados en `puzzles` (tope MAX_PENDING).
+ */
+export function mergePuzzleRating(
+  a: PuzzleRating | undefined,
+  b: PuzzleRating | undefined,
+  puzzles: Record<string, PuzzleRecord>
+): PuzzleRating | undefined {
+  if (!a || !b) {
+    const only = a ?? b;
+    return only && { ...only, pending: only.pending.filter((id) => !puzzles[id]).slice(-MAX_PENDING) };
+  }
+  const winner = pick(a, b, a.rated - b.rated || cmpDate(a.at, b.at));
+  const pending = union(a.pending, b.pending).filter((id) => !puzzles[id]).slice(-MAX_PENDING);
+  return { ...winner, pending };
+}
+
 /** Combina el progreso local con otro (importado o bajado de Drive). El resultado conserva `local.deviceId`. */
 export function mergeProgress(local: Progress, incoming: Progress): Progress {
   // Si se borró el progreso en uno de los dos después que en el otro, gana entera esa versión.
@@ -213,6 +232,8 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     turningPoints: union(local.turningPoints, incoming.turningPoints),
   };
   if (lastUnit.value !== undefined) merged.lastUnit = lastUnit.value;
+  const puzzleRating = mergePuzzleRating(local.puzzleRating, incoming.puzzleRating, puzzles);
+  if (puzzleRating) merged.puzzleRating = puzzleRating;
   return withBalance(merged);
 }
 

@@ -1,6 +1,7 @@
 import test, { afterEach, mock } from 'node:test';
 import assert from 'node:assert/strict';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { repairStructure } from './structure';
 import {
   coinBalance,
   emptyProgress,
@@ -12,6 +13,7 @@ import {
   withLessonFinished,
   withPieceSetBought,
   withProfile,
+  withPuzzleFailedNow,
   withPuzzleFinished,
   withReset,
   type Progress,
@@ -121,7 +123,7 @@ test('ganar monedas suma a earned del dispositivo y coins sigue al libro', () =>
   const r = withLessonFinished(v4(), { lessonId: 'x', lessonCoins: 15, errors: 0, mistakes: [], seconds: 30 }, now);
   assert.deepEqual(r.progress.coinLedger, { dev1: { earned: 25, spent: 0 } });
   assert.equal(r.progress.coins, 25);
-  const r2 = withPuzzleFinished(r.progress, 'p', 'clean', 10, now);
+  const r2 = withPuzzleFinished(r.progress, 'p', 'clean', 10, 1000, now);
   assert.equal(r2.progress.coins, 27);
   assert.equal(r2.progress.coins, coinBalance(r2.progress.coinLedger));
 });
@@ -353,4 +355,72 @@ test('loadProgress: si no se puede guardar la copia de respaldo, no se pisa lo g
   assert.equal(r.canSave, false);
   assert.equal(map.get(KEY), stored);
   assert.equal(setItem.mock.calls.every((c) => c.arguments[0] === BACKUP), true);
+});
+
+// ---------- Nivel de puzzles ----------
+
+const at = new Date('2026-11-09T12:00:00.000Z');
+
+test('el fallo se cobra en el momento y una sola vez', () => {
+  const p = v4({ profile: { level: 'casual' } });
+  const r = withPuzzleFailedNow(p, 'x', 1400, at);
+  assert.equal(r.delta, -20);
+  assert.equal(r.progress.puzzleRating?.rating, 1380);
+  assert.deepEqual(r.progress.puzzleRating?.pending, ['x']);
+  const again = withPuzzleFailedNow(r.progress, 'x', 1400, at);
+  assert.equal(again.delta, null);
+  assert.equal(again.progress, r.progress);
+});
+
+test('abandonar tras un error y volver: resolverlo no suma, sale de pending y da las monedas de siempre', () => {
+  const failed = withPuzzleFailedNow(v4({ profile: { level: 'casual' } }), 'x', 1400, at).progress;
+  const r = withPuzzleFinished(failed, 'x', 'clean', 10, 1400, at);
+  assert.equal(r.ratingChange, null);
+  assert.equal(r.progress.puzzleRating?.rating, 1380);
+  assert.deepEqual(r.progress.puzzleRating?.pending, []);
+  assert.equal(r.progress.puzzles.x.result, 'clean');
+  assert.equal(r.coinsEarned, 2);
+});
+
+test('un acierto limpio nuevo sube; el mismo puzzle otra vez no mueve el nivel', () => {
+  const r = withPuzzleFinished(v4(), 'y', 'clean', 10, 1000, at);
+  assert.deepEqual(r.ratingChange, { rating: 1020, delta: 20 });
+  const again = withPuzzleFinished(r.progress, 'y', 'clean', 10, 1000, at);
+  assert.equal(again.ratingChange, null);
+  assert.equal(again.progress.puzzleRating?.rating, 1020);
+});
+
+test('resuelto con errores sin fallo cobrado antes: baja', () => {
+  const r = withPuzzleFinished(v4(), 'z', 'solved', 10, 1000, at);
+  assert.deepEqual(r.ratingChange, { rating: 980, delta: -20 });
+});
+
+test('un puzzle ya terminado antes no se cobra como fallo', () => {
+  const done = withPuzzleFinished(v4(), 'y', 'clean', 10, 1000, at).progress;
+  assert.equal(withPuzzleFailedNow(done, 'y', 1000, at).delta, null);
+});
+
+test('pending tiene tope de 500 y descarta el más viejo', () => {
+  const pending = Array.from({ length: 500 }, (_, i) => `p${i}`);
+  const p = v4({ puzzleRating: { rating: 1200, rated: 600, at: null, pending } });
+  const r = withPuzzleFailedNow(p, 'nuevo', 1200, at);
+  assert.equal(r.progress.puzzleRating?.pending.length, 500);
+  assert.equal(r.progress.puzzleRating?.pending[0], 'p1');
+  assert.equal(r.progress.puzzleRating?.pending[499], 'nuevo');
+});
+
+test('borrar el progreso borra el nivel', () => {
+  const p = v4({ puzzleRating: { rating: 1500, rated: 40, at: null, pending: [] } });
+  assert.equal(withReset(p).puzzleRating, undefined);
+});
+
+test('una copia sin nivel no lo inventa; un nivel roto se descarta al reparar', () => {
+  assert.equal(migrate(v4() as never, 'dev1').puzzleRating, undefined);
+  const kept = migrate(v4({ puzzleRating: { rating: 1500, rated: 4, at: null, pending: ['a'] } }) as never, 'dev1');
+  assert.equal(kept.puzzleRating?.rating, 1500);
+  for (const bad of [{ rating: 'abc', rated: 1, at: null, pending: [] }, { rating: 1200, rated: 1, at: null, pending: 5 }]) {
+    const { data, repaired } = repairStructure({ ...v4(), puzzleRating: bad });
+    assert.equal(data.puzzleRating, undefined);
+    assert.ok(repaired.includes('puzzleRating'));
+  }
 });

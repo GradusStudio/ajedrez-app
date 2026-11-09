@@ -103,7 +103,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
     finished.current = true;
     if (result !== 'failed') feedback.correct();
     setStatus(result === 'failed' ? 'failed' : 'solved');
-    setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS)));
+    setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS), puzzle.rating));
   };
 
   const handleMove = (m: BoardMove) => {

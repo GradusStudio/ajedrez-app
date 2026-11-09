@@ -1,6 +1,7 @@
 import { hasUsableStructure, repairStructure } from './structure';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { puzzleCountsForStreak, Streak, streakStatus, StreakStatus, StreakAction, todayKey, withStreakAction } from './streak';
+import { applyRating, initialRating, MAX_PENDING, type PuzzleRating } from './puzzleRating';
 
 export { todayKey } from './streak';
 
@@ -78,6 +79,8 @@ export type Progress = {
   /** Puntos de giro (quiz de la revisión de partidas) ya cobrados, por `turningPointKey`. Se agregó sin subir la versión: si falta, vale []. */
   turningPoints: string[];
   lastUnit?: number; // unidad de la última lección empezada en Aprender, la que se muestra al abrir la app
+  /** Nivel de puzzles (puzzleRating.ts). Se agregó sin subir la versión: si falta, vale el nivel inicial de la bienvenida. */
+  puzzleRating?: PuzzleRating;
 };
 
 /** Clave del progreso en AsyncStorage (en la web, localStorage). No cambia: cambiarla perdería lo guardado. */
@@ -330,24 +333,50 @@ export const PUZZLE_RANK: Record<PuzzleResult, number> = { failed: 0, solved: 1,
  * Puzzle terminado: guarda el mejor resultado y cuenta para la racha salvo
  * que se haya mirado la solución (`failed`).
  * Da monedas solo la primera vez que se resuelve (si antes se había mirado la solución, todavía cuenta).
+ * Mueve el nivel de puzzles solo la primera vez que se juega (`ratingChange`; null si ya se había jugado o si el
+ * fallo ya se cobró con `withPuzzleFailedNow`). `puzzleRating` es el rating de Lichess del puzzle.
  */
 export function withPuzzleFinished(
   p: Progress,
   id: string,
   result: PuzzleResult,
   seconds: number,
+  puzzleRating: number,
   now = new Date()
-): { progress: Progress; coinsEarned: number; streakRecovered: boolean } {
+): { progress: Progress; coinsEarned: number; streakRecovered: boolean; ratingChange: { rating: number; delta: number } | null } {
   const today = todayKey(now);
   const prev = p.puzzles[id];
   const best = prev && PUZZLE_RANK[prev.result] >= PUZZLE_RANK[result] ? prev.result : result;
   const coinsEarned = isPuzzleSolved(p, id) ? 0 : PUZZLE_COINS[result];
   let next: Progress = { ...p, puzzles: { ...p.puzzles, [id]: { result: best, at: now.toISOString() } } };
+  let ratingChange: { rating: number; delta: number } | null = null;
+  if (isFirstPlay(p, id)) {
+    const r = applyRating(ratingState(p), puzzleRating, result === 'clean' ? 1 : 0, now);
+    next = { ...next, puzzleRating: r.state };
+    ratingChange = { rating: r.state.rating, delta: r.delta };
+  } else if (p.puzzleRating?.pending.includes(id)) {
+    next = { ...next, puzzleRating: { ...p.puzzleRating, pending: p.puzzleRating.pending.filter((x) => x !== id) } };
+  }
   next = withCoins(next, coinsEarned);
   next = withPractice(next, seconds, today);
-  if (!puzzleCountsForStreak(result)) return { progress: next, coinsEarned, streakRecovered: false };
+  if (!puzzleCountsForStreak(result)) return { progress: next, coinsEarned, streakRecovered: false, ratingChange };
   const streak = withStreak(next, 'puzzle', today);
-  return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered };
+  return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered, ratingChange };
+}
+
+/** El puzzle todavía no movió el nivel: no está terminado ni tiene un fallo ya cobrado. */
+const isFirstPlay = (p: Progress, id: string) => !p.puzzles[id] && !p.puzzleRating?.pending.includes(id);
+const ratingState = (p: Progress): PuzzleRating => p.puzzleRating ?? { rating: initialRating(p.profile.level), rated: 0, at: null, pending: [] };
+
+/**
+ * Fallo cobrado en el momento (primera jugada equivocada, pista o «Ver solución»): baja el nivel aunque después se
+ * salga del puzzle sin terminarlo, y lo anota en `pending` para que no vuelva a moverlo. `delta` null si no cuenta.
+ */
+export function withPuzzleFailedNow(p: Progress, id: string, puzzleRating: number, now = new Date()): { progress: Progress; delta: number | null } {
+  if (!isFirstPlay(p, id)) return { progress: p, delta: null };
+  const r = applyRating(ratingState(p), puzzleRating, 0, now);
+  const pending = [...r.state.pending, id].slice(-MAX_PENDING);
+  return { progress: { ...p, puzzleRating: { ...r.state, pending } }, delta: r.delta };
 }
 
 /** true si el puzzle ya se resolvió (con o sin errores). */
@@ -415,7 +444,7 @@ function toV3(data: ProgressV1 | ProgressV2 | ProgressV3): ProgressV3 {
 }
 
 /** Campos que tiene un progreso. Lo que traiga de más un archivo o un respaldo no se copia al estado, que se guarda y se vuelve a subir a Drive. */
-const KNOWN_FIELDS = [...Object.keys(emptyProgress), 'lastUnit'];
+const KNOWN_FIELDS = [...Object.keys(emptyProgress), 'lastUnit', 'puzzleRating'];
 function knownFields<T extends object>(data: T): Partial<T> {
   const out: Record<string, unknown> = {};
   for (const k of KNOWN_FIELDS) if (Object.hasOwn(data, k)) out[k] = (data as Record<string, unknown>)[k];

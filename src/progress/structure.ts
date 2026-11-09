@@ -57,6 +57,10 @@ export function hasUsableStructure(p: Record<string, unknown>): boolean {
     if (!(isObject(pf) && (!('level' in pf) || PLAYER_LEVELS.includes(pf.level as string)) && (!('onboarded' in pf) || typeof pf.onboarded === 'boolean'))) return false;
   }
   if (has('lastUnit') && !isInt(p.lastUnit)) return false;
+  if (has('puzzleRating')) {
+    const r = p.puzzleRating;
+    if (!(isObject(r) && isCount(r.rating) && isInt(r.rated) && isStringOrNull(r.at) && isStrings(r.pending))) return false;
+  }
   // La versión 1 no tenía racha.
   if (p.version === 1 && !has('streak')) return true;
   const s = p.streak;

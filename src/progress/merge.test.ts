@@ -494,3 +494,29 @@ test('mergeRecord no toca prototipos con una clave __proto__ propia', () => {
   const c = make({ deviceId: 'C', coinLedger: JSON.parse('{"constructor": {"earned": 5, "spent": 0}}') });
   assert.deepEqual(mergeProgress(make(), c).coinLedger.constructor, { earned: 5, spent: 0 });
 });
+
+// ---------- Nivel de puzzles ----------
+
+const nivel = (rating: number, rated: number, at: string | null, pending: string[] = []) => ({ rating, rated, at, pending });
+
+test('nivel de puzzles: gana el que tiene más puzzles con nivel; si empatan, el más reciente', () => {
+  const a = make({ puzzleRating: nivel(1500, 40, '2026-11-01T00:00:00.000Z') });
+  const b = make({ puzzleRating: nivel(1300, 10, '2026-11-08T00:00:00.000Z') });
+  assert.equal(mergeProgress(a, b).puzzleRating?.rating, 1500);
+  assert.equal(mergeProgress(b, a).puzzleRating?.rating, 1500);
+  const c = make({ puzzleRating: nivel(1350, 40, '2026-11-08T00:00:00.000Z') });
+  assert.equal(mergeProgress(a, c).puzzleRating?.rating, 1350);
+});
+
+test('nivel de puzzles: pending se une sin los que ya están terminados; un lado sin nivel usa el otro', () => {
+  const a = make({ puzzleRating: nivel(1500, 40, null, ['x', 'y']) });
+  const b = make({
+    puzzleRating: nivel(1400, 5, null, ['z']),
+    puzzles: { y: { result: 'solved', at: '2026-11-08T00:00:00.000Z' } },
+  });
+  assert.deepEqual(mergeProgress(a, b).puzzleRating?.pending.sort(), ['x', 'z']);
+  assert.equal(mergeProgress(make(), a).puzzleRating?.rating, 1500);
+  assert.equal(mergeProgress(make(), make()).puzzleRating, undefined);
+  const once = mergeProgress(a, b);
+  assert.deepEqual(mergeProgress(once, once), once);
+});

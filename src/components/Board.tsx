@@ -26,6 +26,9 @@ export type BoardMove = { from: Square; to: Square; promotion?: PromotionPiece }
 
 // Orden del selector de coronación (como en Lichess): dama, caballo, torre, alfil.
 const PROMOTION_PIECES: PromotionPiece[] = ['q', 'n', 'r', 'b'];
+// El toque que abre el selector también puede generar un clic sobre la primera opción (la dama),
+// porque el navegador lo dispara después del toque. Se ignora lo que llegue en este margen.
+const PROMOTION_TAP_GUARD_MS = 150;
 
 type Props = {
   /** Posición a mostrar, en notación FEN. El tablero no guarda la partida: la guarda quien lo usa. */
@@ -284,7 +287,8 @@ export function Board({
   // `angle`: inclinación con la que aterrizó, para enderezarla con un resorte.
   const [dropped, setDropped] = useState<(BoardMove & { angle?: number }) | null>(null);
   // Coronación a la espera de que se elija la pieza. `dragged`: el peón llegó arrastrado.
-  const [promo, setPromo] = useState<{ from: Square; to: Square; dragged: boolean } | null>(null);
+  // `openedAt` sirve para descartar el clic que el navegador dispara con el mismo toque.
+  const [promo, setPromo] = useState<{ from: Square; to: Square; dragged: boolean; openedAt: number } | null>(null);
   // Inclinación de la pieza arrastrada (grados).
   const [dragRot] = useState(() => new Animated.Value(0));
   const reduced = useReducedMotion();
@@ -374,7 +378,7 @@ export function Board({
 
     if (selected && targets.has(square)) {
       // Coronación: primero se elige la pieza.
-      if (promotionTargets.has(square)) setPromo({ from: selected, to: square, dragged: false });
+      if (promotionTargets.has(square)) setPromo({ from: selected, to: square, dragged: false, openedAt: Date.now() });
       else onMove?.({ from: selected, to: square });
       setSelected(null);
       return;
@@ -410,7 +414,7 @@ export function Board({
     setSelected(null);
     if (!move || !to) return;
     if (move.promotion) {
-      setPromo({ from, to, dragged: true });
+      setPromo({ from, to, dragged: true, openedAt: Date.now() });
       return;
     }
     // Inclinación con la que aterriza: la que traía o, si venía casi derecha, una chica hacia donde iba.
@@ -425,8 +429,11 @@ export function Board({
   /** Pieza elegida en el selector de coronación (null = se canceló). */
   const choosePromotion = (piece: PromotionPiece | null) => {
     const p = promo;
+    if (!p) return;
+    // El clic sintético del mismo toque llega dentro de este margen: no debe elegir por el usuario.
+    if (Date.now() - p.openedAt < PROMOTION_TAP_GUARD_MS) return;
     setPromo(null);
-    if (!p || !piece) return;
+    if (!piece) return;
     const played: BoardMove = { from: p.from, to: p.to, promotion: piece };
     if (p.dragged) setDropped(played);
     onMove?.(played);

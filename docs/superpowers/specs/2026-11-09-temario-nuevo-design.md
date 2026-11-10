@@ -145,7 +145,7 @@ Los cursos nuevos siguen el formato de `aperturas-v3.json` (Idea, Línea princip
 
 1. **Unidades separadas:** D (Piezas y peones) y E (Ataque, defensa y plan) quedan como dos unidades distintas. En total serán 10 unidades.
 2. **Repaso final:** pasa al fondo de la ruta, como última lección de la Unidad 10, y repasa los temas de todas las unidades. Hasta que exista la Unidad 10 se queda donde está (final de la Unidad 6).
-3. **Profesores:** diez unidades y diez bots, una unidad por bot en orden de nivel: Unidad 1 Pipo, 2 Lola, 3 Tomás, 4 Valentina, 5 Don Ramiro, 6 Camila, 7 Bruno, 8 Sofía, 9 Maestro Ivo y 10 Ada. **Pendiente de confirmar:** hoy cada bot enseña lo que dice su ficha (`teaches` en bots.json y `2026-10-30-personajes-design.md`: Sofía tácticas, Ivo finales, Tomás trampas, Ramiro principios de apertura, Camila peones) y la regla por unidad contradice esas fichas (por ejemplo Don Ramiro enseñaría finales y Sofía la Unidad 8, de finales). Hay que decidir si se cambia la regla, las fichas o ambas antes de crear las unidades 7 a 10.
+3. **Profesores (decidido el 9-11-2026):** cada bot sigue enseñando lo que dice su ficha (`teaches` en bots.json y `2026-10-30-personajes-design.md`: Sofía tácticas, Ivo finales, Tomás trampas, Don Ramiro principios de apertura, Camila peones). Las unidades 7 a 10 se reparten por tema según esas fichas. La regla de «un bot por unidad en orden de nivel» queda descartada por ahora; el usuario piensa revisar las fichas más adelante y entonces se puede volver a ver.
 
 ## Estado
 

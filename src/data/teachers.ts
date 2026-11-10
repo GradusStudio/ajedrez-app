@@ -14,7 +14,7 @@ const PATH_TEACHERS: Record<string, string[]> = {
   valentina: ['u3-l03', 'u3-l04', 'u7-l06', 'u7-l07'],
   camila: ['u4-l03', 'u4-l04', 'u4-l06', 'u6-l03'],
   bruno: ['u4-l05', 'u6-l02'],
-  ivo: ['u5-l01', 'u5-l02', 'u5-l03', 'u5-l04', 'u5-l05', 'u5-l06'],
+  ivo: ['u5-l01', 'u5-l02', 'u5-l03', 'u5-l04', 'u5-l05', 'u5-l06', 'u8-l01', 'u8-l02', 'u8-l03', 'u8-l04', 'u8-l05', 'u8-l06'],
   ada: ['u6-l01', 'u6-l04'],
 };
 

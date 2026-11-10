@@ -1,0 +1,190 @@
+{
+  "title": "Intermediate endgames",
+  "lessons": {
+    "u8-l01": {
+      "title": "The active king",
+      "summary": "In the endgame, the king attacks too",
+      "steps": {
+        "u8-l01-s01": { "text": "In the endgame there are hardly any pieces left to give mate, and the king becomes an attacking piece. Here the black king marches to f4: from there it attacks the g4 pawn, and the white king is too far away to defend it." },
+        "u8-l01-s02": { "text": "The same here: the black king heads for f5 and attacks the g5 pawn. The white king cannot defend it and Black eats it." },
+        "u8-l01-s03": {
+          "prompt": "White to move. What does the king do to win the a6 pawn?",
+          "options": ["It goes to b6 and attacks it", "It goes to d5, toward the center", "It goes to b7 and moves away from the pawn"],
+          "explanation": "With Kb6 the king attacks the a6 pawn and the black king can't get there in time to defend it.",
+          "feedback": ["", "Going to the center wins nothing: the a6 pawn is right next to your king.", "Moving away from the pawn is the opposite of what you need."]
+        },
+        "u8-l01-s04": {
+          "prompt": "Tap the square the black king must go to in order to attack the g5 pawn.",
+          "hint": "It has to end up next to the pawn, on a square the white king can't watch."
+        },
+        "u8-l01-s05": {
+          "prompt": "Attack the a6 pawn with the king.",
+          "hint": "The white king can stand next to the pawn. The black king can't get there to defend it.",
+          "success": "Correct. Kb6 attacks the pawn and the enemy king can't defend it."
+        },
+        "u8-l01-s06": {
+          "prompt": "Capture the a2 pawn with the king.",
+          "hint": "The a2 pawn is right next to your king and nobody defends it.",
+          "success": "Correct. Kxa2 wins the pawn and clears the way for the a-pawn."
+        },
+        "u8-l01-s07": {
+          "prompt": "Attack the b7 pawn with the king.",
+          "hint": "Your king can go around the black king and attack the pawn from another square.",
+          "success": "Correct. Kc7 attacks the b7 pawn and the black king can't defend it."
+        },
+        "u8-l01-s08": {
+          "prompt": "Win pawns with the king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Take the king toward the enemy pawns: don't stay at home.",
+          "notes": ["", "", "", ""]
+        },
+        "u8-l01-s09": {
+          "prompt": "Win pawns with the king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Take the king toward the enemy pawns: don't stay at home.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u8-l02": {
+      "title": "The distant passed pawn",
+      "summary": "A pawn far from the enemy king",
+      "steps": {
+        "u8-l02-s01": { "text": "White has a passed pawn on the h-file, far from the black king, which is at the other end. With h5 the race begins: both sides queen, but White gets there first and its new queen, with checks, stops the black pawn." },
+        "u8-l02-s02": { "text": "Here Black's passed pawn is on the a-file, far from the white king. It queens and nobody can stop it, and the white pawns arrive too late." },
+        "u8-l02-s03": {
+          "prompt": "White to move. What is best?",
+          "options": ["Push the h-pawn, which is far from the black king", "Take the king toward the pawns on the a-file", "Move the g-pawn"],
+          "explanation": "The black king is at the other end and can't stop the h-pawn. Pushing it wins the race.",
+          "feedback": ["", "With the king far from the h-pawn, what matters most is that the pawn runs.", "The g-pawn doesn't have the same advantage: it is closer to the enemy king."]
+        },
+        "u8-l02-s04": {
+          "prompt": "Tap the passed pawn that is farthest from the black king.",
+          "hint": "It's the pawn at the edge of the board, opposite the black king's position."
+        },
+        "u8-l02-s05": {
+          "prompt": "Push the pawn that is far from the enemy king.",
+          "hint": "Nothing can stop the h-pawn: the black king is on the other side.",
+          "success": "Correct. h5 starts the race: the pawn queens and the black king arrives too late."
+        },
+        "u8-l02-s06": {
+          "prompt": "Push the pawn that is far from the enemy king.",
+          "hint": "The a-pawn queens before the white king can do anything.",
+          "success": "Correct. a4 starts the race: the pawn queens and the white king arrives too late."
+        },
+        "u8-l02-s07": {
+          "prompt": "Win the pawn race.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the pawn that is farthest from the enemy king and push it.",
+          "notes": ["", "", "", ""]
+        },
+        "u8-l02-s08": {
+          "prompt": "Win the pawn race.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the pawn that is farthest from the enemy king and push it.",
+          "notes": ["", "", "", ""]
+        },
+        "u8-l02-s09": { "text": "Summary: a passed pawn far from the enemy king is a double-edged weapon. Either it queens, or the enemy king has to chase it and leaves its other pawns alone. Those are the two weaknesses: the passed pawn and the pawns left unprotected." }
+      }
+    },
+    "u8-l03": {
+      "title": "Queen against pawn",
+      "summary": "When the pawn is one step from queening",
+      "steps": {
+        "u8-l03-s01": { "text": "The white queen controls d1 from a4: if the pawn queens, the queen captures it with check. Meanwhile the white king comes closer and, together, they finish off the pawn and the king." },
+        "u8-l03-s02": { "text": "By contrast, with a rook pawn on the seventh and the black king near the corner, the queen cannot win. The black king takes refuge in the corner and any attempt ends in a draw by stalemate." },
+        "u8-l03-s03": {
+          "prompt": "Which of these pawns on the seventh is usually a draw against the queen?",
+          "options": ["The rook pawn, on the a-file", "The central pawn, on the d-file", "None: the queen always wins"],
+          "explanation": "With a rook pawn and the enemy king close, stalemate saves Black. With a central pawn, on the other hand, the queen wins.",
+          "feedback": ["", "With a central pawn the queen wins: the king doesn't have the corner to take refuge in.", "With the rook pawn and the king near the corner, the queen doesn't win."]
+        },
+        "u8-l03-s04": {
+          "prompt": "The black pawn wants to queen on d1. Tap the square the queen controls from a4.",
+          "hint": "Follow the queen's diagonal toward the bottom right corner."
+        },
+        "u8-l03-s05": {
+          "prompt": "Win with the queen and king against the pawn and king. Stockfish defends.",
+          "success": "Correct. The queen stopped the pawn and you gave mate.",
+          "hint": "That move lets the win slip away. Keep the queen controlling the queening square and bring the king closer without stalemating."
+        },
+        "u8-l03-s06": { "text": "Summary: the queen controls the queening square and the king comes closer. Against a rook pawn on the seventh with the king near the corner, stalemate gives a draw." }
+      }
+    },
+    "u8-l04": {
+      "title": "The Philidor position",
+      "summary": "The safe defense with the rook",
+      "steps": {
+        "u8-l04-s01": { "text": "In the rook and pawn against rook ending, the safest defense is the Philidor position: the defending rook on the sixth rank and the king on the last rank, in front of the pawn. That way the enemy king and pawn can't advance." },
+        "u8-l04-s02": {
+          "prompt": "On which rank does the defending side place the rook?",
+          "options": ["On the sixth rank, the third from its own side", "On the first rank, behind the pawn", "On the pawn's file"],
+          "explanation": "The rook on the sixth rank cuts off the king and the pawn: the enemy king can't advance to the sixth rank.",
+          "feedback": ["", "Behind the pawn works later, when the pawn has already reached the sixth rank. At the start, the rook goes on the sixth.", "On the pawn's file the rook would be a target and wouldn't stop the enemy king."]
+        },
+        "u8-l04-s03": {
+          "prompt": "The black rook controls the sixth rank. Tap the two squares on that rank the white king or the pawn want to advance to.",
+          "hint": "They're in front of the white king and pawn, on the sixth rank."
+        },
+        "u8-l04-s04": {
+          "prompt": "Defend the ending. Stockfish plays White and tries to win. Hold on for 30 moves without losing.",
+          "success": "Correct. You held for 30 moves: the Philidor position is a draw.",
+          "hint": "With that move White wins. Keep the rook on the sixth rank and the king on the last rank, in front of the pawn."
+        },
+        "u8-l04-s05": { "text": "Summary: rook on the sixth rank and king on the last. When the pawn reaches the sixth rank, the rook goes behind it and gives checks from a distance." }
+      }
+    },
+    "u8-l05": {
+      "title": "Cutting off the king with the rook",
+      "summary": "The rook as a wall",
+      "steps": {
+        "u8-l05-s01": { "text": "The rook on c1 controls the c-file: the black king can't cross it and can't reach the b4 pawn. Meanwhile the pawn advances and nobody can stop it. That's cutting off the king with the rook." },
+        "u8-l05-s02": {
+          "prompt": "Tap the three squares on the c-file the black king could use to cross to the other half of the board.",
+          "hint": "They're the squares on the c-file next to the black king."
+        },
+        "u8-l05-s03": {
+          "prompt": "Why can't the black king get close to the pawn?",
+          "options": ["The rook controls the c-file and blocks its way", "The white king blocks it", "The pawn is protected by the rook"],
+          "explanation": "To reach the pawn, the black king would have to cross the c-file, and the rook watches all of it.",
+          "feedback": ["", "The white king is far from the black king: what blocks its way is the rook.", "The rook doesn't protect the b4 pawn: what it does is cut off the file."]
+        },
+        "u8-l05-s04": { "text": "You can also cut off by ranks. With Rh5 the rook controls the 5th rank: the black king cannot go down and the b4 pawn advances calmly." },
+        "u8-l05-s05": {
+          "prompt": "Queen the pawn without losing the new queen. Stockfish defends.",
+          "success": "Correct. The rook cut off the king and the pawn queened.",
+          "hint": "That move lets the win slip away. Keep the rook on the c-file and advance the pawn."
+        },
+        "u8-l05-s06": {
+          "prompt": "Cut off the king with the rook and queen the pawn. Stockfish defends.",
+          "success": "Correct. You cut off the king and the pawn queened.",
+          "hint": "That move lets the win slip away. Put the rook on a rank or file the black king can't cross."
+        },
+        "u8-l05-s07": { "text": "Summary: the rook cuts off the king along a file or rank it can't cross. With the king cut off, the pawn advances on its own." }
+      }
+    },
+    "u8-l06": {
+      "title": "Opposite-colored bishops",
+      "summary": "Why they are usually draws",
+      "steps": {
+        "u8-l06-s01": { "text": "With opposite-colored bishops, each bishop controls squares the other can't attack. The defending bishop stops the pawn and the king takes shelter behind it. That's why an extra pawn is usually not enough to win." },
+        "u8-l06-s02": {
+          "prompt": "A bishop only attacks squares of its own color. Which squares can't the black bishop attack, since it goes on light squares?",
+          "options": ["The dark ones, like f4", "The light ones, like f1", "None"],
+          "explanation": "The black bishop on f1 goes on light squares. The f4 pawn is on a dark square: that bishop can never attack it.",
+          "feedback": ["", "It can attack the light ones: they are its own.", "Each bishop has its own color and can't change it."]
+        },
+        "u8-l06-s03": {
+          "prompt": "Tap the white pawn the black bishop can never attack.",
+          "hint": "It's the pawn on a square of a different color from your bishop."
+        },
+        "u8-l06-s04": {
+          "prompt": "Defend the ending. Stockfish plays White and tries to win. Hold on for 20 moves without losing.",
+          "success": "Correct. You held for 20 moves: with opposite-colored bishops, being a pawn down does not lose.",
+          "hint": "With that move White wins. Keep the king close and leave the bishop on a long diagonal that stops the pawn."
+        },
+        "u8-l06-s05": { "text": "Summary: with opposite-colored bishops, each attacks squares the other doesn't touch, and the side a pawn down can hold on." }
+      }
+    }
+  }
+}

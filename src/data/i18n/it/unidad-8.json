@@ -1,0 +1,190 @@
+{
+  "title": "Finali intermedi",
+  "lessons": {
+    "u8-l01": {
+      "title": "Il re attivo",
+      "summary": "Nel finale anche il re attacca",
+      "steps": {
+        "u8-l01-s01": { "text": "Nel finale quasi non rimangono pezzi che danno matto, e il re diventa un pezzo di attacco. Qui il re nero marcia verso f4: da lì attacca il pedone in g4, e il re bianco è troppo lontano per difenderlo." },
+        "u8-l01-s02": { "text": "Lo stesso qui: il re nero esce verso f5 e attacca il pedone in g5. Il re bianco non può difenderlo e le nere lo prendono." },
+        "u8-l01-s03": {
+          "prompt": "Muovono le bianche. Cosa fa il re per vincere il pedone in a6?",
+          "options": ["Va in b6 e lo attacca", "Va in d5, verso il centro", "Va in b7 e si allontana dal pedone"],
+          "explanation": "Con Rb6 il re attacca il pedone in a6 e il re nero non riesce a difenderlo.",
+          "feedback": ["", "Verso il centro non vinci nulla: il pedone in a6 è accanto al tuo re.", "Allontanarsi dal pedone è l'opposto di quello che ti serve."]
+        },
+        "u8-l01-s04": {
+          "prompt": "Tocca la casella a cui deve andare il re nero per attaccare il pedone in g5.",
+          "hint": "Deve rimanere accanto al pedone, su una casella che il re bianco non possa sorvegliare."
+        },
+        "u8-l01-s05": {
+          "prompt": "Attacca il pedone in a6 con il re.",
+          "hint": "Il re bianco può stare accanto al pedone. Il re nero non ci arriva per difenderlo.",
+          "success": "Corretto. Rb6 attacca il pedone e il re avversario non può difenderlo."
+        },
+        "u8-l01-s06": {
+          "prompt": "Prendi il pedone in a2 con il re.",
+          "hint": "Il pedone in a2 è accanto al tuo re e nessuno lo difende.",
+          "success": "Corretto. Rxa2 vince il pedone e libera la strada al pedone a."
+        },
+        "u8-l01-s07": {
+          "prompt": "Attacca il pedone in b7 con il re.",
+          "hint": "Il tuo re può aggirare il re nero e attaccare il pedone da un'altra casella.",
+          "success": "Corretto. Rc7 attacca il pedone in b7 e il re nero non può difenderlo."
+        },
+        "u8-l01-s08": {
+          "prompt": "Vinci pedoni con il re.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Porta il re verso i pedoni dell'avversario: non restare a casa.",
+          "notes": ["", "", "", ""]
+        },
+        "u8-l01-s09": {
+          "prompt": "Vinci pedoni con il re.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Porta il re verso i pedoni dell'avversario: non restare a casa.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u8-l02": {
+      "title": "Il pedone passato lontano",
+      "summary": "Un pedone lontano dal re avversario",
+      "steps": {
+        "u8-l02-s01": { "text": "Il Bianco ha un pedone passato sulla colonna h, lontano dal re nero, che è all'altra estremità. Con h5 inizia la corsa: entrambi i giocatori promuovono, ma il Bianco arriva prima e la sua nuova donna, con scacchi, ferma il pedone nero." },
+        "u8-l02-s02": { "text": "Qui il pedone passato del Nero è sulla colonna a, lontano dal re bianco. Promuove senza che nessuno possa fermarlo, e i pedoni bianchi arrivano tardi." },
+        "u8-l02-s03": {
+          "prompt": "Muovono le bianche. Cosa conviene?",
+          "options": ["Spingi il pedone in h, che è lontano dal re nero", "Portare il re verso i pedoni della colonna a", "Muovi il pedone in g"],
+          "explanation": "Il re nero è all'altra punta e non riesce a fermare il pedone in h. Spingerlo vince la corsa.",
+          "feedback": ["", "Con il re lontano dal pedone in h, ciò che conta di più è che il pedone corra.", "Il pedone in g non ha lo stesso vantaggio: è più vicino al re dell'avversario."]
+        },
+        "u8-l02-s04": {
+          "prompt": "Tocca il pedone passato che è più lontano dal re nero.",
+          "hint": "È il pedone che rimane sul bordo della scacchiera, opposto alla posizione del re nero."
+        },
+        "u8-l02-s05": {
+          "prompt": "Spingi il pedone che è lontano dal re dell'avversario.",
+          "hint": "Il pedone in h non ha nulla che lo fermi: il re nero è dall'altra parte.",
+          "success": "Corretto. h5 inizia la corsa: il pedone promuove e il re nero arriva troppo tardi."
+        },
+        "u8-l02-s06": {
+          "prompt": "Spingi il pedone che è lontano dal re dell'avversario.",
+          "hint": "Il pedone a promuove prima che il re bianco possa fare qualcosa.",
+          "success": "Corretto. a4 inizia la corsa: il pedone promuove e il re bianco arriva troppo tardi."
+        },
+        "u8-l02-s07": {
+          "prompt": "Vinci la corsa dei pedoni.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca il pedone più lontano dal re avversario e spingilo.",
+          "notes": ["", "", "", ""]
+        },
+        "u8-l02-s08": {
+          "prompt": "Vinci la corsa dei pedoni.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca il pedone più lontano dal re avversario e spingilo.",
+          "notes": ["", "", "", ""]
+        },
+        "u8-l02-s09": { "text": "Riassunto: un pedone passato lontano dal re avversario è un'arma a doppio taglio. O promuove, o il re avversario deve inseguirlo e lascia i suoi altri pedoni soli. Sono le due debolezze: il pedone passato e i pedoni che rimangono non protetti." }
+      }
+    },
+    "u8-l03": {
+      "title": "Donna contro pedone",
+      "summary": "Quando il pedone è a un passo dalla promozione",
+      "steps": {
+        "u8-l03-s01": { "text": "La donna bianca controlla d1 da a4: se il pedone promuove, la donna lo cattura con scacco. Nel frattempo il re bianco si avvicina e, insieme, finiscono il pedone e il re." },
+        "u8-l03-s02": { "text": "Al contrario, con un pedone di torre in settima e il re nero vicino all'angolo, la donna non può vincere. Il re nero si rifugia nell'angolo e ogni tentativo finisce in patta per stallo." },
+        "u8-l03-s03": {
+          "prompt": "Quale di questi pedoni in settima è solitamente una patta contro la donna?",
+          "options": ["Il pedone di torre, sulla colonna a", "Il pedone centrale, sulla colonna d", "Nessuno: la donna vince sempre"],
+          "explanation": "Con un pedone di torre e il re dell'avversario vicino, lo stallo salva il Nero. Con un pedone centrale, invece, la donna vince.",
+          "feedback": ["", "Con un pedone centrale la donna vince: il re non ha l'angolo per rifugiarsi.", "Con il pedone di torre e il re vicino all'angolo, la donna non vince."]
+        },
+        "u8-l03-s04": {
+          "prompt": "Il pedone nero vuole promuovere in d1. Tocca la casella che la donna controlla da a4.",
+          "hint": "Segui la diagonale della donna verso l'angolo in basso a destra."
+        },
+        "u8-l03-s05": {
+          "prompt": "Vinci con la donna e il re contro il pedone e il re. Stockfish difende.",
+          "success": "Corretto. La donna ha fermato il pedone e hai dato matto.",
+          "hint": "Con quella mossa la vittoria ti sfugge. Mantieni la donna a controllare la casella di promozione e avvicina il re senza mettere in stallo."
+        },
+        "u8-l03-s06": { "text": "Riassunto: la donna controlla la casella di promozione e il re si avvicina. Contro un pedone di torre in settima con il re vicino all'angolo, lo stallo dà patta." }
+      }
+    },
+    "u8-l04": {
+      "title": "La posizione di Philidor",
+      "summary": "La difesa sicura con la torre",
+      "steps": {
+        "u8-l04-s01": { "text": "Nel finale di torre e pedone contro torre, la difesa più sicura è la posizione di Philidor: la torre difensiva sulla sesta traversa e il re sull'ultima, davanti al pedone. Così il re e il pedone dell'avversario non possono avanzare." },
+        "u8-l04-s02": {
+          "prompt": "Su quale traversa mette la torre il lato che difende?",
+          "options": ["Sulla sesta traversa, la terza dal suo lato", "Sulla prima traversa, dietro il pedone", "Nella colonna del pedone"],
+          "explanation": "La torre sulla sesta traversa taglia il passaggio del re e del pedone: il re dell'avversario non può avanzare sulla sesta traversa.",
+          "feedback": ["", "Dietro il pedone serve più avanti, quando il pedone è già arrivato alla sesta traversa. All'inizio, la torre va in sesta.", "Nella colonna del pedone la torre sarebbe un bersaglio e non fermerebbe il re dell'avversario."]
+        },
+        "u8-l04-s03": {
+          "prompt": "La torre nera controlla la sesta traversa. Tocca le due caselle di quella traversa dove il re bianco o il pedone vogliono avanzare.",
+          "hint": "Sono davanti al re e al pedone bianchi, sulla sesta traversa."
+        },
+        "u8-l04-s04": {
+          "prompt": "Difendi il finale. Stockfish gioca con il Bianco e cerca di vincere. Resisti per 30 mosse senza perdere.",
+          "success": "Corretto. Hai tenuto per 30 mosse: la posizione di Philidor è una patta.",
+          "hint": "Con quella mossa le bianche vincono. Mantieni la torre sulla sesta traversa e il re sull'ultima, davanti al pedone."
+        },
+        "u8-l04-s05": { "text": "Riassunto: torre sulla sesta traversa e re sull'ultima. Quando il pedone arriva sulla sesta traversa, la torre passa dietro e dà scacchi da lontano." }
+      }
+    },
+    "u8-l05": {
+      "title": "Tagliare il re con la torre",
+      "summary": "La torre come muraglia",
+      "steps": {
+        "u8-l05-s01": { "text": "La torre in c1 controlla la colonna c: il re nero non può attraversarla e non arriva al pedone in b4. Nel frattempo il pedone avanza senza che nessuno possa fermarlo. Questo è tagliare il re con la torre." },
+        "u8-l05-s02": {
+          "prompt": "Tocca le tre caselle della colonna c per cui il re nero potrebbe passare sull'altra metà della scacchiera.",
+          "hint": "Sono le caselle della colonna c che sono accanto al re nero."
+        },
+        "u8-l05-s03": {
+          "prompt": "Perché il re nero non può avvicinarsi al pedone",
+          "options": ["La torre controlla la colonna c e le chiude il passo", "Il re bianco lo blocca", "Il pedone è protetto dalla torre"],
+          "explanation": "Per arrivare al pedone il re nero dovrebbe attraversare la colonna c, e la torre la sorveglia interamente.",
+          "feedback": ["", "Il re bianco è lontano dal re nero: ciò che gli blocca il passo è la torre.", "La torre non protegge il pedone in b4: quello che fa è tagliare la colonna."]
+        },
+        "u8-l05-s04": { "text": "Si può tagliare anche per traverse. Con Th5 la torre controlla la traversa 5: il re nero non può scendere e il pedone in b4 avanza con calma." },
+        "u8-l05-s05": {
+          "prompt": "Promuovi il pedone senza perdere la nuova donna. Stockfish difende.",
+          "success": "Corretto. La torre ha tagliato il re e il pedone ha promosso.",
+          "hint": "Con quella mossa la vittoria ti sfugge. Lascia la torre sulla colonna c e avanza il pedone."
+        },
+        "u8-l05-s06": {
+          "prompt": "Taglia il re con la torre e promuovi il pedone. Stockfish difende.",
+          "success": "Corretto. Hai tagliato il re e il pedone ha promosso.",
+          "hint": "Con quella mossa la vittoria ti sfugge. Metti la torre su una traversa o colonna che il re nero non possa attraversare."
+        },
+        "u8-l05-s07": { "text": "Riassunto: la torre taglia il re lungo una colonna o una traversa che lui non può attraversare. Con il re tagliato, il pedone avanza da solo." }
+      }
+    },
+    "u8-l06": {
+      "title": "Alfieri di colore diverso",
+      "summary": "Perché di solito sono patta",
+      "steps": {
+        "u8-l06-s01": { "text": "Con alfieri di colore diverso, ogni alfiere controlla caselle che l'altro non può attaccare. L'alfiere difensore frena il pedone e il re si rifugia dietro. Per questo un pedone in più di solito non basta per vincere." },
+        "u8-l06-s02": {
+          "prompt": "Un alfiere attacca solo caselle del suo colore. Quali caselle non può attaccare l'alfiere nero, che va sulle caselle chiare?",
+          "options": ["Le scure, come f4", "Le chiare, come f1", "Nessuna"],
+          "explanation": "L'alfiere nero in f1 va sulle caselle chiare. Il pedone in f4 è su una casella scura: quell'alfiere non potrà mai attaccarlo.",
+          "feedback": ["", "Le chiare sì le può attaccare: sono le sue.", "Ogni alfiere ha il suo colore e non può cambiarlo."]
+        },
+        "u8-l06-s03": {
+          "prompt": "Tocca il pedone bianco che l'alfiere nero non potrà mai attaccare.",
+          "hint": "È il pedone che è su una casella di colore diverso dal tuo alfiere."
+        },
+        "u8-l06-s04": {
+          "prompt": "Difendi il finale. Stockfish gioca con il Bianco e cerca di vincere. Resisti per 20 mosse senza perdere.",
+          "success": "Corretto. Hai resistito per 20 mosse: con alfieri di colore diverso, un pedone in meno non perde.",
+          "hint": "Con quella mossa le bianche vincono. Tieni il re vicino e lascia l'alfiere su una diagonale lunga che fermi il pedone."
+        },
+        "u8-l06-s05": { "text": "Riassunto: con alfieri di colore diverso, ognuno attacca caselle che l'altro non tocca, e il lato con un pedone in meno può resistere." }
+      }
+    }
+  }
+}

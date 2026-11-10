@@ -1,0 +1,190 @@
+{
+  "title": "Finales intermédiaires",
+  "lessons": {
+    "u8-l01": {
+      "title": "Le roi actif",
+      "summary": "En finale, le roi attaque aussi",
+      "steps": {
+        "u8-l01-s01": { "text": "En finale, il ne reste presque plus de pièces pour donner mat, et le roi devient une pièce d'attaque. Ici le roi noir marche vers f4 : de là il attaque le pion en g4, et le roi blanc est trop loin pour le défendre." },
+        "u8-l01-s02": { "text": "Pareil ici : le roi noir sort vers f5 et attaque le pion en g5. Le roi blanc ne peut pas le défendre et les Noirs le prennent." },
+        "u8-l01-s03": {
+          "prompt": "Les Blancs jouent. Que fait le roi pour gagner le pion en a6 ?",
+          "options": ["Il va en b6 et l'attaque", "Il va en d5, vers le centre", "Il va en b7 et s'éloigne du pion"],
+          "explanation": "Avec Rb6 le roi attaque le pion en a6 et le roi noir ne peut pas arriver pour le défendre.",
+          "feedback": ["", "Vers le centre tu ne gagnes rien : le pion en a6 est à côté de ton roi.", "S'éloigner du pion est l'inverse de ce dont tu as besoin."]
+        },
+        "u8-l01-s04": {
+          "prompt": "Touche la case où le roi noir doit aller pour attaquer le pion en g5.",
+          "hint": "Il doit rester à côté du pion, sur une case que le roi blanc ne peut pas surveiller."
+        },
+        "u8-l01-s05": {
+          "prompt": "Attaque le pion en a6 avec le roi.",
+          "hint": "Le roi blanc peut se placer à côté du pion. Le roi noir n'arrive pas à le défendre.",
+          "success": "Correct. Rb6 attaque le pion et le roi adverse ne peut pas le défendre."
+        },
+        "u8-l01-s06": {
+          "prompt": "Prends le pion en a2 avec le roi.",
+          "hint": "Le pion en a2 est à côté de ton roi et personne ne le défend.",
+          "success": "Correct. Rxa2 gagne le pion et ouvre la voie au pion a."
+        },
+        "u8-l01-s07": {
+          "prompt": "Attaque le pion en b7 avec le roi.",
+          "hint": "Ton roi peut contourner le roi noir et attaquer le pion depuis une autre case.",
+          "success": "Correct. Rc7 attaque le pion en b7 et le roi noir ne peut pas le défendre."
+        },
+        "u8-l01-s08": {
+          "prompt": "Gagne des pions avec le roi.",
+          "success": "Bien résolu : cette position vient d'une partie réelle.",
+          "hint": "Mène le roi vers les pions adverses : ne reste pas chez toi.",
+          "notes": ["", "", "", ""]
+        },
+        "u8-l01-s09": {
+          "prompt": "Gagne des pions avec le roi.",
+          "success": "Bien résolu : cette position vient d'une partie réelle.",
+          "hint": "Mène le roi vers les pions adverses : ne reste pas chez toi.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u8-l02": {
+      "title": "Le pion passé éloigné",
+      "summary": "Un pion loin du roi adverse",
+      "steps": {
+        "u8-l02-s01": { "text": "Les Blancs ont un pion passé sur la colonne h, loin du roi noir, qui est à l'autre bout. Avec h5 commence la course : les deux camps promeuvent, mais les Blancs arrivent les premiers et leur nouvelle dame, avec des échecs, arrête le pion noir." },
+        "u8-l02-s02": { "text": "Ici le pion passé des Noirs est sur la colonne a, loin du roi blanc. Il promeut sans que personne puisse l'arrêter, et les pions blancs arrivent trop tard." },
+        "u8-l02-s03": {
+          "prompt": "Les Blancs jouent. Qu'est-ce qui est le mieux ?",
+          "options": ["Pousse le pion en h, qui est loin du roi noir", "Amener le roi vers les pions de la colonne a", "Déplacer le pion en g"],
+          "explanation": "Le roi noir est à l'autre bout et ne peut arrêter le pion h. Le pousser gagne la course.",
+          "feedback": ["", "Avec le roi loin du pion en h, ce qui compte le plus c'est que le pion avance.", "Le pion en g n'a pas le même avantage : il est plus proche du roi de l'adversaire."]
+        },
+        "u8-l02-s04": {
+          "prompt": "Touche le pion passé qui est le plus éloigné du roi noir.",
+          "hint": "C'est le pion qui reste au bord de l'échiquier, opposé à la position du roi noir."
+        },
+        "u8-l02-s05": {
+          "prompt": "Pousse le pion qui est loin du roi adversaire.",
+          "hint": "Le pion en h n'a rien qui l'arrête : le roi noir est de l'autre côté.",
+          "success": "Correct. h5 lance la course : le pion se promeut et le roi noir arrive trop tard."
+        },
+        "u8-l02-s06": {
+          "prompt": "Pousse le pion qui est loin du roi adversaire.",
+          "hint": "Le pion a se promeut avant que le roi blanc puisse faire quoi que ce soit.",
+          "success": "Correct. a4 lance la course : le pion se promeut et le roi blanc arrive trop tard."
+        },
+        "u8-l02-s07": {
+          "prompt": "Gagne la course de pions.",
+          "success": "Bien résolu : cette position vient d'une partie réelle.",
+          "hint": "Cherche le pion qui est le plus loin du roi adverse et pousse-le.",
+          "notes": ["", "", "", ""]
+        },
+        "u8-l02-s08": {
+          "prompt": "Gagne la course de pions.",
+          "success": "Bien résolu : cette position vient d'une partie réelle.",
+          "hint": "Cherche le pion qui est le plus loin du roi adverse et pousse-le.",
+          "notes": ["", "", "", ""]
+        },
+        "u8-l02-s09": { "text": "En résumé : un pion passé loin du roi adverse est une arme à double tranchant. Soit il est promu, soit le roi adverse doit le poursuivre et laisse ses autres pions seuls. Ce sont les deux faiblesses : le pion passé et les pions qui restent non protégés." }
+      }
+    },
+    "u8-l03": {
+      "title": "Dame contre pion",
+      "summary": "Quand le pion est à un pas de la promotion",
+      "steps": {
+        "u8-l03-s01": { "text": "La dame blanche contrôle d1 depuis a4 : si le pion est promu, la dame le prend avec échec. Pendant ce temps le roi blanc s'approche et, ensemble, ils finissent le pion et le roi." },
+        "u8-l03-s02": { "text": "En revanche, avec un pion de tour en septième et le roi noir près du coin, la dame ne peut pas gagner. Le roi noir se réfugie dans le coin et toute tentative finit en nulle par pat." },
+        "u8-l03-s03": {
+          "prompt": "Lequel de ces pions en septième est souvent une nulle contre la dame ?",
+          "options": ["Le pion de tour, dans la colonne a", "Le pion central, dans la colonne d", "Aucun : la dame gagne toujours"],
+          "explanation": "Avec un pion de tour et le roi de l'adversaire proche, le pat sauve les Noirs. Avec un pion central, en revanche, la dame gagne.",
+          "feedback": ["", "Avec un pion central la dame gagne : le roi n'a pas le coin pour se réfugier.", "Avec le pion de tour et le roi près du coin, la dame ne gagne pas."]
+        },
+        "u8-l03-s04": {
+          "prompt": "Le pion noir veut promouvoir en d1. Touche la case que la dame contrôle depuis a4.",
+          "hint": "Suis la diagonale de la dame vers le coin inférieur droit."
+        },
+        "u8-l03-s05": {
+          "prompt": "Gagne avec la dame et le roi contre le pion et le roi. Stockfish défend.",
+          "success": "Correct. La dame a arrêté le pion et tu as donné mat.",
+          "hint": "Avec ce coup, la victoire s'échappe. Garde la dame contrôlant la rangée de promotion et rapproche le roi sans mettre pat."
+        },
+        "u8-l03-s06": { "text": "En résumé : la dame contrôle la rangée de promotion et le roi s'approche. Contre un pion tour en septième avec le roi près du coin, le pat donne une nulle." }
+      }
+    },
+    "u8-l04": {
+      "title": "La position de Philidor",
+      "summary": "La défense sûre avec la tour",
+      "steps": {
+        "u8-l04-s01": { "text": "Dans la finale de tour et pion contre tour, la défense la plus sûre est la position de Philidor : la tour défensive sur la sixième rangée et le roi sur la dernière, devant le pion. Ainsi le roi et le pion de l'adversaire ne peuvent pas avancer." },
+        "u8-l04-s02": {
+          "prompt": "Sur quelle rangée le camp qui défend place-t-il sa tour ?",
+          "options": ["Sur la sixième rangée, la troisième de son côté", "Sur la première rangée, derrière le pion", "Dans la colonne du pion"],
+          "explanation": "La tour sur la sixième rangée coupe le passage du roi et du pion : le roi de l'adversaire ne peut pas avancer sur la sixième rangée.",
+          "feedback": ["", "Derrière le pion ça sert plus tard, quand le pion est déjà arrivé à la sixième rangée. Au début, la tour va en sixième.", "Dans la colonne du pion la tour serait une cible et n'arrêterait pas le roi de l'adversaire."]
+        },
+        "u8-l04-s03": {
+          "prompt": "La tour noire contrôle la sixième rangée. Touche les deux cases de cette rangée par lesquelles le roi blanc ou le pion veulent avancer.",
+          "hint": "Ils sont devant le roi et le pion blancs, sur la sixième rangée."
+        },
+        "u8-l04-s04": {
+          "prompt": "Défends la finale. Stockfish joue avec les Blancs et essaie de gagner. Tiens 30 coups sans perdre.",
+          "success": "Correct. Tu as tenu les 30 coups : la position de Philidor est nulle.",
+          "hint": "Avec ce coup les Blancs gagnent. Garde la tour sur la sixième rangée et le roi sur la dernière, devant le pion."
+        },
+        "u8-l04-s05": { "text": "En résumé : tour sur la sixième rangée et roi sur la dernière. Quand le pion atteint la sixième rangée, la tour passe derrière et donne des échecs de loin." }
+      }
+    },
+    "u8-l05": {
+      "title": "Couper le roi avec la tour",
+      "summary": "La tour comme muraille",
+      "steps": {
+        "u8-l05-s01": { "text": "La tour en c1 contrôle la colonne c : le roi noir ne peut pas la traverser et n'atteint pas le pion en b4. Pendant ce temps, le pion avance sans que personne ne puisse l'arrêter. C'est couper le roi avec la tour." },
+        "u8-l05-s02": {
+          "prompt": "Touche les trois cases de la colonne c par lesquelles le roi noir pourrait passer à l'autre moitié de l'échiquier.",
+          "hint": "Ce sont les cases de la colonne c qui sont à côté du roi noir."
+        },
+        "u8-l05-s03": {
+          "prompt": "Pourquoi le roi noir ne peut pas s'approcher du pion ?",
+          "options": ["La tour contrôle la colonne c et lui ferme le passage", "Le roi blanc le bloque", "Le pion est protégé par la tour"],
+          "explanation": "Pour atteindre le pion le roi noir devrait traverser la colonne c, et la tour le surveille entièrement.",
+          "feedback": ["", "Le roi blanc est loin du roi noir : ce qui lui ferme le passage est la tour.", "La tour ne protège pas le pion en b4 : ce qu'elle fait est couper la colonne."]
+        },
+        "u8-l05-s04": { "text": "On peut aussi couper par rangées. Avec Th5 la tour contrôle la rangée 5 : le roi noir ne peut pas descendre et le pion en b4 avance calmement." },
+        "u8-l05-s05": {
+          "prompt": "Promeus le pion sans perdre la nouvelle dame. Stockfish défend.",
+          "success": "Correct. La tour a coupé le roi et le pion a promu.",
+          "hint": "Avec ce coup, la victoire s'échappe. Laisse la tour dans la colonne c et avance le pion."
+        },
+        "u8-l05-s06": {
+          "prompt": "Coupe le roi avec la tour et promeus le pion. Stockfish défend.",
+          "success": "Correct. Tu as coupé le roi et le pion a promu.",
+          "hint": "Avec ce coup, la victoire s'échappe. Mets la tour sur une rangée ou une colonne que le roi noir ne peut pas traverser."
+        },
+        "u8-l05-s07": { "text": "En résumé : la tour coupe le roi le long d'une colonne ou d'une rangée qu'il ne peut pas traverser. Avec le roi coupé, le pion avance seul." }
+      }
+    },
+    "u8-l06": {
+      "title": "Fous de couleurs différentes",
+      "summary": "Pourquoi ce sont souvent des nulles",
+      "steps": {
+        "u8-l06-s01": { "text": "Avec des fous de couleurs différentes, chaque fou contrôle des cases que l'autre ne peut pas attaquer. Le fou défenseur arrête le pion et le roi se réfugie derrière. C'est pourquoi un pion en plus ne suffit généralement pas pour gagner." },
+        "u8-l06-s02": {
+          "prompt": "Un fou ne peut attaquer que les cases de sa couleur. Quelles cases le fou noir ne peut-il pas attaquer, puisqu'il va sur des cases claires ?",
+          "options": ["Les cases sombres, comme f4", "Les claires, comme f1", "Aucun"],
+          "explanation": "Le fou noir en f1 va sur des cases claires. Le pion en f4 est sur une case sombre : ce fou ne pourra jamais l'attaquer.",
+          "feedback": ["", "Les claires il peut les attaquer : elles sont les siennes.", "Chaque fou a sa couleur et ne peut pas la changer."]
+        },
+        "u8-l06-s03": {
+          "prompt": "Appuie sur le pion blanc que le fou noir ne pourra jamais attaquer.",
+          "hint": "C'est le pion qui est sur une case de couleur différente de ton fou."
+        },
+        "u8-l06-s04": {
+          "prompt": "Défends la finale. Stockfish joue avec les Blancs et essaie de gagner. Tiens 20 coups sans perdre.",
+          "success": "Correct. Tu as tenu les 20 coups : avec des fous de couleurs différentes, un pion en moins ne perd pas.",
+          "hint": "Avec ce coup les Blancs gagnent. Garde le roi près et laisse le fou sur une diagonale longue qui freine le pion."
+        },
+        "u8-l06-s05": { "text": "En résumé : avec des fous de couleurs différentes, chacun attaque des cases que l'autre ne touche pas, et le côté avec un pion en moins peut tenir." }
+      }
+    }
+  }
+}

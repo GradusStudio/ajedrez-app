@@ -4,7 +4,7 @@ Notación en español: R rey, D dama, T torre, A alfil, C caballo. Todas las lí
 
 ---
 
-## Parte 1 · Ruta rápida de lecciones (7 unidades, 52 lecciones, todas escritas)
+## Parte 1 · Ruta rápida de lecciones (8 unidades, 58 lecciones, todas escritas)
 
 Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzado) y en los cuatro niveles de chess.com (nuevo, principiante, intermedio, avanzado). Los títulos son propios.
 
@@ -71,7 +71,10 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 ### Unidad 7 · Táctica intermedia (8 lecciones, escritas el 9-11-2026 en `src/data/unidad-7-tactica-intermedia.json`)
 La atracción, La sobrecarga, La jugada intermedia, La interferencia, Mates de una sola pieza, Mates de dos piezas, Sacrificar para abrir al rey y Calcular: mate en dos y en tres. Cada una usa posiciones de puzzles reales de Lichess y termina con puzzles propios del tema. Propuesta completa (unidades 7 a 10) en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`.
 
-Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 52 (Unidad 6: 41 a 44; Unidad 7: 45 a 52). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
+### Unidad 8 · Finales intermedios (6 lecciones, escritas el 9-11-2026 en `src/data/unidad-8-finales-intermedios.json`)
+El rey activo, El peón pasado alejado (incluye las dos debilidades), Dama contra peón, La posición de Philidor, Cortar al rey con la torre y Alfiles de distinto color. Quedó para más adelante «Alfil contra caballo»: los puzzles de Lichess con esas piezas son tácticos (horquillas) y no enseñan la idea estratégica.
+
+Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 58 (Unidad 6: 41 a 44; Unidad 7: 45 a 52; Unidad 8: 53 a 58). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
 
 ### Formato de cada lección
 1. Explicación corta con tablero interactivo (máx. 3 pantallas).

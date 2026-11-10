@@ -315,6 +315,24 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 - **Cuestionarios con respuesta calculada:** en la lección 8 las respuestas («2 respuestas legales», «1 jugada del rey») salen de chess.js, no de memoria.
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama (las frases de «Correcto. …» salen de plantillas con la notación de cada idioma) y revisadas a mano. Sin revisión de nativos. Términos nuevos en los glosarios de `docs/traducciones/`.
 
+## Contenido de la Unidad 8 · Finales intermedios (bloque C del temario nuevo)
+
+`src/data/unidad-8-finales-intermedios.json`: 6 lecciones, 41 pasos (órdenes 53 a 58), escritas el 9-11-2026. Todas las enseña Maestro Ivo.
+
+| # | id | Lección | Pasos |
+|---|---|---|---|
+| 1 | u8-l01 | El rey activo | 9 |
+| 2 | u8-l02 | El peón pasado alejado | 9 |
+| 3 | u8-l03 | Dama contra peón | 6 |
+| 4 | u8-l04 | La posición de Philidor | 5 |
+| 5 | u8-l05 | Cortar al rey con la torre | 7 |
+| 6 | u8-l06 | Alfiles de distinto color | 5 |
+
+- **Puzzles de Lichess (CC0):** las lecciones 1 y 2 usan finales de peones reales (el rey que gana peones, las carreras de un peón alejado). Cada ejercicio de una jugada tiene una sola solución y un margen claro sobre la segunda mejor (Stockfish, profundidad 14).
+- **Posiciones propias, verificadas con Stockfish 19 (profundidad 18 a 24):** dama contra peón central (mate en 10), dama contra peón de torre (0,00), Philidor (−0,27, tablas), torre que corta al rey por columna y por fila (mate en 13 y 11) y alfiles de distinto color con un peón de más (0,00). Las prácticas contra Stockfish se comprobaron contra los umbrales del paso `practice` (ganar: al menos +3; aguantar: más de −3).
+- **Lo que no se hizo:** «Alfil contra caballo» y una lección aparte de «Las dos debilidades» (quedó dentro de la lección 2). Los puzzles de Lichess con alfil y caballo son horquillas, no enseñan la idea estratégica, y no se encontró una posición que Stockfish confirmara de forma inequívoca para un ejercicio de una jugada.
+- **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama (las frases «Correcto. …» salen de plantillas con la notación de cada idioma) y revisadas a mano. Sin revisión de nativos.
+
 ## Lecciones agregadas el 9-11-2026 (bloque A del temario nuevo)
 
 Salen de la comparación con los libros de `C:devmaterial para lecciones` (propuesta en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`). Textos escritos de cero, sin copiar de los libros. Se insertaron sin renumerar ids; `order` se recalculó para toda la ruta (1 a 44).

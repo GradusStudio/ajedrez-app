@@ -7,6 +7,7 @@ import unit4Raw from './unidad-4-apertura-y-estrategia.json';
 import unit5Raw from './unidad-5-finales.json';
 import unit6Raw from './unidad-6-conceptos-avanzados.json';
 import unit7Raw from './unidad-7-tactica-intermedia.json';
+import unit8Raw from './unidad-8-finales-intermedios.json';
 
 // El JSON se interpreta con los tipos de lessonTypes.ts.
 export const unit1 = unit1Raw as unknown as Unit;
@@ -16,9 +17,10 @@ export const unit4 = unit4Raw as unknown as Unit;
 export const unit5 = unit5Raw as unknown as Unit;
 export const unit6 = unit6Raw as unknown as Unit;
 export const unit7 = unit7Raw as unknown as Unit;
+export const unit8 = unit8Raw as unknown as Unit;
 
 /** Unidades de la ruta de Aprender, en orden. Las nuevas se agregan aquí. */
-export const units: Unit[] = [unit1, unit2, unit3, unit4, unit5, unit6, unit7];
+export const units: Unit[] = [unit1, unit2, unit3, unit4, unit5, unit6, unit7, unit8];
 
 /** Busca una lección por id, en las unidades y en los cursos de aperturas. */
 export function findLesson(id: string): Lesson | undefined {

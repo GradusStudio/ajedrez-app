@@ -1,0 +1,639 @@
+{
+  "unit": 8,
+  "title": "Finales intermedios",
+  "lessons": [
+    {
+      "id": "u8-l01",
+      "unit": 8,
+      "order": 53,
+      "title": "El rey activo",
+      "summary": "En el final, el rey también ataca",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "En el final casi no quedan piezas que den mate, y el rey se vuelve una pieza de ataque. Aquí el rey negro marcha hacia f4: desde allí ataca el peón de g4, y el rey blanco está demasiado lejos para defenderlo.",
+          "fen": "8/8/3k4/6p1/2K3P1/8/8/8 b - - 5 62",
+          "orientation": "b",
+          "play": [
+            "d6e5",
+            "c4d3",
+            "e5f4"
+          ],
+          "id": "u8-l01-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Lo mismo aquí: el rey negro sale hacia f5 y ataca el peón de g5. El rey blanco no puede defenderlo y las negras se lo comen.",
+          "fen": "8/8/4k1p1/6P1/3K4/8/8/8 b - - 4 72",
+          "orientation": "b",
+          "play": [
+            "e6f5",
+            "d4e3",
+            "f5g5"
+          ],
+          "id": "u8-l01-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Mueven las blancas. ¿Qué hace el rey para ganar el peón de a6?",
+          "fen": "8/8/p1K5/P7/1k6/8/8/8 w - - 1 68",
+          "options": [
+            "Va a b6 y lo ataca",
+            "Va a d5, hacia el centro",
+            "Va a b7 y se aleja del peón"
+          ],
+          "answer": 0,
+          "explanation": "Con Rb6 el rey ataca el peón de a6 y el rey negro no llega a defenderlo.",
+          "feedback": [
+            "",
+            "Hacia el centro no ganas nada: el peón de a6 está al lado de tu rey.",
+            "Alejarte del peón es lo contrario de lo que necesitas."
+          ],
+          "id": "u8-l01-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla a la que debe ir el rey negro para atacar el peón de g5.",
+          "fen": "8/8/4k1p1/6P1/3K4/8/8/8 b - - 4 72",
+          "orientation": "b",
+          "squares": [
+            "f5"
+          ],
+          "hint": "Tiene que quedar al lado del peón, en una casilla que el rey blanco no pueda vigilar.",
+          "id": "u8-l01-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca el peón de a6 con el rey.",
+          "fen": "8/8/p1K5/P7/1k6/8/8/8 w - - 1 68",
+          "solutions": [
+            "c6b6"
+          ],
+          "hint": "El rey blanco puede ponerse al lado del peón. El rey negro no llega a defenderlo.",
+          "success": "Correcto. Rb6 ataca el peón y el rey rival no puede defenderlo.",
+          "id": "u8-l01-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura el peón de a2 con el rey.",
+          "fen": "8/8/8/8/1K6/p7/Pk6/8 b - - 1 46",
+          "orientation": "b",
+          "solutions": [
+            "b2a2"
+          ],
+          "hint": "El peón de a2 está al lado de tu rey y nadie lo defiende.",
+          "success": "Correcto. Rxa2 gana el peón y abre el camino al peón de a.",
+          "id": "u8-l01-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca el peón de b7 con el rey.",
+          "fen": "8/1p6/pP1K4/1k6/8/8/8/8 w - - 8 53",
+          "solutions": [
+            "d6c7"
+          ],
+          "hint": "Tu rey puede rodear al rey negro y atacar el peón desde otra casilla.",
+          "success": "Correcto. Rc7 ataca el peón de b7 y el rey negro no puede defenderlo.",
+          "id": "u8-l01-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Gana peones con el rey.",
+          "fen": "8/6p1/1p1k1p2/1P2pP1p/2K1P2P/4P3/8/8 b - - 6 35",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d6d7",
+              "san": "Rd7"
+            },
+            {
+              "uci": "c4d5",
+              "san": "Rd5"
+            },
+            {
+              "uci": "d7c7",
+              "san": "Rc7"
+            },
+            {
+              "uci": "d5e6",
+              "san": "Re6"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Lleva el rey hacia los peones rivales: no te quedes en casa.",
+          "id": "u8-l01-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Gana peones con el rey.",
+          "fen": "8/2k5/5p2/1pP1pP1p/4P2P/K7/8/8 w - - 1 69",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "a3b4",
+              "san": "Rb4"
+            },
+            {
+              "uci": "c7c6",
+              "san": "Rc6"
+            },
+            {
+              "uci": "b4b3",
+              "san": "Rb3"
+            },
+            {
+              "uci": "c6c5",
+              "san": "Rxc5"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Lleva el rey hacia los peones rivales: no te quedes en casa.",
+          "id": "u8-l01-s09"
+        }
+      ]
+    },
+    {
+      "id": "u8-l02",
+      "unit": 8,
+      "order": 54,
+      "title": "El peón pasado alejado",
+      "summary": "Un peón lejos del rey rival",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Las blancas tienen un peón pasado en la columna h, lejos del rey negro, que está en la otra punta. Con h5 empieza la carrera: los dos bandos coronan, pero las blancas llegan primero y su nueva dama, con jaques, detiene al peón negro.",
+          "fen": "8/8/8/pp6/1k4KP/6P1/8/8 w - - 0 53",
+          "play": [
+            "h4h5",
+            "b4a3",
+            "h5h6",
+            "b5b4",
+            "h6h7",
+            "b4b3",
+            "h7h8q",
+            "b3b2",
+            "h8c3"
+          ],
+          "id": "u8-l02-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Aquí el peón pasado de las negras está en la columna a, lejos del rey blanco. Corona sin que nadie pueda frenarlo, y los peones blancos llegan tarde.",
+          "fen": "8/8/8/p5K1/1k4PP/5P2/8/8 b - - 0 45",
+          "orientation": "b",
+          "play": [
+            "a5a4",
+            "g5f5",
+            "a4a3",
+            "g4g5",
+            "a3a2",
+            "h4h5",
+            "a2a1q"
+          ],
+          "id": "u8-l02-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Mueven las blancas. ¿Qué conviene?",
+          "fen": "8/8/8/pp6/1k4KP/6P1/8/8 w - - 0 53",
+          "highlight": [
+            "h4",
+            "b4"
+          ],
+          "options": [
+            "Empujar el peón de h, que está lejos del rey negro",
+            "Llevar el rey hacia los peones de la columna a",
+            "Mover el peón de g"
+          ],
+          "answer": 0,
+          "explanation": "El rey negro está en la otra punta y no llega a detener el peón de h. Empujarlo gana la carrera.",
+          "feedback": [
+            "",
+            "Con el rey lejos del peón de h, lo que más pesa es que el peón corra.",
+            "El peón de g no tiene la misma ventaja: está más cerca del rey rival."
+          ],
+          "id": "u8-l02-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca el peón pasado que está más lejos del rey negro.",
+          "fen": "8/8/8/pp6/1k4KP/6P1/8/8 w - - 0 53",
+          "squares": [
+            "h4"
+          ],
+          "hint": "Es el peón que queda en el borde del tablero, opuesto a la posición del rey negro.",
+          "id": "u8-l02-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Empuja el peón que está lejos del rey rival.",
+          "fen": "8/8/p7/1p6/7P/1kP3K1/8/8 w - - 1 58",
+          "solutions": [
+            "h4h5"
+          ],
+          "hint": "El peón de h no tiene nada que lo pare: el rey negro está al otro lado.",
+          "success": "Correcto. h5 empieza la carrera: el peón corona y el rey negro llega tarde.",
+          "id": "u8-l02-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Empuja el peón que está lejos del rey rival.",
+          "fen": "8/3k4/1K6/pP6/8/8/8/8 b - - 3 56",
+          "orientation": "b",
+          "solutions": [
+            "a5a4"
+          ],
+          "hint": "El peón de a corona antes de que el rey blanco pueda hacer algo.",
+          "success": "Correcto. a4 empieza la carrera: el peón corona y el rey blanco llega tarde.",
+          "id": "u8-l02-s06"
+        },
+        {
+          "type": "line",
+          "prompt": "Gana la carrera de peones.",
+          "fen": "8/8/8/6p1/6Kp/1k3P2/1P6/8 w - - 1 46",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g4g5",
+              "san": "Rxg5"
+            },
+            {
+              "uci": "h4h3",
+              "san": "h3"
+            },
+            {
+              "uci": "g5f4",
+              "san": "Rf4"
+            },
+            {
+              "uci": "h3h2",
+              "san": "h2"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca el peón que está más lejos del rey rival y empújalo.",
+          "id": "u8-l02-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Gana la carrera de peones.",
+          "fen": "8/8/8/6kP/1p4P1/1Kp5/8/8 b - - 5 65",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g5g4",
+              "san": "Rxg4"
+            },
+            {
+              "uci": "h5h6",
+              "san": "h6"
+            },
+            {
+              "uci": "g4f5",
+              "san": "Rf5"
+            },
+            {
+              "uci": "h6h7",
+              "san": "h7"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca el peón que está más lejos del rey rival y empújalo.",
+          "id": "u8-l02-s08"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: un peón pasado lejos del rey rival es un arma doble. O corona, o el rey rival tiene que ir tras él y deja solos a sus demás peones. Son las dos debilidades: el peón pasado y los peones que quedan desprotegidos.",
+          "fen": "8/8/8/pp6/1k4KP/6P1/8/8 w - - 0 53",
+          "id": "u8-l02-s09"
+        }
+      ]
+    },
+    {
+      "id": "u8-l03",
+      "unit": 8,
+      "order": 55,
+      "title": "Dama contra peón",
+      "summary": "Cuando el peón está a un paso de coronar",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La dama blanca controla d1 desde a4: si el peón corona, la dama lo captura con jaque. Mientras tanto el rey blanco se acerca y, entre los dos, acaban con el peón y con el rey.",
+          "fen": "8/8/8/8/Q7/4k3/3p4/7K w - - 0 1",
+          "play": [
+            "h1g2",
+            "e3d3",
+            "g2f3",
+            "d2d1q",
+            "a4d1"
+          ],
+          "id": "u8-l03-s01"
+        },
+        {
+          "type": "explain",
+          "text": "En cambio, con un peón de torre en séptima y el rey negro cerca de la esquina, la dama no puede ganar. El rey negro se refugia en la esquina y cualquier intento termina en tablas por ahogado.",
+          "fen": "8/8/8/8/8/8/pk6/6QK w - - 0 1",
+          "id": "u8-l03-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuál de estos peones en séptima suele ser tablas contra la dama?",
+          "fen": "8/8/8/8/8/8/pk6/6QK w - - 0 1",
+          "highlight": [
+            "a2",
+            "b2"
+          ],
+          "options": [
+            "El peón de torre, en la columna a",
+            "El peón central, en la columna d",
+            "Ninguno: la dama siempre gana"
+          ],
+          "answer": 0,
+          "explanation": "Con un peón de torre y el rey rival cerca, el ahogado salva a las negras. Con un peón central, en cambio, la dama gana.",
+          "feedback": [
+            "",
+            "Con un peón central la dama gana: el rey no tiene la esquina para refugiarse.",
+            "Con el peón de torre y el rey cerca de la esquina, la dama no gana."
+          ],
+          "id": "u8-l03-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "El peón negro quiere coronar en d1. Toca la casilla que la dama controla desde a4.",
+          "fen": "8/8/8/8/Q7/4k3/3p4/7K w - - 0 1",
+          "squares": [
+            "d1"
+          ],
+          "hint": "Sigue la diagonal de la dama hacia el rincón de abajo a la derecha.",
+          "id": "u8-l03-s04"
+        },
+        {
+          "type": "practice",
+          "prompt": "Gana con la dama y el rey contra el peón y el rey. Stockfish defiende.",
+          "fen": "8/8/8/8/Q7/4k3/3p4/7K w - - 0 1",
+          "side": "w",
+          "goal": "mate",
+          "maxMoves": 40,
+          "success": "Correcto. La dama frenó al peón y diste mate.",
+          "hint": "Con esa jugada se escapa la victoria. Mantén la dama controlando la casilla de coronación y acerca el rey sin ahogar.",
+          "id": "u8-l03-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: la dama controla la casilla de coronación y el rey se acerca. Contra un peón de torre en séptima con el rey cerca de la esquina, el ahogado da tablas.",
+          "fen": "8/8/8/8/Q7/4k3/3p4/7K w - - 0 1",
+          "id": "u8-l03-s06"
+        }
+      ]
+    },
+    {
+      "id": "u8-l04",
+      "unit": 8,
+      "order": 56,
+      "title": "La posición de Philidor",
+      "summary": "La defensa segura con torre",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "En el final de torre y peón contra torre, la defensa más segura es la posición de Philidor: la torre defensora en la sexta fila y el rey en la última, delante del peón. Así el rey y el peón rivales no pueden avanzar.",
+          "fen": "4k3/8/r7/3KP3/8/8/8/1R6 b - - 0 1",
+          "highlight": [
+            "a6",
+            "e8"
+          ],
+          "id": "u8-l04-s01"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿En qué fila coloca la torre el bando que defiende?",
+          "fen": "4k3/8/r7/3KP3/8/8/8/1R6 b - - 0 1",
+          "highlight": [
+            "a6"
+          ],
+          "options": [
+            "En la sexta fila, la tercera desde su lado",
+            "En la primera fila, detrás del peón",
+            "En la columna del peón"
+          ],
+          "answer": 0,
+          "explanation": "La torre en la sexta fila corta el paso del rey y del peón: el rey rival no puede avanzar a la sexta fila.",
+          "feedback": [
+            "",
+            "Detrás del peón sirve más adelante, cuando el peón ya llegó a la sexta fila. Al principio, la torre va en la sexta.",
+            "En la columna del peón la torre sería un blanco y no frenaría al rey rival."
+          ],
+          "id": "u8-l04-s02"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "La torre negra controla la sexta fila. Toca las dos casillas de esa fila por las que el rey blanco o el peón quieren avanzar.",
+          "fen": "4k3/8/r7/3KP3/8/8/8/1R6 b - - 0 1",
+          "orientation": "b",
+          "squares": [
+            "d6",
+            "e6"
+          ],
+          "hint": "Están delante del rey y del peón blancos, en la sexta fila.",
+          "id": "u8-l04-s03"
+        },
+        {
+          "type": "practice",
+          "prompt": "Defiende el final. Stockfish juega con las blancas e intenta ganar. Aguanta 30 jugadas sin perder.",
+          "fen": "4k3/8/r7/3KP3/8/8/8/1R6 b - - 0 1",
+          "side": "b",
+          "goal": "draw",
+          "maxMoves": 30,
+          "success": "Correcto. Aguantaste las 30 jugadas: la posición de Philidor es tablas.",
+          "hint": "Con esa jugada las blancas ganan. Mantén la torre en la sexta fila y el rey en la última, delante del peón.",
+          "id": "u8-l04-s04"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: torre en la sexta fila y rey en la última. Cuando el peón llega a la sexta fila, la torre pasa detrás y da jaques desde lejos.",
+          "fen": "4k3/8/r7/3KP3/8/8/8/1R6 b - - 0 1",
+          "orientation": "b",
+          "id": "u8-l04-s05"
+        }
+      ]
+    },
+    {
+      "id": "u8-l05",
+      "unit": 8,
+      "order": 57,
+      "title": "Cortar al rey con la torre",
+      "summary": "La torre como muralla",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La torre de c1 controla la columna c: el rey negro no puede cruzarla y no llega al peón de b4. Mientras tanto el peón avanza sin que nadie lo pueda detener. Eso es cortar al rey con la torre.",
+          "fen": "8/8/3k4/8/1P6/8/3K4/2R5 w - - 0 1",
+          "arrows": [
+            "c1c8"
+          ],
+          "highlight": [
+            "c5",
+            "c6",
+            "c7"
+          ],
+          "id": "u8-l05-s01"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca las tres casillas de la columna c por las que el rey negro podría pasar a la otra mitad del tablero.",
+          "fen": "8/8/3k4/8/1P6/8/3K4/2R5 w - - 0 1",
+          "squares": [
+            "c5",
+            "c6",
+            "c7"
+          ],
+          "hint": "Son las casillas de la columna c que están al lado del rey negro.",
+          "id": "u8-l05-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Por qué el rey negro no puede acercarse al peón?",
+          "fen": "8/8/3k4/8/1P6/8/3K4/2R5 w - - 0 1",
+          "highlight": [
+            "c1",
+            "d6",
+            "b4"
+          ],
+          "options": [
+            "La torre controla la columna c y le cierra el paso",
+            "El rey blanco lo bloquea",
+            "El peón está protegido por la torre"
+          ],
+          "answer": 0,
+          "explanation": "Para llegar al peón el rey negro tendría que cruzar la columna c, y la torre la vigila entera.",
+          "feedback": [
+            "",
+            "El rey blanco está lejos del rey negro: lo que le cierra el paso es la torre.",
+            "La torre no protege al peón de b4: lo que hace es cortar la columna."
+          ],
+          "id": "u8-l05-s03"
+        },
+        {
+          "type": "explain",
+          "text": "También se puede cortar por filas. Con Th5 la torre controla la fila 5: el rey negro no puede bajar y el peón de b4 avanza con calma.",
+          "fen": "8/8/3k4/8/1P6/8/3K4/7R w - - 0 1",
+          "play": [
+            "h1h5"
+          ],
+          "id": "u8-l05-s04"
+        },
+        {
+          "type": "practice",
+          "prompt": "Corona el peón sin perder la dama nueva. Stockfish defiende.",
+          "fen": "8/8/3k4/8/1P6/8/3K4/2R5 w - - 0 1",
+          "side": "w",
+          "goal": "promote",
+          "maxMoves": 10,
+          "success": "Correcto. La torre cortó al rey y el peón coronó.",
+          "hint": "Con esa jugada se escapa la victoria. Deja la torre en la columna c y avanza el peón.",
+          "id": "u8-l05-s05"
+        },
+        {
+          "type": "practice",
+          "prompt": "Corta al rey con la torre y corona el peón. Stockfish defiende.",
+          "fen": "8/8/3k4/8/1P6/8/3K4/7R w - - 0 1",
+          "side": "w",
+          "goal": "promote",
+          "maxMoves": 20,
+          "success": "Correcto. Cortaste al rey y el peón coronó.",
+          "hint": "Con esa jugada se escapa la victoria. Pon la torre en una fila o columna que el rey negro no pueda cruzar.",
+          "id": "u8-l05-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: la torre corta al rey por una columna o una fila que él no puede cruzar. Con el rey cortado, el peón avanza solo.",
+          "fen": "8/8/3k4/8/1P6/8/3K4/2R5 w - - 0 1",
+          "id": "u8-l05-s07"
+        }
+      ]
+    },
+    {
+      "id": "u8-l06",
+      "unit": 8,
+      "order": 58,
+      "title": "Alfiles de distinto color",
+      "summary": "Por qué suelen ser tablas",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Con alfiles de distinto color, cada alfil controla casillas que el otro no puede atacar. El alfil defensor frena al peón y el rey se refugia detrás. Por eso un peón de más suele no bastar para ganar.",
+          "fen": "8/5k2/8/6B1/5PK1/8/8/5b2 w - - 0 1",
+          "highlight": [
+            "g5",
+            "f1"
+          ],
+          "id": "u8-l06-s01"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Un alfil solo ataca casillas de su color. ¿Qué casillas no puede atacar el alfil negro, que va por casillas claras?",
+          "fen": "8/5k2/8/6B1/5PK1/8/8/5b2 b - - 0 1",
+          "orientation": "b",
+          "highlight": [
+            "f1",
+            "f4"
+          ],
+          "options": [
+            "Las oscuras, como f4",
+            "Las claras, como f1",
+            "Ninguna"
+          ],
+          "answer": 0,
+          "explanation": "El alfil negro de f1 va por casillas claras. El peón de f4 está en una casilla oscura: ese alfil nunca podrá atacarlo.",
+          "feedback": [
+            "",
+            "Las claras sí las puede atacar: son las suyas.",
+            "Cada alfil tiene su color y no puede cambiarlo."
+          ],
+          "id": "u8-l06-s02"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca el peón blanco que el alfil negro nunca podrá atacar.",
+          "fen": "8/5k2/8/6B1/5PK1/8/8/5b2 b - - 0 1",
+          "orientation": "b",
+          "squares": [
+            "f4"
+          ],
+          "hint": "Es el peón que está en una casilla de color distinto al de tu alfil.",
+          "id": "u8-l06-s03"
+        },
+        {
+          "type": "practice",
+          "prompt": "Defiende el final. Stockfish juega con las blancas e intenta ganar. Aguanta 20 jugadas sin perder.",
+          "fen": "8/5k2/8/6B1/5PK1/8/8/5b2 b - - 0 1",
+          "side": "b",
+          "goal": "draw",
+          "maxMoves": 20,
+          "success": "Correcto. Aguantaste las 20 jugadas: con alfiles de distinto color, un peón de menos no pierde.",
+          "hint": "Con esa jugada las blancas ganan. Mantén al rey cerca y deja al alfil sobre una diagonal larga que frene al peón.",
+          "id": "u8-l06-s04"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: con alfiles de distinto color, cada uno ataca casillas que el otro no toca, y el bando con un peón de menos puede resistir.",
+          "fen": "8/5k2/8/6B1/5PK1/8/8/5b2 w - - 0 1",
+          "id": "u8-l06-s05"
+        }
+      ]
+    }
+  ]
+}

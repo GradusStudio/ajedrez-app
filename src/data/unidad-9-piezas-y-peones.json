@@ -1,0 +1,634 @@
+{
+  "unit": 9,
+  "title": "Piezas y peones",
+  "lessons": [
+    {
+      "id": "u9-l01",
+      "unit": 9,
+      "order": 59,
+      "title": "Piezas sueltas",
+      "summary": "Una pieza sin defensa es un blanco",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La dama blanca está en c5 y ninguna pieza la defiende. La dama negra de e7 la ataca y la captura gratis. Una pieza que nadie defiende es una pieza suelta.",
+          "fen": "r4rk1/1pb1qppp/p4n2/2Qp4/4pP2/1P4P1/PB1P1PBP/R3K2R b KQ - 3 19",
+          "orientation": "b",
+          "play": [
+            "e7c5"
+          ],
+          "id": "u9-l01-s01"
+        },
+        {
+          "type": "explain",
+          "text": "El alfil negro de f2 dio jaque, pero ninguna pieza lo protege: el rey lo captura. Antes de capturar, comprueba que la pieza rival no tenga defensa; antes de jugar, comprueba que las tuyas sí la tengan.",
+          "fen": "rnb1k2r/pp3pp1/5q1p/3Q4/8/2N2N2/PP2PbPP/R3KB1R w KQkq - 0 10",
+          "play": [
+            "e1f2"
+          ],
+          "id": "u9-l01-s02"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca las dos piezas blancas que nadie defiende. No cuentes el rey ni los peones.",
+          "fen": "rn1qk2r/pp2bpp1/2pN1p1p/7b/2BP4/5P2/PPP1Q1PP/2KR2NR b kq - 2 11",
+          "orientation": "b",
+          "squares": [
+            "d6",
+            "h1"
+          ],
+          "hint": "Busca las piezas blancas a las que no llega ninguna otra pieza ni peón blancos.",
+          "id": "u9-l01-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuántas piezas negras no están defendidas? No cuentes el rey ni los peones.",
+          "fen": "r5k1/4qppp/pb2p3/8/P1rp1P2/5QP1/1PP4P/R4RK1 w - - 0 27",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": 2,
+          "explanation": "Hay cuatro piezas negras sin defensa. Cuando el rival tiene tantas piezas sueltas, casi siempre hay una táctica a la vista.",
+          "feedback": [
+            "Cuenta de nuevo: revisa cada pieza negra y mira si alguna otra la protege.",
+            "Cuenta de nuevo: revisa cada pieza negra y mira si alguna otra la protege.",
+            "",
+            "Cuenta de nuevo: revisa cada pieza negra y mira si alguna otra la protege."
+          ],
+          "id": "u9-l01-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura la pieza que nadie defiende.",
+          "fen": "r3r1k1/1b3p2/p1n2bpp/1p1p4/2pP1N2/NPP4P/P4PP1/R2BR1K1 b - - 1 21",
+          "orientation": "b",
+          "solutions": [
+            "e8e1"
+          ],
+          "hint": "Una de las piezas blancas no tiene defensa y puedes capturarla con jaque.",
+          "success": "Correcto. Txe1+ gana una pieza que nadie defendía.",
+          "id": "u9-l01-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura la pieza que nadie defiende.",
+          "fen": "1k1r3r/p1p2p2/1p1b4/3Q3p/P1PP4/1P3PP1/1B3qK1/R7 w - - 0 25",
+          "solutions": [
+            "g2f2"
+          ],
+          "hint": "La pieza que acaba de dar jaque no tiene defensa: captúrala.",
+          "success": "Correcto. Rxf2 gana una pieza que nadie defendía.",
+          "id": "u9-l01-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Captura la pieza que nadie defiende.",
+          "fen": "1k1r1b1r/ppp2ppp/4b3/3p4/4Q3/1P2PN2/PqP1BPPP/2KR1R2 w - - 0 14",
+          "solutions": [
+            "c1b2"
+          ],
+          "hint": "La dama negra está en una casilla donde nadie la protege.",
+          "success": "Correcto. Rxb2 gana una pieza que nadie defendía.",
+          "id": "u9-l01-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la pieza suelta.",
+          "fen": "r3k3/ppp1qp1p/2n1b1r1/8/2p2B2/2P2N2/P3QPPP/3R1RK1 b q - 0 15",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g6g2",
+              "san": "Txg2+"
+            },
+            {
+              "uci": "g1g2",
+              "san": "Rxg2"
+            },
+            {
+              "uci": "e6h3",
+              "san": "Ah3+"
+            },
+            {
+              "uci": "g2h3",
+              "san": "Rxh3"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca las piezas del rival que nadie defiende y empieza por la más valiosa.",
+          "id": "u9-l01-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la pieza suelta.",
+          "fen": "rn2k3/ppp3qp/3p2pB/4Pr2/3P4/2N4Q/PPP4K/R7 b q - 1 18",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g7h6",
+              "san": "Dxh6"
+            },
+            {
+              "uci": "h3h6",
+              "san": "Dxh6"
+            },
+            {
+              "uci": "f5h5",
+              "san": "Th5+"
+            },
+            {
+              "uci": "h6h5",
+              "san": "Dxh5"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca las piezas del rival que nadie defiende y empieza por la más valiosa.",
+          "id": "u9-l01-s09"
+        }
+      ]
+    },
+    {
+      "id": "u9-l02",
+      "unit": 9,
+      "order": 60,
+      "title": "Cuándo cambiar piezas",
+      "summary": "Cambiar o no cambiar",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Casi todos los cambios tienen cosas buenas y cosas malas. Conviene cambiar si vas ganando material, si el cambio deja una debilidad al rival, si te están atacando o si tienes poco espacio. No conviene si vas perdiendo material, si eres tú quien ataca o si tienes más espacio.",
+          "fen": "2bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R w KQk - 2 5",
+          "id": "u9-l02-s01"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Tienes una torre más y mueven las blancas. ¿Qué te conviene?",
+          "fen": "2bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R w KQk - 2 5",
+          "highlight": [
+            "d1",
+            "c4"
+          ],
+          "options": [
+            "Evitar los cambios",
+            "Atacar sin cambiar nada",
+            "Cambiar piezas para simplificar"
+          ],
+          "answer": 2,
+          "explanation": "Con una torre más, cada cambio hace tu ventaja más grande: cuantas menos piezas quedan, más pesa tener una torre de más.",
+          "feedback": [
+            "Evitar los cambios deja vivas las piezas del rival, que son las que podrían complicarte el juego.",
+            "Atacar sin cambiar nada es arriesgado cuando ya tienes la ventaja.",
+            ""
+          ],
+          "id": "u9-l02-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Vas perdiendo una torre y mueven las blancas. ¿Qué te conviene?",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/1NBQKB1R w Kkq - 2 5",
+          "options": [
+            "Cambiar solo las damas",
+            "Evitar los cambios",
+            "Cambiar piezas para simplificar"
+          ],
+          "answer": 1,
+          "explanation": "Con menos material, cada cambio te deja con menos recursos: conviene mantener piezas en el tablero para tener opciones.",
+          "feedback": [
+            "Cambiar damas también te deja con menos recursos para complicar.",
+            "",
+            "Cada cambio acerca la partida a un final donde la torre de menos se nota más."
+          ],
+          "id": "u9-l02-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Tienes menos espacio que el rival. ¿Qué te conviene?",
+          "fen": "r1bq1rk1/ppp1npbp/3p1np1/3Pp3/2P1P3/2N2N2/PP2BPPP/R1BQ1RK1 b - - 1 9",
+          "orientation": "b",
+          "options": [
+            "Cambiar las piezas que te encierran",
+            "Evitar todos los cambios",
+            "Avanzar los peones"
+          ],
+          "answer": 0,
+          "explanation": "Con poco espacio las piezas se estorban. Cada cambio libera casillas para las que quedan.",
+          "feedback": [
+            "",
+            "Evitar los cambios deja tus piezas apretadas.",
+            "Avanzar peones sin apoyo suele crear debilidades."
+          ],
+          "id": "u9-l02-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Estás atacando el rey rival con varias piezas. ¿Qué te conviene?",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R w KQkq - 2 5",
+          "options": [
+            "Cambiar las piezas que atacan",
+            "Cambiar la dama enseguida",
+            "Mantener las piezas de ataque en el tablero"
+          ],
+          "answer": 2,
+          "explanation": "Para atacar necesitas piezas. Si cambias las que atacan, el rival se defiende con más calma.",
+          "feedback": [
+            "Cambiar las piezas que atacan es lo que busca el rival que se defiende.",
+            "Cambiar la dama quita la pieza que más ataca.",
+            ""
+          ],
+          "id": "u9-l02-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: cambia cuando vas ganando, cuando te atacan o cuando te falta espacio. No cambies cuando vas perdiendo, cuando atacas o cuando tienes más espacio. Antes de cada cambio, pregúntate qué te deja y qué le deja al rival.",
+          "fen": "2bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R w KQk - 2 5",
+          "id": "u9-l02-s06"
+        }
+      ]
+    },
+    {
+      "id": "u9-l03",
+      "unit": 9,
+      "order": 61,
+      "title": "El espacio",
+      "summary": "Casillas del campo rival que controlas",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El espacio es el número de casillas del campo rival que controlan tus piezas y peones. En esta posición las blancas controlan 8 casillas del campo negro y las negras 5 del campo blanco: las blancas tienen más espacio, sobre todo gracias a su peón avanzado de e5.",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "id": "u9-l03-s01"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca las dos casillas del campo negro que controla el peón de e5.",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "squares": [
+            "d6",
+            "f6"
+          ],
+          "hint": "Un peón controla las dos casillas diagonales que tiene delante.",
+          "id": "u9-l03-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Quién tiene más espacio en esta posición?",
+          "fen": "rn1qkb1r/1p3ppp/p2pbn2/4p3/4P3/1NN1B3/PPP2PPP/R2QKB1R w KQkq - 2 8",
+          "options": [
+            "Los dos igual",
+            "Las blancas",
+            "Las negras"
+          ],
+          "answer": 1,
+          "explanation": "Las blancas controlan 12 casillas del campo negro; las negras, 7 del campo blanco.",
+          "feedback": [
+            "No es igual: las blancas controlan más casillas del campo rival.",
+            "",
+            "Cuenta las casillas del campo rival que controla cada bando: las blancas controlan más."
+          ],
+          "id": "u9-l03-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "El bando que tiene más espacio, ¿qué suele convenirle?",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "options": [
+            "Evitar los cambios de piezas",
+            "Cambiar damas enseguida",
+            "Dejar de mover peones"
+          ],
+          "answer": 0,
+          "explanation": "Con más espacio, sus piezas se mueven con comodidad. Cada cambio libera al rival, así que le conviene mantener las piezas.",
+          "feedback": [
+            "",
+            "Cambiar damas enseguida libera al rival que está apretado.",
+            "Dejar de mover peones no ayuda a mantener el espacio."
+          ],
+          "id": "u9-l03-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "El bando que tiene menos espacio, ¿qué suele convenirle?",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "orientation": "b",
+          "options": [
+            "Evitar todos los cambios",
+            "Encerrar aún más sus piezas",
+            "Cambiar las piezas que lo encierran"
+          ],
+          "answer": 2,
+          "explanation": "Con poco espacio las piezas se estorban. Cada cambio libera casillas para las que quedan.",
+          "feedback": [
+            "Evitar los cambios deja las piezas apretadas.",
+            "Encerrar más las piezas empeora el problema.",
+            ""
+          ],
+          "id": "u9-l03-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: el espacio se cuenta en casillas del campo rival que controlas. Quien tiene más espacio evita los cambios; quien tiene menos, los busca.",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "id": "u9-l03-s06"
+        }
+      ]
+    },
+    {
+      "id": "u9-l04",
+      "unit": 9,
+      "order": 62,
+      "title": "Posiciones abiertas y cerradas",
+      "summary": "Cómo juegan las piezas según los peones",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Aquí no hay ningún peón bloqueado frente a un peón rival: el centro está abierto. Las piezas de largo alcance, como los alfiles y las torres, tienen líneas libres y las amenazas llegan rápido.",
+          "fen": "r1bqkb1r/pppp1ppp/2n2n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq - 1 5",
+          "id": "u9-l04-s01"
+        },
+        {
+          "type": "explain",
+          "text": "En esta otra posición los peones de d5 y d6, y los de e4 y e5, están frente a frente y bloqueados. El centro está cerrado: las piezas tienen pocas líneas y la partida se juega con maniobras lentas y rupturas de peones.",
+          "fen": "r1bq1rk1/ppp1npbp/3p1np1/3Pp3/2P1P3/2N2N2/PP2BPPP/R1BQ1RK1 w - - 1 9",
+          "id": "u9-l04-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Esta posición es abierta o cerrada?",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "highlight": [
+            "d4",
+            "d5",
+            "e5",
+            "e6"
+          ],
+          "options": [
+            "Cerrada",
+            "Abierta"
+          ],
+          "answer": 0,
+          "explanation": "Los peones de d4 y d5, y los de e5 y e6, están bloqueados frente a frente. El centro está cerrado.",
+          "feedback": [
+            "",
+            "Mira los peones del centro: hay dos parejas frente a frente que no pueden avanzar."
+          ],
+          "id": "u9-l04-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca los dos peones blancos que están bloqueados por un peón negro.",
+          "fen": "r1bq1rk1/ppp1npbp/3p1np1/3Pp3/2P1P3/2N2N2/PP2BPPP/R1BQ1RK1 w - - 1 9",
+          "squares": [
+            "d5",
+            "e4"
+          ],
+          "hint": "Cada uno tiene un peón negro justo delante.",
+          "id": "u9-l04-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "En una posición cerrada, ¿qué piezas suelen funcionar mejor?",
+          "fen": "r1bq1rk1/ppp1npbp/3p1np1/3Pp3/2P1P3/2N2N2/PP2BPPP/R1BQ1RK1 w - - 1 9",
+          "options": [
+            "Los caballos, que saltan sobre los peones",
+            "Los alfiles de largo alcance",
+            "Las torres en columnas abiertas"
+          ],
+          "answer": 0,
+          "explanation": "Con los peones bloqueando las líneas, los caballos pueden saltar por encima y buscar casillas fuertes.",
+          "feedback": [
+            "",
+            "Los alfiles sufren cuando los peones les cierran las diagonales.",
+            "Con el centro cerrado hay pocas columnas abiertas para las torres."
+          ],
+          "id": "u9-l04-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "En una posición abierta, ¿qué piezas suelen funcionar mejor?",
+          "fen": "r1bqkb1r/pppp1ppp/2n2n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq - 1 5",
+          "options": [
+            "Los caballos, que necesitan casillas fijas",
+            "Los peones, que avanzan sin estorbos",
+            "Los alfiles y las torres, que tienen líneas largas"
+          ],
+          "answer": 2,
+          "explanation": "Con líneas libres, los alfiles y las torres llegan lejos y crean amenazas desde lejos.",
+          "feedback": [
+            "Los caballos prefieren casillas fijas y centros cerrados.",
+            "Los peones no son las piezas que ganan en posiciones abiertas.",
+            ""
+          ],
+          "id": "u9-l04-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: con peones bloqueados, el centro es cerrado y los caballos saltan por encima. Con líneas libres, el centro es abierto y los alfiles y las torres mandan.",
+          "fen": "r1bqkb1r/pppp1ppp/2n2n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq - 1 5",
+          "id": "u9-l04-s07"
+        }
+      ]
+    },
+    {
+      "id": "u9-l05",
+      "unit": 9,
+      "order": 63,
+      "title": "Alfil bueno y alfil malo",
+      "summary": "El alfil y sus propios peones",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El alfil negro de c8 es un alfil malo: tiene 5 peones propios en casillas de su color, y los de b7 y e6 le cierran las dos diagonales. Sus propios peones lo dejan sin salida.",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "orientation": "b",
+          "highlight": [
+            "c8",
+            "b7",
+            "e6"
+          ],
+          "id": "u9-l05-s01"
+        },
+        {
+          "type": "explain",
+          "text": "En esta posición el alfil negro salió a f5 antes de jugar e6: está fuera de la cadena de peones y mira hacia afuera. Es un alfil bueno, activo, aunque sus peones sigan en casillas de su mismo color.",
+          "fen": "r2qkbnr/pp1n1ppp/2p1p3/3pPb2/3P4/5N2/PPP1BPPP/RNBQ1RK1 b kq - 3 6",
+          "orientation": "b",
+          "highlight": [
+            "f5"
+          ],
+          "id": "u9-l05-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuál de los alfiles negros es el malo?",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "orientation": "b",
+          "highlight": [
+            "c8",
+            "f8"
+          ],
+          "options": [
+            "Ninguno",
+            "El de c8, que va por casillas claras",
+            "El de f8, que va por casillas oscuras"
+          ],
+          "answer": 1,
+          "explanation": "El alfil de c8 tiene 5 peones propios en su color y el de f8 solo 3: el de c8 es el malo.",
+          "feedback": [
+            "Los peones de e6 y d5 le estorban al alfil de c8: sí hay uno malo.",
+            "",
+            "El alfil de f8 solo tiene 3 peones propios en su color: tiene más sitio."
+          ],
+          "id": "u9-l05-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca los dos peones negros que le cierran las diagonales al alfil de c8.",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "orientation": "b",
+          "squares": [
+            "b7",
+            "e6"
+          ],
+          "hint": "Cada una de las dos diagonales del alfil termina en un peón propio.",
+          "id": "u9-l05-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué se puede hacer con un alfil malo?",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "orientation": "b",
+          "options": [
+            "Sacarlo de la cadena de peones o cambiarlo",
+            "Poner más peones en casillas de su color",
+            "Dejarlo en casa para protegerlo"
+          ],
+          "answer": 0,
+          "explanation": "Un alfil malo mejora si sale de la cadena antes de que se cierre o si se cambia por una pieza rival.",
+          "feedback": [
+            "",
+            "Más peones en su color solo lo estorban más.",
+            "Dejarlo en casa lo mantiene fuera de la partida."
+          ],
+          "id": "u9-l05-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: un alfil es bueno si sus peones están en casillas de otro color y malo si le cierran las diagonales. Mejor sacarlo antes de que la cadena de peones se cierre.",
+          "fen": "r2qkbnr/pp1n1ppp/2p1p3/3pPb2/3P4/5N2/PPP1BPPP/RNBQ1RK1 b kq - 3 6",
+          "orientation": "b",
+          "id": "u9-l05-s06"
+        }
+      ]
+    },
+    {
+      "id": "u9-l06",
+      "unit": 9,
+      "order": 64,
+      "title": "Peón retrasado y cadenas de peones",
+      "summary": "Dónde atacar la estructura de peones",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El peón negro de d6 es un peón retrasado: no tiene peones a su lado que lo apoyen y no puede avanzar sin que lo capture el peón de e4. La casilla de d5, justo delante, es un blanco: una pieza blanca puede instalarse allí sin que ningún peón negro la expulse.",
+          "fen": "rn1qkb1r/1p3ppp/p2pbn2/4p3/4P3/1NN1B3/PPP2PPP/R2QKB1R w KQkq - 2 8",
+          "highlight": [
+            "d6",
+            "d5",
+            "e4"
+          ],
+          "id": "u9-l06-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Los peones blancos de b2, c3, d4 y e5 forman una cadena. La base, b2, es el único peón de la cadena que ningún otro peón protege. Si se ataca la base, toda la cadena queda sin apoyo; por eso las negras apuntan con la dama a b2.",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "arrows": [
+            "d8b6"
+          ],
+          "highlight": [
+            "b2",
+            "c3",
+            "d4",
+            "e5"
+          ],
+          "id": "u9-l06-s02"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca el peón negro retrasado.",
+          "fen": "rn1qkb1r/1p3ppp/p2pbn2/4p3/4P3/1NN1B3/PPP2PPP/R2QKB1R w KQkq - 2 8",
+          "squares": [
+            "d6"
+          ],
+          "hint": "Es el peón que no puede avanzar sin que lo capturen y al que ningún peón propio apoya desde un lado.",
+          "id": "u9-l06-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la base de la cadena de peones blancos.",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "squares": [
+            "b2"
+          ],
+          "hint": "Es el peón de la cadena que no tiene ningún peón propio que lo proteja.",
+          "id": "u9-l06-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cómo se juega contra un peón retrasado?",
+          "fen": "rn1qkb1r/1p3ppp/p2pbn2/4p3/4P3/1NN1B3/PPP2PPP/R2QKB1R w KQkq - 2 8",
+          "options": [
+            "Cambiando todas las piezas menos el peón",
+            "Avanzando un peón propio a su lado",
+            "Instalando una pieza en la casilla de delante y presionando el peón"
+          ],
+          "answer": 2,
+          "explanation": "Una pieza en la casilla de delante lo deja bloqueado y sin apoyo, y el rival tiene que defenderlo con piezas.",
+          "feedback": [
+            "Cambiar las piezas deja al rival libre de defenderlo.",
+            "Avanzar un peón a su lado no ataca el peón retrasado.",
+            ""
+          ],
+          "id": "u9-l06-s05"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Dónde conviene atacar una cadena de peones?",
+          "fen": "r1bqkbnr/pp3ppp/2n1p3/2ppP3/3P4/2P2N2/PP3PPP/RNBQKB1R b KQkq - 2 5",
+          "options": [
+            "En el medio",
+            "En la base",
+            "En la punta"
+          ],
+          "answer": 1,
+          "explanation": "La base es el peón que sostiene a los demás: si cae, la cadena entera pierde su apoyo.",
+          "feedback": [
+            "Los peones del medio están protegidos por la base.",
+            "",
+            "La punta está protegida por el resto de la cadena."
+          ],
+          "id": "u9-l06-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: contra un peón retrasado, una pieza en la casilla de delante. Contra una cadena de peones, ataca la base.",
+          "fen": "rn1qkb1r/1p3ppp/p2pbn2/4p3/4P3/1NN1B3/PPP2PPP/R2QKB1R w KQkq - 2 8",
+          "id": "u9-l06-s07"
+        }
+      ]
+    }
+  ]
+}

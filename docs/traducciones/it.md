@@ -288,3 +288,13 @@ En los avisos: `risk` empieza por *Giorni di serie: {n}.* para leerse bien con c
 | mate árabe | matto arabo |
 | mate de la coz | matto soffocato |
 | batería | batteria |
+
+## Agregados el 9-11-2026 (Unidad 9)
+| Español | Italiano |
+|---|---|
+| pieza suelta | pezzo indifeso |
+| espacio | spazio |
+| posición abierta / cerrada | posizione aperta / chiusa |
+| alfil bueno / malo | alfiere buono / cattivo |
+| peón retrasado | pedone arretrato |
+| cadena de peones, base | catena di pedoni, base |

@@ -1,0 +1,197 @@
+{
+  "title": "Pièces et pions",
+  "lessons": {
+    "u9-l01": {
+      "title": "Pièces sans défense",
+      "summary": "Une pièce sans défense est une cible",
+      "steps": {
+        "u9-l01-s01": { "text": "La dame blanche est en c5 et aucune pièce ne la défend. La dame noire en e7 l'attaque et la prend gratuitement. Une pièce que personne ne défend est une pièce sans défense." },
+        "u9-l01-s02": { "text": "Le fou noir en f2 a donné échec, mais aucune pièce ne le protège : le roi le prend. Avant de prendre, vérifie que la pièce adverse n'a pas de défense ; avant de jouer, vérifie que les tiennes en ont." },
+        "u9-l01-s03": {
+          "prompt": "Touche les deux pièces blanches que personne ne défend. Ne compte ni le roi ni les pions.",
+          "hint": "Cherche les pièces blanches qu'aucune autre pièce ni aucun pion blanc ne protège."
+        },
+        "u9-l01-s04": {
+          "prompt": "Combien de pièces noires sont sans défense? Ne compte pas le roi ni les pions.",
+          "options": ["2", "3", "4", "5"],
+          "explanation": "Il y a quatre pièces noires sans défense. Quand l'adversaire a autant de pièces sans défense, il y a presque toujours une tactique dans l'air.",
+          "feedback": ["Compte à nouveau : vérifie chaque pièce noire et vois si une autre pièce la protège.", "Compte à nouveau : vérifie chaque pièce noire et vois si une autre pièce la protège.", "", "Compte à nouveau : vérifie chaque pièce noire et vois si une autre pièce la protège."]
+        },
+        "u9-l01-s05": {
+          "prompt": "Prends la pièce sans défense.",
+          "hint": "Une des pièces blanches est sans défense et tu peux la prendre avec échec.",
+          "success": "Correct. Txe1+ gagne une pièce que personne ne défendait."
+        },
+        "u9-l01-s06": {
+          "prompt": "Prends la pièce sans défense.",
+          "hint": "La pièce qui vient de donner échec n'a pas de défense : prends-la.",
+          "success": "Correct. Rxf2 gagne une pièce que personne ne défendait."
+        },
+        "u9-l01-s07": {
+          "prompt": "Prends la pièce sans défense.",
+          "hint": "La dame noire est sur une case où personne ne la protège.",
+          "success": "Correct. Rxb2 gagne une pièce que personne ne défendait."
+        },
+        "u9-l01-s08": {
+          "prompt": "Profite de la pièce sans défense.",
+          "success": "Bien résolu : cette position vient d'une partie réelle.",
+          "hint": "Cherche les pièces de l'adversaire que personne ne défend et commence par la plus précieuse.",
+          "notes": ["", "", "", ""]
+        },
+        "u9-l01-s09": {
+          "prompt": "Profite de la pièce sans défense.",
+          "success": "Bien résolu : cette position vient d'une partie réelle.",
+          "hint": "Cherche les pièces de l'adversaire que personne ne défend et commence par la plus précieuse.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u9-l02": {
+      "title": "Quand échanger les pièces",
+      "summary": "Échanger ou ne pas échanger",
+      "steps": {
+        "u9-l02-s01": { "text": "Presque tous les échanges ont des aspects bons et des aspects mauvais. Il est avantageux d'échanger si tu gagnes du matériel, si l'échange laisse une faiblesse à l'adversaire, si tu es attaqué ou si tu as peu d'espace. Ce n'est pas avantageux si tu perds du matériel, si c'est toi qui attaques ou si tu as plus d'espace." },
+        "u9-l02-s02": {
+          "prompt": "Tu as une tour de plus et c'est au tour des Blancs. Qu'est-ce qui te convient ?",
+          "options": ["Éviter les échanges", "Attaquer sans échanger quoi que ce soit", "Échanger des pièces pour simplifier"],
+          "explanation": "Avec une tour en plus, chaque échange rend ton avantage plus grand : moins il reste de pièces, plus une tour en plus pèse.",
+          "feedback": ["Éviter les échanges laisse vivantes les pièces de l'adversaire, qui sont celles qui pourraient te compliquer le jeu.", "Attaquer sans échanger quoi que ce soit est risqué quand tu as déjà l'avantage.", ""]
+        },
+        "u9-l02-s03": {
+          "prompt": "Tu perds une tour et c'est au tour des Blancs. Qu'est-ce qui te convient ?",
+          "options": ["Échanger seulement les dames", "Éviter les échanges", "Échanger des pièces pour simplifier"],
+          "explanation": "Avec moins de matériel, chaque échange te laisse avec moins de ressources : il est préférable de garder des pièces sur l'échiquier pour avoir des options.",
+          "feedback": ["Échanger les dames te laisse aussi avec moins de ressources pour compliquer.", "", "Chaque échange rapproche la partie d'une finale où la tour manquante se fait plus sentir."]
+        },
+        "u9-l02-s04": {
+          "prompt": "Tu as moins d'espace que l'adversaire. Qu'est-ce qui te convient ?",
+          "options": ["Échanger les pièces qui t'encombrent", "Éviter tous les échanges", "Avancer les pions"],
+          "explanation": "Avec peu d'espace les pièces se gênent. Chaque échange libère des cases pour celles qui restent.",
+          "feedback": ["", "Éviter les échanges laisse tes pièces comprimées.", "Avancer les pions sans soutien crée généralement des faiblesses."]
+        },
+        "u9-l02-s05": {
+          "prompt": "Tu attaques le roi adverse avec plusieurs pièces. Qu'est-ce qui te convient ?",
+          "options": ["Échanger les pièces qui attaquent", "Échanger la dame tout de suite", "Garder les pièces d'attaque sur l'échiquier"],
+          "explanation": "Pour attaquer tu as besoin de pièces. Si tu échanges celles qui attaquent, l'adversaire se défend plus calmement.",
+          "feedback": ["Échanger les pièces qui attaquent est ce que l'adversaire qui se défend cherche.", "Échanger la dame enlève la pièce qui attaque le plus.", ""]
+        },
+        "u9-l02-s06": { "text": "En résumé : échange quand tu gagnes, quand tu es attaqué ou quand tu manques d'espace. N'échange pas quand tu perds, quand tu attaques ou quand tu as plus d'espace. Avant chaque échange, demande-toi ce que ça te laisse et ce que ça laisse à l'adversaire." }
+      }
+    },
+    "u9-l03": {
+      "title": "L'espace",
+      "summary": "Les cases du camp adverse que tu contrôles",
+      "steps": {
+        "u9-l03-s01": { "text": "L'espace est le nombre de cases du camp adverse que contrôlent tes pièces et tes pions. Dans cette position, les Blancs contrôlent 8 cases du camp noir et les Noirs 5 du camp blanc : les Blancs ont plus d'espace, surtout grâce à leur pion avancé en e5." },
+        "u9-l03-s02": {
+          "prompt": "Touche les deux cases du camp noir que contrôle le pion en e5.",
+          "hint": "Un pion contrôle les deux cases diagonales devant lui."
+        },
+        "u9-l03-s03": {
+          "prompt": "Qui a plus d'espace dans cette position ?",
+          "options": ["Les deux égaux", "Les Blancs", "Les Noirs"],
+          "explanation": "Les Blancs contrôlent 12 cases du camp noir; les Noirs, 7 du camp blanc.",
+          "feedback": ["Ce n'est pas égal : les Blancs contrôlent plus de cases dans le camp adverse.", "", "Compte les cases du camp adverse que chaque côté contrôle : les Blancs contrôlent plus."]
+        },
+        "u9-l03-s04": {
+          "prompt": "Qu'est-ce qui convient habituellement au camp qui a plus d'espace ?",
+          "options": ["Éviter les échanges de pièces", "Échanger les dames tout de suite", "Arrêter de bouger les pions"],
+          "explanation": "Avec plus d'espace, ses pièces bougent confortablement. Chaque échange libère l'adversaire, donc il lui convient de garder les pièces.",
+          "feedback": ["", "Échanger les dames tout de suite libère l'adversaire qui est à l'étroit.", "Arrêter de bouger les pions n'aide pas à garder l'espace."]
+        },
+        "u9-l03-s05": {
+          "prompt": "Qu'est-ce qui convient habituellement au camp qui a moins d'espace ?",
+          "options": ["Éviter tous les échanges", "Enfermer encore plus ses pièces", "Échanger les pièces qui l'encombrent"],
+          "explanation": "Avec peu d'espace les pièces se gênent. Chaque échange libère des cases pour celles qui restent.",
+          "feedback": ["Éviter les échanges laisse les pièces comprimées.", "Enfermer plus les pièces aggrave le problème.", ""]
+        },
+        "u9-l03-s06": { "text": "En résumé : l'espace se compte en cases du camp adverse que tu contrôles. Celui qui a plus d'espace évite les échanges ; celui qui en a moins, les cherche." }
+      }
+    },
+    "u9-l04": {
+      "title": "Positions ouvertes et fermées",
+      "summary": "Comment jouent les pièces selon les pions",
+      "steps": {
+        "u9-l04-s01": { "text": "Ici aucun pion n'est bloqué devant un pion adverse : le centre est ouvert. Les pièces à longue portée, comme les fous et les tours, ont des lignes libres et les menaces arrivent vite." },
+        "u9-l04-s02": { "text": "Dans cette autre position les pions en d5 et d6, et ceux en e4 et e5, sont face à face et bloqués. Le centre est fermé : les pièces ont peu de lignes et la partie se joue avec des manœuvres lentes et des ruptures de pions." },
+        "u9-l04-s03": {
+          "prompt": "Cette position est-elle ouverte ou fermée ?",
+          "options": ["Fermée", "Ouverte"],
+          "explanation": "Les pions en d4 et d5, et ceux en e5 et e6, sont bloqués face à face. Le centre est fermé.",
+          "feedback": ["", "Regarde les pions du centre : il y a deux paires face à face qui ne peuvent pas avancer."]
+        },
+        "u9-l04-s04": {
+          "prompt": "Touche les deux pions blancs qui sont bloqués par un pion noir.",
+          "hint": "Chacun a un pion noir juste devant."
+        },
+        "u9-l04-s05": {
+          "prompt": "Dans une position fermée, quelles pièces fonctionnent généralement le mieux ?",
+          "options": ["Les cavaliers, qui sautent par-dessus les pions", "Les fous de longue portée", "Les tours en colonnes ouvertes"],
+          "explanation": "Avec les pions bloquant les lignes, les cavaliers peuvent sauter par-dessus et chercher des cases fortes.",
+          "feedback": ["", "Les fous souffrent quand les pions leur ferment les diagonales.", "Avec le centre fermé, il y a peu de colonnes ouvertes pour les tours."]
+        },
+        "u9-l04-s06": {
+          "prompt": "Dans une position ouverte, quelles pièces fonctionnent généralement le mieux ?",
+          "options": ["Les cavaliers, qui ont besoin de cases fixes", "Les pions, qui avancent sans obstacles", "Les fous et les tours, qui ont de longues lignes"],
+          "explanation": "Avec des lignes libres, les fous et les tours arrivent loin et créent des menaces de loin.",
+          "feedback": ["Les cavaliers préfèrent les cases fixes et les centres fermés.", "Les pions ne sont pas les pièces qui gagnent en position ouverte.", ""]
+        },
+        "u9-l04-s07": { "text": "En résumé : avec des pions bloqués, le centre est fermé et les cavaliers sautent par-dessus. Avec des lignes libres, le centre est ouvert et les fous et les tours dominent." }
+      }
+    },
+    "u9-l05": {
+      "title": "Bon fou et mauvais fou",
+      "summary": "Le fou et ses propres pions",
+      "steps": {
+        "u9-l05-s01": { "text": "Le fou noir en c8 est un mauvais fou : il a 5 pions sur des cases de sa couleur, et ceux en b7 et e6 ferment ses deux diagonales. Ses propres pions le laissent sans issue." },
+        "u9-l05-s02": { "text": "Dans cette position le fou noir est sorti en f5 avant de jouer e6 : il est en dehors de la chaîne de pions et regarde vers l'extérieur. C'est un bon fou, actif, même si ses pions restent sur des cases de la même couleur." },
+        "u9-l05-s03": {
+          "prompt": "Lequel des fous noirs est le mauvais ?",
+          "options": ["Aucun", "Celui en c8, qui va par des cases claires", "Celui en f8, qui va par des cases sombres"],
+          "explanation": "Le fou en c8 a 5 pions de sa couleur et celui en f8 seulement 3 : celui en c8 est le mauvais fou.",
+          "feedback": ["Les pions en e6 et d5 gênent le fou en c8 : il y a un mauvais fou.", "", "Le fou en f8 n'a que 3 de ses propres pions sur sa couleur : il a plus d'espace."]
+        },
+        "u9-l05-s04": {
+          "prompt": "Touche les deux pions noirs qui ferment les diagonales du fou en c8.",
+          "hint": "Chacune des deux diagonales du fou se termine sur un de ses propres pions."
+        },
+        "u9-l05-s05": {
+          "prompt": "Que peux-tu faire avec un mauvais fou ?",
+          "options": ["Le sortir de la chaîne de pions ou l'échanger", "Mettre plus de pions sur des cases de sa couleur", "Le laisser à la maison pour le protéger"],
+          "explanation": "Un mauvais fou s'améliore s'il sort de la chaîne avant qu'elle ne se ferme ou s'il est échangé contre une pièce adverse.",
+          "feedback": ["", "Plus de pions de sa couleur ne font que gêner davantage.", "Le laisser à la maison le maintient hors du jeu."]
+        },
+        "u9-l05-s06": { "text": "En résumé : un fou est bon si ses pions sont sur des cases de l'autre couleur et mauvais s'ils lui ferment les diagonales. Mieux vaut le sortir avant que la chaîne de pions ne se ferme." }
+      }
+    },
+    "u9-l06": {
+      "title": "Pion arriéré et chaînes de pions",
+      "summary": "Où attaquer la structure de pions",
+      "steps": {
+        "u9-l06-s01": { "text": "Le pion noir en d6 est un pion arriéré : il n'a pas de pions à côté pour le soutenir et il ne peut pas avancer sans que le pion en e4 ne le prenne. La case en d5, juste devant, est une cible : une pièce blanche peut s'y installer sans qu'aucun pion noir ne l'expulse." },
+        "u9-l06-s02": { "text": "Les pions blancs en b2, c3, d4 et e5 forment une chaîne. La base, b2, est le seul pion de la chaîne qu'aucun autre pion ne protège. Si la base est attaquée, toute la chaîne reste sans soutien ; c'est pourquoi les Noirs visent b2 avec la dame." },
+        "u9-l06-s03": {
+          "prompt": "Appuie sur le pion noir arriéré.",
+          "hint": "C'est le pion qui ne peut pas avancer sans être pris et qu'aucun de ses propres pions ne soutient sur le côté."
+        },
+        "u9-l06-s04": {
+          "prompt": "Appuie sur la base de la chaîne de pions blancs.",
+          "hint": "C'est le pion de la chaîne qui n'a aucun pion propre pour le protéger."
+        },
+        "u9-l06-s05": {
+          "prompt": "Comment jouer contre un pion arriéré ?",
+          "options": ["En échangeant toutes les pièces sauf le pion", "En avançant un de tes pions à côté de lui", "En plaçant une pièce sur la case devant et en pressant le pion"],
+          "explanation": "Une pièce sur la case devant le bloque et le laisse sans soutien, et l'adversaire doit le défendre avec des pièces.",
+          "feedback": ["Échanger des pièces laisse l'adversaire libre de le défendre.", "Avancer un pion à côté de lui n'attaque pas le pion arriéré.", ""]
+        },
+        "u9-l06-s06": {
+          "prompt": "Où est-il avantageux d'attaquer une chaîne de pions ?",
+          "options": ["Au milieu", "À la base", "À la pointe"],
+          "explanation": "La base est le pion qui soutient les autres : s'il tombe, toute la chaîne perd son soutien.",
+          "feedback": ["Les pions du milieu sont protégés par la base de la chaîne.", "", "La pointe est protégée par le reste de la chaîne."]
+        },
+        "u9-l06-s07": { "text": "En résumé : contre un pion arriéré, une pièce sur la case de devant. Contre une chaîne de pions, attaque la base de la chaîne." }
+      }
+    }
+  }
+}

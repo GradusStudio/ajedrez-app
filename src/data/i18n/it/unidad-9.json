@@ -1,0 +1,197 @@
+{
+  "title": "Pezzi e pedoni",
+  "lessons": {
+    "u9-l01": {
+      "title": "Pezzi indifesi",
+      "summary": "Un pezzo senza difesa è un bersaglio",
+      "steps": {
+        "u9-l01-s01": { "text": "La donna bianca è in c5 e nessun pezzo la difende. La donna nera in e7 la attacca e la cattura gratis. Un pezzo che nessuno difende è un pezzo indifeso." },
+        "u9-l01-s02": { "text": "L'alfiere nero in f2 ha dato scacco, ma nessun pezzo lo protegge: il re lo cattura. Prima di catturare, controlla che il pezzo dell'avversario non abbia difesa; prima di giocare, controlla che i tuoi abbiano." },
+        "u9-l01-s03": {
+          "prompt": "Tocca i due pezzi bianchi che nessuno difende. Non contare il re né i pedoni.",
+          "hint": "Cerca i pezzi bianchi che nessun altro pezzo o pedone bianco raggiunge."
+        },
+        "u9-l01-s04": {
+          "prompt": "Quanti pezzi neri sono indifesi? Non contare il re né i pedoni.",
+          "options": ["2", "3", "4", "5"],
+          "explanation": "Ci sono quattro pezzi neri indifesi. Quando l'avversario ha tanti pezzi indifesi, c'è quasi sempre una tattica in vista.",
+          "feedback": ["Riconta: controlla ogni pezzo nero e vedi se qualcos'altro lo protegge.", "Riconta: controlla ogni pezzo nero e vedi se qualcos'altro lo protegge.", "", "Riconta: controlla ogni pezzo nero e vedi se qualcos'altro lo protegge."]
+        },
+        "u9-l01-s05": {
+          "prompt": "Cattura il pezzo che nessuno difende.",
+          "hint": "Uno dei pezzi bianchi è indifeso e puoi catturarlo con scacco.",
+          "success": "Corretto. Txe1+ vince un pezzo che nessuno difendeva."
+        },
+        "u9-l01-s06": {
+          "prompt": "Cattura il pezzo che nessuno difende.",
+          "hint": "Il pezzo che ha appena dato scacco non ha difesa: catturalo.",
+          "success": "Corretto. Rxf2 vince un pezzo che nessuno difendeva."
+        },
+        "u9-l01-s07": {
+          "prompt": "Cattura il pezzo che nessuno difende.",
+          "hint": "La donna nera è su una casella dove nessuno la protegge.",
+          "success": "Corretto. Rxb2 vince un pezzo che nessuno difendeva."
+        },
+        "u9-l01-s08": {
+          "prompt": "Approfitta del pezzo indifeso.",
+          "success": "Ben risolto: questa posizione è uscita da una partita reale.",
+          "hint": "Cerca i pezzi dell'avversario che nessuno difende e inizia col più prezioso.",
+          "notes": ["", "", "", ""]
+        },
+        "u9-l01-s09": {
+          "prompt": "Approfitta del pezzo indifeso.",
+          "success": "Ben risolto: questa posizione è uscita da una partita reale.",
+          "hint": "Cerca i pezzi dell'avversario che nessuno difende e inizia col più prezioso.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u9-l02": {
+      "title": "Quando cambiare i pezzi",
+      "summary": "Cambiare o non cambiare",
+      "steps": {
+        "u9-l02-s01": { "text": "Quasi tutti i cambi hanno aspetti buoni e aspetti cattivi. Conviene cambiare se stai guadagnando materiale, se il cambio lascia una debolezza all'avversario, se ti stanno attaccando o se hai poco spazio. Non conviene se stai perdendo materiale, se sei tu ad attaccare o se hai più spazio." },
+        "u9-l02-s02": {
+          "prompt": "Hai una torre in più e muovono le bianche. Cosa ti conviene?",
+          "options": ["Evitare i cambi", "Attaccare senza cambiare nulla", "Cambiare i pezzi per semplificare"],
+          "explanation": "Con una torre in più, ogni cambio rende il tuo vantaggio più grande: meno pezzi rimangono, più pesa avere una torre in più.",
+          "feedback": ["Evitare i cambi lascia vivi i pezzi dell'avversario, che sono quelli che potrebbero complicarti il gioco.", "Attaccare senza cambiare nulla è rischioso quando hai già il vantaggio.", ""]
+        },
+        "u9-l02-s03": {
+          "prompt": "Stai perdendo una torre e muovono le bianche. Cosa ti conviene?",
+          "options": ["Cambiare solo le donne", "Evitare i cambi", "Cambiare i pezzi per semplificare"],
+          "explanation": "Con meno materiale, ogni cambio ti lascia con meno risorse: conviene mantenere i pezzi sulla scacchiera per avere opzioni.",
+          "feedback": ["Cambiare le donne ti lascia anche con meno risorse per complicare.", "", "Ogni cambio avvicina la partita a una fine dove la torre mancante si sente di più."]
+        },
+        "u9-l02-s04": {
+          "prompt": "Hai meno spazio dell'avversario. Cosa ti conviene?",
+          "options": ["Cambiare i pezzi che ti stringono", "Evitare tutti i cambi", "Avanzare i pedoni"],
+          "explanation": "Con poco spazio i pezzi si ostacolano. Ogni cambio libera caselle per quelli che rimangono.",
+          "feedback": ["", "Evitare i cambi lascia i tuoi pezzi stretti.", "Avanzare i pedoni senza supporto di solito crea debolezze."]
+        },
+        "u9-l02-s05": {
+          "prompt": "Stai attaccando il re dell'avversario con diversi pezzi. Cosa ti conviene?",
+          "options": ["Cambiare i pezzi che attaccano", "Cambiare la donna subito", "Mantenere i pezzi d'attacco sulla scacchiera"],
+          "explanation": "Per attaccare hai bisogno di pezzi. Se cambi quelli che attaccano, l'avversario si difende con più calma.",
+          "feedback": ["Cambiare i pezzi che attaccano è quello che cerca l'avversario che si difende.", "Cambiare la donna toglie il pezzo che attacca di più.", ""]
+        },
+        "u9-l02-s06": { "text": "Riassunto: cambia quando stai vincendo, quando ti attaccano o quando ti manca spazio. Non cambiare quando stai perdendo, quando attacchi o quando hai più spazio. Prima di ogni cambio, chiediti cosa ti lascia e cosa lascia all'avversario." }
+      }
+    },
+    "u9-l03": {
+      "title": "Lo spazio",
+      "summary": "Le caselle della metà avversaria che controlli",
+      "steps": {
+        "u9-l03-s01": { "text": "Lo spazio è il numero di caselle del campo avversario che controllano i tuoi pezzi e pedoni. In questa posizione le bianche controllano 8 caselle del campo nero e le nere 5 del campo bianco: le bianche hanno più spazio, soprattutto grazie al loro pedone avanzato in e5." },
+        "u9-l03-s02": {
+          "prompt": "Tocca le due caselle del campo nero che controlla il pedone in e5.",
+          "hint": "Un pedone controlla le due caselle diagonali che ha davanti."
+        },
+        "u9-l03-s03": {
+          "prompt": "Chi ha più spazio in questa posizione?",
+          "options": ["I due uguali", "Il Bianco", "Il Nero"],
+          "explanation": "Il Bianco controlla 12 caselle nel campo nero; il Nero, 7 nel campo bianco.",
+          "feedback": ["Non è uguale: il Bianco controlla più caselle nel campo dell'avversario.", "", "Conta le caselle del campo avversario che controlla ogni parte: le bianche controllano di più."]
+        },
+        "u9-l03-s04": {
+          "prompt": "Cosa conviene di solito al lato che ha più spazio?",
+          "options": ["Evitare i cambi di pezzi", "Cambiare le donne subito", "Smettere di muovere i pedoni"],
+          "explanation": "Con più spazio, i suoi pezzi si muovono comodamente. Ogni cambio libera l'avversario, quindi conviene a lui mantenere i pezzi.",
+          "feedback": ["", "Cambiare le donne subito libera l'avversario che è stretto.", "Smettere di muovere i pedoni non aiuta a mantenere lo spazio."]
+        },
+        "u9-l03-s05": {
+          "prompt": "Cosa conviene di solito al lato che ha meno spazio?",
+          "options": ["Evitare tutti i cambi", "Stringere ancora di più i suoi pezzi", "Cambiare i pezzi che lo stringono"],
+          "explanation": "Con poco spazio i pezzi si ostacolano. Ogni cambio libera caselle per quelli che rimangono.",
+          "feedback": ["Evitare i cambi lascia i pezzi stretti.", "Stringere ancora di più i pezzi peggiora il problema.", ""]
+        },
+        "u9-l03-s06": { "text": "Riassunto: lo spazio si conta nelle caselle del campo avversario che controlli. Chi ha più spazio evita i cambi; chi ne ha meno, li cerca." }
+      }
+    },
+    "u9-l04": {
+      "title": "Posizioni aperte e chiuse",
+      "summary": "Come giocano i pezzi a seconda dei pedoni",
+      "steps": {
+        "u9-l04-s01": { "text": "Qui non c'è nessun pedone bloccato di fronte a un pedone avversario: il centro è aperto. I pezzi di lungo raggio, come gli alfieri e le torri, hanno linee libere e le minacce arrivano velocemente." },
+        "u9-l04-s02": { "text": "In questa altra posizione i pedoni in d5 e d6, e quelli in e4 e e5, sono faccia a faccia e bloccati. Il centro è chiuso: i pezzi hanno poche linee e la partita si gioca con manovre lente e rotture di pedoni." },
+        "u9-l04-s03": {
+          "prompt": "Questa posizione è aperta o chiusa?",
+          "options": ["Chiusa", "Aperta"],
+          "explanation": "I pedoni in d4 e d5, e quelli in e5 e e6, sono bloccati faccia a faccia. Il centro è chiuso.",
+          "feedback": ["", "Guarda i pedoni al centro: ci sono due coppie faccia a faccia che non possono avanzare."]
+        },
+        "u9-l04-s04": {
+          "prompt": "Tocca i due pedoni bianchi che sono bloccati da un pedone nero.",
+          "hint": "Ognuno ha un pedone nero proprio davanti."
+        },
+        "u9-l04-s05": {
+          "prompt": "In una posizione chiusa, quali pezzi funzionano meglio di solito?",
+          "options": ["I cavalli, che saltano sui pedoni", "Gli alfieri a lungo raggio", "Le torri in colonne aperte"],
+          "explanation": "Con i pedoni che bloccano le linee, i cavalli possono saltare sopra e cercare caselle forti.",
+          "feedback": ["", "Gli alfieri soffrono quando i pedoni chiudono le loro diagonali.", "Con il centro chiuso ci sono poche colonne aperte per le torri."]
+        },
+        "u9-l04-s06": {
+          "prompt": "In una posizione aperta, quali pezzi funzionano meglio di solito?",
+          "options": ["I cavalli, che necessitano caselle fisse", "I pedoni, che avanzano senza ostacoli", "Gli alfieri e le torri, che hanno linee lunghe"],
+          "explanation": "Con linee libere, gli alfieri e le torri arrivano lontano e creano minacce da lontano.",
+          "feedback": ["I cavalli preferiscono caselle fisse e centri chiusi.", "I pedoni non sono i pezzi che vincono nelle posizioni aperte.", ""]
+        },
+        "u9-l04-s07": { "text": "Riassunto: con pedoni bloccati, il centro è chiuso e i cavalli saltano sopra. Con linee libere, il centro è aperto e alfieri e torri comandano." }
+      }
+    },
+    "u9-l05": {
+      "title": "Alfiere buono e alfiere cattivo",
+      "summary": "L'alfiere e i suoi pedoni",
+      "steps": {
+        "u9-l05-s01": { "text": "L'alfiere nero in c8 è un alfiere cattivo: ha 5 pedoni propri su caselle del suo colore, e quelli in b7 ed e6 chiudono entrambe le diagonali. I suoi pedoni lo lasciano senza via di fuga." },
+        "u9-l05-s02": { "text": "In questa posizione l'alfiere nero è uscito in f5 prima di giocare e6: è fuori dalla catena di pedoni e guarda verso l'esterno. È un alfiere buono, attivo, anche se i suoi pedoni sono ancora su caselle dello stesso colore." },
+        "u9-l05-s03": {
+          "prompt": "Quale degli alfieri neri è quello cattivo?",
+          "options": ["Nessuno", "Quello in c8, che va sulle caselle chiare", "Quello in f8, che va sulle caselle scure"],
+          "explanation": "L'alfiere in c8 ha 5 pedoni propri sul suo colore e quello in f8 solo 3: quello in c8 è l'alfiere cattivo.",
+          "feedback": ["I pedoni in e6 e d5 ostacolano l'alfiere in c8: ce n'è uno cattivo.", "", "L'alfiere in f8 ha solo 3 pedoni propri sul suo colore: ha più spazio."]
+        },
+        "u9-l05-s04": {
+          "prompt": "Tocca i due pedoni neri che chiudono le diagonali dell'alfiere in c8.",
+          "hint": "Ognuna delle due diagonali dell'alfiere finisce su un proprio pedone."
+        },
+        "u9-l05-s05": {
+          "prompt": "Cosa puoi fare con un alfiere cattivo?",
+          "options": ["Toglierlo dalla catena di pedoni o cambiarlo", "Mettere più pedoni sulle caselle del proprio colore", "Lasciarlo a casa per proteggerlo"],
+          "explanation": "Un alfiere cattivo migliora se esce dalla catena prima che si chiuda o se viene scambiato per un pezzo dell'avversario.",
+          "feedback": ["", "Più pedoni del suo colore lo ostacolano solo di più.", "Lasciarlo a casa lo tiene fuori dalla partita."]
+        },
+        "u9-l05-s06": { "text": "Riassunto: un alfiere è buono se i suoi pedoni sono su caselle dell'altro colore e cattivo se gli chiudono le diagonali. Meglio toglierlo prima che la catena di pedoni si chiuda." }
+      }
+    },
+    "u9-l06": {
+      "title": "Pedone arretrato e catene di pedoni",
+      "summary": "Dove attaccare la struttura di pedoni",
+      "steps": {
+        "u9-l06-s01": { "text": "Il pedone nero in d6 è un pedone arretrato: non ha pedoni ai lati che lo supportino e non può avanzare senza che il pedone in e4 lo catturi. La casella in d5, proprio davanti, è un bersaglio: un pezzo bianco può stabilirsi lì senza che nessun pedone nero lo scacci." },
+        "u9-l06-s02": { "text": "I pedoni bianchi in b2, c3, d4 ed e5 formano una catena. La base, b2, è l'unico pedone della catena che nessun altro pedone protegge. Se si attacca la base, tutta la catena rimane senza supporto; per questo le nere puntano con la donna su b2." },
+        "u9-l06-s03": {
+          "prompt": "Tocca il pedone nero arretrato.",
+          "hint": "È il pedone che non può avanzare senza che lo catturino e che nessun pedone proprio supporta da un lato."
+        },
+        "u9-l06-s04": {
+          "prompt": "Tocca la base della catena di pedoni bianchi.",
+          "hint": "È il pedone della catena che non ha nessun pedone proprio che lo protegga."
+        },
+        "u9-l06-s05": {
+          "prompt": "Come si gioca contro un pedone arretrato?",
+          "options": ["Cambiare tutti i pezzi tranne il pedone", "Avanzando un tuo pedone accanto ad esso", "Mettendo un pezzo sulla casella davanti e mettendo pressione sul pedone"],
+          "explanation": "Un pezzo sulla casella davanti lo lascia bloccato e senza supporto, e l'avversario deve difenderlo con i pezzi.",
+          "feedback": ["Cambiare i pezzi lascia l'avversario libero di difenderlo.", "Avanzare un pedone accanto ad esso non attacca il pedone arretrato.", ""]
+        },
+        "u9-l06-s06": {
+          "prompt": "Dove conviene attaccare una catena di pedoni?",
+          "options": ["Nel mezzo", "Alla base", "In punta"],
+          "explanation": "La base è il pedone che sostiene gli altri: se cade, l'intera catena perde il suo supporto.",
+          "feedback": ["I pedoni centrali sono protetti dalla base.", "", "La punta è protetta dal resto della catena."]
+        },
+        "u9-l06-s07": { "text": "Riassunto: contro un pedone arretrato, un pezzo sulla casella davanti. Contro una catena di pedoni, attacca la base della catena." }
+      }
+    }
+  }
+}

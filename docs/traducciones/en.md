@@ -257,3 +257,13 @@ En los avisos: `risk` empieza por *Streak days: {n}.* para leerse bien con cualq
 | mate árabe | Arabian mate |
 | mate de la coz | smothered mate |
 | batería | battery |
+
+## Agregados el 9-11-2026 (Unidad 9)
+| Español | English |
+|---|---|
+| pieza suelta | loose piece |
+| espacio | space |
+| posición abierta / cerrada | open / closed position |
+| alfil bueno / malo | good / bad bishop |
+| peón retrasado | backward pawn |
+| cadena de peones, base | pawn chain, base |

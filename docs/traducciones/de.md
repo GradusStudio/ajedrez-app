@@ -282,3 +282,13 @@ En los avisos: `risk` empieza por *Serientage: {n}.* para leerse bien con cualqu
 | mate árabe | Arabisches Matt |
 | mate de la coz | ersticktes Matt |
 | batería | Batterie |
+
+## Agregados el 9-11-2026 (Unidad 9)
+| Español | Deutsch |
+|---|---|
+| pieza suelta | ungedeckte Figur |
+| espacio | Raum |
+| posición abierta / cerrada | offene / geschlossene Stellung |
+| alfil bueno / malo | guter / schlechter Läufer |
+| peón retrasado | rückständiger Bauer |
+| cadena de peones, base | Bauernkette, Fuß der Kette |

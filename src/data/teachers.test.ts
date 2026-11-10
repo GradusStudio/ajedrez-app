@@ -31,6 +31,11 @@ test('asignaciones de ejemplo', () => {
   assert.equal(teacherOfTitle('Sacrificar para abrir al rey'), 'valentina');
   assert.equal(teacherOfTitle('El rey activo'), 'ivo');
   assert.equal(teacherOfTitle('La posición de Philidor'), 'ivo');
+  assert.equal(teacherOfTitle('Piezas sueltas'), 'pipo');
+  assert.equal(teacherOfTitle('Cuándo cambiar piezas'), 'bruno');
+  assert.equal(teacherOfTitle('El espacio'), 'camila');
+  assert.equal(teacherOfTitle('Posiciones abiertas y cerradas'), 'lola');
+  assert.equal(teacherOfTitle('Alfil bueno y alfil malo'), 'ramiro');
   assert.equal(teacherForCourse('caro-kann'), 'bruno');
 });
 test('los 28 cursos tienen profesor y ninguno es Ada', () => {

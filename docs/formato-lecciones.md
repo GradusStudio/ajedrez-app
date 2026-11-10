@@ -333,6 +333,25 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 - **Lo que no se hizo:** «Alfil contra caballo» y una lección aparte de «Las dos debilidades» (quedó dentro de la lección 2). Los puzzles de Lichess con alfil y caballo son horquillas, no enseñan la idea estratégica, y no se encontró una posición que Stockfish confirmara de forma inequívoca para un ejercicio de una jugada.
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama (las frases «Correcto. …» salen de plantillas con la notación de cada idioma) y revisadas a mano. Sin revisión de nativos.
 
+## Contenido de la Unidad 9 · Piezas y peones (bloque D del temario nuevo)
+
+`src/data/unidad-9-piezas-y-peones.json`: 6 lecciones, 41 pasos (órdenes 59 a 64), escritas el 9-11-2026.
+
+| # | id | Lección | Pasos | Profesor |
+|---|---|---|---|---|
+| 1 | u9-l01 | Piezas sueltas | 9 | Pipo |
+| 2 | u9-l02 | Cuándo cambiar piezas | 6 | Bruno |
+| 3 | u9-l03 | El espacio | 6 | Camila |
+| 4 | u9-l04 | Posiciones abiertas y cerradas | 7 | Lola |
+| 5 | u9-l05 | Alfil bueno y alfil malo | 6 | Ramiro |
+| 6 | u9-l06 | Peón retrasado y cadenas de peones | 7 | Camila |
+
+- **Qué se verificó y cómo:** la estrategia no se puede confirmar con un motor, así que las respuestas de las preguntas son hechos que calcula chess.js sobre las posiciones: las piezas sin defensa de un bando, las casillas del campo rival que controla cada bando (espacio), los peones bloqueados frente a un peón rival, los peones propios que están en casillas del color de un alfil, el peón retrasado y la base de una cadena de peones. Cada lección falla al armarse si algún dato no coincide con lo que dice el texto.
+- **Posiciones:** salen de las líneas de los cursos de aperturas (Avance de la Francesa, Escocesa, India de Rey, Najdorf y Caro-Kann) y, para la lección 1, de puzzles reales de Lichess (CC0) con Stockfish a profundidad 14 (una sola solución por ejercicio).
+- **Principios sin motor:** las preguntas de «qué suele convenir» (cambiar con ventaja de material, evitar cambios con más espacio, caballos en posiciones cerradas) enseñan reglas generales y están redactadas con «suele».
+- **Lo que no se hizo:** «Torres activas» (conectar torres, séptima fila, torre levantada) y «Rupturas y mayorías de peones»: Stockfish no confirmó esas ideas con una jugada única en las posiciones de prueba (la torre en la séptima fila ni siquiera era la mejor jugada).
+- **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama y revisadas a mano (las frases «Correcto. …» salen de una plantilla con la notación de cada idioma). Sin revisión de nativos.
+
 ## Lecciones agregadas el 9-11-2026 (bloque A del temario nuevo)
 
 Salen de la comparación con los libros de `C:devmaterial para lecciones` (propuesta en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`). Textos escritos de cero, sin copiar de los libros. Se insertaron sin renumerar ids; `order` se recalculó para toda la ruta (1 a 44).

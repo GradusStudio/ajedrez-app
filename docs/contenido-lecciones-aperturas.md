@@ -4,7 +4,7 @@ Notación en español: R rey, D dama, T torre, A alfil, C caballo. Todas las lí
 
 ---
 
-## Parte 1 · Ruta rápida de lecciones (8 unidades, 58 lecciones, todas escritas)
+## Parte 1 · Ruta rápida de lecciones (9 unidades, 64 lecciones, todas escritas)
 
 Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzado) y en los cuatro niveles de chess.com (nuevo, principiante, intermedio, avanzado). Los títulos son propios.
 
@@ -74,7 +74,10 @@ La atracción, La sobrecarga, La jugada intermedia, La interferencia, Mates de u
 ### Unidad 8 · Finales intermedios (6 lecciones, escritas el 9-11-2026 en `src/data/unidad-8-finales-intermedios.json`)
 El rey activo, El peón pasado alejado (incluye las dos debilidades), Dama contra peón, La posición de Philidor, Cortar al rey con la torre y Alfiles de distinto color. Quedó para más adelante «Alfil contra caballo»: los puzzles de Lichess con esas piezas son tácticos (horquillas) y no enseñan la idea estratégica.
 
-Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 58 (Unidad 6: 41 a 44; Unidad 7: 45 a 52; Unidad 8: 53 a 58). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
+### Unidad 9 · Piezas y peones (6 lecciones, escritas el 9-11-2026 en `src/data/unidad-9-piezas-y-peones.json`)
+Piezas sueltas, Cuándo cambiar piezas, El espacio, Posiciones abiertas y cerradas, Alfil bueno y alfil malo, Peón retrasado y cadenas de peones. Las respuestas de cada pregunta (peones bloqueados, casillas de espacio, piezas sin defensa, peones retrasados) se calculan con chess.js. Quedaron para más adelante «Torres activas» (conectar torres, séptima fila, torre levantada) y «Rupturas y mayorías de peones»: Stockfish no confirma esas ideas con una jugada única.
+
+Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 64 (Unidad 6: 41 a 44; Unidad 7: 45 a 52; Unidad 8: 53 a 58; Unidad 9: 59 a 64). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
 
 ### Formato de cada lección
 1. Explicación corta con tablero interactivo (máx. 3 pantallas).

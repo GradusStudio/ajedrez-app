@@ -291,3 +291,13 @@ En los avisos: `risk` empieza por *Jours de série : {n}.* para leerse bien con 
 | mate árabe | mat arabe |
 | mate de la coz | mat étouffé |
 | batería | batterie |
+
+## Agregados el 9-11-2026 (Unidad 9)
+| Español | Français |
+|---|---|
+| pieza suelta | pièce sans défense |
+| espacio | espace |
+| posición abierta / cerrada | position ouverte / fermée |
+| alfil bueno / malo | bon / mauvais fou |
+| peón retrasado | pion arriéré |
+| cadena de peones, base | chaîne de pions, base |

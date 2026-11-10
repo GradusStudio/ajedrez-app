@@ -1,0 +1,197 @@
+{
+  "title": "Pieces and pawns",
+  "lessons": {
+    "u9-l01": {
+      "title": "Loose pieces",
+      "summary": "A piece without defense is a target",
+      "steps": {
+        "u9-l01-s01": { "text": "The white queen is on c5 and no piece defends it. The black queen on e7 attacks it and captures it for free. A piece that nobody defends is a loose piece." },
+        "u9-l01-s02": { "text": "The black bishop on f2 gave check, but no piece protects it: the king captures it. Before capturing, check that the enemy piece has no defense; before moving, check that yours do." },
+        "u9-l01-s03": {
+          "prompt": "Tap the two white pieces nobody defends. Don't count the king or the pawns.",
+          "hint": "Look for the white pieces that no other white piece or pawn protects."
+        },
+        "u9-l01-s04": {
+          "prompt": "How many black pieces are undefended? Don't count the king or the pawns.",
+          "options": ["2", "3", "4", "5"],
+          "explanation": "There are four undefended black pieces. When your opponent has that many loose pieces, there is almost always a tactic around.",
+          "feedback": ["Count again: check each black piece and see whether another piece protects it.", "Count again: check each black piece and see whether another piece protects it.", "", "Count again: check each black piece and see whether another piece protects it."]
+        },
+        "u9-l01-s05": {
+          "prompt": "Capture the piece nobody defends.",
+          "hint": "One of the white pieces has no defense and you can capture it with check.",
+          "success": "Correct. Rxe1+ wins a piece nobody was defending."
+        },
+        "u9-l01-s06": {
+          "prompt": "Capture the piece nobody defends.",
+          "hint": "The piece that just gave check has no defense: capture it.",
+          "success": "Correct. Kxf2 wins a piece nobody was defending."
+        },
+        "u9-l01-s07": {
+          "prompt": "Capture the piece nobody defends.",
+          "hint": "The black queen is on a square where nobody protects it.",
+          "success": "Correct. Kxb2 wins a piece nobody was defending."
+        },
+        "u9-l01-s08": {
+          "prompt": "Take advantage of the loose piece.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the enemy pieces nobody defends and start with the most valuable one.",
+          "notes": ["", "", "", ""]
+        },
+        "u9-l01-s09": {
+          "prompt": "Take advantage of the loose piece.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the enemy pieces nobody defends and start with the most valuable one.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u9-l02": {
+      "title": "When to trade pieces",
+      "summary": "To trade or not to trade",
+      "steps": {
+        "u9-l02-s01": { "text": "Almost every trade has good and bad sides. Trade when you are winning material, when the trade leaves your opponent with a weakness, when you are under attack, or when you are short of space. Don't trade when you are losing material, when you are the one attacking, or when you have more space." },
+        "u9-l02-s02": {
+          "prompt": "You are a rook up and it's White's move. What suits you?",
+          "options": ["Avoid trades", "Attack without trading anything", "Trade pieces to simplify"],
+          "explanation": "With an extra rook, every trade makes your advantage bigger: the fewer pieces left, the more an extra rook weighs.",
+          "feedback": ["Avoiding trades keeps the enemy pieces alive, and they are the ones that could complicate the game for you.", "Attacking without trading anything is risky when you already have the advantage.", ""]
+        },
+        "u9-l02-s03": {
+          "prompt": "You are a rook down and it's White's move. What suits you?",
+          "options": ["Trade only the queens", "Avoid trades", "Trade pieces to simplify"],
+          "explanation": "With less material, every trade leaves you with fewer resources: it's better to keep pieces on the board to have options.",
+          "feedback": ["Trading queens also leaves you with fewer resources to complicate the game.", "", "Every trade brings the game closer to an ending where the missing rook is felt more."]
+        },
+        "u9-l02-s04": {
+          "prompt": "You have less space than your opponent. What suits you?",
+          "options": ["Trade the pieces that cramp you", "Avoid all trades", "Advance the pawns"],
+          "explanation": "With little space the pieces get in each other's way. Every trade frees up squares for the ones that remain.",
+          "feedback": ["", "Avoiding trades leaves your pieces cramped.", "Advancing pawns without support usually creates weaknesses."]
+        },
+        "u9-l02-s05": {
+          "prompt": "You are attacking the enemy king with several pieces. What suits you?",
+          "options": ["Trade the pieces that attack", "Trade the queen right away", "Keep the attacking pieces on the board"],
+          "explanation": "To attack you need pieces. If you trade the ones that attack, your opponent defends more calmly.",
+          "feedback": ["Trading the pieces that attack is what the defending opponent wants.", "Trading the queen removes the piece that attacks the most.", ""]
+        },
+        "u9-l02-s06": { "text": "Summary: trade when you are winning, when you are under attack or when you are short of space. Don't trade when you are losing, when you are attacking or when you have more space. Before each trade, ask yourself what it leaves you and what it leaves your opponent." }
+      }
+    },
+    "u9-l03": {
+      "title": "Space",
+      "summary": "Squares in the enemy half that you control",
+      "steps": {
+        "u9-l03-s01": { "text": "Space is the number of squares in the enemy half that your pieces and pawns control. In this position White controls 8 squares in Black's half and Black controls 5 in White's half: White has more space, mostly thanks to its advanced pawn on e5." },
+        "u9-l03-s02": {
+          "prompt": "Tap the two squares in Black's half that the e5 pawn controls.",
+          "hint": "A pawn controls the two diagonal squares in front of it."
+        },
+        "u9-l03-s03": {
+          "prompt": "Who has more space in this position?",
+          "options": ["Both the same", "White", "Black"],
+          "explanation": "White controls 12 squares in Black's half; Black controls 7 in White's half.",
+          "feedback": ["It's not equal: White controls more squares in the enemy half.", "", "Count the squares in the enemy half that each side controls: White controls more."]
+        },
+        "u9-l03-s04": {
+          "prompt": "What usually suits the side that has more space?",
+          "options": ["Avoiding piece trades", "Trading queens right away", "Stopping moving pawns"],
+          "explanation": "With more space, its pieces move comfortably. Every trade frees the opponent, so it suits that side to keep the pieces.",
+          "feedback": ["", "Trading queens right away frees the cramped opponent.", "Stopping moving pawns doesn't help keep the space."]
+        },
+        "u9-l03-s05": {
+          "prompt": "What usually suits the side that has less space?",
+          "options": ["Avoid all trades", "Cramping its pieces even more", "Trading the pieces that cramp it"],
+          "explanation": "With little space the pieces get in each other's way. Every trade frees up squares for the ones that remain.",
+          "feedback": ["Avoiding trades leaves the pieces cramped.", "Cramping the pieces more makes the problem worse.", ""]
+        },
+        "u9-l03-s06": { "text": "Summary: space is counted in squares of the enemy half that you control. The side with more space avoids trades; the side with less seeks them." }
+      }
+    },
+    "u9-l04": {
+      "title": "Open and closed positions",
+      "summary": "How the pieces play depending on the pawns",
+      "steps": {
+        "u9-l04-s01": { "text": "Here no pawn is blocked in front of an enemy pawn: the center is open. Long-range pieces, like bishops and rooks, have free lines and threats arrive quickly." },
+        "u9-l04-s02": { "text": "In this other position the pawns on d5 and d6, and those on e4 and e5, face each other and are blocked. The center is closed: the pieces have few lines and the game is played with slow maneuvers and pawn breaks." },
+        "u9-l04-s03": {
+          "prompt": "Is this position open or closed?",
+          "options": ["Closed", "Open"],
+          "explanation": "The pawns on d4 and d5, and those on e5 and e6, are blocked face to face. The center is closed.",
+          "feedback": ["", "Look at the center pawns: there are two pairs facing each other that can't advance."]
+        },
+        "u9-l04-s04": {
+          "prompt": "Tap the two white pawns that are blocked by a black pawn.",
+          "hint": "Each one has a black pawn right in front of it."
+        },
+        "u9-l04-s05": {
+          "prompt": "In a closed position, which pieces usually work best?",
+          "options": ["Knights, which jump over the pawns", "Long-range bishops", "Rooks on open files"],
+          "explanation": "With the pawns blocking the lines, knights can jump over them and look for strong squares.",
+          "feedback": ["", "Bishops suffer when pawns close their diagonals.", "With the center closed there are few open files for the rooks."]
+        },
+        "u9-l04-s06": {
+          "prompt": "In an open position, which pieces usually work best?",
+          "options": ["Knights, which need fixed squares", "Pawns, which advance without obstacles", "Bishops and rooks, which have long lines"],
+          "explanation": "With free lines, bishops and rooks reach far and create threats from a distance.",
+          "feedback": ["Knights prefer fixed squares and closed centers.", "Pawns are not the pieces that win in open positions.", ""]
+        },
+        "u9-l04-s07": { "text": "Summary: with blocked pawns, the center is closed and the knights jump over them. With free lines, the center is open and bishops and rooks rule." }
+      }
+    },
+    "u9-l05": {
+      "title": "Good bishop and bad bishop",
+      "summary": "The bishop and its own pawns",
+      "steps": {
+        "u9-l05-s01": { "text": "The black bishop on c8 is a bad bishop: it has 5 of its own pawns on squares of its color, and the ones on b7 and e6 close both its diagonals. Its own pawns leave it with no way out." },
+        "u9-l05-s02": { "text": "In this position the black bishop came out to f5 before playing e6: it is outside the pawn chain and looks outward. It is a good bishop, active, even though its pawns are still on squares of the same color." },
+        "u9-l05-s03": {
+          "prompt": "Which of the black bishops is the bad one?",
+          "options": ["Neither", "The one on c8, which goes on light squares", "The one on f8, which goes on dark squares"],
+          "explanation": "The bishop on c8 has 5 of its own pawns on its color and the one on f8 only 3: the one on c8 is the bad one.",
+          "feedback": ["The e6 and d5 pawns get in the way of the bishop on c8: there is a bad one.", "", "The bishop on f8 has only 3 of its own pawns on its color: it has more room."]
+        },
+        "u9-l05-s04": {
+          "prompt": "Tap the two black pawns that close the diagonals of the bishop on c8.",
+          "hint": "Each of the bishop's two diagonals ends in one of its own pawns."
+        },
+        "u9-l05-s05": {
+          "prompt": "What can you do with a bad bishop?",
+          "options": ["Take it out of the pawn chain or trade it", "Put more pawns on squares of its color", "Leave it at home to protect it"],
+          "explanation": "A bad bishop improves if it leaves the chain before it closes, or if it is traded for an enemy piece.",
+          "feedback": ["", "More pawns on its color only get in its way more.", "Leaving it at home keeps it out of the game."]
+        },
+        "u9-l05-s06": { "text": "Summary: a bishop is good if its pawns are on squares of the other color and bad if they close its diagonals. Better to take it out before the pawn chain closes." }
+      }
+    },
+    "u9-l06": {
+      "title": "Backward pawn and pawn chains",
+      "summary": "Where to attack the pawn structure",
+      "steps": {
+        "u9-l06-s01": { "text": "The black pawn on d6 is a backward pawn: it has no pawns beside it to support it and it can't advance without the e4 pawn capturing it. The d5 square, right in front, is a target: a white piece can settle there without any black pawn driving it away." },
+        "u9-l06-s02": { "text": "The white pawns on b2, c3, d4 and e5 form a chain. The base, b2, is the only pawn in the chain that no other pawn protects. If the base is attacked, the whole chain is left without support; that is why Black aims the queen at b2." },
+        "u9-l06-s03": {
+          "prompt": "Tap the backward black pawn.",
+          "hint": "It's the pawn that can't advance without being captured and that none of its own pawns supports from the side."
+        },
+        "u9-l06-s04": {
+          "prompt": "Tap the base of the white pawn chain.",
+          "hint": "It's the pawn in the chain that has no pawn of its own protecting it."
+        },
+        "u9-l06-s05": {
+          "prompt": "How do you play against a backward pawn?",
+          "options": ["By trading all the pieces except the pawn", "By advancing one of your own pawns beside it", "By putting a piece on the square in front and pressuring the pawn"],
+          "explanation": "A piece on the square in front leaves it blocked and without support, and the opponent has to defend it with pieces.",
+          "feedback": ["Trading the pieces leaves the opponent free to defend it.", "Advancing a pawn beside it doesn't attack the backward pawn.", ""]
+        },
+        "u9-l06-s06": {
+          "prompt": "Where should you attack a pawn chain?",
+          "options": ["In the middle", "At the base", "At the head"],
+          "explanation": "The base is the pawn that holds up the others: if it falls, the whole chain loses its support.",
+          "feedback": ["The middle pawns are protected by the base.", "", "The head is protected by the rest of the chain."]
+        },
+        "u9-l06-s07": { "text": "Summary: against a backward pawn, a piece on the square in front. Against a pawn chain, attack the base." }
+      }
+    }
+  }
+}

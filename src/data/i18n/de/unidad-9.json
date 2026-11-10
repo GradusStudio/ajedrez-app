@@ -1,0 +1,197 @@
+{
+  "title": "Figuren und Bauern",
+  "lessons": {
+    "u9-l01": {
+      "title": "Hängende Figuren",
+      "summary": "Eine ungedeckte Figur ist ein Ziel",
+      "steps": {
+        "u9-l01-s01": { "text": "Die weiße Dame steht auf c5 und keine Figur deckt sie. Die schwarze Dame auf e7 greift sie an und schlägt sie umsonst. Eine Figur, die niemand deckt, ist eine ungedeckte Figur." },
+        "u9-l01-s02": { "text": "Der schwarze Läufer auf f2 gab Schach, aber keine Figur deckt ihn: Der König schlägt ihn. Prüfe vor dem Schlagen, ob die gegnerische Figur ungedeckt ist; prüfe vor dem Ziehen, ob deine Figuren gedeckt sind." },
+        "u9-l01-s03": {
+          "prompt": "Tippe auf die zwei weißen Figuren, die niemand deckt. Den König und die Bauern zählst du nicht mit.",
+          "hint": "Suche die weißen Figuren, die keine andere weiße Figur und kein weißer Bauer deckt."
+        },
+        "u9-l01-s04": {
+          "prompt": "Wie viele schwarze Figuren sind ungedeckt? Den König und die Bauern zählst du nicht mit.",
+          "options": ["2", "3", "4", "5"],
+          "explanation": "Es gibt vier ungedeckte schwarze Figuren. Wenn der Gegner so viele ungedeckte Figuren hat, liegt fast immer eine Taktik in der Luft.",
+          "feedback": ["Zähle noch einmal: Überprüfe jede schwarze Figur und sieh, ob eine andere sie deckt.", "Zähle noch einmal: Überprüfe jede schwarze Figur und sieh, ob eine andere sie deckt.", "", "Zähle noch einmal: Überprüfe jede schwarze Figur und sieh, ob eine andere sie deckt."]
+        },
+        "u9-l01-s05": {
+          "prompt": "Schlage die ungedeckte Figur.",
+          "hint": "Eine der weißen Figuren ist ungedeckt, und du kannst sie mit Schach schlagen.",
+          "success": "Richtig. Txe1+ gewinnt eine Figur, die niemand verteidigt hat."
+        },
+        "u9-l01-s06": {
+          "prompt": "Schlage die ungedeckte Figur.",
+          "hint": "Die Figur, die gerade Schach gegeben hat, ist ungedeckt: Schlage sie.",
+          "success": "Richtig. Kxf2 gewinnt eine Figur, die niemand verteidigt hat."
+        },
+        "u9-l01-s07": {
+          "prompt": "Schlage die ungedeckte Figur.",
+          "hint": "Die schwarze Dame steht auf einem Feld, das niemand deckt.",
+          "success": "Richtig. Kxb2 gewinnt eine Figur, die niemand verteidigt hat."
+        },
+        "u9-l01-s08": {
+          "prompt": "Nutze die ungedeckte Figur.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche nach den ungedeckten Figuren des Gegners und beginne mit der wertvollsten.",
+          "notes": ["", "", "", ""]
+        },
+        "u9-l01-s09": {
+          "prompt": "Nutze die ungedeckte Figur.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche nach den ungedeckten Figuren des Gegners und beginne mit der wertvollsten.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u9-l02": {
+      "title": "Wann tauscht man Figuren?",
+      "summary": "Tauschen oder nicht tauschen",
+      "steps": {
+        "u9-l02-s01": { "text": "Fast jeder Abtausch hat gute und schlechte Seiten. Es lohnt sich zu tauschen, wenn du Material gewinnst, wenn der Abtausch dem Gegner eine Schwäche hinterlässt, wenn du angegriffen wirst oder wenn du wenig Raum hast. Es lohnt sich nicht, wenn du Material verlierst, wenn du der Angreifer bist oder wenn du mehr Raum hast." },
+        "u9-l02-s02": {
+          "prompt": "Du hast einen Turm mehr, und Weiß ist am Zug. Was passt dir?",
+          "options": ["Abtausche vermeiden", "Angreifen, ohne etwas zu tauschen", "Figuren tauschen, um zu vereinfachen"],
+          "explanation": "Mit einem Turm mehr macht jeder Abtausch deinen Vorteil größer: Je weniger Figuren übrig sind, desto mehr zählt der zusätzliche Turm.",
+          "feedback": ["Abtausche zu vermeiden hält die Figuren des Gegners am Leben, und gerade sie könnten dir das Spiel erschweren.", "Anzugreifen, ohne etwas zu tauschen, ist riskant, wenn du schon im Vorteil bist.", ""]
+        },
+        "u9-l02-s03": {
+          "prompt": "Du bist einen Turm im Rückstand, und Weiß ist am Zug. Was passt dir?",
+          "options": ["Nur die Damen tauschen", "Abtausche vermeiden", "Figuren tauschen, um zu vereinfachen"],
+          "explanation": "Mit weniger Material lässt dich jeder Abtausch mit weniger Möglichkeiten zurück: Es ist besser, Figuren auf dem Brett zu behalten, um Optionen zu haben.",
+          "feedback": ["Auch ein Damentausch lässt dich mit weniger Möglichkeiten zurück, die Partie zu verkomplizieren.", "", "Jeder Abtausch führt die Partie näher an ein Endspiel, in dem man den fehlenden Turm stärker spürt."]
+        },
+        "u9-l02-s04": {
+          "prompt": "Du hast weniger Raum als der Gegner. Was passt dir?",
+          "options": ["Die Figuren tauschen, die dich einengen", "Alle Abtausche vermeiden", "Bauern vorrücken"],
+          "explanation": "Bei wenig Raum stehen sich die Figuren im Weg. Jeder Abtausch macht Felder für die verbleibenden Figuren frei.",
+          "feedback": ["", "Abtausche zu vermeiden lässt deine Figuren eingeengt stehen.", "Bauern ohne Unterstützung vorzuschieben erzeugt meist Schwächen."]
+        },
+        "u9-l02-s05": {
+          "prompt": "Du greifst den gegnerischen König mit mehreren Figuren an. Was passt dir?",
+          "options": ["Die angreifenden Figuren tauschen", "Die Dame sofort tauschen", "Die angreifenden Figuren auf dem Brett behalten"],
+          "explanation": "Um anzugreifen brauchst du Figuren. Wenn du die angreifenden Figuren tauschst, verteidigt der Gegner ruhiger.",
+          "feedback": ["Die angreifenden Figuren zu tauschen ist genau das, was der verteidigende Gegner will.", "Die Dame zu tauschen entfernt die Figur, die am stärksten angreift.", ""]
+        },
+        "u9-l02-s06": { "text": "Zusammenfassung: Tausche, wenn du im Vorteil bist, wenn du angegriffen wirst oder wenn dir Raum fehlt. Tausche nicht, wenn du im Nachteil bist, wenn du angreifst oder wenn du mehr Raum hast. Frage dich vor jedem Abtausch, was er dir lässt und was er dem Gegner lässt." }
+      }
+    },
+    "u9-l03": {
+      "title": "Der Raum",
+      "summary": "Felder der gegnerischen Hälfte, die du kontrollierst",
+      "steps": {
+        "u9-l03-s01": { "text": "Der Raum ist die Anzahl der Felder der gegnerischen Hälfte, die deine Figuren und Bauern kontrollieren. In dieser Stellung kontrollieren die Weißen 8 Felder in der schwarzen Hälfte und die Schwarzen 5 in der weißen Hälfte: Die Weißen haben mehr Raum, vor allem dank ihres vorgerückten Bauern auf e5." },
+        "u9-l03-s02": {
+          "prompt": "Tippe auf die beiden Felder der schwarzen Hälfte, die der Bauer auf e5 kontrolliert.",
+          "hint": "Ein Bauer kontrolliert die zwei diagonalen Felder vor sich."
+        },
+        "u9-l03-s03": {
+          "prompt": "Wer hat mehr Raum in dieser Stellung?",
+          "options": ["Beide gleich", "Weiß", "Schwarz"],
+          "explanation": "Die Weißen kontrollieren 12 Felder in der schwarzen Hälfte; die Schwarzen 7 in der weißen Hälfte.",
+          "feedback": ["Es ist nicht gleich: Weiß kontrolliert mehr Felder in der gegnerischen Hälfte.", "", "Zähle die Felder der gegnerischen Hälfte, die jede Seite kontrolliert: Weiß kontrolliert mehr."]
+        },
+        "u9-l03-s04": {
+          "prompt": "Was passt der Seite mit mehr Raum meistens?",
+          "options": ["Abtausche vermeiden", "Sofort die Damen tauschen", "Aufhören, Bauern zu ziehen"],
+          "explanation": "Mit mehr Raum bewegen sich ihre Figuren bequem. Jeder Abtausch befreit den Gegner, also sollte sie die Figuren behalten.",
+          "feedback": ["", "Sofort die Damen zu tauschen befreit den Gegner, der eingeengt steht.", "Aufhören, Bauern zu ziehen, hilft nicht, den Raum zu halten."]
+        },
+        "u9-l03-s05": {
+          "prompt": "Was passt der Seite mit weniger Raum meistens?",
+          "options": ["Alle Abtausche vermeiden", "Die eigenen Figuren noch mehr einsperren", "Die Figuren tauschen, die sie einengen"],
+          "explanation": "Bei wenig Raum stehen sich die Figuren im Weg. Jeder Abtausch macht Felder für die verbleibenden Figuren frei.",
+          "feedback": ["Abtausche zu vermeiden lässt die Figuren eingeengt stehen.", "Die Figuren enger einzusperren macht das Problem schlimmer.", ""]
+        },
+        "u9-l03-s06": { "text": "Zusammenfassung: Der Raum wird in Feldern der gegnerischen Hälfte gezählt, die du kontrollierst. Wer mehr Raum hat, vermeidet Abtausche; wer weniger hat, sucht sie." }
+      }
+    },
+    "u9-l04": {
+      "title": "Offene und geschlossene Stellungen",
+      "summary": "Wie die Figuren je nach Bauern spielen",
+      "steps": {
+        "u9-l04-s01": { "text": "Hier ist kein Bauer vor einem gegnerischen Bauern blockiert: Das Zentrum ist offen. Figuren mit großer Reichweite wie Läufer und Türme haben freie Linien, und die Drohungen kommen schnell an." },
+        "u9-l04-s02": { "text": "In dieser anderen Stellung stehen die Bauern auf d5 und d6 sowie die auf e4 und e5 einander gegenüber und sind blockiert. Das Zentrum ist geschlossen: Die Figuren haben wenige Linien, und die Partie wird mit langsamen Manövern und Bauerndurchbrüchen gespielt." },
+        "u9-l04-s03": {
+          "prompt": "Ist diese Stellung offen oder geschlossen?",
+          "options": ["Geschlossen", "Offen"],
+          "explanation": "Die Bauern auf d4 und d5, und die auf e5 und e6, stehen sich gegenüber. Das Zentrum ist geschlossen.",
+          "feedback": ["", "Schau dir die Bauern im Zentrum an: Es gibt zwei Paare, die sich gegenüberstehen und nicht vorrücken können."]
+        },
+        "u9-l04-s04": {
+          "prompt": "Tippe auf die beiden weißen Bauern, die von einem schwarzen Bauern blockiert werden.",
+          "hint": "Jeder hat direkt vor sich einen schwarzen Bauern."
+        },
+        "u9-l04-s05": {
+          "prompt": "Welche Figuren funktionieren in einer geschlossenen Stellung meistens am besten?",
+          "options": ["Die Springer, die über die Bauern springen", "Läufer mit langer Reichweite", "Türme auf offenen Linien"],
+          "explanation": "Mit den Bauern, die die Linien blockieren, können die Springer darüber springen und starke Felder suchen.",
+          "feedback": ["", "Läufer leiden, wenn Bauern ihre Diagonalen schließen.", "Bei geschlossenem Zentrum gibt es wenige offene Linien für die Türme."]
+        },
+        "u9-l04-s06": {
+          "prompt": "Welche Figuren funktionieren in einer offenen Stellung meistens am besten?",
+          "options": ["Die Springer, die feste Felder brauchen", "Die Bauern, die ungehindert vorrücken", "Die Läufer und Türme, die lange Linien haben"],
+          "explanation": "Mit freien Linien reichen Läufer und Türme weit und erzeugen Drohungen aus der Ferne.",
+          "feedback": ["Springer bevorzugen feste Felder und geschlossene Zentren.", "Bauern sind nicht die Figuren, die in offenen Stellungen gewinnen.", ""]
+        },
+        "u9-l04-s07": { "text": "Zusammenfassung: Mit blockierten Bauern ist das Zentrum geschlossen und die Springer springen darüber. Mit freien Linien ist das Zentrum offen und die Läufer und Türme herrschen." }
+      }
+    },
+    "u9-l05": {
+      "title": "Guter Läufer und schlechter Läufer",
+      "summary": "Der Läufer und seine eigenen Bauern",
+      "steps": {
+        "u9-l05-s01": { "text": "Der schwarze Läufer auf c8 ist ein schlechter Läufer: Er hat 5 eigene Bauern auf Feldern seiner Farbe, und die auf b7 und e6 schließen beide Diagonalen. Seine eigenen Bauern lassen ihn ohne Ausweg." },
+        "u9-l05-s02": { "text": "In dieser Stellung ist der schwarze Läufer nach f5 gezogen, bevor e6 gespielt wurde: Er steht außerhalb der Bauernkette und schaut nach außen. Er ist ein guter Läufer, aktiv, obwohl seine Bauern noch auf Feldern derselben Farbe stehen." },
+        "u9-l05-s03": {
+          "prompt": "Welcher der schwarzen Läufer ist der schlechte?",
+          "options": ["Keiner", "Der auf c8, der auf hellen Feldern zieht", "Der auf f8, der auf dunklen Feldern zieht"],
+          "explanation": "Der Läufer auf c8 hat 5 eigene Bauern auf seiner Farbe und der auf f8 nur 3: Der auf c8 ist der schlechte.",
+          "feedback": ["Die Bauern auf e6 und d5 stören den Läufer auf c8: Es gibt einen schlechten Läufer.", "", "Der Läufer auf f8 hat nur 3 eigene Bauern auf seiner Farbe: Er hat mehr Platz."]
+        },
+        "u9-l05-s04": {
+          "prompt": "Tippe auf die beiden schwarzen Bauern, die dem Läufer auf c8 die Diagonalen schließen.",
+          "hint": "Jede der beiden Diagonalen des Läufers endet auf einem eigenen Bauern."
+        },
+        "u9-l05-s05": {
+          "prompt": "Was kannst du mit einem schlechten Läufer machen?",
+          "options": ["Ihn aus der Bauernkette herausholen oder tauschen", "Mehr Bauern auf Felder seiner Farbe setzen", "Ihn zu Hause lassen, um ihn zu schützen"],
+          "explanation": "Ein schlechter Läufer verbessert sich, wenn er die Kette verlässt, bevor sie sich schließt, oder wenn er gegen eine gegnerische Figur getauscht wird.",
+          "feedback": ["", "Mehr Bauern auf seiner Farbe behindern ihn nur noch mehr.", "Ihn zu Hause zu lassen hält ihn aus der Partie heraus."]
+        },
+        "u9-l05-s06": { "text": "Zusammenfassung: Ein Läufer ist gut, wenn seine Bauern auf Feldern der anderen Farbe stehen, und schlecht, wenn sie ihm die Diagonalen schließen. Besser, ihn herauszuholen, bevor sich die Bauernkette schließt." }
+      }
+    },
+    "u9-l06": {
+      "title": "Rückständiger Bauer und Bauernketten",
+      "summary": "Wo man die Bauernstruktur angreift",
+      "steps": {
+        "u9-l06-s01": { "text": "Der schwarze Bauer auf d6 ist ein rückständiger Bauer: Er hat keine Bauern neben sich, die ihn stützen, und er kann nicht vorrücken, ohne dass ihn der Bauer auf e4 schlägt. Das Feld d5 direkt davor ist ein Ziel: Eine weiße Figur kann sich dort festsetzen, ohne dass ein schwarzer Bauer sie vertreibt." },
+        "u9-l06-s02": { "text": "Die weißen Bauern auf b2, c3, d4 und e5 bilden eine Bauernkette. Der Fuß der Kette, b2, ist der einzige Bauer der Kette, den kein anderer Bauer schützt. Wenn der Fuß angegriffen wird, bleibt die ganze Kette ohne Unterstützung; deshalb zielt Schwarz mit der Dame auf b2." },
+        "u9-l06-s03": {
+          "prompt": "Tippe auf den rückständigen schwarzen Bauern.",
+          "hint": "Es ist der Bauer, der nicht vorrücken kann, ohne geschlagen zu werden, und den kein eigener Bauer von der Seite stützt."
+        },
+        "u9-l06-s04": {
+          "prompt": "Tippe auf den Fuß der weißen Bauernkette.",
+          "hint": "Es ist der Bauer in der Bauernkette, der keinen eigenen Bauern zum Schutz hat."
+        },
+        "u9-l06-s05": {
+          "prompt": "Wie spielt man gegen einen rückständigen Bauern?",
+          "options": ["Alle Figuren außer dem Bauern tauschen", "Einen eigenen Bauern neben ihn vorrücken", "Eine Figur auf das Feld davor stellen und den Bauern unter Druck setzen"],
+          "explanation": "Eine Figur auf dem Feld davor blockiert ihn und lässt ihn ohne Unterstützung, und der Gegner muss ihn mit Figuren verteidigen.",
+          "feedback": ["Wenn man die Figuren tauscht, kann der Gegner ihn frei verteidigen.", "Einen Bauern neben ihn vorzuschieben greift den rückständigen Bauern nicht an.", ""]
+        },
+        "u9-l06-s06": {
+          "prompt": "Wo greift man eine Bauernkette am besten an?",
+          "options": ["In der Mitte", "Am Fuß der Kette", "An der Spitze"],
+          "explanation": "Der Fuß der Kette ist der Bauer, der die anderen stützt: Fällt er, verliert die ganze Kette ihre Unterstützung.",
+          "feedback": ["Die mittleren Bauern werden vom Fuß der Kette geschützt.", "", "Die Spitze wird vom Rest der Kette geschützt."]
+        },
+        "u9-l06-s07": { "text": "Zusammenfassung: Gegen einen rückständigen Bauern hilft eine Figur auf dem Feld davor. Gegen eine Bauernkette greife den Fuß an." }
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
     {
       "id": "u8-l01",
       "unit": 8,
-      "order": 53,
+      "order": 52,
       "title": "El rey activo",
       "summary": "En el final, el rey también ataca",
       "xp": 15,
@@ -160,7 +160,7 @@
     {
       "id": "u8-l02",
       "unit": 8,
-      "order": 54,
+      "order": 53,
       "title": "El peón pasado alejado",
       "summary": "Un peón lejos del rey rival",
       "xp": 15,
@@ -322,7 +322,7 @@
     {
       "id": "u8-l03",
       "unit": 8,
-      "order": 55,
+      "order": 54,
       "title": "Dama contra peón",
       "summary": "Cuando el peón está a un paso de coronar",
       "xp": 15,
@@ -400,7 +400,7 @@
     {
       "id": "u8-l04",
       "unit": 8,
-      "order": 56,
+      "order": 55,
       "title": "La posición de Philidor",
       "summary": "La defensa segura con torre",
       "xp": 15,
@@ -471,7 +471,7 @@
     {
       "id": "u8-l05",
       "unit": 8,
-      "order": 57,
+      "order": 56,
       "title": "Cortar al rey con la torre",
       "summary": "La torre como muralla",
       "xp": 15,
@@ -567,7 +567,7 @@
     {
       "id": "u8-l06",
       "unit": 8,
-      "order": 58,
+      "order": 57,
       "title": "Alfiles de distinto color",
       "summary": "Por qué suelen ser tablas",
       "xp": 15,

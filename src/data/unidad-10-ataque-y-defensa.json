@@ -1,0 +1,1172 @@
+{
+  "unit": 10,
+  "title": "Ataque y defensa",
+  "lessons": [
+    {
+      "id": "u10-l01",
+      "unit": 10,
+      "order": 64,
+      "title": "El rey sin enrocar",
+      "summary": "Un rey en el centro es un blanco",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El rey blanco sigue en f1 sin haber enrocado, y sus piezas no lo protegen bien. Con Dh1+ las negras fuerzan el cambio de damas, la torre recaptura en h1 con jaque, el rey tiene que ir a f2 y la torre captura en d1. Un rey sin enrocar le da a los jaques el tiempo que necesitan.",
+          "fen": "2kr4/1pp2pp1/p6r/2pP4/8/3B1QP1/PPP1R2q/3R1K2 b - - 4 23",
+          "orientation": "b",
+          "play": [
+            "h2h1",
+            "f3h1",
+            "h6h1",
+            "f1f2",
+            "h1d1"
+          ],
+          "id": "u10-l01-s01"
+        },
+        {
+          "type": "explain",
+          "text": "El rey negro está en d8 sin enrocar. Con Dh8+ las blancas lo obligan a interponer el alfil, con Td1+ lo mandan a c8 y la dama captura el alfil de e8 con jaque. Cada jaque le quita una casilla al rey.",
+          "fen": "1r1k4/p1qbb3/2p5/6p1/2N5/2Q1P1P1/PP3PP1/2R1K3 w - - 1 27",
+          "play": [
+            "c3h8",
+            "d7e8",
+            "c1d1",
+            "d8c8",
+            "h8e8"
+          ],
+          "id": "u10-l01-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuál de estos dos reyes está sin enrocar?",
+          "fen": "r2k4/p2n4/1p1P2BQ/8/6P1/4qr2/PPP5/2K4R w - - 1 28",
+          "highlight": [
+            "d8",
+            "c1"
+          ],
+          "options": [
+            "El rey negro, en d8",
+            "El rey blanco, en c1",
+            "Los dos están enrocados"
+          ],
+          "answer": 0,
+          "explanation": "El rey negro sigue en d8, en el centro, y las blancas ya pusieron el suyo a salvo en c1.",
+          "feedback": [
+            "",
+            "El rey blanco ya enrocó largo: está en c1, detrás de sus peones.",
+            "Uno de los dos todavía está en el centro."
+          ],
+          "id": "u10-l01-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca el rey que está sin enrocar.",
+          "fen": "r2k4/p2n4/1p1P2BQ/8/6P1/4qr2/PPP5/2K4R w - - 1 28",
+          "squares": [
+            "d8"
+          ],
+          "hint": "Es el rey que sigue en el centro, rodeado de sus propias piezas.",
+          "id": "u10-l01-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca al rey que no ha enrocado.",
+          "fen": "r2k4/p2n4/1p1P2BQ/8/6P1/4qr2/PPP5/2K4R w - - 1 28",
+          "solutions": [
+            "h6e3"
+          ],
+          "hint": "Busca una captura o un jaque que abra líneas contra el rey que sigue en el centro.",
+          "success": "Correcto. Dxe3 abre líneas contra el rey que no enrocó.",
+          "id": "u10-l01-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca al rey que no ha enrocado.",
+          "fen": "2rk4/1Q2r3/3p1p1p/b3p3/3P4/2Pq4/PP6/2K1R1R1 w - - 4 37",
+          "solutions": [
+            "g1g8"
+          ],
+          "hint": "Busca un jaque que lleve al rey a una casilla donde pierda material.",
+          "success": "Correcto. Tg8+ abre líneas contra el rey que no enrocó.",
+          "id": "u10-l01-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca al rey que no ha enrocado.",
+          "fen": "1r1k3r/2p2q1p/1bR5/p2pPbPQ/P2P1P1R/1NP1B3/1P6/3K4 b - - 2 35",
+          "orientation": "b",
+          "solutions": [
+            "f7h5"
+          ],
+          "hint": "Busca un jaque o un cambio que abra líneas contra el rey que sigue en el centro.",
+          "success": "Correcto. Dxh5+ abre líneas contra el rey que no enrocó.",
+          "id": "u10-l01-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Ataca al rey que no ha enrocado.",
+          "fen": "2r3k1/3b2p1/4p1qp/3pPp2/1n1P1Q2/5NPR/PP1K2P1/3R4 w - - 2 27",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d1c1",
+              "san": "Tc1"
+            },
+            {
+              "uci": "c8c1",
+              "san": "Txc1"
+            },
+            {
+              "uci": "d2c1",
+              "san": "Rxc1"
+            },
+            {
+              "uci": "b4d3",
+              "san": "Cd3+"
+            },
+            {
+              "uci": "c1c2",
+              "san": "Rc2"
+            },
+            {
+              "uci": "d3f4",
+              "san": "Cxf4"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca los jaques: el rey sin enrocar tiene pocas casillas y no tiene dónde esconderse.",
+          "id": "u10-l01-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Ataca al rey que no ha enrocado.",
+          "fen": "r4k2/pp2RqbQ/3p1r2/3p4/1P6/2P4P/P4PP1/4R1K1 b - - 5 24",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "f7g8",
+              "san": "Dg8"
+            },
+            {
+              "uci": "e7e8",
+              "san": "Te8+"
+            },
+            {
+              "uci": "a8e8",
+              "san": "Txe8"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Txe8+"
+            },
+            {
+              "uci": "f8e8",
+              "san": "Rxe8"
+            },
+            {
+              "uci": "h7g8",
+              "san": "Dxg8+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca los jaques: el rey sin enrocar tiene pocas casillas y no tiene dónde esconderse.",
+          "id": "u10-l01-s09"
+        }
+      ]
+    },
+    {
+      "id": "u10-l02",
+      "unit": 10,
+      "order": 65,
+      "title": "Atacar con enroques del mismo lado",
+      "summary": "Todos contra el peón de h",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Con los dos reyes enrocados en el ala de rey, el ataque suele dirigirse contra el peón de h (h7 o h2). Aquí Axh7+ da jaque y, al apartarse el alfil de d3, la dama blanca de d1 ve la dama negra de d6: el rey captura el alfil y Dxd6 gana la dama.",
+          "fen": "r1b3k1/pp3ppp/3q1n2/4r3/2p5/2PB4/PP3PPP/R2QR1K1 w - - 0 15",
+          "play": [
+            "d3h7",
+            "g8h7",
+            "d1d6"
+          ],
+          "id": "u10-l02-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Los peones de f7, g7 y h7 son el escudo del rey negro, y la dama junto con el alfil de c2 apuntan a h7. Dxh7+ obliga al rey a ir a f8 y Dh8 es mate.",
+          "fen": "3r2k1/4qppp/p1b1p3/1pp5/8/2PQ4/PrB2PPP/R4RK1 w - - 2 23",
+          "play": [
+            "d3h7",
+            "g8f8",
+            "h7h8"
+          ],
+          "id": "u10-l02-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Cuántas piezas negras defienden el peón de h7?",
+          "fen": "r1b3k1/pp3ppp/3q1n2/4r3/2p5/2PB4/PP3PPP/R2QR1K1 w - - 0 15",
+          "highlight": [
+            "h7",
+            "g8",
+            "f6"
+          ],
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "answer": 1,
+          "explanation": "Lo defienden el rey de g8 y el caballo de f6: dos defensores. Antes de atacar, cuenta atacantes y defensores.",
+          "feedback": [
+            "Cuenta de nuevo: además del rey, mira qué otra pieza negra llega a h7.",
+            "",
+            "Cuenta de nuevo: son menos de tres."
+          ],
+          "id": "u10-l02-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca los tres peones que protegen al rey negro.",
+          "fen": "r1b3k1/pp3ppp/3q1n2/4r3/2p5/2PB4/PP3PPP/R2QR1K1 w - - 0 15",
+          "squares": [
+            "f7",
+            "g7",
+            "h7"
+          ],
+          "hint": "Están delante del rey, en la fila 7.",
+          "id": "u10-l02-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca el enroque rival.",
+          "fen": "r1b3k1/pp3ppp/1qp3n1/2B5/2B5/8/PP1r1PPP/2R1R1K1 w - - 0 20",
+          "solutions": [
+            "e1e8"
+          ],
+          "hint": "Con los dos reyes enrocados en el ala de rey, busca las piezas que apuntan a la fila 8 o al peón de h.",
+          "success": "Correcto. Te8+ aprovecha el ataque contra el enroque.",
+          "id": "u10-l02-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca el enroque rival.",
+          "fen": "r1bq1rk1/pp3ppp/2pb1n2/8/8/1P1QPN2/PB2NPPP/1R3RK1 b - - 2 14",
+          "orientation": "b",
+          "solutions": [
+            "d6h2"
+          ],
+          "hint": "Con los dos reyes enrocados en el ala de rey, busca las piezas que apuntan al peón de h.",
+          "success": "Correcto. Axh2+ aprovecha el ataque contra el enroque.",
+          "id": "u10-l02-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca el enroque rival.",
+          "fen": "r2q1rk1/pp2bppb/7p/3n4/3Q4/1P2P3/PB2BPPP/R2R2K1 w - - 0 15",
+          "solutions": [
+            "d4g7"
+          ],
+          "hint": "Busca una captura que deje al rey sin el peón que lo protege.",
+          "success": "Correcto. Dxg7# aprovecha el ataque contra el enroque.",
+          "id": "u10-l02-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Ataca el enroque rival.",
+          "fen": "r4rk1/pp1b1pp1/2pp3p/3Pq3/2P1PR2/2N2Q2/PP4PP/5R1K b - - 4 18",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "a8e8",
+              "san": "Tae8"
+            },
+            {
+              "uci": "f4f7",
+              "san": "Txf7"
+            },
+            {
+              "uci": "f8f7",
+              "san": "Txf7"
+            },
+            {
+              "uci": "f3f7",
+              "san": "Dxf7+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca las piezas rivales que defienden el escudo de peones y quítalas del camino.",
+          "id": "u10-l02-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Ataca el enroque rival.",
+          "fen": "6k1/2pq1pp1/1pn1r2p/p2p4/3P4/P1B3N1/1PP3PP/R2Q2K1 w - - 1 20",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d1g4",
+              "san": "Dg4"
+            },
+            {
+              "uci": "e6e1",
+              "san": "Te1+"
+            },
+            {
+              "uci": "a1e1",
+              "san": "Txe1"
+            },
+            {
+              "uci": "d7g4",
+              "san": "Dxg4"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca las piezas rivales que defienden el escudo de peones y quítalas del camino.",
+          "id": "u10-l02-s09"
+        },
+        {
+          "type": "line",
+          "prompt": "Ataca el enroque rival.",
+          "fen": "3rr1k1/1b3pbp/p5p1/1pN1pq2/3P4/2P2P2/P3Q1PP/R1B1R1K1 b - - 1 21",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e5d4",
+              "san": "exd4"
+            },
+            {
+              "uci": "e2e8",
+              "san": "Dxe8+"
+            },
+            {
+              "uci": "d8e8",
+              "san": "Txe8"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Txe8+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca las piezas rivales que defienden el escudo de peones y quítalas del camino.",
+          "id": "u10-l02-s10"
+        }
+      ]
+    },
+    {
+      "id": "u10-l03",
+      "unit": 10,
+      "order": 66,
+      "title": "Enroques opuestos",
+      "summary": "Cada bando ataca el rey del otro",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Los reyes están en alas opuestas: el blanco en b1 y el negro en g8. Las negras atacan por el ala de dama: Dxa2+ da jaque, el rey va a c1 y Da1 es mate. Con enroques opuestos cada bando ataca el rey del otro y gana el que llega primero.",
+          "fen": "6k1/p3r1p1/r1p3R1/q1p5/1p2N2P/3P3R/PPPQ1P2/1K6 b - - 3 30",
+          "orientation": "b",
+          "play": [
+            "a5a2",
+            "b1c1",
+            "a2a1"
+          ],
+          "id": "u10-l03-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Aquí el rey negro está en c8 y el blanco en g1. Las blancas atacan por el ala de dama: Dxb7# es mate porque la torre de b1 protege a la dama y el rey no puede capturarla.",
+          "fen": "2kr3r/1pp1qpp1/p3p2p/4n2n/B7/2bPB2P/P1P3QP/1R3RK1 w - - 0 18",
+          "play": [
+            "g2b7"
+          ],
+          "id": "u10-l03-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Con enroques opuestos, ¿qué suele convenir?",
+          "fen": "6k1/p3r1p1/r1p3R1/q1p5/1p2N2P/3P3R/PPPQ1P2/1K6 b - - 3 30",
+          "orientation": "b",
+          "options": [
+            "Mover los peones que protegen a tu propio rey",
+            "Cambiar todas las piezas cuanto antes",
+            "Lanzar los peones y las piezas contra el rey rival"
+          ],
+          "answer": 2,
+          "explanation": "Cada bando ataca el rey del otro: gana el que llega primero. Los peones se lanzan hacia el rey rival, no hacia el propio.",
+          "feedback": [
+            "Mover los peones de tu enroque debilita a tu propio rey justo cuando el rival ataca.",
+            "Cambiar piezas apaga el ataque y deja a los dos sin juego contra el rey.",
+            ""
+          ],
+          "id": "u10-l03-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca los dos reyes.",
+          "fen": "6k1/p3r1p1/r1p3R1/q1p5/1p2N2P/3P3R/PPPQ1P2/1K6 b - - 3 30",
+          "orientation": "b",
+          "squares": [
+            "b1",
+            "g8"
+          ],
+          "hint": "Uno está en el ala de dama y el otro en el ala de rey.",
+          "id": "u10-l03-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca al rey del ala de dama.",
+          "fen": "2kr3r/p1q5/Nn2b3/1P1p2p1/3PppPp/4P3/P3BPP1/R1R3K1 w - - 0 27",
+          "solutions": [
+            "c1c7"
+          ],
+          "hint": "Busca la captura que deje al rey sin su protección.",
+          "success": "Correcto. Txc7# ataca al rey del ala de dama.",
+          "id": "u10-l03-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca al rey del ala de dama.",
+          "fen": "2k4r/ppp1rppp/2pb4/3b1q2/3PN3/2P2PP1/PP4QP/R1B1R1K1 w - - 1 18",
+          "solutions": [
+            "e4d6"
+          ],
+          "hint": "Busca un jaque o una captura que gane material con el rey rival expuesto.",
+          "success": "Correcto. Cxd6+ ataca al rey del ala de dama.",
+          "id": "u10-l03-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Ataca al rey del ala de dama.",
+          "fen": "2k2r2/ppqb4/7r/4PBb1/2pP3p/2P5/P1Q4K/RN3R2 w - - 1 30",
+          "solutions": [
+            "f5d7"
+          ],
+          "hint": "Busca un jaque o una captura que gane material con el rey rival expuesto.",
+          "success": "Correcto. Axd7+ ataca al rey del ala de dama.",
+          "id": "u10-l03-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Ataca al rey del ala de dama.",
+          "fen": "r2r2k1/5ppp/1p1q4/4p2b/2B1p3/P1Q1P1BP/1PP2PP1/2K4R w - - 5 20",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g3e5",
+              "san": "Axe5"
+            },
+            {
+              "uci": "d6d1",
+              "san": "Dd1+"
+            },
+            {
+              "uci": "h1d1",
+              "san": "Txd1"
+            },
+            {
+              "uci": "d8d1",
+              "san": "Txd1#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca los jaques: con enroques opuestos el ataque llega rápido.",
+          "id": "u10-l03-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Ataca al rey del ala de dama.",
+          "fen": "2k1rbnr/p1p2ppp/2p5/8/4N3/5P1P/PP1P1P2/R1B1RK2 b - - 4 14",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "f7f5",
+              "san": "f5"
+            },
+            {
+              "uci": "e4d6",
+              "san": "Cd6+"
+            },
+            {
+              "uci": "f8d6",
+              "san": "Axd6"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Txe8+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca los jaques: con enroques opuestos el ataque llega rápido.",
+          "id": "u10-l03-s09"
+        }
+      ]
+    },
+    {
+      "id": "u10-l04",
+      "unit": 10,
+      "order": 67,
+      "title": "Defender al rey",
+      "summary": "Interponer una pieza protegida",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Las blancas dan jaque con Dd7+. Las negras no huyen con el rey: interponen la torre en c7, protegida por el rey. Si la dama captura, el rey recaptura y la pieza que atacaba desaparece.",
+          "fen": "2r5/pk1Q4/1pp4p/3pP3/PNb3P1/8/1q3P1P/3RK1R1 b - - 7 44",
+          "orientation": "b",
+          "play": [
+            "c8c7",
+            "d7c7",
+            "b7c7"
+          ],
+          "id": "u10-l04-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Las negras dan jaque con la dama en a2. Las blancas interponen la torre en c2, protegida por el rey: la dama tiene que capturarla y el rey la recaptura.",
+          "fen": "2r2rk1/pp1b2n1/4p2Q/3pP1Pp/5B2/2P1P3/q2K1P1P/2R3R1 w - - 0 21",
+          "play": [
+            "c1c2",
+            "a2c2",
+            "d2c2"
+          ],
+          "id": "u10-l04-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué pieza protege a la torre que se interpone en c7?",
+          "fen": "2r5/pk1Q4/1pp4p/3pP3/PNb3P1/8/1q3P1P/3RK1R1 b - - 7 44",
+          "orientation": "b",
+          "highlight": [
+            "b7",
+            "c7",
+            "d7"
+          ],
+          "options": [
+            "El alfil de c4",
+            "El rey de b7",
+            "La dama de b2"
+          ],
+          "answer": 1,
+          "explanation": "El rey de b7 está justo al lado de c7: si la dama capturara la torre, el rey recapturaría.",
+          "feedback": [
+            "El alfil de c4 está en otra diagonal y no protege c7.",
+            "",
+            "La dama de b2 no llega a c7."
+          ],
+          "id": "u10-l04-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla donde se puede interponer una pieza al jaque de la dama.",
+          "fen": "2r5/pk1Q4/1pp4p/3pP3/PNb3P1/8/1q3P1P/3RK1R1 b - - 7 44",
+          "orientation": "b",
+          "squares": [
+            "c7"
+          ],
+          "hint": "Es la única casilla que hay entre la dama y el rey.",
+          "id": "u10-l04-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Responde al jaque interponiendo una pieza protegida.",
+          "fen": "3r4/p1k4Q/2n2p2/4p1p1/1p6/2P1B3/PPB1NPq1/2K5 b - - 0 24",
+          "orientation": "b",
+          "solutions": [
+            "d8d7"
+          ],
+          "hint": "Si no puedes capturar la pieza que da jaque, mira si puedes interponer una pieza que tu rey proteja.",
+          "success": "Correcto. Td7 interpone una pieza protegida: si la capturan, recapturas.",
+          "id": "u10-l04-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Responde al jaque interponiendo una pieza protegida.",
+          "fen": "r4r2/pp1bk1Q1/1n2p2p/2qpP3/3N2PP/1PP5/P1B5/R3K2R b KQ - 0 25",
+          "orientation": "b",
+          "solutions": [
+            "f8f7"
+          ],
+          "hint": "Si no puedes capturar la pieza que da jaque, mira si puedes interponer una pieza que tu rey proteja.",
+          "success": "Correcto. Tf7 interpone una pieza protegida: si la capturan, recapturas.",
+          "id": "u10-l04-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Responde al jaque interponiendo una pieza protegida.",
+          "fen": "3r3r/k1b2pp1/4pn2/2Q5/2P2P1p/1P6/P5PP/3R1RK1 b - - 0 27",
+          "orientation": "b",
+          "solutions": [
+            "c7b6"
+          ],
+          "hint": "Si no puedes capturar la pieza que da jaque, mira si puedes interponer una pieza que tu rey proteja.",
+          "success": "Correcto. Ab6 interpone una pieza protegida: si la capturan, recapturas.",
+          "id": "u10-l04-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Defiende al rey.",
+          "fen": "8/5p1k/1P2p2p/8/6p1/P7/2KQq3/8 b - - 7 55",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e2e4",
+              "san": "De4+"
+            },
+            {
+              "uci": "d2d3",
+              "san": "Dd3"
+            },
+            {
+              "uci": "e4d3",
+              "san": "Dxd3+"
+            },
+            {
+              "uci": "c2d3",
+              "san": "Rxd3"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Interpón una pieza protegida: si la capturan, recapturas y se cambia la pieza que atacaba.",
+          "id": "u10-l04-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Defiende al rey.",
+          "fen": "8/6p1/7p/8/p2q4/6PP/4QP2/2k3K1 w - - 20 46",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e2e1",
+              "san": "De1+"
+            },
+            {
+              "uci": "d4d1",
+              "san": "Dd1"
+            },
+            {
+              "uci": "e1d1",
+              "san": "Dxd1+"
+            },
+            {
+              "uci": "c1d1",
+              "san": "Rxd1"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Interpón una pieza protegida: si la capturan, recapturas y se cambia la pieza que atacaba.",
+          "id": "u10-l04-s09"
+        }
+      ]
+    },
+    {
+      "id": "u6-l04",
+      "unit": 10,
+      "order": 68,
+      "title": "Repaso final",
+      "summary": "Puzzles de toda la ruta",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Repaso final: dieciséis puzzles de partidas reales con temas de toda la ruta. Antes de mover, revisa jaques, capturas y amenazas. Si te equivocas, la pista te dice qué tema buscar.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "id": "u6-l04-s01"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las blancas. Encuentra la mejor jugada.",
+          "fen": "8/5ppk/6bp/3Pq3/4N1P1/1P2KQ2/P7/8 b - - 0 49",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e5d5",
+              "san": "Dxd5"
+            },
+            {
+              "uci": "e4f6",
+              "san": "Cf6+"
+            },
+            {
+              "uci": "g7f6",
+              "san": "gxf6"
+            },
+            {
+              "uci": "f3d5",
+              "san": "Dxd5"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: ataque a la descubierta. Si el caballo se mueve con jaque, tu dama gana la dama negra.",
+          "id": "u6-l04-s02"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "3r4/6p1/1pR3p1/4k3/1P2N2r/P4P1n/5PKP/7R w - - 5 32",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c6g6",
+              "san": "Txg6"
+            },
+            {
+              "uci": "h3f4",
+              "san": "Cf4+"
+            },
+            {
+              "uci": "g2g3",
+              "san": "Rg3"
+            },
+            {
+              "uci": "f4g6",
+              "san": "Cxg6"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: horquilla. Tu caballo puede dar jaque y atacar la torre a la vez.",
+          "id": "u6-l04-s03"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las blancas. Encuentra la mejor jugada.",
+          "fen": "8/7p/5kp1/B7/7P/KP6/7r/8 b - - 2 40",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "h2h4",
+              "san": "Txh4"
+            },
+            {
+              "uci": "a5d8",
+              "san": "Ad8+"
+            },
+            {
+              "uci": "f6f5",
+              "san": "Rf5"
+            },
+            {
+              "uci": "d8h4",
+              "san": "Axh4"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: ensartada. Un jaque del alfil obliga al rey a moverse y deja la torre sin protección.",
+          "id": "u6-l04-s04"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "3r2k1/p4pp1/5p1p/8/2p1qP2/P1Q3P1/1P3P1P/2R3K1 w - - 6 26",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c3c4",
+              "san": "Dxc4"
+            },
+            {
+              "uci": "d8d1",
+              "san": "Td1+"
+            },
+            {
+              "uci": "c1d1",
+              "san": "Txd1"
+            },
+            {
+              "uci": "e4c4",
+              "san": "Dxc4"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: desviación. Un jaque en la primera fila aparta la torre que defiende la dama.",
+          "id": "u6-l04-s05"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "8/8/7p/8/3PQ3/2P2N2/P4k1K/5q2 w - - 1 53",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "f3g1",
+              "san": "Cg1"
+            },
+            {
+              "uci": "f1g1",
+              "san": "Dxg1+"
+            },
+            {
+              "uci": "h2h3",
+              "san": "Rh3"
+            },
+            {
+              "uci": "g1g3",
+              "san": "Dg3#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: mate en 2. Captura la pieza que defiende y sigue con jaque de dama.",
+          "id": "u6-l04-s06"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "8/8/8/5kp1/7p/5PKP/8/8 w - - 0 59",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g3f2",
+              "san": "Rf2"
+            },
+            {
+              "uci": "f5f4",
+              "san": "Rf4"
+            },
+            {
+              "uci": "f2e2",
+              "san": "Re2"
+            },
+            {
+              "uci": "f4g3",
+              "san": "Rg3"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: zugzwang. Acerca tu rey a los peones blancos: el rey rival no puede defenderlos sin apartarse.",
+          "id": "u6-l04-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "1k5r/2q5/p2b4/1b1Qp3/P7/1R5r/1PP3P1/R1B4K w - - 0 26",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "b3h3",
+              "san": "Txh3"
+            },
+            {
+              "uci": "h8h3",
+              "san": "Txh3+"
+            },
+            {
+              "uci": "g2h3",
+              "san": "gxh3"
+            },
+            {
+              "uci": "b5c6",
+              "san": "Ac6"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: clavada. Cambia las torres y después clava la dama contra su rey con el alfil.",
+          "id": "u6-l04-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las blancas. Encuentra la mejor jugada.",
+          "fen": "8/3PQpkp/1p3rp1/8/8/1P5P/6PK/3r4 b - - 0 36",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "f6e6",
+              "san": "Te6"
+            },
+            {
+              "uci": "d7d8q",
+              "san": "d8=D"
+            },
+            {
+              "uci": "d1d8",
+              "san": "Txd8"
+            },
+            {
+              "uci": "e7d8",
+              "san": "Dxd8"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: coronación. Tu peón de d7 está a un paso: corona aunque la torre lo pueda capturar.",
+          "id": "u6-l04-s09"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "3r2k1/R7/2R3p1/8/2P5/5p2/5P1P/3r1NK1 w - - 0 30",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c6f6",
+              "san": "Tf6"
+            },
+            {
+              "uci": "d1f1",
+              "san": "Txf1+"
+            },
+            {
+              "uci": "g1f1",
+              "san": "Rxf1"
+            },
+            {
+              "uci": "d8d1",
+              "san": "Td1#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: atracción. Sacrifica una torre capturando el caballo con jaque: el rey recaptura y la otra torre da mate.",
+          "id": "u6-l04-s11"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "2r2rk1/p2b2pp/1q2pn2/3p4/1P1n4/P7/1B2BPPP/2RQ1RK1 w - - 0 22",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "b2d4",
+              "san": "Axd4"
+            },
+            {
+              "uci": "c8c1",
+              "san": "Txc1"
+            },
+            {
+              "uci": "d1c1",
+              "san": "Dxc1"
+            },
+            {
+              "uci": "b6d4",
+              "san": "Dxd4"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: sobrecarga. Cambia las torres: la dama que recaptura deja sin defensa a otra pieza.",
+          "id": "u6-l04-s12"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "r1bqk2r/ppp3pp/2n2b2/3p4/8/2N2N2/PPP1PPPP/R2QKB1R w KQkq - 0 8",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d1d5",
+              "san": "Dxd5"
+            },
+            {
+              "uci": "f6c3",
+              "san": "Axc3+"
+            },
+            {
+              "uci": "b2c3",
+              "san": "bxc3"
+            },
+            {
+              "uci": "d8d5",
+              "san": "Dxd5"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: jugada intermedia. Antes de recapturar la dama, da jaque capturando el caballo con el alfil.",
+          "id": "u6-l04-s13"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las blancas. Encuentra la mejor jugada.",
+          "fen": "3k2r1/1r6/3P1p1p/4p1p1/8/Qn4PP/5P2/6K1 b - - 0 38",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g8g7",
+              "san": "Tgg7"
+            },
+            {
+              "uci": "a3a8",
+              "san": "Da8+"
+            },
+            {
+              "uci": "d8d7",
+              "san": "Rd7"
+            },
+            {
+              "uci": "a8b7",
+              "san": "Dxb7+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: interferencia. Un jaque de la dama obliga al rey a ponerse entre dos torres que se protegían.",
+          "id": "u6-l04-s14"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las blancas. Encuentra la mejor jugada.",
+          "fen": "2r4k/7b/p2p1N1b/P2P3p/2r2p2/5P2/6RP/1Q4RK b - - 0 35",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "h7b1",
+              "san": "Axb1"
+            },
+            {
+              "uci": "g2g8",
+              "san": "Tg8+"
+            },
+            {
+              "uci": "c8g8",
+              "san": "Txg8"
+            },
+            {
+              "uci": "g1g8",
+              "san": "Txg8#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: mate de dos piezas. Sacrifica una torre en g8 y remata con la otra, apoyada por el caballo.",
+          "id": "u6-l04-s15"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "7R/3r2p1/1pp1p2p/p3kb1B/2Pq1nP1/N5Q1/1P3P1P/6K1 w - - 3 31",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g4f5",
+              "san": "gxf5"
+            },
+            {
+              "uci": "d4d1",
+              "san": "Dd1+"
+            },
+            {
+              "uci": "h5d1",
+              "san": "Axd1"
+            },
+            {
+              "uci": "d7d1",
+              "san": "Txd1#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: sacrificio. Entrega la dama con jaque en d1: el alfil captura y la torre da mate.",
+          "id": "u6-l04-s16"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Encuentra la mejor jugada.",
+          "fen": "8/1p6/1p1k4/pP6/P1PK4/8/8/8 w - - 5 48",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d4c3",
+              "san": "Rc3"
+            },
+            {
+              "uci": "d6c5",
+              "san": "Rc5"
+            },
+            {
+              "uci": "c3d3",
+              "san": "Rd3"
+            },
+            {
+              "uci": "c5b4",
+              "san": "Rb4"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: rey activo. Lleva el rey hacia los peones rivales en lugar de quedarte atrás.",
+          "id": "u6-l04-s17"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las blancas. Encuentra la mejor jugada.",
+          "fen": "2kr2nr/ppp2ppp/2p5/2b1q3/4Q1P1/2P4P/PP1P1P2/RNB1R1K1 b - - 0 12",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c5f2",
+              "san": "Axf2+"
+            },
+            {
+              "uci": "g1f2",
+              "san": "Rxf2"
+            },
+            {
+              "uci": "e5e4",
+              "san": "Dxe4"
+            },
+            {
+              "uci": "e1e4",
+              "san": "Txe4"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Pista: pieza suelta. El alfil que dio jaque no tiene defensa: captúralo con el rey.",
+          "id": "u6-l04-s18"
+        },
+        {
+          "type": "explain",
+          "text": "Terminaste la ruta de Aprender. Desde aquí, lo mejor es practicar: puzzles todos los días, aperturas en su pestaña y partidas contra los bots para usar todo lo que aprendiste.",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "id": "u6-l04-s10"
+        }
+      ]
+    }
+  ]
+}

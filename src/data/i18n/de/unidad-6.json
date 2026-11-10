@@ -129,62 +129,6 @@
         },
         "u6-l03-s09": { "text": "Zusammenfassung: Die Qualität ist etwa 2 Punkte wert, aber ein Bauer, der sich umwandelt, ein Angriff auf den König oder der Gewinn einer weiteren Figur sind mehr wert. Bevor du sie gibst, berechne, was du dafür bekommst." }
       }
-    },
-    "u6-l04": {
-      "title": "Abschlusswiederholung",
-      "summary": "Puzzles aus allen Einheiten",
-      "steps": {
-        "u6-l04-s01": { "text": "Abschlusswiederholung: acht Puzzles aus echten Partien mit Themen aus allen Einheiten. Prüfe vor jedem Zug Schachgebote, Schlagzüge und Drohungen. Geht etwas schief, sagt dir der Tipp, welches Thema du suchen sollst." },
-        "u6-l04-s02": {
-          "prompt": "Weiß am Zug. Finde den besten Zug.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Tipp: Abzugsangriff. Zieht der Springer mit Schach, gewinnt deine Dame die schwarze Dame.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s03": {
-          "prompt": "Schwarz am Zug. Finde den besten Zug.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Tipp: Gabel. Dein Springer kann Schach geben und gleichzeitig den Turm angreifen.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s04": {
-          "prompt": "Weiß am Zug. Finde den besten Zug.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Tipp: Spieß. Ein Läuferschach zwingt den König zum Ziehen und lässt den Turm ungedeckt.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s05": {
-          "prompt": "Schwarz am Zug. Finde den besten Zug.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Tipp: Ablenkung. Ein Schach auf der Grundreihe lenkt den Turm ab, der die Dame deckt.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s06": {
-          "prompt": "Schwarz am Zug. Finde den besten Zug.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Tipp: Matt in 2. Schlage die verteidigende Figur und mache mit einem Damenschach weiter.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s07": {
-          "prompt": "Schwarz am Zug. Finde den besten Zug.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Tipp: Zugzwang. Bringe deinen König näher an die weißen Bauern: Der gegnerische König kann sie nicht decken, ohne zur Seite zu gehen.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s08": {
-          "prompt": "Schwarz am Zug. Finde den besten Zug.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Tipp: Fesselung. Tausche die Türme und fessle dann die Dame mit dem Läufer an ihren König.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s09": {
-          "prompt": "Weiß am Zug. Finde den besten Zug.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Tipp: Umwandlung. Dein Bauer auf d7 ist einen Schritt entfernt: Wandle ihn um, auch wenn der Turm ihn schlagen kann.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s10": { "text": "Du hast alle Einheiten von Lernen abgeschlossen. Am besten übst du jetzt weiter: jeden Tag Puzzles, Eröffnungen in ihrem eigenen Tab und Partien gegen die Bots, um alles anzuwenden, was du gelernt hast." }
-      }
     }
   }
 }

@@ -267,3 +267,6 @@ En los avisos: `risk` empieza por *Streak days: {n}.* para leerse bien con cualq
 | alfil bueno / malo | good / bad bishop |
 | peón retrasado | backward pawn |
 | cadena de peones, base | pawn chain, base |
+| enroque opuesto | opposite-side castling |
+| escudo de peones | pawn shield |
+| interponer | to interpose |

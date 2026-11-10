@@ -129,62 +129,6 @@
         },
         "u6-l03-s09": { "text": "To sum up: the exchange is worth about 2 points, but a pawn that promotes, an attack on the king or winning another piece are worth more. Before giving it up, calculate what you get in return." }
       }
-    },
-    "u6-l04": {
-      "title": "Final review",
-      "summary": "Puzzles from the whole path",
-      "steps": {
-        "u6-l04-s01": { "text": "Final review: eight puzzles from real games, with themes from the whole path. Before you move, go over checks, captures and threats. If you make a mistake, the hint tells you which theme to look for." },
-        "u6-l04-s02": {
-          "prompt": "White to move. Find the best move.",
-          "success": "Well solved: this position comes from a real game.",
-          "hint": "Hint: discovered attack. If the knight moves with check, your queen wins the black queen.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s03": {
-          "prompt": "Black to move. Find the best move.",
-          "success": "Well solved: this position comes from a real game.",
-          "hint": "Hint: fork. Your knight can give check and attack the rook at the same time.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s04": {
-          "prompt": "White to move. Find the best move.",
-          "success": "Well solved: this position comes from a real game.",
-          "hint": "Hint: skewer. A bishop check forces the king to move and leaves the rook unprotected.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s05": {
-          "prompt": "Black to move. Find the best move.",
-          "success": "Well solved: this position comes from a real game.",
-          "hint": "Hint: deflection. A check on the first rank pulls away the rook that defends the queen.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s06": {
-          "prompt": "Black to move. Find the best move.",
-          "success": "Well solved: this position comes from a real game.",
-          "hint": "Hint: mate in 2. Capture the defending piece and follow up with a queen check.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s07": {
-          "prompt": "Black to move. Find the best move.",
-          "success": "Well solved: this position comes from a real game.",
-          "hint": "Hint: zugzwang. Bring your king closer to the white pawns: the enemy king can't defend them without stepping aside.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s08": {
-          "prompt": "Black to move. Find the best move.",
-          "success": "Well solved: this position comes from a real game.",
-          "hint": "Hint: pin. Trade the rooks, then pin the queen to its king with the bishop.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s09": {
-          "prompt": "White to move. Find the best move.",
-          "success": "Well solved: this position comes from a real game.",
-          "hint": "Hint: promotion. Your pawn on d7 is one step away: promote it even if the rook can capture it.",
-          "notes": ["", "", "", ""]
-        },
-        "u6-l04-s10": { "text": "You've finished the Learn path. From here, the best thing is to practice: puzzles every day, openings in their tab and games against the bots to use everything you've learned." }
-      }
     }
   }
 }

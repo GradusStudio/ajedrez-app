@@ -301,3 +301,6 @@ En los avisos: `risk` empieza por *Jours de série : {n}.* para leerse bien con 
 | alfil bueno / malo | bon / mauvais fou |
 | peón retrasado | pion arriéré |
 | cadena de peones, base | chaîne de pions, base |
+| enroque opuesto | roques opposés |
+| escudo de peones | bouclier de pions |
+| interponer | interposer |

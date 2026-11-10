@@ -1,0 +1,295 @@
+{
+  "title": "Attack and defense",
+  "lessons": {
+    "u10-l01": {
+      "title": "The king that has not castled",
+      "summary": "A king in the center is a target",
+      "steps": {
+        "u10-l01-s01": { "text": "The white king is still on f1 without having castled, and its pieces don't protect it well. With Qh1+ Black forces the queen trade, the rook recaptures on h1 with check, the king has to go to f2 and the rook captures on d1. A king that has not castled gives checks the time they need." },
+        "u10-l01-s02": { "text": "The black king is on d8 without having castled. With Qh8+ White forces the bishop to interpose, with Rd1+ sends the king to c8 and the queen captures the bishop on e8 with check. Each check takes a square away from the king." },
+        "u10-l01-s03": {
+          "prompt": "Which of these two kings has not castled?",
+          "options": ["The black king, on d8", "The white king, on c1", "Both have castled"],
+          "explanation": "The black king is still on d8, in the center, and White has already put theirs safe on c1.",
+          "feedback": ["", "The white king has already castled long: it is on c1, behind its pawns.", "One of the two is still in the center."]
+        },
+        "u10-l01-s04": {
+          "prompt": "Tap the king that hasn't castled.",
+          "hint": "It is the king that is still in the center, surrounded by its own pieces."
+        },
+        "u10-l01-s05": {
+          "prompt": "Attack the king that hasn't castled.",
+          "hint": "Look for a capture or a check that opens lines against the king that is still in the center.",
+          "success": "Correct. Qxe3 opens lines against the king that didn't castle."
+        },
+        "u10-l01-s06": {
+          "prompt": "Attack the king that hasn't castled.",
+          "hint": "Look for a check that sends the king to a square where it loses material.",
+          "success": "Correct. Rg8+ opens lines against the king that didn't castle."
+        },
+        "u10-l01-s07": {
+          "prompt": "Attack the king that hasn't castled.",
+          "hint": "Look for a check or a trade that opens lines against the king that is still in the center.",
+          "success": "Correct. Qxh5+ opens lines against the king that didn't castle."
+        },
+        "u10-l01-s08": {
+          "prompt": "Attack the king that hasn't castled.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the checks: the king that has not castled has few squares and nowhere to hide.",
+          "notes": ["", "", "", "", "", ""]
+        },
+        "u10-l01-s09": {
+          "prompt": "Attack the king that hasn't castled.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the checks: the king that has not castled has few squares and nowhere to hide.",
+          "notes": ["", "", "", "", "", ""]
+        }
+      }
+    },
+    "u10-l02": {
+      "title": "Attacking with same-side castling",
+      "summary": "Everyone against the h pawn",
+      "steps": {
+        "u10-l02-s01": { "text": "With both kings castled kingside, the attack usually goes against the h pawn (h7 or h2). Here Bxh7+ gives check and, as the bishop leaves d3, the white queen on d1 sees the black queen on d6: the king captures the bishop and Qxd6 wins the queen." },
+        "u10-l02-s02": { "text": "The f7, g7 and h7 pawns are the black king's shield, and the queen together with the bishop on c2 aim at h7. Qxh7+ forces the king to f8 and Qh8 is mate." },
+        "u10-l02-s03": {
+          "prompt": "How many black pieces defend the h7 pawn?",
+          "options": ["1", "2", "3"],
+          "explanation": "The king on g8 and the knight on f6 defend it: two defenders. Before attacking, count attackers and defenders.",
+          "feedback": ["Count again: besides the king, look at which other black piece reaches h7.", "", "Count again: it is fewer than three."]
+        },
+        "u10-l02-s04": {
+          "prompt": "Tap the three pawns that protect the black king.",
+          "hint": "They are in front of the king, on the 7th rank."
+        },
+        "u10-l02-s05": {
+          "prompt": "Attack the opponent's castled position.",
+          "hint": "With both kings castled kingside, look for the pieces aiming at the 8th rank or at the h pawn.",
+          "success": "Correct. Re8+ takes advantage of the attack on the castled king."
+        },
+        "u10-l02-s06": {
+          "prompt": "Attack the opponent's castled position.",
+          "hint": "With both kings castled kingside, look for the pieces aiming at the h pawn.",
+          "success": "Correct. Bxh2+ takes advantage of the attack on the castled king."
+        },
+        "u10-l02-s07": {
+          "prompt": "Attack the opponent's castled position.",
+          "hint": "Look for a capture that leaves the king without the pawn that protects it.",
+          "success": "Correct. Qxg7# takes advantage of the attack on the castled king."
+        },
+        "u10-l02-s08": {
+          "prompt": "Attack the opponent's castled position.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the enemy pieces that defend the pawn shield and take them out of the way.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l02-s09": {
+          "prompt": "Attack the opponent's castled position.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the enemy pieces that defend the pawn shield and take them out of the way.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l02-s10": {
+          "prompt": "Attack the opponent's castled position.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the enemy pieces that defend the pawn shield and take them out of the way.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u10-l03": {
+      "title": "Opposite-side castling",
+      "summary": "Each side attacks the other's king",
+      "steps": {
+        "u10-l03-s01": { "text": "The kings are on opposite wings: White's on b1 and Black's on g8. Black attacks on the queenside: Qxa2+ gives check, the king goes to c1 and Qa1 is mate. With opposite-side castling each side attacks the other's king and whoever arrives first wins." },
+        "u10-l03-s02": { "text": "Here the black king is on c8 and the white king on g1. White attacks on the queenside: Qxb7# is mate because the rook on b1 protects the queen and the king cannot capture it." },
+        "u10-l03-s03": {
+          "prompt": "With opposite-side castling, what is usually best?",
+          "options": ["Moving the pawns that protect your own king", "Trading all the pieces as soon as possible", "Throwing pawns and pieces at the enemy king"],
+          "explanation": "Each side attacks the other's king: whoever arrives first wins. Pawns are thrown toward the enemy king, not toward your own.",
+          "feedback": ["Moving the pawns of your castled position weakens your own king just when the opponent attacks.", "Trading pieces puts out the attack and leaves both sides without play against the king.", ""]
+        },
+        "u10-l03-s04": {
+          "prompt": "Tap the two kings.",
+          "hint": "One is on the queenside and the other on the kingside."
+        },
+        "u10-l03-s05": {
+          "prompt": "Attack the queenside king.",
+          "hint": "Look for the capture that leaves the king without its protection.",
+          "success": "Correct. Rxc7# attacks the queenside king."
+        },
+        "u10-l03-s06": {
+          "prompt": "Attack the queenside king.",
+          "hint": "Look for a check or a capture that wins material with the enemy king exposed.",
+          "success": "Correct. Nxd6+ attacks the queenside king."
+        },
+        "u10-l03-s07": {
+          "prompt": "Attack the queenside king.",
+          "hint": "Look for a check or a capture that wins material with the enemy king exposed.",
+          "success": "Correct. Bxd7+ attacks the queenside king."
+        },
+        "u10-l03-s08": {
+          "prompt": "Attack the queenside king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the checks: with opposite-side castling the attack arrives fast.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l03-s09": {
+          "prompt": "Attack the queenside king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the checks: with opposite-side castling the attack arrives fast.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u10-l04": {
+      "title": "Defending the king",
+      "summary": "Interposing a protected piece",
+      "steps": {
+        "u10-l04-s01": { "text": "White gives check with Qd7+. Black doesn't run with the king: they interpose the rook on c7, protected by the king. If the queen captures, the king recaptures and the attacking piece disappears." },
+        "u10-l04-s02": { "text": "Black gives check with the queen on a2. White interposes the rook on c2, protected by the king: the queen has to capture it and the king recaptures." },
+        "u10-l04-s03": {
+          "prompt": "Which piece protects the rook that interposes on c7?",
+          "options": ["The bishop on c4", "The king on b7", "The queen on b2"],
+          "explanation": "The king on b7 is right next to c7: if the queen captured the rook, the king would recapture.",
+          "feedback": ["The bishop on c4 is on a different diagonal and does not protect c7.", "", "The queen on b2 does not reach c7."]
+        },
+        "u10-l04-s04": {
+          "prompt": "Tap the square where a piece can interpose against the queen's check.",
+          "hint": "It is the only square between the queen and the king."
+        },
+        "u10-l04-s05": {
+          "prompt": "Answer the check by interposing a protected piece.",
+          "hint": "If you can't capture the piece giving check, see whether you can interpose a piece that your king protects.",
+          "success": "Correct. Rd7 interposes a protected piece: if they capture it, you recapture."
+        },
+        "u10-l04-s06": {
+          "prompt": "Answer the check by interposing a protected piece.",
+          "hint": "If you can't capture the piece giving check, see whether you can interpose a piece that your king protects.",
+          "success": "Correct. Rf7 interposes a protected piece: if they capture it, you recapture."
+        },
+        "u10-l04-s07": {
+          "prompt": "Answer the check by interposing a protected piece.",
+          "hint": "If you can't capture the piece giving check, see whether you can interpose a piece that your king protects.",
+          "success": "Correct. Bb6 interposes a protected piece: if they capture it, you recapture."
+        },
+        "u10-l04-s08": {
+          "prompt": "Defend the king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Interpose a protected piece: if they capture it, you recapture and the attacking piece is traded.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l04-s09": {
+          "prompt": "Defend the king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Interpose a protected piece: if they capture it, you recapture and the attacking piece is traded.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u6-l04": {
+      "title": "Final review",
+      "summary": "Puzzles from the whole path",
+      "steps": {
+        "u6-l04-s01": { "text": "Final review: sixteen puzzles from real games, with themes from the whole path. Before you move, go over checks, captures and threats. If you make a mistake, the hint tells you which theme to look for." },
+        "u6-l04-s02": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: discovered attack. If the knight moves with check, your queen wins the black queen.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s03": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: fork. Your knight can give check and attack the rook at the same time.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s04": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: skewer. A bishop check forces the king to move and leaves the rook unprotected.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s05": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: deflection. A check on the first rank pulls away the rook that defends the queen.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s06": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: mate in 2. Capture the defending piece and follow up with a queen check.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s07": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: zugzwang. Bring your king closer to the white pawns: the enemy king can't defend them without stepping aside.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s08": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: pin. Trade the rooks, then pin the queen to its king with the bishop.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s09": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: promotion. Your pawn on d7 is one step away: promote it even if the rook can capture it.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s11": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: attraction. Sacrifice a rook by capturing the knight with check: the king recaptures and the other rook gives mate.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s12": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: overloading. Trade the rooks: the queen that recaptures leaves another piece without defense.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s13": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: intermediate move. Before recapturing the queen, give check by capturing the knight with the bishop.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s14": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: interference. A queen check forces the king between two rooks that protected each other.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s15": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: two-piece mate. Sacrifice a rook on g8 and finish with the other, supported by the knight.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s16": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: sacrifice. Give up the queen with check on d1: the bishop captures and the rook gives mate.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s17": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: active king. Bring the king toward the enemy pawns instead of staying back.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s18": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: loose piece. The bishop that gave check has no defense: capture it with the king.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s10": { "text": "You've finished the Learn path. From here, the best thing is to practice: puzzles every day, openings in their tab and games against the bots to use everything you've learned." }
+      }
+    }
+  }
+}

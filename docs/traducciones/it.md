@@ -298,3 +298,6 @@ En los avisos: `risk` empieza por *Giorni di serie: {n}.* para leerse bien con c
 | alfil bueno / malo | alfiere buono / cattivo |
 | peón retrasado | pedone arretrato |
 | cadena de peones, base | catena di pedoni, base |
+| enroque opuesto | arrocchi opposti |
+| escudo de peones | scudo di pedoni |
+| interponer | interporre |

@@ -5,7 +5,7 @@
     {
       "id": "u7-l01",
       "unit": 7,
-      "order": 45,
+      "order": 44,
       "title": "La atracción",
       "summary": "Llevar una pieza a la casilla que te conviene",
       "xp": 15,
@@ -180,7 +180,7 @@
     {
       "id": "u7-l02",
       "unit": 7,
-      "order": 46,
+      "order": 45,
       "title": "La sobrecarga",
       "summary": "Una pieza con dos tareas",
       "xp": 15,
@@ -356,7 +356,7 @@
     {
       "id": "u7-l03",
       "unit": 7,
-      "order": 47,
+      "order": 46,
       "title": "La jugada intermedia",
       "summary": "Un golpe antes de recapturar",
       "xp": 15,
@@ -531,7 +531,7 @@
     {
       "id": "u7-l04",
       "unit": 7,
-      "order": 48,
+      "order": 47,
       "title": "La interferencia",
       "summary": "Cortar la defensa en medio",
       "xp": 15,
@@ -710,7 +710,7 @@
     {
       "id": "u7-l05",
       "unit": 7,
-      "order": 49,
+      "order": 48,
       "title": "Mates de una sola pieza",
       "summary": "Una pieza da el golpe final",
       "xp": 15,
@@ -869,7 +869,7 @@
     {
       "id": "u7-l06",
       "unit": 7,
-      "order": 50,
+      "order": 49,
       "title": "Mates de dos piezas",
       "summary": "Dos piezas, un mismo objetivo",
       "xp": 15,
@@ -1022,7 +1022,7 @@
     {
       "id": "u7-l07",
       "unit": 7,
-      "order": 51,
+      "order": 50,
       "title": "Sacrificar para abrir al rey",
       "summary": "Entregar material para llegar al rey",
       "xp": 15,
@@ -1196,7 +1196,7 @@
     {
       "id": "u7-l08",
       "unit": 7,
-      "order": 52,
+      "order": 51,
       "title": "Calcular: mate en dos y en tres",
       "summary": "Mira los jaques y sigue la secuencia",
       "xp": 15,

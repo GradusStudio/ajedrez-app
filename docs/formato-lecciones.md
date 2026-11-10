@@ -291,7 +291,7 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 1 | u6-l01 | Zugzwang | 11 |
 | 2 | u6-l02 | Profilaxis | 10 |
 | 3 | u6-l03 | Sacrificio de calidad | 9 |
-| 4 | u6-l04 | Repaso final | 10 |
+| 4 | u6-l04 | Repaso final (movido a la Unidad 10 el 9-11-2026) | 10 |
 
 ## Contenido de la Unidad 7 · Táctica intermedia (bloque B del temario nuevo)
 
@@ -351,6 +351,23 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 - **Principios sin motor:** las preguntas de «qué suele convenir» (cambiar con ventaja de material, evitar cambios con más espacio, caballos en posiciones cerradas) enseñan reglas generales y están redactadas con «suele».
 - **Lo que no se hizo:** «Torres activas» (conectar torres, séptima fila, torre levantada) y «Rupturas y mayorías de peones»: Stockfish no confirmó esas ideas con una jugada única en las posiciones de prueba (la torre en la séptima fila ni siquiera era la mejor jugada).
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama y revisadas a mano (las frases «Correcto. …» salen de una plantilla con la notación de cada idioma). Sin revisión de nativos.
+
+## Contenido de la Unidad 10 · Ataque y defensa (bloque E del temario nuevo)
+
+`src/data/unidad-10-ataque-y-defensa.json`: 5 lecciones, 55 pasos (órdenes 64 a 68), escritas el 9-11-2026.
+
+| # | id | Lección | Pasos | Profesor |
+|---|---|---|---|---|
+| 1 | u10-l01 | El rey sin enrocar | 9 | Valentina |
+| 2 | u10-l02 | Atacar con enroques del mismo lado | 10 | Sofía |
+| 3 | u10-l03 | Enroques opuestos | 9 | Valentina |
+| 4 | u10-l04 | Defender al rey | 9 | Lola |
+| 5 | u6-l04 | Repaso final | 18 | Ada |
+
+- **Repaso final:** conserva el id `u6-l04` (el progreso guardado lo usa) pero es la última lección de la ruta. Tenía 10 pasos; se le agregaron 8 puzzles de Lichess de los temas nuevos (atracción, sobrecarga, jugada intermedia, interferencia, mate de dos piezas, sacrificio, rey activo, pieza suelta) y la despedida sigue al final.
+- **Qué se verificó y cómo:** los puzzles salen de la base de Lichess (CC0) por tema y rating, con una sola solución clara (hueco de 1,0 peón o más) comprobada con Stockfish 19; los ejercicios de «mover» aceptan todas las jugadas con la mejor evaluación o el mismo mate. Las preguntas de los cuestionarios y las casillas a tocar se calculan con chess.js (reyes sin enrocar, bando de enroque de cada rey, defensores de h7, piezas que interponen y quién las protege).
+- **Lo que no se hizo:** «Defenderse con material de menos» (no hay puzzles de igualdad con una sola salida), «Convertir una ventaja» (ninguna posición verificable) y «Hacer un plan» (un plan estratégico no se confirma con un motor).
+- **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama y corregidas a mano (gemma perdía los signos de pregunta y usaba calcos como «Bando» o «gespalten»). Las frases «Correcto. …» salen de una plantilla con la notación de cada idioma. Sin revisión de nativos.
 
 ## Lecciones agregadas el 9-11-2026 (bloque A del temario nuevo)
 

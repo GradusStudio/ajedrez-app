@@ -1,0 +1,295 @@
+{
+  "title": "Attaque et défense",
+  "lessons": {
+    "u10-l01": {
+      "title": "Le roi qui n'a pas roqué",
+      "summary": "Un roi au centre est une cible",
+      "steps": {
+        "u10-l01-s01": { "text": "Le roi blanc est toujours en f1 sans avoir roqué, et ses pièces ne le protègent pas bien. Avec Dh1+ les Noirs forcent l'échange de dames, la tour reprend en h1 avec échec, le roi doit aller en f2 et la tour prend en d1. Un roi qui n'a pas roqué laisse aux échecs le temps dont ils ont besoin." },
+        "u10-l01-s02": { "text": "Le roi noir est en d8 sans avoir roqué. Avec Dh8+ les Blancs le forcent à interposer le fou, avec Td1+ ils l'envoient en c8 et la dame prend le fou en e8 avec échec. Chaque échec enlève une case au roi." },
+        "u10-l01-s03": {
+          "prompt": "Lequel de ces deux rois n'a pas encore roqué ?",
+          "options": ["Le roi noir, en d8", "Le roi blanc, en c1", "Les deux ont roqué"],
+          "explanation": "Le roi noir est toujours en d8, au centre, et les Blancs ont déjà mis le leur en sécurité en c1.",
+          "feedback": ["", "Le roi blanc a déjà roqué long : il est en c1, derrière ses pions.", "L'un des deux est encore au centre."]
+        },
+        "u10-l01-s04": {
+          "prompt": "Appuie sur le roi qui n'a pas encore roqué.",
+          "hint": "C'est le roi qui reste au centre, entouré de ses propres pièces."
+        },
+        "u10-l01-s05": {
+          "prompt": "Attaque le roi qui n'a pas roqué.",
+          "hint": "Cherche une prise ou un échec qui ouvre des lignes contre le roi qui est encore au centre.",
+          "success": "Correct. Dxe3 ouvre des lignes contre le roi qui n'a pas roqué."
+        },
+        "u10-l01-s06": {
+          "prompt": "Attaque le roi qui n'a pas roqué.",
+          "hint": "Cherche un échec qui mène le roi à une case où il perd du matériel.",
+          "success": "Correct. Tg8+ ouvre des lignes contre le roi qui n'a pas roqué."
+        },
+        "u10-l01-s07": {
+          "prompt": "Attaque le roi qui n'a pas roqué.",
+          "hint": "Cherche un échec ou un échange qui ouvre des lignes contre le roi qui est encore au centre.",
+          "success": "Correct. Dxh5+ ouvre des lignes contre le roi qui n'a pas roqué."
+        },
+        "u10-l01-s08": {
+          "prompt": "Attaque le roi qui n'a pas roqué.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Cherche les échecs : le roi qui n'a pas roqué a peu de cases et nulle part où se cacher.",
+          "notes": ["", "", "", "", "", ""]
+        },
+        "u10-l01-s09": {
+          "prompt": "Attaque le roi qui n'a pas roqué.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Cherche les échecs : le roi qui n'a pas roqué a peu de cases et nulle part où se cacher.",
+          "notes": ["", "", "", "", "", ""]
+        }
+      }
+    },
+    "u10-l02": {
+      "title": "Attaquer avec des roques du même côté",
+      "summary": "Tous contre le pion h",
+      "steps": {
+        "u10-l02-s01": { "text": "Avec les deux rois roqués côté roi, l'attaque vise souvent le pion h (h7 ou h2). Ici Fxh7+ donne échec et, comme le fou quitte d3, la dame blanche en d1 voit la dame noire en d6 : le roi prend le fou et Dxd6 gagne la dame." },
+        "u10-l02-s02": { "text": "Les pions en f7, g7 et h7 sont le bouclier du roi noir, et la dame avec le fou en c2 vise h7. Dxh7+ oblige le roi à aller en f8 et Dh8 est mat." },
+        "u10-l02-s03": {
+          "prompt": "Combien de pièces noires défendent le pion en h7 ?",
+          "options": ["1", "2", "3"],
+          "explanation": "Le roi en g8 et le cavalier en f6 le défendent : deux défenseurs. Avant d'attaquer, compte les attaquants et les défenseurs.",
+          "feedback": ["Compte encore : à part le roi, regarde quelle autre pièce noire atteint h7.", "", "Compte encore : il y en a moins de trois."]
+        },
+        "u10-l02-s04": {
+          "prompt": "Appuie sur les trois pions qui protègent le roi noir.",
+          "hint": "Ils sont devant le roi, sur la rangée 7."
+        },
+        "u10-l02-s05": {
+          "prompt": "Attaque le roque de l'adversaire.",
+          "hint": "Avec les deux rois roqués côté roi, cherche les pièces qui visent la rangée 8 ou le pion h.",
+          "success": "Correct. Te8+ profite de l'attaque contre le roque."
+        },
+        "u10-l02-s06": {
+          "prompt": "Attaque le roque de l'adversaire.",
+          "hint": "Avec les deux rois roqués côté roi, cherche les pièces qui visent le pion h.",
+          "success": "Correct. Fxh2+ profite de l'attaque contre le roque."
+        },
+        "u10-l02-s07": {
+          "prompt": "Attaque le roque de l'adversaire.",
+          "hint": "Cherche une prise qui laisse le roi sans le pion qui le protège.",
+          "success": "Correct. Dxg7# profite de l'attaque contre le roque."
+        },
+        "u10-l02-s08": {
+          "prompt": "Attaque le roque de l'adversaire.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Cherche les pièces adverses qui défendent le bouclier de pions et enlève-les du chemin.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l02-s09": {
+          "prompt": "Attaque le roque de l'adversaire.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Cherche les pièces adverses qui défendent le bouclier de pions et enlève-les du chemin.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l02-s10": {
+          "prompt": "Attaque le roque de l'adversaire.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Cherche les pièces adverses qui défendent le bouclier de pions et enlève-les du chemin.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u10-l03": {
+      "title": "Roques opposés",
+      "summary": "Chaque camp attaque le roi de l'autre",
+      "steps": {
+        "u10-l03-s01": { "text": "Les rois sont sur des ailes opposées : le blanc en b1 et le noir en g8. Les Noirs attaquent sur l'aile dame : Dxa2+ donne échec, le roi va en c1 et Da1 est mat. Avec des roques opposés, chaque camp attaque le roi de l'autre et gagne celui qui arrive en premier." },
+        "u10-l03-s02": { "text": "Ici le roi noir est en c8 et le roi blanc en g1. Les Blancs attaquent par l'aile dame : Dxb7# est mat parce que la tour en b1 protège la dame et le roi ne peut pas la prendre." },
+        "u10-l03-s03": {
+          "prompt": "Avec des roques opposés, que vaut-il mieux faire en général ?",
+          "options": ["Avancer les pions qui protègent ton propre roi", "Échanger toutes les pièces dès que possible", "Lancer les pions et les pièces contre le roi adversaire"],
+          "explanation": "Chaque camp attaque le roi de l'autre : celui qui arrive en premier gagne. Les pions sont lancés vers le roi adverse, pas vers le tien.",
+          "feedback": ["Déplacer les pions de ta position de roque affaiblit ton propre roi juste quand l'adversaire attaque.", "Échanger des pièces arrête l'attaque et laisse les deux sans jeu contre le roi.", ""]
+        },
+        "u10-l03-s04": {
+          "prompt": "Appuie sur les deux rois.",
+          "hint": "L'un est sur l'aile dame et l'autre sur l'aile roi."
+        },
+        "u10-l03-s05": {
+          "prompt": "Attaque le roi de l'aile dame.",
+          "hint": "Cherche la prise qui laisse le roi sans sa protection.",
+          "success": "Correct. Txc7# attaque le roi de l'aile dame."
+        },
+        "u10-l03-s06": {
+          "prompt": "Attaque le roi de l'aile dame.",
+          "hint": "Cherche un échec ou une prise qui gagne du matériel pendant que le roi adverse est exposé.",
+          "success": "Correct. Cxd6+ attaque le roi de l'aile dame."
+        },
+        "u10-l03-s07": {
+          "prompt": "Attaque le roi de l'aile dame.",
+          "hint": "Cherche un échec ou une prise qui gagne du matériel pendant que le roi adverse est exposé.",
+          "success": "Correct. Fxd7+ attaque le roi de l'aile dame."
+        },
+        "u10-l03-s08": {
+          "prompt": "Attaque le roi de l'aile dame.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Cherche les échecs : avec des roques opposés, l'attaque arrive vite.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l03-s09": {
+          "prompt": "Attaque le roi de l'aile dame.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Cherche les échecs : avec des roques opposés, l'attaque arrive vite.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u10-l04": {
+      "title": "Défendre le roi",
+      "summary": "Interposer une pièce protégée",
+      "steps": {
+        "u10-l04-s01": { "text": "Les Blancs donnent échec avec Dd7+. Les Noirs ne fuient pas avec le roi : ils interposent la tour en c7, protégée par le roi. Si la dame prend, le roi reprend et la pièce qui attaquait disparaît." },
+        "u10-l04-s02": { "text": "Les Noirs donnent échec avec la dame en a2. Les Blancs interposent la tour en c2, protégée par le roi : la dame doit la prendre et le roi la reprend." },
+        "u10-l04-s03": {
+          "prompt": "Quelle pièce protège la tour qui s'interpose en c7 ?",
+          "options": ["Le fou en c4", "Le roi en b7", "La dame en b2"],
+          "explanation": "Le roi en b7 est juste à côté de c7 : si la dame prenait la tour, le roi reprendrait.",
+          "feedback": ["Le fou en c4 est sur une autre diagonale et ne protège pas c7.", "", "La dame en b2 n'atteint pas c7."]
+        },
+        "u10-l04-s04": {
+          "prompt": "Appuie sur la case où une pièce peut interposer contre l'échec de la dame.",
+          "hint": "C'est la seule case entre la dame et le roi."
+        },
+        "u10-l04-s05": {
+          "prompt": "Réponds à l'échec en interposant une pièce protégée.",
+          "hint": "Si tu ne peux pas prendre la pièce qui donne échec, regarde si tu peux interposer une pièce que ton roi protège.",
+          "success": "Correct. Td7 interpose une pièce protégée : si on la prend, tu reprends."
+        },
+        "u10-l04-s06": {
+          "prompt": "Réponds à l'échec en interposant une pièce protégée.",
+          "hint": "Si tu ne peux pas prendre la pièce qui donne échec, regarde si tu peux interposer une pièce que ton roi protège.",
+          "success": "Correct. Tf7 interpose une pièce protégée : si on la prend, tu reprends."
+        },
+        "u10-l04-s07": {
+          "prompt": "Réponds à l'échec en interposant une pièce protégée.",
+          "hint": "Si tu ne peux pas prendre la pièce qui donne échec, regarde si tu peux interposer une pièce que ton roi protège.",
+          "success": "Correct. Fb6 interpose une pièce protégée : si on la prend, tu reprends."
+        },
+        "u10-l04-s08": {
+          "prompt": "Défends le roi.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Interpose une pièce protégée : s'ils la prennent, tu reprends et la pièce qui attaquait est échangée.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l04-s09": {
+          "prompt": "Défends le roi.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Interpose une pièce protégée : s'ils la prennent, tu reprends et la pièce qui attaquait est échangée.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u6-l04": {
+      "title": "Révision finale",
+      "summary": "Des puzzles de tout le parcours",
+      "steps": {
+        "u6-l04-s01": { "text": "Révision finale : seize puzzles tirés de vraies parties, sur des thèmes de tout le parcours. Avant de jouer, regarde les échecs, les prises et les menaces. Si tu te trompes, l'indice te dit quel thème chercher." },
+        "u6-l04-s02": {
+          "prompt": "Les Blancs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : attaque à la découverte. Si le cavalier bouge avec échec, ta dame gagne la dame noire.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s03": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : fourchette. Ton cavalier peut faire échec et attaquer la tour en même temps.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s04": {
+          "prompt": "Les Blancs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : enfilade. Un échec du fou force le roi à bouger et laisse la tour sans protection.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s05": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : déviation. Un échec sur la première rangée écarte la tour qui défend la dame.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s06": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : mat en 2. Prends la pièce qui défend et continue avec un échec de la dame.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s07": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : zugzwang. Approche ton roi des pions blancs : le roi adverse ne peut pas les défendre sans s'écarter.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s08": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : clouage. Échange les tours, puis cloue la dame à son roi avec le fou.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s09": {
+          "prompt": "Les Blancs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : promotion. Ton pion d7 est à un pas de la dernière rangée : fais la promotion, même si la tour peut le prendre.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s11": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : attraction. Sacrifie une tour en prenant le cavalier avec échec : le roi reprend et l'autre tour donne mat.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s12": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : pièce surchargée. Échange les tours : la dame qui reprend laisse une autre pièce sans défense.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s13": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : coup intermédiaire. Avant de reprendre la dame, donne échec en prenant le cavalier avec le fou.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s14": {
+          "prompt": "Les Blancs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : interception. Un échec de la dame oblige le roi à se placer entre deux tours qui se protégeaient.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s15": {
+          "prompt": "Les Blancs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : mat de deux pièces. Sacrifie une tour en g8 et termine avec l'autre, soutenue par le cavalier.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s16": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : sacrifice. Donne la dame avec échec en d1 : le fou prend et la tour donne mat.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s17": {
+          "prompt": "Les Noirs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : roi actif. Amène le roi vers les pions de l'adversaire au lieu de rester en arrière.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s18": {
+          "prompt": "Les Blancs jouent. Trouve le meilleur coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie.",
+          "hint": "Indice : pièce sans défense. Le fou qui a donné échec n'a pas de défense : prends-le avec le roi.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s10": { "text": "Tu as terminé le parcours Apprendre. À partir d'ici, le mieux est de t'entraîner : des puzzles tous les jours, les ouvertures dans leur onglet et des parties contre les bots pour utiliser tout ce que tu as appris." }
+      }
+    }
+  }
+}

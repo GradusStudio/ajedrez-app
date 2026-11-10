@@ -121,54 +121,6 @@
         },
         "u6-l03-s09": { "text": "Riassunto: la qualità vale circa 2 punti, ma un pedone che promuove, un attacco al re o la conquista di un altro pezzo valgono di più. Prima di cederla, calcola che cosa ottieni in cambio." }
       }
-    },
-    "u6-l04": {
-      "title": "Ripasso finale",
-      "summary": "Puzzle da tutto il percorso",
-      "steps": {
-        "u6-l04-s01": { "text": "Ripasso finale: otto puzzle da partite vere con temi di tutto il percorso. Prima di muovere, controlla scacchi, catture e minacce. Se sbagli, l'indizio ti dice quale tema cercare." },
-        "u6-l04-s02": {
-          "prompt": "Muove il Bianco. Trova la mossa migliore.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Indizio: attacco di scoperta. Se il cavallo si muove con scacco, la tua donna vince la donna nera."
-        },
-        "u6-l04-s03": {
-          "prompt": "Muove il Nero. Trova la mossa migliore.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Indizio: forchetta. Il tuo cavallo può dare scacco e attaccare la torre insieme."
-        },
-        "u6-l04-s04": {
-          "prompt": "Muove il Bianco. Trova la mossa migliore.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Indizio: infilata. Uno scacco dell'alfiere obbliga il re a muoversi e lascia la torre senza protezione."
-        },
-        "u6-l04-s05": {
-          "prompt": "Muove il Nero. Trova la mossa migliore.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Indizio: deviazione. Uno scacco sulla prima traversa allontana la torre che difende la donna."
-        },
-        "u6-l04-s06": {
-          "prompt": "Muove il Nero. Trova la mossa migliore.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Indizio: matto in 2. Cattura il pezzo che difende e continua con uno scacco di donna."
-        },
-        "u6-l04-s07": {
-          "prompt": "Muove il Nero. Trova la mossa migliore.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Indizio: zugzwang. Avvicina il tuo re ai pedoni bianchi: il re avversario non può difenderli senza spostarsi."
-        },
-        "u6-l04-s08": {
-          "prompt": "Muove il Nero. Trova la mossa migliore.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Indizio: inchiodatura. Cambia le torri e poi inchioda la donna al suo re con l'alfiere."
-        },
-        "u6-l04-s09": {
-          "prompt": "Muove il Bianco. Trova la mossa migliore.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Indizio: promozione. Il tuo pedone in d7 è a un passo: promuovi anche se la torre può catturarlo."
-        },
-        "u6-l04-s10": { "text": "Hai finito il percorso di Impara. Da qui, la cosa migliore è allenarsi: puzzle ogni giorno, aperture nella loro scheda e partite contro i bot per usare tutto ciò che hai imparato." }
-      }
     }
   }
 }

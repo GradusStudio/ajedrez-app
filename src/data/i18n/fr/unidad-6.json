@@ -63,22 +63,6 @@
         "u6-l03-s08": { "prompt": "Les Blancs jouent. Élimine le défenseur : la qualité pour gagner plus de matériel.", "hint": "Le cavalier en f6 défend la tour en d5. S'il disparaît, la tour reste sans défense.", "success": "Bien résolu : cette position vient d'une vraie partie." },
         "u6-l03-s09": { "text": "En résumé : la qualité vaut environ 2 points, mais un pion qui est promu, une attaque sur le roi ou le gain d'une autre pièce valent plus. Avant de la sacrifier, calcule ce que tu gagnes en échange." }
       }
-    },
-    "u6-l04": {
-      "title": "Révision finale",
-      "summary": "Des puzzles de tout le parcours",
-      "steps": {
-        "u6-l04-s01": { "text": "Révision finale : huit puzzles tirés de vraies parties, sur des thèmes de tout le parcours. Avant de jouer, regarde les échecs, les prises et les menaces. Si tu te trompes, l'indice te dit quel thème chercher." },
-        "u6-l04-s02": { "prompt": "Les Blancs jouent. Trouve le meilleur coup.", "hint": "Indice : attaque à la découverte. Si le cavalier bouge avec échec, ta dame gagne la dame noire.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s03": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : fourchette. Ton cavalier peut faire échec et attaquer la tour en même temps.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s04": { "prompt": "Les Blancs jouent. Trouve le meilleur coup.", "hint": "Indice : enfilade. Un échec du fou force le roi à bouger et laisse la tour sans protection.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s05": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : déviation. Un échec sur la première rangée écarte la tour qui défend la dame.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s06": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : mat en 2. Prends la pièce qui défend et continue avec un échec de la dame.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s07": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : zugzwang. Approche ton roi des pions blancs : le roi adverse ne peut pas les défendre sans s'écarter.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s08": { "prompt": "Les Noirs jouent. Trouve le meilleur coup.", "hint": "Indice : clouage. Échange les tours, puis cloue la dame à son roi avec le fou.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s09": { "prompt": "Les Blancs jouent. Trouve le meilleur coup.", "hint": "Indice : promotion. Ton pion d7 est à un pas de la dernière rangée : fais la promotion, même si la tour peut le prendre.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u6-l04-s10": { "text": "Tu as terminé le parcours Apprendre. À partir d'ici, le mieux est de t'entraîner : des puzzles tous les jours, les ouvertures dans leur onglet et des parties contre les bots pour utiliser tout ce que tu as appris." }
-      }
     }
   }
 }

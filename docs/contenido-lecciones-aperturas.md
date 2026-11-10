@@ -4,7 +4,7 @@ Notación en español: R rey, D dama, T torre, A alfil, C caballo. Todas las lí
 
 ---
 
-## Parte 1 · Ruta rápida de lecciones (9 unidades, 64 lecciones, todas escritas)
+## Parte 1 · Ruta rápida de lecciones (10 unidades, 68 lecciones, todas escritas)
 
 Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzado) y en los cuatro niveles de chess.com (nuevo, principiante, intermedio, avanzado). Los títulos son propios.
 
@@ -62,11 +62,11 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 37. Regla del cuadrado y peón pasado
 38. Posición de Lucena (torre y peón)
 
-### Unidad 6 · Conceptos avanzados (4 lecciones, ya escritas en `src/data/unidad-6-conceptos-avanzados.json`)
+### Unidad 6 · Conceptos avanzados (3 lecciones, ya escritas en `src/data/unidad-6-conceptos-avanzados.json`)
 - Zugzwang: cuando mover es perder (incluye triangulación)
 - Profilaxis: anticipar el plan del rival
 - Sacrificio de calidad (torre por pieza menor)
-- Repaso final: puzzles de todos los temas de la ruta (agregado al escribir la unidad)
+- Repaso final: puzzles de todos los temas de la ruta (agregado al escribir la unidad; desde el 9-11-2026 es la última lección de la Unidad 10)
 
 ### Unidad 7 · Táctica intermedia (8 lecciones, escritas el 9-11-2026 en `src/data/unidad-7-tactica-intermedia.json`)
 La atracción, La sobrecarga, La jugada intermedia, La interferencia, Mates de una sola pieza, Mates de dos piezas, Sacrificar para abrir al rey y Calcular: mate en dos y en tres. Cada una usa posiciones de puzzles reales de Lichess y termina con puzzles propios del tema. Propuesta completa (unidades 7 a 10) en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`.
@@ -77,7 +77,10 @@ El rey activo, El peón pasado alejado (incluye las dos debilidades), Dama contr
 ### Unidad 9 · Piezas y peones (6 lecciones, escritas el 9-11-2026 en `src/data/unidad-9-piezas-y-peones.json`)
 Piezas sueltas, Cuándo cambiar piezas, El espacio, Posiciones abiertas y cerradas, Alfil bueno y alfil malo, Peón retrasado y cadenas de peones. Las respuestas de cada pregunta (peones bloqueados, casillas de espacio, piezas sin defensa, peones retrasados) se calculan con chess.js. Quedaron para más adelante «Torres activas» (conectar torres, séptima fila, torre levantada) y «Rupturas y mayorías de peones»: Stockfish no confirma esas ideas con una jugada única.
 
-Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 64 (Unidad 6: 41 a 44; Unidad 7: 45 a 52; Unidad 8: 53 a 58; Unidad 9: 59 a 64). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
+### Unidad 10 · Ataque y defensa (5 lecciones, escritas el 9-11-2026 en `src/data/unidad-10-ataque-y-defensa.json`)
+El rey sin enrocar, Atacar con enroques del mismo lado, Enroques opuestos, Defender al rey (interponer una pieza protegida) y el Repaso final con 16 puzzles de toda la ruta. Quedaron para más adelante «Defenderse con material de menos», «Convertir una ventaja» y «Hacer un plan»: no hay posiciones que Stockfish pueda confirmar con una jugada única.
+
+Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 68 (Unidad 6: 41 a 43; Unidad 7: 44 a 51; Unidad 8: 52 a 57; Unidad 9: 58 a 63; Unidad 10: 64 a 68). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
 
 ### Formato de cada lección
 1. Explicación corta con tablero interactivo (máx. 3 pantallas).

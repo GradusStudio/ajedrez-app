@@ -1,0 +1,295 @@
+{
+  "title": "Angriff und Verteidigung",
+  "lessons": {
+    "u10-l01": {
+      "title": "Der König ohne Rochade",
+      "summary": "Ein König in der Mitte ist ein Ziel",
+      "steps": {
+        "u10-l01-s01": { "text": "Der weiße König steht noch auf f1, ohne rochiert zu haben, und seine Figuren decken ihn nicht gut. Mit Dh1+ zwingt Schwarz den Damentausch, der Turm schlägt auf h1 mit Schach zurück, der König muss nach f2 und der Turm schlägt auf d1. Ein König ohne Rochade verschafft den Schachgeboten die Zeit, die sie brauchen." },
+        "u10-l01-s02": { "text": "Der schwarze König steht ohne Rochade auf d8. Mit Dh8+ zwingen die Weißen ihn, den Läufer dazwischenzustellen, mit Td1+ schicken sie ihn nach c8 und die Dame schlägt den Läufer auf e8 mit Schach. Jedes Schach nimmt dem König ein Feld." },
+        "u10-l01-s03": {
+          "prompt": "Welcher dieser beiden Könige hat noch nicht rochiert?",
+          "options": ["Der schwarze König auf d8", "Der weiße König auf c1", "Beide haben rochiert"],
+          "explanation": "Der schwarze König steht noch auf d8, im Zentrum, und Weiß hat seinen bereits sicher auf c1 gesetzt.",
+          "feedback": ["", "Der weiße König hat bereits lang rochiert: Er steht auf c1, hinter seinen Bauern.", "Einer der beiden steht noch im Zentrum."]
+        },
+        "u10-l01-s04": {
+          "prompt": "Tippe auf den König, der noch nicht rochiert hat.",
+          "hint": "Es ist der König, der noch im Zentrum steht, umgeben von seinen eigenen Figuren."
+        },
+        "u10-l01-s05": {
+          "prompt": "Greife den König an, der nicht rochiert hat.",
+          "hint": "Suche einen Schlagzug oder ein Schach, das Linien gegen den König öffnet, der noch im Zentrum steht.",
+          "success": "Richtig. Dxe3 öffnet Linien gegen den König, der nicht rochiert hat."
+        },
+        "u10-l01-s06": {
+          "prompt": "Greife den König an, der nicht rochiert hat.",
+          "hint": "Suche ein Schach, das den König auf ein Feld treibt, wo er Material verliert.",
+          "success": "Richtig. Tg8+ öffnet Linien gegen den König, der nicht rochiert hat."
+        },
+        "u10-l01-s07": {
+          "prompt": "Greife den König an, der nicht rochiert hat.",
+          "hint": "Suche ein Schach oder einen Abtausch, der Linien gegen den König öffnet, der noch im Zentrum steht.",
+          "success": "Richtig. Dxh5+ öffnet Linien gegen den König, der nicht rochiert hat."
+        },
+        "u10-l01-s08": {
+          "prompt": "Greife den König an, der nicht rochiert hat.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche die Schachgebote: Der König, der nicht rochiert hat, hat wenige Felder und kann sich nirgends verstecken.",
+          "notes": ["", "", "", "", "", ""]
+        },
+        "u10-l01-s09": {
+          "prompt": "Greife den König an, der nicht rochiert hat.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche die Schachgebote: Der König, der nicht rochiert hat, hat wenige Felder und kann sich nirgends verstecken.",
+          "notes": ["", "", "", "", "", ""]
+        }
+      }
+    },
+    "u10-l02": {
+      "title": "Angriff bei Rochade auf derselben Seite",
+      "summary": "Alle gegen den h-Bauern",
+      "steps": {
+        "u10-l02-s01": { "text": "Wenn beide Könige am Königsflügel rochiert haben, richtet sich der Angriff meist gegen den h-Bauern (h7 oder h2). Hier gibt Lxh7+ Schach, und weil der Läufer d3 verlässt, sieht die weiße Dame auf d1 die schwarze Dame auf d6: Der König schlägt den Läufer und Dxd6 gewinnt die Dame." },
+        "u10-l02-s02": { "text": "Die Bauern auf f7, g7 und h7 sind der Schild des schwarzen Königs, und die Dame zielt zusammen mit dem Läufer auf c2 auf h7. Dxh7+ zwingt den König nach f8, und Dh8 ist Matt." },
+        "u10-l02-s03": {
+          "prompt": "Wie viele schwarze Figuren decken den Bauern auf h7?",
+          "options": ["1", "2", "3"],
+          "explanation": "Ihn decken der König auf g8 und der Springer auf f6: Zwei Verteidiger. Bevor du angreifst, zähle Angreifer und Verteidiger.",
+          "feedback": ["Zähle noch einmal: Sieh nach, welche andere schwarze Figur außer dem König h7 erreicht.", "", "Zähle noch einmal: Es sind weniger als drei."]
+        },
+        "u10-l02-s04": {
+          "prompt": "Tippe auf die drei Bauern, die den schwarzen König schützen.",
+          "hint": "Sie stehen vor dem König, auf der 7. Reihe."
+        },
+        "u10-l02-s05": {
+          "prompt": "Greife die gegnerische Rochadestellung an.",
+          "hint": "Wenn beide Könige am Königsflügel rochiert haben, suche die Figuren, die auf die 8. Reihe oder auf den h-Bauern zielen.",
+          "success": "Richtig. Te8+ nutzt den Angriff auf die Rochadestellung aus."
+        },
+        "u10-l02-s06": {
+          "prompt": "Greife die gegnerische Rochadestellung an.",
+          "hint": "Wenn beide Könige am Königsflügel rochiert haben, suche die Figuren, die auf den h-Bauern zielen.",
+          "success": "Richtig. Lxh2+ nutzt den Angriff auf die Rochadestellung aus."
+        },
+        "u10-l02-s07": {
+          "prompt": "Greife die gegnerische Rochadestellung an.",
+          "hint": "Suche einen Schlagzug, der dem König den Bauern nimmt, der ihn schützt.",
+          "success": "Richtig. Dxg7# nutzt den Angriff auf die Rochadestellung aus."
+        },
+        "u10-l02-s08": {
+          "prompt": "Greife die gegnerische Rochadestellung an.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche die gegnerischen Figuren, die den Bauernschild decken, und räume sie aus dem Weg.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l02-s09": {
+          "prompt": "Greife die gegnerische Rochadestellung an.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche die gegnerischen Figuren, die den Bauernschild decken, und räume sie aus dem Weg.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l02-s10": {
+          "prompt": "Greife die gegnerische Rochadestellung an.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche die gegnerischen Figuren, die den Bauernschild decken, und räume sie aus dem Weg.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u10-l03": {
+      "title": "Rochaden auf entgegengesetzten Seiten",
+      "summary": "Jede Seite greift den König der anderen an",
+      "steps": {
+        "u10-l03-s01": { "text": "Die Könige stehen auf entgegengesetzten Flügeln: Der weiße auf b1 und der schwarze auf g8. Schwarz greift auf dem Damenflügel an: Dxa2+ gibt Schach, der König geht nach c1 und Da1 ist Matt. Bei Rochaden auf entgegengesetzten Seiten greift jede Seite den König der anderen an, und es gewinnt, wer zuerst ankommt." },
+        "u10-l03-s02": { "text": "Hier steht der schwarze König auf c8 und der weiße auf g1. Weiß greift auf dem Damenflügel an: Dxb7# ist Matt, weil der Turm auf b1 die Dame deckt und der König sie nicht schlagen kann." },
+        "u10-l03-s03": {
+          "prompt": "Was ist bei Rochaden auf entgegengesetzten Seiten meistens am besten?",
+          "options": ["Die Bauern ziehen, die den eigenen König schützen", "So schnell wie möglich alle Figuren tauschen", "Bauern und Figuren gegen den gegnerischen König werfen"],
+          "explanation": "Jede Seite greift den König der anderen an: Es gewinnt, wer zuerst ankommt. Die Bauern werden gegen den gegnerischen König vorgeschoben, nicht gegen den eigenen.",
+          "feedback": ["Wenn du die Bauern deiner Rochadestellung ziehst, schwächst du deinen eigenen König genau dann, wenn der Gegner angreift.", "Figurentausch nimmt dem Angriff den Schwung und lässt beide Seiten ohne Spiel gegen den König.", ""]
+        },
+        "u10-l03-s04": {
+          "prompt": "Tippe auf die beiden Könige.",
+          "hint": "Einer steht auf dem Damenflügel und der andere auf dem Königsflügel."
+        },
+        "u10-l03-s05": {
+          "prompt": "Greife den König auf dem Damenflügel an.",
+          "hint": "Suche den Schlagzug, der den König ohne seinen Schutz lässt.",
+          "success": "Richtig. Txc7# greift den König auf dem Damenflügel an."
+        },
+        "u10-l03-s06": {
+          "prompt": "Greife den König auf dem Damenflügel an.",
+          "hint": "Suche ein Schach oder einen Schlagzug, der Material gewinnt, solange der gegnerische König ungeschützt ist.",
+          "success": "Richtig. Sxd6+ greift den König auf dem Damenflügel an."
+        },
+        "u10-l03-s07": {
+          "prompt": "Greife den König auf dem Damenflügel an.",
+          "hint": "Suche ein Schach oder einen Schlagzug, der Material gewinnt, solange der gegnerische König ungeschützt ist.",
+          "success": "Richtig. Lxd7+ greift den König auf dem Damenflügel an."
+        },
+        "u10-l03-s08": {
+          "prompt": "Greife den König auf dem Damenflügel an.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche die Schachgebote: Bei Rochaden auf entgegengesetzten Seiten kommt der Angriff schnell.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l03-s09": {
+          "prompt": "Greife den König auf dem Damenflügel an.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche die Schachgebote: Bei Rochaden auf entgegengesetzten Seiten kommt der Angriff schnell.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u10-l04": {
+      "title": "Den König verteidigen",
+      "summary": "Eine gedeckte Figur dazwischenstellen",
+      "steps": {
+        "u10-l04-s01": { "text": "Weiß gibt mit Dd7+ Schach. Schwarz flieht nicht mit dem König: Er stellt den Turm auf c7 dazwischen, gedeckt vom König. Wenn die Dame schlägt, schlägt der König zurück, und die angreifende Figur verschwindet." },
+        "u10-l04-s02": { "text": "Schwarz gibt mit der Dame auf a2 Schach. Weiß stellt den Turm auf c2 dazwischen, gedeckt vom König: Die Dame muss ihn schlagen, und der König schlägt zurück." },
+        "u10-l04-s03": {
+          "prompt": "Welche Figur deckt den Turm, der auf c7 dazwischengestellt wird?",
+          "options": ["Der Läufer auf c4", "Der König auf b7", "Die Dame auf b2"],
+          "explanation": "Der König auf b7 steht direkt neben c7: Wenn die Dame den Turm schlagen würde, würde der König zurückschlagen.",
+          "feedback": ["Der Läufer auf c4 steht auf einer anderen Diagonale und deckt c7 nicht.", "", "Die Dame auf b2 erreicht c7 nicht."]
+        },
+        "u10-l04-s04": {
+          "prompt": "Tippe auf das Feld, auf dem eine Figur gegen das Schach der Dame dazwischengestellt werden kann.",
+          "hint": "Es ist das einzige Feld zwischen der Dame und dem König."
+        },
+        "u10-l04-s05": {
+          "prompt": "Antworte auf das Schach, indem du eine gedeckte Figur dazwischenstellst.",
+          "hint": "Wenn du die Figur, die Schach gibt, nicht schlagen kannst, prüfe, ob du eine Figur dazwischenstellen kannst, die dein König deckt.",
+          "success": "Richtig. Td7 stellt eine gedeckte Figur dazwischen: Wenn sie geschlagen wird, schlägst du zurück."
+        },
+        "u10-l04-s06": {
+          "prompt": "Antworte auf das Schach, indem du eine gedeckte Figur dazwischenstellst.",
+          "hint": "Wenn du die Figur, die Schach gibt, nicht schlagen kannst, prüfe, ob du eine Figur dazwischenstellen kannst, die dein König deckt.",
+          "success": "Richtig. Tf7 stellt eine gedeckte Figur dazwischen: Wenn sie geschlagen wird, schlägst du zurück."
+        },
+        "u10-l04-s07": {
+          "prompt": "Antworte auf das Schach, indem du eine gedeckte Figur dazwischenstellst.",
+          "hint": "Wenn du die Figur, die Schach gibt, nicht schlagen kannst, prüfe, ob du eine Figur dazwischenstellen kannst, die dein König deckt.",
+          "success": "Richtig. Lb6 stellt eine gedeckte Figur dazwischen: Wenn sie geschlagen wird, schlägst du zurück."
+        },
+        "u10-l04-s08": {
+          "prompt": "Verteidige den König.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Stelle eine gedeckte Figur dazwischen: Wenn sie geschlagen wird, schlägst du zurück, und die angreifende Figur wird getauscht.",
+          "notes": ["", "", "", ""]
+        },
+        "u10-l04-s09": {
+          "prompt": "Verteidige den König.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Stelle eine gedeckte Figur dazwischen: Wenn sie geschlagen wird, schlägst du zurück, und die angreifende Figur wird getauscht.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u6-l04": {
+      "title": "Abschlusswiederholung",
+      "summary": "Puzzles aus allen Einheiten",
+      "steps": {
+        "u6-l04-s01": { "text": "Abschlusswiederholung: sechzehn Puzzles aus echten Partien mit Themen aus allen Einheiten. Prüfe vor jedem Zug Schachgebote, Schlagzüge und Drohungen. Geht etwas schief, sagt dir der Tipp, welches Thema du suchen sollst." },
+        "u6-l04-s02": {
+          "prompt": "Weiß am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Abzugsangriff. Zieht der Springer mit Schach, gewinnt deine Dame die schwarze Dame.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s03": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Gabel. Dein Springer kann Schach geben und gleichzeitig den Turm angreifen.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s04": {
+          "prompt": "Weiß am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Spieß. Ein Läuferschach zwingt den König zum Ziehen und lässt den Turm ungedeckt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s05": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Ablenkung. Ein Schach auf der Grundreihe lenkt den Turm ab, der die Dame deckt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s06": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Matt in 2. Schlage die verteidigende Figur und mache mit einem Damenschach weiter.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s07": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Zugzwang. Bringe deinen König näher an die weißen Bauern: Der gegnerische König kann sie nicht decken, ohne zur Seite zu gehen.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s08": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Fesselung. Tausche die Türme und fessle dann die Dame mit dem Läufer an ihren König.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s09": {
+          "prompt": "Weiß am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Umwandlung. Dein Bauer auf d7 ist einen Schritt entfernt: Wandle ihn um, auch wenn der Turm ihn schlagen kann.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s11": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Anziehung. Opfere einen Turm, indem du den Springer mit Schach schlägst: Der König schlägt zurück und der andere Turm gibt Matt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s12": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Überlastung. Tausche die Türme: Die Dame, die zurückschlägt, lässt eine andere Figur ungedeckt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s13": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Zwischenzug. Gib Schach, indem du den Springer mit dem Läufer schlägst, bevor du die Dame zurückschlägst.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s14": {
+          "prompt": "Weiß am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Unterbrechung. Ein Schach der Dame zwingt den König zwischen zwei Türme, die sich gegenseitig deckten.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s15": {
+          "prompt": "Weiß am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Matt mit zwei Figuren. Opfere einen Turm auf g8 und vollende mit dem anderen, unterstützt vom Springer.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s16": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Opfer. Gib die Dame mit Schach auf d1: Der Läufer schlägt und der Turm gibt Matt.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s17": {
+          "prompt": "Schwarz am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Aktiver König. Führe den König zu den gegnerischen Bauern, statt zurückzubleiben.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s18": {
+          "prompt": "Weiß am Zug. Finde den besten Zug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Tipp: Ungedeckte Figur. Der Läufer, der Schach gab, ist ungedeckt: Schlage ihn mit dem König.",
+          "notes": ["", "", "", ""]
+        },
+        "u6-l04-s10": { "text": "Du hast alle Einheiten von Lernen abgeschlossen. Am besten übst du jetzt weiter: jeden Tag Puzzles, Eröffnungen in ihrem eigenen Tab und Partien gegen die Bots, um alles anzuwenden, was du gelernt hast." }
+      }
+    }
+  }
+}

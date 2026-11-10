@@ -292,3 +292,6 @@ En los avisos: `risk` empieza por *Serientage: {n}.* para leerse bien con cualqu
 | alfil bueno / malo | guter / schlechter Läufer |
 | peón retrasado | rückständiger Bauer |
 | cadena de peones, base | Bauernkette, Fuß der Kette |
+| enroque opuesto | Rochaden auf entgegengesetzten Seiten |
+| escudo de peones | Bauernschild |
+| interponer | dazwischenstellen |

@@ -280,3 +280,14 @@ En los avisos: `risk` empieza por *Jours de série : {n}.* para leerse bien con 
 | gambito Englund | gambit Englund |
 | trampa Blackburne-Shilling | piège Blackburne-Shilling |
 | carnada | appât |
+
+## Agregados el 9-11-2026 (Unidad 7)
+| Español | Français |
+|---|---|
+| atracción | attraction |
+| sobrecarga | surcharge |
+| jugada intermedia | coup intermédiaire |
+| interferencia | interférence |
+| mate árabe | mat arabe |
+| mate de la coz | mat étouffé |
+| batería | batterie |

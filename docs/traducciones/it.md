@@ -277,3 +277,14 @@ En los avisos: `risk` empieza por *Giorni di serie: {n}.* para leerse bien con c
 | gambito Englund | Gambetto Englund |
 | trampa Blackburne-Shilling | trappola Blackburne-Shilling |
 | carnada | esca |
+
+## Agregados el 9-11-2026 (Unidad 7)
+| Español | Italiano |
+|---|---|
+| atracción | attrazione |
+| sobrecarga | sovraccarico |
+| jugada intermedia | mossa intermedia |
+| interferencia | interferenza |
+| mate árabe | matto arabo |
+| mate de la coz | matto soffocato |
+| batería | batteria |

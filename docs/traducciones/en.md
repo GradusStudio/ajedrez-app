@@ -246,3 +246,14 @@ En los avisos: `risk` empieza por *Streak days: {n}.* para leerse bien con cualq
 | gambito Englund | Englund Gambit |
 | trampa Blackburne-Shilling | Blackburne-Shilling trap |
 | carnada | bait |
+
+## Agregados el 9-11-2026 (Unidad 7)
+| Español | English |
+|---|---|
+| atracción | attraction |
+| sobrecarga | overload |
+| jugada intermedia | in-between move |
+| interferencia | interference |
+| mate árabe | Arabian mate |
+| mate de la coz | smothered mate |
+| batería | battery |

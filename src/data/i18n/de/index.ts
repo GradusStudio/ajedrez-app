@@ -9,6 +9,7 @@ export const files: LanguageFiles = {
     '4': require('./unidad-4.json'),
     '5': require('./unidad-5.json'),
     '6': require('./unidad-6.json'),
+    '7': require('./unidad-7.json'),
   },
   openings: require('./aperturas.json'),
   bots: require('./bots.json'),

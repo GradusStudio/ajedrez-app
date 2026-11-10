@@ -1,0 +1,377 @@
+{
+  "title": "Tattica intermedia",
+  "lessons": {
+    "u7-l01": {
+      "title": "L'attrazione",
+      "summary": "Portare un pezzo sulla casella che ti serve",
+      "steps": {
+        "u7-l01-s01": { "text": "Le bianche hanno due torri sulla colonna e. Con Txf8+ sacrificano quella in e8: il re la cattura perché non ha altra via d'uscita e finisce in f8. Poi l'altra torre dà matto in e8, protetta dal cavallo. Questa è un'attrazione: un sacrificio, quasi sempre con scacco, che porta il re o un altro pezzo in una casella dove subisce il colpo." },
+        "u7-l01-s02": { "text": "L'attrazione prepara anche altre tattiche. Qui la donna bianca cattura la donna nera in h8 con scacco. Il re ricattura e si trova in h8, proprio dove il cavallo dà scacco contemporaneamente alla torre in e7. Hai scambiato donna per donna, ma vinci una torre." },
+        "u7-l01-s03": {
+          "prompt": "A cosa serve il sacrificio Txf8+?",
+          "options": ["Per attirare il re in f8, dove subisce il matto", "Per vincere una torre senza altro", "Per scambiare le torri e semplificare"],
+          "explanation": "La torre si sacrifica per forzare la cattura del re: in f8 non ha caselle libere e l'altra torre dà matto.",
+          "feedback": ["", "Il re la cattura, quindi non vinci la torre: vinci il matto.", "Niente si semplifica: il sacrificio forza una sequenza che finisce in matto."]
+        },
+        "u7-l01-s04": {
+          "prompt": "Se giochi Txf8+, il re deve catturare. Tocca la casella dove finirà.",
+          "hint": "È la casella della torre che sacrifichi."
+        },
+        "u7-l01-s05": {
+          "prompt": "Sacrifica l'alfiere con scacco per attirare il re e prendere l'alfiere in c8.",
+          "hint": "L'alfiere si sposta con scacco, il re cattura e la torre in c1 finisce per attaccare c8.",
+          "success": "Corretto. Axe8+ attira il re in e8. Con l'alfiere fuori dalla colonna c, la torre vince con scacco l'alfiere in c8."
+        },
+        "u7-l01-s06": {
+          "prompt": "Sacrifica una torre con scacco per attirare il re e dare matto in due mosse.",
+          "hint": "Guarda la prima traversa: una torre viene ceduta affinché il re catturi e l'altra dia matto.",
+          "success": "Corretto. Txe1+ costringe il re a catturare e Td1# è matto."
+        },
+        "u7-l01-s07": {
+          "prompt": "Approfitta dell'attrazione.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca un sacrificio con scacco che obblighi il re a catturare e rimanere su una casella esposta.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l01-s08": {
+          "prompt": "Approfitta dell'attrazione.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca un sacrificio con scacco che obblighi il re a catturare e rimanere su una casella esposta.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l01-s09": {
+          "prompt": "Approfitta dell'attrazione.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca un sacrificio con scacco che obblighi il re a catturare e rimanere su una casella esposta.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u7-l02": {
+      "title": "Il sovraccarico",
+      "summary": "Un pezzo, due compiti",
+      "steps": {
+        "u7-l02-s01": { "text": "La donna nera difende contemporaneamente il cavallo in d5 e l'alfiere in e7: ha due compiti. Se catturi il cavallo, la donna ricattura e lascia l'alfiere senza difesa. Così vinci un pezzo. Questo è un sovraccarico: un pezzo avversario con più lavoro di quello che può gestire." },
+        "u7-l02-s02": { "text": "La torre nera in f8 difende la torre in e8 e il pedone in f7. Con Axf7+ dai scacco. Se la torre in f8 cattura l'alfiere, non protegge più la torre in e8 e Dxe8+ la vince." },
+        "u7-l02-s03": {
+          "prompt": "La donna nera difende due pezzi che possono cadere. Tocca quei due pezzi.",
+          "hint": "Uno è sulla colonna della donna e l'altro sulla sua diagonale."
+        },
+        "u7-l02-s04": {
+          "prompt": "Perché conviene catturare il cavallo in d5?",
+          "options": ["Perché se la donna ricattura, lascia l'alfiere in e7 senza difesa", "Perché il cavallo in d5 vale più del mio cavallo", "Perché apre la colonna d per la mia torre"],
+          "explanation": "La donna nera difende i due pezzi: prendendo in d5 abbandona l'alfiere in e7.",
+          "feedback": ["", "I due cavalli valgono lo stesso: ciò che cambia è ciò che la cattura lascia senza difesa.", "Aprire la colonna non è importante: ciò che conta è che la donna non può difendere i due pezzi."]
+        },
+        "u7-l02-s05": {
+          "prompt": "Cerca la cattura che obbliga un pezzo avversario a ricatturare e lascia indifeso un altro.",
+          "hint": "Cerca un pezzo avversario che difende due cose contemporaneamente: cattura una e vince l'altra.",
+          "success": "Corretto. Txe1 costringe il pezzo che difendeva a ricatturare, e vinci l'altro."
+        },
+        "u7-l02-s06": {
+          "prompt": "Cerca la cattura che obbliga un pezzo avversario a ricatturare e lascia indifeso un altro.",
+          "hint": "Cerca un pezzo avversario che difende due cose contemporaneamente: cattura una e vince l'altra.",
+          "success": "Corretto. Txd8+ costringe il pezzo che difendeva a ricatturare, e vinci l'altro."
+        },
+        "u7-l02-s07": {
+          "prompt": "Approfitta del sovraccarico.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca un pezzo avversario che difende due cose contemporaneamente e ne cattura una.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l02-s08": {
+          "prompt": "Approfitta del sovraccarico.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca un pezzo avversario che difende due cose contemporaneamente e ne cattura una.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l02-s09": {
+          "prompt": "Approfitta del sovraccarico.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca un pezzo avversario che difende due cose contemporaneamente e ne cattura una.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u7-l03": {
+      "title": "La mossa intermedia",
+      "summary": "Un colpo prima di ricatturare",
+      "steps": {
+        "u7-l03-s01": { "text": "La donna nera ha catturato in d4. Se ricatturi subito con Dxd4, il cavallo in c6 ricattura e hai solo scambiato le donne. Prima giochi Axc6+: dai scacco e catturi il cavallo. Se il Nero risponde con bxc6, catturi la donna con Dxd4 e non c'è più un cavallo che ricatturi. Questa è una mossa intermedia: uno scacco o una minaccia che fai prima della ricattura ovvia." },
+        "u7-l03-s02": { "text": "Lo stesso con le nere: la donna bianca ha catturato in d5. Ricatturare subito con Dxd5 permette Cxd5. Prima, Axc3+ dà scacco ed elimina il cavallo che proteggeva d5. Dopo bxc3 puoi prendere la donna." },
+        "u7-l03-s03": {
+          "prompt": "Il Nero ha catturato in d4 con la donna. Cosa ti conviene fare per primo?",
+          "options": ["Ricatturare subito con la donna", "Dare scacco con l'alfiere catturando il cavallo in c6", "Ritirare la donna su una casella sicura"],
+          "explanation": "Con lo scacco obblighi l'avversario a rispondere e togli il cavallo che proteggeva d4. Poi catturi la donna senza perdere nulla.",
+          "feedback": ["Se catturi subito, il cavallo in c6 cattura la donna: avrai solo scambiato donne.", "", "Ritirarla perde l'opportunità di vincere la donna nera."]
+        },
+        "u7-l03-s04": {
+          "prompt": "Prima di ricatturare, guarda chi protegge la donna nera in d4. Tocca quel pezzo.",
+          "hint": "È un cavallo che la difende da una casella vicina."
+        },
+        "u7-l03-s05": {
+          "prompt": "Prima di ricatturare, cerca una cattura con scacco.",
+          "hint": "Un tuo pezzo può catturare con scacco e togliere il difensore prima di prendere la donna.",
+          "success": "Corretto. Cxf6+ è la mossa intermedia: si gioca prima di ricatturare."
+        },
+        "u7-l03-s06": {
+          "prompt": "Prima di ricatturare, cerca uno scacco.",
+          "hint": "Dai uno scacco a cui l'avversario debba rispondere prima che tu ricatturi il tuo pezzo.",
+          "success": "Corretto. Txd1+ è la mossa intermedia: si gioca prima di ricatturare."
+        },
+        "u7-l03-s07": {
+          "prompt": "Approfitta della mossa intermedia.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Prima di ricatturare, cerca uno scacco a cui l'avversario debba rispondere.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l03-s08": {
+          "prompt": "Approfitta della mossa intermedia.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Prima di ricatturare, cerca uno scacco a cui l'avversario debba rispondere.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l03-s09": {
+          "prompt": "Approfitta della mossa intermedia.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Prima di ricatturare, cerca uno scacco a cui l'avversario debba rispondere.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u7-l04": {
+      "title": "L'interferenza",
+      "summary": "Tagliare la difesa nel mezzo",
+      "steps": {
+        "u7-l04-s01": { "text": "La donna bianca in d1 protegge la torre in h1 lungo la prima traversa. Con Dg2+ il re è costretto ad andare in e1, e finisce proprio tra i due pezzi: taglia la difesa. Poi Dxh1+ prende la torre. Questa è un'interferenza: qualcosa si interpone tra un pezzo e quello che lo protegge." },
+        "u7-l04-s02": { "text": "Le nere hanno una torre in h8 che la donna in d8 protegge lungo la traversa 8. Con Dg7+ il re è costretto ad andare in e8: si mette tra la donna e la torre e le separa. Dopo Dxh8+ le nere perdono la torre." },
+        "u7-l04-s03": {
+          "prompt": "La donna bianca in d1 protegge la torre in h1 lungo la prima traversa. Cosa succede se il re bianco si posiziona in e1?",
+          "options": ["La torre resta senza protezione", "La torre è meglio protetta", "Non cambia nulla"],
+          "explanation": "Il re in e1 blocca la traversa: la donna non vede più la torre e questa può essere catturata gratis.",
+          "feedback": ["", "Il re non protegge la torre da e1: si mette in mezzo e taglia la linea della donna.", "Cambia molto: il re blocca la linea tra i due pezzi."]
+        },
+        "u7-l04-s04": {
+          "prompt": "Con Dg2+ il re bianco deve andare in e1. Tocca i due pezzi bianchi che l'interferenza del re separa.",
+          "hint": "Sono i due pezzi della prima traversa che si proteggevano a vicenda."
+        },
+        "u7-l04-s05": {
+          "prompt": "Dai uno scacco che obblighi il re a mettersi tra due pezzi che si proteggono.",
+          "hint": "Guarda la prima traversa: due torri si proteggono. Uno scacco della donna può mandare il re al centro.",
+          "success": "Corretto. Dd2+ costringe il re a tagliare la propria difesa."
+        },
+        "u7-l04-s06": {
+          "prompt": "Dai uno scacco che obblighi il re a mettersi tra due pezzi che si proteggono.",
+          "hint": "Guarda la traversa 8: un pezzo protegge un altro da lontano. Uno scacco può portare il re al centro.",
+          "success": "Corretto. Dg7+ costringe il re a tagliare la propria difesa."
+        },
+        "u7-l04-s07": {
+          "prompt": "Sfrutta l'interferenza.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco che obblighi il re a mettersi tra due pezzi che si proteggevano.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l04-s08": {
+          "prompt": "Sfrutta l'interferenza.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco che obblighi il re a mettersi tra due pezzi che si proteggevano.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l04-s09": {
+          "prompt": "Sfrutta l'interferenza.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco che obblighi il re a mettersi tra due pezzi che si proteggevano.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u7-l05": {
+      "title": "Matti con un solo pezzo",
+      "summary": "Un pezzo dà il colpo finale",
+      "steps": {
+        "u7-l05-s01": { "text": "Il re nero non ha caselle libere: i suoi pedoni in f7, g7 e h7 gli chiudono la seconda traversa. La torre cattura in e8 e dà matto sull'ultima traversa. È il matto sull'ultima traversa e lo dà un singolo pezzo." },
+        "u7-l05-s02": { "text": "Il re bianco è intrappolato dalla sua torre in g1 e dai pedoni in g2 e h2. Il cavallo dà scacco da f2 e il re non ha dove andare né può catturarlo. È il matto soffocato: solo il cavallo salta sopra gli altri pezzi." },
+        "u7-l05-s03": {
+          "prompt": "Cosa avrebbe evitato il matto sull'ultima traversa?",
+          "options": ["Una casella libera per il re, muovendo un pedone come h7 o g7", "Scambiare le donne", "Spostare la torre da a8"],
+          "explanation": "Una casella libera sulla seconda traversa dà una via di fuga al re. Un pedone mosso in tempo evita il matto.",
+          "feedback": ["", "Con le donne scambiate il re non ha ancora caselle libere.", "La torre in a8 non può aiutare: il matto arriva per la colonna e."]
+        },
+        "u7-l05-s04": {
+          "prompt": "Il re bianco non può muoversi. Tocca i tre pezzi bianchi che gli bloccano la strada.",
+          "hint": "Sono vicinissimi al re: una torre e due pedoni."
+        },
+        "u7-l05-s05": {
+          "prompt": "Matto con un solo pezzo: il re è racchiuso dai suoi stessi pezzi.",
+          "hint": "Cerca il pezzo che può dare scacco senza che il re lo catturi o scappi.",
+          "success": "Corretto. Cf7# è matto: il re non ha caselle libere."
+        },
+        "u7-l05-s06": {
+          "prompt": "Matto con un solo pezzo: il re è racchiuso dai suoi stessi pezzi.",
+          "hint": "Cerca il pezzo che può dare scacco senza che il re lo catturi o scappi.",
+          "success": "Corretto. Txh1# è matto: il re non ha caselle libere."
+        },
+        "u7-l05-s07": {
+          "prompt": "Matto con un solo pezzo: il re è racchiuso dai suoi stessi pezzi.",
+          "hint": "Cerca il pezzo che può dare scacco senza che il re lo catturi o scappi.",
+          "success": "Corretto. De1# è matto: il re non ha caselle libere."
+        },
+        "u7-l05-s08": {
+          "prompt": "Trova il matto in due.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco che lasci il re circondato dai suoi pezzi.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l05-s09": {
+          "prompt": "Trova il matto in due.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco che lasci il re circondato dai suoi pezzi.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u7-l06": {
+      "title": "Matti con due pezzi",
+      "summary": "Due pezzi, un solo obiettivo",
+      "steps": {
+        "u7-l06-s01": { "text": "La donna da sola non potrebbe dare questo matto: il re la catturerebbe. Ma l'alfiere in c4 protegge g8 dalla stessa diagonale. Quando un pezzo attacca e un altro lo supporta sulla stessa linea, formano una batteria: il re non può catturare la donna e non ha caselle libere." },
+        "u7-l06-s02": { "text": "Questo è il matto arabo: la torre dà scacco da h7 e il cavallo in f6 la protegge e, inoltre, copre g8. Il re non può catturare la torre né scappare." },
+        "u7-l06-s03": {
+          "prompt": "Quale pezzo impedisce al re nero di catturare la donna in g8?",
+          "options": ["L'alfiere bianco in c4", "Il re bianco in a2", "Il pedone bianco in b2"],
+          "explanation": "L'alfiere protegge g8 sulla diagonale: se il re cattura la donna, rimane in scacco.",
+          "feedback": ["", "Il re bianco è troppo lontano per proteggere g8.", "Il pedone in b2 non ha relazione con g8."]
+        },
+        "u7-l06-s04": {
+          "prompt": "Tocca i due pezzi bianchi che danno il matto arabo.",
+          "hint": "Una è una torre e l'altra un cavallo."
+        },
+        "u7-l06-s05": {
+          "prompt": "Dai matto con due pezzi che lavorano insieme.",
+          "hint": "Un pezzo dà scacco e l'altro copre le caselle di fuga del re.",
+          "success": "Corretto. Axa3# è matto grazie all'altro pezzo, che copre le caselle di fuga."
+        },
+        "u7-l06-s06": {
+          "prompt": "Dai matto con due pezzi che lavorano insieme.",
+          "hint": "Un pezzo dà scacco e l'altro lo supporta affinché il re non possa catturarlo.",
+          "success": "Corretto. Dh7# è matto: l'altro pezzo appoggia la donna."
+        },
+        "u7-l06-s07": {
+          "prompt": "Dai matto con due pezzi che lavorano insieme.",
+          "hint": "Un pezzo dà scacco e l'altro lo supporta affinché il re non possa catturarlo.",
+          "success": "Corretto. Dxg7# è matto: l'altro pezzo appoggia la donna."
+        },
+        "u7-l06-s08": {
+          "prompt": "Trova il matto in due.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco con un pezzo e matto con un altro che lo supporti.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l06-s09": {
+          "prompt": "Trova il matto in due.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco con un pezzo e matto con un altro che lo supporti.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u7-l07": {
+      "title": "Sacrificare per aprire il re",
+      "summary": "Dare materiale per arrivare al re",
+      "steps": {
+        "u7-l07-s01": { "text": "I pedoni in h6 e g7 proteggono il re. Con Txh6+ cedi la torre: il pedone in g7 deve catturare, il re rimane scoperto e la donna dà matto in h6. Non regali materiale: calcoli fino al matto prima di sacrificare." },
+        "u7-l07-s02": { "text": "Qui il sacrificio è in g6. Con Txg6+ la torre è offerta. Se il pedone in f7 cattura, il re perde la sua protezione e la donna dà matto in g6." },
+        "u7-l07-s03": {
+          "prompt": "Cosa ottiene il sacrificio Txh6+?",
+          "options": ["Toglie un pedone che proteggeva il re e fa entrare la donna", "Guadagna subito materiale", "Scambia le torri"],
+          "explanation": "La torre viene ceduta per aprire lo scudo di pedoni del re. Se il pedone cattura, la donna dà matto.",
+          "feedback": ["", "Il sacrificio non guadagna materiale: perdi una torre in cambio del matto.", "Non c'è scambio di torri: l'avversario non può ricatturare con una torre."]
+        },
+        "u7-l07-s04": {
+          "prompt": "Dopo Txg6+ e fxg6, la donna dà matto. Tocca la casella dove dà matto.",
+          "hint": "È la casella del pedone che ha appena catturato."
+        },
+        "u7-l07-s05": {
+          "prompt": "Sacrifica un pezzo con scacco per aprire il re e dare matto in due mosse.",
+          "hint": "Cedi un pezzo sulla casella che protegge il re: l'avversario deve catturare e lascia la strada libera.",
+          "success": "Corretto. Dxh6+ apre la strada al re e il matto arriva alla mossa successiva."
+        },
+        "u7-l07-s06": {
+          "prompt": "Sacrifica un pezzo con scacco per aprire il re e dare matto in due mosse.",
+          "hint": "Cedi un pezzo con scacco per deviare quello che copre una casella chiave.",
+          "success": "Corretto. Cf6+ costringe a una cattura e il matto arriva alla mossa successiva."
+        },
+        "u7-l07-s07": {
+          "prompt": "Sacrifica per aprire il re.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco con sacrificio che lasci il re senza protezione.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l07-s08": {
+          "prompt": "Sacrifica per aprire il re.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco con sacrificio che lasci il re senza protezione.",
+          "notes": ["", "", "", ""]
+        },
+        "u7-l07-s09": {
+          "prompt": "Sacrifica per aprire il re.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca uno scacco con sacrificio che lasci il re senza protezione.",
+          "notes": ["", "", "", ""]
+        }
+      }
+    },
+    "u7-l08": {
+      "title": "Calcolare: matto in due e in tre",
+      "summary": "Parti dagli scacchi e segui la sequenza",
+      "steps": {
+        "u7-l08-s01": { "text": "Per trovare un matto in due, inizia dagli scacchi. Qui ce n'è solo uno, Th8+, e lascia al re nero un'unica fuga: e7. Dopo Te8 è matto, con l'alfiere in c6 che protegge la torre." },
+        "u7-l08-s02": { "text": "In un matto in tre, ogni scacco lascia all'avversario pochissime risposte, e quelle sono quelle che bisogna calcolare. Qui Dd8+ lascia solo due risposte: interporre l'alfiere in e8 o la torre in f8. Con l'alfiere, Dxe8+ obbliga a interporre la torre e Dxf8 è matto." },
+        "u7-l08-s03": {
+          "prompt": "Dopo Dd8+, quante risposte legali ha il Nero?",
+          "options": ["1", "2", "3", "4"],
+          "explanation": "Solo due: interporre l'alfiere in e8 o la torre in f8. Con così poche risposte si può calcolare tutto il matto.",
+          "feedback": ["Riconta: il re non può muoversi e si può solo interporre o catturare.", "", "Riconta: il re non può muoversi e si può solo interporre o catturare.", "Riconta: il re non può muoversi e si può solo interporre o catturare."]
+        },
+        "u7-l08-s04": {
+          "prompt": "Dopo Th8+, quante mosse legali ha il re nero?",
+          "options": ["1", "2", "3", "4"],
+          "explanation": "Solo una: il re non può catturare la torre né rimanere in scacco. Quando l'avversario ha una sola risposta, il calcolo è molto breve.",
+          "feedback": ["", "Controlla le caselle vicine al re: quasi tutte sono controllate.", "Controlla le caselle vicine al re: quasi tutte sono controllate.", "Controlla le caselle vicine al re: quasi tutte sono controllate."]
+        },
+        "u7-l08-s05": {
+          "prompt": "Dopo Th8+ il re può andare solo in una casella. Toccala.",
+          "hint": "Le altre caselle vicine sono controllate dai tuoi pezzi."
+        },
+        "u7-l08-s06": {
+          "prompt": "Matto in due: inizia con gli scacchi.",
+          "hint": "Guarda gli scacchi che può dare la tua donna: uno di essi lascia l'avversario con una sola risposta.",
+          "success": "Corretto. De1+ costringe alla risposta e Dxf1# è matto."
+        },
+        "u7-l08-s07": {
+          "prompt": "Matto in due: inizia con gli scacchi.",
+          "hint": "Guarda gli scacchi della tua torre: uno di essi lascia l'avversario con una sola risposta.",
+          "success": "Corretto. Td1+ costringe alla risposta e Txd1# è matto."
+        },
+        "u7-l08-s08": {
+          "prompt": "Trova il matto in tre.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Inizia dagli scacchi e segui le poche risposte che ha l'avversario.",
+          "notes": ["", "", "", "", "", ""]
+        },
+        "u7-l08-s09": {
+          "prompt": "Trova il matto in tre.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Inizia dagli scacchi e segui le poche risposte che ha l'avversario.",
+          "notes": ["", "", "", "", "", ""]
+        },
+        "u7-l08-s10": {
+          "prompt": "Trova il matto in tre.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Inizia dagli scacchi e segui le poche risposte che ha l'avversario.",
+          "notes": ["", "", "", "", "", ""]
+        }
+      }
+    }
+  }
+}

@@ -25,6 +25,10 @@ test('asignaciones de ejemplo', () => {
   assert.equal(teacherOfTitle('La enfilada'), 'sofia');
   assert.equal(teacherOfTitle('Trampas que vas a ver'), 'tomas');
   assert.equal(teacherOfTitle('Mate en escalera'), 'ivo');
+  assert.equal(teacherOfTitle('La atracción'), 'tomas');
+  assert.equal(teacherOfTitle('La sobrecarga'), 'sofia');
+  assert.equal(teacherOfTitle('Mates de una sola pieza'), 'pipo');
+  assert.equal(teacherOfTitle('Sacrificar para abrir al rey'), 'valentina');
   assert.equal(teacherForCourse('caro-kann'), 'bruno');
 });
 test('los 28 cursos tienen profesor y ninguno es Ada', () => {

@@ -271,3 +271,14 @@ En los avisos: `risk` empieza por *Serientage: {n}.* para leerse bien con cualqu
 | gambito Englund | Englund-Gambit |
 | trampa Blackburne-Shilling | Blackburne-Shilling-Falle |
 | carnada | Köder |
+
+## Agregados el 9-11-2026 (Unidad 7)
+| Español | Deutsch |
+|---|---|
+| atracción | Anziehung |
+| sobrecarga | Überlastung |
+| jugada intermedia | Zwischenzug |
+| interferencia | Unterbrechung |
+| mate árabe | Arabisches Matt |
+| mate de la coz | ersticktes Matt |
+| batería | Batterie |

@@ -150,4 +150,5 @@ Los cursos nuevos siguen el formato de `aperturas-v3.json` (Idea, Línea princip
 ## Estado
 
 - **Bloque A hecho el 9-11-2026:** La enfilada (`u3-l09`), Trampas que vas a ver (`u4-l07`) y Mate en escalera (`u5-l06`). Cinco idiomas (de, it y fr traducidos con gemma4 vía Ollama y corregidos a mano, sin revisión de nativos). Los profesores de esas tres siguen las fichas actuales: Sofía, Tomás e Ivo. Detalle de la validación en `docs/formato-lecciones.md`.
-- Falta: bloques B a F.
+- **Bloque B hecho el 9-11-2026:** Unidad 7, Táctica intermedia (8 lecciones; ver `docs/formato-lecciones.md`). Las ocho lecciones usan puzzles reales de Lichess; la sobrecarga se armó con una búsqueda propia. Profesores según las fichas: Tomás (atracción, jugada intermedia), Sofía (sobrecarga, interferencia, calcular), Pipo (mates de una pieza) y Valentina (mates de dos piezas, sacrificios).
+- Falta: bloques C a F.

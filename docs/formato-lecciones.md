@@ -293,6 +293,28 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 3 | u6-l03 | Sacrificio de calidad | 9 |
 | 4 | u6-l04 | Repaso final | 10 |
 
+## Contenido de la Unidad 7 · Táctica intermedia (bloque B del temario nuevo)
+
+`src/data/unidad-7-tactica-intermedia.json`: 8 lecciones, 73 pasos (órdenes 45 a 52), escritas el 9-11-2026. Textos propios; las posiciones salen de puzzles reales de Lichess (CC0) de `lichess-puzzles.json`.
+
+| # | id | Lección | Pasos | Profesor |
+|---|---|---|---|---|
+| 1 | u7-l01 | La atracción | 9 | Tomás |
+| 2 | u7-l02 | La sobrecarga | 9 | Sofía |
+| 3 | u7-l03 | La jugada intermedia | 9 | Tomás |
+| 4 | u7-l04 | La interferencia | 9 | Sofía |
+| 5 | u7-l05 | Mates de una sola pieza | 9 | Pipo |
+| 6 | u7-l06 | Mates de dos piezas | 9 | Valentina |
+| 7 | u7-l07 | Sacrificar para abrir al rey | 9 | Valentina |
+| 8 | u7-l08 | Calcular: mate en dos y en tres | 10 | Sofía |
+
+- **Estructura de cada lección:** dos explicaciones con las jugadas reproducidas sobre el tablero, un cuestionario, un paso de tocar casillas, dos ejercicios de una jugada y dos o tres puzzles con la línea completa (`line` en modo `drill`). Los profesores siguen la ficha de cada bot.
+- **Cómo se eligieron los puzzles:** por tema de Lichess (atracción, jugada intermedia, interferencia, mate ahogado, mates con dos piezas, mate en dos y en tres) y rating de 500 a 1100. La sobrecarga no es un tema de Lichess: se buscaron puzzles cuya recapturadora era la única defensora de otra pieza (script con chess.js), para no mezclarla con «Eliminar al defensor» (Unidad 3).
+- **Validación con chess.js:** cada posición, jugada reproducida y línea; el bando del usuario; que las explicaciones de mate terminen en mate; las respuestas legales que dicen los textos («el rey solo tiene una salida», «el rey tiene que ir a e1»).
+- **Revisión con Stockfish 19 (lite, profundidad 14, todas las jugadas legales):** en cada ejercicio de una jugada, la del puzzle es la mejor, y se aceptan todas las que mantienen la evaluación (a 0,3 peones) o el mismo mate. En los ejercicios hay entre una y cuatro soluciones.
+- **Cuestionarios con respuesta calculada:** en la lección 8 las respuestas («2 respuestas legales», «1 jugada del rey») salen de chess.js, no de memoria.
+- **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama (las frases de «Correcto. …» salen de plantillas con la notación de cada idioma) y revisadas a mano. Sin revisión de nativos. Términos nuevos en los glosarios de `docs/traducciones/`.
+
 ## Lecciones agregadas el 9-11-2026 (bloque A del temario nuevo)
 
 Salen de la comparación con los libros de `C:devmaterial para lecciones` (propuesta en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`). Textos escritos de cero, sin copiar de los libros. Se insertaron sin renumerar ids; `order` se recalculó para toda la ruta (1 a 44).

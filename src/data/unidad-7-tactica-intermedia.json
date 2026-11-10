@@ -1,0 +1,1423 @@
+{
+  "unit": 7,
+  "title": "Táctica intermedia",
+  "lessons": [
+    {
+      "id": "u7-l01",
+      "unit": 7,
+      "order": 45,
+      "title": "La atracción",
+      "summary": "Llevar una pieza a la casilla que te conviene",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Las blancas tienen dos torres en la columna e. Con Txf8+ sacrifican la de e8: el rey la captura porque no tiene otra salida y queda en f8. Entonces la otra torre da mate en e8, protegida por el caballo. Eso es una atracción: un sacrificio, casi siempre con jaque, que lleva al rey o a otra pieza a una casilla donde recibe el golpe.",
+          "fen": "4Rrk1/6pp/p2N4/8/P7/5n2/2r2P2/4R2K w - - 2 35",
+          "play": [
+            "e8f8",
+            "g8f8",
+            "e1e8"
+          ],
+          "id": "u7-l01-s01"
+        },
+        {
+          "type": "explain",
+          "text": "La atracción también prepara otras tácticas. Aquí la dama blanca captura la dama negra en h8 con jaque. El rey recaptura y queda en h8, justo donde el caballo da jaque a la vez a la torre de e7. Cambiaste dama por dama, pero ganas una torre.",
+          "fen": "2n4q/1p2r2k/p1p3pp/2Pp4/PP1QpP1N/6PP/7K/4R3 w - - 6 40",
+          "play": [
+            "d4h8",
+            "h7h8",
+            "h4g6"
+          ],
+          "id": "u7-l01-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Para qué sirve el sacrificio Txf8+?",
+          "fen": "4Rrk1/6pp/p2N4/8/P7/5n2/2r2P2/4R2K w - - 2 35",
+          "highlight": [
+            "e8",
+            "f8",
+            "g8"
+          ],
+          "options": [
+            "Para atraer al rey a f8, donde recibe mate",
+            "Para ganar una torre sin más",
+            "Para cambiar las torres y simplificar"
+          ],
+          "answer": 0,
+          "explanation": "La torre se entrega para forzar la captura del rey: en f8 no tiene casillas libres y la otra torre da mate.",
+          "feedback": [
+            "",
+            "El rey la captura, así que no ganas la torre: ganas el mate.",
+            "No se simplifica nada: el sacrificio fuerza una secuencia que termina en mate."
+          ],
+          "id": "u7-l01-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Si das Txf8+, el rey tiene que capturar. Toca la casilla donde quedará.",
+          "fen": "4Rrk1/6pp/p2N4/8/P7/5n2/2r2P2/4R2K w - - 2 35",
+          "squares": [
+            "f8"
+          ],
+          "hint": "Es la casilla de la torre que sacrificas.",
+          "id": "u7-l01-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Sacrifica el alfil con jaque para atraer al rey y ganar el alfil de c8.",
+          "fen": "2b1n3/5k1p/prB1p1p1/8/8/1P4P1/P4P1P/2R3K1 w - - 5 29",
+          "solutions": [
+            "c6e8"
+          ],
+          "hint": "El alfil se aparta con jaque, el rey captura y la torre de c1 queda atacando c8.",
+          "success": "Correcto. Axe8+ atrae al rey a e8. Con el alfil fuera de la columna c, la torre gana el alfil de c8 con jaque.",
+          "id": "u7-l01-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Sacrifica una torre con jaque para atraer al rey y da mate en dos.",
+          "fen": "3r2k1/5pbp/2N1p1p1/4P3/1p6/1Pn4P/P1R2PPB/3rRK2 b - - 4 28",
+          "orientation": "b",
+          "solutions": [
+            "d1e1"
+          ],
+          "hint": "Mira la primera fila: una torre se entrega para que el rey capture y la otra da mate.",
+          "success": "Correcto. Txe1+ obliga al rey a capturar y Td1# es mate.",
+          "id": "u7-l01-s06"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la atracción.",
+          "fen": "3r4/7p/4k1p1/1p4P1/p2pPP2/n2K1N2/P1R5/8 w - - 2 37",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "f3d4",
+              "san": "Cxd4+"
+            },
+            {
+              "uci": "d8d4",
+              "san": "Txd4+"
+            },
+            {
+              "uci": "d3d4",
+              "san": "Rxd4"
+            },
+            {
+              "uci": "a3c2",
+              "san": "Cxc2+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un sacrificio con jaque que obligue al rey a capturar y quedar en una casilla expuesta.",
+          "id": "u7-l01-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la atracción.",
+          "fen": "2rq4/1b1k2Q1/p3p3/1p2P3/2pP4/2P4R/PP5P/6K1 b - - 0 29",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d8e7",
+              "san": "De7"
+            },
+            {
+              "uci": "g7e7",
+              "san": "Dxe7+"
+            },
+            {
+              "uci": "d7e7",
+              "san": "Rxe7"
+            },
+            {
+              "uci": "h3h7",
+              "san": "Th7+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un sacrificio con jaque que obligue al rey a capturar y quedar en una casilla expuesta.",
+          "id": "u7-l01-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la atracción.",
+          "fen": "R7/P1k1n3/1p4p1/8/1P1b4/8/7K/8 b - - 0 46",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e7c8",
+              "san": "Cc8"
+            },
+            {
+              "uci": "a8c8",
+              "san": "Txc8+"
+            },
+            {
+              "uci": "c7c8",
+              "san": "Rxc8"
+            },
+            {
+              "uci": "a7a8q",
+              "san": "a8=D+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un sacrificio con jaque que obligue al rey a capturar y quedar en una casilla expuesta.",
+          "id": "u7-l01-s09"
+        }
+      ]
+    },
+    {
+      "id": "u7-l02",
+      "unit": 7,
+      "order": 46,
+      "title": "La sobrecarga",
+      "summary": "Una pieza con dos tareas",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La dama negra defiende a la vez al caballo de d5 y al alfil de e7: tiene dos tareas. Si capturas el caballo, la dama recaptura y deja al alfil sin defensa. Así ganas una pieza. Eso es una sobrecarga: una pieza rival con más trabajo del que puede cumplir.",
+          "fen": "r2q1rk1/pp2bppp/8/2pn4/8/2N4P/PP2QPP1/R1B2RK1 w - - 0 15",
+          "play": [
+            "c3d5",
+            "d8d5",
+            "e2e7"
+          ],
+          "id": "u7-l02-s01"
+        },
+        {
+          "type": "explain",
+          "text": "La torre negra de f8 defiende a la torre de e8 y al peón de f7. Con Axf7+ das jaque. Si la torre de f8 captura el alfil, ya no protege a la torre de e8 y Dxe8+ la gana.",
+          "fen": "4rrk1/1pp2pp1/2n3p1/p1b5/P1B2BPq/2P4P/1P2Q1K1/R4R2 w - - 1 19",
+          "play": [
+            "c4f7",
+            "f8f7",
+            "e2e8"
+          ],
+          "id": "u7-l02-s02"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "La dama negra defiende dos piezas que pueden caer. Toca esas dos piezas.",
+          "fen": "r2q1rk1/pp2bppp/8/2pn4/8/2N4P/PP2QPP1/R1B2RK1 w - - 0 15",
+          "squares": [
+            "d5",
+            "e7"
+          ],
+          "hint": "Una está en la columna de la dama y la otra en su diagonal.",
+          "id": "u7-l02-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Por qué conviene capturar el caballo de d5?",
+          "fen": "r2q1rk1/pp2bppp/8/2pn4/8/2N4P/PP2QPP1/R1B2RK1 w - - 0 15",
+          "highlight": [
+            "d8",
+            "d5",
+            "e7"
+          ],
+          "options": [
+            "Porque si la dama recaptura, deja sin defensa al alfil de e7",
+            "Porque el caballo de d5 vale más que mi caballo",
+            "Porque abre la columna d para mi torre"
+          ],
+          "answer": 0,
+          "explanation": "La dama negra defiende las dos piezas: al recapturar en d5 abandona el alfil de e7.",
+          "feedback": [
+            "",
+            "Los dos caballos valen lo mismo: lo que cambia es lo que deja sin defensa la recaptura.",
+            "Abrir la columna no es lo importante: lo que cuenta es que la dama no puede defender las dos piezas."
+          ],
+          "id": "u7-l02-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Busca la captura que obliga a una pieza rival a recapturar y deja sin defensa a otra.",
+          "fen": "r3rnk1/ppq2p1p/2p2pp1/5P2/3P1N2/2PQ3P/PP4P1/4RRK1 b - - 2 16",
+          "orientation": "b",
+          "solutions": [
+            "e8e1"
+          ],
+          "hint": "Busca una pieza rival que defienda dos cosas a la vez: captura una y gana la otra.",
+          "success": "Correcto. Txe1 obliga a recapturar a la pieza que defendía otra, y ganas la segunda.",
+          "id": "u7-l02-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Busca la captura que obliga a una pieza rival a recapturar y deja sin defensa a otra.",
+          "fen": "3r2k1/1p3pp1/p3pn1p/q1r5/2P2P2/1B2QP2/P4P1P/R2R2K1 w - - 2 25",
+          "solutions": [
+            "d1d8"
+          ],
+          "hint": "Busca una pieza rival que defienda dos cosas a la vez: captura una y gana la otra.",
+          "success": "Correcto. Txd8+ obliga a recapturar a la pieza que defendía otra, y ganas la segunda.",
+          "id": "u7-l02-s06"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la sobrecarga.",
+          "fen": "4r1k1/5pp1/p2p3p/2pP1b2/5P2/P3Rn1P/4B1P1/1rB1R1K1 w - - 1 30",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e2f3",
+              "san": "Axf3"
+            },
+            {
+              "uci": "e8e3",
+              "san": "Txe3"
+            },
+            {
+              "uci": "e1e3",
+              "san": "Txe3"
+            },
+            {
+              "uci": "b1c1",
+              "san": "Txc1+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca una pieza rival que defienda dos cosas a la vez y captura una de ellas.",
+          "id": "u7-l02-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la sobrecarga.",
+          "fen": "rnq1r1k1/pp1b1pb1/3p2n1/2pP2B1/2P5/2N3P1/PPQ2PBP/R3R1K1 b - - 4 16",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d7f5",
+              "san": "Af5"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Txe8+"
+            },
+            {
+              "uci": "c8e8",
+              "san": "Dxe8"
+            },
+            {
+              "uci": "c2f5",
+              "san": "Dxf5"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca una pieza rival que defienda dos cosas a la vez y captura una de ellas.",
+          "id": "u7-l02-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la sobrecarga.",
+          "fen": "2r3kr/1b3p2/p7/3p4/3qP1Pn/1P1N1P2/4B2R/R3QK2 w - - 0 38",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "h2h4",
+              "san": "Txh4"
+            },
+            {
+              "uci": "h8h4",
+              "san": "Txh4"
+            },
+            {
+              "uci": "e1h4",
+              "san": "Dxh4"
+            },
+            {
+              "uci": "d4a1",
+              "san": "Dxa1+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca una pieza rival que defienda dos cosas a la vez y captura una de ellas.",
+          "id": "u7-l02-s09"
+        }
+      ]
+    },
+    {
+      "id": "u7-l03",
+      "unit": 7,
+      "order": 47,
+      "title": "La jugada intermedia",
+      "summary": "Un golpe antes de recapturar",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La dama negra capturó en d4. Si recapturas enseguida con Dxd4, el caballo de c6 recaptura y solo cambiaste damas. Antes juegas Axc6+: das jaque y capturas el caballo. Si las negras responden con bxc6, capturas la dama con Dxd4 y ya no hay caballo que recapture. Eso es una jugada intermedia: un jaque o una amenaza que haces antes de la recaptura obvia.",
+          "fen": "r3kb1r/pp3ppp/2n1p3/8/3q4/P4B1P/1P3PP1/R1BQK2R w KQkq - 0 13",
+          "play": [
+            "f3c6",
+            "b7c6",
+            "d1d4"
+          ],
+          "id": "u7-l03-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Lo mismo con negras: la dama blanca capturó en d5. Recapturar enseguida con Dxd5 permite Cxd5. Antes, Axc3+ da jaque y elimina al caballo que protegía d5. Después de bxc3 ya puedes capturar la dama.",
+          "fen": "rnbqk2r/ppp2ppp/5b2/3Q4/8/2N3P1/PPP1PP1P/R3KBNR b KQkq - 0 7",
+          "orientation": "b",
+          "play": [
+            "f6c3",
+            "b2c3",
+            "d8d5"
+          ],
+          "id": "u7-l03-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Las negras capturaron en d4 con la dama. ¿Qué te conviene hacer primero?",
+          "fen": "r3kb1r/pp3ppp/2n1p3/8/3q4/P4B1P/1P3PP1/R1BQK2R w KQkq - 0 13",
+          "highlight": [
+            "d4",
+            "c6"
+          ],
+          "options": [
+            "Recapturar enseguida con la dama",
+            "Dar jaque con el alfil capturando el caballo de c6",
+            "Retirar la dama a una casilla segura"
+          ],
+          "answer": 1,
+          "explanation": "Con el jaque obligas al rival a responder y quitas al caballo que protegía d4. Después recapturas la dama sin perder nada.",
+          "feedback": [
+            "Si recapturas enseguida, el caballo de c6 recaptura la dama: solo habrás cambiado damas.",
+            "",
+            "Retirarla pierde la oportunidad de ganar la dama negra."
+          ],
+          "id": "u7-l03-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Antes de recapturar, mira quién protege a la dama negra de d4. Toca esa pieza.",
+          "fen": "r3kb1r/pp3ppp/2n1p3/8/3q4/P4B1P/1P3PP1/R1BQK2R w KQkq - 0 13",
+          "squares": [
+            "c6"
+          ],
+          "hint": "Es un caballo que la defiende desde una casilla cercana.",
+          "id": "u7-l03-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Antes de recapturar, busca una captura con jaque.",
+          "fen": "4N1k1/3q1pbp/pp3np1/2p1p3/8/1P5P/PBP2PP1/3Q2K1 w - - 0 30",
+          "solutions": [
+            "e8f6"
+          ],
+          "hint": "Una pieza tuya puede capturar con jaque y quitar a la defensora antes de que tomes la dama.",
+          "success": "Correcto. Cxf6+ es la jugada intermedia: se juega antes de recapturar.",
+          "id": "u7-l03-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Antes de recapturar, busca un jaque.",
+          "fen": "3rrk2/pp4p1/1n2B2p/4p3/2P5/1P5P/P5P1/R2Q2K1 b - - 0 28",
+          "orientation": "b",
+          "solutions": [
+            "d8d1"
+          ],
+          "hint": "Da un jaque que el rival tenga que responder antes de que recapture tu pieza.",
+          "success": "Correcto. Txd1+ es la jugada intermedia: se juega antes de recapturar.",
+          "id": "u7-l03-s06"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la jugada intermedia.",
+          "fen": "1rr2k2/4bp2/Q5pp/4P3/8/1p5P/6P1/1R5K w - - 0 35",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "b1b3",
+              "san": "Txb3"
+            },
+            {
+              "uci": "c8c1",
+              "san": "Tc1+"
+            },
+            {
+              "uci": "h1h2",
+              "san": "Rh2"
+            },
+            {
+              "uci": "b8b3",
+              "san": "Txb3"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Antes de recapturar, busca un jaque que el rival tenga que responder.",
+          "id": "u7-l03-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la jugada intermedia.",
+          "fen": "4r1k1/pp1q1p2/6p1/P2Q3p/1r1P3P/6Pb/5P2/R3R1KB b - - 0 25",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d7d5",
+              "san": "Dxd5"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Txe8+"
+            },
+            {
+              "uci": "g8g7",
+              "san": "Rg7"
+            },
+            {
+              "uci": "h1d5",
+              "san": "Axd5"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Antes de recapturar, busca un jaque que el rival tenga que responder.",
+          "id": "u7-l03-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la jugada intermedia.",
+          "fen": "r2qkb1r/ppp1pppp/1nn5/4P3/3P4/5B2/PP3PPP/RNBQ1RK1 b kq - 0 9",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d8d4",
+              "san": "Dxd4"
+            },
+            {
+              "uci": "f3c6",
+              "san": "Axc6+"
+            },
+            {
+              "uci": "b7c6",
+              "san": "bxc6"
+            },
+            {
+              "uci": "d1d4",
+              "san": "Dxd4"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Antes de recapturar, busca un jaque que el rival tenga que responder.",
+          "id": "u7-l03-s09"
+        }
+      ]
+    },
+    {
+      "id": "u7-l04",
+      "unit": 7,
+      "order": 48,
+      "title": "La interferencia",
+      "summary": "Cortar la defensa en medio",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La dama blanca de d1 protege a la torre de h1 por la primera fila. Con Dg2+ el rey se ve obligado a ir a e1, y queda justo entre las dos piezas: corta la defensa. Entonces Dxh1+ gana la torre. Eso es una interferencia: algo se interpone entre una pieza y la que la protege.",
+          "fen": "r1b2r2/pp4k1/4p1p1/3pNp2/2pP4/2P1P2q/PPB1K3/R2Q3R b - - 1 21",
+          "orientation": "b",
+          "play": [
+            "h3g2",
+            "e2e1",
+            "g2h1"
+          ],
+          "id": "u7-l04-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Las negras tienen una torre en h8 que la dama de d8 protege por la fila 8. Con Dg7+ el rey se ve obligado a ir a e8: se mete entre la dama y la torre y las separa. Después de Dxh8+ las negras pierden la torre.",
+          "fen": "r2q3r/pp1bk3/2nbp1Qp/3p4/2P5/8/PP1P1PPP/RNB1K2R w KQ - 1 14",
+          "play": [
+            "g6g7",
+            "e7e8",
+            "g7h8"
+          ],
+          "id": "u7-l04-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "La dama blanca de d1 protege a la torre de h1 por la primera fila. ¿Qué pasa si el rey blanco se coloca en e1?",
+          "fen": "r1b2r2/pp4k1/4p1p1/3pNp2/2pP4/2P1P2q/PPB1K3/R2Q3R b - - 1 21",
+          "orientation": "b",
+          "highlight": [
+            "d1",
+            "e1",
+            "h1"
+          ],
+          "options": [
+            "La torre queda sin protección",
+            "La torre queda mejor protegida",
+            "No cambia nada"
+          ],
+          "answer": 0,
+          "explanation": "El rey en e1 bloquea la fila: la dama ya no ve la torre y puede capturarse gratis.",
+          "feedback": [
+            "",
+            "El rey no protege a la torre desde e1: se interpone y corta la línea de la dama.",
+            "Cambia mucho: el rey tapa la línea entre las dos piezas."
+          ],
+          "id": "u7-l04-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Con Dg2+ el rey blanco tiene que ir a e1. Toca las dos piezas blancas que su interferencia separa.",
+          "fen": "r1b2r2/pp4k1/4p1p1/3pNp2/2pP4/2P1P2q/PPB1K3/R2Q3R b - - 1 21",
+          "orientation": "b",
+          "squares": [
+            "d1",
+            "h1"
+          ],
+          "hint": "Son las dos piezas de la primera fila que se protegían entre sí.",
+          "id": "u7-l04-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Da un jaque que obligue al rey a interponerse entre dos piezas que se protegen.",
+          "fen": "3r2k1/p3bppp/8/8/1P1qQ3/P4P1P/4KP2/2R4R b - - 1 28",
+          "orientation": "b",
+          "solutions": [
+            "d4d2"
+          ],
+          "hint": "Mira la primera fila: dos torres se protegen. Un jaque de la dama puede mandar al rey al medio.",
+          "success": "Correcto. Dd2+ fuerza al rey a cortar su propia defensa.",
+          "id": "u7-l04-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Da un jaque que obligue al rey a interponerse entre dos piezas que se protegen.",
+          "fen": "2q4r/p4k1p/1p2r2n/2p2p2/5P2/P1B3QP/1P4P1/5RK1 w - - 0 32",
+          "solutions": [
+            "g3g7"
+          ],
+          "hint": "Mira la fila 8: una pieza protege a otra a distancia. Un jaque puede llevar al rey al medio.",
+          "success": "Correcto. Dg7+ fuerza al rey a cortar su propia defensa.",
+          "id": "u7-l04-s06"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la interferencia.",
+          "fen": "8/p1n3k1/1p2p3/1P1pP1p1/q1pB1pP1/2P2P2/1R2K1Q1/8 w - - 1 63",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e2e1",
+              "san": "Re1"
+            },
+            {
+              "uci": "a4a1",
+              "san": "Da1+"
+            },
+            {
+              "uci": "e1f2",
+              "san": "Rf2"
+            },
+            {
+              "uci": "a1b2",
+              "san": "Dxb2+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque que obligue al rey a ponerse entre dos piezas que se protegían.",
+          "id": "u7-l04-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la interferencia.",
+          "fen": "1r5r/pq1pkpQp/1p2p1p1/1P2P3/2nP4/8/P4PPP/R3R1K1 b - - 3 28",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "b7d5",
+              "san": "Dd5"
+            },
+            {
+              "uci": "g7f6",
+              "san": "Df6+"
+            },
+            {
+              "uci": "e7e8",
+              "san": "Re8"
+            },
+            {
+              "uci": "f6h8",
+              "san": "Dxh8+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque que obligue al rey a ponerse entre dos piezas que se protegían.",
+          "id": "u7-l04-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Aprovecha la interferencia.",
+          "fen": "r7/5p1p/2k3p1/1p1pP3/3P4/5R1P/2P3P1/6K1 b - - 4 30",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "a8a7",
+              "san": "Ta7"
+            },
+            {
+              "uci": "f3f6",
+              "san": "Tf6+"
+            },
+            {
+              "uci": "c6b7",
+              "san": "Rb7"
+            },
+            {
+              "uci": "f6f7",
+              "san": "Txf7+"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque que obligue al rey a ponerse entre dos piezas que se protegían.",
+          "id": "u7-l04-s09"
+        }
+      ]
+    },
+    {
+      "id": "u7-l05",
+      "unit": 7,
+      "order": 49,
+      "title": "Mates de una sola pieza",
+      "summary": "Una pieza da el golpe final",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "El rey negro no tiene casillas libres: sus propios peones de f7, g7 y h7 le cierran la segunda fila. La torre captura en e8 y da mate en la última fila. Es el mate del pasillo y lo da una sola pieza.",
+          "fen": "r1b1r1k1/ppp2ppp/8/6q1/2Pp1n2/3P4/PBP2PPP/R2QR2K w - - 4 16",
+          "play": [
+            "e1e8"
+          ],
+          "id": "u7-l05-s01"
+        },
+        {
+          "type": "explain",
+          "text": "El rey blanco está encerrado por su propia torre de g1 y los peones de g2 y h2. El caballo da jaque desde f2 y el rey no tiene adónde ir ni puede capturarlo. Es el mate de la coz: solo el caballo salta por encima de las demás piezas.",
+          "fen": "r1b2rk1/pppp1ppp/7B/3Q4/N1B1P1n1/8/PPP3PP/R5RK b - - 0 14",
+          "orientation": "b",
+          "play": [
+            "g4f2"
+          ],
+          "id": "u7-l05-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué habría evitado el mate del pasillo?",
+          "fen": "r1b1r1k1/ppp2ppp/8/6q1/2Pp1n2/3P4/PBP2PPP/R2QR2K w - - 4 16",
+          "highlight": [
+            "g8",
+            "f7",
+            "g7",
+            "h7"
+          ],
+          "options": [
+            "Un hueco para el rey, moviendo un peón como h7 o g7",
+            "Cambiar las damas",
+            "Mover la torre de a8"
+          ],
+          "answer": 0,
+          "explanation": "Un hueco en la segunda fila le da una casilla de escape al rey. Un peón movido a tiempo evita el mate.",
+          "feedback": [
+            "",
+            "Con las damas cambiadas el rey sigue sin casillas libres.",
+            "La torre de a8 no puede ayudar: el mate llega por la columna e."
+          ],
+          "id": "u7-l05-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "El rey blanco no puede moverse. Toca las tres piezas blancas que le cierran el paso.",
+          "fen": "r1b2rk1/pppp1ppp/7B/3Q4/N1B1P1n1/8/PPP3PP/R5RK b - - 0 14",
+          "orientation": "b",
+          "squares": [
+            "g1",
+            "g2",
+            "h2"
+          ],
+          "hint": "Están pegadas al rey: una torre y dos peones.",
+          "id": "u7-l05-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Da mate con una sola pieza: el rey está encerrado por sus propias piezas.",
+          "fen": "rnbq2rk/pppp2bp/6pN/4Pp2/3P1B2/8/PPP2PPP/RN2R1K1 w - - 0 16",
+          "solutions": [
+            "h6f7"
+          ],
+          "hint": "Busca la pieza que pueda dar jaque sin que el rey la capture ni escape.",
+          "success": "Correcto. Cf7# es mate: el rey no tiene casillas libres.",
+          "id": "u7-l05-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Da mate con una sola pieza: el rey está encerrado por sus propias piezas.",
+          "fen": "rn2k2r/p7/1pp1p3/5pp1/2PN1bp1/3P4/PP2BPP1/R2QRK1N b kq - 0 21",
+          "orientation": "b",
+          "solutions": [
+            "h8h1"
+          ],
+          "hint": "Busca la pieza que pueda dar jaque sin que el rey la capture ni escape.",
+          "success": "Correcto. Txh1# es mate: el rey no tiene casillas libres.",
+          "id": "u7-l05-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Da mate con una sola pieza: el rey está encerrado por sus propias piezas.",
+          "fen": "8/1R3p1k/4p1pp/4q3/8/8/2Q3PP/7K b - - 0 51",
+          "orientation": "b",
+          "solutions": [
+            "e5e1"
+          ],
+          "hint": "Busca la pieza que pueda dar jaque sin que el rey la capture ni escape.",
+          "success": "Correcto. De1# es mate: el rey no tiene casillas libres.",
+          "id": "u7-l05-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Encuentra el mate en dos.",
+          "fen": "1r3Q1k/pp2n1pp/3N4/4p3/4P3/3P4/PPP1q1PP/5R1K b - - 2 23",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "b8f8",
+              "san": "Txf8"
+            },
+            {
+              "uci": "f1f8",
+              "san": "Txf8+"
+            },
+            {
+              "uci": "e7g8",
+              "san": "Cg8"
+            },
+            {
+              "uci": "d6f7",
+              "san": "Cf7#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque que deje al rey rodeado de sus propias piezas.",
+          "id": "u7-l05-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Encuentra el mate en dos.",
+          "fen": "6k1/5ppp/pR3n2/2p5/2P5/P2r1N1P/5PP1/6K1 b - - 0 27",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d3a3",
+              "san": "Txa3"
+            },
+            {
+              "uci": "b6b8",
+              "san": "Tb8+"
+            },
+            {
+              "uci": "f6e8",
+              "san": "Ce8"
+            },
+            {
+              "uci": "b8e8",
+              "san": "Txe8#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque que deje al rey rodeado de sus propias piezas.",
+          "id": "u7-l05-s09"
+        }
+      ]
+    },
+    {
+      "id": "u7-l06",
+      "unit": 7,
+      "order": 50,
+      "title": "Mates de dos piezas",
+      "summary": "Dos piezas, un mismo objetivo",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La dama sola no podría dar este mate: el rey la capturaría. Pero el alfil de c4 protege g8 desde la misma diagonal. Cuando una pieza ataca y otra la apoya en la misma línea, forman una batería: el rey no puede capturar a la dama y no tiene casillas libres.",
+          "fen": "Q7/6k1/5q1p/8/2B5/P7/KPP2r2/8 w - - 9 55",
+          "play": [
+            "a8g8"
+          ],
+          "id": "u7-l06-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Este es el mate árabe: la torre da jaque desde h7 y el caballo de f6 la protege y, además, cubre g8. El rey no puede capturar la torre ni escapar.",
+          "fen": "5r1k/3R4/1pp2Np1/p1b4p/P1B1PK2/1Pr5/8/8 w - - 2 39",
+          "play": [
+            "d7h7"
+          ],
+          "id": "u7-l06-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué pieza impide que el rey negro capture la dama en g8?",
+          "fen": "Q7/6k1/5q1p/8/2B5/P7/KPP2r2/8 w - - 9 55",
+          "highlight": [
+            "c4",
+            "g8"
+          ],
+          "options": [
+            "El alfil blanco de c4",
+            "El rey blanco de a2",
+            "El peón blanco de b2"
+          ],
+          "answer": 0,
+          "explanation": "El alfil protege g8 por la diagonal: si el rey captura la dama, queda en jaque.",
+          "feedback": [
+            "",
+            "El rey blanco está demasiado lejos para proteger a g8.",
+            "El peón de b2 no tiene relación con g8."
+          ],
+          "id": "u7-l06-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca las dos piezas blancas que dan el mate árabe.",
+          "fen": "5r1k/3R4/1pp2Np1/p1b4p/P1B1PK2/1Pr5/8/8 w - - 2 39",
+          "squares": [
+            "d7",
+            "f6"
+          ],
+          "hint": "Una es una torre y la otra un caballo.",
+          "id": "u7-l06-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Da mate con dos piezas que trabajan juntas.",
+          "fen": "3rkb1r/p1p2ppp/2p5/4Pb2/3N1P2/Q1P5/P2B2PP/2KR3R b k - 0 17",
+          "orientation": "b",
+          "solutions": [
+            "f8a3"
+          ],
+          "hint": "Una pieza da el jaque y la otra cubre las casillas de escape del rey.",
+          "success": "Correcto. Axa3# es mate gracias a la otra pieza, que cubre las casillas de escape.",
+          "id": "u7-l06-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Da mate con dos piezas que trabajan juntas.",
+          "fen": "6rk/8/3P3p/p4Qq1/8/8/2B2PPK/8 w - - 1 46",
+          "solutions": [
+            "f5h7"
+          ],
+          "hint": "Una pieza da el jaque y la otra la apoya para que el rey no pueda capturarla.",
+          "success": "Correcto. Dh7# es mate: la otra pieza apoya a la dama.",
+          "id": "u7-l06-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Da mate con dos piezas que trabajan juntas.",
+          "fen": "3r3k/Q5p1/1pP2p1p/1Pq2N2/8/7P/5PP1/6K1 w - - 11 46",
+          "solutions": [
+            "a7g7"
+          ],
+          "hint": "Una pieza da el jaque y la otra la apoya para que el rey no pueda capturarla.",
+          "success": "Correcto. Dxg7# es mate: la otra pieza apoya a la dama.",
+          "id": "u7-l06-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Encuentra el mate en dos.",
+          "fen": "q6k/6r1/5N2/p4P1p/1pp1P3/P4Bp1/1P1R2P1/5K2 b - - 2 46",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "a8a7",
+              "san": "Da7"
+            },
+            {
+              "uci": "d2d8",
+              "san": "Td8+"
+            },
+            {
+              "uci": "g7g8",
+              "san": "Tg8"
+            },
+            {
+              "uci": "d8g8",
+              "san": "Txg8#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque con una pieza y mate con otra que la apoye.",
+          "id": "u7-l06-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Encuentra el mate en dos.",
+          "fen": "2r1k3/5ppp/R1pB4/1pP5/8/5P2/KPPn2PP/8 w - - 3 29",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "a6b6",
+              "san": "Tb6"
+            },
+            {
+              "uci": "c8a8",
+              "san": "Ta8+"
+            },
+            {
+              "uci": "b6a6",
+              "san": "Ta6"
+            },
+            {
+              "uci": "a8a6",
+              "san": "Txa6#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque con una pieza y mate con otra que la apoye.",
+          "id": "u7-l06-s09"
+        }
+      ]
+    },
+    {
+      "id": "u7-l07",
+      "unit": 7,
+      "order": 51,
+      "title": "Sacrificar para abrir al rey",
+      "summary": "Entregar material para llegar al rey",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Los peones de h6 y g7 protegen al rey. Con Txh6+ entregas la torre: el peón de g7 tiene que capturar, el rey queda al descubierto y la dama da mate en h6. No regalas material: calculas hasta el mate antes de sacrificar.",
+          "fen": "r3r2k/pR4p1/3q1p1p/2bBn2R/P6Q/6P1/P1P4P/7K w - - 2 30",
+          "play": [
+            "h5h6",
+            "g7h6",
+            "h4h6"
+          ],
+          "id": "u7-l07-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Aquí el sacrificio es en g6. Con Txg6+ la torre se ofrece. Si el peón de f7 captura, el rey pierde su protección y la dama da mate en g6.",
+          "fen": "5rkr/p4p2/6pp/8/1P4R1/2P3QP/q5PK/n7 w - - 0 34",
+          "play": [
+            "g4g6",
+            "f7g6",
+            "g3g6"
+          ],
+          "id": "u7-l07-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué consigue el sacrificio Txh6+?",
+          "fen": "r3r2k/pR4p1/3q1p1p/2bBn2R/P6Q/6P1/P1P4P/7K w - - 2 30",
+          "highlight": [
+            "h6",
+            "g7",
+            "h8"
+          ],
+          "options": [
+            "Quita un peón que protegía al rey y deja entrar a la dama",
+            "Gana material de inmediato",
+            "Cambia las torres"
+          ],
+          "answer": 0,
+          "explanation": "La torre se entrega para abrir el escudo de peones del rey. Si el peón captura, la dama da mate.",
+          "feedback": [
+            "",
+            "El sacrificio no gana material: pierdes una torre a cambio del mate.",
+            "No hay cambio de torres: el rival no puede recapturar con una torre."
+          ],
+          "id": "u7-l07-s03"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Después de Txg6+ y fxg6, la dama da mate. Toca la casilla donde da mate.",
+          "fen": "5rkr/p4p2/6pp/8/1P4R1/2P3QP/q5PK/n7 w - - 0 34",
+          "squares": [
+            "g6"
+          ],
+          "hint": "Es la casilla del peón que acaba de capturar.",
+          "id": "u7-l07-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Sacrifica una pieza con jaque para abrir al rey y da mate en dos.",
+          "fen": "r2q1r1k/p5n1/7p/2p1pPb1/1pBp4/5P2/PPP4Q/R3K1NR w KQ - 0 22",
+          "solutions": [
+            "h2h6"
+          ],
+          "hint": "Entrega una pieza en la casilla que protege al rey: el rival tiene que capturar y deja el camino libre.",
+          "success": "Correcto. Dxh6+ abre el camino al rey y el mate llega en la jugada siguiente.",
+          "id": "u7-l07-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Sacrifica una pieza con jaque para abrir al rey y da mate en dos.",
+          "fen": "rn1q1rk1/4bpp1/b1p1p2p/p7/1p1PN3/2PQ4/PPB1NPPP/R4RK1 w - - 2 16",
+          "solutions": [
+            "e4f6"
+          ],
+          "hint": "Entrega una pieza con jaque para desviar a la que cubre una casilla clave.",
+          "success": "Correcto. Cf6+ fuerza una captura y el mate llega en la jugada siguiente.",
+          "id": "u7-l07-s06"
+        },
+        {
+          "type": "line",
+          "prompt": "Sacrifica para abrir al rey.",
+          "fen": "3r2k1/1b4pp/2qpN3/p1p1p3/2P5/PP1p1r2/1B4PP/1Q2R1K1 w - - 0 29",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e6d8",
+              "san": "Cxd8"
+            },
+            {
+              "uci": "f3f1",
+              "san": "Tf1+"
+            },
+            {
+              "uci": "e1f1",
+              "san": "Txf1"
+            },
+            {
+              "uci": "c6g2",
+              "san": "Dxg2#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque con sacrificio que deje al rey sin protección.",
+          "id": "u7-l07-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Sacrifica para abrir al rey.",
+          "fen": "r4rk1/ppq2ppp/2p1p1b1/8/1P1P4/P3PP1P/1B1NBRPK/R2Q1n2 w - - 1 23",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "h2g1",
+              "san": "Rg1"
+            },
+            {
+              "uci": "c7h2",
+              "san": "Dh2+"
+            },
+            {
+              "uci": "g1f1",
+              "san": "Rxf1"
+            },
+            {
+              "uci": "h2h1",
+              "san": "Dh1#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque con sacrificio que deje al rey sin protección.",
+          "id": "u7-l07-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Sacrifica para abrir al rey.",
+          "fen": "r2q2k1/pp3pp1/2p4p/3pQ1b1/3P1n2/2P2PN1/PPB2P1P/4R1K1 b - - 5 21",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d8f6",
+              "san": "Df6"
+            },
+            {
+              "uci": "e5e8",
+              "san": "De8+"
+            },
+            {
+              "uci": "a8e8",
+              "san": "Txe8"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Txe8#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Busca un jaque con sacrificio que deje al rey sin protección.",
+          "id": "u7-l07-s09"
+        }
+      ]
+    },
+    {
+      "id": "u7-l08",
+      "unit": 7,
+      "order": 52,
+      "title": "Calcular: mate en dos y en tres",
+      "summary": "Mira los jaques y sigue la secuencia",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Para encontrar un mate en dos, empieza por los jaques. Aquí solo hay uno, Th8+, y deja al rey negro una sola salida: e7. Después Te8 es mate, con el alfil de c6 protegiendo a la torre.",
+          "fen": "5k2/2p2pp1/1rBr2b1/p2P2P1/4p2R/Pp2P3/1P6/2K4R w - - 3 30",
+          "play": [
+            "h4h8",
+            "f8e7",
+            "h8e8"
+          ],
+          "id": "u7-l08-s01"
+        },
+        {
+          "type": "explain",
+          "text": "En un mate en tres, cada jaque deja al rival muy pocas respuestas, y esas son las que hay que calcular. Aquí Dd8+ deja solo dos respuestas: interponer el alfil en e8 o la torre en f8. Con el alfil, Dxe8+ obliga a interponer la torre y Dxf8 es mate.",
+          "fen": "7k/ppp3pp/2b4r/8/4P3/3Q1rPq/PP3P1P/R3R1K1 w - - 0 28",
+          "play": [
+            "d3d8",
+            "c6e8",
+            "d8e8",
+            "f3f8",
+            "e8f8"
+          ],
+          "id": "u7-l08-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Después de Dd8+, ¿cuántas respuestas legales tiene el negro?",
+          "fen": "7k/ppp3pp/2b4r/8/4P3/3Q1rPq/PP3P1P/R3R1K1 w - - 0 28",
+          "highlight": [
+            "h8",
+            "d8"
+          ],
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "explanation": "Solo dos: interponer el alfil en e8 o la torre en f8. Con tan pocas respuestas se puede calcular todo el mate.",
+          "feedback": [
+            "Cuenta de nuevo: el rey no puede moverse y solo se puede interponer o capturar.",
+            "",
+            "Cuenta de nuevo: el rey no puede moverse y solo se puede interponer o capturar.",
+            "Cuenta de nuevo: el rey no puede moverse y solo se puede interponer o capturar."
+          ],
+          "id": "u7-l08-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Después de Th8+, ¿cuántas jugadas legales tiene el rey negro?",
+          "fen": "5k2/2p2pp1/1rBr2b1/p2P2P1/4p2R/Pp2P3/1P6/2K4R w - - 3 30",
+          "highlight": [
+            "f8"
+          ],
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 0,
+          "explanation": "Solo una: el rey no puede capturar la torre ni quedarse en el jaque. Cuando el rival tiene una sola respuesta, el cálculo es muy corto.",
+          "feedback": [
+            "",
+            "Revisa las casillas vecinas del rey: casi todas están controladas.",
+            "Revisa las casillas vecinas del rey: casi todas están controladas.",
+            "Revisa las casillas vecinas del rey: casi todas están controladas."
+          ],
+          "id": "u7-l08-s04"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Después de Th8+ el rey solo puede ir a una casilla. Tócala.",
+          "fen": "5k1R/2p2pp1/1rBr2b1/p2P2P1/4p3/Pp2P3/1P6/2K4R b - - 4 30",
+          "squares": [
+            "e7"
+          ],
+          "hint": "Las demás casillas vecinas están controladas por tus piezas.",
+          "id": "u7-l08-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Mate en dos: empieza por los jaques.",
+          "fen": "5rk1/pp2q1pp/2p5/3p4/P2P4/1Q3R2/1PP3PP/7K b - - 0 24",
+          "orientation": "b",
+          "solutions": [
+            "e7e1"
+          ],
+          "hint": "Mira los jaques que puede dar tu dama: uno de ellos deja al rival con una sola respuesta.",
+          "success": "Correcto. De1+ fuerza la respuesta y Dxf1# es mate.",
+          "id": "u7-l08-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Mate en dos: empieza por los jaques.",
+          "fen": "1k1r4/2R2ppp/1p1r4/pP6/P3n3/4BP2/6PP/2R3K1 b - - 0 29",
+          "orientation": "b",
+          "solutions": [
+            "d6d1"
+          ],
+          "hint": "Mira los jaques de tu torre: uno de ellos deja al rival con una sola respuesta.",
+          "success": "Correcto. Td1+ fuerza la respuesta y Txd1# es mate.",
+          "id": "u7-l08-s07"
+        },
+        {
+          "type": "line",
+          "prompt": "Encuentra el mate en tres.",
+          "fen": "8/p1R2pkp/4b1p1/p7/8/1P6/r4PPP/4R1K1 w - - 0 30",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "e1e6",
+              "san": "Txe6"
+            },
+            {
+              "uci": "a2a1",
+              "san": "Ta1+"
+            },
+            {
+              "uci": "c7c1",
+              "san": "Tc1"
+            },
+            {
+              "uci": "a1c1",
+              "san": "Txc1+"
+            },
+            {
+              "uci": "e6e1",
+              "san": "Te1"
+            },
+            {
+              "uci": "c1e1",
+              "san": "Txe1#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Empieza por los jaques y sigue las pocas respuestas que le quedan al rival.",
+          "id": "u7-l08-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Encuentra el mate en tres.",
+          "fen": "5r1k/p4Rpp/8/5p2/4P3/8/PP1r2PP/2R3K1 b - - 0 25",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "f8f7",
+              "san": "Txf7"
+            },
+            {
+              "uci": "c1c8",
+              "san": "Tc8+"
+            },
+            {
+              "uci": "d2d8",
+              "san": "Td8"
+            },
+            {
+              "uci": "c8d8",
+              "san": "Txd8+"
+            },
+            {
+              "uci": "f7f8",
+              "san": "Tf8"
+            },
+            {
+              "uci": "d8f8",
+              "san": "Txf8#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Empieza por los jaques y sigue las pocas respuestas que le quedan al rival.",
+          "id": "u7-l08-s09"
+        },
+        {
+          "type": "line",
+          "prompt": "Encuentra el mate en tres.",
+          "fen": "4rr1k/ppqbRQpp/8/2p5/P2p4/3P3P/BPP2PP1/4R1K1 b - - 0 19",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "f8f7",
+              "san": "Txf7"
+            },
+            {
+              "uci": "e7e8",
+              "san": "Txe8+"
+            },
+            {
+              "uci": "d7e8",
+              "san": "Axe8"
+            },
+            {
+              "uci": "e1e8",
+              "san": "Txe8+"
+            },
+            {
+              "uci": "f7f8",
+              "san": "Tf8"
+            },
+            {
+              "uci": "e8f8",
+              "san": "Txf8#"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Empieza por los jaques y sigue las pocas respuestas que le quedan al rival.",
+          "id": "u7-l08-s10"
+        }
+      ]
+    }
+  ]
+}

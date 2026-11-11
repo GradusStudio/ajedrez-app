@@ -27,6 +27,7 @@ import {
   withReset,
 } from './progressStore';
 import { mergeImport, mergeProgress, sameProgress } from './merge';
+import { markPracticed } from './practiceMark';
 import { useCrossTabSync } from './useCrossTabSync';
 
 /** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
@@ -96,12 +97,14 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
       setSaveBlocked(!r.canSave);
       setProgress(r.progress);
       setLoaded(true);
+      markPracticed(r.progress.streak);
     });
   }, []);
 
   const commit = useCallback((next: Progress) => {
     current.current = next;
     setProgress(next);
+    markPracticed(next.streak);
     if (canSave.current) saveProgress(next).catch(() => {});
   }, []);
 

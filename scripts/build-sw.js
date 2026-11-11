@@ -93,6 +93,8 @@ async function main() {
   }
   const matchPuzzles = new Function('ctx', `return ctx.url.origin === ${JSON.stringify(puzzlesOrigin())};`);
   syncOrigin();
+  // El aviso push vive fuera de Workbox: se copia para que lo importe el sw.js generado (y _headers lo sirve sin caché).
+  fs.copyFileSync(path.join(__dirname, 'push-sw.js'), path.join(DIST, 'push-sw.js'));
   // Workbox copia esta función al service worker como texto: no puede usar variables de afuera.
   const heavyPathsJson = JSON.stringify(heavy.map((p) => BASE + p));
   const matchHeavy = new Function('ctx', `return ${heavyPathsJson}.includes(ctx.url.pathname);`);
@@ -110,6 +112,7 @@ async function main() {
     skipWaiting: false,
     clientsClaim: false,
     cleanupOutdatedCaches: true,
+    importScripts: ['/app/push-sw.js'],
     navigateFallback: BASE + 'index.html',
     runtimeCaching: [
       {

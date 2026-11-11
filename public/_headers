@@ -20,6 +20,8 @@
   Cache-Control: no-cache
 /app/sw.js
   Cache-Control: no-cache
+/app/push-sw.js
+  Cache-Control: no-cache
 /app/manifest.webmanifest
   Cache-Control: no-cache
 /app/_expo/static/*

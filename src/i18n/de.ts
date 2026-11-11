@@ -120,6 +120,9 @@ export const de: Record<MessageKey, string> = {
   'settings.noPermission.message': 'Damit die Erinnerung ankommt, erlaube Mitteilungen für diese App in den Telefon-Einstellungen.',
   'settings.reminderFailed.title': 'Erinnerung konnte nicht geplant werden',
   'settings.reminderFailed.message': 'Versuch es in ein paar Minuten noch mal.',
+  // Traducciones en pausa: estas dos claves quedan en inglés por ahora.
+  'settings.reminderRevoked.title': 'Reminder turned off',
+  'settings.reminderRevoked.message': 'The browser no longer allows notifications, so the reminder was turned off. To turn it back on, allow notifications for Gradus in the browser settings and enable the reminder again in Settings.',
   'settings.board': 'Brett',
   'settings.boardTheme': 'Brettdesign',
   'settings.boardThemeLabel': 'Brett {name}',

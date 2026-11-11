@@ -119,6 +119,8 @@ export const es = {
   'settings.noPermission.message': 'Para recibir el recordatorio, permite las notificaciones de esta app en los ajustes del teléfono.',
   'settings.reminderFailed.title': 'No se pudo programar el recordatorio',
   'settings.reminderFailed.message': 'Prueba otra vez en unos minutos.',
+  'settings.reminderRevoked.title': 'Recordatorio desactivado',
+  'settings.reminderRevoked.message': 'El navegador ya no permite notificaciones, así que el recordatorio se apagó. Para volver a activarlo, permite las notificaciones para Gradus en los ajustes del navegador y actívalo de nuevo en Ajustes.',
   'settings.board': 'Tablero',
   'settings.boardTheme': 'Tema del tablero',
   'settings.boardThemeLabel': 'Tablero {name}',

@@ -26,6 +26,11 @@ export default {
   },
   scheduled: (event: ScheduledEvent, env: Env, ctx: ScheduledContext) =>
     ctx.waitUntil(
-      sendDueReminders(createD1ReminderStore(env.DB), createPushSender(fetch, env), new Date(event.scheduledTime))
+      sendDueReminders(createD1ReminderStore(env.DB), createPushSender(fetch, env), new Date(event.scheduledTime)).then(
+        ({ sent, gone, dropped }) => {
+          // Solo los contadores: ni los avisos ni las suscripciones van a los logs.
+          console.log('reminders: envío programado', { sent, gone, dropped });
+        }
+      )
     ),
 };

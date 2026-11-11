@@ -62,6 +62,17 @@ test('detectReminderSupport: todo soportado + ios → ios-needs-install', () => 
   assert.equal(detectReminderSupport({ ...capabilities, platform: 'ios' }), 'ios-needs-install');
 });
 
+test('detectReminderSupport: ios sin las APIs → ios-needs-install (primero la instalación)', () => {
+  assert.equal(
+    detectReminderSupport({ hasServiceWorker: false, hasPushManager: false, hasNotification: false, platform: 'ios' }),
+    'ios-needs-install'
+  );
+});
+
+test('detectReminderSupport: instalada sin Notification → unsupported', () => {
+  assert.equal(detectReminderSupport({ ...capabilities, hasNotification: false, platform: 'installed' }), 'unsupported');
+});
+
 test('detectReminderSupport: todo soportado + installed → supported', () => {
   assert.equal(detectReminderSupport({ ...capabilities, platform: 'installed' }), 'supported');
 });

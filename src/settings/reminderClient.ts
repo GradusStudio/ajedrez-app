@@ -51,8 +51,10 @@ export function urlBase64ToUint8Array(base64: string): Uint8Array {
 }
 
 /**
- * Solo se ofrece el recordatorio si el navegador tiene las tres APIs. En iPhone y iPad Web Push solo funciona con la
- * app agregada a la pantalla de inicio, por eso `ios` queda como `ios-needs-install`.
+ * En iPhone y iPad Web Push solo funciona con la app agregada a la pantalla de inicio, y en Safari sin instalar
+ * `Notification` y `PushManager` pueden faltar. Por eso `ios` se decide antes de mirar las APIs: la fila de Ajustes
+ * tiene que mostrar cómo instalar (HU-06/CA-05). iOS anterior a 16.4 queda fuera de alcance. En Android, escritorio
+ * e instalada, el recordatorio se ofrece solo si están las tres APIs.
  */
 export function detectReminderSupport(input: {
   hasServiceWorker: boolean;
@@ -60,7 +62,7 @@ export function detectReminderSupport(input: {
   hasNotification: boolean;
   platform: InstallPlatform;
 }): ReminderSupport {
-  if (!input.hasServiceWorker || !input.hasPushManager || !input.hasNotification) return 'unsupported';
   if (input.platform === 'ios') return 'ios-needs-install';
+  if (!input.hasServiceWorker || !input.hasPushManager || !input.hasNotification) return 'unsupported';
   return 'supported';
 }

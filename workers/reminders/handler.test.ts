@@ -81,6 +81,7 @@ test('POST crea el dispositivo y devuelve deviceId de 22 y secreto de 43 caracte
   const { store } = memoryStore();
   const res = await handleReminders(req('POST', '/v1/reminders', { subscription: subscription(), notices: [notice()] }), store);
   assert.equal(res.status, 201);
+  assert.equal(res.headers.get('Cache-Control'), 'no-store');
   const { deviceId, secret } = (await res.json()) as { deviceId: string; secret: string };
   assert.equal(deviceId.length, 22);
   assert.match(deviceId, /^[A-Za-z0-9_-]{22}$/);
@@ -162,6 +163,7 @@ test('PUT con el secreto correcto reemplaza los avisos', async () => {
   ];
   const res = await handleReminders(req('PUT', `/v1/reminders/${deviceId}`, { notices: nuevos }, { secret }), store);
   assert.equal(res.status, 204);
+  assert.equal(res.headers.get('Cache-Control'), 'no-store');
   assert.deepEqual(rows.get(deviceId)?.notices, [
     { dueAt: '2026-11-13T17:00:00.000Z', title: 'Nuevo', body: 'Primero' },
     { dueAt: '2026-11-14T09:00:00.000Z', title: 'Nuevo 2', body: 'Segundo' },

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { AppState } from 'react-native';
+import { showDialog } from '../components/dialog';
 import { localizedContent } from '../data/localized';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
@@ -21,6 +22,8 @@ export function useReminderSync(ready: boolean): void {
         .then((usable) => {
           if (!usable) {
             update({ reminder: { enabled: false, hour } });
+            // CA-13/CA-14: explicar por qué se apagó y cómo reactivarlo. Al quedar el ajuste en off, no se repite.
+            showDialog(t('settings.reminderRevoked.title'), t('settings.reminderRevoked.message'));
             return;
           }
           return syncReminders(streak, hour, localizedContent(language).bots, t('settings.reminder'));

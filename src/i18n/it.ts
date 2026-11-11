@@ -120,6 +120,9 @@ export const it: Record<MessageKey, string> = {
   'settings.noPermission.message': 'Per ricevere il promemoria, consenti le notifiche di questa app nelle impostazioni del telefono.',
   'settings.reminderFailed.title': 'Impossibile programmare il promemoria',
   'settings.reminderFailed.message': 'Riprova tra qualche minuto.',
+  // Traducciones en pausa: estas dos claves quedan en inglés por ahora.
+  'settings.reminderRevoked.title': 'Reminder turned off',
+  'settings.reminderRevoked.message': 'The browser no longer allows notifications, so the reminder was turned off. To turn it back on, allow notifications for Gradus in the browser settings and enable the reminder again in Settings.',
   'settings.board': 'Scacchiera',
   'settings.boardTheme': 'Tema della scacchiera',
   'settings.boardThemeLabel': 'Scacchiera {name}',

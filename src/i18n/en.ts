@@ -120,6 +120,8 @@ export const en: Record<MessageKey, string> = {
   'settings.noPermission.message': "To get the reminder, allow notifications for this app in your phone's settings.",
   'settings.reminderFailed.title': 'Could not schedule the reminder',
   'settings.reminderFailed.message': 'Try again in a few minutes.',
+  'settings.reminderRevoked.title': 'Reminder turned off',
+  'settings.reminderRevoked.message': 'The browser no longer allows notifications, so the reminder was turned off. To turn it back on, allow notifications for Gradus in the browser settings and enable the reminder again in Settings.',
   'settings.board': 'Board',
   'settings.boardTheme': 'Board theme',
   'settings.boardThemeLabel': '{name} board',

@@ -123,11 +123,14 @@ export async function handleReminders(
   limiter?: ReminderLimiter
 ): Promise<Response> {
   const cors = corsHeaders(req, 'POST, PUT, DELETE');
-  const reply: Reply = (status, body) =>
-    new Response(body === undefined ? null : JSON.stringify(body), {
+  // Las respuestas llevan el secreto o dependen de él: ningún caché intermedio debe guardarlas.
+  const reply: Reply = (status, body) => {
+    const headers = { ...cors, 'Cache-Control': 'no-store' };
+    return new Response(body === undefined ? null : JSON.stringify(body), {
       status,
-      headers: body === undefined ? cors : { ...cors, 'Content-Type': 'application/json' },
+      headers: body === undefined ? headers : { ...headers, 'Content-Type': 'application/json' },
     });
+  };
 
   if (req.method === 'OPTIONS') return reply(204);
 
@@ -140,7 +143,9 @@ export async function handleReminders(
     if (req.method === 'POST' && path === '/v1/reminders') return await create(req, store, now, limiter, reply);
     if (req.method === 'PUT' && deviceId) return await replace(req, store, deviceId, now, reply);
     if (req.method === 'DELETE' && deviceId) return await remove(req, store, deviceId, reply);
-  } catch {
+  } catch (error) {
+    // Solo el error: ni el cuerpo de la petición ni secretos van a los logs.
+    console.error('reminders: error del servidor', error);
     return reply(500, { error: 'error del servidor' });
   }
 

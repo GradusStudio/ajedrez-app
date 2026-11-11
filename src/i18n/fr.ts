@@ -120,6 +120,9 @@ export const fr: Record<MessageKey, string> = {
   'settings.noPermission.message': 'Pour recevoir le rappel, autorise les notifications de cette app dans les réglages du téléphone.',
   'settings.reminderFailed.title': 'Impossible de programmer le rappel',
   'settings.reminderFailed.message': 'Réessaie dans quelques minutes.',
+  // Traducciones en pausa: estas dos claves quedan en inglés por ahora.
+  'settings.reminderRevoked.title': 'Reminder turned off',
+  'settings.reminderRevoked.message': 'The browser no longer allows notifications, so the reminder was turned off. To turn it back on, allow notifications for Gradus in the browser settings and enable the reminder again in Settings.',
   'settings.board': 'Échiquier',
   'settings.boardTheme': "Thème de l'échiquier",
   'settings.boardThemeLabel': 'Échiquier {name}',

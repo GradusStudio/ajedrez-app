@@ -134,7 +134,7 @@ export async function cancelDailyReminder(): Promise<void> {
 
 /**
  * Comprueba si el recordatorio puede seguir activo: permiso concedido y suscripción existente. Si no, lo desactiva
- * (borra el servidor y la suscripción); `useReminderSync` apaga el ajuste para que no quede un interruptor sin efecto.
+ * (borra el servidor y la suscripción); `useReminderSync` apaga el ajuste y avisa cómo reactivarlo en Ajustes.
  */
 export async function reminderIsUsable(): Promise<boolean> {
   try {

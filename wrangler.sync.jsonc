@@ -2,7 +2,9 @@
 // Primera vez, desde la PC:
 //   1. npx wrangler d1 create gradus-sync   -> copiar el `database_id` que muestra y pegarlo abajo
 //   2. npx wrangler d1 execute gradus-sync --remote -c wrangler.sync.jsonc --file workers/sync/schema.sql
+//      y también --file workers/reminders/schema.sql (tablas de recordatorios Web Push)
 //   3. npx wrangler deploy -c wrangler.sync.jsonc
+//   La clave privada VAPID es un secreto: npx wrangler secret put VAPID_PRIVATE_KEY -c wrangler.sync.jsonc
 // Para probar en la PC: npx wrangler d1 execute gradus-sync --local -c wrangler.sync.jsonc --file workers/sync/schema.sql
 //   y después npx wrangler dev -c wrangler.sync.jsonc --port 8790
 {
@@ -15,5 +17,14 @@
     { "binding": "DB", "database_name": "gradus-sync", "database_id": "79939dd3-fd74-4724-b393-a82eda310794" }
   ],
   // Máximo 5 altas (PUT con version 0) por minuto y por IP; en el código el binding es opcional.
-  "ratelimits": [{ "name": "CREATE_LIMITER", "namespace_id": "2001", "simple": { "limit": 5, "period": 60 } }]
+  "ratelimits": [{ "name": "CREATE_LIMITER", "namespace_id": "2001", "simple": { "limit": 5, "period": 60 } }],
+
+  // El cron revisa los avisos vencidos cada 5 minutos.
+  "triggers": { "crons": ["*/5 * * * *"] },
+
+  // Datos públicos de VAPID; el autor reemplaza el marcador. La privada es un secreto del Worker, nunca va acá.
+  "vars": {
+    "VAPID_SUBJECT": "mailto:gradusstudioapp@gmail.com",
+    "VAPID_PUBLIC_KEY": "REEMPLAZAR"
+  }
 }

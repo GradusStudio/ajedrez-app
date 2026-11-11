@@ -17834,5 +17834,311 @@
         }
       }
     }
+  },
+  "dutch": {
+    "name": "Défense Hollandaise",
+    "summary": "Une défense à schéma fixe contre 1.d4 : choisis la Classique, la Stonewall ou la Leningrad et joue avec un plan clair.",
+    "lessons": {
+      "dutch-l01": {
+        "title": "L'idée de l'Hollandaise",
+        "summary": "Contrôler e4 et attaquer sur l'aile roi",
+        "steps": {
+          "dutch-l01-s01": {
+            "text": "L'Hollandaise commence par ...f5. Ce pion contrôle e4 et prépare une attaque sur l'aile roi. C'est une défense à schéma fixe : vous savez où vont vos pièces."
+          },
+          "dutch-l01-s02": {
+            "text": "Il y a trois schémas : la Classique (...e6 et ...Fe7), la Stonewall (...d5 et ...e6) et la Leningrad (...g6 et ...Fg7). Les trois contrôlent e4 et cherchent l'attaque."
+          },
+          "dutch-l01-s03": {
+            "prompt": "Quelle case contrôle le pion f5 ?",
+            "explanation": "Le pion f5 vise e4. Si les Blancs jouent e4, vous pouvez capturer par fxe4 ou le laisser passer.",
+            "options": [
+              "e4",
+              "d4",
+              "c4"
+            ],
+            "feedback": [
+              "",
+              "d4 est déjà occupé par le pion blanc.",
+              "c4 est loin du pion f5."
+            ]
+          },
+          "dutch-l01-s04": {
+            "prompt": "Quel est le risque de l'Hollandaise ?",
+            "explanation": "En avançant le pion f, le roque devient plus faible. Il faut donc faire attention au roi et choisir bien le moment d'attaquer.",
+            "options": [
+              "Le roi est un peu exposé",
+              "Vous perdez un pion",
+              "Vous ne pouvez pas roquer"
+            ],
+            "feedback": [
+              "",
+              "L'Hollandaise ne perd pas de pion en ouverture.",
+              "Vous pouvez roquer : en fait, c'est partie du plan."
+            ]
+          },
+          "dutch-l01-s05": {
+            "text": "Résumé : l'Hollandaise est une défense à schéma fixe. Vous choisissez une structure, vous contrôlez e4 et vous attaquez sur l'aile roi. Faites attention au roi et ne changez pas le plan sans raison."
+          }
+        }
+      },
+      "dutch-l02": {
+        "title": "Ligne principale",
+        "summary": "La Classique étape par étape",
+        "steps": {
+          "dutch-l02-s01": {
+            "prompt": "Jouez la Hollandaise Classique avec les noirs.",
+            "notes": [
+              "Les blancs occupent le centre.",
+              "La Hollandaise : contrôle e4 et prépare l'attaque.",
+              "Les blancs préparent l'alfil de g2.",
+              "",
+              "L'alfil pointe sur la longue diagonale.",
+              "Ouvre l'alfil de f8.",
+              "",
+              "Le fou est prêt pour ...Ff6 ou ...Fd7.",
+              "",
+              "Roi en sécurité ; la tour de f8 soutiendra ...e5.",
+              "",
+              "Soutient e5 et contrôle le centre.",
+              "",
+              "La dame va à e8 : prépare ...e5 et ...Dh5.",
+              "Les blancs protègent e4 et préparent e5."
+            ]
+          }
+        }
+      },
+      "dutch-l05": {
+        "title": "Classique : le plan avec ...e5",
+        "summary": "Ouvrir le centre et attaquer",
+        "steps": {
+          "dutch-l05-s01": {
+            "text": "La Classique est la Hollandaise la plus solide. Avec ...e6, ...Fe7 et ...O-O, tu prépares la rupture ...e5. Ensuite, tu cherches ...De8, ...Dh5 ou ...Ce4 selon la réponse des Blancs."
+          },
+          "dutch-l05-s02": {
+            "prompt": "Jouez la Classique et préparez ...e5.",
+            "notes": [
+              "",
+              "Le pion f5 contrôle e4.",
+              "",
+              "",
+              "",
+              "Vous préparez le développement du fou.",
+              "",
+              "",
+              "",
+              "Le roi est en sécurité.",
+              "",
+              "Vous soutenez le centre.",
+              "",
+              "La dame soutient ...e5.",
+              "",
+              "La rupture : vous ouvrez le centre et cherchez l'attaque."
+            ]
+          },
+          "dutch-l05-s03": {
+            "prompt": "Qu'est-ce que la Classique cherche avec ...e5 ?",
+            "explanation": "La rupture ...e5 ouvre la colonne e et la diagonale du fou de e7. Si les Blancs capturent, vos pièces arrivent au centre.",
+            "options": [
+              "Ouvrir le centre et attaquer le roi",
+              "Échanger les dames",
+              "Défendre le pion d5"
+            ],
+            "feedback": [
+              "",
+              "Échanger les dames n'est pas l'objectif : vous voulez attaquer.",
+              "Il n'y a pas de pion en d5 dans cette structure."
+            ]
+          },
+          "dutch-l05-s04": {
+            "prompt": "Jouez la rupture ...e5.",
+            "hint": "Le pion e6 peut avancer de deux cases : e5 est libre.",
+            "success": "Correct. ...e5 ouvre le centre et donne du jeu à votre fou de e7."
+          },
+          "dutch-l05-s05": {
+            "text": "Résumé : la Classique est solide et flexible. Si le centre s'ouvre, tu attaques ; s'il se ferme, tu manœuvres avec ...De8, ...Fd7 et ...Tf7. La rupture ...e5 est le moment clé."
+          }
+        }
+      },
+      "dutch-l06": {
+        "title": "Mur de pierres : ...d5 et ...e6",
+        "summary": "La structure solide avec le cavalier en e4",
+        "steps": {
+          "dutch-l06-s01": {
+            "text": "Le Mur de pierres fixe les pions en d5 et e6 et amène le cavalier en e4. C'est une structure solide : vous contrôlez le centre et l'attaque se fait sur l'aile roi."
+          },
+          "dutch-l06-s02": {
+            "prompt": "Jouez le Mur de pierres.",
+            "notes": [
+              "",
+              "L'Hollandaise.",
+              "",
+              "",
+              "",
+              "Le Mur de pierres : pion en d5 et contrôle de e4.",
+              "",
+              "Soutient d5 et prépare ...e6.",
+              "",
+              "Fixe la structure d5-e6.",
+              "",
+              "L'alfil pointe vers h2.",
+              "",
+              "La dame soutient ...e5 et l'attaque.",
+              "",
+              "Roi en sécurité et tour de f8 prête."
+            ]
+          },
+          "dutch-l06-s03": {
+            "prompt": "Quelle case est la plus importante pour le cavalier noir dans le Mur de pierres ?",
+            "explanation": "Le cavalier en e4 domine le centre et participe à l'attaque. Les deux autres cases sont sur le bord et ne font rien.",
+            "options": [
+              "e4",
+              "b4",
+              "h4"
+            ],
+            "feedback": [
+              "",
+              "b4 est loin de l'attaque.",
+              "h4 est une case de bord : le cavalier perd de sa force."
+            ]
+          },
+          "dutch-l06-s04": {
+            "prompt": "Royautez et connectez les tours.",
+            "hint": "Le roi noir est en e8 et la tour de h8 attend. Roque court.",
+            "success": "Correct. ...O-O met le roi en sécurité et connecte les tours."
+          },
+          "dutch-l06-s05": {
+            "text": "Résumé : la Stonewall est solide. d5 et e6 contrôlent le centre, et le cavalier en e4 est une pièce forte. L'attaque se fait sur l'aile roi, avec ...Fd6, ...De7 et ...Tf7."
+          }
+        }
+      },
+      "dutch-l07": {
+        "title": "Leningrad : ...g6 et ...Fg7",
+        "summary": "La Hollandaise la plus dynamique",
+        "steps": {
+          "dutch-l07-s01": {
+            "text": "La Leningrado place le fou en g7 et cherche la rupture ...e5. C'est la Hollandaise la plus dynamique : si le centre s'ouvre, vos pièces arrivent vite et le fou de g7 exerce une pression sur l'aile dame."
+          },
+          "dutch-l07-s02": {
+            "prompt": "Jouez la Leningrado.",
+            "notes": [
+              "",
+              "La Hollandaise.",
+              "",
+              "",
+              "",
+              "La Leningrado : le fou ira en g7.",
+              "",
+              "Le fou sur la diagonale longue.",
+              "",
+              "",
+              "",
+              "Vous soutenez e5.",
+              "",
+              "Vous préparez ...e5.",
+              "",
+              "La rupture : vous ouvrez le centre et attaquez."
+            ]
+          },
+          "dutch-l07-s03": {
+            "prompt": "Où va le fou dans la Leningrado ?",
+            "explanation": "En g7, le fou contrôle la diagonale longue et soutient la rupture ...e5. En e7, c'est la Classique ; en d6, c'est la Stonewall.",
+            "options": [
+              "g7",
+              "e7",
+              "d6"
+            ],
+            "feedback": [
+              "",
+              "e7 est la case de la Classique, pas de la Leningrado.",
+              "d6 est la case de la Stonewall."
+            ]
+          },
+          "dutch-l07-s04": {
+            "prompt": "Jouez la rupture ...e5.",
+            "hint": "Le pion de e7 peut avancer de deux cases : e6 et e5 sont libres.",
+            "success": "Correct. ...e5 ouvre le centre et le fou de g7 entre en jeu."
+          },
+          "dutch-l07-s05": {
+            "text": "Résumé : la Leningrad est la Hollandaise la plus dynamique. Le fou de g7 et la rupture ...e5 ouvrent le centre et attaquent. Si les Blancs ferment le centre, tu manœuvres avec ...De8 et ...Tf7."
+          }
+        }
+      },
+      "dutch-l08": {
+        "title": "Contre 2.e4 : le gambit Staunton",
+        "summary": "Accepter le pion ou le reprendre",
+        "steps": {
+          "dutch-l08-s01": {
+            "text": "Si les Blancs jouent 2.e4, vous entrez dans le gambit Staunton. Les Blancs donnent un pion au centre ; vous pouvez garder le pion ou le reprendre avec ...d5 pour compléter le développement."
+          },
+          "dutch-l08-s02": {
+            "prompt": "Jouez contre le gambit Staunton.",
+            "notes": [
+              "",
+              "Le Hollandais.",
+              "Les Blancs entrent dans le gambit Staunton.",
+              "Vous acceptez le pion ; vous pouvez aussi le reprendre avec ...d5.",
+              "",
+              "Vous développez et attaquez e4.",
+              "",
+              "Vous ouvrez le fou de f8 et préparez ...d5.",
+              "",
+              "Vous reprenez le pion pour ouvrir le centre et développer."
+            ]
+          },
+          "dutch-l08-s03": {
+            "prompt": "Qu'est-ce que les Blancs recherchent avec 2.e4 ?",
+            "explanation": "Le gambit Staunton sacrifie un pion pour ouvrir le centre et attaquer rapidement. En échange, les Blancs sont en pion de moins s'ils ne le récupèrent pas.",
+            "options": [
+              "Ouvrir le centre et attaquer",
+              "Défendre d4",
+              "Changer de dames"
+            ],
+            "feedback": [
+              "",
+              "d4 est déjà défendu par le pion de c3 et la dame.",
+              "Le changement de dames n'est pas l'objectif du gambit."
+            ]
+          },
+          "dutch-l08-s04": {
+            "prompt": "Reprenez le pion pour ouvrir le centre et développer.",
+            "hint": "Le pion de d7 peut avancer de deux cases : d6 et d5 sont libres.",
+            "success": "Correct. ...d5 reprend le pion, ouvre le centre et donne du jeu à vos pièces."
+          },
+          "dutch-l08-s05": {
+            "text": "Résumé : contre 2.e4, le gambit Staunton. Acceptez le pion et défendez-le avec ...d5, ou reprenez-le pour compléter le développement. L'important est de ne pas laisser le roi exposé."
+          }
+        }
+      },
+      "dutch-l04": {
+        "title": "Révision",
+        "summary": "Pratique les quatre structures sans aide",
+        "steps": {
+          "dutch-l04-s01": {
+            "prompt": "Répète la ligne principale sans aide.",
+            "hint": "Souviens-toi de l'ordre : ...f5, ...Cf6, ...e6, ...Fe7, ...O-O, ...d6, ...De8.",
+            "success": "Bien. La Classique est établie : ...e6, ...Fe7 et ...O-O."
+          },
+          "dutch-l04-s02": {
+            "prompt": "Répète la Stonewall sans aide.",
+            "hint": "Ordre de la Stonewall : ...d5, ...c6, ...e6, ...Fd6, ...De7, ...O-O.",
+            "success": "Bien. La Stonewall fixe d5 et e6 et laisse le cavalier prêt pour e4."
+          },
+          "dutch-l04-s03": {
+            "prompt": "Répète le Leningrad sans aide.",
+            "hint": "Ordre du Leningrad : ...g6, ...Fg7, ...O-O, ...d6, ...De8, ...e5.",
+            "success": "Bien. Le Leningrad se termine avec l'alfil en g7 et la rupture ...e5."
+          },
+          "dutch-l04-s04": {
+            "prompt": "Répète le Gambit Staunton sans aide.",
+            "hint": "Contre 2.e4 : accepte avec ...fxe4, développe avec ...Cf6 et ...e6, et récupère avec ...d5.",
+            "success": "Bien. Contre le Staunton, ...d5 récupère le pion et ouvre le centre."
+          },
+          "dutch-l04-s05": {
+            "text": "Révision : la Hollandaise est un schéma fixe. Choisis ta structure, contrôle e4, prépare la rupture et attaque sur l'aile du roi. Fais attention au roi et ne change pas de plan sans raison."
+          }
+        }
+      }
+    }
   }
 }

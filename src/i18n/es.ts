@@ -213,6 +213,8 @@ export const es = {
   // Aperturas
   'openings.title': 'Aperturas',
   'openings.subtitle': 'Elige con qué color quieres estudiar',
+  'openings.guide.title': 'Cómo elegir tu repertorio',
+  'openings.guide.text': 'Elige una apertura con blancas y una respuesta contra 1.e4 y otra contra 1.d4. Es mejor saber pocas líneas a fondo que muchas a medias. Si te gusta atacar, busca iniciativa; si prefieres la técnica, busca estructuras sólidas y planes claros.',
   'openings.tabWhite': 'Aperturas con blancas',
   'openings.tabBlack': 'Aperturas con negras',
   'openings.cardLabel': '{name}, {done} de {total} lecciones',

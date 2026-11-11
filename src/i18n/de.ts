@@ -214,6 +214,8 @@ export const de: Record<MessageKey, string> = {
   // Aperturas
   'openings.title': 'Eröffnungen',
   'openings.subtitle': 'Wähle, mit welcher Farbe du lernen willst',
+  'openings.guide.title': 'Wie du dein Repertoire wählst',
+  'openings.guide.text': 'Wähle eine Eröffnung mit Weiß, eine Antwort auf 1.e4 und eine auf 1.d4. Wenige gut gekannte Linien sind besser als viele halb gekannte. Wenn du gern angreifst, suche Initiative; wenn du Technik bevorzugst, suche solide Strukturen und klare Pläne.',
   'openings.tabWhite': 'Eröffnungen mit Weiß',
   'openings.tabBlack': 'Eröffnungen mit Schwarz',
   'openings.cardLabel': '{name}, {done} von {total} Lektionen',

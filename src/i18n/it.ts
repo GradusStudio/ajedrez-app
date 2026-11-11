@@ -214,6 +214,8 @@ export const it: Record<MessageKey, string> = {
   // Aperturas
   'openings.title': 'Aperture',
   'openings.subtitle': 'Scegli con quale colore vuoi studiare',
+  'openings.guide.title': 'Come scegliere il tuo repertorio',
+  'openings.guide.text': "Scegli un'apertura con il Bianco, una risposta a 1.e4 e una a 1.d4. Poche linee conosciute bene valgono più di molte conosciute a metà. Se ti piace attaccare, cerca l'iniziativa; se preferisci la tecnica, cerca strutture solide e piani chiari.",
   'openings.tabWhite': 'Aperture col Bianco',
   'openings.tabBlack': 'Aperture col Nero',
   'openings.cardLabel': '{name}, {done} di {total} lezioni',

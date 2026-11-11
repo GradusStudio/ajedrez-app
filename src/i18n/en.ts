@@ -214,6 +214,8 @@ export const en: Record<MessageKey, string> = {
   // Aperturas
   'openings.title': 'Openings',
   'openings.subtitle': 'Choose a color to study with',
+  'openings.guide.title': 'How to choose your repertoire',
+  'openings.guide.text': 'Pick one opening as White, one answer to 1.e4 and one to 1.d4. Fewer lines known well beat many half-known ones. If you like attacking, look for initiative; if you prefer technique, look for solid structures and clear plans.',
   'openings.tabWhite': 'Openings for White',
   'openings.tabBlack': 'Openings for Black',
   'openings.cardLabel': '{name}, {done} of {total} lessons',

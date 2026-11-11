@@ -94,7 +94,7 @@ El formato definitivo de los pasos está en `formato-lecciones.md` y `src/data/l
 
 ## Parte 2 · Repertorio de aperturas
 
-**Estado actual:** el repertorio que se usa es el de `aperturas-v3.json`: 28 cursos (16 con blancas y 12 con negras), con la lista completa en `formato-lecciones.md`. Las tablas de abajo son el plan original de 10 + 10. De ese plan, el **Gambito Budapest** quedó fuera de v3. Se sumaron Vienesa, Dragón, Ataque Indio de Rey, Moderna, Pirc, Blackmar-Diemer, Rossolimo, Alapin y Gambito de dama aceptado.
+**Estado actual:** el repertorio que se usa es el de `aperturas-v3.json`: 29 cursos (16 con blancas y 13 con negras, con la Defensa Holandesa agregada el 11-11-2026), con la lista completa en `formato-lecciones.md`. Las tablas de abajo son el plan original de 10 + 10. De ese plan, el **Gambito Budapest** quedó fuera de v3. Se sumaron Vienesa, Dragón, Ataque Indio de Rey, Moderna, Pirc, Blackmar-Diemer, Rossolimo, Alapin y Gambito de dama aceptado.
 
 Cada apertura se divide en: idea principal, línea principal, una guía por cada línea o variante (desde el 1-11-2026 reemplazan a «trampas y errores típicos») y el drill de repaso al final. Orden sugerido: de menor a mayor dificultad.
 

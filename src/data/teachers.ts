@@ -25,7 +25,7 @@ const COURSE_TEACHERS: Record<string, string[]> = {
   tomas: ['vienna', 'albin'],
   valentina: ['sicilian', 'kings-gambit', 'danish', 'bdg'],
   ramiro: ['scotch', 'french', 'petrov', 'alapin'],
-  camila: ['english', 'catalan', 'queens-gambit', 'queens-gambit-declined', 'modern'],
+  camila: ['english', 'catalan', 'queens-gambit', 'queens-gambit-declined', 'modern', 'dutch'],
   bruno: ['caro-kann', 'kia', 'pirc'],
   sofia: ['evans', 'kings-indian', 'dragon'],
   ivo: ['ruy-lopez', 'nimzo-indian', 'rossolimo', 'queens-gambit-accepted'],

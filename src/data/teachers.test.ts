@@ -41,9 +41,17 @@ test('asignaciones de ejemplo', () => {
   assert.equal(teacherOfTitle('Enroques opuestos'), 'valentina');
   assert.equal(teacherOfTitle('Defender al rey'), 'lola');
   assert.equal(teacherForCourse('caro-kann'), 'bruno');
+  assert.equal(teacherOfTitle('Alfil contra caballo'), 'ivo');
+  assert.equal(teacherOfTitle('Las dos debilidades'), 'ivo');
+  assert.equal(teacherOfTitle('Torres activas'), 'valentina');
+  assert.equal(teacherOfTitle('Rupturas y mayorías de peones'), 'camila');
+  assert.equal(teacherOfTitle('Defenderse con material de menos'), 'ivo');
+  assert.equal(teacherOfTitle('Convertir una ventaja'), 'ivo');
+  assert.equal(teacherOfTitle('Hacer un plan'), 'ramiro');
+  assert.equal(teacherForCourse('dutch'), 'camila');
 });
-test('los 28 cursos tienen profesor y ninguno es Ada', () => {
-  assert.equal(openings.length, 28);
+test('los 29 cursos tienen profesor y ninguno es Ada', () => {
+  assert.equal(openings.length, 29);
   for (const c of openings) {
     const t = teacherForCourse(c.id);
     assert.ok(t && t !== 'ada', c.id);

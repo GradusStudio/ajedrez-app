@@ -17834,5 +17834,311 @@
         }
       }
     }
+  },
+  "dutch": {
+    "name": "Holländische Verteidigung",
+    "summary": "Eine Verteidigung mit festem Schema gegen 1.d4: Wähle die Klassische, die Stonewall oder die Leningrader Variante und spiele mit einem klaren Plan.",
+    "lessons": {
+      "dutch-l01": {
+        "title": "Die Idee der Holländischen",
+        "summary": "e4 kontrollieren und am Königsflügel angreifen",
+        "steps": {
+          "dutch-l01-s01": {
+            "text": "Die Holländische beginnt mit ...f5. Dieser Bauer kontrolliert e4 und bereitet einen Angriff am Königsflügel vor. Es ist eine Verteidigung mit festem Schema: Du weißt, wohin deine Figuren gehen."
+          },
+          "dutch-l01-s02": {
+            "text": "Es gibt drei Schemata: die Klassische (...e6 und ...Le7), die Stonewall (...d5 und ...e6) und die Leningrad (...g6 und ...Lg7). Alle drei kontrollieren e4 und suchen den Angriff."
+          },
+          "dutch-l01-s03": {
+            "prompt": "Welche Feld kontrolliert der Bauer auf f5?",
+            "explanation": "Der Bauer auf f5 blickt auf e4. Wenn Weiß e4 spielt, kannst du mit fxe4 nehmen oder es durchgehen lassen.",
+            "options": [
+              "e4",
+              "d4",
+              "c4"
+            ],
+            "feedback": [
+              "",
+              "d4 wird bereits vom weißen Bauern besetzt.",
+              "c4 ist weit vom Bauer auf f5 entfernt."
+            ]
+          },
+          "dutch-l01-s04": {
+            "prompt": "Was ist das Risiko der Holländischen?",
+            "explanation": "Durch den Vorstoß des f-Bauern wird das Castling anfälliger. Deshalb muss man auf den König achten und den richtigen Zeitpunkt für den Angriff wählen.",
+            "options": [
+              "Der König ist etwas exponiert",
+              "Du verlierst einen Bauern",
+              "Du kannst nicht casteln"
+            ],
+            "feedback": [
+              "",
+              "Die Holländische verliert im Opening keinen Bauern.",
+              "Du kannst casteln: tatsächlich ist es Teil des Plans."
+            ]
+          },
+          "dutch-l01-s05": {
+            "text": "Zusammenfassung: Die Holländische ist eine Verteidigung mit festem Schema. Du wählst eine Struktur, kontrollierst e4 und greifst am Königsflügel an. Achte auf den König und ändere den Plan nicht ohne Grund."
+          }
+        }
+      },
+      "dutch-l02": {
+        "title": "Die Klassische Variante Schritt für Schritt",
+        "summary": "Die Klassik Schritt für Schritt",
+        "steps": {
+          "dutch-l02-s01": {
+            "prompt": "Spiele die Holländische Klassik mit Schwarz.",
+            "notes": [
+              "Die Weißen besetzen die Mitte.",
+              "Die Holländische: kontrolliert e4 und bereitet den Angriff vor.",
+              "Die Weißen bereiten den Läufer auf g2 vor.",
+              "",
+              "Der Läufer zielt auf die lange Diagonale.",
+              "Entfaltet den Läufer von f8.",
+              "",
+              "Der Läufer ist bereit für ...Lf6 oder ...Ld7.",
+              "",
+              "König ist sicher; der Turm von f8 unterstützt ...e5.",
+              "",
+              "Stützt e5 und kontrolliert die Mitte.",
+              "",
+              "Die Dame geht nach e8: bereitet ...e5 und ...Dh5 vor.",
+              "Die Weißen schützen e4 und bereiten e5 vor."
+            ]
+          }
+        }
+      },
+      "dutch-l05": {
+        "title": "Klassisch: der Plan mit ...e5",
+        "summary": "Das Zentrum öffnen und angreifen",
+        "steps": {
+          "dutch-l05-s01": {
+            "text": "Die Klassische ist die solideste holländische Verteidigung. Mit ...e6, ...Le7 und ...O-O bereitest du den Durchbruch ...e5 vor. Danach suchst du ...De8, ...Dh5 oder ...Se4, je nachdem, wie Weiß antwortet."
+          },
+          "dutch-l05-s02": {
+            "prompt": "Spiele das Klassische und bereite ...e5 vor.",
+            "notes": [
+              "",
+              "Der Bauer auf f5 kontrolliert e4.",
+              "",
+              "",
+              "",
+              "Du bereitest die Entwicklung des Läufers vor.",
+              "",
+              "",
+              "",
+              "Der König ist sicher.",
+              "",
+              "Du hältst das Zentrum.",
+              "",
+              "Die Dame unterstützt ...e5.",
+              "",
+              "Der Durchbruch: Du öffnest das Zentrum und suchst den Angriff."
+            ]
+          },
+          "dutch-l05-s03": {
+            "prompt": "Was strebt das Klassische mit ...e5 an?",
+            "explanation": "Der Durchbruch ...e5 öffnet die e-Linie und die Diagonale des Läufers auf e7. Wenn Weiß nimmt, kommen deine Figuren ins Zentrum.",
+            "options": [
+              "Das Zentrum öffnen und den König angreifen",
+              "Damenschwächung",
+              "Den Bauer auf d5 verteidigen"
+            ],
+            "feedback": [
+              "",
+              "Damenschwächung ist nicht das Ziel: Du willst angreifen.",
+              "Es gibt keinen Bauern auf d5 in dieser Struktur."
+            ]
+          },
+          "dutch-l05-s04": {
+            "prompt": "Spiele den Durchbruch ...e5.",
+            "hint": "Der Bauer auf e6 kann zwei Felder vorrücken: e5 ist frei.",
+            "success": "Korrekt. ...e5 öffnet das Zentrum und gibt deinem Läufer auf e7 Spielraum."
+          },
+          "dutch-l05-s05": {
+            "text": "Zusammenfassung: Die Klassische ist solide und flexibel. Wenn sich das Zentrum öffnet, greifst du an; wenn es geschlossen bleibt, manövrierst du mit ...De8, ...Ld7 und ...Tf7. Der Durchbruch ...e5 ist der Schlüsselmoment."
+          }
+        }
+      },
+      "dutch-l06": {
+        "title": "Stonewall: ...d5 und ...e6",
+        "summary": "Die solide Struktur mit dem Springer auf e4",
+        "steps": {
+          "dutch-l06-s01": {
+            "text": "Die Stonewall fixiert die Bauern auf d5 und e6 und bringt den Springer auf e4. Es ist eine solide Struktur: Du kontrollierst das Zentrum und der Angriff geht über den Königsflügel."
+          },
+          "dutch-l06-s02": {
+            "prompt": "Spiele die Stonewall.",
+            "notes": [
+              "",
+              "Die Holländer-Verteidigung.",
+              "",
+              "",
+              "",
+              "Die Stonewall: Bauer auf d5 und Kontrolle von e4.",
+              "",
+              "Stützt d5 und bereitet ...e6 vor.",
+              "",
+              "Fixiert die Struktur d5-e6.",
+              "",
+              "Der Läufer zielt auf h2.",
+              "",
+              "Die Dame unterstützt ...e5 und den Angriff.",
+              "",
+              "König ist sicher und der Turm auf f8 ist bereit."
+            ]
+          },
+          "dutch-l06-s03": {
+            "prompt": "Welche Feld ist für den schwarzen Springer in der Stonewall am wichtigsten?",
+            "explanation": "Der Springer auf e4 dominiert das Zentrum und beteiligt sich am Angriff. Die anderen beiden Felder sind am Rand und tun nichts.",
+            "options": [
+              "e4",
+              "b4",
+              "h4"
+            ],
+            "feedback": [
+              "",
+              "b4 ist weit vom Angriff entfernt.",
+              "h4 ist ein Randfeld: der Springer verliert an Kraft."
+            ]
+          },
+          "dutch-l06-s04": {
+            "prompt": "Rokiere und verbinde die Türme.",
+            "hint": "Der schwarze König ist auf e8 und der Turm auf h8 wartet. Kurz rokieren.",
+            "success": "Korrekt. ...O-O bringt den König in Sicherheit und verbindet die Türme."
+          },
+          "dutch-l06-s05": {
+            "text": "Zusammenfassung: Die Stonewall ist solide. d5 und e6 kontrollieren das Zentrum, und der Springer auf e4 ist eine starke Figur. Der Angriff geht über den Königsflügel mit ...Ld6, ...De7 und ...Tf7."
+          }
+        }
+      },
+      "dutch-l07": {
+        "title": "Leningrad: ...g6 und ...Lg7",
+        "summary": "Die dynamischste holländische Verteidigung",
+        "steps": {
+          "dutch-l07-s01": {
+            "text": "Die Leningrad setzt den Läufer auf g7 und sucht die Durchbruch ...e5. Es ist die dynamischste Niederländische Verteidigung: Wenn sich das Zentrum öffnet, kommen deine Figuren schnell an, und der Läufer auf g7 übt Druck auf den Damenflügel aus."
+          },
+          "dutch-l07-s02": {
+            "prompt": "Spiele die Leningrad.",
+            "notes": [
+              "",
+              "Die Niederländische.",
+              "",
+              "",
+              "",
+              "Die Leningrad: Der Läufer geht nach g7.",
+              "",
+              "Der Läufer auf der langen Diagonale.",
+              "",
+              "",
+              "",
+              "Du hältst e5.",
+              "",
+              "Du bereitest ...e5 vor.",
+              "",
+              "Der Durchbruch: Du öffnest das Zentrum und greifst an."
+            ]
+          },
+          "dutch-l07-s03": {
+            "prompt": "Wohin geht der Läufer in der Leningrad?",
+            "explanation": "Auf g7 kontrolliert der Läufer die lange Diagonale und unterstützt den Durchbruch ...e5. Auf e7 ist es die Klassische; auf d6 ist es die Stonewall.",
+            "options": [
+              "g7",
+              "e7",
+              "d6"
+            ],
+            "feedback": [
+              "",
+              "e7 ist die Feld des Klassischen, nicht der Leningrad.",
+              "d6 ist das Feld der Stonewall."
+            ]
+          },
+          "dutch-l07-s04": {
+            "prompt": "Spiele den Durchbruch ...e5.",
+            "hint": "Der Bauer auf e7 kann zwei Felder vorrücken: e6 und e5 sind frei.",
+            "success": "Korrekt. ...e5 öffnet das Zentrum und der Läufer auf g7 kommt ins Spiel."
+          },
+          "dutch-l07-s05": {
+            "text": "Zusammenfassung: Die Leningrader Variante ist die dynamischste holländische Verteidigung. Der Läufer auf g7 und der Durchbruch ...e5 öffnen das Zentrum und greifen an. Wenn die Weißen das Zentrum schließen, manövrierst du mit ...De8 und ...Tf7."
+          }
+        }
+      },
+      "dutch-l08": {
+        "title": "Gegen 2.e4: Der Staunton-Gambit",
+        "summary": "Den Bauern annehmen oder zurückgeben",
+        "steps": {
+          "dutch-l08-s01": {
+            "text": "Wenn Weiß 2.e4 spielt, tritt man in den Staunton-Gambit ein. Weiß gibt einen Bauern in die Mitte; du kannst den Bauern annehmen oder ihn mit ...d5 zurückgeben, um die Entwicklung abzuschließen."
+          },
+          "dutch-l08-s02": {
+            "prompt": "Spiele gegen den Staunton-Gambit.",
+            "notes": [
+              "",
+              "Der Niederländische.",
+              "Weiß tritt in den Staunton-Gambit ein.",
+              "Du nimmst den Bauern an; du kannst ihn auch mit ...d5 zurückgeben.",
+              "",
+              "Du entwickelst und greifst e4 an.",
+              "",
+              "Du öffnest den Läufer von f8 und bereitest ...d5 vor.",
+              "",
+              "Du gibst den Bauern zurück, um die Mitte zu öffnen und zu entwickeln."
+            ]
+          },
+          "dutch-l08-s03": {
+            "prompt": "Was wollen die Weißen mit 2.e4 erreichen?",
+            "explanation": "Der Staunton-Gambit opfert einen Bauern, um die Mitte zu öffnen und schnell anzugreifen. Im Gegenzug bleibt Weiß mit einem Bauern weniger, wenn er ihn nicht zurückgewinnt.",
+            "options": [
+              "Die Mitte öffnen und angreifen",
+              "d4 verteidigen",
+              "Die Damen tauschen"
+            ],
+            "feedback": [
+              "",
+              "d4 wird bereits durch den Bauern auf c3 und die Dame verteidigt.",
+              "Der Damenwechsel ist nicht das Ziel des Gambits."
+            ]
+          },
+          "dutch-l08-s04": {
+            "prompt": "Gib den Bauern zurück, um die Mitte zu öffnen und zu entwickeln.",
+            "hint": "Der Bauer auf d7 kann zwei Felder vorrücken: d6 und d5 sind frei.",
+            "success": "Korrekt. ...d5 gibt den Bauern zurück, öffnet die Mitte und gibt deinen Figuren Spielraum."
+          },
+          "dutch-l08-s05": {
+            "text": "Zusammenfassung: Gegen 2.e4, der Staunton-Gambit. Nimm den Bauern an und verteidige ihn mit ...d5, oder gib ihn zurück, um die Entwicklung abzuschließen. Wichtig ist, dass der König nicht exponiert bleibt."
+          }
+        }
+      },
+      "dutch-l04": {
+        "title": "Wiederholung",
+        "summary": "Übe die vier Strukturen ohne Hilfe",
+        "steps": {
+          "dutch-l04-s01": {
+            "prompt": "Wiederhole die Hauptlinie ohne Hilfe.",
+            "hint": "Denke an die Reihenfolge: ...f5, ...Sf6, ...e6, ...Le7, ...O-O, ...d6, ...De8.",
+            "success": "Gut. Die Klassische ist aufgebaut: ...e6, ...Le7 und ...O-O."
+          },
+          "dutch-l04-s02": {
+            "prompt": "Wiederhole die Stonewall ohne Hilfe.",
+            "hint": "Stonewall-Reihenfolge: ...d5, ...c6, ...e6, ...Ld6, ...De7, ...O-O.",
+            "success": "Gut. Die Stonewall fixiert d5 und e6 und lässt den Springer für e4 bereit."
+          },
+          "dutch-l04-s03": {
+            "prompt": "Wiederhole Leningrad ohne Hilfe.",
+            "hint": "Leningrad-Reihenfolge: ...g6, ...Lg7, ...O-O, ...d6, ...De8, ...e5.",
+            "success": "Gut. Leningrad endet mit dem Läufer auf g7 und der Durchbruch ...e5."
+          },
+          "dutch-l04-s04": {
+            "prompt": "Wiederhole den Staunton-Gambit ohne Hilfe.",
+            "hint": "Gegen 2.e4: nimm mit ...fxe4, entwickle mit ...Sf6 und ...e6, und gib mit ...d5 zurück.",
+            "success": "Gut. Gegen Staunton gibt ...d5 den Bauern zurück und öffnet das Zentrum."
+          },
+          "dutch-l04-s05": {
+            "text": "Zusammenfassung: Die Holländer ist ein festes Schema. Wähle deine Struktur, kontrolliere e4, bereite den Durchbruch vor und greife auf dem Königsflügel an. Achte auf den König und ändere den Plan nicht ohne Grund."
+          }
+        }
+      }
+    }
   }
 }

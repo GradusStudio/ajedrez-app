@@ -78,6 +78,11 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
           </Pressable>
         );
       })}
+
+      <View style={styles.guide}>
+        <Text style={styles.guideTitle}>{t('openings.guide.title')}</Text>
+        <Text style={styles.guideText}>{t('openings.guide.text')}</Text>
+      </View>
     </ColumnScrollView>
   );
 }
@@ -119,5 +124,15 @@ const styles = StyleSheet.create({
   cardSummary: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: 2, lineHeight: 18 },
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md },
   count: { fontFamily: fonts.extrabold, fontSize: 13, color: colors.textMuted },
+  guide: {
+    marginTop: space.lg,
+    padding: space.md,
+    borderRadius: radius.control,
+    borderWidth: 2,
+    borderColor: colors.surfaceRaised,
+    backgroundColor: colors.surface,
+  },
+  guideTitle: { fontFamily: fonts.extrabold, fontSize: 15, color: colors.text },
+  guideText: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: space.xs, lineHeight: 19 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.xs, marginTop: space.sm },
 });

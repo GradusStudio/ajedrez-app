@@ -59795,6 +59795,1018 @@
           ]
         }
       ]
+    },
+    {
+      "id": "dutch",
+      "name": "Defensa Holandesa",
+      "color": "b",
+      "summary": "Una defensa de esquema fijo contra 1.d4: eliges la Clásica, la Stonewall o la Leningrado y juegas con un plan claro.",
+      "botStyles": [
+        "equilibrado"
+      ],
+      "lessons": [
+        {
+          "id": "dutch-l01",
+          "order": 1,
+          "title": "La idea de la Holandesa",
+          "summary": "Controlar e4 y atacar en el flanco de rey",
+          "xp": 20,
+          "steps": [
+            {
+              "type": "explain",
+              "text": "La Holandesa empieza con ...f5. Ese peón controla e4 y prepara un ataque en el flanco de rey. Es una defensa de esquema fijo: sabes dónde van tus piezas.",
+              "fen": "rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+              "orientation": "b",
+              "highlight": [
+                "f5",
+                "e4"
+              ],
+              "id": "dutch-l01-s01"
+            },
+            {
+              "type": "explain",
+              "text": "Hay tres esquemas: la Clásica (...e6 y ...Ae7), la Stonewall (...d5 y ...e6) y la Leningrado (...g6 y ...Ag7). Los tres controlan e4 y buscan el ataque.",
+              "fen": "rnb1qrk1/ppp1b1pp/3ppn2/5p2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 b - - 3 8",
+              "orientation": "b",
+              "highlight": [
+                "f5",
+                "e6",
+                "d6",
+                "e4"
+              ],
+              "id": "dutch-l01-s02"
+            },
+            {
+              "type": "quiz",
+              "prompt": "¿Qué casilla controla el peón de f5?",
+              "fen": "rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+              "orientation": "b",
+              "options": [
+                "e4",
+                "d4",
+                "c4"
+              ],
+              "answer": 0,
+              "explanation": "El peón de f5 mira a e4. Si las blancas juegan e4, puedes capturar con fxe4 o dejarlo pasar.",
+              "feedback": [
+                "",
+                "d4 ya lo ocupa el peón blanco.",
+                "c4 está lejos del peón de f5."
+              ],
+              "id": "dutch-l01-s03"
+            },
+            {
+              "type": "quiz",
+              "prompt": "¿Cuál es el riesgo de la Holandesa?",
+              "fen": "rnb1qrk1/ppp1b1pp/3ppn2/5p2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 b - - 3 8",
+              "orientation": "b",
+              "options": [
+                "El rey queda algo expuesto",
+                "Pierdes un peón",
+                "No puedes enrocar"
+              ],
+              "answer": 0,
+              "explanation": "Al avanzar el peón de f, el enroque queda más débil. Por eso hay que cuidar el rey y elegir bien el momento de atacar.",
+              "feedback": [
+                "",
+                "La Holandesa no pierde un peón en la apertura.",
+                "Sí puedes enrocar: de hecho, es parte del plan."
+              ],
+              "id": "dutch-l01-s04"
+            },
+            {
+              "type": "explain",
+              "text": "Resumen: la Holandesa es una defensa de esquema fijo. Eliges una estructura, controlas e4 y atacas en el flanco de rey. Cuida el rey y no cambies el plan sin motivo.",
+              "fen": "rnb1qrk1/ppp1b1pp/3ppn2/5p2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 b - - 3 8",
+              "orientation": "b",
+              "id": "dutch-l01-s05"
+            }
+          ]
+        },
+        {
+          "id": "dutch-l02",
+          "order": 2,
+          "title": "Línea principal",
+          "summary": "La Clásica paso a paso",
+          "xp": 20,
+          "steps": [
+            {
+              "type": "line",
+              "prompt": "Juega la Holandesa Clásica con negras.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "orientation": "b",
+              "side": "b",
+              "mode": "guided",
+              "moves": [
+                {
+                  "uci": "d2d4",
+                  "san": "d4",
+                  "note": "Las blancas ocupan el centro."
+                },
+                {
+                  "uci": "f7f5",
+                  "san": "f5",
+                  "note": "La Holandesa: controla e4 y prepara el ataque."
+                },
+                {
+                  "uci": "g2g3",
+                  "san": "g3",
+                  "note": "Las blancas preparan el alfil de g2."
+                },
+                {
+                  "uci": "g8f6",
+                  "san": "Cf6"
+                },
+                {
+                  "uci": "f1g2",
+                  "san": "Ag2",
+                  "note": "El alfil apunta a la diagonal larga."
+                },
+                {
+                  "uci": "e7e6",
+                  "san": "e6",
+                  "note": "Abres el alfil de f8."
+                },
+                {
+                  "uci": "g1f3",
+                  "san": "Cf3"
+                },
+                {
+                  "uci": "f8e7",
+                  "san": "Ae7",
+                  "note": "El alfil queda listo para ...Af6 o ...Ad7."
+                },
+                {
+                  "uci": "e1g1",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "e8g8",
+                  "san": "O-O",
+                  "note": "Rey a salvo; la torre de f8 apoyará ...e5."
+                },
+                {
+                  "uci": "c2c4",
+                  "san": "c4"
+                },
+                {
+                  "uci": "d7d6",
+                  "san": "d6",
+                  "note": "Sostiene e5 y controla el centro."
+                },
+                {
+                  "uci": "b1c3",
+                  "san": "Cc3"
+                },
+                {
+                  "uci": "d8e8",
+                  "san": "De8",
+                  "note": "La dama va a e8: prepara ...e5 y ...Dh5."
+                },
+                {
+                  "uci": "f1e1",
+                  "san": "Te1",
+                  "note": "Las blancas protegen e4 y preparan e5."
+                }
+              ],
+              "id": "dutch-l02-s01"
+            }
+          ]
+        },
+        {
+          "id": "dutch-l05",
+          "order": 3,
+          "title": "Clásica: el plan con ...e5",
+          "summary": "Abrir el centro y atacar",
+          "xp": 20,
+          "steps": [
+            {
+              "type": "explain",
+              "text": "La Clásica es la Holandesa más sólida. Con ...e6, ...Ae7 y ...O-O preparas la ruptura ...e5. Después buscas ...De8, ...Dh5 o ...Ce4 según cómo respondan las blancas.",
+              "fen": "rnb1qrk1/ppp1b1pp/3p1n2/4pp2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 w - - 0 9",
+              "orientation": "b",
+              "highlight": [
+                "e5",
+                "e4",
+                "h5"
+              ],
+              "id": "dutch-l05-s01"
+            },
+            {
+              "type": "line",
+              "prompt": "Juega la Clásica y prepara ...e5.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "orientation": "b",
+              "side": "b",
+              "mode": "guided",
+              "moves": [
+                {
+                  "uci": "d2d4",
+                  "san": "d4"
+                },
+                {
+                  "uci": "f7f5",
+                  "san": "f5",
+                  "note": "El peón de f5 controla e4."
+                },
+                {
+                  "uci": "g2g3",
+                  "san": "g3"
+                },
+                {
+                  "uci": "g8f6",
+                  "san": "Cf6"
+                },
+                {
+                  "uci": "f1g2",
+                  "san": "Ag2"
+                },
+                {
+                  "uci": "e7e6",
+                  "san": "e6",
+                  "note": "Preparas el desarrollo del alfil."
+                },
+                {
+                  "uci": "g1f3",
+                  "san": "Cf3"
+                },
+                {
+                  "uci": "f8e7",
+                  "san": "Ae7"
+                },
+                {
+                  "uci": "e1g1",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "e8g8",
+                  "san": "O-O",
+                  "note": "El rey está a salvo."
+                },
+                {
+                  "uci": "c2c4",
+                  "san": "c4"
+                },
+                {
+                  "uci": "d7d6",
+                  "san": "d6",
+                  "note": "Sostienes el centro."
+                },
+                {
+                  "uci": "b1c3",
+                  "san": "Cc3"
+                },
+                {
+                  "uci": "d8e8",
+                  "san": "De8",
+                  "note": "La dama apoya ...e5."
+                },
+                {
+                  "uci": "f1e1",
+                  "san": "Te1"
+                },
+                {
+                  "uci": "e6e5",
+                  "san": "e5",
+                  "note": "La ruptura: abres el centro y buscas el ataque."
+                }
+              ],
+              "id": "dutch-l05-s02"
+            },
+            {
+              "type": "quiz",
+              "prompt": "¿Qué busca la Clásica con ...e5?",
+              "fen": "rnb1qrk1/ppp1b1pp/3p1n2/4pp2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 w - - 0 9",
+              "orientation": "b",
+              "options": [
+                "Abrir el centro y atacar al rey",
+                "Cambiar damas",
+                "Defender el peón de d5"
+              ],
+              "answer": 0,
+              "explanation": "La ruptura ...e5 abre la columna e y la diagonal del alfil de e7. Si las blancas capturan, tus piezas llegan al centro.",
+              "feedback": [
+                "",
+                "Cambiar damas no es el objetivo: quieres atacar.",
+                "No hay peón en d5 en esta estructura."
+              ],
+              "id": "dutch-l05-s03"
+            },
+            {
+              "type": "move",
+              "prompt": "Juega la ruptura ...e5.",
+              "fen": "rnb1qrk1/ppp1b1pp/3ppn2/5p2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 b - - 3 8",
+              "orientation": "b",
+              "solutions": [
+                "e6e5"
+              ],
+              "hint": "El peón de e6 puede avanzar dos casillas: e5 está libre.",
+              "success": "Correcto. ...e5 abre el centro y le da juego a tu alfil de e7.",
+              "id": "dutch-l05-s04"
+            },
+            {
+              "type": "explain",
+              "text": "Resumen: la Clásica es sólida y flexible. Si el centro se abre, atacas; si se cierra, maniobras con ...De8, ...Ad7 y ...Tf7. La ruptura ...e5 es el momento clave.",
+              "fen": "rnb1qrk1/ppp1b1pp/3p1n2/4pp2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 w - - 0 9",
+              "orientation": "b",
+              "id": "dutch-l05-s05"
+            }
+          ]
+        },
+        {
+          "id": "dutch-l06",
+          "order": 4,
+          "title": "Stonewall: ...d5 y ...e6",
+          "summary": "La estructura sólida con el caballo en e4",
+          "xp": 20,
+          "steps": [
+            {
+              "type": "explain",
+              "text": "La Stonewall fija los peones en d5 y e6 y lleva el caballo a e4. Es una estructura sólida: controlas el centro y el ataque va por el flanco de rey.",
+              "fen": "rnb2rk1/pp2q1pp/2pbpn2/3p1p2/2PP4/1P3NP1/PB2PPBP/RN1Q1RK1 w - - 3 9",
+              "orientation": "b",
+              "highlight": [
+                "d5",
+                "e6",
+                "e4"
+              ],
+              "id": "dutch-l06-s01"
+            },
+            {
+              "type": "line",
+              "prompt": "Juega la Stonewall.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "orientation": "b",
+              "side": "b",
+              "mode": "guided",
+              "moves": [
+                {
+                  "uci": "d2d4",
+                  "san": "d4"
+                },
+                {
+                  "uci": "f7f5",
+                  "san": "f5",
+                  "note": "La Holandesa."
+                },
+                {
+                  "uci": "g2g3",
+                  "san": "g3"
+                },
+                {
+                  "uci": "g8f6",
+                  "san": "Cf6"
+                },
+                {
+                  "uci": "f1g2",
+                  "san": "Ag2"
+                },
+                {
+                  "uci": "d7d5",
+                  "san": "d5",
+                  "note": "La Stonewall: peón en d5 y control de e4."
+                },
+                {
+                  "uci": "g1f3",
+                  "san": "Cf3"
+                },
+                {
+                  "uci": "c7c6",
+                  "san": "c6",
+                  "note": "Sostiene d5 y prepara ...e6."
+                },
+                {
+                  "uci": "e1g1",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "e7e6",
+                  "san": "e6",
+                  "note": "Fijas la estructura d5-e6."
+                },
+                {
+                  "uci": "c2c4",
+                  "san": "c4"
+                },
+                {
+                  "uci": "f8d6",
+                  "san": "Ad6",
+                  "note": "El alfil apunta a h2."
+                },
+                {
+                  "uci": "b2b3",
+                  "san": "b3"
+                },
+                {
+                  "uci": "d8e7",
+                  "san": "De7",
+                  "note": "La dama apoya ...e5 y el ataque."
+                },
+                {
+                  "uci": "c1b2",
+                  "san": "Ab2"
+                },
+                {
+                  "uci": "e8g8",
+                  "san": "O-O",
+                  "note": "Rey a salvo y torre de f8 lista."
+                }
+              ],
+              "id": "dutch-l06-s02"
+            },
+            {
+              "type": "quiz",
+              "prompt": "¿Qué casilla es la más importante para el caballo negro en la Stonewall?",
+              "fen": "rnb2rk1/pp2q1pp/2pbpn2/3p1p2/2PP4/1P3NP1/PB2PPBP/RN1Q1RK1 w - - 3 9",
+              "orientation": "b",
+              "options": [
+                "e4",
+                "b4",
+                "h4"
+              ],
+              "answer": 0,
+              "explanation": "El caballo en e4 domina el centro y participa del ataque. Las otras dos casillas están en el borde y no hacen nada.",
+              "feedback": [
+                "",
+                "b4 está lejos del ataque.",
+                "h4 es una casilla de borde: el caballo pierde fuerza."
+              ],
+              "id": "dutch-l06-s03"
+            },
+            {
+              "type": "move",
+              "prompt": "Enroca y conecta las torres.",
+              "fen": "rnb1k2r/pp2q1pp/2pbpn2/3p1p2/2PP4/1P3NP1/PB2PPBP/RN1Q1RK1 b kq - 2 8",
+              "orientation": "b",
+              "solutions": [
+                "e8g8"
+              ],
+              "hint": "El rey negro está en e8 y la torre de h8 espera. Enroca corto.",
+              "success": "Correcto. ...O-O pone el rey a salvo y conecta las torres.",
+              "id": "dutch-l06-s04"
+            },
+            {
+              "type": "explain",
+              "text": "Resumen: la Stonewall es sólida. d5 y e6 controlan el centro, y el caballo en e4 es una pieza fuerte. El ataque va por el flanco de rey, con ...Ad6, ...De7 y ...Tf7.",
+              "fen": "rnb2rk1/pp2q1pp/2pbpn2/3p1p2/2PP4/1P3NP1/PB2PPBP/RN1Q1RK1 w - - 3 9",
+              "orientation": "b",
+              "id": "dutch-l06-s05"
+            }
+          ]
+        },
+        {
+          "id": "dutch-l07",
+          "order": 5,
+          "title": "Leningrado: ...g6 y ...Ag7",
+          "summary": "La Holandesa más dinámica",
+          "xp": 20,
+          "steps": [
+            {
+              "type": "explain",
+              "text": "La Leningrado pone el alfil en g7 y busca la ruptura ...e5. Es la Holandesa más dinámica: si el centro se abre, tus piezas llegan rápido y el alfil de g7 presiona el flanco de dama.",
+              "fen": "rnb1qrk1/ppp3bp/3p1np1/4pp2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 w - - 0 9",
+              "orientation": "b",
+              "highlight": [
+                "g6",
+                "g7",
+                "e5"
+              ],
+              "id": "dutch-l07-s01"
+            },
+            {
+              "type": "line",
+              "prompt": "Juega la Leningrado.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "orientation": "b",
+              "side": "b",
+              "mode": "guided",
+              "moves": [
+                {
+                  "uci": "d2d4",
+                  "san": "d4"
+                },
+                {
+                  "uci": "f7f5",
+                  "san": "f5",
+                  "note": "La Holandesa."
+                },
+                {
+                  "uci": "g2g3",
+                  "san": "g3"
+                },
+                {
+                  "uci": "g8f6",
+                  "san": "Cf6"
+                },
+                {
+                  "uci": "f1g2",
+                  "san": "Ag2"
+                },
+                {
+                  "uci": "g7g6",
+                  "san": "g6",
+                  "note": "La Leningrado: el alfil irá a g7."
+                },
+                {
+                  "uci": "g1f3",
+                  "san": "Cf3"
+                },
+                {
+                  "uci": "f8g7",
+                  "san": "Ag7",
+                  "note": "El alfil en la diagonal larga."
+                },
+                {
+                  "uci": "e1g1",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "e8g8",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "c2c4",
+                  "san": "c4"
+                },
+                {
+                  "uci": "d7d6",
+                  "san": "d6",
+                  "note": "Sostienes e5."
+                },
+                {
+                  "uci": "b1c3",
+                  "san": "Cc3"
+                },
+                {
+                  "uci": "d8e8",
+                  "san": "De8",
+                  "note": "Preparas ...e5."
+                },
+                {
+                  "uci": "f1e1",
+                  "san": "Te1"
+                },
+                {
+                  "uci": "e7e5",
+                  "san": "e5",
+                  "note": "La ruptura: abres el centro y atacas."
+                }
+              ],
+              "id": "dutch-l07-s02"
+            },
+            {
+              "type": "quiz",
+              "prompt": "¿Dónde va el alfil en la Leningrado?",
+              "fen": "rnb1qrk1/ppp3bp/3p1np1/4pp2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 w - - 0 9",
+              "orientation": "b",
+              "options": [
+                "g7",
+                "e7",
+                "d6"
+              ],
+              "answer": 0,
+              "explanation": "En g7 el alfil controla la diagonal larga y apoya la ruptura ...e5. En e7 es la Clásica; en d6 es la Stonewall.",
+              "feedback": [
+                "",
+                "e7 es la casilla de la Clásica, no de la Leningrado.",
+                "d6 es la casilla de la Stonewall."
+              ],
+              "id": "dutch-l07-s03"
+            },
+            {
+              "type": "move",
+              "prompt": "Juega la ruptura ...e5.",
+              "fen": "rnb1qrk1/ppp1p1bp/3p1np1/5p2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 b - - 3 8",
+              "orientation": "b",
+              "solutions": [
+                "e7e5"
+              ],
+              "hint": "El peón de e7 puede avanzar dos casillas: e6 y e5 están libres.",
+              "success": "Correcto. ...e5 abre el centro y el alfil de g7 entra en juego.",
+              "id": "dutch-l07-s04"
+            },
+            {
+              "type": "explain",
+              "text": "Resumen: la Leningrado es la Holandesa más dinámica. El alfil de g7 y la ruptura ...e5 abren el centro y atacan. Si las blancas cierran el centro, maniobras con ...De8 y ...Tf7.",
+              "fen": "rnb1qrk1/ppp3bp/3p1np1/4pp2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 w - - 0 9",
+              "orientation": "b",
+              "id": "dutch-l07-s05"
+            }
+          ]
+        },
+        {
+          "id": "dutch-l08",
+          "order": 6,
+          "title": "Contra 2.e4: el gambito Staunton",
+          "summary": "Aceptar el peón o devolverlo",
+          "xp": 20,
+          "steps": [
+            {
+              "type": "explain",
+              "text": "Si las blancas juegan 2.e4, entras en el gambito Staunton. Las blancas dan un peón por el centro; tú puedes quedarte con el peón o devolverlo con ...d5 para completar el desarrollo.",
+              "fen": "rnbqkb1r/ppp3pp/4pn2/3p2B1/3Pp3/2N2P2/PPP3PP/R2QKBNR w KQkq - 0 6",
+              "orientation": "b",
+              "highlight": [
+                "e4",
+                "f5",
+                "d5"
+              ],
+              "id": "dutch-l08-s01"
+            },
+            {
+              "type": "line",
+              "prompt": "Juega contra el gambito Staunton.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "orientation": "b",
+              "side": "b",
+              "mode": "guided",
+              "moves": [
+                {
+                  "uci": "d2d4",
+                  "san": "d4"
+                },
+                {
+                  "uci": "f7f5",
+                  "san": "f5",
+                  "note": "La Holandesa."
+                },
+                {
+                  "uci": "e2e4",
+                  "san": "e4",
+                  "note": "Las blancas entran en el gambito Staunton."
+                },
+                {
+                  "uci": "f5e4",
+                  "san": "fxe4",
+                  "note": "Aceptas el peón; también puedes devolverlo con ...d5."
+                },
+                {
+                  "uci": "b1c3",
+                  "san": "Cc3"
+                },
+                {
+                  "uci": "g8f6",
+                  "san": "Cf6",
+                  "note": "Desarrollas y atacas e4."
+                },
+                {
+                  "uci": "c1g5",
+                  "san": "Ag5"
+                },
+                {
+                  "uci": "e7e6",
+                  "san": "e6",
+                  "note": "Abres el alfil de f8 y preparas ...d5."
+                },
+                {
+                  "uci": "f2f3",
+                  "san": "f3"
+                },
+                {
+                  "uci": "d7d5",
+                  "san": "d5",
+                  "note": "Devuelves el peón para abrir el centro y desarrollar."
+                }
+              ],
+              "id": "dutch-l08-s02"
+            },
+            {
+              "type": "quiz",
+              "prompt": "¿Qué buscan las blancas con 2.e4?",
+              "fen": "rnbqkb1r/ppp3pp/4pn2/3p2B1/3Pp3/2N2P2/PPP3PP/R2QKBNR w KQkq - 0 6",
+              "orientation": "b",
+              "options": [
+                "Abrir el centro y atacar",
+                "Defender d4",
+                "Cambiar damas"
+              ],
+              "answer": 0,
+              "explanation": "El gambito Staunton entrega un peón para abrir el centro y atacar rápido. A cambio, las blancas quedan con un peón de menos si no lo recuperan.",
+              "feedback": [
+                "",
+                "d4 ya está defendido por el peón de c3 y la dama.",
+                "El cambio de damas no es el objetivo del gambito."
+              ],
+              "id": "dutch-l08-s03"
+            },
+            {
+              "type": "move",
+              "prompt": "Devuelve el peón para abrir el centro y desarrollar.",
+              "fen": "rnbqkb1r/pppp2pp/4pn2/6B1/3Pp3/2N2P2/PPP3PP/R2QKBNR b KQkq - 0 5",
+              "orientation": "b",
+              "solutions": [
+                "d7d5"
+              ],
+              "hint": "El peón de d7 puede avanzar dos casillas: d6 y d5 están libres.",
+              "success": "Correcto. ...d5 devuelve el peón, abre el centro y le da juego a tus piezas.",
+              "id": "dutch-l08-s04"
+            },
+            {
+              "type": "explain",
+              "text": "Resumen: contra 2.e4, el gambito Staunton. Acepta el peón y defiéndelo con ...d5, o devuélvelo para completar el desarrollo. Lo importante es no dejar al rey expuesto.",
+              "fen": "rnbqkb1r/ppp3pp/4pn2/3p2B1/3Pp3/2N2P2/PPP3PP/R2QKBNR w KQkq - 0 6",
+              "orientation": "b",
+              "id": "dutch-l08-s05"
+            }
+          ]
+        },
+        {
+          "id": "dutch-l04",
+          "order": 7,
+          "title": "Repaso",
+          "summary": "Practica las cuatro estructuras sin ayudas",
+          "xp": 20,
+          "steps": [
+            {
+              "type": "line",
+              "prompt": "Repite la línea principal sin ayudas.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "orientation": "b",
+              "side": "b",
+              "mode": "drill",
+              "moves": [
+                {
+                  "uci": "d2d4",
+                  "san": "d4"
+                },
+                {
+                  "uci": "f7f5",
+                  "san": "f5"
+                },
+                {
+                  "uci": "g2g3",
+                  "san": "g3"
+                },
+                {
+                  "uci": "g8f6",
+                  "san": "Cf6"
+                },
+                {
+                  "uci": "f1g2",
+                  "san": "Ag2"
+                },
+                {
+                  "uci": "e7e6",
+                  "san": "e6"
+                },
+                {
+                  "uci": "g1f3",
+                  "san": "Cf3"
+                },
+                {
+                  "uci": "f8e7",
+                  "san": "Ae7"
+                },
+                {
+                  "uci": "e1g1",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "e8g8",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "c2c4",
+                  "san": "c4"
+                },
+                {
+                  "uci": "d7d6",
+                  "san": "d6"
+                },
+                {
+                  "uci": "b1c3",
+                  "san": "Cc3"
+                },
+                {
+                  "uci": "d8e8",
+                  "san": "De8"
+                },
+                {
+                  "uci": "f1e1",
+                  "san": "Te1"
+                }
+              ],
+              "success": "Bien. La Clásica queda armada: ...e6, ...Ae7 y ...O-O.",
+              "hint": "Recuerda el orden: ...f5, ...Cf6, ...e6, ...Ae7, ...O-O, ...d6, ...De8.",
+              "id": "dutch-l04-s01"
+            },
+            {
+              "type": "line",
+              "prompt": "Repite la Stonewall sin ayudas.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "orientation": "b",
+              "side": "b",
+              "mode": "drill",
+              "moves": [
+                {
+                  "uci": "d2d4",
+                  "san": "d4"
+                },
+                {
+                  "uci": "f7f5",
+                  "san": "f5"
+                },
+                {
+                  "uci": "g2g3",
+                  "san": "g3"
+                },
+                {
+                  "uci": "g8f6",
+                  "san": "Cf6"
+                },
+                {
+                  "uci": "f1g2",
+                  "san": "Ag2"
+                },
+                {
+                  "uci": "d7d5",
+                  "san": "d5"
+                },
+                {
+                  "uci": "g1f3",
+                  "san": "Cf3"
+                },
+                {
+                  "uci": "c7c6",
+                  "san": "c6"
+                },
+                {
+                  "uci": "e1g1",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "e7e6",
+                  "san": "e6"
+                },
+                {
+                  "uci": "c2c4",
+                  "san": "c4"
+                },
+                {
+                  "uci": "f8d6",
+                  "san": "Ad6"
+                },
+                {
+                  "uci": "b2b3",
+                  "san": "b3"
+                },
+                {
+                  "uci": "d8e7",
+                  "san": "De7"
+                },
+                {
+                  "uci": "c1b2",
+                  "san": "Ab2"
+                },
+                {
+                  "uci": "e8g8",
+                  "san": "O-O"
+                }
+              ],
+              "success": "Bien. La Stonewall fija d5 y e6 y deja el caballo listo para e4.",
+              "hint": "Orden de la Stonewall: ...d5, ...c6, ...e6, ...Ad6, ...De7, ...O-O.",
+              "id": "dutch-l04-s02"
+            },
+            {
+              "type": "line",
+              "prompt": "Repite la Leningrado sin ayudas.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "orientation": "b",
+              "side": "b",
+              "mode": "drill",
+              "moves": [
+                {
+                  "uci": "d2d4",
+                  "san": "d4"
+                },
+                {
+                  "uci": "f7f5",
+                  "san": "f5"
+                },
+                {
+                  "uci": "g2g3",
+                  "san": "g3"
+                },
+                {
+                  "uci": "g8f6",
+                  "san": "Cf6"
+                },
+                {
+                  "uci": "f1g2",
+                  "san": "Ag2"
+                },
+                {
+                  "uci": "g7g6",
+                  "san": "g6"
+                },
+                {
+                  "uci": "g1f3",
+                  "san": "Cf3"
+                },
+                {
+                  "uci": "f8g7",
+                  "san": "Ag7"
+                },
+                {
+                  "uci": "e1g1",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "e8g8",
+                  "san": "O-O"
+                },
+                {
+                  "uci": "c2c4",
+                  "san": "c4"
+                },
+                {
+                  "uci": "d7d6",
+                  "san": "d6"
+                },
+                {
+                  "uci": "b1c3",
+                  "san": "Cc3"
+                },
+                {
+                  "uci": "d8e8",
+                  "san": "De8"
+                },
+                {
+                  "uci": "f1e1",
+                  "san": "Te1"
+                },
+                {
+                  "uci": "e7e5",
+                  "san": "e5"
+                }
+              ],
+              "success": "Bien. La Leningrado termina con el alfil en g7 y la ruptura ...e5.",
+              "hint": "Orden de la Leningrado: ...g6, ...Ag7, ...O-O, ...d6, ...De8, ...e5.",
+              "id": "dutch-l04-s03"
+            },
+            {
+              "type": "line",
+              "prompt": "Repite el gambito Staunton sin ayudas.",
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "orientation": "b",
+              "side": "b",
+              "mode": "drill",
+              "moves": [
+                {
+                  "uci": "d2d4",
+                  "san": "d4"
+                },
+                {
+                  "uci": "f7f5",
+                  "san": "f5"
+                },
+                {
+                  "uci": "e2e4",
+                  "san": "e4"
+                },
+                {
+                  "uci": "f5e4",
+                  "san": "fxe4"
+                },
+                {
+                  "uci": "b1c3",
+                  "san": "Cc3"
+                },
+                {
+                  "uci": "g8f6",
+                  "san": "Cf6"
+                },
+                {
+                  "uci": "c1g5",
+                  "san": "Ag5"
+                },
+                {
+                  "uci": "e7e6",
+                  "san": "e6"
+                },
+                {
+                  "uci": "f2f3",
+                  "san": "f3"
+                },
+                {
+                  "uci": "d7d5",
+                  "san": "d5"
+                }
+              ],
+              "success": "Bien. Contra el Staunton, ...d5 devuelve el peón y abre el centro.",
+              "hint": "Contra 2.e4: acepta con ...fxe4, desarrolla con ...Cf6 y ...e6, y devuelve con ...d5.",
+              "id": "dutch-l04-s04"
+            },
+            {
+              "type": "explain",
+              "text": "Repaso: la Holandesa es un esquema fijo. Elige tu estructura, controla e4, prepara la ruptura y ataca en el flanco de rey. Cuida el rey y no cambies de plan sin motivo.",
+              "fen": "rnb1qrk1/ppp1b1pp/3ppn2/5p2/2PP4/2N2NP1/PP2PPBP/R1BQR1K1 b - - 3 8",
+              "orientation": "b",
+              "id": "dutch-l04-s05"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

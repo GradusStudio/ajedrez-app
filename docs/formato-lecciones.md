@@ -36,7 +36,7 @@ Glosarios por idioma en `docs/traducciones/<lang>.md`. Las traducciones se hicie
 
 ## Paso `line` (aperturas)
 
-Archivos: `aperturas-v1.json` (4 cursos, ya no se usa) y `aperturas-v3.json` (28 cursos). La app usa la copia en `src/data/aperturas-v3.json`; si se corrige una línea, hay que cambiarla allí (y en `docs/` para que coincidan). Cada apertura es un curso con idea (`l01`), línea principal (`l02`), una guía por línea (`l05` en adelante) y repaso (`l04`, al final). Ver «Guías por línea» más abajo.
+Archivos: `aperturas-v1.json` (4 cursos, ya no se usa) y `aperturas-v3.json` (29 cursos). La app usa la copia en `src/data/aperturas-v3.json`; si se corrige una línea, hay que cambiarla allí (y en `docs/` para que coincidan). Cada apertura es un curso con idea (`l01`), línea principal (`l02`), una guía por línea (`l05` en adelante) y repaso (`l04`, al final). Ver «Guías por línea» más abajo.
 
 El paso `line` parte de la posición inicial. El usuario juega solo las jugadas de su color (`side`); la app juega las del rival automáticamente después de cada acierto.
 
@@ -120,8 +120,9 @@ Las 61 líneas se analizaron con Stockfish 19 a profundidad 20, jugada por jugad
 | Defensa Petrov | Negras | 4 |
 | Gambito de dama declinado | Negras | 4 |
 | Gambito de dama aceptado | Blancas | 4 |
+| Defensa Holandesa | Negras | 4 |
 
-Total: 28 cursos, 112 lecciones, 315 pasos.
+Total: 29 cursos, 119 lecciones, 346 pasos.
 
 Las líneas se comprobaron como jugadas legales y los mates como mates reales. No se evaluó su calidad con un motor: antes de publicarlas conviene revisarlas con Stockfish y una base de partidas.
 

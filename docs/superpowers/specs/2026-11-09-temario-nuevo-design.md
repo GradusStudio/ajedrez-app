@@ -1,6 +1,6 @@
 # Temario nuevo: lecciones que faltan · propuesta
 
-Fecha: 9-11-2026. Estado: **propuesta, sin aprobar**. No se escribió ninguna lección.
+Fecha: 9-11-2026. Estado: **implementado en gran parte**. Ver la sección «Estado» al final.
 
 ## De dónde sale
 
@@ -151,7 +151,7 @@ Los cursos nuevos siguen el formato de `aperturas-v3.json` (Idea, Línea princip
 
 - **Bloque A hecho el 9-11-2026:** La enfilada (`u3-l09`), Trampas que vas a ver (`u4-l07`) y Mate en escalera (`u5-l06`). Cinco idiomas (de, it y fr traducidos con gemma4 vía Ollama y corregidos a mano, sin revisión de nativos). Los profesores de esas tres siguen las fichas actuales: Sofía, Tomás e Ivo. Detalle de la validación en `docs/formato-lecciones.md`.
 - **Bloque B hecho el 9-11-2026:** Unidad 7, Táctica intermedia (8 lecciones; ver `docs/formato-lecciones.md`). Las ocho lecciones usan puzzles reales de Lichess; la sobrecarga se armó con una búsqueda propia. Profesores según las fichas: Tomás (atracción, jugada intermedia), Sofía (sobrecarga, interferencia, calcular), Pipo (mates de una pieza) y Valentina (mates de dos piezas, sacrificios).
-- **Bloque C hecho el 9-11-2026 (parcial):** Unidad 8, Finales intermedios, con 6 de las 8 lecciones previstas (rey activo, peón pasado alejado con las dos debilidades, dama contra peón, Philidor, cortar al rey con la torre, alfiles de distinto color). Todas las enseña Ivo. Quedó pendiente «Alfil contra caballo» (ver `docs/formato-lecciones.md`).
-- **Bloque D hecho el 9-11-2026 (parcial):** Unidad 9, Piezas y peones, con 6 de las 8 lecciones previstas (piezas sueltas, cuándo cambiar piezas, el espacio, posiciones abiertas y cerradas, alfil bueno y malo, peón retrasado y cadenas). Quedaron pendientes «Torres activas» y «Rupturas y mayorías de peones».
-- **Bloque E hecho el 9-11-2026 (parcial):** Unidad 10, Ataque y defensa, con 4 lecciones (el rey sin enrocar, enroques del mismo lado, enroques opuestos, defender al rey) más el Repaso final movido al fondo de la ruta y ampliado a 16 puzzles. Quedaron pendientes «Defenderse con material de menos», «Convertir una ventaja» y «Hacer un plan» (ver `docs/formato-lecciones.md`).
-- Falta: el bloque F (cursos Apertura Española y Defensa Holandesa y el texto «Cómo elegir tu repertorio») y las lecciones pendientes de las unidades 8, 9 y 10.
+- **Bloque C completo el 11-11-2026:** Unidad 8, Finales intermedios, 8 lecciones. Se agregaron «Alfil contra caballo» y «Las dos debilidades» (ver `docs/formato-lecciones.md`).
+- **Bloque D completo el 11-11-2026:** Unidad 9, Piezas y peones, 8 lecciones. Se agregaron «Torres activas» y «Rupturas y mayorías de peones».
+- **Bloque E completo el 11-11-2026:** Unidad 10, Ataque y defensa, 7 lecciones más el Repaso final. Se agregaron «Defenderse con material de menos», «Convertir una ventaja» y «Hacer un plan» (ver `docs/formato-lecciones.md`).
+- **Bloque F completo el 11-11-2026:** la Apertura Española ya existía como curso Ruy López; se agregó la **Defensa Holandesa** (7 lecciones: Idea, Línea principal, Clásica, Stonewall, Leningrado, contra 2.e4 y Repaso) y el texto «Cómo elegir tu repertorio» en la pestaña Aperturas. No quedan lecciones pendientes de las unidades 8, 9 y 10.

@@ -17834,5 +17834,311 @@
         }
       }
     }
+  },
+  "dutch": {
+    "name": "Difesa Olandese",
+    "summary": "Una difesa a schema fisso contro 1.d4: scegli la Classica, la Stonewall o la Leningrado e gioca con un piano chiaro.",
+    "lessons": {
+      "dutch-l01": {
+        "title": "L'idea dell'Olandese",
+        "summary": "Controllare e4 e attaccare sull'ala di re",
+        "steps": {
+          "dutch-l01-s01": {
+            "text": "L'Olandese inizia con ...f5. Questo pedone controlla e4 e prepara un attacco sull'ala di re. È una difesa a schema fisso: sai dove vanno i tuoi pezzi."
+          },
+          "dutch-l01-s02": {
+            "text": "Ci sono tre schemi: la Classica (...e6 e ...Ae7), la Stonewall (...d5 e ...e6) e la Leningrado (...g6 e ...Ag7). Tutti e tre controllano e4 e cercano l'attacco."
+          },
+          "dutch-l01-s03": {
+            "prompt": "Quale casella controlla il pedone f5?",
+            "explanation": "Il pedone f5 guarda e4. Se i bianchi giocano e4, puoi catturare con fxe4 o lasciarlo passare.",
+            "options": [
+              "e4",
+              "d4",
+              "c4"
+            ],
+            "feedback": [
+              "",
+              "d4 è già occupato dal pedone bianco.",
+              "c4 è lontano dal pedone f5."
+            ]
+          },
+          "dutch-l01-s04": {
+            "prompt": "Qual è il rischio dell'Olandese?",
+            "explanation": "Avanzando il pedone f, l'arrocco diventa più debole. Per questo bisogna stare attenti al re e scegliere bene il momento per attaccare.",
+            "options": [
+              "Il re è un po' esposto",
+              "Perdi un pedone",
+              "Non puoi arroccare"
+            ],
+            "feedback": [
+              "",
+              "L'Olandese non perde un pedone all'apertura.",
+              "Sì puoi arroccare: in realtà, fa parte del piano."
+            ]
+          },
+          "dutch-l01-s05": {
+            "text": "Riassunto: l'Olandese è una difesa a schema fisso. Scegli una struttura, controlla e4 e attacca sull'ala di re. Stai attento al re e non cambiare il piano senza motivo."
+          }
+        }
+      },
+      "dutch-l02": {
+        "title": "Linea principale",
+        "summary": "La Classica passo passo",
+        "steps": {
+          "dutch-l02-s01": {
+            "prompt": "Gioca la Hollandese Classica con le nere.",
+            "notes": [
+              "Le bianche occupano il centro.",
+              "La Hollandese: controlla e4 e prepara l'attacco.",
+              "Le bianche preparano l'alfiere di g2.",
+              "",
+              "L'alfiere punta sulla diagonale lunga.",
+              "Abre l'alfiere di f8.",
+              "",
+              "L'alfiere è pronto per ...Af6 o ...Ad7.",
+              "",
+              "Re al sicuro; la torre di f8 supporterà ...e5.",
+              "",
+              "Sostiene e5 e controlla il centro.",
+              "",
+              "La dama va a e8: prepara ...e5 e ...Dh5.",
+              "Le bianche proteggono e4 e preparano e5."
+            ]
+          }
+        }
+      },
+      "dutch-l05": {
+        "title": "Classica: il piano con ...e5",
+        "summary": "Aprire il centro e attaccare",
+        "steps": {
+          "dutch-l05-s01": {
+            "text": "La Classica è la Hollandese più solida. Con ...e6, ...Ae7 e ...O-O prepari la rottura ...e5. Dopo cerchi ...De8, ...Dh5 o ...Ce4 a seconda di come rispondono i bianchi."
+          },
+          "dutch-l05-s02": {
+            "prompt": "Gioca la Classica e prepara ...e5.",
+            "notes": [
+              "",
+              "Il pedone di f5 controlla e4.",
+              "",
+              "",
+              "",
+              "Prepari lo sviluppo dell'alfiere.",
+              "",
+              "",
+              "",
+              "Il re è al sicuro.",
+              "",
+              "Sostieni il centro.",
+              "",
+              "La dama supporta ...e5.",
+              "",
+              "La rottura: apri il centro e cerchi l'attacco."
+            ]
+          },
+          "dutch-l05-s03": {
+            "prompt": "Cosa cerca la Classica con ...e5?",
+            "explanation": "La rottura ...e5 apre la colonna e e la diagonale dell'alfiere di e7. Se i bianchi catturano, i tuoi pezzi arrivano al centro.",
+            "options": [
+              "Aprire il centro e attaccare il re",
+              "Cambiare dame",
+              "Difendere il pedone di d5"
+            ],
+            "feedback": [
+              "",
+              "Cambiare dame non è l'obiettivo: vuoi attaccare.",
+              "Non c'è un pedone in d5 in questa struttura."
+            ]
+          },
+          "dutch-l05-s04": {
+            "prompt": "Gioca la rottura ...e5.",
+            "hint": "Il pedone di e6 può avanzare due caselle: e5 è libero.",
+            "success": "Corretto. ...e5 apre il centro e dà gioco al tuo alfiere di e7."
+          },
+          "dutch-l05-s05": {
+            "text": "Riepilogo: la Classica è solida e flessibile. Se il centro si apre, attacchi; se si chiude, manovri con ...De8, ...Ad7 e ...Tf7. La rottura ...e5 è il momento chiave."
+          }
+        }
+      },
+      "dutch-l06": {
+        "title": "Muro di Pietre: ...d5 e ...e6",
+        "summary": "La struttura solida con il cavallo in e4",
+        "steps": {
+          "dutch-l06-s01": {
+            "text": "Lo Stonewall fissa i pedoni in d5 e e6 e porta il cavallo in e4. È una struttura solida: controlli il centro e l'attacco va per l'ala di re."
+          },
+          "dutch-l06-s02": {
+            "prompt": "Gioca lo Stonewall.",
+            "notes": [
+              "",
+              "L'Olandese.",
+              "",
+              "",
+              "",
+              "Lo Stonewall: pedone in d5 e controllo di e4.",
+              "",
+              "Sostiene d5 e prepara ...e6.",
+              "",
+              "Fissa la struttura d5-e6.",
+              "",
+              "L'alfiere punta a h2.",
+              "",
+              "La dama supporta ...e5 e l'attacco.",
+              "",
+              "Re al sicuro e torre di f8 pronta."
+            ]
+          },
+          "dutch-l06-s03": {
+            "prompt": "Quale casella è la più importante per il cavallo nero nello Stonewall?",
+            "explanation": "Il cavallo in e4 domina il centro e partecipa all'attacco. Le altre due caselle sono ai lati e non fanno nulla.",
+            "options": [
+              "e4",
+              "b4",
+              "h4"
+            ],
+            "feedback": [
+              "",
+              "b4 è lontano dall'attacco.",
+              "h4 è una casella di bordo: il cavallo perde forza."
+            ]
+          },
+          "dutch-l06-s04": {
+            "prompt": "Rossica e collega le torri.",
+            "hint": "Il re nero è in e8 e la torre di h8 aspetta. Scacco corto.",
+            "success": "Corretto. ...O-O mette il re al sicuro e collega le torri."
+          },
+          "dutch-l06-s05": {
+            "text": "Riepilogo: lo Stonewall è solido. d5 e e6 controllano il centro, e il cavallo in e4 è un pezzo forte. L'attacco va per l'ala di re, con ...Ad6, ...De7 e ...Tf7."
+          }
+        }
+      },
+      "dutch-l07": {
+        "title": "Leningrado: ...g6 e ...Ag7",
+        "summary": "La Olandese più dinamica",
+        "steps": {
+          "dutch-l07-s01": {
+            "text": "La Leningrado mette l'alfiere in g7 e cerca la rottura ...e5. È la Hollandese più dinamica: se il centro si apre, i tuoi pezzi arrivano velocemente e l'alfiere in g7 preme sul fianco di donna."
+          },
+          "dutch-l07-s02": {
+            "prompt": "Gioca la Leningrado.",
+            "notes": [
+              "",
+              "La Hollandese.",
+              "",
+              "",
+              "",
+              "La Leningrado: l'alfiere andrà in g7.",
+              "",
+              "L'alfiere sulla diagonale lunga.",
+              "",
+              "",
+              "",
+              "Mantieni e5.",
+              "",
+              "Prepara ...e5.",
+              "",
+              "La rottura: apri il centro e attacchi."
+            ]
+          },
+          "dutch-l07-s03": {
+            "prompt": "Dove va l'alfiere nella Leningrado?",
+            "explanation": "In g7 l'alfiere controlla la diagonale lunga e supporta la rottura ...e5. In e7 è la Classica; in d6 è la Stonewall.",
+            "options": [
+              "g7",
+              "e7",
+              "d6"
+            ],
+            "feedback": [
+              "",
+              "e7 è la casella della Classica, non della Leningrado.",
+              "d6 è la casella della Stonewall."
+            ]
+          },
+          "dutch-l07-s04": {
+            "prompt": "Gioca la rottura ...e5.",
+            "hint": "Il pedone in e7 può avanzare due caselle: e6 ed e5 sono libere.",
+            "success": "Corretto. ...e5 apre il centro e l'alfiere in g7 entra in gioco."
+          },
+          "dutch-l07-s05": {
+            "text": "Riepilogo: la Leningrado è la Hollandese più dinamica. L'alfiere in g7 e la rottura ...e5 aprono il centro e attaccano. Se i bianchi chiudono il centro, manovra con ...De8 e ...Tf7."
+          }
+        }
+      },
+      "dutch-l08": {
+        "title": "Contro 2.e4: il gambetto Staunton",
+        "summary": "Accettare il pedone o restituirlo",
+        "steps": {
+          "dutch-l08-s01": {
+            "text": "Se i bianchi giocano 2.e4, si entra nel gambetto Staunton. I bianchi danno un pedone al centro; tu puoi tenere il pedone o restituirlo con ...d5 per completare lo sviluppo."
+          },
+          "dutch-l08-s02": {
+            "prompt": "Gioca contro il gambetto Staunton.",
+            "notes": [
+              "",
+              "L'olandese.",
+              "I bianchi entrano nel gambetto Staunton.",
+              "Accetti il pedone; puoi anche restituirlo con ...d5.",
+              "",
+              "Sviluppi e attacchi e4.",
+              "",
+              "Apri l'alfiere di f8 e prepari ...d5.",
+              "",
+              "Restituisci il pedone per aprire il centro e sviluppare."
+            ]
+          },
+          "dutch-l08-s03": {
+            "prompt": "Cosa cercano i bianchi con 2.e4?",
+            "explanation": "Il gambetto Staunton cede un pedone per aprire il centro e attaccare rapidamente. In cambio, i bianchi rimangono con un pedone in meno se non lo recuperano.",
+            "options": [
+              "Aprire il centro e attaccare",
+              "Difendere d4",
+              "Cambiare dame"
+            ],
+            "feedback": [
+              "",
+              "d4 è già difeso dal pedone di c3 e dalla dama.",
+              "Il cambio di dame non è l'obiettivo del gambetto."
+            ]
+          },
+          "dutch-l08-s04": {
+            "prompt": "Restituisci il pedone per aprire il centro e sviluppare.",
+            "hint": "Il pedone di d7 può avanzare due caselle: d6 e d5 sono libere.",
+            "success": "Corretto. ...d5 restituisce il pedone, apre il centro e dà gioco alle tue pièces."
+          },
+          "dutch-l08-s05": {
+            "text": "Riepilogo: contro 2.e4, il gambetto Staunton. Accetta il pedone e difendilo con ...d5, o restituiscilo per completare lo sviluppo. L'importante è non lasciare il re esposto."
+          }
+        }
+      },
+      "dutch-l04": {
+        "title": "Ripasso",
+        "summary": "Pratica le quattro strutture senza aiuti",
+        "steps": {
+          "dutch-l04-s01": {
+            "prompt": "Ripeti la linea principale senza aiuti.",
+            "hint": "Ricorda l'ordine: ...f5, ...Cf6, ...e6, ...Ae7, ...O-O, ...d6, ...De8.",
+            "success": "Bene. La Classica è pronta: ...e6, ...Ae7 e ...O-O."
+          },
+          "dutch-l04-s02": {
+            "prompt": "Ripeti la Stonewall senza aiuti.",
+            "hint": "Ordine della Stonewall: ...d5, ...c6, ...e6, ...Ad6, ...De7, ...O-O.",
+            "success": "Bene. La Stonewall fissa d5 e e6 e lascia il cavallo pronto per e4."
+          },
+          "dutch-l04-s03": {
+            "prompt": "Ripeti il Leningrado senza aiuti.",
+            "hint": "Ordine del Leningrado: ...g6, ...Ag7, ...O-O, ...d6, ...De8, ...e5.",
+            "success": "Bene. Il Leningrado finisce con l'alfiere in g7 e la rottura ...e5."
+          },
+          "dutch-l04-s04": {
+            "prompt": "Ripeti il gambetto Staunton senza aiuti.",
+            "hint": "Contro 2.e4: accetta con ...fxe4, sviluppa con ...Cf6 e ...e6, e restituisce con ...d5.",
+            "success": "Bene. Contro lo Staunton, ...d5 restituisce il pedone e apre il centro."
+          },
+          "dutch-l04-s05": {
+            "text": "Ripasso: l'Olandese è uno schema fisso. Scegli la tua struttura, controlla e4, prepara la rottura e attacca sul fianco di re. Stai attento al re e non cambiare piano senza motivo."
+          }
+        }
+      }
+    }
   }
 }

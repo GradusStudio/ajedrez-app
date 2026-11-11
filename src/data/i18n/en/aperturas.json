@@ -17834,5 +17834,311 @@
         }
       }
     }
+  },
+  "dutch": {
+    "name": "Dutch Defense",
+    "summary": "A fixed-scheme defense against 1.d4: choose the Classical, the Stonewall or the Leningrad and play with a clear plan.",
+    "lessons": {
+      "dutch-l01": {
+        "title": "The Dutch Idea",
+        "summary": "Control e4 and attack on the kingside",
+        "steps": {
+          "dutch-l01-s01": {
+            "text": "The Dutch starts with ...f5. This pawn controls e4 and prepares an attack on the kingside. It is a fixed scheme defense: you know where your pieces are going."
+          },
+          "dutch-l01-s02": {
+            "text": "There are three schemes: the Classical (...e6 and ...Be7), the Stonewall (...d5 and ...e6), and the Leningrad (...g6 and ...Bg7). All three control e4 and seek the attack."
+          },
+          "dutch-l01-s03": {
+            "prompt": "Which square does the f5 pawn control?",
+            "explanation": "The f5 pawn looks at e4. If White plays e4, you can capture with fxe4 or let it pass.",
+            "options": [
+              "e4",
+              "d4",
+              "c4"
+            ],
+            "feedback": [
+              "",
+              "d4 is occupied by the white pawn.",
+              "c4 is far from the f5 pawn."
+            ]
+          },
+          "dutch-l01-s04": {
+            "prompt": "What is the risk of the Dutch?",
+            "explanation": "By advancing the f pawn, castling becomes weaker. That is why you must take care of the king and choose the right time to attack.",
+            "options": [
+              "The king is somewhat exposed",
+              "You lose a pawn",
+              "You cannot castle"
+            ],
+            "feedback": [
+              "",
+              "The Dutch does not lose a pawn in the opening.",
+              "You can castle: in fact, it is part of the plan."
+            ]
+          },
+          "dutch-l01-s05": {
+            "text": "Summary: the Dutch is a fixed scheme defense. You choose a structure, control e4, and attack on the kingside. Take care of the king and do not change the plan without reason."
+          }
+        }
+      },
+      "dutch-l02": {
+        "title": "Main Line",
+        "summary": "The Classic step by step",
+        "steps": {
+          "dutch-l02-s01": {
+            "prompt": "Play the Dutch Classic with black.",
+            "notes": [
+              "White occupies the center.",
+              "The Dutch: controls e4 and prepares the attack.",
+              "White prepares the bishop on g2.",
+              "",
+              "The bishop aims at the long diagonal.",
+              "Opens the bishop on f8.",
+              "",
+              "The bishop is ready for ...Bf6 or ...Bd7.",
+              "",
+              "King is safe; the rook on f8 will support ...e5.",
+              "",
+              "Supports e5 and controls the center.",
+              "",
+              "The queen goes to e8: prepares ...e5 and ...Qh5.",
+              "White protects e4 and prepares e5."
+            ]
+          }
+        }
+      },
+      "dutch-l05": {
+        "title": "Classical: the plan with ...e5",
+        "summary": "Open the center and attack",
+        "steps": {
+          "dutch-l05-s01": {
+            "text": "The Classical is the most solid Dutch. With ...e6, ...Be7 and ...O-O you prepare the break ...e5. Then you look for ...Qe8, ...Qh5 or ...Ne4 depending on how White responds."
+          },
+          "dutch-l05-s02": {
+            "prompt": "Play the Classical and prepare ...e5.",
+            "notes": [
+              "",
+              "The f5 pawn controls e4.",
+              "",
+              "",
+              "",
+              "Preparing the bishop's development.",
+              "",
+              "",
+              "",
+              "The king is safe.",
+              "",
+              "Holding the center.",
+              "",
+              "The bishop supports ...e5.",
+              "",
+              "The break: you open the center and look for the attack."
+            ]
+          },
+          "dutch-l05-s03": {
+            "prompt": "What does the Classical aim for with ...e5?",
+            "explanation": "The break ...e5 opens the e-file and the diagonal of the bishop on e7. If White captures, your pieces reach the center.",
+            "options": [
+              "Open the center and attack the king",
+              "Exchange queens",
+              "Defend the d5 pawn"
+            ],
+            "feedback": [
+              "",
+              "Exchanging queens is not the goal: you want to attack.",
+              "There is no pawn on d5 in this structure."
+            ]
+          },
+          "dutch-l05-s04": {
+            "prompt": "Play the break ...e5.",
+            "hint": "The e6 pawn can advance two squares: e5 is free.",
+            "success": "Correct. ...e5 opens the center and gives life to your bishop on e7."
+          },
+          "dutch-l05-s05": {
+            "text": "Summary: the Classical is solid and flexible. If the center opens, you attack; if it closes, you maneuver with ...Qe8, ...Bd7 and ...Rf7. The break ...e5 is the key moment."
+          }
+        }
+      },
+      "dutch-l06": {
+        "title": "Stonewall: ...d5 and ...e6",
+        "summary": "The solid structure with the knight on e4",
+        "steps": {
+          "dutch-l06-s01": {
+            "text": "The Stonewall fixes the pawns on d5 and e6 and brings the knight to e4. It is a solid structure: you control the center and the attack goes through the kingside."
+          },
+          "dutch-l06-s02": {
+            "prompt": "Play the Stonewall.",
+            "notes": [
+              "",
+              "The Dutch.",
+              "",
+              "",
+              "",
+              "The Stonewall: pawn on d5 and control of e4.",
+              "",
+              "Supports d5 and prepares ...e6.",
+              "",
+              "Fixes the d5-e6 structure.",
+              "",
+              "The bishop aims at h2.",
+              "",
+              "The queen supports ...e5 and the attack.",
+              "",
+              "King is safe and the f8 rook is ready."
+            ]
+          },
+          "dutch-l06-s03": {
+            "prompt": "Which square is most important for the black knight in the Stonewall?",
+            "explanation": "The knight on e4 dominates the center and participates in the attack. The other two squares are on the edge and do nothing.",
+            "options": [
+              "e4",
+              "b4",
+              "h4"
+            ],
+            "feedback": [
+              "",
+              "b4 is far from the attack.",
+              "h4 is an edge square: the knight loses strength."
+            ]
+          },
+          "dutch-l06-s04": {
+            "prompt": "Castle and connect the rooks.",
+            "hint": "The black king is on e8 and the h8 rook is waiting. Castle short.",
+            "success": "Correct. ...O-O puts the king safe and connects the rooks."
+          },
+          "dutch-l06-s05": {
+            "text": "Summary: the Stonewall is solid. d5 and e6 control the center, and the knight on e4 is a strong piece. The attack goes through the kingside, with ...Bd6, ...Qe7 and ...Rf7."
+          }
+        }
+      },
+      "dutch-l07": {
+        "title": "Leningrad: ...g6 and ...Bg7",
+        "summary": "The most dynamic Dutch",
+        "steps": {
+          "dutch-l07-s01": {
+            "text": "The Leningrad places the bishop on g7 and seeks the ...e5 break. It is the most dynamic Dutch: if the center opens, your pieces arrive quickly and the bishop on g7 pressures the queenside."
+          },
+          "dutch-l07-s02": {
+            "prompt": "Play the Leningrad.",
+            "notes": [
+              "",
+              "The Dutch.",
+              "",
+              "",
+              "",
+              "The Leningrad: the bishop goes to g7.",
+              "",
+              "The bishop on the long diagonal.",
+              "",
+              "",
+              "",
+              "Holding e5.",
+              "",
+              "Preparing ...e5.",
+              "",
+              "The break: you open the center and attack."
+            ]
+          },
+          "dutch-l07-s03": {
+            "prompt": "Where does the bishop go in the Leningrad?",
+            "explanation": "On g7 the bishop controls the long diagonal and supports the ...e5 break. On e7 it is the Classical; on d6 it is the Stonewall.",
+            "options": [
+              "g7",
+              "e7",
+              "d6"
+            ],
+            "feedback": [
+              "",
+              "e7 is the square of the Classical, not the Leningrad.",
+              "d6 is the square of the Stonewall."
+            ]
+          },
+          "dutch-l07-s04": {
+            "prompt": "Play the ...e5 break.",
+            "hint": "The e7 pawn can advance two squares: e6 and e5 are free.",
+            "success": "Correct. ...e5 opens the center and the bishop on g7 gets involved."
+          },
+          "dutch-l07-s05": {
+            "text": "Summary: the Leningrad is the most dynamic Dutch. The bishop on g7 and the ...e5 break open the center and attack. If the White center closes, maneuver with ...Qe8 and ...Rf7."
+          }
+        }
+      },
+      "dutch-l08": {
+        "title": "Against 2.e4: The Staunton Gambit",
+        "summary": "Accept the pawn or return it",
+        "steps": {
+          "dutch-l08-s01": {
+            "text": "If White plays 2.e4, you enter the Staunton Gambit. White gives a pawn in the center; you can take the pawn or return it with ...d5 to complete development."
+          },
+          "dutch-l08-s02": {
+            "prompt": "Play against the Staunton Gambit.",
+            "notes": [
+              "",
+              "The Dutch.",
+              "White enters the Staunton Gambit.",
+              "You accept the pawn; you can also return it with ...d5.",
+              "",
+              "Develop and attack e4.",
+              "",
+              "Uncover the bishop on f8 and prepare ...d5.",
+              "",
+              "Return the pawn to open the center and develop."
+            ]
+          },
+          "dutch-l08-s03": {
+            "prompt": "What are White's goals with 2.e4?",
+            "explanation": "The Staunton Gambit sacrifices a pawn to open the center and attack quickly. In return, White is down a pawn if they don't recover it.",
+            "options": [
+              "Open the center and attack",
+              "Defend d4",
+              "Exchange queens"
+            ],
+            "feedback": [
+              "",
+              "d4 is already defended by the pawn on c3 and the queen.",
+              "Exchanging queens is not the goal of the gambit."
+            ]
+          },
+          "dutch-l08-s04": {
+            "prompt": "Return the pawn to open the center and develop.",
+            "hint": "The pawn on d7 can advance two squares: d6 and d5 are free.",
+            "success": "Correct. ...d5 returns the pawn, opens the center, and gives your pieces play."
+          },
+          "dutch-l08-s05": {
+            "text": "Summary: against 2.e4, the Staunton Gambit. Accept the pawn and defend it with ...d5, or return it to complete development. The important thing is not to leave the king exposed."
+          }
+        }
+      },
+      "dutch-l04": {
+        "title": "Review",
+        "summary": "Practice the four structures without help",
+        "steps": {
+          "dutch-l04-s01": {
+            "prompt": "Repeat the main line without help.",
+            "hint": "Remember the order: ...f5, ...Nf6, ...e6, ...Be7, ...O-O, ...d6, ...Qe8.",
+            "success": "Good. The Classical is set up: ...e6, ...Be7 and ...O-O."
+          },
+          "dutch-l04-s02": {
+            "prompt": "Repeat the Stonewall without help.",
+            "hint": "Stonewall order: ...d5, ...c6, ...e6, ...Bd6, ...Qe7, ...O-O.",
+            "success": "Good. The Stonewall fixes d5 and e6 and leaves the knight ready for e4."
+          },
+          "dutch-l04-s03": {
+            "prompt": "Repeat the Leningrad without help.",
+            "hint": "Leningrad order: ...g6, ...Bg7, ...O-O, ...d6, ...Qe8, ...e5.",
+            "success": "Good. The Leningrad ends with the bishop on g7 and the ...e5 break."
+          },
+          "dutch-l04-s04": {
+            "prompt": "Repeat the Staunton Gambit without help.",
+            "hint": "Against 2.e4: accept with ...fxe4, develop with ...Nf6 and ...e6, and return with ...d5.",
+            "success": "Good. Against the Staunton, ...d5 returns the pawn and opens the center."
+          },
+          "dutch-l04-s05": {
+            "text": "Review: the Dutch is a fixed scheme. Choose your structure, control e4, prepare the break, and attack on the kingside. Take care of the king and do not change the plan without reason."
+          }
+        }
+      }
+    }
   }
 }

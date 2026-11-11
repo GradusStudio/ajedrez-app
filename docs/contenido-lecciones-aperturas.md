@@ -27,9 +27,9 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 ### Unidad 2 · Reglas especiales (6 lecciones, ya escritas en `src/data/unidad-2-reglas-especiales.json`)
 13. El enroque
 14. La captura al paso
-15. Coronar bien (sin ahogar y con caballo; lo básico ya está en «El peón» de la unidad 1)
-16. El rey ahogado
-17. Otras tablas: repetición y jaque perpetuo, material insuficiente, 50 jugadas
+15. El rey ahogado
+16. Otras tablas: repetición y jaque perpetuo, material insuficiente, 50 jugadas
+17. Coronar bien (sin ahogar y con caballo; lo básico ya está en «El peón» de la unidad 1)
 18. Cómo se escriben las jugadas (notación)
 
 ### Unidad 3 · Táctica básica (9 lecciones, ya escritas en `src/data/unidad-3-tactica-basica.json`)

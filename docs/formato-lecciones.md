@@ -164,9 +164,9 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 |---|---|---|---|
 | 1 | u2-l01 | El enroque | 8 |
 | 2 | u2-l02 | La captura al paso | 7 |
-| 3 | u2-l03 | Coronar bien | 7 |
-| 4 | u2-l04 | El rey ahogado | 7 |
-| 5 | u2-l05 | Otras tablas | 8 |
+| 3 | u2-l04 | El rey ahogado | 7 |
+| 4 | u2-l05 | Otras tablas | 8 |
+| 5 | u2-l03 | Coronar bien | 7 |
 | 6 | u2-l06 | Cómo se escriben las jugadas | 9 |
 
 ## Contenido de la Unidad 3 · Táctica básica

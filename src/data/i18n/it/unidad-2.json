@@ -74,7 +74,7 @@
         "u2-l03-s01": { "text": "Ripasso: quando il pedone arriva all'ultima traversa, scegli in quale pezzo si trasforma. Quasi sempre conviene la donna." },
         "u2-l03-s02": {
           "prompt": "Promuovi catturando la torre.",
-          "hint": "Anche nella promozione il pedone cattura in diagonale. Se avanza in d8, la torre lo cattura.",
+          "hint": "Anche nella promozione il pedone cattura in diagonale. Se avanza in d8, la torre lo cattura. Promuovi a donna: con alfiere o cavallo non si può dare matto e la partita è patta per materiale insufficiente.",
           "success": "Corretto. Hai catturato la torre e promosso il pedone con la stessa mossa."
         },
         "u2-l03-s03": { "text": "Attenzione allo stallo. Se qui promuovi a donna, il re nero non ha caselle e non è sotto scacco: è stallo e la partita finisce patta." },

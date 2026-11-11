@@ -74,7 +74,7 @@
         "u2-l03-s01": { "text": "Wiederholung: Erreicht der Bauer die gegnerische Grundreihe, wählst du, zu welcher Figur er wird. Fast immer ist die Dame am besten." },
         "u2-l03-s02": {
           "prompt": "Wandle um, indem du den Turm schlägst.",
-          "hint": "Der Bauer kann auch beim Umwandeln diagonal schlagen. Zieht er nach d8, schlägt ihn der Turm.",
+          "hint": "Der Bauer kann auch beim Umwandeln diagonal schlagen. Zieht er nach d8, schlägt ihn der Turm. Wandle in eine Dame um: Mit Läufer oder Springer kann man nicht mattsetzen, und die Partie ist wegen unzureichenden Materials remis.",
           "success": "Richtig. Du hast den Turm geschlagen und zugleich umgewandelt."
         },
         "u2-l03-s03": { "text": "Vorsicht vor dem Patt. Wandelst du hier in eine Dame um, hat der schwarze König kein Feld und steht nicht im Schach: Das ist Patt, und die Partie endet remis." },

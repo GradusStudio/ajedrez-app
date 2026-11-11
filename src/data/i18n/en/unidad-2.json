@@ -74,7 +74,7 @@
         "u2-l03-s01": { "text": "Review: when a pawn reaches the last rank, you choose which piece it becomes. The queen is almost always the right choice." },
         "u2-l03-s02": {
           "prompt": "Promote by capturing the rook.",
-          "hint": "A pawn can also capture diagonally when it promotes. If it advances to d8, the rook captures it.",
+          "hint": "A pawn can also capture diagonally when it promotes. If it advances to d8, the rook captures it. Promote to a queen: with a bishop or knight you cannot deliver mate, and the game is drawn for insufficient material.",
           "success": "Correct. You captured the rook and promoted at the same time."
         },
         "u2-l03-s03": { "text": "Watch out for stalemate. If you promote to a queen here, the black king has no squares and isn't in check: that's stalemate and the game ends in a draw." },

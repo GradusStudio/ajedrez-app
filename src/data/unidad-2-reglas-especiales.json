@@ -231,9 +231,9 @@
           "prompt": "Corona capturando la torre.",
           "fen": "2r4k/3P4/8/8/8/8/8/4K3 w - - 0 1",
           "solutions": [
-            "d7c8"
+            "d7c8q"
           ],
-          "hint": "El peón también captura en diagonal al coronar. Si avanza a d8, la torre lo captura.",
+          "hint": "El peón también captura en diagonal al coronar. Si avanza a d8, la torre lo captura. Corona dama: con alfil o caballo no se puede dar mate y la partida queda en tablas por falta de material.",
           "success": "Correcto. Capturaste la torre y coronaste a la vez.",
           "id": "u2-l03-s02"
         },

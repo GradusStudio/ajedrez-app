@@ -6,5 +6,7 @@ export const WIDE_MIN_WIDTH = 960;
 export const SIDEBAR_LABELS_MIN_WIDTH = 1200;
 /** Columna de las pantallas de lista en pantalla ancha (en el celular ocupan todo el ancho). */
 export const WIDE_LIST_COLUMN = 640;
+/** Columna de las pantallas con grillas (Créditos, Piezas y Tableros) en pantalla ancha. */
+export const WIDE_GRID_COLUMN = 960;
 
 export const isWideWidth = (width: number) => width >= WIDE_MIN_WIDTH;

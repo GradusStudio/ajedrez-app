@@ -6,6 +6,7 @@ import { AnyPieceSetId, PIECE_SET_LIST } from '../pieces/materials';
 import { isPieceSetOwned, pieceSetPrice } from '../pieces/shop';
 import { useProgress } from '../progress/ProgressContext';
 import { usePieceSet } from '../settings/PieceSetContext';
+import { useWideLayout } from './useWideLayout';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { boardThemes, colors, fonts, radius, space } from '../theme';
 import { SquareTexture } from './SquareTexture';
@@ -28,6 +29,7 @@ const CELL = 46;
  */
 export function PieceSetPicker() {
   const { t } = useI18n();
+  const wide = useWideLayout();
   const { pieceSet, setPieceSet } = usePieceSet();
   const { progress, buyPieceSet } = useProgress();
   const boardTheme = useBoardTheme();
@@ -47,7 +49,7 @@ export function PieceSetPicker() {
   };
 
   return (
-    <View>
+    <View style={wide ? styles.grid : undefined}>
       {PIECE_SET_LIST.map((m) => {
         const selected = m.id === pieceSet;
         const owned = isPieceSetOwned(m.id, progress.pieceSets);
@@ -61,7 +63,7 @@ export function PieceSetPicker() {
             accessibilityRole="radio"
             accessibilityState={{ selected }}
             accessibilityLabel={owned ? t('pieces.label', { name, description }) : t('pieces.labelPriced', { name, description, price })}
-            style={[styles.card, selected && styles.cardSelected]}
+            style={[styles.card, wide && styles.cardWide, selected && styles.cardSelected]}
           >
             <View style={styles.header}>
               <Text style={styles.name}>{name}</Text>
@@ -108,6 +110,8 @@ const styles = StyleSheet.create({
     marginBottom: space.md,
   },
   cardSelected: { borderColor: colors.primary, borderBottomColor: colors.primaryShadow },
+  grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: space.md },
+  cardWide: { width: '48%', marginBottom: 0 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   name: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text },
   check: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary },

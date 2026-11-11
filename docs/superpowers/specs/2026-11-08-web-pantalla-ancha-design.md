@@ -105,3 +105,10 @@ Cada etapa termina en un commit, probada en el navegador a 1440 × 900, 1280 × 
 - `useBoardSide` (`BoardSizeContext.ts`) da el lado del tablero a `Board` y `EvalBar`; `EvalGraph` acepta un ancho.
 - En el celular cada pantalla conserva su orden (en la partida el bot sigue arriba del tablero).
 - Medido en 1440 × 900: partida con tablero de 720 px y el resultado en el panel; análisis libre 664 px; revisión 656 px; ninguna se desplaza. A 375 px, la partida igual que antes. **El quiz no se probó en el navegador**: solo aparece después de importar una partida por usuario de chess.com o Lichess (con un PGN pegado no se sabe de qué bando se jugó).
+
+## 10. Etapa 3 parcial: Ajustes, Créditos, Piezas y Tableros (11-11-2026)
+- Las pantallas que se abren desde Perfil dejan de usar la columna de 480 px de la pila en pantalla ancha.
+- Ajustes usa la columna de 640 px de las pestañas (`WideListColumn`).
+- Créditos, Piezas y Tableros usan una columna de 960 px (`WIDE_GRID_COLUMN`) y una grilla de 2 columnas para las tarjetas.
+- En el celular y en ventanas angostas no cambia nada.
+- Sigue pendiente de la etapa 3: grillas en Bots y Aperturas, y la columna derecha de Aprender.

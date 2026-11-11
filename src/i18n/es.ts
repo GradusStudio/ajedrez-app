@@ -113,6 +113,8 @@ export const es = {
   'settings.reminder': 'Recordatorio diario',
   'settings.reminder.on': 'Todos los días a las {hour}:00',
   'settings.reminder.off': 'Un aviso para practicar',
+  'settings.reminder.installFirst': 'Para recibir avisos, agregá Gradus a la pantalla de inicio.',
+  'settings.reminder.installAction': 'Instalar',
   'settings.noPermission.title': 'Sin permiso para avisarte',
   'settings.noPermission.message': 'Para recibir el recordatorio, permite las notificaciones de esta app en los ajustes del teléfono.',
   'settings.reminderFailed.title': 'No se pudo programar el recordatorio',

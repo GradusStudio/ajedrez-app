@@ -114,6 +114,8 @@ export const de: Record<MessageKey, string> = {
   'settings.reminder': 'Tägliche Erinnerung',
   'settings.reminder.on': 'Jeden Tag um {hour}:00 Uhr',
   'settings.reminder.off': 'Eine Erinnerung zum Üben',
+  'settings.reminder.installFirst': 'Um Erinnerungen zu erhalten, füge Gradus zum Startbildschirm hinzu.',
+  'settings.reminder.installAction': 'Installieren',
   'settings.noPermission.title': 'Mitteilungen nicht erlaubt',
   'settings.noPermission.message': 'Damit die Erinnerung ankommt, erlaube Mitteilungen für diese App in den Telefon-Einstellungen.',
   'settings.reminderFailed.title': 'Erinnerung konnte nicht geplant werden',

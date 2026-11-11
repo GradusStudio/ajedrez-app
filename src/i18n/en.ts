@@ -114,6 +114,8 @@ export const en: Record<MessageKey, string> = {
   'settings.reminder': 'Daily reminder',
   'settings.reminder.on': 'Every day at {hour}:00',
   'settings.reminder.off': 'A reminder to practice',
+  'settings.reminder.installFirst': 'To get reminders, add Gradus to your home screen.',
+  'settings.reminder.installAction': 'Install',
   'settings.noPermission.title': 'Notifications not allowed',
   'settings.noPermission.message': "To get the reminder, allow notifications for this app in your phone's settings.",
   'settings.reminderFailed.title': 'Could not schedule the reminder',

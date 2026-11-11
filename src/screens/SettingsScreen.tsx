@@ -1,4 +1,5 @@
 import React from 'react';
+import { router } from 'expo-router';
 import { showDialog } from '../components/dialog';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
@@ -14,7 +15,7 @@ import { parseProgressFile, progressToFile } from '../progress/progressFile';
 import { useProgress } from '../progress/ProgressContext';
 import { todayKey } from '../progress/streak';
 import { usePieceSet } from '../settings/PieceSetContext';
-import { cancelDailyReminder, ensureReminderPermission, REMINDERS_SUPPORTED } from '../settings/reminders';
+import { cancelDailyReminder, ensureReminderPermission, REMINDER_SUPPORT } from '../settings/reminders';
 import { useSettings } from '../settings/SettingsContext';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { colors, fonts, space } from '../theme';
@@ -96,7 +97,7 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
       </Pressable>
       <Text style={styles.title}>{t('settings.title')}</Text>
 
-      {/* Práctica: el nivel de puzzles en las dos plataformas; el recordatorio solo existe en el celular */}
+      {/* Práctica: el nivel de puzzles en las dos plataformas; el recordatorio depende del soporte de cada una */}
       <Text style={styles.section}>{t('settings.practice')}</Text>
       <SettingRow
         label={t('settings.showPuzzleRating')}
@@ -104,7 +105,7 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
         value={settings.showPuzzleRating}
         onValueChange={(v) => update({ showPuzzleRating: v })}
       />
-      {REMINDERS_SUPPORTED && (
+      {REMINDER_SUPPORT === 'supported' && (
         <>
           <SettingRow
             label={t('settings.reminder')}
@@ -120,6 +121,14 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
             />
           )}
         </>
+      )}
+      {REMINDER_SUPPORT === 'ios-needs-install' && (
+        <SettingRow
+          label={t('settings.reminder')}
+          description={t('settings.reminder.installFirst')}
+          detail={t('settings.reminder.installAction')}
+          onPress={() => router.push('/instalar')}
+        />
       )}
 
       {/* Tablero */}

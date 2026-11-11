@@ -114,6 +114,8 @@ export const it: Record<MessageKey, string> = {
   'settings.reminder': 'Promemoria giornaliero',
   'settings.reminder.on': 'Ogni giorno, ore {hour}:00',
   'settings.reminder.off': 'Un avviso per allenarti',
+  'settings.reminder.installFirst': 'Per ricevere i promemoria, aggiungi Gradus alla schermata Home.',
+  'settings.reminder.installAction': 'Installa',
   'settings.noPermission.title': 'Notifiche non consentite',
   'settings.noPermission.message': 'Per ricevere il promemoria, consenti le notifiche di questa app nelle impostazioni del telefono.',
   'settings.reminderFailed.title': 'Impossibile programmare il promemoria',

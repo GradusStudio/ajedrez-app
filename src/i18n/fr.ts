@@ -114,6 +114,8 @@ export const fr: Record<MessageKey, string> = {
   'settings.reminder': 'Rappel quotidien',
   'settings.reminder.on': 'Tous les jours à {hour} h',
   'settings.reminder.off': "Un rappel pour t'entraîner",
+  'settings.reminder.installFirst': "Pour recevoir les rappels, ajoute Gradus à l'écran d'accueil.",
+  'settings.reminder.installAction': 'Installer',
   'settings.noPermission.title': 'Notifications non autorisées',
   'settings.noPermission.message': 'Pour recevoir le rappel, autorise les notifications de cette app dans les réglages du téléphone.',
   'settings.reminderFailed.title': 'Impossible de programmer le rappel',

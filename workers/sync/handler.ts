@@ -2,6 +2,9 @@
 // Worker y en las pruebas. El servidor guarda el SHA-256 de la llave (nunca la llave), el texto del progreso, la versión
 // y la fecha. Sin correo, nombre ni token.
 
+import { corsHeaders } from '../cors';
+import { isProgressFile } from './progressMarker';
+
 export type StoredProgress = { version: number; data: string | null; deleted: boolean };
 
 export type ProgressStore = {
@@ -10,8 +13,6 @@ export type ProgressStore = {
   remove(id: string, now: string): Promise<void>;
 };
 
-import { isProgressFile } from './progressMarker';
-
 /** Límite de creaciones por IP (binding de Workers Rate Limiting, opcional: no existe en pruebas ni en `wrangler dev` sin él). */
 export type CreateLimiter = { limit(options: { key: string }): Promise<{ success: boolean }> };
 
@@ -19,19 +20,6 @@ const KEY_FORMAT = /^[A-Za-z0-9_-]{43}$/;
 const MAX_DATA_BYTES = 512 * 1024;
 // Tope del cuerpo entero (el JSON escapa comillas y suma las claves): se mira el Content-Length antes de leer nada.
 const MAX_BODY_BYTES = 2 * MAX_DATA_BYTES;
-const ALLOWED_ORIGINS = ['https://graduschess.com', 'http://localhost:8081', 'http://localhost:8788'];
-
-function corsHeaders(req: Request): Record<string, string> {
-  const origin = req.headers.get('Origin');
-  const headers: Record<string, string> = {
-    'Access-Control-Allow-Methods': 'GET, PUT, DELETE',
-    'Access-Control-Allow-Headers': 'Authorization, Content-Type',
-    'Access-Control-Max-Age': '86400',
-    Vary: 'Origin',
-  };
-  if (origin && ALLOWED_ORIGINS.includes(origin)) headers['Access-Control-Allow-Origin'] = origin;
-  return headers;
-}
 
 async function sha256Hex(text: string): Promise<string> {
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
@@ -44,7 +32,7 @@ export async function handle(
   now: () => Date = () => new Date(),
   limiter?: CreateLimiter
 ): Promise<Response> {
-  const cors = corsHeaders(req);
+  const cors = corsHeaders(req, 'GET, PUT, DELETE');
   const reply = (status: number, body?: unknown) =>
     new Response(body === undefined ? null : JSON.stringify(body), {
       status,

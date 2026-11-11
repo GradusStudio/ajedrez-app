@@ -210,99 +210,9 @@
       ]
     },
     {
-      "id": "u2-l03",
-      "unit": 2,
-      "order": 15,
-      "title": "Coronar bien",
-      "summary": "Elegir la pieza justa al coronar",
-      "xp": 15,
-      "steps": [
-        {
-          "type": "explain",
-          "text": "Repaso: cuando el peón llega a la última fila, eliges en qué pieza se convierte. Casi siempre conviene la dama.",
-          "fen": "8/1P6/8/7k/8/8/8/4K3 w - - 0 1",
-          "play": [
-            "b7b8q"
-          ],
-          "id": "u2-l03-s01"
-        },
-        {
-          "type": "move",
-          "prompt": "Corona capturando la torre.",
-          "fen": "2r4k/3P4/8/8/8/8/8/4K3 w - - 0 1",
-          "solutions": [
-            "d7c8q"
-          ],
-          "hint": "El peón también captura en diagonal al coronar. Si avanza a d8, la torre lo captura. Corona dama: con alfil o caballo no se puede dar mate y la partida queda en tablas por falta de material.",
-          "success": "Correcto. Capturaste la torre y coronaste a la vez.",
-          "id": "u2-l03-s02"
-        },
-        {
-          "type": "explain",
-          "text": "Cuidado con el ahogado. Si aquí coronas dama, el rey negro no tiene casillas y no está en jaque: es ahogado y la partida termina en tablas.",
-          "fen": "8/k1P5/2K5/8/8/8/8/8 w - - 0 1",
-          "highlight": [
-            "a7"
-          ],
-          "id": "u2-l03-s03"
-        },
-        {
-          "type": "move",
-          "prompt": "Corona sin ahogar al rey negro, y que te quede material para dar mate.",
-          "fen": "8/k1P5/2K5/8/8/8/8/8 w - - 0 1",
-          "solutions": [
-            "c7c8r"
-          ],
-          "hint": "La dama ahoga. Con alfil o caballo también son tablas: con solo esa pieza no se puede dar mate (falta de material). Prueba con la torre: deja libre la casilla a6.",
-          "success": "Correcto. Con torre el rey negro tiene a6, y después de Ra6 viene Ta8 mate.",
-          "id": "u2-l03-s04"
-        },
-        {
-          "type": "quiz",
-          "prompt": "Las negras amenazan Df1 mate. ¿Qué pieza conviene coronar?",
-          "fen": "8/1k1P1q2/8/8/8/8/6PP/7K w - - 0 1",
-          "options": [
-            "Dama",
-            "Caballo",
-            "Torre"
-          ],
-          "answer": 1,
-          "explanation": "Un caballo en d8 da jaque al rey y ataca la dama al mismo tiempo. Con dama o torre, las negras dan mate con Df1.",
-          "feedback": [
-            "Con dama, las negras juegan Df1 y es mate.",
-            "",
-            "Con torre, las negras juegan Df1 y es mate."
-          ],
-          "id": "u2-l03-s05"
-        },
-        {
-          "type": "move",
-          "prompt": "Corona de forma que las negras no puedan dar mate.",
-          "fen": "8/1k1P1q2/8/8/8/8/6PP/7K w - - 0 1",
-          "solutions": [
-            "d7d8n"
-          ],
-          "hint": "Corona caballo: da jaque y ataca la dama.",
-          "success": "Correcto. Después del jaque, el caballo captura la dama.",
-          "id": "u2-l03-s06"
-        },
-        {
-          "type": "explain",
-          "text": "Antes de coronar, revisa dos cosas: si la dama dejaría al rey rival ahogado, y si después te pueden dar mate. Casi siempre es dama; a veces, otra pieza.",
-          "fen": "8/1k1P1q2/8/8/8/8/6PP/7K w - - 0 1",
-          "play": [
-            "d7d8n",
-            "b7c8",
-            "d8f7"
-          ],
-          "id": "u2-l03-s07"
-        }
-      ]
-    },
-    {
       "id": "u2-l04",
       "unit": 2,
-      "order": 16,
+      "order": 15,
       "title": "El rey ahogado",
       "summary": "Sin jugadas y sin jaque: tablas",
       "xp": 15,
@@ -400,7 +310,7 @@
     {
       "id": "u2-l05",
       "unit": 2,
-      "order": 17,
+      "order": 16,
       "title": "Otras tablas",
       "summary": "Repetición, material y 50 jugadas",
       "xp": 15,
@@ -507,6 +417,96 @@
             "La triple repetición es tablas."
           ],
           "id": "u2-l05-s08"
+        }
+      ]
+    },
+    {
+      "id": "u2-l03",
+      "unit": 2,
+      "order": 17,
+      "title": "Coronar bien",
+      "summary": "Elegir la pieza justa al coronar",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Repaso: cuando el peón llega a la última fila, eliges en qué pieza se convierte. Casi siempre conviene la dama.",
+          "fen": "8/1P6/8/7k/8/8/8/4K3 w - - 0 1",
+          "play": [
+            "b7b8q"
+          ],
+          "id": "u2-l03-s01"
+        },
+        {
+          "type": "move",
+          "prompt": "Corona capturando la torre.",
+          "fen": "2r4k/3P4/8/8/8/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "d7c8q"
+          ],
+          "hint": "El peón también captura en diagonal al coronar. Si avanza a d8, la torre lo captura. Corona dama: con alfil o caballo no se puede dar mate y la partida queda en tablas por falta de material.",
+          "success": "Correcto. Capturaste la torre y coronaste a la vez.",
+          "id": "u2-l03-s02"
+        },
+        {
+          "type": "explain",
+          "text": "Cuidado con el ahogado. Si aquí coronas dama, el rey negro no tiene casillas y no está en jaque: es ahogado y la partida termina en tablas.",
+          "fen": "8/k1P5/2K5/8/8/8/8/8 w - - 0 1",
+          "highlight": [
+            "a7"
+          ],
+          "id": "u2-l03-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Corona sin ahogar al rey negro, y que te quede material para dar mate.",
+          "fen": "8/k1P5/2K5/8/8/8/8/8 w - - 0 1",
+          "solutions": [
+            "c7c8r"
+          ],
+          "hint": "La dama ahoga. Con alfil o caballo también son tablas: con solo esa pieza no se puede dar mate (falta de material). Prueba con la torre: deja libre la casilla a6.",
+          "success": "Correcto. Con torre el rey negro tiene a6, y después de Ra6 viene Ta8 mate.",
+          "id": "u2-l03-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Las negras amenazan Df1 mate. ¿Qué pieza conviene coronar?",
+          "fen": "8/1k1P1q2/8/8/8/8/6PP/7K w - - 0 1",
+          "options": [
+            "Dama",
+            "Caballo",
+            "Torre"
+          ],
+          "answer": 1,
+          "explanation": "Un caballo en d8 da jaque al rey y ataca la dama al mismo tiempo. Con dama o torre, las negras dan mate con Df1.",
+          "feedback": [
+            "Con dama, las negras juegan Df1 y es mate.",
+            "",
+            "Con torre, las negras juegan Df1 y es mate."
+          ],
+          "id": "u2-l03-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Corona de forma que las negras no puedan dar mate.",
+          "fen": "8/1k1P1q2/8/8/8/8/6PP/7K w - - 0 1",
+          "solutions": [
+            "d7d8n"
+          ],
+          "hint": "Corona caballo: da jaque y ataca la dama.",
+          "success": "Correcto. Después del jaque, el caballo captura la dama.",
+          "id": "u2-l03-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Antes de coronar, revisa dos cosas: si la dama dejaría al rey rival ahogado, y si después te pueden dar mate. Casi siempre es dama; a veces, otra pieza.",
+          "fen": "8/1k1P1q2/8/8/8/8/6PP/7K w - - 0 1",
+          "play": [
+            "d7d8n",
+            "b7c8",
+            "d8f7"
+          ],
+          "id": "u2-l03-s07"
         }
       ]
     },

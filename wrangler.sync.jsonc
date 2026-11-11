@@ -25,6 +25,6 @@
   // Datos públicos de VAPID; el autor reemplaza el marcador. La privada es un secreto del Worker, nunca va acá.
   "vars": {
     "VAPID_SUBJECT": "mailto:gradusstudioapp@gmail.com",
-    "VAPID_PUBLIC_KEY": "REEMPLAZAR"
+    "VAPID_PUBLIC_KEY": "BB44CETgT7FQU2fk-fSQ3bAlNaquRkP4VREAbpR-Ga7lug7Mion1CbZ96yFgYweDwKLG5tzezvgZVfLXlGphBEE"
   }
 }

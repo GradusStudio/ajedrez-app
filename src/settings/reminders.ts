@@ -4,12 +4,14 @@ import { AndroidImportance } from 'expo-notifications';
 import type { Bot } from '../data/bots';
 import type { Streak } from '../progress/streak';
 import { planReminders } from './reminderPlan';
+import type { ReminderSupport } from './reminderSupport';
 import { createSerializer } from './serialize';
 
 // Recordatorio diario (notificación local; funciona en Expo Go). Ajustes > Recordatorio diario.
 
-/** En el celular hay notificaciones locales; en la web (reminders.web.ts) no. */
-export const REMINDERS_SUPPORTED = true;
+/** En el celular hay notificaciones locales; en la web (reminders.web.ts) se usa Web Push. */
+export const REMINDER_SUPPORT: ReminderSupport = 'supported';
+export const REMINDERS_SUPPORTED = REMINDER_SUPPORT === 'supported';
 
 const CHANNEL_ID = 'recordatorio';
 
@@ -49,6 +51,11 @@ export async function ensureReminderPermission(channelName: string): Promise<boo
   let { granted } = await Notifications.getPermissionsAsync();
   if (!granted) granted = (await Notifications.requestPermissionsAsync()).granted;
   return granted;
+}
+
+/** En el celular las notificaciones locales siempre están disponibles: el permiso se pide al activar. */
+export async function reminderIsUsable(): Promise<boolean> {
+  return true;
 }
 
 /**

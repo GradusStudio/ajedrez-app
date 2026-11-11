@@ -80,7 +80,7 @@
         "u2-l03-s03": { "text": "Watch out for stalemate. If you promote to a queen here, the black king has no squares and isn't in check: that's stalemate and the game ends in a draw." },
         "u2-l03-s04": {
           "prompt": "Promote without stalemating the black king, and keep enough material to deliver mate.",
-          "hint": "A queen would stalemate. Try a rook: it leaves the square a6 free.",
+          "hint": "A queen would stalemate. A bishop or knight also draws: with only that piece you cannot deliver mate (insufficient material). Try a rook: it leaves the square a6 free.",
           "success": "Correct. With a rook, the black king has a6, and after Ka6 comes Ra8 mate."
         },
         "u2-l03-s05": {

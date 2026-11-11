@@ -253,7 +253,7 @@
           "solutions": [
             "c7c8r"
           ],
-          "hint": "La dama ahoga. Prueba con la torre: deja libre la casilla a6.",
+          "hint": "La dama ahoga. Con alfil o caballo también son tablas: con solo esa pieza no se puede dar mate (falta de material). Prueba con la torre: deja libre la casilla a6.",
           "success": "Correcto. Con torre el rey negro tiene a6, y después de Ra6 viene Ta8 mate.",
           "id": "u2-l03-s04"
         },

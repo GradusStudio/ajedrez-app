@@ -80,7 +80,7 @@
         "u2-l03-s03": { "text": "Vorsicht vor dem Patt. Wandelst du hier in eine Dame um, hat der schwarze König kein Feld und steht nicht im Schach: Das ist Patt, und die Partie endet remis." },
         "u2-l03-s04": {
           "prompt": "Wandle um, ohne den schwarzen König patt zu setzen, und behalte genug Material zum Mattsetzen.",
-          "hint": "Die Dame setzt patt. Versuche es mit dem Turm: Er lässt das Feld a6 frei.",
+          "hint": "Die Dame setzt patt. Mit Läufer oder Springer ist es auch remis: Mit nur dieser Figur kann man nicht mattsetzen (unzureichendes Material). Versuche es mit dem Turm: Er lässt das Feld a6 frei.",
           "success": "Richtig. Mit dem Turm hat der schwarze König a6, und nach Ka6 folgt Ta8 matt."
         },
         "u2-l03-s05": {

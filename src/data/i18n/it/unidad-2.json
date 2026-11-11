@@ -80,7 +80,7 @@
         "u2-l03-s03": { "text": "Attenzione allo stallo. Se qui promuovi a donna, il re nero non ha caselle e non è sotto scacco: è stallo e la partita finisce patta." },
         "u2-l03-s04": {
           "prompt": "Promuovi senza mettere in stallo il re nero, tenendo il materiale per dare matto.",
-          "hint": "La donna mette in stallo. Prova con la torre: lascia libera la casella a6.",
+          "hint": "La donna mette in stallo. Anche con alfiere o cavallo è patta: con solo quel pezzo non si può dare matto (materiale insufficiente). Prova con la torre: lascia libera la casella a6.",
           "success": "Corretto. Con la torre il re nero ha a6, e dopo Ra6 arriva Ta8 matto."
         },
         "u2-l03-s05": {

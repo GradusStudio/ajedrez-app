@@ -53,6 +53,8 @@ Dos defensas, porque un abuso puede agotar dos cosas distintas: la base D1 (el p
 
 **Si ya tenías la regla anterior (solo PUT y DELETE):** editarla en el panel de Cloudflare para dejar la expresión de arriba, y volver a publicar el Worker para que tome el limitador de altas: `npx wrangler deploy -c wrangler.sync.jsonc`.
 
+**Estado comprobado el 11-11-2026:** la regla única de la zona está habilitada, con la expresión `(http.host eq "sync.graduschess.com")` (antes tenía `and http.request.method in {"PUT" "DELETE"}`, y por eso los GET no contaban), 20 peticiones cada 10 s por IP (`ip.src` y `cf.colo.id`), acción Block y 10 s de duración. Prueba: 25 GET seguidos a `/v1/progress` → los 20 primeros responden 400 y del 21 al 25, 429 (`error code: 1015`, `Retry-After: 10`). Se puede leer y editar por API con un token de permiso `Zona · WAF de zona · Editar` (`GET`/`PATCH` en `/zones/<zona>/rulesets/...`). En la práctica esta zona (plan Free) acepta `http.host`, aunque la tabla de disponibilidad de la documentación diga que el plan Free solo permite Path y Verified Bot.
+
 Capacidad conocida: el plan gratuito de Workers admite unas 100.000 peticiones por día, y cada paso de lección o jugada de bot que cambia el progreso dispara una sincronización. Con muchos usuarios activos puede quedarse corto; se vigila en el panel y, si hace falta, se pasa al plan de pago.
 
 Safari en iPhone: si la app no está instalada, Safari puede borrar el almacenamiento tras unos 7 días sin visitas y entonces la ventana de Google vuelve a aparecer una vez para recuperar la llave. Instalada en la pantalla de inicio no pasa. Está aceptado.

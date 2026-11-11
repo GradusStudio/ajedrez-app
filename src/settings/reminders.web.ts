@@ -15,11 +15,15 @@ import {
 } from './reminderClient';
 import { planReminders } from './reminderPlan';
 import type { ReminderSupport } from './reminderSupport';
+import { createSerializer } from './serialize';
 
 // Recordatorio diario en la web con Web Push: el servidor guarda la suscripción y el plan de 7 días y envía cada aviso
 // aunque la app esté cerrada. La app nativa usa notificaciones locales (reminders.ts).
 
 const BASE_URL = process.env.EXPO_PUBLIC_SYNC_URL || SYNC_URL;
+
+// Dos sincronizaciones superpuestas no deben crear dos dispositivos: van de a una, como en el módulo nativo.
+const enqueue = createSerializer();
 
 function currentSupport(): ReminderSupport {
   if (typeof navigator === 'undefined' || typeof window === 'undefined') return 'unsupported';
@@ -43,6 +47,9 @@ export async function ensureReminderPermission(_channelName: string): Promise<bo
   try {
     if (Notification.permission === 'default') await Notification.requestPermission();
     if (Notification.permission !== 'granted') return false;
+    // En desarrollo no se registra el service worker y `ready` nunca resolvería: sin registro no hay nada que esperar.
+    // Con registro, `ready` espera a que se active uno que se está instalando.
+    if (!(await navigator.serviceWorker.getRegistration('/app/'))) return false;
     const registration = await navigator.serviceWorker.ready;
     await registration.pushManager.subscribe({
       userVisibleOnly: true,
@@ -72,7 +79,7 @@ async function registerDevice(sub: PushSubscription, notices: ReminderNoticePayl
  * conoce el dispositivo (404, o el secreto dejó de servir: 401/403), lo registra de nuevo. Sin conexión se ignora: se
  * reintenta al abrir la app.
  */
-export async function syncReminders(s: Streak, hour: number, bots: Bot[], _channelName: string): Promise<void> {
+async function doSync(s: Streak, hour: number, bots: Bot[], _channelName: string): Promise<void> {
   try {
     const registration = await navigator.serviceWorker.ready;
     const sub = await registration.pushManager.getSubscription();
@@ -92,6 +99,10 @@ export async function syncReminders(s: Streak, hour: number, bots: Bot[], _chann
   } catch {
     // Sin conexión (o sin service worker) queda el plan anterior; se reintenta al abrir la app.
   }
+}
+
+export function syncReminders(s: Streak, hour: number, bots: Bot[], channelName: string): Promise<void> {
+  return enqueue(() => doSync(s, hour, bots, channelName));
 }
 
 /** Da de baja el dispositivo y la suscripción. Cada paso se intenta aunque el anterior falle. */

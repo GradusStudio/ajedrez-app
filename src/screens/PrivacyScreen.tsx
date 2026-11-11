@@ -9,7 +9,7 @@ import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 // Cada sección es un título y un párrafo: privacy.<id>.title / privacy.<id>.text. `extra` agrega un enlace debajo.
-const SECTIONS = ['stored', 'offline', 'leaves', 'drive', 'host', 'children', 'delete', 'free', 'contact'] as const;
+const SECTIONS = ['stored', 'offline', 'leaves', 'drive', 'reminders', 'host', 'children', 'delete', 'free', 'contact'] as const;
 type Section = (typeof SECTIONS)[number];
 
 // Política de privacidad (diseño web, sección 7). Pantalla utilitaria de texto, igual que Instalar y Créditos.

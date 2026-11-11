@@ -59,6 +59,19 @@ Capacidad conocida: el plan gratuito de Workers admite unas 100.000 peticiones p
 
 Safari en iPhone: si la app no está instalada, Safari puede borrar el almacenamiento tras unos 7 días sin visitas y entonces la ventana de Google vuelve a aparecer una vez para recuperar la llave. Instalada en la pantalla de inicio no pasa. Está aceptado.
 
+## Recordatorios: Web Push en el Worker `gradus-sync`
+
+El recordatorio diario de la web usa Web Push. El mismo Worker `gradus-sync` guarda la suscripción del navegador y los próximos 7 avisos, y un cron los envía aunque la app esté cerrada. Código en `workers/reminders/`, tablas en `workers/reminders/schema.sql` y cron `*/5 * * * *` en `wrangler.sync.jsonc`. Mientras `VAPID_PUBLIC_KEY` de `src/settings/pushConfig.ts` siga en `REEMPLAZAR`, activar el recordatorio no hace nada: no pide permiso ni crea la suscripción, porque la clave es obligatoria para suscribirse. Todo se hace desde la PC:
+
+1. Generar las claves (una sola vez): `npx tsx scripts/generate-vapid.ts`. Imprime `VAPID_PUBLIC_KEY=...` y `VAPID_PRIVATE_KEY=...`. La privada no se pega en el chat, en el repositorio ni en la documentación.
+2. Pegar la pública, en lugar de `REEMPLAZAR`, en la constante `VAPID_PUBLIC_KEY` de `src/settings/pushConfig.ts` y en `vars.VAPID_PUBLIC_KEY` de `wrangler.sync.jsonc`. Como `pushConfig.ts` entra en el paquete web, después hay que volver a compilar y publicar el sitio (`npm run build:web` y el despliegue de siempre).
+3. Guardar la privada solo como secreto del Worker: `npx wrangler secret put VAPID_PRIVATE_KEY -c wrangler.sync.jsonc` (pide el valor por teclado).
+4. Crear las tablas en la base publicada: `npx wrangler d1 execute gradus-sync --remote -c wrangler.sync.jsonc --file workers/reminders/schema.sql`. Para probar en la PC, la variante local: `npx wrangler d1 execute gradus-sync --local -c wrangler.sync.jsonc --file workers/reminders/schema.sql`.
+5. Publicar el Worker: `npx wrangler deploy -c wrangler.sync.jsonc`. Incluye el cron `*/5 * * * *`, que envía los avisos vencidos y borra los dispositivos con 30 días sin actividad.
+6. Probar en Chrome: abrir `https://graduschess.com/app/` (o el sitio local compilado con `npm run build:web` y `npx wrangler dev -c wrangler.local.jsonc --port 8788`), activar el recordatorio en Ajustes y aceptar el permiso. En DevTools > Application > Service Workers, con `/app/sw.js` activo, usar **Push** para simular un aviso; el service worker muestra el título y el texto que manda el Worker (o los textos por defecto si el push de prueba no trae datos). Tocar la notificación abre `/app/`.
+
+Si ya practicaste hoy en ese dispositivo, el service worker no muestra el aviso: la marca local está en la caché `gradus-practica` y expira al día siguiente. Para verlo en una prueba, borrar esa caché desde la consola (`await caches.delete('gradus-practica')`).
+
 ## Comprobaciones en producción
 ```bash
 curl -sI https://graduschess.com/

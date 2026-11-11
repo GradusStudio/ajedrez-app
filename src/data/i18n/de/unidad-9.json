@@ -192,6 +192,91 @@
         },
         "u9-l06-s07": { "text": "Zusammenfassung: Gegen einen rückständigen Bauern hilft eine Figur auf dem Feld davor. Gegen eine Bauernkette greife den Fuß an." }
       }
+    },
+    "u9-l07": {
+      "title": "Aktive Türme",
+      "summary": "Offene Linien und die siebte Reihe",
+      "steps": {
+        "u9-l07-s01": {
+          "text": "Die e-Linie ist offen und der Turm auf e1 kann nach e7 springen. Von der siebten Reihe greift er die Bauern auf a7, b7, f7 und g7 an und isoliert das schwarze Königs."
+        },
+        "u9-l07-s02": {
+          "text": "Die Türme müssen auch verbunden sein. Hier steht das Königs auf g1 zwischen den beiden Türmen in der ersten Reihe: Wenn das Königs nach h2 geht, verbinden sich die Türme und schützen sich gegenseitig."
+        },
+        "u9-l07-s03": {
+          "prompt": "Wo ist ein Turm stärker?",
+          "explanation": "In der siebten Reihe greift der Turm Bauern an und isoliert den gegnerischen König. Es ist die aktivste Feld.",
+          "options": [
+            "In der siebten Reihe, Bauern angreifend",
+            "In der Ecke, verteidigend",
+            "Vor seinem eigenen Königs"
+          ],
+          "feedback": [
+            "",
+            "In der Ecke ist der Turm passiv: er verteidigt nur.",
+            "Vor dem König nimmt er Felder von deinem eigenen Stück weg."
+          ]
+        },
+        "u9-l07-s04": {
+          "prompt": "Bringe den Turm von e1 in die siebte Reihe.",
+          "hint": "Die e-Linie ist offen. Der Turm kann bis zur Reihe der schwarzen Bauern aufsteigen.",
+          "success": "Korrekt. Te7 bringt den Turm in die siebte Reihe, wo er Bauern angreift und den König isoliert."
+        },
+        "u9-l07-s05": {
+          "prompt": "Tippe auf das Feld in der siebten Reihe, wohin der Turm von e1 gehen kann.",
+          "hint": "Steige über die offene Linie bis zur Reihe 7 auf."
+        },
+        "u9-l07-s06": {
+          "text": "Zusammenfassung: Ein Turm ist mit einer offenen Linie, in der siebten Reihe und verbunden mit seinem Partner sehr wertvoll. Ein passiver Turm hingegen ist fast ein Stück weniger wert."
+        }
+      }
+    },
+    "u9-l08": {
+      "title": "Bauernschwächen und Bauernmehrheiten",
+      "summary": "Das Spiel eröffnen und einen passed Bauern schaffen",
+      "steps": {
+        "u9-l08-s01": {
+          "text": "Die weißen haben drei Bauern gegen zwei auf der Damenflanke: eine Mehrheit. Wenn sie die Bauern in geordneter Reihenfolge vorrücken, können sie einen passed Bauern schaffen, der das Endspiel gewinnt."
+        },
+        "u9-l08-s02": {
+          "text": "Eine Durchbruch ist ein Bauernvorstoß, der eine Linie oder eine Diagonale öffnet. Hier fordert c4 den Bauern auf d5 heraus: Wenn die schwarzen Bauern nehmen, öffnest du die c-Linie; wenn nicht, tauscht du Bauern auf d5 und dein Bauer auf d4 hat mehr Raum."
+        },
+        "u9-l08-s03": {
+          "prompt": "Was ist eine Bauernmehrheit?",
+          "explanation": "Eine Mehrheit ist lokal: Drei Bauern gegen zwei auf einer Flanke können einen passed Bauern schaffen.",
+          "options": [
+            "Mehr Bauern als der Gegner auf einer Flanke",
+            "Mehr Figuren",
+            "Alle Bauern tauschen"
+          ],
+          "feedback": [
+            "",
+            "Figuren zählen nicht für eine Bauernmehrheit.",
+            "Bauern tauschen ohne Plan schaffen keinen Vorteil."
+          ]
+        },
+        "u9-l08-s04": {
+          "prompt": "Was strebt ein Durchbruch an?",
+          "explanation": "Der Durchbruch öffnet Linien oder fixiert eine Schwäche, damit deine Figuren hindurchkommen.",
+          "options": [
+            "Eine Linie öffnen oder einen passed Bauern schaffen",
+            "Damen tauschen",
+            "Den König verteidigen"
+          ],
+          "feedback": [
+            "",
+            "Damen tauschen ist nicht das Ziel eines Durchbruchs.",
+            "Der Durchbruch ist eine Bauernidee, keine defensive Zugidee."
+          ]
+        },
+        "u9-l08-s05": {
+          "prompt": "Tippe die drei weißen Bauern der Mehrheit auf der Damenflanke.",
+          "hint": "Es sind die drei aufeinanderfolgenden Bauern auf der Damenflanke."
+        },
+        "u9-l08-s06": {
+          "text": "Zusammenfassung: Eine Bauernmehrheit schafft einen passed Bauern, wenn du geordnet vorrückst. Ein Durchbruch öffnet Linien oder fixiert eine Schwäche. Zuerst der Bauernplan, dann die Figuren."
+        }
+      }
     }
   }
 }

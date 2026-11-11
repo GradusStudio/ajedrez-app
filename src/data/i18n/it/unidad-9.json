@@ -192,6 +192,91 @@
         },
         "u9-l06-s07": { "text": "Riassunto: contro un pedone arretrato, un pezzo sulla casella davanti. Contro una catena di pedoni, attacca la base della catena." }
       }
+    },
+    "u9-l07": {
+      "title": "Torri attive",
+      "summary": "Colonne aperte e settima fila",
+      "steps": {
+        "u9-l07-s01": {
+          "text": "La colonna e è aperta e la torre di e1 può saltare a e7. Dalla settima fila attacca i pedoni di a7, b7, f7 e g7, e circonda il re nero sull'ultima fila."
+        },
+        "u9-l07-s02": {
+          "text": "Le torri devono anche essere collegate. Qui il re di g1 è tra le due torri della prima fila: se il re esce a h2, le torri si collegano e si proteggono a vicenda."
+        },
+        "u9-l07-s03": {
+          "prompt": "Dove è più forte una torre?",
+          "explanation": "Sulla settima fila la torre attacca pedoni e taglia il re avversario. È la casella più attiva.",
+          "options": [
+            "Sulla settima fila, attaccando pedoni",
+            "Nell'angolo, difendendo",
+            "Davanti al proprio re"
+          ],
+          "feedback": [
+            "",
+            "Nell'angolo la torre è passiva: solo difende.",
+            "Davanti al re toglie caselle alla tua stessa pezzo."
+          ]
+        },
+        "u9-l07-s04": {
+          "prompt": "Porta la torre di e1 sulla settima fila.",
+          "hint": "La colonna e è aperta. La torre può salire fino alla fila dei pedoni neri.",
+          "success": "Corretto. Te7 porta la torre sulla settima fila, dove attacca i pedoni e taglia il re."
+        },
+        "u9-l07-s05": {
+          "prompt": "Tocca la casella della settima fila a cui può andare la torre di e1.",
+          "hint": "Sali lungo la colonna aperta fino alla fila 7."
+        },
+        "u9-l07-s06": {
+          "text": "Riepilogo: una torre vale molto con una colonna aperta, sulla settima fila e collegata al suo compagno. Una torre passiva, al contrario, è quasi un pezzo in meno."
+        }
+      }
+    },
+    "u9-l08": {
+      "title": "Rotture e maggioranze di pedoni",
+      "summary": "Aprire il gioco e creare un pedone passato",
+      "steps": {
+        "u9-l08-s01": {
+          "text": "I bianchi hanno tre pedoni contro due sul fianco di donna: una maggioranza. Se avanzano i pedoni in ordine, possono creare un pedone passato che vincerà la finale."
+        },
+        "u9-l08-s02": {
+          "text": "Una rottura è un avanzamento di pedone che apre una colonna o una diagonale. Qui c4 sfida il pedone di d5: se i neri catturano, apri la colonna c; se no, cambi pedoni in d5 e il tuo pedone di d4 ottiene più spazio."
+        },
+        "u9-l08-s03": {
+          "prompt": "Cos'è una maggioranza di pedoni?",
+          "explanation": "Una maggioranza è locale: tre pedoni contro due su un fianco possono creare un pedone passato.",
+          "options": [
+            "Avere più pedoni del rivale su un fianco",
+            "Avere più pezzi",
+            "Cambiare tutti i pedoni"
+          ],
+          "feedback": [
+            "",
+            "I pezzi non contano per una maggioranza di pedoni.",
+            "Cambiare pedoni senza piano non crea alcun vantaggio."
+          ]
+        },
+        "u9-l08-s04": {
+          "prompt": "Cosa cerca una rottura?",
+          "explanation": "La rottura apre linee o fissa una debolezza affinché i tuoi pezzi entrino da lì.",
+          "options": [
+            "Aprire una colonna o creare un pedone passato",
+            "Cambiare dame",
+            "Difendere il re"
+          ],
+          "feedback": [
+            "",
+            "Cambiare dame non è l'obiettivo di una rottura.",
+            "La rottura è un'idea di pedoni, non una mossa difensiva."
+          ]
+        },
+        "u9-l08-s05": {
+          "prompt": "Tocca i tre pedoni della maggioranza bianca sul fianco di donna.",
+          "hint": "Sono i tre pedoni consecutivi sul fianco di donna."
+        },
+        "u9-l08-s06": {
+          "text": "Riassunto: una maggioranza di pedoni crea un pedone passato se avanzi in ordine. Una rottura apre linee o fissa una debolezza. Prima il piano di pedoni, poi i pezzi."
+        }
+      }
     }
   }
 }

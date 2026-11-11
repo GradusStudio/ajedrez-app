@@ -71,16 +71,16 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 ### Unidad 7 · Táctica intermedia (8 lecciones, escritas el 9-11-2026 en `src/data/unidad-7-tactica-intermedia.json`)
 La atracción, La sobrecarga, La jugada intermedia, La interferencia, Mates de una sola pieza, Mates de dos piezas, Sacrificar para abrir al rey y Calcular: mate en dos y en tres. Cada una usa posiciones de puzzles reales de Lichess y termina con puzzles propios del tema. Propuesta completa (unidades 7 a 10) en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`.
 
-### Unidad 8 · Finales intermedios (6 lecciones, escritas el 9-11-2026 en `src/data/unidad-8-finales-intermedios.json`)
-El rey activo, El peón pasado alejado (incluye las dos debilidades), Dama contra peón, La posición de Philidor, Cortar al rey con la torre y Alfiles de distinto color. Quedó para más adelante «Alfil contra caballo»: los puzzles de Lichess con esas piezas son tácticos (horquillas) y no enseñan la idea estratégica.
+### Unidad 8 · Finales intermedios (8 lecciones, completadas el 11-11-2026 en `src/data/unidad-8-finales-intermedios.json`)
+El rey activo, El peón pasado alejado, Dama contra peón, La posición de Philidor, Cortar al rey con la torre, Alfiles de distinto color, Alfil contra caballo y Las dos debilidades. Los puzzles de Lichess son de finales de peones; las demás posiciones se verificaron con Stockfish.
 
-### Unidad 9 · Piezas y peones (6 lecciones, escritas el 9-11-2026 en `src/data/unidad-9-piezas-y-peones.json`)
-Piezas sueltas, Cuándo cambiar piezas, El espacio, Posiciones abiertas y cerradas, Alfil bueno y alfil malo, Peón retrasado y cadenas de peones. Las respuestas de cada pregunta (peones bloqueados, casillas de espacio, piezas sin defensa, peones retrasados) se calculan con chess.js. Quedaron para más adelante «Torres activas» (conectar torres, séptima fila, torre levantada) y «Rupturas y mayorías de peones»: Stockfish no confirma esas ideas con una jugada única.
+### Unidad 9 · Piezas y peones (8 lecciones, completadas el 11-11-2026 en `src/data/unidad-9-piezas-y-peones.json`)
+Piezas sueltas, Cuándo cambiar piezas, El espacio, Posiciones abiertas y cerradas, Alfil bueno y alfil malo, Peón retrasado y cadenas de peones, Torres activas y Rupturas y mayorías de peones. Las respuestas de cada pregunta (peones bloqueados, casillas de espacio, piezas sin defensa, peones retrasados) se calculan con chess.js.
 
-### Unidad 10 · Ataque y defensa (5 lecciones, escritas el 9-11-2026 en `src/data/unidad-10-ataque-y-defensa.json`)
-El rey sin enrocar, Atacar con enroques del mismo lado, Enroques opuestos, Defender al rey (interponer una pieza protegida) y el Repaso final con 16 puzzles de toda la ruta. Quedaron para más adelante «Defenderse con material de menos», «Convertir una ventaja» y «Hacer un plan»: no hay posiciones que Stockfish pueda confirmar con una jugada única.
+### Unidad 10 · Ataque y defensa (8 lecciones, completadas el 11-11-2026 en `src/data/unidad-10-ataque-y-defensa.json`)
+El rey sin enrocar, Atacar con enroques del mismo lado, Enroques opuestos, Defender al rey (interponer una pieza protegida), Defenderse con material de menos, Convertir una ventaja, Hacer un plan y el Repaso final con 16 puzzles de toda la ruta.
 
-Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 68 (Unidad 6: 41 a 43; Unidad 7: 44 a 51; Unidad 8: 52 a 57; Unidad 9: 58 a 63; Unidad 10: 64 a 68). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
+Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 75 (Unidad 6: 41 a 43; Unidad 7: 44 a 51; Unidad 8: 52 a 59; Unidad 9: 60 a 67; Unidad 10: 68 a 75). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
 
 ### Formato de cada lección
 1. Explicación corta con tablero interactivo (máx. 3 pantallas).

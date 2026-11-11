@@ -185,6 +185,96 @@
         },
         "u8-l06-s05": { "text": "Zusammenfassung: Bei Läufern auf verschiedenfarbigen Feldern greift jeder Felder an, die der andere nicht berührt, und die Seite mit einem Bauern weniger kann sich halten." }
       }
+    },
+    "u8-l07": {
+      "title": "Läufer gegen Springer",
+      "summary": "Jedes Stück glänzt in einer anderen Position",
+      "steps": {
+        "u8-l07-s01": {
+          "text": "Im Endspiel sind Läufer und Springer fast gleichwertig, aber sie dienen nicht für dasselbe. Der Läufer auf c1 erreicht in wenigen Zügen beide Flanken; der Springer auf f6 erreicht nur die nahegelegenen Felder."
+        },
+        "u8-l07-s02": {
+          "text": "Hier dominiert der Springer auf d5 das Zentrum und hat ein starkes Feld. Der Läufer auf c1 hingegen hat wenig Raum: seine Bauern auf b2 und c3 schließen die Damenflanke ab. Bei dieser festen Struktur ist der Springer das bessere Stück."
+        },
+        "u8-l07-s03": {
+          "prompt": "Mit Bauern auf beiden Flanken, welches Stück ist normalerweise komfortabler?",
+          "explanation": "Der Läufer kreuzt das Brett in einem Zug und deckt beide Flanken ab. Der Springer braucht mehrere Züge, um von einer Flanke zur anderen zu gelangen.",
+          "options": [
+            "Der Läufer",
+            "Der Springer",
+            "Es macht keinen Unterschied"
+          ],
+          "feedback": [
+            "",
+            "Der Springer ist nahe dem Zentrum stark, braucht aber Zeit, um von einer Flanke zur anderen zu gelangen.",
+            "Es macht keinen Unterschied: Die Bauernstruktur entscheidet, welches Stück mehr wert ist."
+          ]
+        },
+        "u8-l07-s04": {
+          "prompt": "Der schwarze Bauer ist einen Zug von der Umwandlung entfernt. Rette die Partie.",
+          "hint": "Der Springer kann den Bauern von d3 nehmen. Nach der Aufnahme reichen König und Springer gegen König nicht für ein Schachmatt.",
+          "success": "Korrekt. Sxb2 eliminiert den Bauern und die Partie endet unentschieden wegen Materialmangel."
+        },
+        "u8-l07-s05": {
+          "prompt": "Wie endet die Partie nach der Bauernaufnahme?",
+          "explanation": "König und Springer können kein Schachmatt erzwingen. Die Partie ist ein Unentschieden.",
+          "options": [
+            "Die weißen gewinnen",
+            "Es ist ein Unentschieden wegen Materialmangel",
+            "Die schwarzen gewinnen"
+          ],
+          "feedback": [
+            "Mit nur einem Springer kann kein Schachmatt erzwungen werden.",
+            "",
+            "Der schwarze König kann auch nicht gewinnen: Es bleibt kein Material zum Angreifen übrig."
+          ]
+        },
+        "u8-l07-s06": {
+          "prompt": "Tippe auf das Feld des schwarzen Springers, das das Zentrum dominiert.",
+          "hint": "Er befindet sich auf einem zentralen Feld, von dem aus er mehrere Punkte angreift."
+        },
+        "u8-l07-s07": {
+          "text": "Zusammenfassung: Der Läufer ist besser mit Bauern auf beiden Flanken; der Springer mit einem starken Feld und festen Bauern. Und wenn der Gegner einen Bauern kurz vor der Bauernumwandlung hat, kann die Abgabe des Stücks für diesen Bauern einen halben Punkt retten."
+        }
+      }
+    },
+    "u8-l08": {
+      "title": "Die zwei Schwächen",
+      "summary": "Eine angreifen, um in der anderen zu gewinnen",
+      "steps": {
+        "u8-l08-s01": {
+          "text": "Die Bauern auf a4 und h4 sind durch und getrennt. Der schwarze König kann nur einen angreifen: Wenn er zum Damenflügel geht, läuft der Bauer auf h4 zur Promotion."
+        },
+        "u8-l08-s02": {
+          "text": "Dasselbe gilt für die Figuren: Die schwarzen müssen a7 und h7 verteidigen. Dein Turm greift a7 an; wenn der schwarze Turm ihn verteidigt, wechselst du zu h7. Eine Figur kann nicht zwei Schwächen gleichzeitig abdecken."
+        },
+        "u8-l08-s03": {
+          "prompt": "Was tust du, wenn der Gegner zwei Schwächen hat?",
+          "explanation": "Wenn der Gegner eine Schwäche verteidigt, bleibt die andere ungeschützt. Der Schlüssel ist, ihn zur Wahl zu zwingen.",
+          "options": [
+            "Eine angreifen, damit der Gegner sich entfernt und du in der anderen gewinnst",
+            "Alle Figuren tauschen",
+            "Deine eigenen Bauern verteidigen"
+          ],
+          "feedback": [
+            "",
+            "Figuren tauschen schafft keine neuen Schwächen.",
+            "Verteidigen gewinnt nicht: Man muss die gegnerische Schwäche angreifen."
+          ]
+        },
+        "u8-l08-s04": {
+          "prompt": "Bewege einen durchgehenden Bauern, damit der schwarze König nicht beide erreicht.",
+          "hint": "Einer der beiden Bauern ist weit vom schwarzen König entfernt. Wähle einen und renne.",
+          "success": "Korrekt. Der schwarze König kann nicht beide Flügel abdecken: Einer der Bauern wird promotiert."
+        },
+        "u8-l08-s05": {
+          "prompt": "Tippe auf die beiden durchgehenden weißen Bauern.",
+          "hint": "Es sind die Bauern an den beiden Flügeln, ohne gegnerische Bauern davor."
+        },
+        "u8-l08-s06": {
+          "text": "Zusammenfassung: Eine Schwäche wird verteidigt; zwei Schwächen nicht. Greife eine an, damit der Gegner sich entfernt und du in der anderen gewinnst. Im Bauernendspiel gewinnen zwei durchgehende Bauern auf gegenüberliegenden Flügeln aus demselben Grund."
+        }
+      }
     }
   }
 }

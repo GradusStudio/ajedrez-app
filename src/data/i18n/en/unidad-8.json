@@ -185,6 +185,96 @@
         },
         "u8-l06-s05": { "text": "Summary: with opposite-colored bishops, each attacks squares the other doesn't touch, and the side a pawn down can hold on." }
       }
+    },
+    "u8-l07": {
+      "title": "Bishop versus Knight",
+      "summary": "Each piece shines in a different position",
+      "steps": {
+        "u8-l07-s01": {
+          "text": "In the endgame, the bishop and the knight are worth almost the same, but they are not used for the same thing. The bishop on c1 reaches both wings in a few moves; the knight on f6 only reaches nearby squares."
+        },
+        "u8-l07-s02": {
+          "text": "Here the knight on d5 dominates the center and has a strong square. The bishop on c1, on the other hand, has little space: its pawns on b2 and c3 close off the queen's flank. With the fixed structure, the knight is the best piece."
+        },
+        "u8-l07-s03": {
+          "prompt": "With pawns on both flanks, which piece is usually more comfortable?",
+          "explanation": "The bishop crosses the board in one move and covers both wings. The knight needs several moves to change flanks.",
+          "options": [
+            "The bishop",
+            "The knight",
+            "It's the same"
+          ],
+          "feedback": [
+            "",
+            "The knight is strong near the center, but it takes time to get from one wing to another.",
+            "It's not the same: the pawn structure decides which piece is worth more."
+          ]
+        },
+        "u8-l07-s04": {
+          "prompt": "The black pawn is one step away from promotion. Save the game.",
+          "hint": "The knight can capture the pawn from d3. After capturing it, king and knight against king are not enough to checkmate.",
+          "success": "Correct. Nxb2 eliminates the pawn and the game ends in a draw due to lack of material."
+        },
+        "u8-l07-s05": {
+          "prompt": "After capturing the pawn, how does the game end?",
+          "explanation": "King and knight against king cannot checkmate. The game is a draw.",
+          "options": [
+            "White wins",
+            "It's a draw due to lack of material",
+            "Black wins"
+          ],
+          "feedback": [
+            "With only one knight, checkmate cannot be forced.",
+            "",
+            "The black king also cannot win: there is no material left to attack."
+          ]
+        },
+        "u8-l07-s06": {
+          "prompt": "Touch the square of the black knight that dominates the center.",
+          "hint": "It is on a central square from which it attacks several points."
+        },
+        "u8-l07-s07": {
+          "text": "Summary: the bishop is better with pawns on both flanks; the knight, with a strong square and fixed pawns. And if the opponent has a pawn about to promote, giving the piece for that pawn can save half a point."
+        }
+      }
+    },
+    "u8-l08": {
+      "title": "The Two Weaknesses",
+      "summary": "Attack one to win on the other",
+      "steps": {
+        "u8-l08-s01": {
+          "text": "The pawns on a4 and h4 are passed and separated. The black king can only go after one: if it goes to the queen side, the h4 pawn runs towards promotion."
+        },
+        "u8-l08-s02": {
+          "text": "The same happens with the pieces: black has to defend a7 and h7. Your rook attacks a7; if the black rook goes to defend it, you switch to h7. One piece cannot cover two weaknesses at once."
+        },
+        "u8-l08-s03": {
+          "prompt": "What do you do when the opponent has two weaknesses?",
+          "explanation": "If the opponent defends one weakness, the other is left unprotected. The key is to force them to choose.",
+          "options": [
+            "Attack one so the opponent moves away and win on the other",
+            "Change all pieces",
+            "Defend your own pawns"
+          ],
+          "feedback": [
+            "",
+            "Changing pieces does not create new weaknesses.",
+            "Defending does not win: you must attack the opponent's weakness."
+          ]
+        },
+        "u8-l08-s04": {
+          "prompt": "Advance a passed pawn so the black king cannot reach both.",
+          "hint": "Either of the two pawns is far from the black king. Choose one and run.",
+          "success": "Correct. The black king cannot cover both flanks: one of the pawns will promote."
+        },
+        "u8-l08-s05": {
+          "prompt": "Tap the two passed white pawns.",
+          "hint": "They are the pawns on the two flanks, with no opposing pawns in front."
+        },
+        "u8-l08-s06": {
+          "text": "Summary: one weakness is defended; two weaknesses are not. Attack one so the opponent moves away and you win on the other. In pawn endgames, two passed pawns on opposite flanks win for the same reason."
+        }
+      }
     }
   }
 }

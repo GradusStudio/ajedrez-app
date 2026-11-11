@@ -290,6 +290,148 @@
         },
         "u6-l04-s10": { "text": "Du hast alle Einheiten von Lernen abgeschlossen. Am besten übst du jetzt weiter: jeden Tag Puzzles, Eröffnungen in ihrem eigenen Tab und Partien gegen die Bots, um alles anzuwenden, was du gelernt hast." }
       }
+    },
+    "u10-l05": {
+      "title": "Sich mit Materialnachteil verteidigen",
+      "summary": "Remis durch Schachgebot, Patt oder Festung",
+      "steps": {
+        "u10-l05-s01": {
+          "text": "Wenn du weniger Material hast, musst du nicht gewinnen: Du brauchst ein Remis. Der schwarze König auf a8 hat keine Felder und steht nicht im Schach. Er ist gepattet, und die Partie endet unentschieden."
+        },
+        "u10-l05-s02": {
+          "text": "Das Schachgebot ist ein weiterer Rettungsanker: Wenn deine Dame wiederholt Schach gibt, hat der Gegner keine Zeit, voranzukommen. Manchmal wiederholt sich die Stellung, und die Partie ist ein Unentschieden."
+        },
+        "u10-l05-s03": {
+          "prompt": "Was strebst du an, wenn du Materialnachteil hast?",
+          "explanation": "Mit weniger Material ist das Ziel, nicht zu verlieren. Schachgebot, Patt und Festung sind Mittel, um einen halben Punkt zu sichern.",
+          "options": [
+            "Remis: Schachgebot, Patt oder Festung",
+            "Alle Figuren wechseln",
+            "Den gegnerischen König angreifen"
+          ],
+          "feedback": [
+            "",
+            "Figurenwechsel hilft nicht immer, wenn du weiterhin Materialnachteil hast.",
+            "Angreifen führt oft zum Verlust: Der Gegner hat mehr Kräfte."
+          ]
+        },
+        "u10-l05-s04": {
+          "prompt": "Tippe die drei Felder an, die den schwarzen König kontrollieren.",
+          "hint": "Die Dame und der weiße König decken die drei Fluchtfelder ab."
+        },
+        "u10-l05-s05": {
+          "prompt": "Was ist eine Festung?",
+          "explanation": "In einer Festung nützt das zusätzliche Material nichts, weil der Gegner nicht eindringen kann. Es ist eine weitere Form des Unentschiedens.",
+          "options": [
+            "Eine Stellung, die der Gegner nicht durchbrechen kann, auch wenn er mehr Material hat",
+            "Ein Angriff auf den König",
+            "Alle Figuren wechseln"
+          ],
+          "feedback": [
+            "",
+            "Eine Festung ist defensiv, kein Angriff.",
+            "Figurenwechsel definiert keine Festung."
+          ]
+        },
+        "u10-l05-s06": {
+          "text": "Zusammenfassung: Mit Materialnachteil strebe ein Remis an. Patt, Schachgebot und Festung sind deine drei Mittel. Du musst nicht gewinnen; du musst nicht verlieren."
+        }
+      }
+    },
+    "u10-l06": {
+      "title": "Vorteil umwandeln",
+      "summary": "Vereinfachen ohne den Sieg zu verschenken",
+      "steps": {
+        "u10-l06-s01": {
+          "text": "Die weißen haben einen Bischop mehr. Der Plan ist einfach: Figuren tauschen, keine Bauern, den König im Endspiel ins Zentrum bringen und verhindern, dass der Gegner Gegenspiel bekommt."
+        },
+        "u10-l06-s02": {
+          "text": "Den Austausch der Damen reduziert die Möglichkeiten des Gegners. Nach einem Tausch wird dein Materialvorteil deutlicher und das Endspiel ist einfacher zu spielen."
+        },
+        "u10-l06-s03": {
+          "prompt": "Was tauschst du, wenn du gewinnst?",
+          "explanation": "Figuren zu tauschen reduziert das Gegenspiel. Bauern zu tauschen kann dem Gegner einen durchgehenden Bauern oder eine einfachere Verteidigung ermöglichen.",
+          "options": [
+            "Figuren, nicht Bauern",
+            "Bauern, nicht Figuren",
+            "Alles, was sich tauschen lässt"
+          ],
+          "feedback": [
+            "",
+            "Bauern zu tauschen kann dem Gegner ein Remis ermöglichen.",
+            "Es ist nicht ratsam, alles zu tauschen: Suche nach Vereinfachung, nicht nach dem Verschenken des Vorteils."
+          ]
+        },
+        "u10-l06-s04": {
+          "prompt": "Was vermeidest du, wenn du einen Vorteil hast?",
+          "explanation": "Mit Vorteil braucht der Gegner Komplikationen. Du suchst das Gegenteil: weniger Figuren und ein klares Endspiel.",
+          "options": [
+            "Das Spiel ohne Not zu öffnen",
+            "Vereinfachen",
+            "Den König zu aktivieren"
+          ],
+          "feedback": [
+            "",
+            "Vereinfachen ist genau das, was du willst.",
+            "Den König zu aktivieren ist im Endspiel gut."
+          ]
+        },
+        "u10-l06-s05": {
+          "prompt": "Tausche die Damen, um zu vereinfachen.",
+          "hint": "Deine Dame und die des Gegners stehen in der d-Linie. Nimm sie weg.",
+          "success": "Korrekt. Nach Txd8 hast du Turm und Läufer gegen Turm: ein gewonnenes Endspiel."
+        },
+        "u10-l06-s06": {
+          "text": "Zusammenfassung: Mit Vorteil vereinfachen. Figuren tauschen, keine Bauern; den König aktivieren und das Spiel nicht unnötig öffnen. Der Sieg wird mit Geduld aufgebaut."
+        }
+      }
+    },
+    "u10-l07": {
+      "title": "Einen Plan entwickeln",
+      "summary": "Die Idee vor dem Zug wählen",
+      "steps": {
+        "u10-l07-s01": {
+          "text": "Bevor du ziehst, wähle einen Plan. Frage dich, welches dein schwächstes Stück ist, wo du mehr Raum hast und welche Schwäche du angreifen kannst. Der Zug kommt nach der Idee."
+        },
+        "u10-l07-s02": {
+          "text": "Hier hat Weiß mehr Raum in der Mitte. Ein typischer Plan ist, den Läufer auf c1 zu verbessern, der hinter seinen Bauern steht, und dann den Königsflügel anzugreifen. Zuerst die Stücke, dann die Bauern."
+        },
+        "u10-l07-s03": {
+          "prompt": "Welcher Plan ist hier am sinnvollsten?",
+          "explanation": "Mit mehr Raum ist der Plan, das schwächste Stück zu entwickeln und dort anzugreifen, wo du einen Vorteil hast. Der Läufer auf c1 ist das zu verbessernde Stück.",
+          "options": [
+            "Den Läufer auf c1 verbessern und den Königsflügel angreifen",
+            "Alle Stücke tauschen",
+            "Die Bauern des Rochade bewegen"
+          ],
+          "feedback": [
+            "",
+            "Alles zu tauschen nutzt deinen Raum nicht aus.",
+            "Die Bauern des Rochade zu bewegen schwächt deinen eigenen König."
+          ]
+        },
+        "u10-l07-s04": {
+          "prompt": "Tippe auf die Feld des weißen Stücks, das verbessert werden muss.",
+          "hint": "Es ist der Läufer, der hinter seinen eigenen Bauern steht."
+        },
+        "u10-l07-s05": {
+          "prompt": "Welche Frage stellst du dir vor dem Zug?",
+          "explanation": "Ein Plan beginnt mit der Stellung: das schwächste Stück, der Raum und die Schwächen des Gegners.",
+          "options": [
+            "Was ist mein schwächstes Stück und wo habe ich einen Vorteil?",
+            "Welches Stück kann ich opfern?",
+            "Wie tausche ich alle Stücke?"
+          ],
+          "feedback": [
+            "",
+            "Opfer suchen ohne Plan ist, beim Ende zu beginnen.",
+            "Alles zu tauschen ist kein Plan an sich."
+          ]
+        },
+        "u10-l07-s06": {
+          "text": "Zusammenfassung: zuerst der Plan, dann der Zug. Verbessere dein schwächstes Stück, greife dort an, wo du Raum hast, und schaffe eine Schwäche im gegnerischen Feld. Ein Plan dauert mehrere Züge."
+        }
+      }
     }
   }
 }

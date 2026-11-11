@@ -192,6 +192,91 @@
         },
         "u9-l06-s07": { "text": "Summary: against a backward pawn, a piece on the square in front. Against a pawn chain, attack the base." }
       }
+    },
+    "u9-l07": {
+      "title": "Active Rooks",
+      "summary": "Open columns and the seventh rank",
+      "steps": {
+        "u9-l07-s01": {
+          "text": "The e-file is open and the rook on e1 can jump to e7. From the seventh rank, it attacks the pawns on a7, b7, f7, and g7, and traps the black king on the last rank."
+        },
+        "u9-l07-s02": {
+          "text": "Rooks also need to be connected. Here the king on g1 is between the two rooks on the first rank: if the king moves to h2, the rooks connect and protect each other."
+        },
+        "u9-l07-s03": {
+          "prompt": "Where is a rook stronger?",
+          "explanation": "On the seventh rank, the rook attacks pawns and cuts off the rival king. It is the most active square.",
+          "options": [
+            "On the seventh rank, attacking pawns",
+            "In the corner, defending",
+            "In front of its own king"
+          ],
+          "feedback": [
+            "",
+            "In the corner, the rook is passive: it only defends.",
+            "In front of the king, it takes squares from your own piece."
+          ]
+        },
+        "u9-l07-s04": {
+          "prompt": "Move the rook from e1 to the seventh rank.",
+          "hint": "The e-file is open. The rook can climb up to the black pawn rank.",
+          "success": "Correct. Re7 moves the rook to the seventh rank, where it attacks the pawns and cuts off the king."
+        },
+        "u9-l07-s05": {
+          "prompt": "Tap the seventh rank square that the rook on e1 can go to.",
+          "hint": "Climb up the open file to rank 7."
+        },
+        "u9-l07-s06": {
+          "text": "Summary: a rook is worth a lot with an open file, on the seventh rank, and connected to its partner. A passive rook, on the other hand, is almost a piece less."
+        }
+      }
+    },
+    "u9-l08": {
+      "title": "Pawn Breaks and Pawns Majority",
+      "summary": "Opening the game and creating a passed pawn",
+      "steps": {
+        "u9-l08-s01": {
+          "text": "White has three pawns against two on the queenside: a majority. If they advance the pawns in order, they can create a passed pawn that wins the endgame."
+        },
+        "u9-l08-s02": {
+          "text": "A break is a pawn advance that opens a file or a diagonal. Here c4 challenges the d5 pawn: if black captures, you open the c-file; if not, you exchange pawns on d5 and your d4 pawn gets more space."
+        },
+        "u9-l08-s03": {
+          "prompt": "What is a pawn majority?",
+          "explanation": "A majority is local: three pawns against two on a flank can create a passed pawn.",
+          "options": [
+            "Having more pawns than the opponent on a flank",
+            "Having more pieces",
+            "Exchanging all pawns"
+          ],
+          "feedback": [
+            "",
+            "Pieces do not count for a pawn majority.",
+            "Exchanging pawns without a plan does not create any advantage."
+          ]
+        },
+        "u9-l08-s04": {
+          "prompt": "What is a pawn break aiming for?",
+          "explanation": "The break opens lines or fixes a weakness for your pieces to enter through.",
+          "options": [
+            "Opening a file or creating a passed pawn",
+            "Exchanging queens",
+            "Defending the king"
+          ],
+          "feedback": [
+            "",
+            "Exchanging queens is not the goal of a break.",
+            "A break is a pawn idea, not a defensive move."
+          ]
+        },
+        "u9-l08-s05": {
+          "prompt": "Tap the three white majority pawns on the queenside.",
+          "hint": "They are the three consecutive pawns on the queenside."
+        },
+        "u9-l08-s06": {
+          "text": "Summary: a pawn majority creates a passed pawn if you advance in order. A break opens lines or fixes a weakness. First the pawn plan, then the pieces."
+        }
+      }
     }
   }
 }

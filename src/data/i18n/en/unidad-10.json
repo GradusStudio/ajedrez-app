@@ -290,6 +290,148 @@
         },
         "u6-l04-s10": { "text": "You've finished the Learn path. From here, the best thing is to practice: puzzles every day, openings in their tab and games against the bots to use everything you've learned." }
       }
+    },
+    "u10-l05": {
+      "title": "Defending with less material",
+      "summary": "Perpetual check, stalemate, and fortress",
+      "steps": {
+        "u10-l05-s01": {
+          "text": "When you have less material, you don't need to win: you need a draw. The black king on a8 has no squares and is not in check. It is stalemated, and the game ends in a draw."
+        },
+        "u10-l05-s02": {
+          "text": "Perpetual check is another lifeline: if your queen can check again and again, the opponent has no time to progress. Sometimes the position repeats and the game is a draw."
+        },
+        "u10-l05-s03": {
+          "prompt": "What are you looking for when you have less material?",
+          "explanation": "With less material, the goal is not to lose. Perpetual check, stalemate, and fortress are resources to save a half point.",
+          "options": [
+            "Draw: perpetual check, stalemate, or fortress",
+            "Change all pieces",
+            "Attack the rival king"
+          ],
+          "feedback": [
+            "",
+            "Changing pieces doesn't always help if you are still down in material.",
+            "Attacking usually loses: the rival has more strength."
+          ]
+        },
+        "u10-l05-s04": {
+          "prompt": "Tap the three squares that control the black king.",
+          "hint": "The queen and the white king cover the three escape squares."
+        },
+        "u10-l05-s05": {
+          "prompt": "What is a fortress?",
+          "explanation": "In a fortress, the extra material is useless because the rival cannot enter. It is another way to draw.",
+          "options": [
+            "A position the rival cannot break even with more material",
+            "An attack on the king",
+            "Changing all pieces"
+          ],
+          "feedback": [
+            "",
+            "A fortress is defensive, not an attack.",
+            "Changing pieces does not define a fortress."
+          ]
+        },
+        "u10-l05-s06": {
+          "text": "Summary: with less material, look for a draw. Stalemate, perpetual check, and fortress are your three resources. You don't need to win; you need not to lose."
+        }
+      }
+    },
+    "u10-l06": {
+      "title": "Converting an Advantage",
+      "summary": "Simplify without giving away the win",
+      "steps": {
+        "u10-l06-s01": {
+          "text": "White has an extra bishop. The plan is simple: exchange pieces, not pawns, bring the king to the center in the endgame, and prevent the opponent from getting counterplay."
+        },
+        "u10-l06-s02": {
+          "text": "Exchanging queens reduces the opponent's chances. After an exchange, your material advantage is more noticeable and the endgame is easier to play."
+        },
+        "u10-l06-s03": {
+          "prompt": "When you are winning, what do you exchange?",
+          "explanation": "Exchanging pieces reduces counterplay. Exchanging pawns can leave the opponent with a passed pawn or an easier defense.",
+          "options": [
+            "Pieces, not pawns",
+            "Pawns, not pieces",
+            "Everything possible"
+          ],
+          "feedback": [
+            "",
+            "Exchanging pawns can lead to a draw for the opponent.",
+            "It's not advisable to exchange everything: aim to simplify, not give away the advantage."
+          ]
+        },
+        "u10-l06-s04": {
+          "prompt": "What do you avoid when you have an advantage?",
+          "explanation": "With an advantage, the opponent needs complications. You seek the opposite: fewer pieces and a clear endgame.",
+          "options": [
+            "Opening the game unnecessarily",
+            "Simplifying",
+            "Activating the king"
+          ],
+          "feedback": [
+            "",
+            "Simplifying is exactly what you want.",
+            "Activating the king is good in the endgame."
+          ]
+        },
+        "u10-l06-s05": {
+          "prompt": "Exchange the queens to simplify.",
+          "hint": "Your queen and the opponent's queen are on the d-file. Capture theirs.",
+          "success": "Correct. After Rxd8, you are left with rook and bishop against rook: a winning endgame."
+        },
+        "u10-l06-s06": {
+          "text": "Summary: with an advantage, simplify. Exchange pieces, not pawns; activate the king and avoid opening the game unnecessarily. Victory is built with patience."
+        }
+      }
+    },
+    "u10-l07": {
+      "title": "Making a plan",
+      "summary": "Choosing the idea before the move",
+      "steps": {
+        "u10-l07-s01": {
+          "text": "Before moving, choose a plan. Ask yourself what your worst piece is, where you have more space, and what weakness you can attack. The move comes after the idea."
+        },
+        "u10-l07-s02": {
+          "text": "Here White has more space in the center. A typical plan is to improve the bishop on c1, which is behind its pawns, and then attack the kingside. Pieces first, pawns later."
+        },
+        "u10-l07-s03": {
+          "prompt": "What plan makes the most sense here?",
+          "explanation": "With more space, the plan is to develop the worst piece and attack where you have an advantage. The bishop on c1 is the piece to improve.",
+          "options": [
+            "Improve the bishop on c1 and attack the kingside",
+            "Change all the pieces",
+            "Move the castling pawns"
+          ],
+          "feedback": [
+            "",
+            "Changing everything doesn't utilize your space.",
+            "Moving the castling pawns weakens your own king."
+          ]
+        },
+        "u10-l07-s04": {
+          "prompt": "Tap the square of the white piece that needs improvement.",
+          "hint": "It is the bishop behind its own pawns."
+        },
+        "u10-l07-s05": {
+          "prompt": "What question do you ask yourself before moving?",
+          "explanation": "A plan starts with the position: the worst piece, the space, and the opponent's weaknesses.",
+          "options": [
+            "What is my worst piece and where do I have an advantage?",
+            "What piece can I sacrifice?",
+            "How do I change all the pieces?"
+          ],
+          "feedback": [
+            "",
+            "Looking for sacrifices without a plan is starting from the end.",
+            "Changing everything is not a plan in itself."
+          ]
+        },
+        "u10-l07-s06": {
+          "text": "Summary: first the plan, then the move. Improve your worst piece, attack where you have space, and create a weakness in the opponent's field. A plan lasts several moves."
+        }
+      }
     }
   }
 }

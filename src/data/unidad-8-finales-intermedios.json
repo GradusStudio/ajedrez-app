@@ -634,6 +634,178 @@
           "id": "u8-l06-s05"
         }
       ]
+    },
+    {
+      "id": "u8-l07",
+      "unit": 8,
+      "order": 58,
+      "title": "Alfil contra caballo",
+      "summary": "Cada pieza brilla en una posición distinta",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "En el final, el alfil y el caballo valen casi lo mismo, pero no sirven para lo mismo. El alfil de c1 llega a las dos alas en pocas jugadas; el caballo de f6 solo alcanza las casillas cercanas.",
+          "fen": "8/5pk1/4pnp1/8/8/1P4P1/5P2/2B3K1 w - - 0 1",
+          "highlight": [
+            "c1",
+            "f6"
+          ],
+          "id": "u8-l07-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Aquí el caballo de d5 domina el centro y tiene una casilla fuerte. El alfil de c1, en cambio, tiene poco espacio: sus peones de b2 y c3 le cierran el flanco de dama. Con la estructura fija, el caballo es la mejor pieza.",
+          "fen": "6k1/ppp2ppp/8/3n4/8/2P5/PP3PPP/2B3K1 w - - 0 1",
+          "highlight": [
+            "c1",
+            "d5",
+            "b2",
+            "c3"
+          ],
+          "id": "u8-l07-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Con peones en los dos flancos, ¿qué pieza suele ser más cómoda?",
+          "fen": "8/5pk1/4pnp1/8/8/1P4P1/5P2/2B3K1 w - - 0 1",
+          "options": [
+            "El alfil",
+            "El caballo",
+            "Da igual"
+          ],
+          "answer": 0,
+          "explanation": "El alfil cruza el tablero en una jugada y cubre las dos alas. El caballo necesita varias jugadas para cambiar de flanco.",
+          "feedback": [
+            "",
+            "El caballo es fuerte cerca del centro, pero tarda en llegar de un ala a la otra.",
+            "No da igual: la estructura de peones decide qué pieza vale más."
+          ],
+          "id": "u8-l07-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "El peón negro está a un paso de coronar. Salva la partida.",
+          "fen": "4k3/8/8/8/8/3N4/1p6/4K3 w - - 0 1",
+          "solutions": [
+            "d3b2"
+          ],
+          "hint": "El caballo puede capturar el peón desde d3. Después de capturarlo, rey y caballo contra rey no alcanzan para dar mate.",
+          "success": "Correcto. Cxb2 elimina el peón y la partida termina en tablas por falta de material.",
+          "id": "u8-l07-s04"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Después de capturar el peón, ¿cómo termina la partida?",
+          "fen": "4k3/8/8/8/8/8/1N6/4K3 b - - 0 1",
+          "options": [
+            "Ganan las blancas",
+            "Es tablas por falta de material",
+            "Ganan las negras"
+          ],
+          "answer": 1,
+          "explanation": "Rey y caballo contra rey no pueden dar mate. La partida es tablas.",
+          "feedback": [
+            "Con un solo caballo no se puede forzar el mate.",
+            "",
+            "El rey negro tampoco puede ganar: no queda material para atacar."
+          ],
+          "id": "u8-l07-s05"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla del caballo negro que domina el centro.",
+          "fen": "6k1/ppp2ppp/8/3n4/8/2P5/PP3PPP/2B3K1 w - - 0 1",
+          "squares": [
+            "d5"
+          ],
+          "hint": "Está en una casilla central desde la que ataca varios puntos.",
+          "id": "u8-l07-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: el alfil es mejor con peones en los dos flancos; el caballo, con una casilla fuerte y peones fijos. Y si el rival tiene un peón a punto de coronar, dar la pieza por ese peón puede salvar medio punto.",
+          "fen": "4k3/8/8/8/8/8/1N6/4K3 b - - 0 1",
+          "id": "u8-l07-s07"
+        }
+      ]
+    },
+    {
+      "id": "u8-l08",
+      "unit": 8,
+      "order": 59,
+      "title": "Las dos debilidades",
+      "summary": "Atacar una para ganar en la otra",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Los peones de a4 y h4 están pasados y separados. El rey negro solo puede ir a por uno: si se va al flanco de dama, el peón de h4 corre hacia la coronación.",
+          "fen": "8/8/4k3/8/P6P/8/8/4K3 w - - 0 1",
+          "highlight": [
+            "a4",
+            "h4"
+          ],
+          "id": "u8-l08-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Lo mismo pasa con las piezas: las negras tienen que defender a7 y h7. Tu torre ataca a7; si la torre negra va a defenderlo, cambias a h7. Una pieza no puede cubrir dos debilidades a la vez.",
+          "fen": "3r2k1/pp3ppp/8/8/8/8/PP3PPP/R5K1 w - - 0 1",
+          "highlight": [
+            "a7",
+            "h7"
+          ],
+          "id": "u8-l08-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué haces cuando el rival tiene dos debilidades?",
+          "fen": "3r2k1/pp3ppp/8/8/8/8/PP3PPP/R5K1 w - - 0 1",
+          "options": [
+            "Atacar una para que el rival se aleje y ganar en la otra",
+            "Cambiar todas las piezas",
+            "Defender tus propios peones"
+          ],
+          "answer": 0,
+          "explanation": "Si el rival defiende una debilidad, la otra queda sin protección. La clave es obligarlo a elegir.",
+          "feedback": [
+            "",
+            "Cambiar piezas no crea debilidades nuevas.",
+            "Defender no gana: hay que atacar la debilidad rival."
+          ],
+          "id": "u8-l08-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Avanza un peón pasado para que el rey negro no llegue a los dos.",
+          "fen": "8/8/4k3/8/P6P/8/8/4K3 w - - 0 1",
+          "solutions": [
+            "a4a5",
+            "h4h5"
+          ],
+          "hint": "Cualquiera de los dos peones está lejos del rey negro. Elige uno y corre.",
+          "success": "Correcto. El rey negro no puede cubrir las dos alas: uno de los peones va a coronar.",
+          "id": "u8-l08-s04"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca los dos peones pasados de las blancas.",
+          "fen": "8/8/4k3/8/P6P/8/8/4K3 w - - 0 1",
+          "squares": [
+            "a4",
+            "h4"
+          ],
+          "hint": "Son los peones que están en las dos alas, sin peones rivales por delante.",
+          "id": "u8-l08-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: una debilidad se defiende; dos debilidades no. Ataca una para que el rival se aleje y gana en la otra. En los finales de peones, dos peones pasados en alas opuestas ganan por la misma razón.",
+          "fen": "3r2k1/pp3ppp/8/8/8/8/PP3PPP/R5K1 w - - 0 1",
+          "id": "u8-l08-s06"
+        }
+      ]
     }
   ]
 }

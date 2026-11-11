@@ -5,7 +5,7 @@
     {
       "id": "u9-l01",
       "unit": 9,
-      "order": 58,
+      "order": 60,
       "title": "Piezas sueltas",
       "summary": "Una pieza sin defensa es un blanco",
       "xp": 15,
@@ -158,7 +158,7 @@
     {
       "id": "u9-l02",
       "unit": 9,
-      "order": 59,
+      "order": 61,
       "title": "Cuándo cambiar piezas",
       "summary": "Cambiar o no cambiar",
       "xp": 15,
@@ -257,7 +257,7 @@
     {
       "id": "u9-l03",
       "unit": 9,
-      "order": 60,
+      "order": 62,
       "title": "El espacio",
       "summary": "Casillas del campo rival que controlas",
       "xp": 15,
@@ -345,7 +345,7 @@
     {
       "id": "u9-l04",
       "unit": 9,
-      "order": 61,
+      "order": 63,
       "title": "Posiciones abiertas y cerradas",
       "summary": "Cómo juegan las piezas según los peones",
       "xp": 15,
@@ -442,7 +442,7 @@
     {
       "id": "u9-l05",
       "unit": 9,
-      "order": 62,
+      "order": 64,
       "title": "Alfil bueno y alfil malo",
       "summary": "El alfil y sus propios peones",
       "xp": 15,
@@ -535,7 +535,7 @@
     {
       "id": "u9-l06",
       "unit": 9,
-      "order": 63,
+      "order": 65,
       "title": "Peón retrasado y cadenas de peones",
       "summary": "Dónde atacar la estructura de peones",
       "xp": 15,
@@ -627,6 +627,171 @@
           "text": "Resumen: contra un peón retrasado, una pieza en la casilla de delante. Contra una cadena de peones, ataca la base.",
           "fen": "rn1qkb1r/1p3ppp/p2pbn2/4p3/4P3/1NN1B3/PPP2PPP/R2QKB1R w KQkq - 2 8",
           "id": "u9-l06-s07"
+        }
+      ]
+    },
+    {
+      "id": "u9-l07",
+      "unit": 9,
+      "order": 66,
+      "title": "Torres activas",
+      "summary": "Columnas abiertas y la séptima fila",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "La columna e está abierta y la torre de e1 puede saltar a e7. Desde la séptima fila ataca los peones de a7, b7, f7 y g7, y encierra al rey negro en la última fila.",
+          "fen": "r4rk1/pp3ppp/8/8/8/8/PP3PPP/R3R1K1 w - - 0 1",
+          "highlight": [
+            "e1",
+            "e7"
+          ],
+          "id": "u9-l07-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Las torres también necesitan estar conectadas. Aquí el rey de g1 está entre las dos torres de la primera fila: si el rey sale a h2, las torres se conectan y se protegen entre sí.",
+          "fen": "r4rk1/pp3ppp/8/8/8/8/PP3PP1/R5KR w - - 0 1",
+          "highlight": [
+            "a1",
+            "h1",
+            "g1"
+          ],
+          "play": [
+            "g1h2"
+          ],
+          "id": "u9-l07-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Dónde es más fuerte una torre?",
+          "fen": "r4rk1/pp3ppp/8/8/8/8/PP3PPP/R3R1K1 w - - 0 1",
+          "options": [
+            "En la séptima fila, atacando peones",
+            "En la esquina, defendiendo",
+            "Delante de su propio rey"
+          ],
+          "answer": 0,
+          "explanation": "En la séptima fila la torre ataca peones y corta al rey rival. Es la casilla más activa.",
+          "feedback": [
+            "",
+            "En la esquina la torre está pasiva: solo defiende.",
+            "Delante del rey le quita casillas a tu propia pieza."
+          ],
+          "id": "u9-l07-s03"
+        },
+        {
+          "type": "move",
+          "prompt": "Lleva la torre de e1 a la séptima fila.",
+          "fen": "r4rk1/pp3ppp/8/8/8/8/PP3PPP/R3R1K1 w - - 0 1",
+          "solutions": [
+            "e1e7"
+          ],
+          "hint": "La columna e está abierta. La torre puede subir hasta la fila de los peones negros.",
+          "success": "Correcto. Te7 lleva la torre a la séptima fila, donde ataca los peones y corta al rey.",
+          "id": "u9-l07-s04"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla de la séptima fila a la que puede ir la torre de e1.",
+          "fen": "r4rk1/pp3ppp/8/8/8/8/PP3PPP/R3R1K1 w - - 0 1",
+          "squares": [
+            "e7"
+          ],
+          "hint": "Sube por la columna abierta hasta la fila 7.",
+          "id": "u9-l07-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: una torre vale mucho con una columna abierta, en la séptima fila y conectada con su compañera. Una torre pasiva, en cambio, es casi una pieza de menos.",
+          "fen": "r4rk1/pp3ppp/8/8/8/8/PP3PPP/R3R1K1 w - - 0 1",
+          "id": "u9-l07-s06"
+        }
+      ]
+    },
+    {
+      "id": "u9-l08",
+      "unit": 9,
+      "order": 67,
+      "title": "Rupturas y mayorías de peones",
+      "summary": "Abrir el juego y crear un peón pasado",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Las blancas tienen tres peones contra dos en el flanco de dama: una mayoría. Si avanzan los peones con orden, pueden crear un peón pasado que gane el final.",
+          "fen": "4k3/pp6/8/8/8/8/PPP5/4K3 w - - 0 1",
+          "highlight": [
+            "a2",
+            "b2",
+            "c2"
+          ],
+          "id": "u9-l08-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Una ruptura es un avance de peón que abre una columna o una diagonal. Aquí c4 desafía el peón de d5: si las negras capturan, abres la columna c; si no, cambias peones en d5 y tu peón de d4 queda con más espacio.",
+          "fen": "4k3/1pp5/8/3pp3/3PP3/8/1PP5/4K3 w - - 0 1",
+          "highlight": [
+            "c2",
+            "c4",
+            "d5"
+          ],
+          "id": "u9-l08-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué es una mayoría de peones?",
+          "fen": "4k3/pp6/8/8/8/8/PPP5/4K3 w - - 0 1",
+          "options": [
+            "Tener más peones que el rival en un flanco",
+            "Tener más piezas",
+            "Cambiar todos los peones"
+          ],
+          "answer": 0,
+          "explanation": "Una mayoría es local: tres peones contra dos en un flanco pueden crear un peón pasado.",
+          "feedback": [
+            "",
+            "Las piezas no cuentan para una mayoría de peones.",
+            "Cambiar peones sin plan no crea ninguna ventaja."
+          ],
+          "id": "u9-l08-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué busca una ruptura?",
+          "fen": "4k3/1pp5/8/3pp3/3PP3/8/1PP5/4K3 w - - 0 1",
+          "options": [
+            "Abrir una columna o crear un peón pasado",
+            "Cambiar damas",
+            "Defender el rey"
+          ],
+          "answer": 0,
+          "explanation": "La ruptura abre líneas o fija una debilidad para que tus piezas entren por ahí.",
+          "feedback": [
+            "",
+            "Cambiar damas no es el objetivo de una ruptura.",
+            "La ruptura es una idea de peones, no una jugada defensiva."
+          ],
+          "id": "u9-l08-s04"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca los tres peones de la mayoría blanca en el flanco de dama.",
+          "fen": "4k3/pp6/8/8/8/8/PPP5/4K3 w - - 0 1",
+          "squares": [
+            "a2",
+            "b2",
+            "c2"
+          ],
+          "hint": "Son los tres peones seguidos del flanco de dama.",
+          "id": "u9-l08-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: una mayoría de peones crea un peón pasado si avanzas con orden. Una ruptura abre líneas o fija una debilidad. Primero el plan de peones, después las piezas.",
+          "fen": "4k3/1pp5/8/3pp3/3PP3/8/1PP5/4K3 w - - 0 1",
+          "id": "u9-l08-s06"
         }
       ]
     }

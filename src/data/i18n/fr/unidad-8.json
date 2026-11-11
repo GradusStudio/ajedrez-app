@@ -185,6 +185,96 @@
         },
         "u8-l06-s05": { "text": "En résumé : avec des fous de couleurs différentes, chacun attaque des cases que l'autre ne touche pas, et le côté avec un pion en moins peut tenir." }
       }
+    },
+    "u8-l07": {
+      "title": "Fou contre cavalier",
+      "summary": "Chaque pièce brille dans une position différente",
+      "steps": {
+        "u8-l07-s01": {
+          "text": "En finale, le fou et le cavalier valent presque la même chose, mais ils ne servent pas à la même chose. Le fou de c1 atteint les deux ailes en quelques coups ; le cavalier de f6 n'atteint que les cases proches."
+        },
+        "u8-l07-s02": {
+          "text": "Ici, le cavalier de d5 domine le centre et a une case forte. Le fou de c1, en revanche, a peu d'espace : ses pions de b2 et c3 lui ferment l'aile dame. Avec la structure fixe, le cavalier est la meilleure pièce."
+        },
+        "u8-l07-s03": {
+          "prompt": "Avec des pions sur les deux ailes, quelle pièce est généralement plus confortable ?",
+          "explanation": "Le fou traverse l'échiquier en un coup et couvre les deux ailes. Le cavalier a besoin de plusieurs coups pour changer d'aile.",
+          "options": [
+            "Le fou",
+            "Le cavalier",
+            "C'est pareil"
+          ],
+          "feedback": [
+            "",
+            "Le cavalier est fort près du centre, mais il met du temps à passer d'une aile à l'autre.",
+            "Ce n'est pas pareil : la structure des pions décide quelle pièce vaut le plus."
+          ]
+        },
+        "u8-l07-s04": {
+          "prompt": "Le pion noir est à un pas de la promotion. Sauvez la partie.",
+          "hint": "Le cavalier peut capturer le pion depuis d3. Après l'avoir capturé, roi et cavalier contre roi ne suffisent pas pour faire échec et mat.",
+          "success": "Correct. Cxb2 élimine le pion et la partie se termine par une nulle par manque de matériel."
+        },
+        "u8-l07-s05": {
+          "prompt": "Après avoir capturé le pion, comment se termine la partie ?",
+          "explanation": "Roi et cavalier contre roi ne peuvent pas forcer le mat. La partie est nulle.",
+          "options": [
+            "Les blanches gagnent",
+            "C'est une nulle par manque de matériel",
+            "Les noires gagnent"
+          ],
+          "feedback": [
+            "Avec un seul cavalier, on ne peut pas forcer le mat.",
+            "",
+            "Le roi noir ne peut pas gagner non plus : il ne reste pas de matériel pour attaquer."
+          ]
+        },
+        "u8-l07-s06": {
+          "prompt": "Cliquez sur la case du cavalier noir qui domine le centre.",
+          "hint": "Il est sur une case centrale d'où il attaque plusieurs points."
+        },
+        "u8-l07-s07": {
+          "text": "Résumé : le fou est meilleur avec des pions sur les deux ailes ; le cavalier, avec une case forte et des pions fixes. Et si l'adversaire a un pion sur le point de se promouvoir, donner la pièce pour ce pion peut sauver un demi-point."
+        }
+      }
+    },
+    "u8-l08": {
+      "title": "Les deux faiblesses",
+      "summary": "Attaquer une pour gagner dans l'autre",
+      "steps": {
+        "u8-l08-s01": {
+          "text": "Les pions en a4 et h4 sont passés et séparés. Le roi noir ne peut aller après qu'un seul : s'il va sur l'aile dame, le pion h4 court vers la promotion."
+        },
+        "u8-l08-s02": {
+          "text": "La même chose se passe avec les pièces : les noirs doivent défendre a7 et h7. Votre tour attaque a7 ; si la tour noire va le défendre, vous changez pour h7. Une pièce ne peut pas couvrir deux faiblesses à la fois."
+        },
+        "u8-l08-s03": {
+          "prompt": "Que faites-vous lorsque l'adversaire a deux faiblesses ?",
+          "explanation": "Si l'adversaire défend une faiblesse, l'autre reste sans protection. La clé est de le forcer à choisir.",
+          "options": [
+            "Attaquer une pour que l'adversaire s'éloigne et gagner dans l'autre",
+            "Changer toutes les pièces",
+            "Défendre vos propres pions"
+          ],
+          "feedback": [
+            "",
+            "Changer les pièces ne crée pas de nouvelles faiblesses.",
+            "Défendre ne gagne pas : il faut attaquer la faiblesse adverse."
+          ]
+        },
+        "u8-l08-s04": {
+          "prompt": "Avancez un pion passé pour que le roi noir n'atteigne pas les deux.",
+          "hint": "L'un des deux pions est loin du roi noir. Choisissez-en un et avancez.",
+          "success": "Correct. Le roi noir ne peut pas couvrir les deux ailes : l'un des pions va se promouvoir."
+        },
+        "u8-l08-s05": {
+          "prompt": "Touchez les deux pions passés des blancs.",
+          "hint": "Ce sont les pions qui sont sur les deux ailes, sans pions adverses devant eux."
+        },
+        "u8-l08-s06": {
+          "text": "Résumé : une faiblesse se défend ; deux faiblesses non. Attaquez une pour que l'adversaire s'éloigne et gagnez dans l'autre. Dans les finales de pions, deux pions passés sur des ailes opposées gagnent pour la même raison."
+        }
+      }
     }
   }
 }

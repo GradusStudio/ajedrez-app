@@ -185,6 +185,96 @@
         },
         "u8-l06-s05": { "text": "Riassunto: con alfieri di colore diverso, ognuno attacca caselle che l'altro non tocca, e il lato con un pedone in meno può resistere." }
       }
+    },
+    "u8-l07": {
+      "title": "Alfiere contro cavallo",
+      "summary": "Ogni pezzo brilla in una posizione diversa",
+      "steps": {
+        "u8-l07-s01": {
+          "text": "Nel finale, l'alfiere e il cavallo valgono quasi lo stesso, ma non servono allo stesso modo. L'alfiere da c1 raggiunge entrambe le ali in poche mosse; il cavallo da f6 raggiunge solo le caselle vicine."
+        },
+        "u8-l07-s02": {
+          "text": "Qui il cavallo da d5 domina il centro e ha una casella forte. L'alfiere da c1, invece, ha poco spazio: i suoi pedoni in b2 e c3 gli chiudono il fianco di donna. Con la struttura fissa, il cavallo è il pezzo migliore."
+        },
+        "u8-l07-s03": {
+          "prompt": "Con pedoni su entrambi i fianchi, quale pezzo è solitamente più comodo?",
+          "explanation": "L'alfiere attraversa la scacchiera in una mossa e copre entrambe le ali. Il cavallo ha bisogno di diverse mosse per cambiare fianco.",
+          "options": [
+            "L'alfiere",
+            "Il cavallo",
+            "Non importa"
+          ],
+          "feedback": [
+            "",
+            "Il cavallo è forte vicino al centro, ma impiega tempo per passare da un'ala all'altra.",
+            "Non importa: la struttura dei pedoni decide quale pezzo vale di più."
+          ]
+        },
+        "u8-l07-s04": {
+          "prompt": "Il pedone nero è a una mossa dalla promozione. Salva la partita.",
+          "hint": "Il cavallo può catturare il pedone da d3. Dopo averlo catturato, re e cavallo contro re non bastano per dare scacco matto.",
+          "success": "Corretto. Cxb2 elimina il pedone e la partita finisce in patta per mancanza di materiale."
+        },
+        "u8-l07-s05": {
+          "prompt": "Dopo aver catturato il pedone, come finisce la partita?",
+          "explanation": "Re e cavallo contro re non possono dare scacco matto. La partita è in patta.",
+          "options": [
+            "Vincono le bianche",
+            "È in patta per mancanza di materiale",
+            "Vincono le nere"
+          ],
+          "feedback": [
+            "Con un solo cavallo non si può forzare lo scacco matto.",
+            "",
+            "Il re nero non può nemmeno vincere: non rimane materiale per attaccare."
+          ]
+        },
+        "u8-l07-s06": {
+          "prompt": "Tocca la casella del cavallo nero che domina il centro.",
+          "hint": "È su una casella centrale da cui attacca diversi punti."
+        },
+        "u8-l07-s07": {
+          "text": "Riepilogo: l'alfiere è migliore con pedoni su entrambi i fianchi; il cavallo, con una casella forte e pedoni fissi. E se l'avversario ha un pedone vicino alla promozione, dare il pezzo per quel pedone può salvare mezzo punto."
+        }
+      }
+    },
+    "u8-l08": {
+      "title": "Le due debolezze",
+      "summary": "Attaccare una per vincere nell'altra",
+      "steps": {
+        "u8-l08-s01": {
+          "text": "I pedoni in a4 e h4 sono passati e separati. Il re nero può puntare solo su uno: se va sul fianco della regina, il pedone in h4 corre verso la promozione."
+        },
+        "u8-l08-s02": {
+          "text": "Lo stesso vale per i pezzi: i neri devono difendere a7 e h7. La tua torre attacca a7; se la torre nera va a difenderlo, cambi a h7. Un pezzo non può coprire due debolezze contemporaneamente."
+        },
+        "u8-l08-s03": {
+          "prompt": "Cosa fai quando il rivale ha due debolezze?",
+          "explanation": "Se il rivale difende una debolezza, l'altra rimane senza protezione. La chiave è costringerlo a scegliere.",
+          "options": [
+            "Attaccare una per far allontanare il rivale e vincere nell'altra",
+            "Cambiare tutti i pezzi",
+            "Difendere i propri pedoni"
+          ],
+          "feedback": [
+            "",
+            "Cambiare pezzi non crea nuove debolezze.",
+            "Difendere non vince: bisogna attaccare la debolezza del rivale."
+          ]
+        },
+        "u8-l08-s04": {
+          "prompt": "Avanza un pedone passato affinché il re nero non possa raggiungere entrambi.",
+          "hint": "Uno dei due pedoni è lontano dal re nero. Scegline uno e corre.",
+          "success": "Corretto. Il re nero non può coprire entrambi i fianchi: uno dei pedoni si promuoverà."
+        },
+        "u8-l08-s05": {
+          "prompt": "Tocca i due pedoni passati dei bianchi.",
+          "hint": "Sono i pedoni che si trovano sui due fianchi, senza pedoni avversari davanti."
+        },
+        "u8-l08-s06": {
+          "text": "Riassunto: una debolezza si difende; due debolezze no. Attacca una per far allontanare il rivale e vince nell'altra. Nelle finali di pedoni, due pedoni passati su fianchi opposti vincono per la stessa ragione."
+        }
+      }
     }
   }
 }

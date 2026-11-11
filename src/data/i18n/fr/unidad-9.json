@@ -192,6 +192,91 @@
         },
         "u9-l06-s07": { "text": "En résumé : contre un pion arriéré, une pièce sur la case de devant. Contre une chaîne de pions, attaque la base de la chaîne." }
       }
+    },
+    "u9-l07": {
+      "title": "Tours actives",
+      "summary": "Colonnes ouvertes et septième rangée",
+      "steps": {
+        "u9-l07-s01": {
+          "text": "La colonne e est ouverte et la tour de e1 peut sauter à e7. Depuis la septième rangée, elle attaque les pions de a7, b7, f7 et g7, et encercle le roi noir sur la dernière rangée."
+        },
+        "u9-l07-s02": {
+          "text": "Les tours doivent aussi être connectées. Ici, le roi de g1 est entre les deux tours de la première rangée : si le roi sort à h2, les tours se connectent et se protègent mutuellement."
+        },
+        "u9-l07-s03": {
+          "prompt": "Où une tour est-elle la plus forte ?",
+          "explanation": "Sur la septième rangée, la tour attaque des pions et coupe le roi adverse. C'est la case la plus active.",
+          "options": [
+            "Sur la septième rangée, attaquant des pions",
+            "Dans le coin, défendant",
+            "Devant son propre roi"
+          ],
+          "feedback": [
+            "",
+            "Dans le coin, la tour est passive : elle ne fait que défendre.",
+            "Devant le roi, elle enlève des cases à votre propre pièce."
+          ]
+        },
+        "u9-l07-s04": {
+          "prompt": "Amenez la tour de e1 à la septième rangée.",
+          "hint": "La colonne e est ouverte. La tour peut monter jusqu'à la rangée des pions noirs.",
+          "success": "Correct. Te7 amène la tour sur la septième rangée, où elle attaque les pions et coupe le roi."
+        },
+        "u9-l07-s05": {
+          "prompt": "Touchez la case de la septième rangée où la tour de e1 peut aller.",
+          "hint": "Montez par la colonne ouverte jusqu'à la rangée 7."
+        },
+        "u9-l07-s06": {
+          "text": "Résumé : une tour vaut beaucoup avec une colonne ouverte, sur la septième rangée et connectée à sa partenaire. Une tour passive, en revanche, est presque une pièce de moins."
+        }
+      }
+    },
+    "u9-l08": {
+      "title": "Ruptures et majorités de pions",
+      "summary": "Ouvrir le jeu et créer un pion passé",
+      "steps": {
+        "u9-l08-s01": {
+          "text": "Les blancs ont trois pions contre deux sur l'aile dame : une majorité. S'ils avancent les pions en ordre, ils peuvent créer un pion passé qui gagnera la finale."
+        },
+        "u9-l08-s02": {
+          "text": "Une rupture est un avancement de pion qui ouvre une colonne ou une diagonale. Ici, c4 défie le pion de d5 : si les noirs capturent, vous ouvrez la colonne c ; sinon, vous échangez des pions en d5 et votre pion de d4 gagne de l'espace."
+        },
+        "u9-l08-s03": {
+          "prompt": "Qu'est-ce qu'une majorité de pions ?",
+          "explanation": "Une majorité est locale : trois pions contre deux sur une aile peuvent créer un pion passé.",
+          "options": [
+            "Avoir plus de pions que l'adversaire sur une aile",
+            "Avoir plus de pièces",
+            "Échanger tous les pions"
+          ],
+          "feedback": [
+            "",
+            "Les pièces ne comptent pas pour une majorité de pions.",
+            "Échanger des pions sans plan ne crée aucun avantage."
+          ]
+        },
+        "u9-l08-s04": {
+          "prompt": "Que cherche une rupture ?",
+          "explanation": "La rupture ouvre des lignes ou fixe une faiblesse pour que vos pièces y pénètrent.",
+          "options": [
+            "Ouvrir une colonne ou créer un pion passé",
+            "Échanger les dames",
+            "Défendre le roi"
+          ],
+          "feedback": [
+            "",
+            "Échanger les dames n'est pas l'objectif d'une rupture.",
+            "La rupture est une idée de pions, pas une manœuvre défensive."
+          ]
+        },
+        "u9-l08-s05": {
+          "prompt": "Cliquez sur les trois pions de la majorité blanche sur l'aile dame.",
+          "hint": "Ce sont les trois pions consécutifs de l'aile dame."
+        },
+        "u9-l08-s06": {
+          "text": "Résumé : une majorité de pions crée un pion passé si vous avancez en ordre. Une rupture ouvre des lignes ou fixe une faiblesse. D'abord le plan de pions, ensuite les pièces."
+        }
+      }
     }
   }
 }

@@ -290,6 +290,148 @@
         },
         "u6-l04-s10": { "text": "Hai finito il percorso di Impara. Da qui, la cosa migliore è allenarsi: puzzle ogni giorno, aperture nella loro scheda e partite contro i bot per usare tutto ciò che hai imparato." }
       }
+    },
+    "u10-l05": {
+      "title": "Difendersi con materiale in minoranza",
+      "summary": "Scacco perpetuo, stallo e fortezza",
+      "steps": {
+        "u10-l05-s01": {
+          "text": "Quando hai meno materiale, non devi vincere: devi pareggiare. Il re nero in a8 non ha caselle e non è sotto scacco. È in stallo, e la partita finisce in pareggio."
+        },
+        "u10-l05-s02": {
+          "text": "Lo scacco perpetuo è un altro salvagente: se la tua regina può dare scacchi una e altra volta, il rivale non ha tempo di progredire. A volte la posizione si ripete e la partita è in pareggio."
+        },
+        "u10-l05-s03": {
+          "prompt": "Cosa cerchi quando hai meno materiale?",
+          "explanation": "Con meno materiale, l'obiettivo è non perdere. Lo scacco perpetuo, lo stallo e la fortezza sono risorse per salvare mezzo punto.",
+          "options": [
+            "Pareggio: scacco perpetuo, stallo o fortezza",
+            "Cambiare tutti i pezzi",
+            "Attaccare il re avversario"
+          ],
+          "feedback": [
+            "",
+            "Cambiare i pezzi non aiuta sempre se continui ad avere meno materiale.",
+            "Attaccare di solito fa perdere: il rivale ha più forze."
+          ]
+        },
+        "u10-l05-s04": {
+          "prompt": "Tocca le tre caselle che controllano il re nero.",
+          "hint": "La regina e il re bianco coprono le tre caselle di fuga."
+        },
+        "u10-l05-s05": {
+          "prompt": "Cos'è una fortezza?",
+          "explanation": "In una fortezza, il materiale in eccesso non serve perché il rivale non può entrare. È un altro modo per fare pareggio.",
+          "options": [
+            "Una posizione che il rivale non può rompere anche avendo più materiale",
+            "Un attacco al re",
+            "Cambiare tutti i pezzi"
+          ],
+          "feedback": [
+            "",
+            "Una fortezza è difensiva, non un attacco.",
+            "Cambiare i pezzi non definisce una fortezza."
+          ]
+        },
+        "u10-l05-s06": {
+          "text": "Riepilogo: con meno materiale, cerca il pareggio. Lo stallo, lo scacco perpetuo e la fortezza sono le tue tre risorse. Non hai bisogno di vincere; hai bisogno di non perdere."
+        }
+      }
+    },
+    "u10-l06": {
+      "title": "Convertire un vantaggio",
+      "summary": "Semplificare senza regalare la vittoria",
+      "steps": {
+        "u10-l06-s01": {
+          "text": "I bianchi hanno un alfiere in più. Il piano è semplice: scambiare pezzi, non pedoni, portare il re al centro nella finale e evitare che l'avversario ottenga un contrattacco."
+        },
+        "u10-l06-s02": {
+          "text": "Scambiare le dame riduce le possibilità dell'avversario. Dopo uno scambio, il tuo vantaggio materiale è più evidente e la finale è più facile da giocare."
+        },
+        "u10-l06-s03": {
+          "prompt": "Quando stai vincendo, cosa scambi?",
+          "explanation": "Scambiare pezzi riduce il contrattacco. Scambiare pedoni può lasciare all'avversario un pedone passato o una difesa più facile.",
+          "options": [
+            "Pezzi, non pedoni",
+            "Pedoni, non pezzi",
+            "Tutto ciò che è possibile"
+          ],
+          "feedback": [
+            "",
+            "Scambiare pedoni può portare a un pareggio per l'avversario.",
+            "Non conviene scambiare tutto: cerca di semplificare, non regalare il vantaggio."
+          ]
+        },
+        "u10-l06-s04": {
+          "prompt": "Cosa eviti quando hai il vantaggio?",
+          "explanation": "Con il vantaggio, l'avversario ha bisogno di complicazioni. Tu cerchi il contrario: meno pezzi e una finale chiara.",
+          "options": [
+            "Aprire il gioco senza necessità",
+            "Semplificare",
+            "Attivare il re"
+          ],
+          "feedback": [
+            "",
+            "Semplificare è esattamente ciò che vuoi.",
+            "Attivare il re è buono nella finale."
+          ]
+        },
+        "u10-l06-s05": {
+          "prompt": "Scambia le dame per semplificare.",
+          "hint": "La tua dama e quella dell'avversario sono sulla colonna d. Catturala.",
+          "success": "Corretto. Dopo Txd8, rimani con torre e alfiere contro torre: una finale vinta."
+        },
+        "u10-l06-s06": {
+          "text": "Riassunto: con il vantaggio, semplifica. Scambia pezzi, non pedoni; attiva il re ed evita di aprire il gioco senza necessità. La vittoria si costruisce con pazienza."
+        }
+      }
+    },
+    "u10-l07": {
+      "title": "Fare un piano",
+      "summary": "Scegli l'idea prima della mossa",
+      "steps": {
+        "u10-l07-s01": {
+          "text": "Prima di muovere, scegli un piano. Chiediti qual è il tuo pezzo peggiore, dove hai più spazio e quale debolezza puoi attaccare. La mossa viene dopo l'idea."
+        },
+        "u10-l07-s02": {
+          "text": "Qui i bianchi hanno più spazio al centro. Un piano tipico è migliorare l'alfiere di c1, che è dietro i suoi pedoni, e poi attaccare l'ala di re. Prima i pezzi, poi i pedoni."
+        },
+        "u10-l07-s03": {
+          "prompt": "Quale piano ha più senso qui?",
+          "explanation": "Con più spazio, il piano è sviluppare il pezzo peggiore e attaccare dove hai vantaggio. L'alfiere di c1 è il pezzo da migliorare.",
+          "options": [
+            "Migliorare l'alfiere di c1 e attaccare l'ala di re",
+            "Cambiare tutti i pezzi",
+            "Muovere i pedoni di arrocco"
+          ],
+          "feedback": [
+            "",
+            "Cambiare tutto non sfrutta il tuo spazio.",
+            "Muovere i pedoni di arrocco indebolisce il tuo re."
+          ]
+        },
+        "u10-l07-s04": {
+          "prompt": "Tocca la casella del pezzo bianco che deve essere migliorato.",
+          "hint": "È l'alfiere che è dietro i propri pedoni."
+        },
+        "u10-l07-s05": {
+          "prompt": "Quale domanda ti poni prima di muovere?",
+          "explanation": "Un piano inizia dalla posizione: il pezzo peggiore, lo spazio e le debolezze del rivale.",
+          "options": [
+            "Qual è il mio pezzo peggiore e dove ho vantaggio?",
+            "Quale pezzo posso sacrificare?",
+            "Come cambio tutti i pezzi?"
+          ],
+          "feedback": [
+            "",
+            "Cercare sacrifici senza un piano è iniziare dalla fine.",
+            "Cambiare tutto non è un piano di per sé."
+          ]
+        },
+        "u10-l07-s06": {
+          "text": "Riepilogo: prima il piano, poi la mossa. Migliora il tuo pezzo peggiore, attacca dove hai spazio e crea una debolezza nel campo avversario. Un piano dura diverse mosse."
+        }
+      }
     }
   }
 }

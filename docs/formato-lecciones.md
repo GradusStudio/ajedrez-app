@@ -317,7 +317,7 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 
 ## Contenido de la Unidad 8 · Finales intermedios (bloque C del temario nuevo)
 
-`src/data/unidad-8-finales-intermedios.json`: 6 lecciones, 41 pasos (órdenes 53 a 58), escritas el 9-11-2026. Todas las enseña Maestro Ivo.
+`src/data/unidad-8-finales-intermedios.json`: 8 lecciones, 54 pasos (órdenes 52 a 59), escritas el 9-11-2026 y completadas el 11-11-2026. Todas las enseña Maestro Ivo.
 
 | # | id | Lección | Pasos |
 |---|---|---|---|
@@ -327,15 +327,17 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 4 | u8-l04 | La posición de Philidor | 5 |
 | 5 | u8-l05 | Cortar al rey con la torre | 7 |
 | 6 | u8-l06 | Alfiles de distinto color | 5 |
+| 7 | u8-l07 | Alfil contra caballo | 7 |
+| 8 | u8-l08 | Las dos debilidades | 6 |
 
 - **Puzzles de Lichess (CC0):** las lecciones 1 y 2 usan finales de peones reales (el rey que gana peones, las carreras de un peón alejado). Cada ejercicio de una jugada tiene una sola solución y un margen claro sobre la segunda mejor (Stockfish, profundidad 14).
 - **Posiciones propias, verificadas con Stockfish 19 (profundidad 18 a 24):** dama contra peón central (mate en 10), dama contra peón de torre (0,00), Philidor (−0,27, tablas), torre que corta al rey por columna y por fila (mate en 13 y 11) y alfiles de distinto color con un peón de más (0,00). Las prácticas contra Stockfish se comprobaron contra los umbrales del paso `practice` (ganar: al menos +3; aguantar: más de −3).
-- **Lo que no se hizo:** «Alfil contra caballo» y una lección aparte de «Las dos debilidades» (quedó dentro de la lección 2). Los puzzles de Lichess con alfil y caballo son horquillas, no enseñan la idea estratégica, y no se encontró una posición que Stockfish confirmara de forma inequívoca para un ejercicio de una jugada.
+- **Lecciones 7 y 8 (11-11-2026):** «Alfil contra caballo» enseña cuándo brilla cada pieza y que dar el caballo por el último peón salva tablas; «Las dos debilidades» usa dos peones pasados en alas opuestas y una posición de torres. Validación: chess.js para todas las posiciones y soluciones; Stockfish 19 (profundidad 12 a 16) confirma `d3b2` como mejor jugada y que `a4a5` y `h4h5` conservan la victoria (+6,86 y +10,38 para las blancas).
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama (las frases «Correcto. …» salen de plantillas con la notación de cada idioma) y revisadas a mano. Sin revisión de nativos.
 
 ## Contenido de la Unidad 9 · Piezas y peones (bloque D del temario nuevo)
 
-`src/data/unidad-9-piezas-y-peones.json`: 6 lecciones, 41 pasos (órdenes 59 a 64), escritas el 9-11-2026.
+`src/data/unidad-9-piezas-y-peones.json`: 8 lecciones, 53 pasos (órdenes 60 a 67), escritas el 9-11-2026 y completadas el 11-11-2026.
 
 | # | id | Lección | Pasos | Profesor |
 |---|---|---|---|---|
@@ -345,16 +347,18 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 4 | u9-l04 | Posiciones abiertas y cerradas | 7 | Lola |
 | 5 | u9-l05 | Alfil bueno y alfil malo | 6 | Ramiro |
 | 6 | u9-l06 | Peón retrasado y cadenas de peones | 7 | Camila |
+| 7 | u9-l07 | Torres activas | 6 | Valentina |
+| 8 | u9-l08 | Rupturas y mayorías de peones | 6 | Camila |
 
 - **Qué se verificó y cómo:** la estrategia no se puede confirmar con un motor, así que las respuestas de las preguntas son hechos que calcula chess.js sobre las posiciones: las piezas sin defensa de un bando, las casillas del campo rival que controla cada bando (espacio), los peones bloqueados frente a un peón rival, los peones propios que están en casillas del color de un alfil, el peón retrasado y la base de una cadena de peones. Cada lección falla al armarse si algún dato no coincide con lo que dice el texto.
 - **Posiciones:** salen de las líneas de los cursos de aperturas (Avance de la Francesa, Escocesa, India de Rey, Najdorf y Caro-Kann) y, para la lección 1, de puzzles reales de Lichess (CC0) con Stockfish a profundidad 14 (una sola solución por ejercicio).
 - **Principios sin motor:** las preguntas de «qué suele convenir» (cambiar con ventaja de material, evitar cambios con más espacio, caballos en posiciones cerradas) enseñan reglas generales y están redactadas con «suele».
-- **Lo que no se hizo:** «Torres activas» (conectar torres, séptima fila, torre levantada) y «Rupturas y mayorías de peones»: Stockfish no confirmó esas ideas con una jugada única en las posiciones de prueba (la torre en la séptima fila ni siquiera era la mejor jugada).
+- **Lecciones 7 y 8 (11-11-2026):** «Torres activas» muestra la columna abierta, la séptima fila y las torres conectadas; «Rupturas y mayorías de peones» explica la mayoría de tres contra dos y la ruptura c4. Validación: chess.js para todas las posiciones; Stockfish 19 (profundidad 12) confirma `Te7` como mejor jugada en la posición de torres. Las preguntas de estrategia se sostienen con hechos de la posición, no con una jugada única del motor.
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama y revisadas a mano (las frases «Correcto. …» salen de una plantilla con la notación de cada idioma). Sin revisión de nativos.
 
 ## Contenido de la Unidad 10 · Ataque y defensa (bloque E del temario nuevo)
 
-`src/data/unidad-10-ataque-y-defensa.json`: 5 lecciones, 55 pasos (órdenes 64 a 68), escritas el 9-11-2026.
+`src/data/unidad-10-ataque-y-defensa.json`: 8 lecciones, 73 pasos (órdenes 68 a 75), escritas el 9-11-2026 y completadas el 11-11-2026.
 
 | # | id | Lección | Pasos | Profesor |
 |---|---|---|---|---|
@@ -362,11 +366,14 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 2 | u10-l02 | Atacar con enroques del mismo lado | 10 | Sofía |
 | 3 | u10-l03 | Enroques opuestos | 9 | Valentina |
 | 4 | u10-l04 | Defender al rey | 9 | Lola |
-| 5 | u6-l04 | Repaso final | 18 | Ada |
+| 5 | u10-l05 | Defenderse con material de menos | 6 | Ivo |
+| 6 | u10-l06 | Convertir una ventaja | 6 | Ivo |
+| 7 | u10-l07 | Hacer un plan | 6 | Ramiro |
+| 8 | u6-l04 | Repaso final | 18 | Ada |
 
 - **Repaso final:** conserva el id `u6-l04` (el progreso guardado lo usa) pero es la última lección de la ruta. Tenía 10 pasos; se le agregaron 8 puzzles de Lichess de los temas nuevos (atracción, sobrecarga, jugada intermedia, interferencia, mate de dos piezas, sacrificio, rey activo, pieza suelta) y la despedida sigue al final.
 - **Qué se verificó y cómo:** los puzzles salen de la base de Lichess (CC0) por tema y rating, con una sola solución clara (hueco de 1,0 peón o más) comprobada con Stockfish 19; los ejercicios de «mover» aceptan todas las jugadas con la mejor evaluación o el mismo mate. Las preguntas de los cuestionarios y las casillas a tocar se calculan con chess.js (reyes sin enrocar, bando de enroque de cada rey, defensores de h7, piezas que interponen y quién las protege).
-- **Lo que no se hizo:** «Defenderse con material de menos» (no hay puzzles de igualdad con una sola salida), «Convertir una ventaja» (ninguna posición verificable) y «Hacer un plan» (un plan estratégico no se confirma con un motor).
+- **Lecciones 5 a 7 (11-11-2026):** «Defenderse con material de menos» usa el ahogado (rey en a8, dama en b6) y explica el jaque perpetuo y la fortaleza; «Convertir una ventaja» muestra el cambio de damas que deja torre y alfil contra torre; «Hacer un plan» usa una estructura con espacio y una pieza mala. Validación: chess.js para todas las posiciones; Stockfish 19 (profundidad 16) confirma que el cambio de damas deja +5,17 para las blancas. Las lecciones de plan son conceptuales y no se validan con una jugada única.
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama y corregidas a mano (gemma perdía los signos de pregunta y usaba calcos como «Bando» o «gespalten»). Las frases «Correcto. …» salen de una plantilla con la notación de cada idioma. Sin revisión de nativos.
 
 ## Lecciones agregadas el 9-11-2026 (bloque A del temario nuevo)

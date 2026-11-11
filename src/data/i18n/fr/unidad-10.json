@@ -290,6 +290,148 @@
         },
         "u6-l04-s10": { "text": "Tu as terminé le parcours Apprendre. À partir d'ici, le mieux est de t'entraîner : des puzzles tous les jours, les ouvertures dans leur onglet et des parties contre les bots pour utiliser tout ce que tu as appris." }
       }
+    },
+    "u10-l05": {
+      "title": "Se défendre avec moins de matériel",
+      "summary": "Pat, échec et mat, et forteresse",
+      "steps": {
+        "u10-l05-s01": {
+          "text": "Quand vous avez moins de matériel, vous n'avez pas besoin de gagner : vous avez besoin d'un match nul. Le roi noir en a8 n'a pas de cases et n'est pas en échec. Il est en pat, et la partie se termine par un match nul."
+        },
+        "u10-l05-s02": {
+          "text": "Le pat est une autre bouée de sauvetage : si votre dame peut donner échec encore et encore, l'adversaire n'a pas le temps de progresser. Parfois, la position se répète et la partie est un match nul."
+        },
+        "u10-l05-s03": {
+          "prompt": "Que cherchez-vous lorsque vous avez moins de matériel ?",
+          "explanation": "Avec moins de matériel, l'objectif est de ne pas perdre. Le pat, le pat forcé et la forteresse sont des moyens de sauver un demi-point.",
+          "options": [
+            "Match nul : pat, pat forcé ou forteresse",
+            "Changer toutes les pièces",
+            "Attaquer le roi adverse"
+          ],
+          "feedback": [
+            "",
+            "Changer les pièces n'aide pas toujours si vous avez toujours moins de matériel.",
+            "Attaquer mène souvent à la défaite : l'adversaire a plus de forces."
+          ]
+        },
+        "u10-l05-s04": {
+          "prompt": "Touchez les trois cases qui contrôlent le roi noir.",
+          "hint": "La dame et le roi blanc couvrent les trois cases de fuite."
+        },
+        "u10-l05-s05": {
+          "prompt": "Qu'est-ce qu'une forteresse ?",
+          "explanation": "Dans une forteresse, le matériel en surplus ne sert à rien car l'adversaire ne peut pas entrer. C'est une autre façon d'obtenir un match nul.",
+          "options": [
+            "Une position que l'adversaire ne peut pas briser même s'il a plus de matériel",
+            "Une attaque contre le roi",
+            "Changer toutes les pièces"
+          ],
+          "feedback": [
+            "",
+            "Une forteresse est défensive, pas une attaque.",
+            "Changer les pièces ne définit pas une forteresse."
+          ]
+        },
+        "u10-l05-s06": {
+          "text": "Résumé : avec moins de matériel, cherchez un match nul. Le pat, le pat forcé et la forteresse sont vos trois ressources. Vous n'avez pas besoin de gagner ; vous avez besoin de ne pas perdre."
+        }
+      }
+    },
+    "u10-l06": {
+      "title": "Convertir un avantage",
+      "summary": "Simplifier sans offrir la victoire",
+      "steps": {
+        "u10-l06-s01": {
+          "text": "Les blancs ont un fou de plus. Le plan est simple : échanger des pièces, pas des pions, amener le roi au centre en finale et éviter que l'adversaire ne trouve de contre-jeu."
+        },
+        "u10-l06-s02": {
+          "text": "Échanger les dames réduit les possibilités de l'adversaire. Après un échange, votre avantage matériel est plus net et la finale est plus facile à jouer."
+        },
+        "u10-l06-s03": {
+          "prompt": "Quand vous avez l'avantage, qu'échangez-vous ?",
+          "explanation": "Échanger des pièces réduit le contre-jeu. Échanger des pions peut laisser l'adversaire avec un pion passé ou une défense plus facile.",
+          "options": [
+            "Des pièces, pas des pions",
+            "Des pions, pas des pièces",
+            "Tout ce qui est possible"
+          ],
+          "feedback": [
+            "",
+            "Échanger des pions peut ouvrir le jeu à l'adversaire.",
+            "Il n'est pas conseillé d'tout échanger : cherchez à simplifier, pas à offrir l'avantage."
+          ]
+        },
+        "u10-l06-s04": {
+          "prompt": "Qu'évitez-vous quand vous avez l'avantage ?",
+          "explanation": "Avec un avantage, l'adversaire a besoin de complications. Vous cherchez le contraire : moins de pièces et une finale claire.",
+          "options": [
+            "Ouvrir le jeu sans nécessité",
+            "Simplifier",
+            "Activer le roi"
+          ],
+          "feedback": [
+            "",
+            "Simplifier est exactement ce que vous voulez.",
+            "Activer le roi est bon en finale."
+          ]
+        },
+        "u10-l06-s05": {
+          "prompt": "Échangez les dames pour simplifier.",
+          "hint": "Votre dame et celle de l'adversaire sont sur la colonne d. Capturez la sienne.",
+          "success": "Correct. Après Txd8, vous avez tour et fou contre tour : une finale gagnée."
+        },
+        "u10-l06-s06": {
+          "text": "Résumé : avec un avantage, simplifiez. Échangez des pièces, pas des pions ; activez le roi et évitez d'ouvrir le jeu sans nécessité. La victoire se construit avec patience."
+        }
+      }
+    },
+    "u10-l07": {
+      "title": "Élaborer un plan",
+      "summary": "Choisir l'idée avant le coup",
+      "steps": {
+        "u10-l07-s01": {
+          "text": "Avant de bouger, choisissez un plan. Demandez-vous quelle est votre pire pièce, où vous avez le plus d'espace et quelle faiblesse vous pouvez attaquer. Le coup vient après l'idée."
+        },
+        "u10-l07-s02": {
+          "text": "Ici, les Blancs ont plus d'espace au centre. Un plan typique est d'améliorer le fou de c1, qui est bloqué par ses propres pions, puis d'attaquer l'aile roi. Les pièces d'abord, les pions ensuite."
+        },
+        "u10-l07-s03": {
+          "prompt": "Quel plan est le plus pertinent ici ?",
+          "explanation": "Avec plus d'espace, le plan est de développer la pièce la moins bien placée et d'attaquer là où vous avez un avantage. Le fou de c1 est la pièce à améliorer.",
+          "options": [
+            "Améliorer le fou de c1 et attaquer l'aile roi",
+            "Changer toutes les pièces",
+            "Avancer les pions du roque"
+          ],
+          "feedback": [
+            "",
+            "Changer tout n'exploite pas votre espace.",
+            "Avancer les pions du roque affaiblit votre propre roi."
+          ]
+        },
+        "u10-l07-s04": {
+          "prompt": "Cliquez sur la case de la pièce blanche à améliorer.",
+          "hint": "C'est le fou bloqué par ses propres pions."
+        },
+        "u10-l07-s05": {
+          "prompt": "Quelle question vous posez-vous avant de bouger ?",
+          "explanation": "Un plan commence par la position : la pièce la moins bien placée, l'espace et les faiblesses de l'adversaire.",
+          "options": [
+            "Quelle est ma pire pièce et où ai-je un avantage ?",
+            "Quelle pièce puis-je sacrifier ?",
+            "Comment changer toutes les pièces ?"
+          ],
+          "feedback": [
+            "",
+            "Chercher des sacrifices sans plan, c'est commencer par la fin.",
+            "Changer tout n'est pas un plan en soi."
+          ]
+        },
+        "u10-l07-s06": {
+          "text": "Résumé : d'abord le plan, ensuite le coup. Améliorez votre pire pièce, attaquez là où vous avez de l'espace et créez une faiblesse dans le camp adverse. Un plan dure plusieurs coups."
+        }
+      }
     }
   }
 }

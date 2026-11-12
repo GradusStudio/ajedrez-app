@@ -290,23 +290,25 @@ git commit -m "Docs: ruta de 9 unidades y 75 lecciones"
 
 **Files:** none (review only).
 
-- [ ] **Step 1: Build the review package**
+- [x] **Step 1: Build the review package**
 
 Run: `../subagent-driven-development/scripts/review-package docs/superpowers/plans/2026-11-11-reorganizacion-unidades.md $(git merge-base main HEAD) HEAD` desde el directorio del plugin, o el equivalente con la ruta absoluta.
 
-- [ ] **Step 2: Dispatch a fresh reviewer**
+- [x] **Step 2: Dispatch a fresh reviewer**
 
 Use `superpowers:requesting-code-review` with the package path, the plan and the spec. Ask for Critical/Important/Minor findings, especially translation coverage, order/unit consistency and stale docs.
 
-- [ ] **Step 3: Fix Critical and Important findings**
+- [x] **Step 3: Fix Critical and Important findings**
 
 For each fix, add or adjust a test first, watch it fail, make it pass and run the full suite. Record the result in the ledger.
 
-- [ ] **Step 4: Final message**
+- [x] **Step 4: Final message**
 
 Report the result, the deferred minors and the `lastUnit` caveat.
 
 ---
+
+**Resultado de la revisión final (11-11-2026):** 0 Critical, 4 Important. Se corrigieron el conteo de la Unidad 3, el rango de archivos de traducción (1..9), la numeración de la Unidad 2 y las notas de puzzles del Repaso final; se agregó la secuencia completa de 75 ids al test de currículo. `lastUnit` queda documentado en el mensaje final. La rama contiene además commits de otra sesión (`e1556a9`, `0632851`, `b5a4eb8`) que no forman parte de este plan y no se tocaron.
 
 ## Self-review
 

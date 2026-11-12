@@ -27,6 +27,20 @@ test('los ids de lección son únicos', () => {
   assert.equal(new Set(ids).size, ids.length);
 });
 
+test('la secuencia completa de lecciones es la acordada', () => {
+  assert.deepEqual(units.flatMap((u) => u.lessons.map((l) => l.id)), [
+    'u1-l01', 'u1-l02', 'u1-l03', 'u1-l04', 'u1-l05', 'u1-l06', 'u1-l07', 'u1-l08', 'u1-l09', 'u1-l10', 'u1-l11', 'u1-l12',
+    'u2-l01', 'u2-l02', 'u2-l04', 'u2-l05', 'u2-l03', 'u2-l06',
+    'u3-l01', 'u3-l02', 'u3-l09', 'u3-l03', 'u3-l04', 'u3-l05', 'u3-l06', 'u3-l07', 'u9-l01', 'u3-l08',
+    'u4-l01', 'u4-l02', 'u4-l07', 'u4-l03', 'u4-l04', 'u4-l05', 'u4-l06',
+    'u5-l06', 'u5-l01', 'u5-l02', 'u5-l03', 'u6-l01', 'u5-l04', 'u5-l05',
+    'u7-l01', 'u7-l02', 'u7-l03', 'u7-l04', 'u7-l05', 'u7-l06', 'u6-l03', 'u7-l07', 'u7-l08',
+    'u8-l01', 'u8-l02', 'u8-l03', 'u8-l04', 'u8-l05', 'u8-l06', 'u8-l07', 'u8-l08', 'u10-l06',
+    'u9-l02', 'u9-l03', 'u9-l04', 'u9-l05', 'u9-l06', 'u9-l07', 'u9-l08',
+    'u10-l01', 'u10-l02', 'u10-l03', 'u10-l04', 'u6-l02', 'u10-l05', 'u10-l07', 'u6-l04',
+  ]);
+});
+
 test('las lecciones movidas quedan en su lugar', () => {
   assert.deepEqual(idsOf(3).slice(-3), ['u3-l07', 'u9-l01', 'u3-l08']);
   assert.equal(idsOf(5).indexOf('u6-l01'), idsOf(5).indexOf('u5-l03') + 1);

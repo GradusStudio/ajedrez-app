@@ -5,7 +5,7 @@ Cada lección tiene pasos; hay 6 tipos de paso. Todos llevan `fen` (la posición
 
 ## Archivos de traducción
 
-La unidad en español (`src/data/unidad-N-*.json`, `aperturas-v3.json`) es la fuente. Cada idioma tiene `src/data/i18n/<lang>/unidad-1..6.json`, `aperturas.json`, `bots.json` e `index.ts`. Un archivo de traducción repite los ids de lecciones y pasos y solo lleva los campos de texto: títulos, `text`, `prompt`, `options`, `success`, `hint`, `explanations`, notas y frases de los bots. Nunca cambia `fen`, `solutions`, `squares`, `answer` ni las jugadas. Las listas (opciones, explicaciones) tienen el mismo largo que en español. `npm test` corre `findProblems` por idioma: ids, textos vacíos, marcadores, largos de lista, jugadas nombradas, letras de pieza y ausencia de `!`.
+La unidad en español (`src/data/unidad-N-*.json`, `aperturas-v3.json`) es la fuente. Cada idioma tiene `src/data/i18n/<lang>/unidad-1..9.json`, `aperturas.json`, `bots.json` e `index.ts`. Un archivo de traducción repite los ids de lecciones y pasos y solo lleva los campos de texto: títulos, `text`, `prompt`, `options`, `success`, `hint`, `explanations`, notas y frases de los bots. Nunca cambia `fen`, `solutions`, `squares`, `answer` ni las jugadas. Las listas (opciones, explicaciones) tienen el mismo largo que en español. `npm test` corre `findProblems` por idioma: ids, textos vacíos, marcadores, largos de lista, jugadas nombradas, letras de pieza y ausencia de `!`.
 
 Si se corrige un texto en español, hay que corregirlo también en los cuatro idiomas. Las líneas de apertura corregidas también van en los archivos de traducción. `aperturas` en español tiene dos copias (`src/data/` y `docs/`).
 
@@ -172,7 +172,7 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 
 ## Contenido de la Unidad 3 · Táctica básica
 
-`src/data/unidad-3-tactica-basica.json`: 9 lecciones, 84 pasos. Sin «El valor de las piezas» (ya está en «Intercambios», Unidad 1) y con «Antes de mover» en lugar de «Piezas colgadas» (lo básico está en «Proteger piezas»).
+`src/data/unidad-3-tactica-basica.json`: 10 lecciones, 93 pasos (órdenes 19 a 28). Sin «El valor de las piezas» (ya está en «Intercambios», Unidad 1) y con «Antes de mover» en lugar de «Piezas colgadas» (lo básico está en «Proteger piezas»). Incluye «Piezas sueltas» (`u9-l01`), movida de la Unidad 9 el 11-11-2026.
 
 - **Combinaciones:** pasos `line` en modo `drill` con `success` y `hint` propios.
 - **Puzzles reales de Lichess (CC0):** cada lección termina con 2, y «La horquilla», «La descubierta» y «La desviación» tienen uno más en el medio (0TCrY, MZ2x1, dvqbx), en lugar de posiciones propias que no funcionaban. El enunciado muestra el número del puzzle.
@@ -360,6 +360,7 @@ La vieja Unidad 6 tenía Zugzwang, Profilaxis, Sacrificio de calidad y el Repaso
 | 8 | u6-l04 | Repaso final | 18 | Ada |
 
 - **Repaso final:** conserva el id `u6-l04` (el progreso guardado lo usa) pero es la última lección de la ruta. Tenía 10 pasos; se le agregaron 8 puzzles de Lichess de los temas nuevos (atracción, sobrecarga, jugada intermedia, interferencia, mate de dos piezas, sacrificio, rey activo, pieza suelta) y la despedida sigue al final.
+- **Puzzles del Repaso final:** 8PHlY, Z2PVU, to19k, 1gxnS, 9XWAR, d49wh, Kv9DA y 7CgP1. «Profilaxis» no usa puzzles de Lichess: los temas «jugada defensiva» y «jugada tranquila» casi siempre responden a un jaque o son finales de peones, y no muestran la idea de anticipar el plan rival.
 - **Qué se verificó y cómo:** los puzzles salen de la base de Lichess (CC0) por tema y rating, con una sola solución clara (hueco de 1,0 peón o más) comprobada con Stockfish 19; los ejercicios de «mover» aceptan todas las jugadas con la mejor evaluación o el mismo mate. Las preguntas de los cuestionarios y las casillas a tocar se calculan con chess.js (reyes sin enrocar, bando de enroque de cada rey, defensores de h7, piezas que interponen y quién las protege).
 - **Lecciones 5 a 7 (11-11-2026):** «Profilaxis» (movida de la vieja Unidad 6) enseña a anticipar el plan rival; «Defenderse con material de menos» usa el ahogado (rey en a8, dama en b6) y explica el jaque perpetuo y la fortaleza; «Hacer un plan» usa una estructura con espacio y una pieza mala. Validación: chess.js para todas las posiciones. «Profilaxis»: si las blancas pasan, Ag4 es posible y h3 controla g4; en el pasillo, Txb7 permite Te1 mate; en h2, la amenaza es Dxh2 mate y g3/h3 la impiden. Las lecciones de plan son conceptuales y no se validan con una jugada única.
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama y corregidas a mano (gemma perdía los signos de pregunta y usaba calcos como «Bando» o «gespalten»). Las frases «Correcto. …» salen de una plantilla con la notación de cada idioma. Sin revisión de nativos.

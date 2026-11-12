@@ -25,12 +25,12 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 «Capturar piezas» se quitó en la versión 2 del hito 1.
 
 ### Unidad 2 · Reglas especiales (6 lecciones, ya escritas en `src/data/unidad-2-reglas-especiales.json`)
-13. El enroque
-14. La captura al paso
-15. El rey ahogado
-16. Otras tablas: repetición y jaque perpetuo, material insuficiente, 50 jugadas
-17. Coronar bien (sin ahogar y con caballo; lo básico ya está en «El peón» de la unidad 1)
-18. Cómo se escriben las jugadas (notación)
+1. El enroque
+2. La captura al paso
+3. El rey ahogado
+4. Otras tablas: repetición y jaque perpetuo, material insuficiente, 50 jugadas
+5. Coronar bien (sin ahogar y con caballo; lo básico ya está en «El peón» de la unidad 1)
+6. Cómo se escriben las jugadas (notación)
 
 ### Unidad 3 · Táctica básica (10 lecciones, ya escritas en `src/data/unidad-3-tactica-basica.json`)
 1. La horquilla
@@ -147,4 +147,4 @@ Los bots deben jugar las aperturas que el usuario ya aprendió, para que cada pa
 - Validar cada línea con Stockfish y una base de datos de partidas.
 - Decidir variantes concretas por apertura (por ejemplo, qué línea de la Siciliana).
 - Escribir los textos de cada lección siguiendo la voz definida en design.md.
-- ~~Definir cuántas lecciones de apertura se desbloquean al inicio y cuáles después.~~ Decidido en el hito 3: los 28 cursos están abiertos y, dentro de cada curso, las lecciones se desbloquean de a una.
+- ~~Definir cuántas lecciones de apertura se desbloquean al inicio y cuáles después.~~ Decidido en el hito 3: los 29 cursos están abiertos y, dentro de cada curso, las lecciones se desbloquean de a una.

@@ -1,278 +1,371 @@
 {
-  "title": "Finales intermédiaires",
+  "title": "Pièces et pions",
   "lessons": {
-    "u8-l01": {
-      "title": "Le roi actif",
-      "summary": "En finale, le roi attaque aussi",
+    "u9-l02": {
+      "title": "Quand échanger les pièces",
+      "summary": "Échanger ou ne pas échanger",
       "steps": {
-        "u8-l01-s01": { "text": "En finale, il ne reste presque plus de pièces pour donner mat, et le roi devient une pièce d'attaque. Ici le roi noir marche vers f4 : de là il attaque le pion en g4, et le roi blanc est trop loin pour le défendre." },
-        "u8-l01-s02": { "text": "Pareil ici : le roi noir sort vers f5 et attaque le pion en g5. Le roi blanc ne peut pas le défendre et les Noirs le prennent." },
-        "u8-l01-s03": {
-          "prompt": "Les Blancs jouent. Que fait le roi pour gagner le pion en a6 ?",
-          "options": ["Il va en b6 et l'attaque", "Il va en d5, vers le centre", "Il va en b7 et s'éloigne du pion"],
-          "explanation": "Avec Rb6 le roi attaque le pion en a6 et le roi noir ne peut pas arriver pour le défendre.",
-          "feedback": ["", "Vers le centre tu ne gagnes rien : le pion en a6 est à côté de ton roi.", "S'éloigner du pion est l'inverse de ce dont tu as besoin."]
+        "u9-l02-s01": {
+          "text": "Presque tous les échanges ont des aspects bons et des aspects mauvais. Il est avantageux d'échanger si tu gagnes du matériel, si l'échange laisse une faiblesse à l'adversaire, si tu es attaqué ou si tu as peu d'espace. Ce n'est pas avantageux si tu perds du matériel, si c'est toi qui attaques ou si tu as plus d'espace."
         },
-        "u8-l01-s04": {
-          "prompt": "Touche la case où le roi noir doit aller pour attaquer le pion en g5.",
-          "hint": "Il doit rester à côté du pion, sur une case que le roi blanc ne peut pas surveiller."
+        "u9-l02-s02": {
+          "prompt": "Tu as une tour de plus et c'est au tour des Blancs. Qu'est-ce qui te convient ?",
+          "options": [
+            "Éviter les échanges",
+            "Attaquer sans échanger quoi que ce soit",
+            "Échanger des pièces pour simplifier"
+          ],
+          "explanation": "Avec une tour en plus, chaque échange rend ton avantage plus grand : moins il reste de pièces, plus une tour en plus pèse.",
+          "feedback": [
+            "Éviter les échanges laisse vivantes les pièces de l'adversaire, qui sont celles qui pourraient te compliquer le jeu.",
+            "Attaquer sans échanger quoi que ce soit est risqué quand tu as déjà l'avantage.",
+            ""
+          ]
         },
-        "u8-l01-s05": {
-          "prompt": "Attaque le pion en a6 avec le roi.",
-          "hint": "Le roi blanc peut se placer à côté du pion. Le roi noir n'arrive pas à le défendre.",
-          "success": "Correct. Rb6 attaque le pion et le roi adverse ne peut pas le défendre."
+        "u9-l02-s03": {
+          "prompt": "Tu perds une tour et c'est au tour des Blancs. Qu'est-ce qui te convient ?",
+          "options": [
+            "Échanger seulement les dames",
+            "Éviter les échanges",
+            "Échanger des pièces pour simplifier"
+          ],
+          "explanation": "Avec moins de matériel, chaque échange te laisse avec moins de ressources : il est préférable de garder des pièces sur l'échiquier pour avoir des options.",
+          "feedback": [
+            "Échanger les dames te laisse aussi avec moins de ressources pour compliquer.",
+            "",
+            "Chaque échange rapproche la partie d'une finale où la tour manquante se fait plus sentir."
+          ]
         },
-        "u8-l01-s06": {
-          "prompt": "Prends le pion en a2 avec le roi.",
-          "hint": "Le pion en a2 est à côté de ton roi et personne ne le défend.",
-          "success": "Correct. Rxa2 gagne le pion et ouvre la voie au pion a."
+        "u9-l02-s04": {
+          "prompt": "Tu as moins d'espace que l'adversaire. Qu'est-ce qui te convient ?",
+          "options": [
+            "Échanger les pièces qui t'encombrent",
+            "Éviter tous les échanges",
+            "Avancer les pions"
+          ],
+          "explanation": "Avec peu d'espace les pièces se gênent. Chaque échange libère des cases pour celles qui restent.",
+          "feedback": [
+            "",
+            "Éviter les échanges laisse tes pièces comprimées.",
+            "Avancer les pions sans soutien crée généralement des faiblesses."
+          ]
         },
-        "u8-l01-s07": {
-          "prompt": "Attaque le pion en b7 avec le roi.",
-          "hint": "Ton roi peut contourner le roi noir et attaquer le pion depuis une autre case.",
-          "success": "Correct. Rc7 attaque le pion en b7 et le roi noir ne peut pas le défendre."
+        "u9-l02-s05": {
+          "prompt": "Tu attaques le roi adverse avec plusieurs pièces. Qu'est-ce qui te convient ?",
+          "options": [
+            "Échanger les pièces qui attaquent",
+            "Échanger la dame tout de suite",
+            "Garder les pièces d'attaque sur l'échiquier"
+          ],
+          "explanation": "Pour attaquer tu as besoin de pièces. Si tu échanges celles qui attaquent, l'adversaire se défend plus calmement.",
+          "feedback": [
+            "Échanger les pièces qui attaquent est ce que l'adversaire qui se défend cherche.",
+            "Échanger la dame enlève la pièce qui attaque le plus.",
+            ""
+          ]
         },
-        "u8-l01-s08": {
-          "prompt": "Gagne des pions avec le roi.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Mène le roi vers les pions adverses : ne reste pas chez toi.",
-          "notes": ["", "", "", ""]
-        },
-        "u8-l01-s09": {
-          "prompt": "Gagne des pions avec le roi.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Mène le roi vers les pions adverses : ne reste pas chez toi.",
-          "notes": ["", "", "", ""]
+        "u9-l02-s06": {
+          "text": "En résumé : échange quand tu gagnes, quand tu es attaqué ou quand tu manques d'espace. N'échange pas quand tu perds, quand tu attaques ou quand tu as plus d'espace. Avant chaque échange, demande-toi ce que ça te laisse et ce que ça laisse à l'adversaire."
         }
       }
     },
-    "u8-l02": {
-      "title": "Le pion passé éloigné",
-      "summary": "Un pion loin du roi adverse",
+    "u9-l03": {
+      "title": "L'espace",
+      "summary": "Les cases du camp adverse que tu contrôles",
       "steps": {
-        "u8-l02-s01": { "text": "Les Blancs ont un pion passé sur la colonne h, loin du roi noir, qui est à l'autre bout. Avec h5 commence la course : les deux camps promeuvent, mais les Blancs arrivent les premiers et leur nouvelle dame, avec des échecs, arrête le pion noir." },
-        "u8-l02-s02": { "text": "Ici le pion passé des Noirs est sur la colonne a, loin du roi blanc. Il promeut sans que personne puisse l'arrêter, et les pions blancs arrivent trop tard." },
-        "u8-l02-s03": {
-          "prompt": "Les Blancs jouent. Qu'est-ce qui est le mieux ?",
-          "options": ["Pousse le pion en h, qui est loin du roi noir", "Amener le roi vers les pions de la colonne a", "Déplacer le pion en g"],
-          "explanation": "Le roi noir est à l'autre bout et ne peut arrêter le pion h. Le pousser gagne la course.",
-          "feedback": ["", "Avec le roi loin du pion en h, ce qui compte le plus c'est que le pion avance.", "Le pion en g n'a pas le même avantage : il est plus proche du roi de l'adversaire."]
+        "u9-l03-s01": {
+          "text": "L'espace est le nombre de cases du camp adverse que contrôlent tes pièces et tes pions. Dans cette position, les Blancs contrôlent 8 cases du camp noir et les Noirs 5 du camp blanc : les Blancs ont plus d'espace, surtout grâce à leur pion avancé en e5."
         },
-        "u8-l02-s04": {
-          "prompt": "Touche le pion passé qui est le plus éloigné du roi noir.",
-          "hint": "C'est le pion qui reste au bord de l'échiquier, opposé à la position du roi noir."
+        "u9-l03-s02": {
+          "prompt": "Touche les deux cases du camp noir que contrôle le pion en e5.",
+          "hint": "Un pion contrôle les deux cases diagonales devant lui."
         },
-        "u8-l02-s05": {
-          "prompt": "Pousse le pion qui est loin du roi adversaire.",
-          "hint": "Le pion en h n'a rien qui l'arrête : le roi noir est de l'autre côté.",
-          "success": "Correct. h5 lance la course : le pion se promeut et le roi noir arrive trop tard."
-        },
-        "u8-l02-s06": {
-          "prompt": "Pousse le pion qui est loin du roi adversaire.",
-          "hint": "Le pion a se promeut avant que le roi blanc puisse faire quoi que ce soit.",
-          "success": "Correct. a4 lance la course : le pion se promeut et le roi blanc arrive trop tard."
-        },
-        "u8-l02-s07": {
-          "prompt": "Gagne la course de pions.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche le pion qui est le plus loin du roi adverse et pousse-le.",
-          "notes": ["", "", "", ""]
-        },
-        "u8-l02-s08": {
-          "prompt": "Gagne la course de pions.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche le pion qui est le plus loin du roi adverse et pousse-le.",
-          "notes": ["", "", "", ""]
-        },
-        "u8-l02-s09": { "text": "En résumé : un pion passé loin du roi adverse est une arme à double tranchant. Soit il est promu, soit le roi adverse doit le poursuivre et laisse ses autres pions seuls. Ce sont les deux faiblesses : le pion passé et les pions qui restent non protégés." }
-      }
-    },
-    "u8-l03": {
-      "title": "Dame contre pion",
-      "summary": "Quand le pion est à un pas de la promotion",
-      "steps": {
-        "u8-l03-s01": { "text": "La dame blanche contrôle d1 depuis a4 : si le pion est promu, la dame le prend avec échec. Pendant ce temps le roi blanc s'approche et, ensemble, ils finissent le pion et le roi." },
-        "u8-l03-s02": { "text": "En revanche, avec un pion de tour en septième et le roi noir près du coin, la dame ne peut pas gagner. Le roi noir se réfugie dans le coin et toute tentative finit en nulle par pat." },
-        "u8-l03-s03": {
-          "prompt": "Lequel de ces pions en septième est souvent une nulle contre la dame ?",
-          "options": ["Le pion de tour, dans la colonne a", "Le pion central, dans la colonne d", "Aucun : la dame gagne toujours"],
-          "explanation": "Avec un pion de tour et le roi de l'adversaire proche, le pat sauve les Noirs. Avec un pion central, en revanche, la dame gagne.",
-          "feedback": ["", "Avec un pion central la dame gagne : le roi n'a pas le coin pour se réfugier.", "Avec le pion de tour et le roi près du coin, la dame ne gagne pas."]
-        },
-        "u8-l03-s04": {
-          "prompt": "Le pion noir veut promouvoir en d1. Touche la case que la dame contrôle depuis a4.",
-          "hint": "Suis la diagonale de la dame vers le coin inférieur droit."
-        },
-        "u8-l03-s05": {
-          "prompt": "Gagne avec la dame et le roi contre le pion et le roi. Stockfish défend.",
-          "success": "Correct. La dame a arrêté le pion et tu as donné mat.",
-          "hint": "Avec ce coup, la victoire s'échappe. Garde la dame contrôlant la rangée de promotion et rapproche le roi sans mettre pat."
-        },
-        "u8-l03-s06": { "text": "En résumé : la dame contrôle la rangée de promotion et le roi s'approche. Contre un pion tour en septième avec le roi près du coin, le pat donne une nulle." }
-      }
-    },
-    "u8-l04": {
-      "title": "La position de Philidor",
-      "summary": "La défense sûre avec la tour",
-      "steps": {
-        "u8-l04-s01": { "text": "Dans la finale de tour et pion contre tour, la défense la plus sûre est la position de Philidor : la tour défensive sur la sixième rangée et le roi sur la dernière, devant le pion. Ainsi le roi et le pion de l'adversaire ne peuvent pas avancer." },
-        "u8-l04-s02": {
-          "prompt": "Sur quelle rangée le camp qui défend place-t-il sa tour ?",
-          "options": ["Sur la sixième rangée, la troisième de son côté", "Sur la première rangée, derrière le pion", "Dans la colonne du pion"],
-          "explanation": "La tour sur la sixième rangée coupe le passage du roi et du pion : le roi de l'adversaire ne peut pas avancer sur la sixième rangée.",
-          "feedback": ["", "Derrière le pion ça sert plus tard, quand le pion est déjà arrivé à la sixième rangée. Au début, la tour va en sixième.", "Dans la colonne du pion la tour serait une cible et n'arrêterait pas le roi de l'adversaire."]
-        },
-        "u8-l04-s03": {
-          "prompt": "La tour noire contrôle la sixième rangée. Touche les deux cases de cette rangée par lesquelles le roi blanc ou le pion veulent avancer.",
-          "hint": "Ils sont devant le roi et le pion blancs, sur la sixième rangée."
-        },
-        "u8-l04-s04": {
-          "prompt": "Défends la finale. Stockfish joue avec les Blancs et essaie de gagner. Tiens 30 coups sans perdre.",
-          "success": "Correct. Tu as tenu les 30 coups : la position de Philidor est nulle.",
-          "hint": "Avec ce coup les Blancs gagnent. Garde la tour sur la sixième rangée et le roi sur la dernière, devant le pion."
-        },
-        "u8-l04-s05": { "text": "En résumé : tour sur la sixième rangée et roi sur la dernière. Quand le pion atteint la sixième rangée, la tour passe derrière et donne des échecs de loin." }
-      }
-    },
-    "u8-l05": {
-      "title": "Couper le roi avec la tour",
-      "summary": "La tour comme muraille",
-      "steps": {
-        "u8-l05-s01": { "text": "La tour en c1 contrôle la colonne c : le roi noir ne peut pas la traverser et n'atteint pas le pion en b4. Pendant ce temps, le pion avance sans que personne ne puisse l'arrêter. C'est couper le roi avec la tour." },
-        "u8-l05-s02": {
-          "prompt": "Touche les trois cases de la colonne c par lesquelles le roi noir pourrait passer à l'autre moitié de l'échiquier.",
-          "hint": "Ce sont les cases de la colonne c qui sont à côté du roi noir."
-        },
-        "u8-l05-s03": {
-          "prompt": "Pourquoi le roi noir ne peut pas s'approcher du pion ?",
-          "options": ["La tour contrôle la colonne c et lui ferme le passage", "Le roi blanc le bloque", "Le pion est protégé par la tour"],
-          "explanation": "Pour atteindre le pion le roi noir devrait traverser la colonne c, et la tour le surveille entièrement.",
-          "feedback": ["", "Le roi blanc est loin du roi noir : ce qui lui ferme le passage est la tour.", "La tour ne protège pas le pion en b4 : ce qu'elle fait est couper la colonne."]
-        },
-        "u8-l05-s04": { "text": "On peut aussi couper par rangées. Avec Th5 la tour contrôle la rangée 5 : le roi noir ne peut pas descendre et le pion en b4 avance calmement." },
-        "u8-l05-s05": {
-          "prompt": "Promeus le pion sans perdre la nouvelle dame. Stockfish défend.",
-          "success": "Correct. La tour a coupé le roi et le pion a promu.",
-          "hint": "Avec ce coup, la victoire s'échappe. Laisse la tour dans la colonne c et avance le pion."
-        },
-        "u8-l05-s06": {
-          "prompt": "Coupe le roi avec la tour et promeus le pion. Stockfish défend.",
-          "success": "Correct. Tu as coupé le roi et le pion a promu.",
-          "hint": "Avec ce coup, la victoire s'échappe. Mets la tour sur une rangée ou une colonne que le roi noir ne peut pas traverser."
-        },
-        "u8-l05-s07": { "text": "En résumé : la tour coupe le roi le long d'une colonne ou d'une rangée qu'il ne peut pas traverser. Avec le roi coupé, le pion avance seul." }
-      }
-    },
-    "u8-l06": {
-      "title": "Fous de couleurs différentes",
-      "summary": "Pourquoi ce sont souvent des nulles",
-      "steps": {
-        "u8-l06-s01": { "text": "Avec des fous de couleurs différentes, chaque fou contrôle des cases que l'autre ne peut pas attaquer. Le fou défenseur arrête le pion et le roi se réfugie derrière. C'est pourquoi un pion en plus ne suffit généralement pas pour gagner." },
-        "u8-l06-s02": {
-          "prompt": "Un fou ne peut attaquer que les cases de sa couleur. Quelles cases le fou noir ne peut-il pas attaquer, puisqu'il va sur des cases claires ?",
-          "options": ["Les cases sombres, comme f4", "Les claires, comme f1", "Aucun"],
-          "explanation": "Le fou noir en f1 va sur des cases claires. Le pion en f4 est sur une case sombre : ce fou ne pourra jamais l'attaquer.",
-          "feedback": ["", "Les claires il peut les attaquer : elles sont les siennes.", "Chaque fou a sa couleur et ne peut pas la changer."]
-        },
-        "u8-l06-s03": {
-          "prompt": "Appuie sur le pion blanc que le fou noir ne pourra jamais attaquer.",
-          "hint": "C'est le pion qui est sur une case de couleur différente de ton fou."
-        },
-        "u8-l06-s04": {
-          "prompt": "Défends la finale. Stockfish joue avec les Blancs et essaie de gagner. Tiens 20 coups sans perdre.",
-          "success": "Correct. Tu as tenu les 20 coups : avec des fous de couleurs différentes, un pion en moins ne perd pas.",
-          "hint": "Avec ce coup les Blancs gagnent. Garde le roi près et laisse le fou sur une diagonale longue qui freine le pion."
-        },
-        "u8-l06-s05": { "text": "En résumé : avec des fous de couleurs différentes, chacun attaque des cases que l'autre ne touche pas, et le côté avec un pion en moins peut tenir." }
-      }
-    },
-    "u8-l07": {
-      "title": "Fou contre cavalier",
-      "summary": "Chaque pièce brille dans une position différente",
-      "steps": {
-        "u8-l07-s01": {
-          "text": "En finale, le fou et le cavalier valent presque la même chose, mais ils ne servent pas à la même chose. Le fou de c1 atteint les deux ailes en quelques coups ; le cavalier de f6 n'atteint que les cases proches."
-        },
-        "u8-l07-s02": {
-          "text": "Ici, le cavalier de d5 domine le centre et a une case forte. Le fou de c1, en revanche, a peu d'espace : ses pions de b2 et c3 lui ferment l'aile dame. Avec la structure fixe, le cavalier est la meilleure pièce."
-        },
-        "u8-l07-s03": {
-          "prompt": "Avec des pions sur les deux ailes, quelle pièce est généralement plus confortable ?",
-          "explanation": "Le fou traverse l'échiquier en un coup et couvre les deux ailes. Le cavalier a besoin de plusieurs coups pour changer d'aile.",
+        "u9-l03-s03": {
+          "prompt": "Qui a plus d'espace dans cette position ?",
           "options": [
-            "Le fou",
-            "Le cavalier",
-            "C'est pareil"
+            "Les deux égaux",
+            "Les Blancs",
+            "Les Noirs"
           ],
+          "explanation": "Les Blancs contrôlent 12 cases du camp noir; les Noirs, 7 du camp blanc.",
           "feedback": [
+            "Ce n'est pas égal : les Blancs contrôlent plus de cases dans le camp adverse.",
             "",
-            "Le cavalier est fort près du centre, mais il met du temps à passer d'une aile à l'autre.",
-            "Ce n'est pas pareil : la structure des pions décide quelle pièce vaut le plus."
+            "Compte les cases du camp adverse que chaque côté contrôle : les Blancs contrôlent plus."
           ]
         },
-        "u8-l07-s04": {
-          "prompt": "Le pion noir est à un pas de la promotion. Sauvez la partie.",
-          "hint": "Le cavalier peut capturer le pion depuis d3. Après l'avoir capturé, roi et cavalier contre roi ne suffisent pas pour faire échec et mat.",
-          "success": "Correct. Cxb2 élimine le pion et la partie se termine par une nulle par manque de matériel."
-        },
-        "u8-l07-s05": {
-          "prompt": "Après avoir capturé le pion, comment se termine la partie ?",
-          "explanation": "Roi et cavalier contre roi ne peuvent pas forcer le mat. La partie est nulle.",
+        "u9-l03-s04": {
+          "prompt": "Qu'est-ce qui convient habituellement au camp qui a plus d'espace ?",
           "options": [
-            "Les blanches gagnent",
-            "C'est une nulle par manque de matériel",
-            "Les noires gagnent"
+            "Éviter les échanges de pièces",
+            "Échanger les dames tout de suite",
+            "Arrêter de bouger les pions"
           ],
+          "explanation": "Avec plus d'espace, ses pièces bougent confortablement. Chaque échange libère l'adversaire, donc il lui convient de garder les pièces.",
           "feedback": [
-            "Avec un seul cavalier, on ne peut pas forcer le mat.",
             "",
-            "Le roi noir ne peut pas gagner non plus : il ne reste pas de matériel pour attaquer."
+            "Échanger les dames tout de suite libère l'adversaire qui est à l'étroit.",
+            "Arrêter de bouger les pions n'aide pas à garder l'espace."
           ]
         },
-        "u8-l07-s06": {
-          "prompt": "Cliquez sur la case du cavalier noir qui domine le centre.",
-          "hint": "Il est sur une case centrale d'où il attaque plusieurs points."
+        "u9-l03-s05": {
+          "prompt": "Qu'est-ce qui convient habituellement au camp qui a moins d'espace ?",
+          "options": [
+            "Éviter tous les échanges",
+            "Enfermer encore plus ses pièces",
+            "Échanger les pièces qui l'encombrent"
+          ],
+          "explanation": "Avec peu d'espace les pièces se gênent. Chaque échange libère des cases pour celles qui restent.",
+          "feedback": [
+            "Éviter les échanges laisse les pièces comprimées.",
+            "Enfermer plus les pièces aggrave le problème.",
+            ""
+          ]
         },
-        "u8-l07-s07": {
-          "text": "Résumé : le fou est meilleur avec des pions sur les deux ailes ; le cavalier, avec une case forte et des pions fixes. Et si l'adversaire a un pion sur le point de se promouvoir, donner la pièce pour ce pion peut sauver un demi-point."
+        "u9-l03-s06": {
+          "text": "En résumé : l'espace se compte en cases du camp adverse que tu contrôles. Celui qui a plus d'espace évite les échanges ; celui qui en a moins, les cherche."
         }
       }
     },
-    "u8-l08": {
-      "title": "Les deux faiblesses",
-      "summary": "Attaquer une pour gagner dans l'autre",
+    "u9-l04": {
+      "title": "Positions ouvertes et fermées",
+      "summary": "Comment jouent les pièces selon les pions",
       "steps": {
-        "u8-l08-s01": {
-          "text": "Les pions en a4 et h4 sont passés et séparés. Le roi noir ne peut aller après qu'un seul : s'il va sur l'aile dame, le pion h4 court vers la promotion."
+        "u9-l04-s01": {
+          "text": "Ici aucun pion n'est bloqué devant un pion adverse : le centre est ouvert. Les pièces à longue portée, comme les fous et les tours, ont des lignes libres et les menaces arrivent vite."
         },
-        "u8-l08-s02": {
-          "text": "La même chose se passe avec les pièces : les noirs doivent défendre a7 et h7. Votre tour attaque a7 ; si la tour noire va le défendre, vous changez pour h7. Une pièce ne peut pas couvrir deux faiblesses à la fois."
+        "u9-l04-s02": {
+          "text": "Dans cette autre position les pions en d5 et d6, et ceux en e4 et e5, sont face à face et bloqués. Le centre est fermé : les pièces ont peu de lignes et la partie se joue avec des manœuvres lentes et des ruptures de pions."
         },
-        "u8-l08-s03": {
-          "prompt": "Que faites-vous lorsque l'adversaire a deux faiblesses ?",
-          "explanation": "Si l'adversaire défend une faiblesse, l'autre reste sans protection. La clé est de le forcer à choisir.",
+        "u9-l04-s03": {
+          "prompt": "Cette position est-elle ouverte ou fermée ?",
           "options": [
-            "Attaquer une pour que l'adversaire s'éloigne et gagner dans l'autre",
-            "Changer toutes les pièces",
-            "Défendre vos propres pions"
+            "Fermée",
+            "Ouverte"
+          ],
+          "explanation": "Les pions en d4 et d5, et ceux en e5 et e6, sont bloqués face à face. Le centre est fermé.",
+          "feedback": [
+            "",
+            "Regarde les pions du centre : il y a deux paires face à face qui ne peuvent pas avancer."
+          ]
+        },
+        "u9-l04-s04": {
+          "prompt": "Touche les deux pions blancs qui sont bloqués par un pion noir.",
+          "hint": "Chacun a un pion noir juste devant."
+        },
+        "u9-l04-s05": {
+          "prompt": "Dans une position fermée, quelles pièces fonctionnent généralement le mieux ?",
+          "options": [
+            "Les cavaliers, qui sautent par-dessus les pions",
+            "Les fous de longue portée",
+            "Les tours en colonnes ouvertes"
+          ],
+          "explanation": "Avec les pions bloquant les lignes, les cavaliers peuvent sauter par-dessus et chercher des cases fortes.",
+          "feedback": [
+            "",
+            "Les fous souffrent quand les pions leur ferment les diagonales.",
+            "Avec le centre fermé, il y a peu de colonnes ouvertes pour les tours."
+          ]
+        },
+        "u9-l04-s06": {
+          "prompt": "Dans une position ouverte, quelles pièces fonctionnent généralement le mieux ?",
+          "options": [
+            "Les cavaliers, qui ont besoin de cases fixes",
+            "Les pions, qui avancent sans obstacles",
+            "Les fous et les tours, qui ont de longues lignes"
+          ],
+          "explanation": "Avec des lignes libres, les fous et les tours arrivent loin et créent des menaces de loin.",
+          "feedback": [
+            "Les cavaliers préfèrent les cases fixes et les centres fermés.",
+            "Les pions ne sont pas les pièces qui gagnent en position ouverte.",
+            ""
+          ]
+        },
+        "u9-l04-s07": {
+          "text": "En résumé : avec des pions bloqués, le centre est fermé et les cavaliers sautent par-dessus. Avec des lignes libres, le centre est ouvert et les fous et les tours dominent."
+        }
+      }
+    },
+    "u9-l05": {
+      "title": "Bon fou et mauvais fou",
+      "summary": "Le fou et ses propres pions",
+      "steps": {
+        "u9-l05-s01": {
+          "text": "Le fou noir en c8 est un mauvais fou : il a 5 pions sur des cases de sa couleur, et ceux en b7 et e6 ferment ses deux diagonales. Ses propres pions le laissent sans issue."
+        },
+        "u9-l05-s02": {
+          "text": "Dans cette position le fou noir est sorti en f5 avant de jouer e6 : il est en dehors de la chaîne de pions et regarde vers l'extérieur. C'est un bon fou, actif, même si ses pions restent sur des cases de la même couleur."
+        },
+        "u9-l05-s03": {
+          "prompt": "Lequel des fous noirs est le mauvais ?",
+          "options": [
+            "Aucun",
+            "Celui en c8, qui va par des cases claires",
+            "Celui en f8, qui va par des cases sombres"
+          ],
+          "explanation": "Le fou en c8 a 5 pions de sa couleur et celui en f8 seulement 3 : celui en c8 est le mauvais fou.",
+          "feedback": [
+            "Les pions en e6 et d5 gênent le fou en c8 : il y a un mauvais fou.",
+            "",
+            "Le fou en f8 n'a que 3 de ses propres pions sur sa couleur : il a plus d'espace."
+          ]
+        },
+        "u9-l05-s04": {
+          "prompt": "Touche les deux pions noirs qui ferment les diagonales du fou en c8.",
+          "hint": "Chacune des deux diagonales du fou se termine sur un de ses propres pions."
+        },
+        "u9-l05-s05": {
+          "prompt": "Que peux-tu faire avec un mauvais fou ?",
+          "options": [
+            "Le sortir de la chaîne de pions ou l'échanger",
+            "Mettre plus de pions sur des cases de sa couleur",
+            "Le laisser à la maison pour le protéger"
+          ],
+          "explanation": "Un mauvais fou s'améliore s'il sort de la chaîne avant qu'elle ne se ferme ou s'il est échangé contre une pièce adverse.",
+          "feedback": [
+            "",
+            "Plus de pions de sa couleur ne font que gêner davantage.",
+            "Le laisser à la maison le maintient hors du jeu."
+          ]
+        },
+        "u9-l05-s06": {
+          "text": "En résumé : un fou est bon si ses pions sont sur des cases de l'autre couleur et mauvais s'ils lui ferment les diagonales. Mieux vaut le sortir avant que la chaîne de pions ne se ferme."
+        }
+      }
+    },
+    "u9-l06": {
+      "title": "Pion arriéré et chaînes de pions",
+      "summary": "Où attaquer la structure de pions",
+      "steps": {
+        "u9-l06-s01": {
+          "text": "Le pion noir en d6 est un pion arriéré : il n'a pas de pions à côté pour le soutenir et il ne peut pas avancer sans que le pion en e4 ne le prenne. La case en d5, juste devant, est une cible : une pièce blanche peut s'y installer sans qu'aucun pion noir ne l'expulse."
+        },
+        "u9-l06-s02": {
+          "text": "Les pions blancs en b2, c3, d4 et e5 forment une chaîne. La base, b2, est le seul pion de la chaîne qu'aucun autre pion ne protège. Si la base est attaquée, toute la chaîne reste sans soutien ; c'est pourquoi les Noirs visent b2 avec la dame."
+        },
+        "u9-l06-s03": {
+          "prompt": "Appuie sur le pion noir arriéré.",
+          "hint": "C'est le pion qui ne peut pas avancer sans être pris et qu'aucun de ses propres pions ne soutient sur le côté."
+        },
+        "u9-l06-s04": {
+          "prompt": "Appuie sur la base de la chaîne de pions blancs.",
+          "hint": "C'est le pion de la chaîne qui n'a aucun pion propre pour le protéger."
+        },
+        "u9-l06-s05": {
+          "prompt": "Comment jouer contre un pion arriéré ?",
+          "options": [
+            "En échangeant toutes les pièces sauf le pion",
+            "En avançant un de tes pions à côté de lui",
+            "En plaçant une pièce sur la case devant et en pressant le pion"
+          ],
+          "explanation": "Une pièce sur la case devant le bloque et le laisse sans soutien, et l'adversaire doit le défendre avec des pièces.",
+          "feedback": [
+            "Échanger des pièces laisse l'adversaire libre de le défendre.",
+            "Avancer un pion à côté de lui n'attaque pas le pion arriéré.",
+            ""
+          ]
+        },
+        "u9-l06-s06": {
+          "prompt": "Où est-il avantageux d'attaquer une chaîne de pions ?",
+          "options": [
+            "Au milieu",
+            "À la base",
+            "À la pointe"
+          ],
+          "explanation": "La base est le pion qui soutient les autres : s'il tombe, toute la chaîne perd son soutien.",
+          "feedback": [
+            "Les pions du milieu sont protégés par la base de la chaîne.",
+            "",
+            "La pointe est protégée par le reste de la chaîne."
+          ]
+        },
+        "u9-l06-s07": {
+          "text": "En résumé : contre un pion arriéré, une pièce sur la case de devant. Contre une chaîne de pions, attaque la base de la chaîne."
+        }
+      }
+    },
+    "u9-l07": {
+      "title": "Tours actives",
+      "summary": "Colonnes ouvertes et septième rangée",
+      "steps": {
+        "u9-l07-s01": {
+          "text": "La colonne e est ouverte et la tour de e1 peut sauter à e7. Depuis la septième rangée, elle attaque les pions de a7, b7, f7 et g7, et encercle le roi noir sur la dernière rangée."
+        },
+        "u9-l07-s02": {
+          "text": "Les tours doivent aussi être connectées. Ici, le roi de g1 est entre les deux tours de la première rangée : si le roi sort à h2, les tours se connectent et se protègent mutuellement."
+        },
+        "u9-l07-s03": {
+          "prompt": "Où une tour est-elle la plus forte ?",
+          "explanation": "Sur la septième rangée, la tour attaque des pions et coupe le roi adverse. C'est la case la plus active.",
+          "options": [
+            "Sur la septième rangée, attaquant des pions",
+            "Dans le coin, défendant",
+            "Devant son propre roi"
           ],
           "feedback": [
             "",
-            "Changer les pièces ne crée pas de nouvelles faiblesses.",
-            "Défendre ne gagne pas : il faut attaquer la faiblesse adverse."
+            "Dans le coin, la tour est passive : elle ne fait que défendre.",
+            "Devant le roi, elle enlève des cases à votre propre pièce."
           ]
         },
-        "u8-l08-s04": {
-          "prompt": "Avancez un pion passé pour que le roi noir n'atteigne pas les deux.",
-          "hint": "L'un des deux pions est loin du roi noir. Choisissez-en un et avancez.",
-          "success": "Correct. Le roi noir ne peut pas couvrir les deux ailes : l'un des pions va se promouvoir."
+        "u9-l07-s04": {
+          "prompt": "Amenez la tour de e1 à la septième rangée.",
+          "hint": "La colonne e est ouverte. La tour peut monter jusqu'à la rangée des pions noirs.",
+          "success": "Correct. Te7 amène la tour sur la septième rangée, où elle attaque les pions et coupe le roi."
         },
-        "u8-l08-s05": {
-          "prompt": "Touchez les deux pions passés des blancs.",
-          "hint": "Ce sont les pions qui sont sur les deux ailes, sans pions adverses devant eux."
+        "u9-l07-s05": {
+          "prompt": "Touchez la case de la septième rangée où la tour de e1 peut aller.",
+          "hint": "Montez par la colonne ouverte jusqu'à la rangée 7."
         },
-        "u8-l08-s06": {
-          "text": "Résumé : une faiblesse se défend ; deux faiblesses non. Attaquez une pour que l'adversaire s'éloigne et gagnez dans l'autre. Dans les finales de pions, deux pions passés sur des ailes opposées gagnent pour la même raison."
+        "u9-l07-s06": {
+          "text": "Résumé : une tour vaut beaucoup avec une colonne ouverte, sur la septième rangée et connectée à sa partenaire. Une tour passive, en revanche, est presque une pièce de moins."
+        }
+      }
+    },
+    "u9-l08": {
+      "title": "Ruptures et majorités de pions",
+      "summary": "Ouvrir le jeu et créer un pion passé",
+      "steps": {
+        "u9-l08-s01": {
+          "text": "Les blancs ont trois pions contre deux sur l'aile dame : une majorité. S'ils avancent les pions en ordre, ils peuvent créer un pion passé qui gagnera la finale."
+        },
+        "u9-l08-s02": {
+          "text": "Une rupture est un avancement de pion qui ouvre une colonne ou une diagonale. Ici, c4 défie le pion de d5 : si les noirs capturent, vous ouvrez la colonne c ; sinon, vous échangez des pions en d5 et votre pion de d4 gagne de l'espace."
+        },
+        "u9-l08-s03": {
+          "prompt": "Qu'est-ce qu'une majorité de pions ?",
+          "explanation": "Une majorité est locale : trois pions contre deux sur une aile peuvent créer un pion passé.",
+          "options": [
+            "Avoir plus de pions que l'adversaire sur une aile",
+            "Avoir plus de pièces",
+            "Échanger tous les pions"
+          ],
+          "feedback": [
+            "",
+            "Les pièces ne comptent pas pour une majorité de pions.",
+            "Échanger des pions sans plan ne crée aucun avantage."
+          ]
+        },
+        "u9-l08-s04": {
+          "prompt": "Que cherche une rupture ?",
+          "explanation": "La rupture ouvre des lignes ou fixe une faiblesse pour que vos pièces y pénètrent.",
+          "options": [
+            "Ouvrir une colonne ou créer un pion passé",
+            "Échanger les dames",
+            "Défendre le roi"
+          ],
+          "feedback": [
+            "",
+            "Échanger les dames n'est pas l'objectif d'une rupture.",
+            "La rupture est une idée de pions, pas une manœuvre défensive."
+          ]
+        },
+        "u9-l08-s05": {
+          "prompt": "Cliquez sur les trois pions de la majorité blanche sur l'aile dame.",
+          "hint": "Ce sont les trois pions consécutifs de l'aile dame."
+        },
+        "u9-l08-s06": {
+          "text": "Résumé : une majorité de pions crée un pion passé si vous avancez en ordre. Une rupture ouvre des lignes ou fixe une faiblesse. D'abord le plan de pions, ensuite les pièces."
         }
       }
     }

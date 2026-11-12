@@ -1,375 +1,424 @@
 {
-  "title": "Tactique intermédiaire",
+  "title": "Finales intermédiaires",
   "lessons": {
-    "u7-l01": {
-      "title": "L'attraction",
-      "summary": "Attirer une pièce sur la bonne case",
+    "u8-l01": {
+      "title": "Le roi actif",
+      "summary": "En finale, le roi attaque aussi",
       "steps": {
-        "u7-l01-s01": { "text": "Les Blancs ont deux tours sur la colonne e. Avec Txf8+ ils sacrifient celle en e8 : le roi la prend parce qu'il n'a pas d'autre issue et se retrouve en f8. Alors l'autre tour donne mat en e8, protégée par le cavalier. C'est une attraction : un sacrifice, presque toujours avec échec, qui amène le roi ou une autre pièce sur une case où il reçoit le coup." },
-        "u7-l01-s02": { "text": "L'attraction prépare aussi d'autres tactiques. Ici la dame blanche prend la dame noire en h8 avec échec. Le roi reprend et se retrouve en h8, juste là où le cavalier lui donne échec et attaque en même temps la tour en e7. Tu as échangé dame contre dame, mais tu gagnes une tour." },
-        "u7-l01-s03": {
-          "prompt": "À quoi sert le sacrifice Txf8+ ?",
-          "options": ["Pour attirer le roi en f8, où il se fait mater", "Pour gagner une tour sans contrepartie", "Pour échanger les tours et simplifier"],
-          "explanation": "La tour est donnée pour forcer la prise du roi : en f8 elle n'a pas de cases libres et l'autre tour donne mat.",
-          "feedback": ["", "Le roi la prend, donc tu ne gagnes pas la tour : tu gagnes le mat.", "Rien ne se simplifie : le sacrifice force une séquence qui finit en mat."]
+        "u8-l01-s01": {
+          "text": "En finale, il ne reste presque plus de pièces pour donner mat, et le roi devient une pièce d'attaque. Ici le roi noir marche vers f4 : de là il attaque le pion en g4, et le roi blanc est trop loin pour le défendre."
         },
-        "u7-l01-s04": {
-          "prompt": "Si tu joues Txf8+, le roi doit prendre. Touche la case où il atterrira.",
-          "hint": "C'est la case de la tour que tu sacrifies."
+        "u8-l01-s02": {
+          "text": "Pareil ici : le roi noir sort vers f5 et attaque le pion en g5. Le roi blanc ne peut pas le défendre et les Noirs le prennent."
         },
-        "u7-l01-s05": {
-          "prompt": "Sacrifie le fou avec échec pour attirer le roi et prendre le fou en c8.",
-          "hint": "Le fou s'écarte avec échec, le roi prend et la tour en c1 finit par attaquer c8.",
-          "success": "Correct. Fxe8+ attire le roi en e8. Avec le fou hors de la colonne c, la tour gagne le fou en c8 avec échec."
+        "u8-l01-s03": {
+          "prompt": "Les Blancs jouent. Que fait le roi pour gagner le pion en a6 ?",
+          "options": [
+            "Il va en b6 et l'attaque",
+            "Il va en d5, vers le centre",
+            "Il va en b7 et s'éloigne du pion"
+          ],
+          "explanation": "Avec Rb6 le roi attaque le pion en a6 et le roi noir ne peut pas arriver pour le défendre.",
+          "feedback": [
+            "",
+            "Vers le centre tu ne gagnes rien : le pion en a6 est à côté de ton roi.",
+            "S'éloigner du pion est l'inverse de ce dont tu as besoin."
+          ]
         },
-        "u7-l01-s06": {
-          "prompt": "Sacrifie une tour avec échec pour attirer le roi et donner mat en deux coups.",
-          "hint": "Regarde la première rangée : une tour est donnée pour que le roi prenne et l'autre donne mat.",
-          "success": "Correct. Txe1+ oblige le roi à prendre et Td1# est mat."
+        "u8-l01-s04": {
+          "prompt": "Touche la case où le roi noir doit aller pour attaquer le pion en g5.",
+          "hint": "Il doit rester à côté du pion, sur une case que le roi blanc ne peut pas surveiller."
         },
-        "u7-l01-s07": {
-          "prompt": "Profite de l'attraction.",
+        "u8-l01-s05": {
+          "prompt": "Attaque le pion en a6 avec le roi.",
+          "hint": "Le roi blanc peut se placer à côté du pion. Le roi noir n'arrive pas à le défendre.",
+          "success": "Correct. Rb6 attaque le pion et le roi adverse ne peut pas le défendre."
+        },
+        "u8-l01-s06": {
+          "prompt": "Prends le pion en a2 avec le roi.",
+          "hint": "Le pion en a2 est à côté de ton roi et personne ne le défend.",
+          "success": "Correct. Rxa2 gagne le pion et ouvre la voie au pion a."
+        },
+        "u8-l01-s07": {
+          "prompt": "Attaque le pion en b7 avec le roi.",
+          "hint": "Ton roi peut contourner le roi noir et attaquer le pion depuis une autre case.",
+          "success": "Correct. Rc7 attaque le pion en b7 et le roi noir ne peut pas le défendre."
+        },
+        "u8-l01-s08": {
+          "prompt": "Gagne des pions avec le roi.",
           "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un sacrifice avec échec qui oblige le roi à prendre et à se retrouver sur une case faible.",
-          "notes": ["", "", "", ""]
+          "hint": "Mène le roi vers les pions adverses : ne reste pas chez toi.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
-        "u7-l01-s08": {
-          "prompt": "Profite de l'attraction.",
+        "u8-l01-s09": {
+          "prompt": "Gagne des pions avec le roi.",
           "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un sacrifice avec échec qui oblige le roi à prendre et à se retrouver sur une case faible.",
-          "notes": ["", "", "", ""]
-        },
-        "u7-l01-s09": {
-          "prompt": "Profite de l'attraction.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un sacrifice avec échec qui oblige le roi à prendre et à se retrouver sur une case faible.",
-          "notes": ["", "", "", ""]
+          "hint": "Mène le roi vers les pions adverses : ne reste pas chez toi.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
-    "u7-l02": {
-      "title": "La surcharge",
-      "summary": "Une pièce, deux tâches",
+    "u8-l02": {
+      "title": "Le pion passé éloigné",
+      "summary": "Un pion loin du roi adverse",
       "steps": {
-        "u7-l02-s01": { "text": "La dame noire défend à la fois le cavalier en d5 et le fou en e7 : elle a deux tâches. Si tu prends le cavalier, la dame reprend et laisse le fou sans défense. Ainsi tu gagnes une pièce. C'est une surcharge : une pièce adverse avec plus de travail qu'elle ne peut accomplir." },
-        "u7-l02-s02": { "text": "La tour noire en f8 défend la tour en e8 et le pion en f7. Avec Fxf7+ tu donnes échec. Si la tour en f8 prend le fou, elle ne protège plus la tour en e8 et Dxe8+ la gagne." },
-        "u7-l02-s03": {
-          "prompt": "La dame noire défend deux pièces qui peuvent tomber. Touche ces deux pièces.",
-          "hint": "Une est dans la colonne de la dame et l'autre sur sa diagonale."
+        "u8-l02-s01": {
+          "text": "Les Blancs ont un pion passé sur la colonne h, loin du roi noir, qui est à l'autre bout. Avec h5 commence la course : les deux camps promeuvent, mais les Blancs arrivent les premiers et leur nouvelle dame, avec des échecs, arrête le pion noir."
         },
-        "u7-l02-s04": {
-          "prompt": "Pourquoi est-ce avantageux de prendre le cavalier en d5 ?",
-          "options": ["Parce que si la dame prend, elle laisse le fou en e7 sans défense", "Parce que le cavalier en d5 vaut plus que mon cavalier", "Parce qu'il ouvre la colonne d pour ma tour"],
-          "explanation": "La dame noire défend les deux pièces : en prenant en d5, elle abandonne le fou en e7.",
-          "feedback": ["", "Les deux cavaliers valent la même chose : ce qui change est ce que la recapture laisse sans défense.", "Ouvrir la colonne n'est pas l'essentiel : ce qui compte, c'est que la dame ne peut pas défendre les deux pièces."]
+        "u8-l02-s02": {
+          "text": "Ici le pion passé des Noirs est sur la colonne a, loin du roi blanc. Il promeut sans que personne puisse l'arrêter, et les pions blancs arrivent trop tard."
         },
-        "u7-l02-s05": {
-          "prompt": "Cherche la prise qui oblige une pièce adverse à recapturer et laisse une autre pièce sans défense.",
-          "hint": "Cherche une pièce adverse qui défend deux choses à la fois : prends-en une et gagne l'autre.",
-          "success": "Correct. Txe1 oblige la pièce qui défendait à reprendre, et tu gagnes l'autre."
+        "u8-l02-s03": {
+          "prompt": "Les Blancs jouent. Qu'est-ce qui est le mieux ?",
+          "options": [
+            "Pousse le pion en h, qui est loin du roi noir",
+            "Amener le roi vers les pions de la colonne a",
+            "Déplacer le pion en g"
+          ],
+          "explanation": "Le roi noir est à l'autre bout et ne peut arrêter le pion h. Le pousser gagne la course.",
+          "feedback": [
+            "",
+            "Avec le roi loin du pion en h, ce qui compte le plus c'est que le pion avance.",
+            "Le pion en g n'a pas le même avantage : il est plus proche du roi de l'adversaire."
+          ]
         },
-        "u7-l02-s06": {
-          "prompt": "Cherche la prise qui oblige une pièce adverse à recapturer et laisse une autre pièce sans défense.",
-          "hint": "Cherche une pièce adverse qui défend deux choses à la fois : prends-en une et gagne l'autre.",
-          "success": "Correct. Txd8+ oblige la pièce qui défendait à reprendre, et tu gagnes l'autre."
+        "u8-l02-s04": {
+          "prompt": "Touche le pion passé qui est le plus éloigné du roi noir.",
+          "hint": "C'est le pion qui reste au bord de l'échiquier, opposé à la position du roi noir."
         },
-        "u7-l02-s07": {
-          "prompt": "Profite de la surcharge.",
+        "u8-l02-s05": {
+          "prompt": "Pousse le pion qui est loin du roi adversaire.",
+          "hint": "Le pion en h n'a rien qui l'arrête : le roi noir est de l'autre côté.",
+          "success": "Correct. h5 lance la course : le pion se promeut et le roi noir arrive trop tard."
+        },
+        "u8-l02-s06": {
+          "prompt": "Pousse le pion qui est loin du roi adversaire.",
+          "hint": "Le pion a se promeut avant que le roi blanc puisse faire quoi que ce soit.",
+          "success": "Correct. a4 lance la course : le pion se promeut et le roi blanc arrive trop tard."
+        },
+        "u8-l02-s07": {
+          "prompt": "Gagne la course de pions.",
           "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche une pièce adverse qui défend deux choses à la fois et prend l'une d'elles.",
-          "notes": ["", "", "", ""]
+          "hint": "Cherche le pion qui est le plus loin du roi adverse et pousse-le.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
-        "u7-l02-s08": {
-          "prompt": "Profite de la surcharge.",
+        "u8-l02-s08": {
+          "prompt": "Gagne la course de pions.",
           "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche une pièce adverse qui défend deux choses à la fois et prend l'une d'elles.",
-          "notes": ["", "", "", ""]
+          "hint": "Cherche le pion qui est le plus loin du roi adverse et pousse-le.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
-        "u7-l02-s09": {
-          "prompt": "Profite de la surcharge.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche une pièce adverse qui défend deux choses à la fois et prend l'une d'elles.",
-          "notes": ["", "", "", ""]
+        "u8-l02-s09": {
+          "text": "En résumé : un pion passé loin du roi adverse est une arme à double tranchant. Soit il est promu, soit le roi adverse doit le poursuivre et laisse ses autres pions seuls. Ce sont les deux faiblesses : le pion passé et les pions qui restent non protégés."
         }
       }
     },
-    "u7-l03": {
-      "title": "Le coup intermédiaire",
-      "summary": "Un coup avant de reprendre",
+    "u8-l03": {
+      "title": "Dame contre pion",
+      "summary": "Quand le pion est à un pas de la promotion",
       "steps": {
-        "u7-l03-s01": { "text": "La dame noire a pris en d4. Si tu reprends tout de suite avec Dxd4, le cavalier en c6 reprend et tu as seulement échangé les dames. D'abord tu joues Fxc6+ : tu donnes échec et tu prends le cavalier. Si les Noirs répondent par bxc6, tu prends la dame avec Dxd4 et il n'y a plus de cavalier pour reprendre. C'est un coup intermédiaire : un échec ou une menace que tu joues avant la reprise évidente." },
-        "u7-l03-s02": { "text": "Pareil avec les Noirs : la dame blanche a pris en d5. Reprendre tout de suite avec Dxd5 permet Cxd5. D'abord, Fxc3+ donne échec et élimine le cavalier qui protégeait d5. Après bxc3 tu peux prendre la dame." },
-        "u7-l03-s03": {
-          "prompt": "Les Noirs ont pris en d4 avec la dame. Que dois-tu faire en premier ?",
-          "options": ["Reprendre tout de suite avec la dame", "Donner échec avec le fou en prenant le cavalier en c6", "Retirer la dame sur une case sûre"],
-          "explanation": "Avec l'échec tu forces l'adversaire à répondre et tu enlèves le cavalier qui protégeait d4. Ensuite tu reprends la dame sans rien perdre.",
-          "feedback": ["Si tu prends immédiatement, le cavalier en c6 prend la dame : tu auras seulement échangé les dames.", "", "La retirer perd l'occasion de gagner la dame noire."]
+        "u8-l03-s01": {
+          "text": "La dame blanche contrôle d1 depuis a4 : si le pion est promu, la dame le prend avec échec. Pendant ce temps le roi blanc s'approche et, ensemble, ils finissent le pion et le roi."
         },
-        "u7-l03-s04": {
-          "prompt": "Avant de prendre, regarde qui protège la dame noire en d4. Touche cette pièce.",
-          "hint": "C'est un cavalier qui la défend depuis une case proche."
+        "u8-l03-s02": {
+          "text": "En revanche, avec un pion de tour en septième et le roi noir près du coin, la dame ne peut pas gagner. Le roi noir se réfugie dans le coin et toute tentative finit en nulle par pat."
         },
-        "u7-l03-s05": {
-          "prompt": "Avant de reprendre, cherche une prise avec échec.",
-          "hint": "Une de tes pièces peut prendre avec échec et retirer le défenseur avant que tu ne prennes la dame.",
-          "success": "Correct. Cxf6+ est le coup intermédiaire : on le joue avant de reprendre."
+        "u8-l03-s03": {
+          "prompt": "Lequel de ces pions en septième est souvent une nulle contre la dame ?",
+          "options": [
+            "Le pion de tour, dans la colonne a",
+            "Le pion central, dans la colonne d",
+            "Aucun : la dame gagne toujours"
+          ],
+          "explanation": "Avec un pion de tour et le roi de l'adversaire proche, le pat sauve les Noirs. Avec un pion central, en revanche, la dame gagne.",
+          "feedback": [
+            "",
+            "Avec un pion central la dame gagne : le roi n'a pas le coin pour se réfugier.",
+            "Avec le pion de tour et le roi près du coin, la dame ne gagne pas."
+          ]
         },
-        "u7-l03-s06": {
-          "prompt": "Avant de prendre, cherche un échec.",
-          "hint": "Donne un échec auquel l'adversaire doit répondre avant que tu reprennes ta pièce.",
-          "success": "Correct. Txd1+ est le coup intermédiaire : on le joue avant de reprendre."
+        "u8-l03-s04": {
+          "prompt": "Le pion noir veut promouvoir en d1. Touche la case que la dame contrôle depuis a4.",
+          "hint": "Suis la diagonale de la dame vers le coin inférieur droit."
         },
-        "u7-l03-s07": {
-          "prompt": "Profite du coup intermédiaire.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Avant de reprendre, cherche un échec auquel l'adversaire doit répondre.",
-          "notes": ["", "", "", ""]
+        "u8-l03-s05": {
+          "prompt": "Gagne avec la dame et le roi contre le pion et le roi. Stockfish défend.",
+          "success": "Correct. La dame a arrêté le pion et tu as donné mat.",
+          "hint": "Avec ce coup, la victoire s'échappe. Garde la dame contrôlant la rangée de promotion et rapproche le roi sans mettre pat."
         },
-        "u7-l03-s08": {
-          "prompt": "Profite du coup intermédiaire.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Avant de reprendre, cherche un échec auquel l'adversaire doit répondre.",
-          "notes": ["", "", "", ""]
-        },
-        "u7-l03-s09": {
-          "prompt": "Profite du coup intermédiaire.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Avant de reprendre, cherche un échec auquel l'adversaire doit répondre.",
-          "notes": ["", "", "", ""]
+        "u8-l03-s06": {
+          "text": "En résumé : la dame contrôle la rangée de promotion et le roi s'approche. Contre un pion tour en septième avec le roi près du coin, le pat donne une nulle."
         }
       }
     },
-    "u7-l04": {
-      "title": "L'interférence",
-      "summary": "Couper la défense au milieu",
+    "u8-l04": {
+      "title": "La position de Philidor",
+      "summary": "La défense sûre avec la tour",
       "steps": {
-        "u7-l04-s01": { "text": "La dame blanche en d1 protège la tour en h1 le long de la première rangée. Avec Dg2+ le roi est forcé d'aller en e1, et il se retrouve juste entre les deux pièces : cela coupe la défense. Puis Dxh1+ gagne la tour. C'est une interférence : quelque chose se place entre une pièce et celle qui la protège." },
-        "u7-l04-s02": { "text": "Les Noirs ont une tour en h8 que la dame en d8 protège le long de la rangée 8. Avec Dg7+ le roi est forcé d'aller en e8 : il se place entre la dame et la tour et les sépare. Après Dxh8+ les Noirs perdent la tour." },
-        "u7-l04-s03": {
-          "prompt": "La dame blanche en d1 protège la tour en h1 le long de la première rangée. Que se passe-t-il si le roi blanc se place en e1 ?",
-          "options": ["La tour reste sans défense", "La tour est mieux protégée", "Rien ne change"],
-          "explanation": "Le roi en e1 bloque la rangée : la dame ne voit plus la tour et elle peut être prise gratuitement.",
-          "feedback": ["", "Le roi ne protège pas la tour depuis e1 : il s'interpose et coupe la ligne de la dame.", "Ça change beaucoup : le roi bloque la ligne entre les deux pièces."]
+        "u8-l04-s01": {
+          "text": "Dans la finale de tour et pion contre tour, la défense la plus sûre est la position de Philidor : la tour défensive sur la sixième rangée et le roi sur la dernière, devant le pion. Ainsi le roi et le pion de l'adversaire ne peuvent pas avancer."
         },
-        "u7-l04-s04": {
-          "prompt": "Avec Dg2+ le roi blanc doit aller en e1. Touche les deux pièces blanches que l'interférence du roi sépare.",
-          "hint": "Ce sont les deux pièces de la première rangée qui se protégeaient mutuellement."
+        "u8-l04-s02": {
+          "prompt": "Sur quelle rangée le camp qui défend place-t-il sa tour ?",
+          "options": [
+            "Sur la sixième rangée, la troisième de son côté",
+            "Sur la première rangée, derrière le pion",
+            "Dans la colonne du pion"
+          ],
+          "explanation": "La tour sur la sixième rangée coupe le passage du roi et du pion : le roi de l'adversaire ne peut pas avancer sur la sixième rangée.",
+          "feedback": [
+            "",
+            "Derrière le pion ça sert plus tard, quand le pion est déjà arrivé à la sixième rangée. Au début, la tour va en sixième.",
+            "Dans la colonne du pion la tour serait une cible et n'arrêterait pas le roi de l'adversaire."
+          ]
         },
-        "u7-l04-s05": {
-          "prompt": "Donne un échec qui oblige le roi à s'interposer entre deux pièces qui se protègent.",
-          "hint": "Regarde la première rangée : deux tours se protègent. Un échec de la dame peut envoyer le roi au milieu.",
-          "success": "Correct. Dd2+ oblige le roi à couper sa propre défense."
+        "u8-l04-s03": {
+          "prompt": "La tour noire contrôle la sixième rangée. Touche les deux cases de cette rangée par lesquelles le roi blanc ou le pion veulent avancer.",
+          "hint": "Ils sont devant le roi et le pion blancs, sur la sixième rangée."
         },
-        "u7-l04-s06": {
-          "prompt": "Donne un échec qui oblige le roi à s'interposer entre deux pièces qui se protègent.",
-          "hint": "Regarde la rangée 8 : une pièce protège une autre à distance. Un échec peut mener le roi au milieu.",
-          "success": "Correct. Dg7+ oblige le roi à couper sa propre défense."
+        "u8-l04-s04": {
+          "prompt": "Défends la finale. Stockfish joue avec les Blancs et essaie de gagner. Tiens 30 coups sans perdre.",
+          "success": "Correct. Tu as tenu les 30 coups : la position de Philidor est nulle.",
+          "hint": "Avec ce coup les Blancs gagnent. Garde la tour sur la sixième rangée et le roi sur la dernière, devant le pion."
         },
-        "u7-l04-s07": {
-          "prompt": "Profite de l'interférence.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un échec qui oblige le roi à se placer entre deux pièces qui se protégeaient.",
-          "notes": ["", "", "", ""]
-        },
-        "u7-l04-s08": {
-          "prompt": "Profite de l'interférence.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un échec qui oblige le roi à se placer entre deux pièces qui se protégeaient.",
-          "notes": ["", "", "", ""]
-        },
-        "u7-l04-s09": {
-          "prompt": "Profite de l'interférence.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un échec qui oblige le roi à se placer entre deux pièces qui se protégeaient.",
-          "notes": ["", "", "", ""]
+        "u8-l04-s05": {
+          "text": "En résumé : tour sur la sixième rangée et roi sur la dernière. Quand le pion atteint la sixième rangée, la tour passe derrière et donne des échecs de loin."
         }
       }
     },
-    "u7-l05": {
-      "title": "Mats avec une seule pièce",
-      "summary": "Une pièce donne le coup final",
+    "u8-l05": {
+      "title": "Couper le roi avec la tour",
+      "summary": "La tour comme muraille",
       "steps": {
-        "u7-l05-s01": { "text": "Le roi noir n'a pas de cases libres : ses propres pions en f7, g7 et h7 lui ferment la deuxième rangée. La tour prend en e8 et donne mat sur la dernière rangée. C'est le mat du couloir et une seule pièce le donne." },
-        "u7-l05-s02": { "text": "Le roi blanc est enfermé par sa propre tour en g1 et les pions en g2 et h2. Le cavalier donne échec depuis f2 et le roi n'a nulle part où aller ni ne peut le prendre. C'est le mat étouffé : seul le cavalier saute par-dessus les autres pièces." },
-        "u7-l05-s03": {
-          "prompt": "Qu'est-ce qui aurait évité le mat du couloir ?",
-          "options": ["Une case de fuite pour le roi, en déplaçant un pion comme h7 ou g7", "Échanger les dames", "Déplacer la tour en a8"],
-          "explanation": "Une case de fuite sur la deuxième rangée donne de l'air au roi. Un pion déplacé à temps évite le mat.",
-          "feedback": ["", "Avec les dames échangées, le roi n'a toujours pas de cases libres.", "La tour en a8 ne peut pas aider : le mat arrive par la colonne e."]
+        "u8-l05-s01": {
+          "text": "La tour en c1 contrôle la colonne c : le roi noir ne peut pas la traverser et n'atteint pas le pion en b4. Pendant ce temps, le pion avance sans que personne ne puisse l'arrêter. C'est couper le roi avec la tour."
         },
-        "u7-l05-s04": {
-          "prompt": "Le roi blanc ne peut pas bouger. Touche les trois pièces blanches qui lui bloquent le chemin.",
-          "hint": "Elles sont collées au roi : une tour et deux pions."
+        "u8-l05-s02": {
+          "prompt": "Touche les trois cases de la colonne c par lesquelles le roi noir pourrait passer à l'autre moitié de l'échiquier.",
+          "hint": "Ce sont les cases de la colonne c qui sont à côté du roi noir."
         },
-        "u7-l05-s05": {
-          "prompt": "Mat avec une seule pièce : le roi est enfermé par ses propres pièces.",
-          "hint": "Cherche la pièce qui peut donner échec sans que le roi ne la capture ni ne s'échappe.",
-          "success": "Correct. Cf7# est mat : le roi n'a aucune case libre."
+        "u8-l05-s03": {
+          "prompt": "Pourquoi le roi noir ne peut pas s'approcher du pion ?",
+          "options": [
+            "La tour contrôle la colonne c et lui ferme le passage",
+            "Le roi blanc le bloque",
+            "Le pion est protégé par la tour"
+          ],
+          "explanation": "Pour atteindre le pion le roi noir devrait traverser la colonne c, et la tour le surveille entièrement.",
+          "feedback": [
+            "",
+            "Le roi blanc est loin du roi noir : ce qui lui ferme le passage est la tour.",
+            "La tour ne protège pas le pion en b4 : ce qu'elle fait est couper la colonne."
+          ]
         },
-        "u7-l05-s06": {
-          "prompt": "Mat avec une seule pièce : le roi est enfermé par ses propres pièces.",
-          "hint": "Cherche la pièce qui peut donner échec sans que le roi ne la capture ni ne s'échappe.",
-          "success": "Correct. Txh1# est mat : le roi n'a aucune case libre."
+        "u8-l05-s04": {
+          "text": "On peut aussi couper par rangées. Avec Th5 la tour contrôle la rangée 5 : le roi noir ne peut pas descendre et le pion en b4 avance calmement."
         },
-        "u7-l05-s07": {
-          "prompt": "Mat avec une seule pièce : le roi est enfermé par ses propres pièces.",
-          "hint": "Cherche la pièce qui peut donner échec sans que le roi ne la capture ni ne s'échappe.",
-          "success": "Correct. De1# est mat : le roi n'a aucune case libre."
+        "u8-l05-s05": {
+          "prompt": "Promeus le pion sans perdre la nouvelle dame. Stockfish défend.",
+          "success": "Correct. La tour a coupé le roi et le pion a promu.",
+          "hint": "Avec ce coup, la victoire s'échappe. Laisse la tour dans la colonne c et avance le pion."
         },
-        "u7-l05-s08": {
-          "prompt": "Trouve le mat en deux.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un échec qui laisse le roi entouré de ses propres pièces.",
-          "notes": ["", "", "", ""]
+        "u8-l05-s06": {
+          "prompt": "Coupe le roi avec la tour et promeus le pion. Stockfish défend.",
+          "success": "Correct. Tu as coupé le roi et le pion a promu.",
+          "hint": "Avec ce coup, la victoire s'échappe. Mets la tour sur une rangée ou une colonne que le roi noir ne peut pas traverser."
         },
-        "u7-l05-s09": {
-          "prompt": "Trouve le mat en deux.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un échec qui laisse le roi entouré de ses propres pièces.",
-          "notes": ["", "", "", ""]
+        "u8-l05-s07": {
+          "text": "En résumé : la tour coupe le roi le long d'une colonne ou d'une rangée qu'il ne peut pas traverser. Avec le roi coupé, le pion avance seul."
         }
       }
     },
-    "u7-l06": {
-      "title": "Mats avec deux pièces",
-      "summary": "Deux pièces, un seul objectif",
+    "u8-l06": {
+      "title": "Fous de couleurs différentes",
+      "summary": "Pourquoi ce sont souvent des nulles",
       "steps": {
-        "u7-l06-s01": { "text": "La dame seule ne pourrait pas donner ce mat : le roi la prendrait. Mais le fou en c4 protège g8 depuis la même diagonale. Quand une pièce attaque et qu'une autre la soutient sur la même ligne, ils forment une batterie : le roi ne peut pas prendre la dame et n'a pas de cases libres." },
-        "u7-l06-s02": { "text": "Ceci est le mat arabe : la tour donne échec depuis h7 et le cavalier en f6 la protège et couvre aussi g8. Le roi ne peut pas prendre la tour ni s'échapper." },
-        "u7-l06-s03": {
-          "prompt": "Quelle pièce empêche le roi noir de prendre la dame en g8 ?",
-          "options": ["Le fou blanc en c4", "Le roi blanc en a2", "Le pion blanc en b2"],
-          "explanation": "Le fou protège g8 par la diagonale : si le roi prend la dame, il est en échec.",
-          "feedback": ["", "Le roi blanc est trop loin pour protéger g8.", "Le pion en b2 n'a rien à voir avec g8."]
+        "u8-l06-s01": {
+          "text": "Avec des fous de couleurs différentes, chaque fou contrôle des cases que l'autre ne peut pas attaquer. Le fou défenseur arrête le pion et le roi se réfugie derrière. C'est pourquoi un pion en plus ne suffit généralement pas pour gagner."
         },
-        "u7-l06-s04": {
-          "prompt": "Touche les deux pièces blanches qui donnent le mat arabe.",
-          "hint": "Une est une tour et l'autre un cavalier."
+        "u8-l06-s02": {
+          "prompt": "Un fou ne peut attaquer que les cases de sa couleur. Quelles cases le fou noir ne peut-il pas attaquer, puisqu'il va sur des cases claires ?",
+          "options": [
+            "Les cases sombres, comme f4",
+            "Les claires, comme f1",
+            "Aucun"
+          ],
+          "explanation": "Le fou noir en f1 va sur des cases claires. Le pion en f4 est sur une case sombre : ce fou ne pourra jamais l'attaquer.",
+          "feedback": [
+            "",
+            "Les claires il peut les attaquer : elles sont les siennes.",
+            "Chaque fou a sa couleur et ne peut pas la changer."
+          ]
         },
-        "u7-l06-s05": {
-          "prompt": "Fais mat avec deux pièces qui travaillent ensemble.",
-          "hint": "Une pièce donne échec et l'autre couvre les cases de fuite du roi.",
-          "success": "Correct. Fxa3# est mat grâce à l'autre pièce, qui couvre les cases de fuite."
+        "u8-l06-s03": {
+          "prompt": "Appuie sur le pion blanc que le fou noir ne pourra jamais attaquer.",
+          "hint": "C'est le pion qui est sur une case de couleur différente de ton fou."
         },
-        "u7-l06-s06": {
-          "prompt": "Fais mat avec deux pièces qui travaillent ensemble.",
-          "hint": "Une pièce donne échec et l'autre la soutient pour que le roi ne puisse pas la prendre.",
-          "success": "Correct. Dh7# est mat : l'autre pièce soutient la dame."
+        "u8-l06-s04": {
+          "prompt": "Défends la finale. Stockfish joue avec les Blancs et essaie de gagner. Tiens 20 coups sans perdre.",
+          "success": "Correct. Tu as tenu les 20 coups : avec des fous de couleurs différentes, un pion en moins ne perd pas.",
+          "hint": "Avec ce coup les Blancs gagnent. Garde le roi près et laisse le fou sur une diagonale longue qui freine le pion."
         },
-        "u7-l06-s07": {
-          "prompt": "Fais mat avec deux pièces qui travaillent ensemble.",
-          "hint": "Une pièce donne échec et l'autre la soutient pour que le roi ne puisse pas la prendre.",
-          "success": "Correct. Dxg7# est mat : l'autre pièce soutient la dame."
-        },
-        "u7-l06-s08": {
-          "prompt": "Trouve le mat en deux.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un échec avec une pièce et mat avec une autre qui la soutient.",
-          "notes": ["", "", "", ""]
-        },
-        "u7-l06-s09": {
-          "prompt": "Trouve le mat en deux.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un échec avec une pièce et mat avec une autre qui la soutient.",
-          "notes": ["", "", "", ""]
+        "u8-l06-s05": {
+          "text": "En résumé : avec des fous de couleurs différentes, chacun attaque des cases que l'autre ne touche pas, et le côté avec un pion en moins peut tenir."
         }
       }
     },
-    "u7-l07": {
-      "title": "Sacrifier pour ouvrir le roi",
-      "summary": "Donner du matériel pour atteindre le roi",
+    "u8-l07": {
+      "title": "Fou contre cavalier",
+      "summary": "Chaque pièce brille dans une position différente",
       "steps": {
-        "u7-l07-s01": { "text": "Les pions en h6 et g7 protègent le roi. Avec Txh6+ tu sacrifies la tour : le pion en g7 doit prendre, le roi reste à découvert et la dame donne mat en h6. Tu ne gaspilles pas de matériel : tu calcules jusqu'au mat avant de sacrifier." },
-        "u7-l07-s02": { "text": "Ici le sacrifice est en g6. Avec Txg6+ la tour est offerte. Si le pion en f7 prend, le roi perd sa protection et la dame donne mat en g6." },
-        "u7-l07-s03": {
-          "prompt": "Qu'est-ce que le sacrifice Txh6+ accomplit ?",
-          "options": ["Il retire un pion qui protégeait le roi et laisse entrer la dame", "Il gagne du matériel tout de suite", "Il échange les tours"],
-          "explanation": "La tour est donnée pour ouvrir le bouclier de pions du roi. Si le pion prend, la dame donne mat.",
-          "feedback": ["", "Le sacrifice ne gagne pas de matériel : tu perds une tour en échange du mat.", "Il n'y a pas d'échange de tours : l'adversaire ne peut pas reprendre avec une tour."]
+        "u8-l07-s01": {
+          "text": "En finale, le fou et le cavalier valent presque la même chose, mais ils ne servent pas à la même chose. Le fou de c1 atteint les deux ailes en quelques coups ; le cavalier de f6 n'atteint que les cases proches."
         },
-        "u7-l07-s04": {
-          "prompt": "Après Txg6+ et fxg6, la dame donne mat. Touche la case où elle donne mat.",
-          "hint": "C'est la case du pion qui vient de prendre."
+        "u8-l07-s02": {
+          "text": "Ici, le cavalier de d5 domine le centre et a une case forte. Le fou de c1, en revanche, a peu d'espace : ses pions de b2 et c3 lui ferment l'aile dame. Avec la structure fixe, le cavalier est la meilleure pièce."
         },
-        "u7-l07-s05": {
-          "prompt": "Sacrifie une pièce avec échec pour ouvrir le roi et donner mat en deux coups.",
-          "hint": "Sacrifie une pièce sur la case qui protège le roi : l'adversaire doit prendre et laisse le chemin libre.",
-          "success": "Correct. Dxh6+ ouvre la voie au roi et le mat arrive au coup suivant."
+        "u8-l07-s03": {
+          "prompt": "Avec des pions sur les deux ailes, quelle pièce est généralement plus confortable ?",
+          "explanation": "Le fou traverse l'échiquier en un coup et couvre les deux ailes. Le cavalier a besoin de plusieurs coups pour changer d'aile.",
+          "options": [
+            "Le fou",
+            "Le cavalier",
+            "C'est pareil"
+          ],
+          "feedback": [
+            "",
+            "Le cavalier est fort près du centre, mais il met du temps à passer d'une aile à l'autre.",
+            "Ce n'est pas pareil : la structure des pions décide quelle pièce vaut le plus."
+          ]
         },
-        "u7-l07-s06": {
-          "prompt": "Sacrifie une pièce avec échec pour ouvrir le roi et donner mat en deux coups.",
-          "hint": "Sacrifie une pièce avec échec pour dévier celle qui couvre une case clé.",
-          "success": "Correct. Cf6+ force une prise et le mat arrive au coup suivant."
+        "u8-l07-s04": {
+          "prompt": "Le pion noir est à un pas de la promotion. Sauvez la partie.",
+          "hint": "Le cavalier peut capturer le pion depuis d3. Après l'avoir capturé, roi et cavalier contre roi ne suffisent pas pour faire échec et mat.",
+          "success": "Correct. Cxb2 élimine le pion et la partie se termine par une nulle par manque de matériel."
         },
-        "u7-l07-s07": {
-          "prompt": "Sacrifie pour ouvrir le roi.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un sacrifice avec échec qui laisse le roi sans défense.",
-          "notes": ["", "", "", ""]
+        "u8-l07-s05": {
+          "prompt": "Après avoir capturé le pion, comment se termine la partie ?",
+          "explanation": "Roi et cavalier contre roi ne peuvent pas forcer le mat. La partie est nulle.",
+          "options": [
+            "Les blanches gagnent",
+            "C'est une nulle par manque de matériel",
+            "Les noires gagnent"
+          ],
+          "feedback": [
+            "Avec un seul cavalier, on ne peut pas forcer le mat.",
+            "",
+            "Le roi noir ne peut pas gagner non plus : il ne reste pas de matériel pour attaquer."
+          ]
         },
-        "u7-l07-s08": {
-          "prompt": "Sacrifie pour ouvrir le roi.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un sacrifice avec échec qui laisse le roi sans défense.",
-          "notes": ["", "", "", ""]
+        "u8-l07-s06": {
+          "prompt": "Cliquez sur la case du cavalier noir qui domine le centre.",
+          "hint": "Il est sur une case centrale d'où il attaque plusieurs points."
         },
-        "u7-l07-s09": {
-          "prompt": "Sacrifie pour ouvrir le roi.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Cherche un sacrifice avec échec qui laisse le roi sans défense.",
-          "notes": ["", "", "", ""]
+        "u8-l07-s07": {
+          "text": "Résumé : le fou est meilleur avec des pions sur les deux ailes ; le cavalier, avec une case forte et des pions fixes. Et si l'adversaire a un pion sur le point de se promouvoir, donner la pièce pour ce pion peut sauver un demi-point."
         }
       }
     },
-    "u7-l08": {
-      "title": "Calculer : mat en deux et en trois",
-      "summary": "Regarde les échecs et suis la séquence",
+    "u8-l08": {
+      "title": "Les deux faiblesses",
+      "summary": "Attaquer une pour gagner dans l'autre",
       "steps": {
-        "u7-l08-s01": { "text": "Pour trouver un mat en deux, commence par les échecs. Ici il n'y en a qu'un, Th8+, et il laisse au roi noir une seule fuite : e7. Ensuite Te8 est mat, avec le fou en c6 qui protège la tour." },
-        "u7-l08-s02": { "text": "Dans un mat en trois, chaque échec laisse à l'adversaire très peu de réponses, et ce sont celles qu'il faut calculer. Ici Dd8+ laisse seulement deux réponses : interposer le fou en e8 ou la tour en f8. Avec le fou, Dxe8+ oblige à interposer la tour et Dxf8 est mat." },
-        "u7-l08-s03": {
-          "prompt": "Après Dd8+, combien de réponses légales ont les Noirs ?",
-          "options": ["1", "2", "3", "4"],
-          "explanation": "Seulement deux : interposer le fou en e8 ou la tour en f8. Avec si peu de réponses, tu peux calculer tout le mat.",
-          "feedback": ["Compte encore : le roi ne peut pas bouger et on peut seulement interposer ou prendre.", "", "Compte encore : le roi ne peut pas bouger et on peut seulement interposer ou prendre.", "Compte encore : le roi ne peut pas bouger et on peut seulement interposer ou prendre."]
+        "u8-l08-s01": {
+          "text": "Les pions en a4 et h4 sont passés et séparés. Le roi noir ne peut aller après qu'un seul : s'il va sur l'aile dame, le pion h4 court vers la promotion."
         },
-        "u7-l08-s04": {
-          "prompt": "Après Th8+, combien de coups légaux a le roi noir ?",
-          "options": ["1", "2", "3", "4"],
-          "explanation": "Une seule : le roi ne peut pas prendre la tour ni rester en échec. Quand l'adversaire n'a qu'une seule réponse, le calcul est très court.",
-          "feedback": ["", "Vérifie les cases voisines du roi : presque toutes sont contrôlées.", "Vérifie les cases voisines du roi : presque toutes sont contrôlées.", "Vérifie les cases voisines du roi : presque toutes sont contrôlées."]
+        "u8-l08-s02": {
+          "text": "La même chose se passe avec les pièces : les noirs doivent défendre a7 et h7. Votre tour attaque a7 ; si la tour noire va le défendre, vous changez pour h7. Une pièce ne peut pas couvrir deux faiblesses à la fois."
         },
-        "u7-l08-s05": {
-          "prompt": "Après Th8+ le roi ne peut aller que sur une case. Touche-la.",
-          "hint": "Les autres cases voisines sont contrôlées par tes pièces."
+        "u8-l08-s03": {
+          "prompt": "Que faites-vous lorsque l'adversaire a deux faiblesses ?",
+          "explanation": "Si l'adversaire défend une faiblesse, l'autre reste sans protection. La clé est de le forcer à choisir.",
+          "options": [
+            "Attaquer une pour que l'adversaire s'éloigne et gagner dans l'autre",
+            "Changer toutes les pièces",
+            "Défendre vos propres pions"
+          ],
+          "feedback": [
+            "",
+            "Changer les pièces ne crée pas de nouvelles faiblesses.",
+            "Défendre ne gagne pas : il faut attaquer la faiblesse adverse."
+          ]
         },
-        "u7-l08-s06": {
-          "prompt": "Mat en deux : commence par les échecs.",
-          "hint": "Regarde les échecs que ta dame peut donner : l'un d'eux laisse l'adversaire avec une seule réponse.",
-          "success": "Correct. De1+ force la réponse et Dxf1# est mat."
+        "u8-l08-s04": {
+          "prompt": "Avancez un pion passé pour que le roi noir n'atteigne pas les deux.",
+          "hint": "L'un des deux pions est loin du roi noir. Choisissez-en un et avancez.",
+          "success": "Correct. Le roi noir ne peut pas couvrir les deux ailes : l'un des pions va se promouvoir."
         },
-        "u7-l08-s07": {
-          "prompt": "Mat en deux : commence par les échecs.",
-          "hint": "Regarde les échecs de ta tour : l'un d'eux laisse l'adversaire avec une seule réponse.",
-          "success": "Correct. Td1+ force la réponse et Txd1# est mat."
+        "u8-l08-s05": {
+          "prompt": "Touchez les deux pions passés des blancs.",
+          "hint": "Ce sont les pions qui sont sur les deux ailes, sans pions adverses devant eux."
         },
-        "u7-l08-s08": {
-          "prompt": "Trouve le mat en trois.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Commence par les échecs et suis les quelques réponses qu'il reste à l'adversaire.",
-          "notes": ["", "", "", "", "", ""]
+        "u8-l08-s06": {
+          "text": "Résumé : une faiblesse se défend ; deux faiblesses non. Attaquez une pour que l'adversaire s'éloigne et gagnez dans l'autre. Dans les finales de pions, deux pions passés sur des ailes opposées gagnent pour la même raison."
+        }
+      }
+    },
+    "u10-l06": {
+      "title": "Convertir un avantage",
+      "summary": "Simplifier sans offrir la victoire",
+      "steps": {
+        "u10-l06-s01": {
+          "text": "Les blancs ont un fou de plus. Le plan est simple : échanger des pièces, pas des pions, amener le roi au centre en finale et éviter que l'adversaire ne trouve de contre-jeu."
         },
-        "u7-l08-s09": {
-          "prompt": "Trouve le mat en trois.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Commence par les échecs et suis les quelques réponses qu'il reste à l'adversaire.",
-          "notes": ["", "", "", "", "", ""]
+        "u10-l06-s02": {
+          "text": "Échanger les dames réduit les possibilités de l'adversaire. Après un échange, votre avantage matériel est plus net et la finale est plus facile à jouer."
         },
-        "u7-l08-s10": {
-          "prompt": "Trouve le mat en trois.",
-          "success": "Bien résolu : cette position vient d'une partie réelle.",
-          "hint": "Commence par les échecs et suis les quelques réponses qu'il reste à l'adversaire.",
-          "notes": ["", "", "", "", "", ""]
+        "u10-l06-s03": {
+          "prompt": "Quand vous avez l'avantage, qu'échangez-vous ?",
+          "explanation": "Échanger des pièces réduit le contre-jeu. Échanger des pions peut laisser l'adversaire avec un pion passé ou une défense plus facile.",
+          "options": [
+            "Des pièces, pas des pions",
+            "Des pions, pas des pièces",
+            "Tout ce qui est possible"
+          ],
+          "feedback": [
+            "",
+            "Échanger des pions peut ouvrir le jeu à l'adversaire.",
+            "Il n'est pas conseillé d'tout échanger : cherchez à simplifier, pas à offrir l'avantage."
+          ]
+        },
+        "u10-l06-s04": {
+          "prompt": "Qu'évitez-vous quand vous avez l'avantage ?",
+          "explanation": "Avec un avantage, l'adversaire a besoin de complications. Vous cherchez le contraire : moins de pièces et une finale claire.",
+          "options": [
+            "Ouvrir le jeu sans nécessité",
+            "Simplifier",
+            "Activer le roi"
+          ],
+          "feedback": [
+            "",
+            "Simplifier est exactement ce que vous voulez.",
+            "Activer le roi est bon en finale."
+          ]
+        },
+        "u10-l06-s05": {
+          "prompt": "Échangez les dames pour simplifier.",
+          "hint": "Votre dame et celle de l'adversaire sont sur la colonne d. Capturez la sienne.",
+          "success": "Correct. Après Txd8, vous avez tour et fou contre tour : une finale gagnée."
+        },
+        "u10-l06-s06": {
+          "text": "Résumé : avec un avantage, simplifiez. Échangez des pièces, pas des pions ; activez le roi et évitez d'ouvrir le jeu sans nécessité. La victoire se construit avec patience."
         }
       }
     }

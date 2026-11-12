@@ -1,133 +1,676 @@
 {
-  "title": "Fortgeschrittene Konzepte",
+  "title": "Taktik für Fortgeschrittene",
   "lessons": {
-    "u6-l01": {
-      "title": "Zugzwang",
-      "summary": "Wenn Ziehen Verlieren heißt",
+    "u7-l01": {
+      "title": "Die Anziehung",
+      "summary": "Eine Figur auf das richtige Feld locken",
       "steps": {
-        "u6-l01-s01": { "text": "Im Schach darfst du nicht passen: Du musst immer ziehen. Manchmal verschlechtert jeder Zug die Stellung. Das nennt man Zugzwang: den Zwang, ziehen zu müssen." },
-        "u6-l01-s02": { "text": "Schau dir diese Stellung an. Jeder König deckt seinen Bauern und greift den gegnerischen an. Der König, der ziehen muss, deckt seinen Bauern nicht mehr: Er verliert ihn und damit die Partie. Es gewinnt, wer nicht ziehen muss." },
-        "u6-l01-s03": {
-          "prompt": "Weiß am Zug. Was passiert?",
-          "options": ["Weiß verliert seinen Bauern und die Partie", "Weiß gewinnt den schwarzen Bauern", "Es ist remis: Niemand kann gewinnen"],
-          "explanation": "Weiß steht im Zugzwang: Jeder Königszug lässt den Bauern auf d4 ungedeckt. Der schwarze König schlägt ihn, und sein Bauer wandelt sich um.",
-          "feedback": ["", "Um den schwarzen Bauern zu gewinnen, müsste Schwarz zuerst ziehen. Ist Weiß am Zug, verliert Weiß.", "Wer zieht, verliert seinen Bauern, und danach wandelt sich der andere Bauer um."]
+        "u7-l01-s01": {
+          "text": "Die Weißen haben zwei Türme in der e-Linie. Mit Txf8+ opfern sie den auf e8 stehenden Turm: Der König schlägt ihn, weil er keinen anderen Ausweg hat, und landet auf f8. Dann gibt der andere Turm Matt auf e8, gedeckt durch den Springer. Das ist eine Anziehung: Ein Opfer, fast immer mit Schach, das den König oder eine andere Figur auf ein Feld bringt, wo er den Schlag erhält."
         },
-        "u6-l01-s04": { "text": "Zugzwang hilft auch beim Mattsetzen. Hier kann Schwarz nur den König und den Bauern auf g7 ziehen. Blockierst du den Bauern, muss der König ziehen, und er hat kein gutes Feld." },
-        "u6-l01-s05": {
-          "prompt": "Matt in 2: Spiele einen stillen Zug ohne Schach, nach dem Schwarz keine guten Züge mehr hat.",
-          "success": "Richtig. Mit Tg6 ist der Bauer blockiert, der König musste nach a8, und Ta6 ist matt.",
-          "hint": "Stelle den Turm vor den Bauern auf g7: So kann er nicht vorrücken, und der schwarze König muss ziehen.",
-          "notes": ["", "", ""]
+        "u7-l01-s02": {
+          "text": "Die Anziehung bereitet auch andere Taktiken vor. Hier schlägt die weiße Dame die schwarze Dame auf h8 mit Schach. Der König schlägt zurück und landet auf h8, genau dort, wo der Springer ihm Schach gibt und gleichzeitig den Turm auf e7 angreift. Du hast Dame gegen Dame getauscht, aber du gewinnst einen Turm."
         },
-        "u6-l01-s06": { "text": "Hier würdest du gewinnen, wenn Schwarz am Zug wäre: Sein König müsste zur Seite gehen. Aber du bist am Zug. Die Lösung: Du gibst den Zug mit dem König ab. Du machst drei Schritte im Dreieck (e4, d3 und d4) und kommst aufs selbe Feld zurück. Der schwarze König kann nur hin und zurück, und jetzt ist er in derselben Stellung am Zug. Diese Technik heißt Dreiecksmanöver." },
-        "u6-l01-s07": {
-          "prompt": "Beginne das Dreieck: Ziehe den König auf ein Feld, von dem aus du in zwei Schritten nach d4 zurückkommst.",
-          "hint": "Den Bauern vorzuziehen oder nach c3 zu gehen verspielt den Sieg. Bewege dich über die Felder daneben (e4, e3 oder d3), nah genug, um deinen Bauern auf c4 rechtzeitig wieder zu decken.",
-          "success": "Richtig. Von dort kommst du in zwei weiteren Schritten nach d4 zurück, und Schwarz ist am Zug."
+        "u7-l01-s03": {
+          "prompt": "Wozu dient das Opfer Txf8+?",
+          "options": [
+            "Um den König nach f8 zu locken, wo er Matt bekommt",
+            "Um einen Turm umsonst zu gewinnen",
+            "Um die Türme zu tauschen und zu vereinfachen"
+          ],
+          "explanation": "Der Turm wird geopfert, um den König zum Schlagen zu zwingen: Auf f8 hat er keine freien Felder und der andere Turm setzt Matt.",
+          "feedback": [
+            "",
+            "Der König schlägt sie, also gewinnst du nicht den Turm: Du gewinnst das Matt.",
+            "Nichts wird vereinfacht: Das Opfer erzwingt eine Sequenz, die in Matt endet."
+          ]
         },
-        "u6-l01-s08": {
-          "prompt": "Gewinne das Endspiel: Wandle einen Bauern um. Blockiert dich der schwarze König, nutze das Dreiecksmanöver, um ihn in Zugzwang zu bringen. Stockfish verteidigt mit Schwarz.",
-          "success": "Richtig. Du hast das Endspiel mit Zugzwang gewonnen.",
-          "hint": "Mit diesem Zug entgleitet dir der Sieg. Suche die Stellung, in der der schwarze König zur Seite gehen muss, und erreiche sie, wenn er am Zug ist."
+        "u7-l01-s04": {
+          "prompt": "Wenn du Txf8+ spielst, muss der König schlagen. Tippe auf das Feld, auf dem er landen wird.",
+          "hint": "Es ist das Feld des Turms, den du opferst."
         },
-        "u6-l01-s09": {
-          "prompt": "Weiß am Zug. Nutze den Zugzwang, um das Endspiel zu gewinnen.",
+        "u7-l01-s05": {
+          "prompt": "Opfere den Läufer mit Schach, um den König anzulocken und den Läufer auf c8 zu gewinnen.",
+          "hint": "Der Läufer weicht mit Schach aus, der König schlägt und der Turm auf c1 greift c8 an.",
+          "success": "Richtig. Lxe8+ zieht den König nach e8. Mit dem Läufer von der c-Linie weg gewinnt der Turm mit Schach den Läufer auf c8."
+        },
+        "u7-l01-s06": {
+          "prompt": "Opfere einen Turm mit Schach, um den König anzulocken, und setze in zwei Zügen Matt.",
+          "hint": "Schau dir die erste Reihe an: Ein Turm wird geopfert, damit der König schlägt und der andere Matt setzt.",
+          "success": "Richtig. Txe1+ zwingt den König zu schlagen und Td1# ist Matt."
+        },
+        "u7-l01-s07": {
+          "prompt": "Nutze die Anziehung.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Ziehe den König so, dass der gegnerische König zur Seite gehen muss und seine Bauern ungedeckt lässt.",
-          "notes": ["", "", "", ""]
+          "hint": "Suche ein Opfer mit Schach, das den König zum Schlagen zwingt, sodass er auf einem ungeschützten Feld landet.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
-        "u6-l01-s10": {
-          "prompt": "Weiß am Zug. Nutze den Zugzwang, um das Endspiel zu gewinnen.",
+        "u7-l01-s08": {
+          "prompt": "Nutze die Anziehung.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Ziehe den König so, dass der gegnerische König zur Seite gehen muss und seine Bauern ungedeckt lässt.",
-          "notes": ["", "", "", ""]
+          "hint": "Suche ein Opfer mit Schach, das den König zum Schlagen zwingt, sodass er auf einem ungeschützten Feld landet.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
-        "u6-l01-s11": {
-          "prompt": "Schwarz am Zug. Nutze den Zugzwang, um das Endspiel zu gewinnen.",
+        "u7-l01-s09": {
+          "prompt": "Nutze die Anziehung.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Ziehe den König so, dass der gegnerische König zur Seite gehen muss und seine Bauern ungedeckt lässt.",
-          "notes": ["", "", "", ""]
+          "hint": "Suche ein Opfer mit Schach, das den König zum Schlagen zwingt, sodass er auf einem ungeschützten Feld landet.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
-    "u6-l02": {
-      "title": "Prophylaxe",
-      "summary": "Den Plan des Gegners vorhersehen",
+    "u7-l02": {
+      "title": "Die Überlastung",
+      "summary": "Eine Figur, zwei Aufgaben",
       "steps": {
-        "u6-l02-s01": { "text": "Frage dich vor jedem Zug: Was will mein Gegner tun? Seinen Plan zu verhindern, bevor er ihn umsetzt, nennt man Prophylaxe. In dieser Italienischen Partie will der schwarze Läufer nach g4, um deinen Springer an die Dame zu fesseln." },
-        "u6-l02-s02": {
-          "prompt": "Warum stört der Läufer, wenn er nach g4 kommt?",
-          "options": ["Er fesselt den Springer auf f3: Zieht er, schlägt der Läufer die Dame", "Er droht Schachmatt", "Er greift den Bauern auf e4 an"],
-          "explanation": "Mit dem Läufer auf g4 ist der Springer auf f3 an die Dame auf d1 gefesselt: Zieht er, schlägt der Läufer die Dame. Der Springer verliert seine Freiheit, gerade wenn er das Zentrum verteidigen muss.",
-          "feedback": ["", "Es ist kein Matt in Sicht: Das Problem ist die Fesselung des Springers.", "Von g4 aus greift der Läufer den Bauern auf e4 nicht an. Das Problem ist die Fesselung."]
+        "u7-l02-s01": {
+          "text": "Die schwarze Dame verteidigt gleichzeitig den Springer auf d5 und den Läufer auf e7: Sie hat zwei Aufgaben. Wenn du den Springer schlägst, schlägt die Dame zurück und lässt den Läufer ungedeckt. So gewinnst du eine Figur. Das ist eine Überlastung: Eine gegnerische Figur mit mehr Arbeit, als sie bewältigen kann."
         },
-        "u6-l02-s03": {
-          "prompt": "Spiele den Zug, der verhindert, dass der Läufer nach g4 kommt.",
-          "hint": "Ein Bauer kann das Feld g4 kontrollieren, bevor der Läufer dort ankommt.",
-          "success": "Richtig. Mit h3 kontrolliert der Bauer g4, und der Läufer kann nicht mehr dorthin."
+        "u7-l02-s02": {
+          "text": "Der schwarze Turm auf f8 deckt den Turm auf e8 und den Bauern auf f7. Mit Lxf7+ gibst du Schach. Wenn der Turm auf f8 den Läufer schlägt, deckt er den Turm auf e8 nicht mehr und Dxe8+ gewinnt ihn."
         },
-        "u6-l02-s04": { "text": "Dein Turm auf der siebten Reihe greift Bauern an, aber achte vor dem Schlagen auf die schwarze Drohung: Der Turm auf e8 will nach e1. Dein König kommt nicht von der Grundreihe weg, weil ihn seine eigenen Bauern einsperren." },
-        "u6-l02-s05": {
-          "prompt": "Tippe auf das Feld, auf dem der schwarze Turm Schachmatt geben würde.",
-          "hint": "Der Turm auf e8 zieht über die e-Linie bis auf deine Grundreihe."
+        "u7-l02-s03": {
+          "prompt": "Die schwarze Dame deckt zwei Figuren, die verloren gehen können. Tippe diese beiden Figuren an.",
+          "hint": "Eine steht auf der Linie der Dame und die andere auf ihrer Diagonale."
         },
-        "u6-l02-s06": {
-          "prompt": "Verhindere das Grundreihenmatt, bevor du Bauern schlägst.",
-          "hint": "Wenn du auf b7 schlägst, ist Te1 matt. Öffne deinem König mit einem Bauernzug einen Fluchtweg oder bringe ihn näher an die e-Linie.",
-          "success": "Richtig. Das Grundreihenmatt funktioniert nicht mehr. Jetzt kannst du ans Schlagen der Bauern denken."
+        "u7-l02-s04": {
+          "prompt": "Warum ist es gut, den Springer auf d5 zu schlagen?",
+          "options": [
+            "Weil der Läufer auf e7 ungedeckt bleibt, wenn die Dame zurückschlägt",
+            "Weil der Springer auf d5 mehr wert ist als mein Springer",
+            "Weil er die d-Linie für meinen Turm öffnet"
+          ],
+          "explanation": "Die schwarze Dame deckt beide Figuren: Indem sie auf d5 zurückschlägt, lässt sie den Läufer auf e7 ungedeckt.",
+          "feedback": [
+            "",
+            "Beide Springer sind gleich viel wert: Was zählt, ist, was der Rückschlag ungedeckt lässt.",
+            "Die Linie zu öffnen ist nicht das Wichtigste: Es zählt, dass die Dame nicht beide Figuren decken kann."
+          ]
         },
-        "u6-l02-s07": { "text": "Hier zielen die schwarze Dame und der schwarze Läufer auf dasselbe Feld neben deinem König. Wenn du nichts tust, setzt Schwarz in einem Zug matt." },
-        "u6-l02-s08": {
-          "prompt": "Tippe auf das Feld, auf dem Schwarz Schachmatt geben würde.",
-          "hint": "Die Dame auf h4 und der Läufer auf d6 greifen dasselbe Feld neben deinem König an."
+        "u7-l02-s05": {
+          "prompt": "Suche den Schlag, der eine gegnerische Figur zum Zurückschlagen zwingt und eine andere ungedeckt lässt.",
+          "hint": "Suche eine gegnerische Figur, die zwei Dinge gleichzeitig deckt: Schlage eine und gewinne die andere.",
+          "success": "Richtig. Txe1 zwingt die verteidigende Figur zum Zurückschlagen, und du gewinnst die zweite."
         },
-        "u6-l02-s09": {
-          "prompt": "Verhindere das Matt.",
-          "hint": "Nutze einen Bauern in der Nähe deines Königs: Versperre mit dem Bauern auf g2 die Diagonale des Läufers, oder ziehe den Bauern auf h2 vor, damit die Dame kein Mattfeld hat. Mit f4 schlägt der Läufer, und dein König steht offen.",
-          "success": "Richtig. Das Matt funktioniert nicht mehr und deine Stellung hält."
+        "u7-l02-s06": {
+          "prompt": "Suche den Schlag, der eine gegnerische Figur zum Zurückschlagen zwingt und eine andere ungedeckt lässt.",
+          "hint": "Suche eine gegnerische Figur, die zwei Dinge gleichzeitig deckt: Schlage eine und gewinne die andere.",
+          "success": "Richtig. Txd8+ zwingt die verteidigende Figur zum Zurückschlagen, und du gewinnst die zweite."
         },
-        "u6-l02-s10": { "text": "Zusammenfassung: Schau vor dem Ziehen, was der Gegner droht und was er in den nächsten Zügen vorhat. Ein stiller Zug zur rechten Zeit, wie h3 oder ein Fluchtweg für den König, verhindert viel größere Probleme." }
+        "u7-l02-s07": {
+          "prompt": "Nutze die Überlastung.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche eine gegnerische Figur, die zwei Dinge gleichzeitig deckt, und schlage eine davon.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l02-s08": {
+          "prompt": "Nutze die Überlastung.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche eine gegnerische Figur, die zwei Dinge gleichzeitig deckt, und schlage eine davon.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l02-s09": {
+          "prompt": "Nutze die Überlastung.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche eine gegnerische Figur, die zwei Dinge gleichzeitig deckt, und schlage eine davon.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u7-l03": {
+      "title": "Der Zwischenzug",
+      "summary": "Ein Schlag vor dem Zurückschlagen",
+      "steps": {
+        "u7-l03-s01": {
+          "text": "Die schwarze Dame hat auf d4 geschlagen. Wenn du sofort mit Dxd4 zurückschlägst, schlägt der Springer auf c6 zurück und du hast nur die Damen getauscht. Zuerst spielst du Lxc6+: Du gibst Schach und schlägst den Springer. Wenn Schwarz mit bxc6 antwortet, schlägst du die Dame mit Dxd4 und es gibt keinen Springer mehr, der zurückschlagen kann. Das ist ein Zwischenzug: Ein Schach oder eine Drohung, die du vor dem naheliegenden Zurückschlagen spielst."
+        },
+        "u7-l03-s02": {
+          "text": "Dasselbe mit Schwarz: Die weiße Dame hat auf d5 geschlagen. Sofort mit Dxd5 zurückzuschlagen erlaubt Sxd5. Zuerst gibt Lxc3+ Schach und entfernt den Springer, der d5 deckte. Nach bxc3 kannst du die Dame schlagen."
+        },
+        "u7-l03-s03": {
+          "prompt": "Schwarz hat mit der Dame auf d4 geschlagen. Was solltest du zuerst tun?",
+          "options": [
+            "Sofort mit der Dame zurückschlagen",
+            "Gib mit dem Läufer Schach, indem du den Springer auf c6 schlägst",
+            "Die Dame auf ein sicheres Feld zurückziehen"
+          ],
+          "explanation": "Mit dem Schach zwingst du den Gegner zu antworten und entfernst den Springer, der d4 deckte. Danach schlägst du die Dame, ohne etwas zu verlieren.",
+          "feedback": [
+            "Wenn du sofort zurückschlägst, schlägt der Springer auf c6 die Dame: Du hast nur die Damen getauscht.",
+            "",
+            "Sie zurückzuziehen verliert die Chance, die schwarze Dame zu gewinnen."
+          ]
+        },
+        "u7-l03-s04": {
+          "prompt": "Bevor du zurückschlägst, schau, wer die schwarze Dame auf d4 deckt. Tippe diese Figur an.",
+          "hint": "Es ist ein Springer, der sie von einem nahegelegenen Feld deckt."
+        },
+        "u7-l03-s05": {
+          "prompt": "Bevor du zurückschlägst, suche einen Schlag mit Schach.",
+          "hint": "Eine deiner Figuren kann mit Schach schlagen und den Verteidiger entfernen, bevor du die Dame nimmst.",
+          "success": "Richtig. Sxf6+ ist der Zwischenzug: Man spielt ihn, bevor man zurückschlägt."
+        },
+        "u7-l03-s06": {
+          "prompt": "Bevor du zurückschlägst, suche ein Schach.",
+          "hint": "Gib Schach, auf das der Gegner antworten muss, bevor du für deine Figur zurückschlägst.",
+          "success": "Richtig. Txd1+ ist der Zwischenzug: Man spielt ihn, bevor man zurückschlägt."
+        },
+        "u7-l03-s07": {
+          "prompt": "Nutze den Zwischenzug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Bevor du zurückschlägst, suche ein Schach, auf das der Gegner antworten muss.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l03-s08": {
+          "prompt": "Nutze den Zwischenzug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Bevor du zurückschlägst, suche ein Schach, auf das der Gegner antworten muss.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l03-s09": {
+          "prompt": "Nutze den Zwischenzug.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Bevor du zurückschlägst, suche ein Schach, auf das der Gegner antworten muss.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u7-l04": {
+      "title": "Die Unterbrechung",
+      "summary": "Die Verteidigung mittendrin kappen",
+      "steps": {
+        "u7-l04-s01": {
+          "text": "Die weiße Dame auf d1 deckt den Turm auf h1 entlang der ersten Reihe. Mit Dg2+ ist der König gezwungen, nach e1 zu gehen, und steht genau zwischen den beiden Figuren: Er unterbricht die Verteidigung. Dann gewinnt Dxh1+ den Turm. Das ist eine Unterbrechung: Etwas stellt sich zwischen eine Figur und die Figur, die sie deckt."
+        },
+        "u7-l04-s02": {
+          "text": "Die Schwarzen haben einen Turm auf h8, den die Dame auf d8 entlang der 8. Reihe deckt. Mit Dg7+ ist der König gezwungen, nach e8 zu gehen: Er stellt sich zwischen die Dame und den Turm und trennt sie. Nach Dxh8+ verliert Schwarz den Turm."
+        },
+        "u7-l04-s03": {
+          "prompt": "Die weiße Dame auf d1 deckt den Turm auf h1 entlang der ersten Reihe. Was passiert, wenn der weiße König auf e1 steht?",
+          "options": [
+            "Der Turm bleibt ungedeckt",
+            "Der Turm ist besser gedeckt",
+            "Nichts ändert sich"
+          ],
+          "explanation": "Der König auf e1 blockiert die Reihe: Die Dame sieht den Turm nicht mehr und er kann umsonst geschlagen werden.",
+          "feedback": [
+            "",
+            "Der König deckt den Turm von e1 aus nicht: Er stellt sich dazwischen und unterbricht die Linie der Dame.",
+            "Es ändert sich viel: Der König blockiert die Linie zwischen den beiden Figuren."
+          ]
+        },
+        "u7-l04-s04": {
+          "prompt": "Mit Dg2+ muss der weiße König nach e1. Tippe die beiden weißen Figuren an, die der König mit seiner Unterbrechung trennt.",
+          "hint": "Es sind die beiden Figuren auf der ersten Reihe, die sich gegenseitig deckten."
+        },
+        "u7-l04-s05": {
+          "prompt": "Gib Schach und zwinge den König, sich zwischen zwei Figuren zu stellen, die sich gegenseitig decken.",
+          "hint": "Schau dir die erste Reihe an: Zwei Türme decken sich gegenseitig. Ein Schach der Dame kann den König in die Mitte schicken.",
+          "success": "Richtig. Dd2+ zwingt den König, seine eigene Verteidigung zu unterbrechen."
+        },
+        "u7-l04-s06": {
+          "prompt": "Gib Schach und zwinge den König, sich zwischen zwei Figuren zu stellen, die sich gegenseitig decken.",
+          "hint": "Schau dir die 8. Reihe an: Eine Figur deckt eine andere aus der Ferne. Ein Schach kann den König in die Mitte bringen.",
+          "success": "Richtig. Dg7+ zwingt den König, seine eigene Verteidigung zu unterbrechen."
+        },
+        "u7-l04-s07": {
+          "prompt": "Nutze die Unterbrechung.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche nach einem Schach, das den König zwingt, sich zwischen zwei Figuren zu stellen, die sich gegenseitig deckten.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l04-s08": {
+          "prompt": "Nutze die Unterbrechung.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche nach einem Schach, das den König zwingt, sich zwischen zwei Figuren zu stellen, die sich gegenseitig deckten.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l04-s09": {
+          "prompt": "Nutze die Unterbrechung.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche nach einem Schach, das den König zwingt, sich zwischen zwei Figuren zu stellen, die sich gegenseitig deckten.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u7-l05": {
+      "title": "Matts mit einer Figur",
+      "summary": "Eine Figur setzt den Schlusspunkt",
+      "steps": {
+        "u7-l05-s01": {
+          "text": "Der schwarze König hat keine freien Felder: Seine eigenen Bauern auf f7, g7 und h7 sperren die zweite Reihe ab. Der Turm schlägt auf e8 und setzt auf der Grundreihe Matt. Das ist das Grundreihenmatt, und eine einzige Figur setzt es durch."
+        },
+        "u7-l05-s02": {
+          "text": "Der weiße König ist von seinem eigenen Turm auf g1 und den Bauern auf g2 und h2 eingeschlossen. Der Springer gibt Schach von f2 aus; der König kann nirgendwohin und ihn auch nicht schlagen. Das ist das erstickte Matt: Nur der Springer springt über die anderen Figuren."
+        },
+        "u7-l05-s03": {
+          "prompt": "Was hätte das Grundreihenmatt verhindert?",
+          "options": [
+            "Ein Fluchtfeld für den König, indem man einen Bauern wie h7 oder g7 zieht",
+            "Die Damen tauschen",
+            "Den Turm von a8 ziehen"
+          ],
+          "explanation": "Ein Fluchtfeld auf der zweiten Reihe gibt dem König Luft. Ein rechtzeitig gezogener Bauer verhindert das Matt.",
+          "feedback": [
+            "",
+            "Wenn die Damen getauscht sind, hat der König immer noch keine freien Felder.",
+            "Der Turm auf a8 kann nicht helfen: Das Matt kommt über die e-Linie."
+          ]
+        },
+        "u7-l05-s04": {
+          "prompt": "Der weiße König kann sich nicht bewegen. Tippe auf die drei weißen Figuren, die ihm den Weg versperren.",
+          "hint": "Sie stehen neben dem König: Ein Turm und zwei Bauern."
+        },
+        "u7-l05-s05": {
+          "prompt": "Setze mit einer einzigen Figur Matt: Der König ist von seinen eigenen Figuren eingeengt.",
+          "hint": "Suche die Figur, die Schach geben kann, ohne dass der König sie schlägt oder entkommt.",
+          "success": "Richtig. Sf7# ist Matt: Der König hat keine freien Felder."
+        },
+        "u7-l05-s06": {
+          "prompt": "Setze mit einer einzigen Figur Matt: Der König ist von seinen eigenen Figuren eingeengt.",
+          "hint": "Suche die Figur, die Schach geben kann, ohne dass der König sie schlägt oder entkommt.",
+          "success": "Richtig. Txh1# ist Matt: Der König hat keine freien Felder."
+        },
+        "u7-l05-s07": {
+          "prompt": "Setze mit einer einzigen Figur Matt: Der König ist von seinen eigenen Figuren eingeengt.",
+          "hint": "Suche die Figur, die Schach geben kann, ohne dass der König sie schlägt oder entkommt.",
+          "success": "Richtig. De1# ist Matt: Der König hat keine freien Felder."
+        },
+        "u7-l05-s08": {
+          "prompt": "Finde das Matt in zwei.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche ein Schach, nach dem der König von seinen eigenen Figuren umgeben ist.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l05-s09": {
+          "prompt": "Finde das Matt in zwei.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche ein Schach, nach dem der König von seinen eigenen Figuren umgeben ist.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u7-l06": {
+      "title": "Matts mit zwei Figuren",
+      "summary": "Zwei Figuren, ein Ziel",
+      "steps": {
+        "u7-l06-s01": {
+          "text": "Die Dame allein könnte dieses Matt nicht geben: Der König würde sie schlagen. Aber der Läufer auf c4 deckt g8 entlang derselben Diagonale. Wenn eine Figur angreift und eine andere sie auf derselben Linie unterstützt, bilden sie eine Batterie: Der König kann die Dame nicht schlagen und hat keine freien Felder."
+        },
+        "u7-l06-s02": {
+          "text": "Das ist das Arabische Matt: Der Turm gibt von h7 aus Schach, und der Springer auf f6 deckt ihn und kontrolliert außerdem g8. Der König kann den Turm weder schlagen noch fliehen."
+        },
+        "u7-l06-s03": {
+          "prompt": "Welche Figur hindert den schwarzen König daran, die Dame auf g8 zu schlagen?",
+          "options": [
+            "Der weiße Läufer auf c4",
+            "Der weiße König auf a2",
+            "Der weiße Bauer auf b2"
+          ],
+          "explanation": "Der Läufer deckt g8 entlang der Diagonale: Wenn der König die Dame schlägt, steht er im Schach.",
+          "feedback": [
+            "",
+            "Der weiße König ist zu weit weg, um g8 zu decken.",
+            "Der Bauer auf b2 hat nichts mit g8 zu tun."
+          ]
+        },
+        "u7-l06-s04": {
+          "prompt": "Tippe die beiden weißen Figuren an, die das Arabische Matt geben.",
+          "hint": "Die eine ist ein Turm und die andere ein Springer."
+        },
+        "u7-l06-s05": {
+          "prompt": "Setze mit zwei Figuren Matt, die zusammenarbeiten.",
+          "hint": "Eine Figur gibt Schach und die andere deckt die Fluchtfelder des Königs.",
+          "success": "Richtig. Lxa3# ist Matt dank der anderen Figur, die die Fluchtfelder deckt."
+        },
+        "u7-l06-s06": {
+          "prompt": "Setze mit zwei Figuren Matt, die zusammenarbeiten.",
+          "hint": "Eine Figur gibt Schach und die andere unterstützt sie, damit der König sie nicht schlagen kann.",
+          "success": "Richtig. Dh7# ist Matt: Die andere Figur stützt die Dame."
+        },
+        "u7-l06-s07": {
+          "prompt": "Setze mit zwei Figuren Matt, die zusammenarbeiten.",
+          "hint": "Eine Figur gibt Schach und die andere unterstützt sie, damit der König sie nicht schlagen kann.",
+          "success": "Richtig. Dxg7# ist Matt: Die andere Figur stützt die Dame."
+        },
+        "u7-l06-s08": {
+          "prompt": "Finde das Matt in zwei.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche ein Schach mit einer Figur und Matt mit einer anderen, die sie unterstützt.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l06-s09": {
+          "prompt": "Finde das Matt in zwei.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche ein Schach mit einer Figur und Matt mit einer anderen, die sie unterstützt.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
       }
     },
     "u6-l03": {
       "title": "Qualitätsopfer",
       "summary": "Turm gegen Läufer oder Springer",
       "steps": {
-        "u6-l03-s01": { "text": "Denk an die Werte: Der Turm ist 5 wert, Läufer und Springer jeweils 3. Einen Turm gegen einen Läufer oder Springer zu tauschen nennt man „die Qualität verlieren“. Manchmal lohnt es sich, das absichtlich zu tun: Das ist ein Qualitätsopfer." },
+        "u6-l03-s01": {
+          "text": "Denk an die Werte: Der Turm ist 5 wert, Läufer und Springer jeweils 3. Einen Turm gegen einen Läufer oder Springer zu tauschen nennt man „die Qualität verlieren“. Manchmal lohnt es sich, das absichtlich zu tun: Das ist ein Qualitätsopfer."
+        },
         "u6-l03-s02": {
           "prompt": "Wenn du deinen Turm gegen einen Springer tauschst, wie viele Materialpunkte gibst du ungefähr her?",
-          "options": ["2", "1", "3"],
+          "options": [
+            "2",
+            "1",
+            "3"
+          ],
           "explanation": "Der Turm ist 5 wert und der Springer 3: Du gibst etwa 2 Punkte her. Darum muss dir das Opfer etwas dafür einbringen.",
-          "feedback": ["", "Turm 5 minus Springer 3 ergibt 2 Punkte, nicht 1.", "Turm 5 minus Springer 3 ergibt 2 Punkte, nicht 3."]
+          "feedback": [
+            "",
+            "Turm 5 minus Springer 3 ergibt 2 Punkte, nicht 1.",
+            "Turm 5 minus Springer 3 ergibt 2 Punkte, nicht 3."
+          ]
         },
-        "u6-l03-s03": { "text": "Es gibt drei typische Gründe, die Qualität zu geben: einen Freibauern schaffen, den niemand stoppen kann, die Verteidigung des gegnerischen Königs aufreißen oder eine Figur beseitigen, die etwas Wichtiges deckt. Hier ist der Springer auf d6 das Einzige, was deinen Bauern auf c6 aufhält." },
+        "u6-l03-s03": {
+          "text": "Es gibt drei typische Gründe, die Qualität zu geben: einen Freibauern schaffen, den niemand stoppen kann, die Verteidigung des gegnerischen Königs aufreißen oder eine Figur beseitigen, die etwas Wichtiges deckt. Hier ist der Springer auf d6 das Einzige, was deinen Bauern auf c6 aufhält."
+        },
         "u6-l03-s04": {
           "prompt": "Weiß am Zug. Gib die Qualität, damit sich dein Bauer umwandelt.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Der Springer auf d6 hält deinen c-Bauern auf. Was passiert, wenn du ihn beseitigst, auch wenn es dich den Turm kostet?",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u6-l03-s05": {
           "prompt": "Weiß am Zug. Noch einmal: die Qualität für einen unaufhaltsamen Bauern.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Welche schwarze Figur hält deinen b-Bauern auf? Beseitige sie mit dem Turm.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
-        "u6-l03-s06": { "text": "Der zweite Grund: den König freilegen. Schlägt dein Turm eine Figur, die den gegnerischen König schützt, können deine anderen Figuren eindringen und ihn angreifen." },
+        "u6-l03-s06": {
+          "text": "Der zweite Grund: den König freilegen. Schlägt dein Turm eine Figur, die den gegnerischen König schützt, können deine anderen Figuren eindringen und ihn angreifen."
+        },
         "u6-l03-s07": {
           "prompt": "Weiß am Zug. Gib die Qualität, um den König anzugreifen.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Der Läufer auf g7 schützt den schwarzen König. Schlage ihn mit dem Turm und dringe dann mit der Dame ein.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u6-l03-s08": {
           "prompt": "Weiß am Zug. Beseitige den Verteidiger: die Qualität für noch mehr Material.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Der Springer auf f6 deckt den Turm auf d5. Verschwindet er, ist der Turm ungedeckt.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
-        "u6-l03-s09": { "text": "Zusammenfassung: Die Qualität ist etwa 2 Punkte wert, aber ein Bauer, der sich umwandelt, ein Angriff auf den König oder der Gewinn einer weiteren Figur sind mehr wert. Bevor du sie gibst, berechne, was du dafür bekommst." }
+        "u6-l03-s09": {
+          "text": "Zusammenfassung: Die Qualität ist etwa 2 Punkte wert, aber ein Bauer, der sich umwandelt, ein Angriff auf den König oder der Gewinn einer weiteren Figur sind mehr wert. Bevor du sie gibst, berechne, was du dafür bekommst."
+        }
+      }
+    },
+    "u7-l07": {
+      "title": "Opfern, um den König zu öffnen",
+      "summary": "Material geben, um an den König zu kommen",
+      "steps": {
+        "u7-l07-s01": {
+          "text": "Die Bauern auf h6 und g7 schützen den König. Mit Txh6+ opferst du den Turm: Der Bauer auf g7 muss schlagen, der König bleibt ungeschützt und die Dame setzt auf h6 Matt. Du verschenkst kein Material: Du rechnest bis zum Matt, bevor du opferst."
+        },
+        "u7-l07-s02": {
+          "text": "Hier ist das Opfer auf g6. Mit Txg6+ wird der Turm angeboten. Wenn der Bauer auf f7 schlägt, verliert der König seinen Schutz und die Dame setzt auf g6 Matt."
+        },
+        "u7-l07-s03": {
+          "prompt": "Was erreicht das Opfer Txh6+?",
+          "options": [
+            "Es entfernt einen Bauern, der den König schützte, und lässt die Dame herein",
+            "Es gewinnt sofort Material",
+            "Es tauscht die Türme"
+          ],
+          "explanation": "Der Turm wird geopfert, um den Bauernschild des Königs zu durchbrechen. Wenn der Bauer schlägt, gibt die Dame Matt.",
+          "feedback": [
+            "",
+            "Das Opfer gewinnt kein Material: Du verlierst einen Turm für das Matt.",
+            "Es gibt keinen Turmtausch: Dein Gegner kann nicht mit einem Turm zurückschlagen."
+          ]
+        },
+        "u7-l07-s04": {
+          "prompt": "Nach Txg6+ und fxg6 setzt die Dame Matt. Tippe auf das Feld, auf dem sie Matt setzt.",
+          "hint": "Es ist das Feld des Bauern, der gerade geschlagen hat."
+        },
+        "u7-l07-s05": {
+          "prompt": "Opfere eine Figur mit Schach, um den König zu öffnen, und setze in zwei Zügen Matt.",
+          "hint": "Opfere eine Figur auf dem Feld, das den König schützt: Der Gegner muss schlagen und gibt den Weg frei.",
+          "success": "Richtig. Dxh6+ öffnet den Weg zum König und das Matt folgt im nächsten Zug."
+        },
+        "u7-l07-s06": {
+          "prompt": "Opfere eine Figur mit Schach, um den König zu öffnen, und setze in zwei Zügen Matt.",
+          "hint": "Opfere eine Figur mit Schach, um die Figur abzulenken, die ein Schlüsselfeld deckt.",
+          "success": "Richtig. Sf6+ erzwingt einen Schlag und das Matt folgt im nächsten Zug."
+        },
+        "u7-l07-s07": {
+          "prompt": "Opfere, um den König zu öffnen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche ein Schach mit Opfer, das den König ungeschützt lässt.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l07-s08": {
+          "prompt": "Opfere, um den König zu öffnen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche ein Schach mit Opfer, das den König ungeschützt lässt.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l07-s09": {
+          "prompt": "Opfere, um den König zu öffnen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche ein Schach mit Opfer, das den König ungeschützt lässt.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u7-l08": {
+      "title": "Rechnen: Matt in zwei und in drei",
+      "summary": "Schau auf die Schachgebote und folge der Zugfolge",
+      "steps": {
+        "u7-l08-s01": {
+          "text": "Um ein Matt in zwei zu finden, beginne mit den Schachgeboten. Hier gibt es nur eines, Th8+, und es lässt dem schwarzen König nur einen Fluchtweg: e7. Danach ist Te8 Matt, und der Läufer auf c6 deckt den Turm."
+        },
+        "u7-l08-s02": {
+          "text": "In einem Matt in drei lässt jedes Schachgebot dem Gegner sehr wenige Antworten, und genau diese musst du berechnen. Hier lässt Dd8+ nur zwei Antworten: Den Läufer auf e8 oder den Turm auf f8 dazwischenstellen. Mit dem Läufer zwingt Dxe8+ den Turm dazwischenzustellen, und Dxf8 ist Matt."
+        },
+        "u7-l08-s03": {
+          "prompt": "Nach Dd8+, wie viele legale Antworten hat Schwarz?",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "explanation": "Nur zwei: Den Läufer auf e8 dazwischenstellen oder den Turm auf f8. Mit so wenigen Zügen kann man das ganze Matt berechnen.",
+          "feedback": [
+            "Zähle noch einmal: Der König kann sich nicht bewegen, also kannst du nur dazwischenstellen oder schlagen.",
+            "",
+            "Zähle noch einmal: Der König kann sich nicht bewegen, also kannst du nur dazwischenstellen oder schlagen.",
+            "Zähle noch einmal: Der König kann sich nicht bewegen, also kannst du nur dazwischenstellen oder schlagen."
+          ]
+        },
+        "u7-l08-s04": {
+          "prompt": "Nach Th8+, wie viele legale Züge hat der schwarze König?",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "explanation": "Nur eine: Der König kann den Turm nicht schlagen oder im Schach bleiben. Wenn der Gegner nur eine Antwort hat, ist die Berechnung sehr kurz.",
+          "feedback": [
+            "",
+            "Überprüfe die Felder neben dem König: Fast alle sind kontrolliert.",
+            "Überprüfe die Felder neben dem König: Fast alle sind kontrolliert.",
+            "Überprüfe die Felder neben dem König: Fast alle sind kontrolliert."
+          ]
+        },
+        "u7-l08-s05": {
+          "prompt": "Nach Th8+ kann der König nur auf ein Feld gehen. Tippe es an.",
+          "hint": "Die anderen benachbarten Felder werden von deinen Figuren kontrolliert."
+        },
+        "u7-l08-s06": {
+          "prompt": "Matt in zwei: Beginne mit den Schachgeboten.",
+          "hint": "Schau dir die Schachgebote an, die deine Dame geben kann: Eines davon lässt den Gegner mit einer einzigen Antwort zurück.",
+          "success": "Richtig. De1+ erzwingt die Antwort und Dxf1# ist Matt."
+        },
+        "u7-l08-s07": {
+          "prompt": "Matt in zwei: Beginne mit den Schachgeboten.",
+          "hint": "Schau dir die Schachgebote deines Turms an: Eines davon lässt den Gegner mit einer einzigen Antwort zurück.",
+          "success": "Richtig. Td1+ erzwingt die Antwort und Txd1# ist Matt."
+        },
+        "u7-l08-s08": {
+          "prompt": "Finde das Matt in drei.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Beginne mit den Schachgeboten und folge den wenigen Antworten, die der Gegner noch hat.",
+          "notes": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l08-s09": {
+          "prompt": "Finde das Matt in drei.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Beginne mit den Schachgeboten und folge den wenigen Antworten, die der Gegner noch hat.",
+          "notes": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u7-l08-s10": {
+          "prompt": "Finde das Matt in drei.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Beginne mit den Schachgeboten und folge den wenigen Antworten, die der Gegner noch hat.",
+          "notes": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
       }
     }
   }

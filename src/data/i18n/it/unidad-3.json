@@ -5,8 +5,12 @@
       "title": "La forchetta",
       "summary": "Un pezzo ne attacca due insieme",
       "steps": {
-        "u3-l01-s01": { "text": "Una forchetta è un pezzo che ne attacca due insieme: l'avversario può salvarne solo uno. Qui il cavallo dà scacco al re e attacca la donna." },
-        "u3-l01-s02": { "text": "Anche i pedoni fanno forchette. Avanzando, questo pedone attacca la torre e il cavallo: uno dei due si perde." },
+        "u3-l01-s01": {
+          "text": "Una forchetta è un pezzo che ne attacca due insieme: l'avversario può salvarne solo uno. Qui il cavallo dà scacco al re e attacca la donna."
+        },
+        "u3-l01-s02": {
+          "text": "Anche i pedoni fanno forchette. Avanzando, questo pedone attacca la torre e il cavallo: uno dei due si perde."
+        },
         "u3-l01-s03": {
           "prompt": "Fai una forchetta con il cavallo: attacca il re e la torre.",
           "hint": "Cerca la casella da cui il cavallo attacca g8 ed e8 insieme.",
@@ -34,9 +38,17 @@
         },
         "u3-l01-s08": {
           "prompt": "Da quale casella il cavallo attacca le due torri nere?",
-          "options": ["f7", "e6", "g6"],
+          "options": [
+            "f7",
+            "e6",
+            "g6"
+          ],
           "explanation": "Da f7, il cavallo attacca d8 e h8: è una forchetta alle due torri.",
-          "feedback": ["", "Da e6 il cavallo attacca d8, ma non h8.", "Da g6 il cavallo attacca h8, ma non d8."]
+          "feedback": [
+            "",
+            "Da e6 il cavallo attacca d8, ma non h8.",
+            "Da g6 il cavallo attacca h8, ma non d8."
+          ]
         },
         "u3-l01-s09": {
           "prompt": "Trova la forchetta.",
@@ -54,13 +66,23 @@
       "title": "L'inchiodatura",
       "summary": "Un pezzo che non si può muovere",
       "steps": {
-        "u3-l02-s01": { "text": "Il cavallo non si può muovere: se lo facesse, l'alfiere darebbe scacco al re. È inchiodato. Quando dietro c'è il re, è un'inchiodatura assoluta." },
-        "u3-l02-s02": { "text": "Se dietro c'è la donna, è un'inchiodatura relativa: il cavallo può muoversi, ma l'alfiere catturerebbe la donna." },
+        "u3-l02-s01": {
+          "text": "Il cavallo non si può muovere: se lo facesse, l'alfiere darebbe scacco al re. È inchiodato. Quando dietro c'è il re, è un'inchiodatura assoluta."
+        },
+        "u3-l02-s02": {
+          "text": "Se dietro c'è la donna, è un'inchiodatura relativa: il cavallo può muoversi, ma l'alfiere catturerebbe la donna."
+        },
         "u3-l02-s03": {
           "prompt": "Il cavallo nero in c6 può muoversi?",
-          "options": ["Sì", "No, è inchiodato al re"],
+          "options": [
+            "Sì",
+            "No, è inchiodato al re"
+          ],
           "explanation": "L'alfiere in b5 punta al re in e8 attraverso il cavallo: se il cavallo si muove, il re resta sotto scacco.",
-          "feedback": ["Guarda la diagonale dell'alfiere in b5: che cosa c'è dietro il cavallo?", ""]
+          "feedback": [
+            "Guarda la diagonale dell'alfiere in b5: che cosa c'è dietro il cavallo?",
+            ""
+          ]
         },
         "u3-l02-s04": {
           "prompt": "Inchioda il cavallo in c6 al re con il tuo alfiere.",
@@ -79,11 +101,19 @@
         },
         "u3-l02-s07": {
           "prompt": "Questa inchiodatura è assoluta o relativa?",
-          "options": ["Assoluta: dietro c'è il re", "Relativa: dietro c'è la donna"],
+          "options": [
+            "Assoluta: dietro c'è il re",
+            "Relativa: dietro c'è la donna"
+          ],
           "explanation": "Dietro il cavallo c'è la donna, non il re: il cavallo può muoversi, ma si perderebbe la donna.",
-          "feedback": ["Guarda quale pezzo c'è dietro il cavallo, sulla diagonale dell'alfiere.", ""]
+          "feedback": [
+            "Guarda quale pezzo c'è dietro il cavallo, sulla diagonale dell'alfiere.",
+            ""
+          ]
         },
-        "u3-l02-s08": { "text": "Per difenderti da un'inchiodatura, proteggi il pezzo inchiodato, interponi un altro pezzo o togli dalla linea il re o la donna. Qui Ae7 chiude la diagonale e il cavallo torna libero." },
+        "u3-l02-s08": {
+          "text": "Per difenderti da un'inchiodatura, proteggi il pezzo inchiodato, interponi un altro pezzo o togli dalla linea il re o la donna. Qui Ae7 chiude la diagonale e il cavallo torna libero."
+        },
         "u3-l02-s09": {
           "prompt": "Sfrutta l'inchiodatura.",
           "hint": "Cerca un pezzo che non si può muovere perché dietro c'è il re o la donna.",
@@ -100,13 +130,23 @@
       "title": "L'infilata",
       "summary": "L'inchiodatura al contrario",
       "steps": {
-        "u3-l09-s01": { "text": "La torre dà scacco al re e, dietro di lui, sulla stessa colonna, c'è la donna. Il re deve spostarsi e la torre prende la donna. Questa è un'infilata: attacchi prima il pezzo che vale di più e, quando si sposta, cade quello che c'era dietro." },
-        "u3-l09-s02": { "text": "È il contrario dell'inchiodatura. Qui l'alfiere inchioda il cavallo in c6: il pezzo davanti vale meno di quello dietro e non può muoversi. Nell'infilata, quello davanti vale di più: deve allontanarsi e lascia senza protezione quello che resta dietro." },
+        "u3-l09-s01": {
+          "text": "La torre dà scacco al re e, dietro di lui, sulla stessa colonna, c'è la donna. Il re deve spostarsi e la torre prende la donna. Questa è un'infilata: attacchi prima il pezzo che vale di più e, quando si sposta, cade quello che c'era dietro."
+        },
+        "u3-l09-s02": {
+          "text": "È il contrario dell'inchiodatura. Qui l'alfiere inchioda il cavallo in c6: il pezzo davanti vale meno di quello dietro e non può muoversi. Nell'infilata, quello davanti vale di più: deve allontanarsi e lascia senza protezione quello che resta dietro."
+        },
         "u3-l09-s03": {
           "prompt": "L'alfiere in f3 attacca la donna e dietro c'è la torre in a8. È un'inchiodatura o un'infilata?",
-          "options": ["Inchiodatura", "Infilata"],
+          "options": [
+            "Inchiodatura",
+            "Infilata"
+          ],
           "explanation": "È un'infilata: la donna vale più della torre e va davanti. Se si sposta, l'alfiere cattura la torre.",
-          "feedback": ["Guarda quale pezzo è davanti: quello che vale di più o quello che vale di meno?", ""]
+          "feedback": [
+            "Guarda quale pezzo è davanti: quello che vale di più o quello che vale di meno?",
+            ""
+          ]
         },
         "u3-l09-s04": {
           "prompt": "Dai scacco con la torre affinché il re si sposti e tu possa catturare la donna.",
@@ -122,18 +162,30 @@
           "prompt": "Tocca i due pezzi neri che l'alfiere ha infilati.",
           "hint": "Segui la diagonale dell'alfiere: passa per un pezzo e arriva a un altro, più indietro."
         },
-        "u3-l09-s07": { "text": "Per evitare un'infilata, guarda le traverse, le colonne e le diagonali prima di muovere. Se il tuo re e un altro pezzo prezioso rimangono sulla stessa linea e l'avversario ha una torre, una donna o un alfiere che punta su quella linea, separali. Qui la torre in h1 minaccia Th5+: se sposti il re o la donna fuori dalla traversa 5, la eviti." },
+        "u3-l09-s07": {
+          "text": "Per evitare un'infilata, guarda le traverse, le colonne e le diagonali prima di muovere. Se il tuo re e un altro pezzo prezioso rimangono sulla stessa linea e l'avversario ha una torre, una donna o un alfiere che punta su quella linea, separali. Qui la torre in h1 minaccia Th5+: se sposti il re o la donna fuori dalla traversa 5, la eviti."
+        },
         "u3-l09-s08": {
           "prompt": "Sfrutta l'infilata.",
           "success": "Ben risolto: questa posizione viene da una partita vera.",
           "hint": "Cerca uno scacco che obblighi il re ad allontanarsi e lasci senza protezione il pezzo che è dietro.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l09-s09": {
           "prompt": "Sfrutta l'infilata.",
           "success": "Ben risolto: questa posizione viene da una partita vera.",
           "hint": "Cerca uno scacco che obblighi il re ad allontanarsi e lasci senza protezione il pezzo che è dietro.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -141,7 +193,9 @@
       "title": "L'attacco di scoperta",
       "summary": "Un pezzo si sposta e ne scopre un altro",
       "steps": {
-        "u3-l03-s01": { "text": "In un attacco di scoperta, un pezzo si muove e scopre l'attacco di quello che stava dietro. Qui l'alfiere dà scacco e, nello stesso momento, la torre attacca la donna." },
+        "u3-l03-s01": {
+          "text": "In un attacco di scoperta, un pezzo si muove e scopre l'attacco di quello che stava dietro. Qui l'alfiere dà scacco e, nello stesso momento, la torre attacca la donna."
+        },
         "u3-l03-s02": {
           "prompt": "Muovi il cavallo con scacco e vinci la donna.",
           "hint": "Se il cavallo lascia e4 dando scacco, la torre attacca la donna e non c'è tempo per salvarla.",
@@ -154,9 +208,17 @@
         },
         "u3-l03-s04": {
           "prompt": "Quale pezzo bianco devi muovere perché la torre attacchi la donna?",
-          "options": ["L'alfiere in e4", "La torre in e1", "Il re"],
+          "options": [
+            "L'alfiere in e4",
+            "La torre in e1",
+            "Il re"
+          ],
           "explanation": "L'alfiere chiude la colonna e: quando si muove, la torre attacca la donna.",
-          "feedback": ["", "La torre è già sulla colonna: a chiuderla è un altro pezzo.", "Il re non è sulla colonna e."]
+          "feedback": [
+            "",
+            "La torre è già sulla colonna: a chiuderla è un altro pezzo.",
+            "Il re non è sulla colonna e."
+          ]
         },
         "u3-l03-s05": {
           "prompt": "Tocca il pezzo bianco che, muovendosi, scopre un attacco alla donna nera.",
@@ -167,7 +229,9 @@
           "hint": "L'alfiere può spostarsi scoprendo lo scacco e, nello stesso momento, attaccare la donna in c8.",
           "success": "Corretto. Af5+ e poi Axc8: lo scacco della torre non ha lasciato il tempo di salvare la donna."
         },
-        "u3-l03-s07": { "text": "Per trovare gli attacchi di scoperta, cerca tuoi pezzi allineati con il re o la donna dell'avversario, con un altro tuo pezzo in mezzo. Se il pezzo in mezzo si muove con una minaccia, l'avversario non può parare entrambe le minacce." },
+        "u3-l03-s07": {
+          "text": "Per trovare gli attacchi di scoperta, cerca tuoi pezzi allineati con il re o la donna dell'avversario, con un altro tuo pezzo in mezzo. Se il pezzo in mezzo si muove con una minaccia, l'avversario non può parare entrambe le minacce."
+        },
         "u3-l03-s08": {
           "prompt": "Trova l'attacco di scoperta.",
           "hint": "Muovi il pezzo che copre un altro tuo pezzo: così attacchi due cose insieme.",
@@ -184,7 +248,9 @@
       "title": "Scacco doppio e attacco doppio",
       "summary": "Due minacce in una mossa",
       "steps": {
-        "u3-l04-s01": { "text": "Nello scacco doppio, due pezzi danno scacco insieme. Non si può interporre un pezzo né catturarli entrambi: resta solo da muovere il re. Qui la donna nera potrebbe catturare il cavallo, ma lo scacco della torre resterebbe." },
+        "u3-l04-s01": {
+          "text": "Nello scacco doppio, due pezzi danno scacco insieme. Non si può interporre un pezzo né catturarli entrambi: resta solo da muovere il re. Qui la donna nera potrebbe catturare il cavallo, ma lo scacco della torre resterebbe."
+        },
         "u3-l04-s02": {
           "prompt": "Dai scacco doppio con il cavallo e l'alfiere.",
           "hint": "Se il cavallo lascia la diagonale dell'alfiere dando scacco, sono due scacchi insieme.",
@@ -195,7 +261,9 @@
           "hint": "Il cavallo può dare scacco e scoprire quello della torre. Il re è circondato dai suoi pezzi.",
           "success": "Corretto. Scacco doppio e matto: il re non ha dove andare."
         },
-        "u3-l04-s04": { "text": "La donna è esperta di attacchi doppi: può attaccare due pezzi indifesi insieme, su linee diverse." },
+        "u3-l04-s04": {
+          "text": "La donna è esperta di attacchi doppi: può attaccare due pezzi indifesi insieme, su linee diverse."
+        },
         "u3-l04-s05": {
           "prompt": "Dai scacco con la donna e attacca la torre nella stessa mossa.",
           "hint": "Cerca uno scacco sulla diagonale del re che punti anche alla torre in a2.",
@@ -208,9 +276,17 @@
         },
         "u3-l04-s07": {
           "prompt": "Perché lo scacco doppio è così forte?",
-          "options": ["Si risponde solo muovendo il re", "È sempre matto", "Guadagna sempre la donna"],
+          "options": [
+            "Si risponde solo muovendo il re",
+            "È sempre matto",
+            "Guadagna sempre la donna"
+          ],
           "explanation": "Con due scacchi insieme non basta interporre un pezzo o catturarne uno: il re deve muoversi.",
-          "feedback": ["", "Non è sempre matto: a volte il re ha una casella libera.", "Dipende dalla posizione: di sicuro il re deve muoversi."]
+          "feedback": [
+            "",
+            "Non è sempre matto: a volte il re ha una casella libera.",
+            "Dipende dalla posizione: di sicuro il re deve muoversi."
+          ]
         },
         "u3-l04-s08": {
           "prompt": "Dai scacco doppio.",
@@ -228,7 +304,9 @@
       "title": "Eliminare il difensore",
       "summary": "Cattura chi difende",
       "steps": {
-        "u3-l05-s01": { "text": "Se un pezzo ne difende un altro, cattura o cambia quello che difende: l'altro resta senza protezione. Qui il cavallo in f6 difende la torre in d5. Se lo catturi con scacco, non c'è tempo per salvare la torre." },
+        "u3-l05-s01": {
+          "text": "Se un pezzo ne difende un altro, cattura o cambia quello che difende: l'altro resta senza protezione. Qui il cavallo in f6 difende la torre in d5. Se lo catturi con scacco, non c'è tempo per salvare la torre."
+        },
         "u3-l05-s02": {
           "prompt": "Tocca il pezzo nero che difende la torre in d5.",
           "hint": "Cerca quale pezzo nero potrebbe riprendere in d5."
@@ -250,11 +328,21 @@
         },
         "u3-l05-s06": {
           "prompt": "Quale mossa vince più materiale?",
-          "options": ["Axf6+ e poi Cxd5", "Cxd5 subito", "Ah4"],
+          "options": [
+            "Axf6+ e poi Cxd5",
+            "Cxd5 subito",
+            "Ah4"
+          ],
           "explanation": "Cxd5 Cxd5 cambia la torre con un cavallo. Giocando prima Axf6+ vinci la torre intera: il difensore non c'è più.",
-          "feedback": ["", "Cxd5 guadagna qualcosa, ma il cavallo in f6 riprende. Prima elimina il difensore.", "Ah4 non vince nulla."]
+          "feedback": [
+            "",
+            "Cxd5 guadagna qualcosa, ma il cavallo in f6 riprende. Prima elimina il difensore.",
+            "Ah4 non vince nulla."
+          ]
         },
-        "u3-l05-s07": { "text": "Prima di attaccare un pezzo, guarda chi lo difende. Se puoi catturare o cambiare il difensore, il pezzo resta in presa." },
+        "u3-l05-s07": {
+          "text": "Prima di attaccare un pezzo, guarda chi lo difende. Se puoi catturare o cambiare il difensore, il pezzo resta in presa."
+        },
         "u3-l05-s08": {
           "prompt": "Elimina il difensore e vinci materiale.",
           "hint": "Cerca quale pezzo ne difende un altro e catturalo o cambialo.",
@@ -271,7 +359,9 @@
       "title": "La deviazione",
       "summary": "Togli il difensore dal suo posto",
       "steps": {
-        "u3-l06-s01": { "text": "La deviazione obbliga un pezzo a smettere di difendere una casella. Qui la torre in d8 difende la donna e l'ultima traversa. Se la donna bianca cattura, la torre deve riprendere e lascia libera e8." },
+        "u3-l06-s01": {
+          "text": "La deviazione obbliga un pezzo a smettere di difendere una casella. Qui la torre in d8 difende la donna e l'ultima traversa. Se la donna bianca cattura, la torre deve riprendere e lascia libera e8."
+        },
         "u3-l06-s02": {
           "prompt": "Tocca il pezzo nero che ha due compiti allo stesso tempo.",
           "hint": "Un pezzo difende la donna e anche la casella e8."
@@ -293,11 +383,21 @@
         },
         "u3-l06-s06": {
           "prompt": "Quale pezzo nero è sovraccarico?",
-          "options": ["La torre in c8", "L'alfiere in c6", "Il re"],
+          "options": [
+            "La torre in c8",
+            "L'alfiere in c6",
+            "Il re"
+          ],
           "explanation": "La torre in c8 difende l'alfiere e anche l'ultima traversa: non può fare entrambe le cose.",
-          "feedback": ["", "L'alfiere non difende nulla di importante: è la torre a difenderlo.", "Il re è chiuso dai suoi pedoni, ma non difende nulla."]
+          "feedback": [
+            "",
+            "L'alfiere non difende nulla di importante: è la torre a difenderlo.",
+            "Il re è chiuso dai suoi pedoni, ma non difende nulla."
+          ]
         },
-        "u3-l06-s07": { "text": "Un pezzo che difende due cose insieme è sovraccarico. Se lo obblighi a occuparsi di una, l'altra resta senza difesa." },
+        "u3-l06-s07": {
+          "text": "Un pezzo che difende due cose insieme è sovraccarico. Se lo obblighi a occuparsi di una, l'altra resta senza difesa."
+        },
         "u3-l06-s08": {
           "prompt": "Devia il difensore.",
           "hint": "Obbliga un pezzo avversario a smettere di difendere una casella, quasi sempre con uno scacco.",
@@ -314,7 +414,9 @@
       "title": "Matto sull'ultima traversa e matto del barbiere",
       "summary": "Due matti da conoscere",
       "steps": {
-        "u3-l07-s01": { "text": "Nel matto sull'ultima traversa, il re resta chiuso dai suoi stessi pedoni sull'ultima traversa, e una torre o la donna dà matto." },
+        "u3-l07-s01": {
+          "text": "Nel matto sull'ultima traversa, il re resta chiuso dai suoi stessi pedoni sull'ultima traversa, e una torre o la donna dà matto."
+        },
         "u3-l07-s02": {
           "prompt": "Dai matto sull'ultima traversa.",
           "hint": "Il re nero non può uscire dall'ultima traversa.",
@@ -325,14 +427,26 @@
           "hint": "Il re bianco è chiuso dai suoi pedoni.",
           "success": "Corretto. Te1 è matto."
         },
-        "u3-l07-s04": { "text": "Per evitarlo, dai una via d'uscita al re: una mossa di pedone come h3 lascia libera h2. Serve anche avere una torre che sorvegli l'ultima traversa." },
+        "u3-l07-s04": {
+          "text": "Per evitarlo, dai una via d'uscita al re: una mossa di pedone come h3 lascia libera h2. Serve anche avere una torre che sorvegli l'ultima traversa."
+        },
         "u3-l07-s05": {
           "prompt": "Il Nero minaccia Td1 matto. Quale mossa lo impedisce?",
-          "options": ["h3", "a3", "b4"],
+          "options": [
+            "h3",
+            "a3",
+            "b4"
+          ],
           "explanation": "Con h3, il re ha la casella h2 per fuggire: Td1+ non è più matto.",
-          "feedback": ["", "a3 non dà nessuna via d'uscita al re.", "b4 non dà nessuna via d'uscita al re."]
+          "feedback": [
+            "",
+            "a3 non dà nessuna via d'uscita al re.",
+            "b4 non dà nessuna via d'uscita al re."
+          ]
         },
-        "u3-l07-s06": { "text": "Il matto del barbiere: la donna e l'alfiere attaccano insieme f7, la casella debole difesa solo dal re. Se il Nero non se ne accorge, Dxf7 è matto." },
+        "u3-l07-s06": {
+          "text": "Il matto del barbiere: la donna e l'alfiere attaccano insieme f7, la casella debole difesa solo dal re. Se il Nero non se ne accorge, Dxf7 è matto."
+        },
         "u3-l07-s07": {
           "prompt": "Giochi col Nero. La donna e l'alfiere minacciano Dxf7 matto. Difenditi.",
           "hint": "Difendi f7 con la donna o il cavallo, oppure attacca la donna bianca con un pedone.",
@@ -340,9 +454,17 @@
         },
         "u3-l07-s08": {
           "prompt": "Quale casella attaccano insieme la donna e l'alfiere bianchi?",
-          "options": ["f7", "e5", "h7"],
+          "options": [
+            "f7",
+            "e5",
+            "h7"
+          ],
           "explanation": "f7: la attaccano la donna in h5 e l'alfiere in c4, e la difende solo il re.",
-          "feedback": ["", "e5 è attaccata solo dalla donna.", "h7 è attaccata solo dalla donna, e la difende la torre."]
+          "feedback": [
+            "",
+            "e5 è attaccata solo dalla donna.",
+            "h7 è attaccata solo dalla donna, e la difende la torre."
+          ]
         },
         "u3-l07-s09": {
           "prompt": "Dai matto sull'ultima traversa.",
@@ -356,20 +478,99 @@
         }
       }
     },
+    "u9-l01": {
+      "title": "Pezzi indifesi",
+      "summary": "Un pezzo senza difesa è un bersaglio",
+      "steps": {
+        "u9-l01-s01": {
+          "text": "La donna bianca è in c5 e nessun pezzo la difende. La donna nera in e7 la attacca e la cattura gratis. Un pezzo che nessuno difende è un pezzo indifeso."
+        },
+        "u9-l01-s02": {
+          "text": "L'alfiere nero in f2 ha dato scacco, ma nessun pezzo lo protegge: il re lo cattura. Prima di catturare, controlla che il pezzo dell'avversario non abbia difesa; prima di giocare, controlla che i tuoi abbiano."
+        },
+        "u9-l01-s03": {
+          "prompt": "Tocca i due pezzi bianchi che nessuno difende. Non contare il re né i pedoni.",
+          "hint": "Cerca i pezzi bianchi che nessun altro pezzo o pedone bianco raggiunge."
+        },
+        "u9-l01-s04": {
+          "prompt": "Quanti pezzi neri sono indifesi? Non contare il re né i pedoni.",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "explanation": "Ci sono quattro pezzi neri indifesi. Quando l'avversario ha tanti pezzi indifesi, c'è quasi sempre una tattica in vista.",
+          "feedback": [
+            "Riconta: controlla ogni pezzo nero e vedi se qualcos'altro lo protegge.",
+            "Riconta: controlla ogni pezzo nero e vedi se qualcos'altro lo protegge.",
+            "",
+            "Riconta: controlla ogni pezzo nero e vedi se qualcos'altro lo protegge."
+          ]
+        },
+        "u9-l01-s05": {
+          "prompt": "Cattura il pezzo che nessuno difende.",
+          "hint": "Uno dei pezzi bianchi è indifeso e puoi catturarlo con scacco.",
+          "success": "Corretto. Txe1+ vince un pezzo che nessuno difendeva."
+        },
+        "u9-l01-s06": {
+          "prompt": "Cattura il pezzo che nessuno difende.",
+          "hint": "Il pezzo che ha appena dato scacco non ha difesa: catturalo.",
+          "success": "Corretto. Rxf2 vince un pezzo che nessuno difendeva."
+        },
+        "u9-l01-s07": {
+          "prompt": "Cattura il pezzo che nessuno difende.",
+          "hint": "La donna nera è su una casella dove nessuno la protegge.",
+          "success": "Corretto. Rxb2 vince un pezzo che nessuno difendeva."
+        },
+        "u9-l01-s08": {
+          "prompt": "Approfitta del pezzo indifeso.",
+          "success": "Ben risolto: questa posizione è uscita da una partita reale.",
+          "hint": "Cerca i pezzi dell'avversario che nessuno difende e inizia col più prezioso.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u9-l01-s09": {
+          "prompt": "Approfitta del pezzo indifeso.",
+          "success": "Ben risolto: questa posizione è uscita da una partita reale.",
+          "hint": "Cerca i pezzi dell'avversario che nessuno difende e inizia col più prezioso.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
     "u3-l08": {
       "title": "Prima di muovere: scacchi, catture e minacce",
       "summary": "La routine per non perdere pezzi",
       "steps": {
-        "u3-l08-s01": { "text": "Prima di ogni mossa, una routine: per prima cosa, che cosa minaccia l'ultima mossa dell'avversario? Poi controlla i tuoi scacchi, le tue catture e le tue minacce." },
+        "u3-l08-s01": {
+          "text": "Prima di ogni mossa, una routine: per prima cosa, che cosa minaccia l'ultima mossa dell'avversario? Poi controlla i tuoi scacchi, le tue catture e le tue minacce."
+        },
         "u3-l08-s02": {
           "prompt": "Il Nero ha appena giocato b5. Tocca il tuo pezzo che è ora sotto attacco.",
           "hint": "Il pedone in b5 attacca in diagonale."
         },
         "u3-l08-s03": {
           "prompt": "Il Nero ha appena giocato Cb4. Che cosa minaccia?",
-          "options": ["Una forchetta in c2: scacco al re e attacco alla torre", "Un'inchiodatura", "Un attacco di scoperta"],
+          "options": [
+            "Una forchetta in c2: scacco al re e attacco alla torre",
+            "Un'inchiodatura",
+            "Un attacco di scoperta"
+          ],
           "explanation": "Da c2, il cavallo darebbe scacco al re in e1 e attaccherebbe la torre in a1.",
-          "feedback": ["", "Guarda dove può saltare il cavallo.", "Guarda dove può saltare il cavallo."]
+          "feedback": [
+            "",
+            "Guarda dove può saltare il cavallo.",
+            "Guarda dove può saltare il cavallo."
+          ]
         },
         "u3-l08-s04": {
           "prompt": "Impedisci la forchetta del cavallo in c2.",
@@ -385,7 +586,9 @@
           "prompt": "Tocca tutti i pezzi neri che puoi catturare gratis.",
           "hint": "Cerca pezzi neri attaccati dai tuoi pezzi e non difesi da nessuno."
         },
-        "u3-l08-s07": { "text": "Le tattiche di questa unità possono capitare anche a te. Controllare scacchi, catture e minacce prima di muovere serve a vederle arrivare." },
+        "u3-l08-s07": {
+          "text": "Le tattiche di questa unità possono capitare anche a te. Controllare scacchi, catture e minacce prima di muovere serve a vederle arrivare."
+        },
         "u3-l08-s08": {
           "prompt": "Controlla scacchi, catture e minacce.",
           "hint": "Guarda quali pezzi dell'avversario sono rimasti indifesi dopo la sua mossa.",

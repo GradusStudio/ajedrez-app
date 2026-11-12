@@ -1,280 +1,623 @@
 {
-  "title": "Pezzi e pedoni",
+  "title": "Attacco e difesa",
   "lessons": {
-    "u9-l01": {
-      "title": "Pezzi indifesi",
-      "summary": "Un pezzo senza difesa è un bersaglio",
+    "u10-l01": {
+      "title": "Il re che non ha arroccato",
+      "summary": "Un re al centro è un bersaglio",
       "steps": {
-        "u9-l01-s01": { "text": "La donna bianca è in c5 e nessun pezzo la difende. La donna nera in e7 la attacca e la cattura gratis. Un pezzo che nessuno difende è un pezzo indifeso." },
-        "u9-l01-s02": { "text": "L'alfiere nero in f2 ha dato scacco, ma nessun pezzo lo protegge: il re lo cattura. Prima di catturare, controlla che il pezzo dell'avversario non abbia difesa; prima di giocare, controlla che i tuoi abbiano." },
-        "u9-l01-s03": {
-          "prompt": "Tocca i due pezzi bianchi che nessuno difende. Non contare il re né i pedoni.",
-          "hint": "Cerca i pezzi bianchi che nessun altro pezzo o pedone bianco raggiunge."
+        "u10-l01-s01": {
+          "text": "Il re bianco è ancora in f1 senza aver arroccato, e i suoi pezzi non lo proteggono bene. Con Dh1+ il Nero forza il cambio di donne, la torre ricattura in h1 con scacco, il re deve andare in f2 e la torre cattura in d1. Un re che non ha arroccato dà agli attaccanti il tempo di cui hanno bisogno."
         },
-        "u9-l01-s04": {
-          "prompt": "Quanti pezzi neri sono indifesi? Non contare il re né i pedoni.",
-          "options": ["2", "3", "4", "5"],
-          "explanation": "Ci sono quattro pezzi neri indifesi. Quando l'avversario ha tanti pezzi indifesi, c'è quasi sempre una tattica in vista.",
-          "feedback": ["Riconta: controlla ogni pezzo nero e vedi se qualcos'altro lo protegge.", "Riconta: controlla ogni pezzo nero e vedi se qualcos'altro lo protegge.", "", "Riconta: controlla ogni pezzo nero e vedi se qualcos'altro lo protegge."]
+        "u10-l01-s02": {
+          "text": "Il re nero è in d8 senza aver arroccato. Con Dh8+ il Bianco lo obbliga a interporre l'alfiere, con Td1+ lo manda in c8 e la donna cattura l'alfiere in e8 con scacco. Ogni scacco toglie una casella al re."
         },
-        "u9-l01-s05": {
-          "prompt": "Cattura il pezzo che nessuno difende.",
-          "hint": "Uno dei pezzi bianchi è indifeso e puoi catturarlo con scacco.",
-          "success": "Corretto. Txe1+ vince un pezzo che nessuno difendeva."
+        "u10-l01-s03": {
+          "prompt": "Quale di questi due re non ha ancora arroccato?",
+          "options": [
+            "Il re nero, in d8",
+            "Il re bianco, in c1",
+            "Entrambi hanno arroccato"
+          ],
+          "explanation": "Il re nero è ancora in d8, al centro, e le bianche hanno già messo il loro al sicuro in c1.",
+          "feedback": [
+            "",
+            "Il re bianco ha già fatto l'arrocco lungo: è in c1, dietro i suoi pedoni.",
+            "Uno dei due è ancora al centro."
+          ]
         },
-        "u9-l01-s06": {
-          "prompt": "Cattura il pezzo che nessuno difende.",
-          "hint": "Il pezzo che ha appena dato scacco non ha difesa: catturalo.",
-          "success": "Corretto. Rxf2 vince un pezzo che nessuno difendeva."
+        "u10-l01-s04": {
+          "prompt": "Tocca il re che non ha ancora arroccato.",
+          "hint": "È il re che rimane al centro, circondato dai suoi pezzi."
         },
-        "u9-l01-s07": {
-          "prompt": "Cattura il pezzo che nessuno difende.",
-          "hint": "La donna nera è su una casella dove nessuno la protegge.",
-          "success": "Corretto. Rxb2 vince un pezzo che nessuno difendeva."
+        "u10-l01-s05": {
+          "prompt": "Attacca il re che non ha arroccato.",
+          "hint": "Cerca una cattura o uno scacco che apra linee contro il re che è ancora al centro.",
+          "success": "Corretto. Dxe3 apre linee contro il re che non ha arroccato."
         },
-        "u9-l01-s08": {
-          "prompt": "Approfitta del pezzo indifeso.",
-          "success": "Ben risolto: questa posizione è uscita da una partita reale.",
-          "hint": "Cerca i pezzi dell'avversario che nessuno difende e inizia col più prezioso.",
-          "notes": ["", "", "", ""]
+        "u10-l01-s06": {
+          "prompt": "Attacca il re che non ha arroccato.",
+          "hint": "Cerca uno scacco che porti il re in una casella dove perde materiale.",
+          "success": "Corretto. Tg8+ apre linee contro il re che non ha arroccato."
         },
-        "u9-l01-s09": {
-          "prompt": "Approfitta del pezzo indifeso.",
-          "success": "Ben risolto: questa posizione è uscita da una partita reale.",
-          "hint": "Cerca i pezzi dell'avversario che nessuno difende e inizia col più prezioso.",
-          "notes": ["", "", "", ""]
+        "u10-l01-s07": {
+          "prompt": "Attacca il re che non ha arroccato.",
+          "hint": "Cerca uno scacco o un cambio che apra linee contro il re che è ancora al centro.",
+          "success": "Corretto. Dxh5+ apre linee contro il re che non ha arroccato."
+        },
+        "u10-l01-s08": {
+          "prompt": "Attacca il re che non ha arroccato.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca gli scacchi al re: il re che non ha arroccato ha poche caselle e nessun posto dove nascondersi.",
+          "notes": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u10-l01-s09": {
+          "prompt": "Attacca il re che non ha arroccato.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca gli scacchi al re: il re che non ha arroccato ha poche caselle e nessun posto dove nascondersi.",
+          "notes": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
-    "u9-l02": {
-      "title": "Quando cambiare i pezzi",
-      "summary": "Cambiare o non cambiare",
+    "u10-l02": {
+      "title": "Attaccare con arrocchi dallo stesso lato",
+      "summary": "Tutti contro il pedone h",
       "steps": {
-        "u9-l02-s01": { "text": "Quasi tutti i cambi hanno aspetti buoni e aspetti cattivi. Conviene cambiare se stai guadagnando materiale, se il cambio lascia una debolezza all'avversario, se ti stanno attaccando o se hai poco spazio. Non conviene se stai perdendo materiale, se sei tu ad attaccare o se hai più spazio." },
-        "u9-l02-s02": {
-          "prompt": "Hai una torre in più e muovono le bianche. Cosa ti conviene?",
-          "options": ["Evitare i cambi", "Attaccare senza cambiare nulla", "Cambiare i pezzi per semplificare"],
-          "explanation": "Con una torre in più, ogni cambio rende il tuo vantaggio più grande: meno pezzi rimangono, più pesa avere una torre in più.",
-          "feedback": ["Evitare i cambi lascia vivi i pezzi dell'avversario, che sono quelli che potrebbero complicarti il gioco.", "Attaccare senza cambiare nulla è rischioso quando hai già il vantaggio.", ""]
+        "u10-l02-s01": {
+          "text": "Con entrambi i re arroccati sul lato di re, l'attacco di solito è diretto contro il pedone h (h7 o h2). Qui Axh7+ dà scacco e, poiché l'alfiere lascia d3, la donna bianca in d1 vede la donna nera in d6: il re cattura l'alfiere e Dxd6 vince la donna."
         },
-        "u9-l02-s03": {
-          "prompt": "Stai perdendo una torre e muovono le bianche. Cosa ti conviene?",
-          "options": ["Cambiare solo le donne", "Evitare i cambi", "Cambiare i pezzi per semplificare"],
-          "explanation": "Con meno materiale, ogni cambio ti lascia con meno risorse: conviene mantenere i pezzi sulla scacchiera per avere opzioni.",
-          "feedback": ["Cambiare le donne ti lascia anche con meno risorse per complicare.", "", "Ogni cambio avvicina la partita a una fine dove la torre mancante si sente di più."]
+        "u10-l02-s02": {
+          "text": "I pedoni in f7, g7 e h7 sono lo scudo del re nero, e la donna insieme all'alfiere in c2 punta su h7. Dxh7+ costringe il re ad andare in f8 e Dh8 è matto."
         },
-        "u9-l02-s04": {
-          "prompt": "Hai meno spazio dell'avversario. Cosa ti conviene?",
-          "options": ["Cambiare i pezzi che ti stringono", "Evitare tutti i cambi", "Avanzare i pedoni"],
-          "explanation": "Con poco spazio i pezzi si ostacolano. Ogni cambio libera caselle per quelli che rimangono.",
-          "feedback": ["", "Evitare i cambi lascia i tuoi pezzi stretti.", "Avanzare i pedoni senza supporto di solito crea debolezze."]
-        },
-        "u9-l02-s05": {
-          "prompt": "Stai attaccando il re dell'avversario con diversi pezzi. Cosa ti conviene?",
-          "options": ["Cambiare i pezzi che attaccano", "Cambiare la donna subito", "Mantenere i pezzi d'attacco sulla scacchiera"],
-          "explanation": "Per attaccare hai bisogno di pezzi. Se cambi quelli che attaccano, l'avversario si difende con più calma.",
-          "feedback": ["Cambiare i pezzi che attaccano è quello che cerca l'avversario che si difende.", "Cambiare la donna toglie il pezzo che attacca di più.", ""]
-        },
-        "u9-l02-s06": { "text": "Riassunto: cambia quando stai vincendo, quando ti attaccano o quando ti manca spazio. Non cambiare quando stai perdendo, quando attacchi o quando hai più spazio. Prima di ogni cambio, chiediti cosa ti lascia e cosa lascia all'avversario." }
-      }
-    },
-    "u9-l03": {
-      "title": "Lo spazio",
-      "summary": "Le caselle della metà avversaria che controlli",
-      "steps": {
-        "u9-l03-s01": { "text": "Lo spazio è il numero di caselle del campo avversario che controllano i tuoi pezzi e pedoni. In questa posizione le bianche controllano 8 caselle del campo nero e le nere 5 del campo bianco: le bianche hanno più spazio, soprattutto grazie al loro pedone avanzato in e5." },
-        "u9-l03-s02": {
-          "prompt": "Tocca le due caselle del campo nero che controlla il pedone in e5.",
-          "hint": "Un pedone controlla le due caselle diagonali che ha davanti."
-        },
-        "u9-l03-s03": {
-          "prompt": "Chi ha più spazio in questa posizione?",
-          "options": ["I due uguali", "Il Bianco", "Il Nero"],
-          "explanation": "Il Bianco controlla 12 caselle nel campo nero; il Nero, 7 nel campo bianco.",
-          "feedback": ["Non è uguale: il Bianco controlla più caselle nel campo dell'avversario.", "", "Conta le caselle del campo avversario che controlla ogni parte: le bianche controllano di più."]
-        },
-        "u9-l03-s04": {
-          "prompt": "Cosa conviene di solito al lato che ha più spazio?",
-          "options": ["Evitare i cambi di pezzi", "Cambiare le donne subito", "Smettere di muovere i pedoni"],
-          "explanation": "Con più spazio, i suoi pezzi si muovono comodamente. Ogni cambio libera l'avversario, quindi conviene a lui mantenere i pezzi.",
-          "feedback": ["", "Cambiare le donne subito libera l'avversario che è stretto.", "Smettere di muovere i pedoni non aiuta a mantenere lo spazio."]
-        },
-        "u9-l03-s05": {
-          "prompt": "Cosa conviene di solito al lato che ha meno spazio?",
-          "options": ["Evitare tutti i cambi", "Stringere ancora di più i suoi pezzi", "Cambiare i pezzi che lo stringono"],
-          "explanation": "Con poco spazio i pezzi si ostacolano. Ogni cambio libera caselle per quelli che rimangono.",
-          "feedback": ["Evitare i cambi lascia i pezzi stretti.", "Stringere ancora di più i pezzi peggiora il problema.", ""]
-        },
-        "u9-l03-s06": { "text": "Riassunto: lo spazio si conta nelle caselle del campo avversario che controlli. Chi ha più spazio evita i cambi; chi ne ha meno, li cerca." }
-      }
-    },
-    "u9-l04": {
-      "title": "Posizioni aperte e chiuse",
-      "summary": "Come giocano i pezzi a seconda dei pedoni",
-      "steps": {
-        "u9-l04-s01": { "text": "Qui non c'è nessun pedone bloccato di fronte a un pedone avversario: il centro è aperto. I pezzi di lungo raggio, come gli alfieri e le torri, hanno linee libere e le minacce arrivano velocemente." },
-        "u9-l04-s02": { "text": "In questa altra posizione i pedoni in d5 e d6, e quelli in e4 e e5, sono faccia a faccia e bloccati. Il centro è chiuso: i pezzi hanno poche linee e la partita si gioca con manovre lente e rotture di pedoni." },
-        "u9-l04-s03": {
-          "prompt": "Questa posizione è aperta o chiusa?",
-          "options": ["Chiusa", "Aperta"],
-          "explanation": "I pedoni in d4 e d5, e quelli in e5 e e6, sono bloccati faccia a faccia. Il centro è chiuso.",
-          "feedback": ["", "Guarda i pedoni al centro: ci sono due coppie faccia a faccia che non possono avanzare."]
-        },
-        "u9-l04-s04": {
-          "prompt": "Tocca i due pedoni bianchi che sono bloccati da un pedone nero.",
-          "hint": "Ognuno ha un pedone nero proprio davanti."
-        },
-        "u9-l04-s05": {
-          "prompt": "In una posizione chiusa, quali pezzi funzionano meglio di solito?",
-          "options": ["I cavalli, che saltano sui pedoni", "Gli alfieri a lungo raggio", "Le torri in colonne aperte"],
-          "explanation": "Con i pedoni che bloccano le linee, i cavalli possono saltare sopra e cercare caselle forti.",
-          "feedback": ["", "Gli alfieri soffrono quando i pedoni chiudono le loro diagonali.", "Con il centro chiuso ci sono poche colonne aperte per le torri."]
-        },
-        "u9-l04-s06": {
-          "prompt": "In una posizione aperta, quali pezzi funzionano meglio di solito?",
-          "options": ["I cavalli, che necessitano caselle fisse", "I pedoni, che avanzano senza ostacoli", "Gli alfieri e le torri, che hanno linee lunghe"],
-          "explanation": "Con linee libere, gli alfieri e le torri arrivano lontano e creano minacce da lontano.",
-          "feedback": ["I cavalli preferiscono caselle fisse e centri chiusi.", "I pedoni non sono i pezzi che vincono nelle posizioni aperte.", ""]
-        },
-        "u9-l04-s07": { "text": "Riassunto: con pedoni bloccati, il centro è chiuso e i cavalli saltano sopra. Con linee libere, il centro è aperto e alfieri e torri comandano." }
-      }
-    },
-    "u9-l05": {
-      "title": "Alfiere buono e alfiere cattivo",
-      "summary": "L'alfiere e i suoi pedoni",
-      "steps": {
-        "u9-l05-s01": { "text": "L'alfiere nero in c8 è un alfiere cattivo: ha 5 pedoni propri su caselle del suo colore, e quelli in b7 ed e6 chiudono entrambe le diagonali. I suoi pedoni lo lasciano senza via di fuga." },
-        "u9-l05-s02": { "text": "In questa posizione l'alfiere nero è uscito in f5 prima di giocare e6: è fuori dalla catena di pedoni e guarda verso l'esterno. È un alfiere buono, attivo, anche se i suoi pedoni sono ancora su caselle dello stesso colore." },
-        "u9-l05-s03": {
-          "prompt": "Quale degli alfieri neri è quello cattivo?",
-          "options": ["Nessuno", "Quello in c8, che va sulle caselle chiare", "Quello in f8, che va sulle caselle scure"],
-          "explanation": "L'alfiere in c8 ha 5 pedoni propri sul suo colore e quello in f8 solo 3: quello in c8 è l'alfiere cattivo.",
-          "feedback": ["I pedoni in e6 e d5 ostacolano l'alfiere in c8: ce n'è uno cattivo.", "", "L'alfiere in f8 ha solo 3 pedoni propri sul suo colore: ha più spazio."]
-        },
-        "u9-l05-s04": {
-          "prompt": "Tocca i due pedoni neri che chiudono le diagonali dell'alfiere in c8.",
-          "hint": "Ognuna delle due diagonali dell'alfiere finisce su un proprio pedone."
-        },
-        "u9-l05-s05": {
-          "prompt": "Cosa puoi fare con un alfiere cattivo?",
-          "options": ["Toglierlo dalla catena di pedoni o cambiarlo", "Mettere più pedoni sulle caselle del proprio colore", "Lasciarlo a casa per proteggerlo"],
-          "explanation": "Un alfiere cattivo migliora se esce dalla catena prima che si chiuda o se viene scambiato per un pezzo dell'avversario.",
-          "feedback": ["", "Più pedoni del suo colore lo ostacolano solo di più.", "Lasciarlo a casa lo tiene fuori dalla partita."]
-        },
-        "u9-l05-s06": { "text": "Riassunto: un alfiere è buono se i suoi pedoni sono su caselle dell'altro colore e cattivo se gli chiudono le diagonali. Meglio toglierlo prima che la catena di pedoni si chiuda." }
-      }
-    },
-    "u9-l06": {
-      "title": "Pedone arretrato e catene di pedoni",
-      "summary": "Dove attaccare la struttura di pedoni",
-      "steps": {
-        "u9-l06-s01": { "text": "Il pedone nero in d6 è un pedone arretrato: non ha pedoni ai lati che lo supportino e non può avanzare senza che il pedone in e4 lo catturi. La casella in d5, proprio davanti, è un bersaglio: un pezzo bianco può stabilirsi lì senza che nessun pedone nero lo scacci." },
-        "u9-l06-s02": { "text": "I pedoni bianchi in b2, c3, d4 ed e5 formano una catena. La base, b2, è l'unico pedone della catena che nessun altro pedone protegge. Se si attacca la base, tutta la catena rimane senza supporto; per questo le nere puntano con la donna su b2." },
-        "u9-l06-s03": {
-          "prompt": "Tocca il pedone nero arretrato.",
-          "hint": "È il pedone che non può avanzare senza che lo catturino e che nessun pedone proprio supporta da un lato."
-        },
-        "u9-l06-s04": {
-          "prompt": "Tocca la base della catena di pedoni bianchi.",
-          "hint": "È il pedone della catena che non ha nessun pedone proprio che lo protegga."
-        },
-        "u9-l06-s05": {
-          "prompt": "Come si gioca contro un pedone arretrato?",
-          "options": ["Cambiare tutti i pezzi tranne il pedone", "Avanzando un tuo pedone accanto ad esso", "Mettendo un pezzo sulla casella davanti e mettendo pressione sul pedone"],
-          "explanation": "Un pezzo sulla casella davanti lo lascia bloccato e senza supporto, e l'avversario deve difenderlo con i pezzi.",
-          "feedback": ["Cambiare i pezzi lascia l'avversario libero di difenderlo.", "Avanzare un pedone accanto ad esso non attacca il pedone arretrato.", ""]
-        },
-        "u9-l06-s06": {
-          "prompt": "Dove conviene attaccare una catena di pedoni?",
-          "options": ["Nel mezzo", "Alla base", "In punta"],
-          "explanation": "La base è il pedone che sostiene gli altri: se cade, l'intera catena perde il suo supporto.",
-          "feedback": ["I pedoni centrali sono protetti dalla base.", "", "La punta è protetta dal resto della catena."]
-        },
-        "u9-l06-s07": { "text": "Riassunto: contro un pedone arretrato, un pezzo sulla casella davanti. Contro una catena di pedoni, attacca la base della catena." }
-      }
-    },
-    "u9-l07": {
-      "title": "Torri attive",
-      "summary": "Colonne aperte e settima fila",
-      "steps": {
-        "u9-l07-s01": {
-          "text": "La colonna e è aperta e la torre di e1 può saltare a e7. Dalla settima fila attacca i pedoni di a7, b7, f7 e g7, e circonda il re nero sull'ultima fila."
-        },
-        "u9-l07-s02": {
-          "text": "Le torri devono anche essere collegate. Qui il re di g1 è tra le due torri della prima fila: se il re esce a h2, le torri si collegano e si proteggono a vicenda."
-        },
-        "u9-l07-s03": {
-          "prompt": "Dove è più forte una torre?",
-          "explanation": "Sulla settima fila la torre attacca pedoni e taglia il re avversario. È la casella più attiva.",
+        "u10-l02-s03": {
+          "prompt": "Quanti pezzi neri difendono il pedone in h7?",
           "options": [
-            "Sulla settima fila, attaccando pedoni",
-            "Nell'angolo, difendendo",
-            "Davanti al proprio re"
+            "1",
+            "2",
+            "3"
           ],
+          "explanation": "Lo difendono il re in g8 e il cavallo in f6: due difensori. Prima di attaccare, conta attaccanti e difensori.",
           "feedback": [
+            "Conta di nuovo: oltre al re, guarda quale altro pezzo nero arriva in h7.",
             "",
-            "Nell'angolo la torre è passiva: solo difende.",
-            "Davanti al re toglie caselle alla tua stessa pezzo."
+            "Conta di nuovo: sono meno di tre."
           ]
         },
-        "u9-l07-s04": {
-          "prompt": "Porta la torre di e1 sulla settima fila.",
-          "hint": "La colonna e è aperta. La torre può salire fino alla fila dei pedoni neri.",
-          "success": "Corretto. Te7 porta la torre sulla settima fila, dove attacca i pedoni e taglia il re."
+        "u10-l02-s04": {
+          "prompt": "Tocca i tre pedoni che proteggono il re nero.",
+          "hint": "Sono davanti al re, sulla traversa 7."
         },
-        "u9-l07-s05": {
-          "prompt": "Tocca la casella della settima fila a cui può andare la torre di e1.",
-          "hint": "Sali lungo la colonna aperta fino alla fila 7."
+        "u10-l02-s05": {
+          "prompt": "Attacca l'arrocco dell'avversario.",
+          "hint": "Con entrambi i re arroccati sul lato di re, cerca i pezzi che puntano alla traversa 8 o al pedone h.",
+          "success": "Corretto. Te8+ sfrutta l'attacco contro l'arrocco."
         },
-        "u9-l07-s06": {
-          "text": "Riepilogo: una torre vale molto con una colonna aperta, sulla settima fila e collegata al suo compagno. Una torre passiva, al contrario, è quasi un pezzo in meno."
+        "u10-l02-s06": {
+          "prompt": "Attacca l'arrocco dell'avversario.",
+          "hint": "Con entrambi i re arroccati sul lato di re, cerca i pezzi che puntano al pedone in h.",
+          "success": "Corretto. Axh2+ sfrutta l'attacco contro l'arrocco."
+        },
+        "u10-l02-s07": {
+          "prompt": "Attacca l'arrocco dell'avversario.",
+          "hint": "Cerca una cattura che lasci il re senza il pedone che lo protegge.",
+          "success": "Corretto. Dxg7# sfrutta l'attacco contro l'arrocco."
+        },
+        "u10-l02-s08": {
+          "prompt": "Attacca l'arrocco dell'avversario.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca i pezzi dell'avversario che difendono lo scudo di pedoni e toglili di mezzo.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u10-l02-s09": {
+          "prompt": "Attacca l'arrocco dell'avversario.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca i pezzi dell'avversario che difendono lo scudo di pedoni e toglili di mezzo.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u10-l02-s10": {
+          "prompt": "Attacca l'arrocco dell'avversario.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca i pezzi dell'avversario che difendono lo scudo di pedoni e toglili di mezzo.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
-    "u9-l08": {
-      "title": "Rotture e maggioranze di pedoni",
-      "summary": "Aprire il gioco e creare un pedone passato",
+    "u10-l03": {
+      "title": "Arrocchi opposti",
+      "summary": "Ogni lato attacca il re dell'altro",
       "steps": {
-        "u9-l08-s01": {
-          "text": "I bianchi hanno tre pedoni contro due sul fianco di donna: una maggioranza. Se avanzano i pedoni in ordine, possono creare un pedone passato che vincerà la finale."
+        "u10-l03-s01": {
+          "text": "I re sono su ali opposte: il bianco in b1 e il nero in g8. Il Nero attacca sull'ala di donna: Dxa2+ dà scacco, il re va in c1 e Da1 è matto. Con gli arrocchi opposti ogni lato attacca il re dell'altro e vince chi arriva prima."
         },
-        "u9-l08-s02": {
-          "text": "Una rottura è un avanzamento di pedone che apre una colonna o una diagonale. Qui c4 sfida il pedone di d5: se i neri catturano, apri la colonna c; se no, cambi pedoni in d5 e il tuo pedone di d4 ottiene più spazio."
+        "u10-l03-s02": {
+          "text": "Qui il re nero è in c8 e il bianco in g1. Le bianche attaccano sul lato di donna: Dxb7# è matto perché la torre in b1 protegge la donna e il re non può catturarla."
         },
-        "u9-l08-s03": {
-          "prompt": "Cos'è una maggioranza di pedoni?",
-          "explanation": "Una maggioranza è locale: tre pedoni contro due su un fianco possono creare un pedone passato.",
+        "u10-l03-s03": {
+          "prompt": "Con gli arrocchi opposti, cosa conviene di solito?",
           "options": [
-            "Avere più pedoni del rivale su un fianco",
-            "Avere più pezzi",
-            "Cambiare tutti i pedoni"
+            "Muovere i pedoni che proteggono il tuo re",
+            "Cambiare tutti i pezzi il prima possibile",
+            "Lanciare i pedoni e i pezzi contro il re avversario"
+          ],
+          "explanation": "Ogni lato attacca il re dell'altro: vince chi arriva prima. I pedoni si lanciano verso il re avversario, non verso il proprio.",
+          "feedback": [
+            "Muovere i pedoni della tua posizione di arrocco indebolisce il tuo re proprio quando l'avversario attacca.",
+            "Cambiare i pezzi spegne l'attacco e lascia entrambi senza gioco contro il re.",
+            ""
+          ]
+        },
+        "u10-l03-s04": {
+          "prompt": "Tocca i due re.",
+          "hint": "Uno è sul lato di donna e l'altro sul lato di re."
+        },
+        "u10-l03-s05": {
+          "prompt": "Attacca il re del lato di donna.",
+          "hint": "Cerca la cattura che lasci il re senza la sua protezione.",
+          "success": "Corretto. Txc7# attacca il re sul lato di donna."
+        },
+        "u10-l03-s06": {
+          "prompt": "Attacca il re del lato di donna.",
+          "hint": "Cerca uno scacco o una cattura che guadagni materiale mentre il re avversario è esposto.",
+          "success": "Corretto. Cxd6+ attacca il re sul lato di donna."
+        },
+        "u10-l03-s07": {
+          "prompt": "Attacca il re del lato di donna.",
+          "hint": "Cerca uno scacco o una cattura che guadagni materiale mentre il re avversario è esposto.",
+          "success": "Corretto. Axd7+ attacca il re sul lato di donna."
+        },
+        "u10-l03-s08": {
+          "prompt": "Attacca il re del lato di donna.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca gli scacchi al re: con gli arrocchi opposti l'attacco arriva in fretta.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u10-l03-s09": {
+          "prompt": "Attacca il re del lato di donna.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Cerca gli scacchi al re: con gli arrocchi opposti l'attacco arriva in fretta.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u10-l04": {
+      "title": "Difendere il re",
+      "summary": "Interporre un pezzo protetto",
+      "steps": {
+        "u10-l04-s01": {
+          "text": "Il Bianco dà scacco con Dd7+. Il Nero non fugge con il re: interpone la torre in c7, protetta dal re. Se la donna cattura, il re ricattura e il pezzo che attaccava scompare."
+        },
+        "u10-l04-s02": {
+          "text": "Il Nero dà scacco con la donna in a2. Il Bianco interpone la torre in c2, protetta dal re: la donna deve catturarla e il re la ricattura."
+        },
+        "u10-l04-s03": {
+          "prompt": "Quale pezzo protegge la torre che si interpone in c7?",
+          "options": [
+            "L'alfiere in c4",
+            "Il re in b7",
+            "La donna in b2"
+          ],
+          "explanation": "Il re in b7 è proprio accanto a c7: se la donna catturasse la torre, il re ricatturerebbe.",
+          "feedback": [
+            "L'alfiere in c4 è su un'altra diagonale e non protegge c7.",
+            "",
+            "La donna in b2 non arriva in c7."
+          ]
+        },
+        "u10-l04-s04": {
+          "prompt": "Tocca la casella dove si può interporre un pezzo allo scacco della donna.",
+          "hint": "È l'unica casella che c'è tra la donna e il re."
+        },
+        "u10-l04-s05": {
+          "prompt": "Rispondi allo scacco interponendo un pezzo protetto.",
+          "hint": "Se non puoi catturare il pezzo che dà scacco, guarda se puoi interporre un pezzo che il tuo re protegga.",
+          "success": "Corretto. Td7 interpone un pezzo protetto: se lo catturano, ricatturi."
+        },
+        "u10-l04-s06": {
+          "prompt": "Rispondi allo scacco interponendo un pezzo protetto.",
+          "hint": "Se non puoi catturare il pezzo che dà scacco, guarda se puoi interporre un pezzo che il tuo re protegga.",
+          "success": "Corretto. Tf7 interpone un pezzo protetto: se lo catturano, ricatturi."
+        },
+        "u10-l04-s07": {
+          "prompt": "Rispondi allo scacco interponendo un pezzo protetto.",
+          "hint": "Se non puoi catturare il pezzo che dà scacco, guarda se puoi interporre un pezzo che il tuo re protegga.",
+          "success": "Corretto. Ab6 interpone un pezzo protetto: se lo catturano, ricatturi."
+        },
+        "u10-l04-s08": {
+          "prompt": "Difendi il re.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Interponi un pezzo protetto: se lo catturano, ricatturi e si cambia il pezzo che attaccava.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u10-l04-s09": {
+          "prompt": "Difendi il re.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Interponi un pezzo protetto: se lo catturano, ricatturi e si cambia il pezzo che attaccava.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u6-l02": {
+      "title": "Profilassi",
+      "summary": "Anticipare il piano dell'avversario",
+      "steps": {
+        "u6-l02-s01": {
+          "text": "Prima di ogni mossa, chiediti: che cosa vuole fare il mio avversario? Impedire il suo piano prima che lo realizzi si chiama profilassi. In questa Italiana, l'alfiere nero vuole andare in g4 per inchiodare il tuo cavallo alla donna."
+        },
+        "u6-l02-s02": {
+          "prompt": "Se l'alfiere arriva in g4, perché dà fastidio?",
+          "options": [
+            "Inchioda il cavallo in f3: se si muove, l'alfiere cattura la donna",
+            "Minaccia scacco matto",
+            "Attacca il pedone in e4"
+          ],
+          "explanation": "Con l'alfiere in g4, il cavallo in f3 è inchiodato alla donna in d1: se si muove, l'alfiere cattura la donna. Il cavallo perde libertà proprio quando deve difendere il centro.",
+          "feedback": [
+            "",
+            "Non c'è nessun matto in vista: il problema è l'inchiodatura del cavallo.",
+            "Da g4 l'alfiere non attacca il pedone in e4. Il problema è l'inchiodatura."
+          ]
+        },
+        "u6-l02-s03": {
+          "prompt": "Gioca la mossa che impedisce all'alfiere di andare in g4.",
+          "hint": "Un pedone può controllare la casella g4 prima che arrivi l'alfiere.",
+          "success": "Corretto. Con h3 il pedone controlla g4 e l'alfiere non può più andarci."
+        },
+        "u6-l02-s04": {
+          "text": "La tua torre in settima attacca i pedoni, ma prima di prendere guarda la minaccia del Nero: la torre in e8 vuole scendere in e1. Il tuo re non può lasciare la prima traversa, perché i suoi stessi pedoni lo chiudono."
+        },
+        "u6-l02-s05": {
+          "prompt": "Tocca la casella dove la torre nera darebbe scacco matto.",
+          "hint": "La torre in e8 scende lungo la colonna e fino alla tua prima traversa."
+        },
+        "u6-l02-s06": {
+          "prompt": "Impedisci il matto sull'ultima traversa prima di prendere i pedoni.",
+          "hint": "Se prendi in b7, Te1 è matto. Apri una via d'uscita al tuo re muovendo un pedone, o avvicinalo alla colonna e.",
+          "success": "Corretto. Il matto sull'ultima traversa non funziona più. Ora sì che puoi pensare a prendere i pedoni."
+        },
+        "u6-l02-s07": {
+          "text": "Qui la donna e l'alfiere neri puntano alla stessa casella, accanto al tuo re. Se non fai nulla, il Nero dà matto in una mossa."
+        },
+        "u6-l02-s08": {
+          "prompt": "Tocca la casella dove il Nero darebbe scacco matto.",
+          "hint": "La donna in h4 e l'alfiere in d6 attaccano la stessa casella, accanto al tuo re."
+        },
+        "u6-l02-s09": {
+          "prompt": "Impedisci il matto.",
+          "hint": "Usa un pedone vicino al tuo re: chiudi la diagonale dell'alfiere con il pedone in g2, o spingi il pedone h2 perché la donna non abbia dove dare matto. Con f4 l'alfiere cattura e il tuo re resta esposto.",
+          "success": "Corretto. Il matto non funziona più e la tua posizione regge."
+        },
+        "u6-l02-s10": {
+          "text": "Riassunto: prima di muovere, guarda che cosa minaccia l'avversario e che cosa vuole fare nelle prossime mosse. Una mossa tranquilla al momento giusto, come h3 o aprire una via d'uscita al re, evita problemi molto più grandi."
+        }
+      }
+    },
+    "u10-l05": {
+      "title": "Difendersi con materiale in minoranza",
+      "summary": "Scacco perpetuo, stallo e fortezza",
+      "steps": {
+        "u10-l05-s01": {
+          "text": "Quando hai meno materiale, non devi vincere: devi pareggiare. Il re nero in a8 non ha caselle e non è sotto scacco. È in stallo, e la partita finisce in pareggio."
+        },
+        "u10-l05-s02": {
+          "text": "Lo scacco perpetuo è un altro salvagente: se la tua regina può dare scacchi una e altra volta, il rivale non ha tempo di progredire. A volte la posizione si ripete e la partita è in pareggio."
+        },
+        "u10-l05-s03": {
+          "prompt": "Cosa cerchi quando hai meno materiale?",
+          "explanation": "Con meno materiale, l'obiettivo è non perdere. Lo scacco perpetuo, lo stallo e la fortezza sono risorse per salvare mezzo punto.",
+          "options": [
+            "Pareggio: scacco perpetuo, stallo o fortezza",
+            "Cambiare tutti i pezzi",
+            "Attaccare il re avversario"
           ],
           "feedback": [
             "",
-            "I pezzi non contano per una maggioranza di pedoni.",
-            "Cambiare pedoni senza piano non crea alcun vantaggio."
+            "Cambiare i pezzi non aiuta sempre se continui ad avere meno materiale.",
+            "Attaccare di solito fa perdere: il rivale ha più forze."
           ]
         },
-        "u9-l08-s04": {
-          "prompt": "Cosa cerca una rottura?",
-          "explanation": "La rottura apre linee o fissa una debolezza affinché i tuoi pezzi entrino da lì.",
+        "u10-l05-s04": {
+          "prompt": "Tocca le tre caselle che controllano il re nero.",
+          "hint": "La regina e il re bianco coprono le tre caselle di fuga."
+        },
+        "u10-l05-s05": {
+          "prompt": "Cos'è una fortezza?",
+          "explanation": "In una fortezza, il materiale in eccesso non serve perché il rivale non può entrare. È un altro modo per fare pareggio.",
           "options": [
-            "Aprire una colonna o creare un pedone passato",
-            "Cambiare dame",
-            "Difendere il re"
+            "Una posizione che il rivale non può rompere anche avendo più materiale",
+            "Un attacco al re",
+            "Cambiare tutti i pezzi"
           ],
           "feedback": [
             "",
-            "Cambiare dame non è l'obiettivo di una rottura.",
-            "La rottura è un'idea di pedoni, non una mossa difensiva."
+            "Una fortezza è difensiva, non un attacco.",
+            "Cambiare i pezzi non definisce una fortezza."
           ]
         },
-        "u9-l08-s05": {
-          "prompt": "Tocca i tre pedoni della maggioranza bianca sul fianco di donna.",
-          "hint": "Sono i tre pedoni consecutivi sul fianco di donna."
+        "u10-l05-s06": {
+          "text": "Riepilogo: con meno materiale, cerca il pareggio. Lo stallo, lo scacco perpetuo e la fortezza sono le tue tre risorse. Non hai bisogno di vincere; hai bisogno di non perdere."
+        }
+      }
+    },
+    "u10-l07": {
+      "title": "Fare un piano",
+      "summary": "Scegli l'idea prima della mossa",
+      "steps": {
+        "u10-l07-s01": {
+          "text": "Prima di muovere, scegli un piano. Chiediti qual è il tuo pezzo peggiore, dove hai più spazio e quale debolezza puoi attaccare. La mossa viene dopo l'idea."
         },
-        "u9-l08-s06": {
-          "text": "Riassunto: una maggioranza di pedoni crea un pedone passato se avanzi in ordine. Una rottura apre linee o fissa una debolezza. Prima il piano di pedoni, poi i pezzi."
+        "u10-l07-s02": {
+          "text": "Qui i bianchi hanno più spazio al centro. Un piano tipico è migliorare l'alfiere di c1, che è dietro i suoi pedoni, e poi attaccare l'ala di re. Prima i pezzi, poi i pedoni."
+        },
+        "u10-l07-s03": {
+          "prompt": "Quale piano ha più senso qui?",
+          "explanation": "Con più spazio, il piano è sviluppare il pezzo peggiore e attaccare dove hai vantaggio. L'alfiere di c1 è il pezzo da migliorare.",
+          "options": [
+            "Migliorare l'alfiere di c1 e attaccare l'ala di re",
+            "Cambiare tutti i pezzi",
+            "Muovere i pedoni di arrocco"
+          ],
+          "feedback": [
+            "",
+            "Cambiare tutto non sfrutta il tuo spazio.",
+            "Muovere i pedoni di arrocco indebolisce il tuo re."
+          ]
+        },
+        "u10-l07-s04": {
+          "prompt": "Tocca la casella del pezzo bianco che deve essere migliorato.",
+          "hint": "È l'alfiere che è dietro i propri pedoni."
+        },
+        "u10-l07-s05": {
+          "prompt": "Quale domanda ti poni prima di muovere?",
+          "explanation": "Un piano inizia dalla posizione: il pezzo peggiore, lo spazio e le debolezze del rivale.",
+          "options": [
+            "Qual è il mio pezzo peggiore e dove ho vantaggio?",
+            "Quale pezzo posso sacrificare?",
+            "Come cambio tutti i pezzi?"
+          ],
+          "feedback": [
+            "",
+            "Cercare sacrifici senza un piano è iniziare dalla fine.",
+            "Cambiare tutto non è un piano di per sé."
+          ]
+        },
+        "u10-l07-s06": {
+          "text": "Riepilogo: prima il piano, poi la mossa. Migliora il tuo pezzo peggiore, attacca dove hai spazio e crea una debolezza nel campo avversario. Un piano dura diverse mosse."
+        }
+      }
+    },
+    "u6-l04": {
+      "title": "Ripasso finale",
+      "summary": "Puzzle da tutto il percorso",
+      "steps": {
+        "u6-l04-s01": {
+          "text": "Ripasso finale: sedici puzzle da partite vere con temi di tutto il percorso. Prima di muovere, controlla scacchi, catture e minacce. Se sbagli, l'indizio ti dice quale tema cercare."
+        },
+        "u6-l04-s02": {
+          "prompt": "Muove il Bianco. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: attacco di scoperta. Se il cavallo si muove con scacco, la tua donna vince la donna nera.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s03": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: forchetta. Il tuo cavallo può dare scacco e attaccare la torre insieme.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s04": {
+          "prompt": "Muove il Bianco. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: infilata. Uno scacco dell'alfiere obbliga il re a muoversi e lascia la torre senza protezione.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s05": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: deviazione. Uno scacco sulla prima traversa allontana la torre che difende la donna.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s06": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: matto in 2. Cattura il pezzo che difende e continua con uno scacco di donna.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s07": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: zugzwang. Avvicina il tuo re ai pedoni bianchi: il re avversario non può difenderli senza spostarsi.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s08": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: inchiodatura. Cambia le torri e poi inchioda la donna al suo re con l'alfiere.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s09": {
+          "prompt": "Muove il Bianco. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: promozione. Il tuo pedone in d7 è a un passo: promuovi anche se la torre può catturarlo.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s11": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: adescamento. Sacrifica una torre catturando il cavallo con scacco: il re ricattura e l'altra torre dà matto.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s12": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: sovraccarico. Cambia le torri: la donna che ricattura lascia indifeso un altro pezzo.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s13": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: mossa intermedia. Prima di ricatturare la donna, dai scacco catturando il cavallo con l'alfiere.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s14": {
+          "prompt": "Muove il Bianco. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: interferenza. Uno scacco della donna costringe il re a mettersi tra due torri che si proteggevano.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s15": {
+          "prompt": "Muove il Bianco. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: matto con due pezzi. Sacrifica una torre in g8 e concludi con l'altra, appoggiata dal cavallo.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s16": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: sacrificio. Dai la donna con scacco in d1: l'alfiere cattura e la torre dà matto.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s17": {
+          "prompt": "Muove il Nero. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: re attivo. Porta il re verso i pedoni avversari invece di restare indietro.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s18": {
+          "prompt": "Muove il Bianco. Trova la mossa migliore.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Indizio: pezzo indifeso. L'alfiere che ha dato scacco non ha difesa: catturalo con il re.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s10": {
+          "text": "Hai finito il percorso di Impara. Da qui, la cosa migliore è allenarsi: puzzle ogni giorno, aperture nella loro scheda e partite contro i bot per usare tutto ciò che hai imparato."
         }
       }
     }

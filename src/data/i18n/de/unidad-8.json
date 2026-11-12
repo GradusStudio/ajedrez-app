@@ -1,278 +1,371 @@
 {
-  "title": "Endspiele für Fortgeschrittene",
+  "title": "Figuren und Bauern",
   "lessons": {
-    "u8-l01": {
-      "title": "Der aktive König",
-      "summary": "Im Endspiel greift der König auch an",
+    "u9-l02": {
+      "title": "Wann tauscht man Figuren?",
+      "summary": "Tauschen oder nicht tauschen",
       "steps": {
-        "u8-l01-s01": { "text": "Im Endspiel bleiben kaum Figuren übrig, die Matt geben, und der König wird zu einer Angriffsfigur. Hier marschiert der schwarze König nach f4: Von dort greift er den Bauern auf g4 an, und der weiße König ist zu weit entfernt, um ihn zu verteidigen." },
-        "u8-l01-s02": { "text": "Das Gleiche hier: Der schwarze König zieht nach f5 und greift den Bauer auf g5 an. Der weiße König kann ihn nicht verteidigen und Schwarz schlägt ihn." },
-        "u8-l01-s03": {
-          "prompt": "Weiß am Zug. Was macht der König, um den Bauern auf a6 zu gewinnen?",
-          "options": ["Er geht nach b6 und greift ihn an", "Er geht nach d5, ins Zentrum", "Er geht nach b7 und entfernt sich vom Bauern"],
-          "explanation": "Mit Kb6 greift der König den Bauern auf a6 an, und der schwarze König kommt nicht rechtzeitig, um ihn zu verteidigen.",
-          "feedback": ["", "In die Mitte zu gehen bringt nichts: Der Bauer auf a6 steht neben deinem König.", "Sich vom Bauern zu entfernen ist das Gegenteil dessen, was du brauchst."]
+        "u9-l02-s01": {
+          "text": "Fast jeder Abtausch hat gute und schlechte Seiten. Es lohnt sich zu tauschen, wenn du Material gewinnst, wenn der Abtausch dem Gegner eine Schwäche hinterlässt, wenn du angegriffen wirst oder wenn du wenig Raum hast. Es lohnt sich nicht, wenn du Material verlierst, wenn du der Angreifer bist oder wenn du mehr Raum hast."
         },
-        "u8-l01-s04": {
-          "prompt": "Tippe auf das Feld, auf das der schwarze König ziehen muss, um den Bauern auf g5 anzugreifen.",
-          "hint": "Es muss neben dem Bauer landen, auf einem Feld, das der weiße König nicht beobachten kann."
+        "u9-l02-s02": {
+          "prompt": "Du hast einen Turm mehr, und Weiß ist am Zug. Was passt dir?",
+          "options": [
+            "Abtausche vermeiden",
+            "Angreifen, ohne etwas zu tauschen",
+            "Figuren tauschen, um zu vereinfachen"
+          ],
+          "explanation": "Mit einem Turm mehr macht jeder Abtausch deinen Vorteil größer: Je weniger Figuren übrig sind, desto mehr zählt der zusätzliche Turm.",
+          "feedback": [
+            "Abtausche zu vermeiden hält die Figuren des Gegners am Leben, und gerade sie könnten dir das Spiel erschweren.",
+            "Anzugreifen, ohne etwas zu tauschen, ist riskant, wenn du schon im Vorteil bist.",
+            ""
+          ]
         },
-        "u8-l01-s05": {
-          "prompt": "Greife den Bauern auf a6 mit dem König an.",
-          "hint": "Der weiße König kann neben dem Bauern stehen. Der schwarze König kann nicht dorthin kommen, um ihn zu verteidigen.",
-          "success": "Richtig. Kb6 greift den Bauern an und der gegnerische König kann ihn nicht verteidigen."
+        "u9-l02-s03": {
+          "prompt": "Du bist einen Turm im Rückstand, und Weiß ist am Zug. Was passt dir?",
+          "options": [
+            "Nur die Damen tauschen",
+            "Abtausche vermeiden",
+            "Figuren tauschen, um zu vereinfachen"
+          ],
+          "explanation": "Mit weniger Material lässt dich jeder Abtausch mit weniger Möglichkeiten zurück: Es ist besser, Figuren auf dem Brett zu behalten, um Optionen zu haben.",
+          "feedback": [
+            "Auch ein Damentausch lässt dich mit weniger Möglichkeiten zurück, die Partie zu verkomplizieren.",
+            "",
+            "Jeder Abtausch führt die Partie näher an ein Endspiel, in dem man den fehlenden Turm stärker spürt."
+          ]
         },
-        "u8-l01-s06": {
-          "prompt": "Schlage den Bauern auf a2 mit dem König.",
-          "hint": "Der Bauer auf a2 steht neben deinem König und niemand deckt ihn.",
-          "success": "Richtig. Kxa2 gewinnt den Bauern und macht den Weg für den a-Bauern frei."
+        "u9-l02-s04": {
+          "prompt": "Du hast weniger Raum als der Gegner. Was passt dir?",
+          "options": [
+            "Die Figuren tauschen, die dich einengen",
+            "Alle Abtausche vermeiden",
+            "Bauern vorrücken"
+          ],
+          "explanation": "Bei wenig Raum stehen sich die Figuren im Weg. Jeder Abtausch macht Felder für die verbleibenden Figuren frei.",
+          "feedback": [
+            "",
+            "Abtausche zu vermeiden lässt deine Figuren eingeengt stehen.",
+            "Bauern ohne Unterstützung vorzuschieben erzeugt meist Schwächen."
+          ]
         },
-        "u8-l01-s07": {
-          "prompt": "Greife den Bauern auf b7 mit dem König an.",
-          "hint": "Dein König kann um den schwarzen König herumgehen und den Bauern von einem anderen Feld angreifen.",
-          "success": "Richtig. Kc7 greift den Bauern auf b7 an und der schwarze König kann ihn nicht verteidigen."
+        "u9-l02-s05": {
+          "prompt": "Du greifst den gegnerischen König mit mehreren Figuren an. Was passt dir?",
+          "options": [
+            "Die angreifenden Figuren tauschen",
+            "Die Dame sofort tauschen",
+            "Die angreifenden Figuren auf dem Brett behalten"
+          ],
+          "explanation": "Um anzugreifen brauchst du Figuren. Wenn du die angreifenden Figuren tauschst, verteidigt der Gegner ruhiger.",
+          "feedback": [
+            "Die angreifenden Figuren zu tauschen ist genau das, was der verteidigende Gegner will.",
+            "Die Dame zu tauschen entfernt die Figur, die am stärksten angreift.",
+            ""
+          ]
         },
-        "u8-l01-s08": {
-          "prompt": "Gewinne Bauern mit dem König.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Bringe den König zu den gegnerischen Bauern: Bleibe nicht zu Hause.",
-          "notes": ["", "", "", ""]
-        },
-        "u8-l01-s09": {
-          "prompt": "Gewinne Bauern mit dem König.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Bringe den König zu den gegnerischen Bauern: Bleibe nicht zu Hause.",
-          "notes": ["", "", "", ""]
+        "u9-l02-s06": {
+          "text": "Zusammenfassung: Tausche, wenn du im Vorteil bist, wenn du angegriffen wirst oder wenn dir Raum fehlt. Tausche nicht, wenn du im Nachteil bist, wenn du angreifst oder wenn du mehr Raum hast. Frage dich vor jedem Abtausch, was er dir lässt und was er dem Gegner lässt."
         }
       }
     },
-    "u8-l02": {
-      "title": "Der entfernte Freibauer",
-      "summary": "Ein Bauer weit weg vom gegnerischen König",
+    "u9-l03": {
+      "title": "Der Raum",
+      "summary": "Felder der gegnerischen Hälfte, die du kontrollierst",
       "steps": {
-        "u8-l02-s01": { "text": "Die Weißen haben einen Freibauern auf der h-Linie, weit vom schwarzen König entfernt, der am anderen Ende steht. Mit h5 beginnt das Rennen: Beide Seiten wandeln um, aber die Weißen sind zuerst da, und ihre neue Dame hält den schwarzen Bauern mit Schach auf." },
-        "u8-l02-s02": { "text": "Hier steht der Freibauer von Schwarz auf der a-Linie, weit vom weißen König entfernt. Er wandelt um, ohne dass ihn jemand aufhalten kann, und die weißen Bauern kommen zu spät." },
-        "u8-l02-s03": {
-          "prompt": "Weiß am Zug. Was ist am besten?",
-          "options": ["Den h-Bauern vorschieben, der weit vom schwarzen König entfernt ist", "Den König zu den Bauern auf der a-Linie bringen", "Den g-Bauern ziehen"],
-          "explanation": "Der schwarze König ist am anderen Ende und kann den h-Bauern nicht aufhalten. Ihn vorzuschieben gewinnt das Rennen.",
-          "feedback": ["", "Da der König weit vom h-Bauern entfernt ist, zählt am meisten, dass der Bauer läuft.", "Der g-Bauer hat nicht denselben Vorteil: Er ist näher am gegnerischen König."]
+        "u9-l03-s01": {
+          "text": "Der Raum ist die Anzahl der Felder der gegnerischen Hälfte, die deine Figuren und Bauern kontrollieren. In dieser Stellung kontrollieren die Weißen 8 Felder in der schwarzen Hälfte und die Schwarzen 5 in der weißen Hälfte: Die Weißen haben mehr Raum, vor allem dank ihres vorgerückten Bauern auf e5."
         },
-        "u8-l02-s04": {
-          "prompt": "Tippe auf den Freibauern, der am weitesten vom schwarzen König entfernt ist.",
-          "hint": "Es ist der Bauer am Rand des Bretts, gegenüber dem schwarzen König."
+        "u9-l03-s02": {
+          "prompt": "Tippe auf die beiden Felder der schwarzen Hälfte, die der Bauer auf e5 kontrolliert.",
+          "hint": "Ein Bauer kontrolliert die zwei diagonalen Felder vor sich."
         },
-        "u8-l02-s05": {
-          "prompt": "Schiebe den Bauern vor, der weit vom gegnerischen König entfernt ist.",
-          "hint": "Den h-Bauern kann nichts aufhalten: Der schwarze König ist auf der anderen Seite.",
-          "success": "Richtig. h5 eröffnet das Rennen: Der Bauer wird zur Dame und der schwarze König kommt zu spät."
-        },
-        "u8-l02-s06": {
-          "prompt": "Schiebe den Bauern vor, der weit vom gegnerischen König entfernt ist.",
-          "hint": "Der a-Bauer wandelt um, bevor der weiße König etwas tun kann.",
-          "success": "Richtig. a4 eröffnet das Rennen: Der Bauer wird zur Dame und der weiße König kommt zu spät."
-        },
-        "u8-l02-s07": {
-          "prompt": "Gewinne das Bauernrennen.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Suche den Bauern, der am weitesten vom gegnerischen König entfernt ist, und schiebe ihn vor.",
-          "notes": ["", "", "", ""]
-        },
-        "u8-l02-s08": {
-          "prompt": "Gewinne das Bauernrennen.",
-          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
-          "hint": "Suche den Bauern, der am weitesten vom gegnerischen König entfernt ist, und schiebe ihn vor.",
-          "notes": ["", "", "", ""]
-        },
-        "u8-l02-s09": { "text": "Zusammenfassung: Ein Freibauer weit vom gegnerischen König ist eine zweischneidige Waffe. Entweder er wandelt um, oder der gegnerische König muss ihm nachlaufen und lässt seine übrigen Bauern allein. Das sind die zwei Schwächen: Der Freibauer und die ungedeckten Bauern." }
-      }
-    },
-    "u8-l03": {
-      "title": "Dame gegen Bauer",
-      "summary": "Wenn der Bauer kurz vor der Umwandlung steht",
-      "steps": {
-        "u8-l03-s01": { "text": "Die weiße Dame kontrolliert d1 von a4 aus: Wenn der Bauer umwandelt, schlägt die Dame ihn mit Schach. Währenddessen nähert sich der weiße König, und zusammen erledigen sie den Bauern und den König." },
-        "u8-l03-s02": { "text": "Dagegen kann die Dame nicht gewinnen, wenn ein Randbauer auf der siebten Reihe steht und der schwarze König nahe der Ecke ist. Der schwarze König flüchtet in die Ecke, und jeder Versuch endet mit Patt." },
-        "u8-l03-s03": {
-          "prompt": "Welcher dieser Bauern auf der siebten Reihe ist meistens Remis gegen die Dame?",
-          "options": ["Der Randbauer auf der a-Linie", "Der Zentralbauer auf der d-Linie", "Keiner: Die Dame gewinnt immer"],
-          "explanation": "Mit einem Randbauern und dem gegnerischen König in der Nähe rettet das Patt Schwarz. Mit einem Zentralbauern dagegen gewinnt die Dame.",
-          "feedback": ["", "Mit einem Zentralbauern gewinnt die Dame: Der König hat keine Ecke, in die er flüchten kann.", "Mit dem Randbauern und dem König nahe der Ecke gewinnt die Dame nicht."]
-        },
-        "u8-l03-s04": {
-          "prompt": "Der schwarze Bauer will auf d1 umwandeln. Tippe auf das Feld, das die Dame von a4 aus kontrolliert.",
-          "hint": "Folge der Diagonale der Dame zur unteren rechten Ecke."
-        },
-        "u8-l03-s05": {
-          "prompt": "Gewinne mit Dame und König gegen Bauer und König. Stockfish verteidigt.",
-          "success": "Richtig. Die Dame stoppte den Bauern, und du hast Matt gesetzt.",
-          "hint": "Mit diesem Zug entgeht dir der Sieg. Lass die Dame das Umwandlungsfeld kontrollieren und bringe den König näher, ohne Patt zu setzen."
-        },
-        "u8-l03-s06": { "text": "Zusammenfassung: Die Dame kontrolliert das Umwandlungsfeld, und der König kommt näher. Gegen einen Randbauern auf der siebten Reihe mit dem König nahe der Ecke ergibt Patt ein Remis." }
-      }
-    },
-    "u8-l04": {
-      "title": "Die Philidor-Stellung",
-      "summary": "Die sichere Verteidigung mit dem Turm",
-      "steps": {
-        "u8-l04-s01": { "text": "Im Endspiel Turm und Bauer gegen Turm ist die sicherste Verteidigung die Philidor-Stellung: Der verteidigende Turm steht auf der sechsten Reihe und der König auf der letzten, vor dem Bauern. So können der gegnerische König und der Bauer nicht vorrücken." },
-        "u8-l04-s02": {
-          "prompt": "Auf welcher Reihe stellt die verteidigende Seite den Turm auf?",
-          "options": ["Auf der sechsten Reihe, der dritten von seiner Seite", "Auf der ersten Reihe, hinter dem Bauern", "Auf der Linie des Bauern"],
-          "explanation": "Der Turm auf der sechsten Reihe schneidet dem König und dem Bauern den Weg ab: Der gegnerische König kann nicht auf die sechste Reihe vorrücken.",
-          "feedback": ["", "Hinter dem Bauern ist er später nützlich, wenn der Bauer die sechste Reihe schon erreicht hat. Am Anfang gehört der Turm auf die sechste Reihe.", "Auf der Linie des Bauern wäre der Turm eine Zielscheibe und würde den gegnerischen König nicht aufhalten."]
-        },
-        "u8-l04-s03": {
-          "prompt": "Der schwarze Turm kontrolliert die sechste Reihe. Tippe auf die beiden Felder dieser Reihe, auf die der weiße König oder der Bauer vorrücken möchte.",
-          "hint": "Sie liegen vor dem weißen König und dem weißen Bauern, auf der sechsten Reihe."
-        },
-        "u8-l04-s04": {
-          "prompt": "Verteidige das Endspiel. Stockfish spielt Weiß und versucht zu gewinnen. Halte 30 Züge durch, ohne zu verlieren.",
-          "success": "Richtig. Du hast 30 Züge gehalten: Die Philidor-Stellung ist Remis.",
-          "hint": "Mit diesem Zug gewinnt Weiß. Halte den Turm in der sechsten Reihe und den König in der letzten, vor dem Bauer."
-        },
-        "u8-l04-s05": { "text": "Zusammenfassung: Turm auf der sechsten Reihe und König auf der letzten. Wenn der Bauer die sechste Reihe erreicht, geht der Turm hinter ihn und gibt aus der Ferne Schach." }
-      }
-    },
-    "u8-l05": {
-      "title": "Den König mit dem Turm abschneiden",
-      "summary": "Der Turm als Mauer",
-      "steps": {
-        "u8-l05-s01": { "text": "Der Turm auf c1 kontrolliert die c-Linie: Der schwarze König kann sie nicht überqueren und erreicht den Bauern auf b4 nicht. Währenddessen rückt der Bauer vor, und niemand kann ihn aufhalten. So schneidet man den König mit dem Turm ab." },
-        "u8-l05-s02": {
-          "prompt": "Tippe auf die drei Felder der c-Linie, über die der schwarze König auf die andere Hälfte des Bretts gelangen könnte.",
-          "hint": "Es sind die Felder der c-Linie neben dem schwarzen König."
-        },
-        "u8-l05-s03": {
-          "prompt": "Warum kann der schwarze König dem Bauern nicht nahekommen?",
-          "options": ["Der Turm kontrolliert die c-Linie und versperrt ihm den Weg", "Der weiße König versperrt ihm den Weg", "Der Bauer wird vom Turm gedeckt"],
-          "explanation": "Um den Bauern zu erreichen, müsste der schwarze König die c-Linie überqueren, und der Turm überwacht sie ganz.",
-          "feedback": ["", "Der weiße König ist weit vom schwarzen König entfernt: Den Weg versperrt der Turm.", "Der Turm deckt den Bauern auf b4 nicht: Er schneidet die Linie ab."]
-        },
-        "u8-l05-s04": { "text": "Man kann auch nach Reihen abschneiden. Mit Th5 kontrolliert der Turm die 5. Reihe: Der schwarze König kann nicht nach unten, und der Bauer auf b4 rückt in Ruhe vor." },
-        "u8-l05-s05": {
-          "prompt": "Wandle den Bauern um, ohne die neue Dame zu verlieren. Stockfish verteidigt.",
-          "success": "Richtig. Der Turm hat den König abgeschnitten, und der Bauer hat sich umgewandelt.",
-          "hint": "Mit diesem Zug entgeht dir der Sieg. Lass den Turm auf der c-Linie und rücke mit dem Bauern vor."
-        },
-        "u8-l05-s06": {
-          "prompt": "Schneide den König mit dem Turm ab und wandle den Bauern um. Stockfish verteidigt.",
-          "success": "Richtig. Du hast den König abgeschnitten, und der Bauer hat sich umgewandelt.",
-          "hint": "Mit diesem Zug entgeht dir der Sieg. Stelle den Turm auf eine Reihe oder Linie, die der schwarze König nicht überqueren kann."
-        },
-        "u8-l05-s07": { "text": "Zusammenfassung: Der Turm schneidet den König an einer Linie oder Reihe ab, die er nicht überqueren kann. Ist der König abgeschnitten, rückt der Bauer allein vor." }
-      }
-    },
-    "u8-l06": {
-      "title": "Läufer auf verschiedenfarbigen Feldern",
-      "summary": "Warum sie meist Remis sind",
-      "steps": {
-        "u8-l06-s01": { "text": "Bei Läufern auf verschiedenfarbigen Feldern kontrolliert jeder Läufer Felder, die der andere nicht angreifen kann. Der verteidigende Läufer hält den Bauern auf, und der König sucht dahinter Schutz. Deshalb reicht ein zusätzlicher Bauer meist nicht zum Gewinnen." },
-        "u8-l06-s02": {
-          "prompt": "Ein Läufer greift nur Felder seiner eigenen Farbe an. Welche Felder kann der schwarze Läufer nicht angreifen, der auf hellen Feldern zieht?",
-          "options": ["Die dunklen, wie f4", "Die hellen, wie f1", "Keine"],
-          "explanation": "Der schwarze Läufer auf f1 zieht auf hellen Feldern. Der Bauer auf f4 steht auf einem dunklen Feld: Dieser Läufer kann ihn nie angreifen.",
-          "feedback": ["", "Die hellen kann er angreifen: Es sind seine eigenen.", "Jeder Läufer hat seine Farbe und kann sie nicht wechseln."]
-        },
-        "u8-l06-s03": {
-          "prompt": "Tippe auf den weißen Bauern, den der schwarze Läufer nie angreifen kann.",
-          "hint": "Es ist der Bauer, der auf einem Feld anderer Farbe als dein Läufer steht."
-        },
-        "u8-l06-s04": {
-          "prompt": "Verteidige das Endspiel. Stockfish spielt Weiß und versucht zu gewinnen. Halte 20 Züge durch, ohne zu verlieren.",
-          "success": "Richtig. Du hast 20 Züge gehalten: Mit Läufern auf verschiedenfarbigen Feldern verliert man mit einem Bauern weniger nicht.",
-          "hint": "Mit diesem Zug gewinnt Weiß. Halte den König in der Nähe und lasse den Läufer auf einer langen Diagonale, die den Bauern bremst."
-        },
-        "u8-l06-s05": { "text": "Zusammenfassung: Bei Läufern auf verschiedenfarbigen Feldern greift jeder Felder an, die der andere nicht berührt, und die Seite mit einem Bauern weniger kann sich halten." }
-      }
-    },
-    "u8-l07": {
-      "title": "Läufer gegen Springer",
-      "summary": "Jedes Stück glänzt in einer anderen Position",
-      "steps": {
-        "u8-l07-s01": {
-          "text": "Im Endspiel sind Läufer und Springer fast gleichwertig, aber sie dienen nicht für dasselbe. Der Läufer auf c1 erreicht in wenigen Zügen beide Flanken; der Springer auf f6 erreicht nur die nahegelegenen Felder."
-        },
-        "u8-l07-s02": {
-          "text": "Hier dominiert der Springer auf d5 das Zentrum und hat ein starkes Feld. Der Läufer auf c1 hingegen hat wenig Raum: seine Bauern auf b2 und c3 schließen die Damenflanke ab. Bei dieser festen Struktur ist der Springer das bessere Stück."
-        },
-        "u8-l07-s03": {
-          "prompt": "Mit Bauern auf beiden Flanken, welches Stück ist normalerweise komfortabler?",
-          "explanation": "Der Läufer kreuzt das Brett in einem Zug und deckt beide Flanken ab. Der Springer braucht mehrere Züge, um von einer Flanke zur anderen zu gelangen.",
+        "u9-l03-s03": {
+          "prompt": "Wer hat mehr Raum in dieser Stellung?",
           "options": [
-            "Der Läufer",
-            "Der Springer",
-            "Es macht keinen Unterschied"
+            "Beide gleich",
+            "Weiß",
+            "Schwarz"
           ],
+          "explanation": "Die Weißen kontrollieren 12 Felder in der schwarzen Hälfte; die Schwarzen 7 in der weißen Hälfte.",
           "feedback": [
+            "Es ist nicht gleich: Weiß kontrolliert mehr Felder in der gegnerischen Hälfte.",
             "",
-            "Der Springer ist nahe dem Zentrum stark, braucht aber Zeit, um von einer Flanke zur anderen zu gelangen.",
-            "Es macht keinen Unterschied: Die Bauernstruktur entscheidet, welches Stück mehr wert ist."
+            "Zähle die Felder der gegnerischen Hälfte, die jede Seite kontrolliert: Weiß kontrolliert mehr."
           ]
         },
-        "u8-l07-s04": {
-          "prompt": "Der schwarze Bauer ist einen Zug von der Umwandlung entfernt. Rette die Partie.",
-          "hint": "Der Springer kann den Bauern von d3 nehmen. Nach der Aufnahme reichen König und Springer gegen König nicht für ein Schachmatt.",
-          "success": "Korrekt. Sxb2 eliminiert den Bauern und die Partie endet unentschieden wegen Materialmangel."
-        },
-        "u8-l07-s05": {
-          "prompt": "Wie endet die Partie nach der Bauernaufnahme?",
-          "explanation": "König und Springer können kein Schachmatt erzwingen. Die Partie ist ein Unentschieden.",
+        "u9-l03-s04": {
+          "prompt": "Was passt der Seite mit mehr Raum meistens?",
           "options": [
-            "Die weißen gewinnen",
-            "Es ist ein Unentschieden wegen Materialmangel",
-            "Die schwarzen gewinnen"
+            "Abtausche vermeiden",
+            "Sofort die Damen tauschen",
+            "Aufhören, Bauern zu ziehen"
           ],
+          "explanation": "Mit mehr Raum bewegen sich ihre Figuren bequem. Jeder Abtausch befreit den Gegner, also sollte sie die Figuren behalten.",
           "feedback": [
-            "Mit nur einem Springer kann kein Schachmatt erzwungen werden.",
             "",
-            "Der schwarze König kann auch nicht gewinnen: Es bleibt kein Material zum Angreifen übrig."
+            "Sofort die Damen zu tauschen befreit den Gegner, der eingeengt steht.",
+            "Aufhören, Bauern zu ziehen, hilft nicht, den Raum zu halten."
           ]
         },
-        "u8-l07-s06": {
-          "prompt": "Tippe auf das Feld des schwarzen Springers, das das Zentrum dominiert.",
-          "hint": "Er befindet sich auf einem zentralen Feld, von dem aus er mehrere Punkte angreift."
+        "u9-l03-s05": {
+          "prompt": "Was passt der Seite mit weniger Raum meistens?",
+          "options": [
+            "Alle Abtausche vermeiden",
+            "Die eigenen Figuren noch mehr einsperren",
+            "Die Figuren tauschen, die sie einengen"
+          ],
+          "explanation": "Bei wenig Raum stehen sich die Figuren im Weg. Jeder Abtausch macht Felder für die verbleibenden Figuren frei.",
+          "feedback": [
+            "Abtausche zu vermeiden lässt die Figuren eingeengt stehen.",
+            "Die Figuren enger einzusperren macht das Problem schlimmer.",
+            ""
+          ]
         },
-        "u8-l07-s07": {
-          "text": "Zusammenfassung: Der Läufer ist besser mit Bauern auf beiden Flanken; der Springer mit einem starken Feld und festen Bauern. Und wenn der Gegner einen Bauern kurz vor der Bauernumwandlung hat, kann die Abgabe des Stücks für diesen Bauern einen halben Punkt retten."
+        "u9-l03-s06": {
+          "text": "Zusammenfassung: Der Raum wird in Feldern der gegnerischen Hälfte gezählt, die du kontrollierst. Wer mehr Raum hat, vermeidet Abtausche; wer weniger hat, sucht sie."
         }
       }
     },
-    "u8-l08": {
-      "title": "Die zwei Schwächen",
-      "summary": "Eine angreifen, um in der anderen zu gewinnen",
+    "u9-l04": {
+      "title": "Offene und geschlossene Stellungen",
+      "summary": "Wie die Figuren je nach Bauern spielen",
       "steps": {
-        "u8-l08-s01": {
-          "text": "Die Bauern auf a4 und h4 sind durch und getrennt. Der schwarze König kann nur einen angreifen: Wenn er zum Damenflügel geht, läuft der Bauer auf h4 zur Promotion."
+        "u9-l04-s01": {
+          "text": "Hier ist kein Bauer vor einem gegnerischen Bauern blockiert: Das Zentrum ist offen. Figuren mit großer Reichweite wie Läufer und Türme haben freie Linien, und die Drohungen kommen schnell an."
         },
-        "u8-l08-s02": {
-          "text": "Dasselbe gilt für die Figuren: Die schwarzen müssen a7 und h7 verteidigen. Dein Turm greift a7 an; wenn der schwarze Turm ihn verteidigt, wechselst du zu h7. Eine Figur kann nicht zwei Schwächen gleichzeitig abdecken."
+        "u9-l04-s02": {
+          "text": "In dieser anderen Stellung stehen die Bauern auf d5 und d6 sowie die auf e4 und e5 einander gegenüber und sind blockiert. Das Zentrum ist geschlossen: Die Figuren haben wenige Linien, und die Partie wird mit langsamen Manövern und Bauerndurchbrüchen gespielt."
         },
-        "u8-l08-s03": {
-          "prompt": "Was tust du, wenn der Gegner zwei Schwächen hat?",
-          "explanation": "Wenn der Gegner eine Schwäche verteidigt, bleibt die andere ungeschützt. Der Schlüssel ist, ihn zur Wahl zu zwingen.",
+        "u9-l04-s03": {
+          "prompt": "Ist diese Stellung offen oder geschlossen?",
           "options": [
-            "Eine angreifen, damit der Gegner sich entfernt und du in der anderen gewinnst",
-            "Alle Figuren tauschen",
-            "Deine eigenen Bauern verteidigen"
+            "Geschlossen",
+            "Offen"
+          ],
+          "explanation": "Die Bauern auf d4 und d5, und die auf e5 und e6, stehen sich gegenüber. Das Zentrum ist geschlossen.",
+          "feedback": [
+            "",
+            "Schau dir die Bauern im Zentrum an: Es gibt zwei Paare, die sich gegenüberstehen und nicht vorrücken können."
+          ]
+        },
+        "u9-l04-s04": {
+          "prompt": "Tippe auf die beiden weißen Bauern, die von einem schwarzen Bauern blockiert werden.",
+          "hint": "Jeder hat direkt vor sich einen schwarzen Bauern."
+        },
+        "u9-l04-s05": {
+          "prompt": "Welche Figuren funktionieren in einer geschlossenen Stellung meistens am besten?",
+          "options": [
+            "Die Springer, die über die Bauern springen",
+            "Läufer mit langer Reichweite",
+            "Türme auf offenen Linien"
+          ],
+          "explanation": "Mit den Bauern, die die Linien blockieren, können die Springer darüber springen und starke Felder suchen.",
+          "feedback": [
+            "",
+            "Läufer leiden, wenn Bauern ihre Diagonalen schließen.",
+            "Bei geschlossenem Zentrum gibt es wenige offene Linien für die Türme."
+          ]
+        },
+        "u9-l04-s06": {
+          "prompt": "Welche Figuren funktionieren in einer offenen Stellung meistens am besten?",
+          "options": [
+            "Die Springer, die feste Felder brauchen",
+            "Die Bauern, die ungehindert vorrücken",
+            "Die Läufer und Türme, die lange Linien haben"
+          ],
+          "explanation": "Mit freien Linien reichen Läufer und Türme weit und erzeugen Drohungen aus der Ferne.",
+          "feedback": [
+            "Springer bevorzugen feste Felder und geschlossene Zentren.",
+            "Bauern sind nicht die Figuren, die in offenen Stellungen gewinnen.",
+            ""
+          ]
+        },
+        "u9-l04-s07": {
+          "text": "Zusammenfassung: Mit blockierten Bauern ist das Zentrum geschlossen und die Springer springen darüber. Mit freien Linien ist das Zentrum offen und die Läufer und Türme herrschen."
+        }
+      }
+    },
+    "u9-l05": {
+      "title": "Guter Läufer und schlechter Läufer",
+      "summary": "Der Läufer und seine eigenen Bauern",
+      "steps": {
+        "u9-l05-s01": {
+          "text": "Der schwarze Läufer auf c8 ist ein schlechter Läufer: Er hat 5 eigene Bauern auf Feldern seiner Farbe, und die auf b7 und e6 schließen beide Diagonalen. Seine eigenen Bauern lassen ihn ohne Ausweg."
+        },
+        "u9-l05-s02": {
+          "text": "In dieser Stellung ist der schwarze Läufer nach f5 gezogen, bevor e6 gespielt wurde: Er steht außerhalb der Bauernkette und schaut nach außen. Er ist ein guter Läufer, aktiv, obwohl seine Bauern noch auf Feldern derselben Farbe stehen."
+        },
+        "u9-l05-s03": {
+          "prompt": "Welcher der schwarzen Läufer ist der schlechte?",
+          "options": [
+            "Keiner",
+            "Der auf c8, der auf hellen Feldern zieht",
+            "Der auf f8, der auf dunklen Feldern zieht"
+          ],
+          "explanation": "Der Läufer auf c8 hat 5 eigene Bauern auf seiner Farbe und der auf f8 nur 3: Der auf c8 ist der schlechte.",
+          "feedback": [
+            "Die Bauern auf e6 und d5 stören den Läufer auf c8: Es gibt einen schlechten Läufer.",
+            "",
+            "Der Läufer auf f8 hat nur 3 eigene Bauern auf seiner Farbe: Er hat mehr Platz."
+          ]
+        },
+        "u9-l05-s04": {
+          "prompt": "Tippe auf die beiden schwarzen Bauern, die dem Läufer auf c8 die Diagonalen schließen.",
+          "hint": "Jede der beiden Diagonalen des Läufers endet auf einem eigenen Bauern."
+        },
+        "u9-l05-s05": {
+          "prompt": "Was kannst du mit einem schlechten Läufer machen?",
+          "options": [
+            "Ihn aus der Bauernkette herausholen oder tauschen",
+            "Mehr Bauern auf Felder seiner Farbe setzen",
+            "Ihn zu Hause lassen, um ihn zu schützen"
+          ],
+          "explanation": "Ein schlechter Läufer verbessert sich, wenn er die Kette verlässt, bevor sie sich schließt, oder wenn er gegen eine gegnerische Figur getauscht wird.",
+          "feedback": [
+            "",
+            "Mehr Bauern auf seiner Farbe behindern ihn nur noch mehr.",
+            "Ihn zu Hause zu lassen hält ihn aus der Partie heraus."
+          ]
+        },
+        "u9-l05-s06": {
+          "text": "Zusammenfassung: Ein Läufer ist gut, wenn seine Bauern auf Feldern der anderen Farbe stehen, und schlecht, wenn sie ihm die Diagonalen schließen. Besser, ihn herauszuholen, bevor sich die Bauernkette schließt."
+        }
+      }
+    },
+    "u9-l06": {
+      "title": "Rückständiger Bauer und Bauernketten",
+      "summary": "Wo man die Bauernstruktur angreift",
+      "steps": {
+        "u9-l06-s01": {
+          "text": "Der schwarze Bauer auf d6 ist ein rückständiger Bauer: Er hat keine Bauern neben sich, die ihn stützen, und er kann nicht vorrücken, ohne dass ihn der Bauer auf e4 schlägt. Das Feld d5 direkt davor ist ein Ziel: Eine weiße Figur kann sich dort festsetzen, ohne dass ein schwarzer Bauer sie vertreibt."
+        },
+        "u9-l06-s02": {
+          "text": "Die weißen Bauern auf b2, c3, d4 und e5 bilden eine Bauernkette. Der Fuß der Kette, b2, ist der einzige Bauer der Kette, den kein anderer Bauer schützt. Wenn der Fuß angegriffen wird, bleibt die ganze Kette ohne Unterstützung; deshalb zielt Schwarz mit der Dame auf b2."
+        },
+        "u9-l06-s03": {
+          "prompt": "Tippe auf den rückständigen schwarzen Bauern.",
+          "hint": "Es ist der Bauer, der nicht vorrücken kann, ohne geschlagen zu werden, und den kein eigener Bauer von der Seite stützt."
+        },
+        "u9-l06-s04": {
+          "prompt": "Tippe auf den Fuß der weißen Bauernkette.",
+          "hint": "Es ist der Bauer in der Bauernkette, der keinen eigenen Bauern zum Schutz hat."
+        },
+        "u9-l06-s05": {
+          "prompt": "Wie spielt man gegen einen rückständigen Bauern?",
+          "options": [
+            "Alle Figuren außer dem Bauern tauschen",
+            "Einen eigenen Bauern neben ihn vorrücken",
+            "Eine Figur auf das Feld davor stellen und den Bauern unter Druck setzen"
+          ],
+          "explanation": "Eine Figur auf dem Feld davor blockiert ihn und lässt ihn ohne Unterstützung, und der Gegner muss ihn mit Figuren verteidigen.",
+          "feedback": [
+            "Wenn man die Figuren tauscht, kann der Gegner ihn frei verteidigen.",
+            "Einen Bauern neben ihn vorzuschieben greift den rückständigen Bauern nicht an.",
+            ""
+          ]
+        },
+        "u9-l06-s06": {
+          "prompt": "Wo greift man eine Bauernkette am besten an?",
+          "options": [
+            "In der Mitte",
+            "Am Fuß der Kette",
+            "An der Spitze"
+          ],
+          "explanation": "Der Fuß der Kette ist der Bauer, der die anderen stützt: Fällt er, verliert die ganze Kette ihre Unterstützung.",
+          "feedback": [
+            "Die mittleren Bauern werden vom Fuß der Kette geschützt.",
+            "",
+            "Die Spitze wird vom Rest der Kette geschützt."
+          ]
+        },
+        "u9-l06-s07": {
+          "text": "Zusammenfassung: Gegen einen rückständigen Bauern hilft eine Figur auf dem Feld davor. Gegen eine Bauernkette greife den Fuß an."
+        }
+      }
+    },
+    "u9-l07": {
+      "title": "Aktive Türme",
+      "summary": "Offene Linien und die siebte Reihe",
+      "steps": {
+        "u9-l07-s01": {
+          "text": "Die e-Linie ist offen und der Turm auf e1 kann nach e7 springen. Von der siebten Reihe greift er die Bauern auf a7, b7, f7 und g7 an und isoliert das schwarze Königs."
+        },
+        "u9-l07-s02": {
+          "text": "Die Türme müssen auch verbunden sein. Hier steht das Königs auf g1 zwischen den beiden Türmen in der ersten Reihe: Wenn das Königs nach h2 geht, verbinden sich die Türme und schützen sich gegenseitig."
+        },
+        "u9-l07-s03": {
+          "prompt": "Wo ist ein Turm stärker?",
+          "explanation": "In der siebten Reihe greift der Turm Bauern an und isoliert den gegnerischen König. Es ist die aktivste Feld.",
+          "options": [
+            "In der siebten Reihe, Bauern angreifend",
+            "In der Ecke, verteidigend",
+            "Vor seinem eigenen Königs"
           ],
           "feedback": [
             "",
-            "Figuren tauschen schafft keine neuen Schwächen.",
-            "Verteidigen gewinnt nicht: Man muss die gegnerische Schwäche angreifen."
+            "In der Ecke ist der Turm passiv: er verteidigt nur.",
+            "Vor dem König nimmt er Felder von deinem eigenen Stück weg."
           ]
         },
-        "u8-l08-s04": {
-          "prompt": "Bewege einen durchgehenden Bauern, damit der schwarze König nicht beide erreicht.",
-          "hint": "Einer der beiden Bauern ist weit vom schwarzen König entfernt. Wähle einen und renne.",
-          "success": "Korrekt. Der schwarze König kann nicht beide Flügel abdecken: Einer der Bauern wird promotiert."
+        "u9-l07-s04": {
+          "prompt": "Bringe den Turm von e1 in die siebte Reihe.",
+          "hint": "Die e-Linie ist offen. Der Turm kann bis zur Reihe der schwarzen Bauern aufsteigen.",
+          "success": "Korrekt. Te7 bringt den Turm in die siebte Reihe, wo er Bauern angreift und den König isoliert."
         },
-        "u8-l08-s05": {
-          "prompt": "Tippe auf die beiden durchgehenden weißen Bauern.",
-          "hint": "Es sind die Bauern an den beiden Flügeln, ohne gegnerische Bauern davor."
+        "u9-l07-s05": {
+          "prompt": "Tippe auf das Feld in der siebten Reihe, wohin der Turm von e1 gehen kann.",
+          "hint": "Steige über die offene Linie bis zur Reihe 7 auf."
         },
-        "u8-l08-s06": {
-          "text": "Zusammenfassung: Eine Schwäche wird verteidigt; zwei Schwächen nicht. Greife eine an, damit der Gegner sich entfernt und du in der anderen gewinnst. Im Bauernendspiel gewinnen zwei durchgehende Bauern auf gegenüberliegenden Flügeln aus demselben Grund."
+        "u9-l07-s06": {
+          "text": "Zusammenfassung: Ein Turm ist mit einer offenen Linie, in der siebten Reihe und verbunden mit seinem Partner sehr wertvoll. Ein passiver Turm hingegen ist fast ein Stück weniger wert."
+        }
+      }
+    },
+    "u9-l08": {
+      "title": "Bauernschwächen und Bauernmehrheiten",
+      "summary": "Das Spiel eröffnen und einen passed Bauern schaffen",
+      "steps": {
+        "u9-l08-s01": {
+          "text": "Die weißen haben drei Bauern gegen zwei auf der Damenflanke: eine Mehrheit. Wenn sie die Bauern in geordneter Reihenfolge vorrücken, können sie einen passed Bauern schaffen, der das Endspiel gewinnt."
+        },
+        "u9-l08-s02": {
+          "text": "Eine Durchbruch ist ein Bauernvorstoß, der eine Linie oder eine Diagonale öffnet. Hier fordert c4 den Bauern auf d5 heraus: Wenn die schwarzen Bauern nehmen, öffnest du die c-Linie; wenn nicht, tauscht du Bauern auf d5 und dein Bauer auf d4 hat mehr Raum."
+        },
+        "u9-l08-s03": {
+          "prompt": "Was ist eine Bauernmehrheit?",
+          "explanation": "Eine Mehrheit ist lokal: Drei Bauern gegen zwei auf einer Flanke können einen passed Bauern schaffen.",
+          "options": [
+            "Mehr Bauern als der Gegner auf einer Flanke",
+            "Mehr Figuren",
+            "Alle Bauern tauschen"
+          ],
+          "feedback": [
+            "",
+            "Figuren zählen nicht für eine Bauernmehrheit.",
+            "Bauern tauschen ohne Plan schaffen keinen Vorteil."
+          ]
+        },
+        "u9-l08-s04": {
+          "prompt": "Was strebt ein Durchbruch an?",
+          "explanation": "Der Durchbruch öffnet Linien oder fixiert eine Schwäche, damit deine Figuren hindurchkommen.",
+          "options": [
+            "Eine Linie öffnen oder einen passed Bauern schaffen",
+            "Damen tauschen",
+            "Den König verteidigen"
+          ],
+          "feedback": [
+            "",
+            "Damen tauschen ist nicht das Ziel eines Durchbruchs.",
+            "Der Durchbruch ist eine Bauernidee, keine defensive Zugidee."
+          ]
+        },
+        "u9-l08-s05": {
+          "prompt": "Tippe die drei weißen Bauern der Mehrheit auf der Damenflanke.",
+          "hint": "Es sind die drei aufeinanderfolgenden Bauern auf der Damenflanke."
+        },
+        "u9-l08-s06": {
+          "text": "Zusammenfassung: Eine Bauernmehrheit schafft einen passed Bauern, wenn du geordnet vorrückst. Ein Durchbruch öffnet Linien oder fixiert eine Schwäche. Zuerst der Bauernplan, dann die Figuren."
         }
       }
     }

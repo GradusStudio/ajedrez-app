@@ -5,8 +5,12 @@
       "title": "Matto a scala",
       "summary": "Due torri, scacco dopo scacco",
       "steps": {
-        "u5-l06-s01": { "text": "Con due torri, il matto è una scala: una torre dà scacco e spinge il re alla traversa successiva, l'altra dà scacco da dietro e lo spinge alla successiva, fino a raggiungere il bordo della scacchiera." },
-        "u5-l06-s02": { "text": "Ogni torre taglia una traversa e non lascia passare il re. Quella che dà scacco resta lontana da lui, così non può essere catturata. Le torri si alternano: quando una dà scacco, l'altra copre già la traversa dietro." },
+        "u5-l06-s01": {
+          "text": "Con due torri, il matto è una scala: una torre dà scacco e spinge il re alla traversa successiva, l'altra dà scacco da dietro e lo spinge alla successiva, fino a raggiungere il bordo della scacchiera."
+        },
+        "u5-l06-s02": {
+          "text": "Ogni torre taglia una traversa e non lascia passare il re. Quella che dà scacco resta lontana da lui, così non può essere catturata. Le torri si alternano: quando una dà scacco, l'altra copre già la traversa dietro."
+        },
         "u5-l06-s03": {
           "prompt": "Il re nero è in e6. Dai scacco con la torre in b4 per spingerlo alla traversa successiva.",
           "hint": "Porta la torre in su lungo la colonna b fino alla traversa 6. La torre in a5 gli blocca la strada verso il basso.",
@@ -32,15 +36,21 @@
           "success": "Corretto. Hai dato il matto a scala.",
           "hint": "Con quella mossa scappa la vittoria. Presta attenzione alle torri: se il re nero può catturarne una, difendila o allontanala. E lascia sempre una casella di fuga al re fino al matto, per non metterlo in stallo."
         },
-        "u5-l06-s08": { "text": "Riassunto: una torre dà scacco da lontano, l'altra taglia la traversa dietro, e si alternano fino al bordo. Se il re si avvicina, allontana la torre. Con donna e torre, o con due donne, l'idea è la stessa." }
+        "u5-l06-s08": {
+          "text": "Riassunto: una torre dà scacco da lontano, l'altra taglia la traversa dietro, e si alternano fino al bordo. Se il re si avvicina, allontana la torre. Con donna e torre, o con due donne, l'idea è la stessa."
+        }
       }
     },
     "u5-l01": {
       "title": "Matto con la donna",
       "summary": "Re e donna contro re",
       "steps": {
-        "u5-l01-s01": { "text": "Con re e donna contro re si vince sempre. La donna chiude il re avversario in un «recinto» sempre più piccolo, e il tuo re si avvicina per aiutare a dare matto." },
-        "u5-l01-s02": { "text": "Una tecnica semplice: metti la donna a un salto di cavallo dal re avversario. Così gli toglie molte caselle senza dargli scacco. Quando il re si muove, la donna lo segue allo stesso modo." },
+        "u5-l01-s01": {
+          "text": "Con re e donna contro re si vince sempre. La donna chiude il re avversario in un «recinto» sempre più piccolo, e il tuo re si avvicina per aiutare a dare matto."
+        },
+        "u5-l01-s02": {
+          "text": "Una tecnica semplice: metti la donna a un salto di cavallo dal re avversario. Così gli toglie molte caselle senza dargli scacco. Quando il re si muove, la donna lo segue allo stesso modo."
+        },
         "u5-l01-s03": {
           "prompt": "Metti la donna a un salto di cavallo dal re nero.",
           "hint": "Cerca una casella che un cavallo raggiungerebbe da d5 e su cui la tua donna possa andare.",
@@ -53,9 +63,17 @@
         },
         "u5-l01-s05": {
           "prompt": "Quale di queste mosse mette in stallo il re nero?",
-          "options": ["Dg6", "Dg7", "Dh2+"],
+          "options": [
+            "Dg6",
+            "Dg7",
+            "Dh2+"
+          ],
           "explanation": "Con Dg6 il re nero non è sotto scacco ma non ha nessuna casella: è stallo e la partita finisce patta. Dg7 è matto perché il tuo re protegge la donna.",
-          "feedback": ["", "Dg7 è scacco matto: il tuo re in f6 protegge la donna.", "Dh2+ è scacco, e il re nero scappa in g8."]
+          "feedback": [
+            "",
+            "Dg7 è scacco matto: il tuo re in f6 protegge la donna.",
+            "Dh2+ è scacco, e il re nero scappa in g8."
+          ]
         },
         "u5-l01-s06": {
           "prompt": "Dai matto, senza mettere in stallo il re nero.",
@@ -67,21 +85,29 @@
           "success": "Corretto. Hai dato matto con re e donna.",
           "hint": "Con quella mossa la vittoria sfugge. Fai attenzione che la donna non resti senza protezione e che il re nero abbia sempre una casella."
         },
-        "u5-l01-s08": { "text": "Riassunto: chiudi il re con la donna, avvicina il tuo re e dai matto sul bordo. Prima di ogni mossa, guarda se il re avversario ha ancora una casella: se non ne ha nessuna e non è sotto scacco, è stallo." }
+        "u5-l01-s08": {
+          "text": "Riassunto: chiudi il re con la donna, avvicina il tuo re e dai matto sul bordo. Prima di ogni mossa, guarda se il re avversario ha ancora una casella: se non ne ha nessuna e non è sotto scacco, è stallo."
+        }
       }
     },
     "u5-l02": {
       "title": "Matto con la torre",
       "summary": "Re e torre contro re",
       "steps": {
-        "u5-l02-s01": { "text": "La torre taglia fuori il re avversario: qui, dalla colonna e, non lo lascia passare dall'altra parte. Il tuo re si avvicina e, insieme, lo spingono fino al bordo." },
-        "u5-l02-s02": { "text": "Il matto si dà sul bordo, con i re faccia a faccia: il tuo re copre le caselle della traversa accanto e la torre dà scacco sull'ultima traversa." },
+        "u5-l02-s01": {
+          "text": "La torre taglia fuori il re avversario: qui, dalla colonna e, non lo lascia passare dall'altra parte. Il tuo re si avvicina e, insieme, lo spingono fino al bordo."
+        },
+        "u5-l02-s02": {
+          "text": "Il matto si dà sul bordo, con i re faccia a faccia: il tuo re copre le caselle della traversa accanto e la torre dà scacco sull'ultima traversa."
+        },
         "u5-l02-s03": {
           "prompt": "I re sono faccia a faccia. Dai matto con la torre.",
           "hint": "Porta la torre sull'ultima traversa.",
           "success": "Corretto. È scacco matto."
         },
-        "u5-l02-s04": { "text": "Quando i re non sono faccia a faccia, fai una mossa d'attesa: la torre si muove lungo la sua traversa continuando a tagliare fuori il re. Il re nero deve muoversi e, se si mette di fronte al tuo re, arriva il matto." },
+        "u5-l02-s04": {
+          "text": "Quando i re non sono faccia a faccia, fai una mossa d'attesa: la torre si muove lungo la sua traversa continuando a tagliare fuori il re. Il re nero deve muoversi e, se si mette di fronte al tuo re, arriva il matto."
+        },
         "u5-l02-s05": {
           "prompt": "Fai una mossa d'attesa: muovi la torre lungo la settima traversa continuando a tagliare fuori il re nero.",
           "hint": "La torre deve restare in settima traversa, lontana dal re nero. Attenzione a g7: il re nero la cattura.",
@@ -89,35 +115,57 @@
         },
         "u5-l02-s06": {
           "prompt": "Perché conviene avere i re faccia a faccia per dare matto?",
-          "options": ["Il tuo re copre le caselle di fuga della traversa accanto", "Così il re nero non può catturare la torre", "È una regola: senza re faccia a faccia non c'è matto"],
+          "options": [
+            "Il tuo re copre le caselle di fuga della traversa accanto",
+            "Così il re nero non può catturare la torre",
+            "È una regola: senza re faccia a faccia non c'è matto"
+          ],
           "explanation": "La torre dà scacco sull'ultima traversa e il tuo re, di fronte, toglie al re nero le tre caselle della traversa accanto. Non resta nessuna via d'uscita.",
-          "feedback": ["", "La torre è lontana dal re nero: il problema non è la cattura, ma le caselle di fuga.", "Non è una regola: è il modo per non lasciare vie d'uscita al re nero."]
+          "feedback": [
+            "",
+            "La torre è lontana dal re nero: il problema non è la cattura, ma le caselle di fuga.",
+            "Non è una regola: è il modo per non lasciare vie d'uscita al re nero."
+          ]
         },
         "u5-l02-s07": {
           "prompt": "Dai matto con re e torre. Stockfish difende il re nero.",
           "success": "Corretto. Hai dato matto con re e torre.",
           "hint": "Con quella mossa la vittoria sfugge. Attenzione alla torre: se il re nero può catturarla, proteggila o allontanala."
         },
-        "u5-l02-s08": { "text": "Riassunto: taglia fuori il re con la torre, avvicina il tuo re, usa mosse d'attesa quando serve e dai matto sul bordo con i re faccia a faccia. Servono più mosse che con la donna, quindi abbi pazienza." }
+        "u5-l02-s08": {
+          "text": "Riassunto: taglia fuori il re con la torre, avvicina il tuo re, usa mosse d'attesa quando serve e dai matto sul bordo con i re faccia a faccia. Servono più mosse che con la donna, quindi abbi pazienza."
+        }
       }
     },
     "u5-l03": {
       "title": "L'opposizione",
       "summary": "Il duello tra i re",
       "steps": {
-        "u5-l03-s01": { "text": "Due re faccia a faccia, con una casella in mezzo, non possono avanzare: nessuno dei due può entrare nelle caselle controllate dall'altro. Chi non deve muovere ha l'opposizione, perché l'altro deve cedere il passo." },
+        "u5-l03-s01": {
+          "text": "Due re faccia a faccia, con una casella in mezzo, non possono avanzare: nessuno dei due può entrare nelle caselle controllate dall'altro. Chi non deve muovere ha l'opposizione, perché l'altro deve cedere il passo."
+        },
         "u5-l03-s02": {
           "prompt": "Muove il Nero. Chi ha l'opposizione?",
-          "options": ["Il Bianco", "Il Nero", "Nessuno"],
+          "options": [
+            "Il Bianco",
+            "Il Nero",
+            "Nessuno"
+          ],
           "explanation": "Tocca al Nero muovere, quindi il suo re deve spostarsi. L'opposizione ce l'ha il Bianco.",
-          "feedback": ["", "Ha l'opposizione chi non muove. Qui muove il Nero.", "I re sono faccia a faccia con una casella in mezzo: uno dei due ce l'ha."]
+          "feedback": [
+            "",
+            "Ha l'opposizione chi non muove. Qui muove il Nero.",
+            "I re sono faccia a faccia con una casella in mezzo: uno dei due ce l'ha."
+          ]
         },
         "u5-l03-s03": {
           "prompt": "Prendi l'opposizione: metti il tuo re di fronte al re nero, con una casella in mezzo.",
           "hint": "Il re nero è in e7. Porta il tuo re sulla stessa colonna, due traverse più in basso.",
           "success": "Corretto. Con Re5 hai l'opposizione e il re nero deve cedere il passo."
         },
-        "u5-l03-s04": { "text": "Nel finale di re e pedone contro re, il tuo re va davanti al pedone e guadagna terreno con l'opposizione. Il pedone avanza dietro, protetto." },
+        "u5-l03-s04": {
+          "text": "Nel finale di re e pedone contro re, il tuo re va davanti al pedone e guadagna terreno con l'opposizione. Il pedone avanza dietro, protetto."
+        },
         "u5-l03-s05": {
           "prompt": "Solo una mossa vince. Trovala.",
           "hint": "Metti il tuo re davanti al pedone e di fronte al re nero.",
@@ -125,9 +173,15 @@
         },
         "u5-l03-s06": {
           "prompt": "Muove il Bianco, e l'opposizione ce l'ha il Nero. Vittoria o patta?",
-          "options": ["Vince il Bianco", "Patta"],
+          "options": [
+            "Vince il Bianco",
+            "Patta"
+          ],
           "explanation": "Vince il Bianco: con e3 il pedone fa una mossa d'attesa e l'opposizione passa al Bianco. Per questo conviene non avere fretta di spingere il pedone.",
-          "feedback": ["", "Guarda il pedone: può avanzare di una sola casella e così passa il tratto al Nero."]
+          "feedback": [
+            "",
+            "Guarda il pedone: può avanzare di una sola casella e così passa il tratto al Nero."
+          ]
         },
         "u5-l03-s07": {
           "prompt": "Promuovi il pedone. Stockfish difende col Nero.",
@@ -141,29 +195,107 @@
         }
       }
     },
+    "u6-l01": {
+      "title": "Zugzwang",
+      "summary": "Quando muovere è perdere",
+      "steps": {
+        "u6-l01-s01": {
+          "text": "Negli scacchi non si può passare il turno: bisogna sempre muovere. A volte qualsiasi mossa peggiora la posizione. Questo si chiama zugzwang, una parola tedesca che significa «obbligo di muovere»."
+        },
+        "u6-l01-s02": {
+          "text": "Guarda questa posizione. Ogni re difende il suo pedone e attacca il pedone avversario. Il re che deve muoversi smette di difendere il suo pedone: lo perde, e con esso la partita. Vince chi non deve muovere."
+        },
+        "u6-l01-s03": {
+          "prompt": "Muove il Bianco. Che cosa succede?",
+          "options": [
+            "Il Bianco perde il suo pedone e la partita",
+            "Il Bianco vince il pedone nero",
+            "È patta: nessuno può vincere"
+          ],
+          "explanation": "Il Bianco è in zugzwang: qualsiasi mossa del re lascia senza difesa il pedone in d4. Il re nero lo cattura e il suo pedone promuove.",
+          "feedback": [
+            "",
+            "Perché il Bianco vinca il pedone nero, dovrebbe muovere prima il Nero. Con il tratto, a perdere è il Bianco.",
+            "Chi muove perde il suo pedone, e poi l'altro pedone promuove."
+          ]
+        },
+        "u6-l01-s04": {
+          "text": "Lo zugzwang serve anche per dare matto. Qui il Nero può muovere solo il re e il pedone in g7. Se blocchi il pedone, il re dovrà muoversi, e non ha nessuna casella buona."
+        },
+        "u6-l01-s05": {
+          "prompt": "Matto in 2: fai una mossa tranquilla, senza scacco, che lasci il Nero senza buone mosse.",
+          "success": "Corretto. Con Tg6 il pedone è bloccato, il re è dovuto andare in a8 e Ta6 è matto.",
+          "hint": "Metti la torre davanti al pedone in g7: così non può avanzare e il re nero è costretto a muoversi."
+        },
+        "u6-l01-s06": {
+          "text": "Qui vinceresti se toccasse muovere al Nero: il suo re dovrebbe spostarsi. Ma tocca a te. La soluzione è «passare il turno» con il re: fai tre passi a triangolo (e4, d3 e d4) e torni sulla stessa casella. Il re nero può solo andare e tornare, e ora tocca muovere a lui nella stessa posizione. Questa tecnica si chiama triangolazione."
+        },
+        "u6-l01-s07": {
+          "prompt": "Comincia il triangolo: muovi il re su una casella da cui puoi tornare in d4 in due passi.",
+          "hint": "Avanzare il pedone o andare in c3 lascia sfuggire la vittoria. Muoviti sulle caselle accanto (e4, e3 o d3), abbastanza vicino da tornare in tempo a difendere il tuo pedone in c4.",
+          "success": "Corretto. Da lì, in altri due passi torni in d4 e tocca muovere al Nero."
+        },
+        "u6-l01-s08": {
+          "prompt": "Vinci il finale: promuovi un pedone. Se il re nero ti blocca, triangola per metterlo in zugzwang. Stockfish difende col Nero.",
+          "success": "Corretto. Hai usato lo zugzwang per vincere il finale.",
+          "hint": "Con quella mossa la vittoria sfugge. Cerca la posizione in cui il re nero deve spostarsi e raggiungila quando tocca muovere a lui."
+        },
+        "u6-l01-s09": {
+          "prompt": "Muove il Bianco. Usa lo zugzwang per vincere il finale.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Muovi il re in modo che il re avversario debba spostarsi e lasci i suoi pedoni senza difesa."
+        },
+        "u6-l01-s10": {
+          "prompt": "Muove il Bianco. Usa lo zugzwang per vincere il finale.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Muovi il re in modo che il re avversario debba spostarsi e lasci i suoi pedoni senza difesa."
+        },
+        "u6-l01-s11": {
+          "prompt": "Muove il Nero. Usa lo zugzwang per vincere il finale.",
+          "success": "Ben risolto: questa posizione viene da una partita vera.",
+          "hint": "Muovi il re in modo che il re avversario debba spostarsi e lasci i suoi pedoni senza difesa."
+        }
+      }
+    },
     "u5-l04": {
       "title": "La regola del quadrato",
       "summary": "Il re raggiunge il pedone?",
       "steps": {
-        "u5-l04-s01": { "text": "Per sapere se un re raggiunge un pedone, immagina un quadrato dal pedone fino alla traversa di promozione. Se tocca al re muovere e può entrare nel quadrato, raggiunge il pedone. Altrimenti il pedone promuove." },
+        "u5-l04-s01": {
+          "text": "Per sapere se un re raggiunge un pedone, immagina un quadrato dal pedone fino alla traversa di promozione. Se tocca al re muovere e può entrare nel quadrato, raggiunge il pedone. Altrimenti il pedone promuove."
+        },
         "u5-l04-s02": {
           "prompt": "Muove il Nero. Il re nero raggiunge il pedone?",
-          "options": ["Sì, entra nel quadrato", "No, il pedone promuove"],
+          "options": [
+            "Sì, entra nel quadrato",
+            "No, il pedone promuove"
+          ],
           "explanation": "Con Re5 o Re6 il re entra nel quadrato. Da lì raggiunge il pedone prima che promuova.",
-          "feedback": ["", "Guarda e5 ed e6: sono dentro il quadrato, e il re nero ci arriva in una mossa."]
+          "feedback": [
+            "",
+            "Guarda e5 ed e6: sono dentro il quadrato, e il re nero ci arriva in una mossa."
+          ]
         },
         "u5-l04-s03": {
           "prompt": "Muove il Nero. E adesso? Il re nero raggiunge il pedone?",
-          "options": ["Sì, entra nel quadrato", "No, il pedone promuove"],
+          "options": [
+            "Sì, entra nel quadrato",
+            "No, il pedone promuove"
+          ],
           "explanation": "Il re nero è una casella più lontano. Con una mossa non entra nel quadrato, e il pedone promuove.",
-          "feedback": ["Il re in g5 arriva solo alla colonna f, e il quadrato finisce sulla colonna e.", ""]
+          "feedback": [
+            "Il re in g5 arriva solo alla colonna f, e il quadrato finisce sulla colonna e.",
+            ""
+          ]
         },
         "u5-l04-s04": {
           "prompt": "Muove il Bianco. Solo una mossa vince: avanzi il pedone o muovi il re?",
           "hint": "Se muovi il re, il re nero entra nel quadrato. Avanza il pedone: il quadrato si rimpicciolisce.",
           "success": "Corretto. Con a5 il quadrato si rimpicciolisce e il re nero resta fuori."
         },
-        "u5-l04-s05": { "text": "A volte non c'è un pedone passato, ma si può creare. Con tre pedoni contro tre, b6 rompe la catena: dopo qualsiasi cattura, un altro pedone bianco avanza e uno di loro promuove. Il re nero è troppo lontano per aiutare." },
+        "u5-l04-s05": {
+          "text": "A volte non c'è un pedone passato, ma si può creare. Con tre pedoni contro tre, b6 rompe la catena: dopo qualsiasi cattura, un altro pedone bianco avanza e uno di loro promuove. Il re nero è troppo lontano per aiutare."
+        },
         "u5-l04-s06": {
           "prompt": "Fai lo sfondamento e crea un pedone passato che promuova.",
           "success": "Corretto. Il pedone a non si può più fermare: il re nero è fuori dal quadrato.",
@@ -185,8 +317,12 @@
       "title": "La posizione di Lucena",
       "summary": "Torre e pedone contro torre",
       "steps": {
-        "u5-l05-s01": { "text": "Questa è la posizione di Lucena, il finale di torri più importante. Il tuo pedone è in settima e il tuo re davanti, sulla casella di promozione. La tua torre taglia fuori il re nero lungo la colonna e, e la torre nera sorveglia la colonna c perché il tuo re non esca da lì." },
-        "u5-l05-s02": { "text": "Il piano ha due passi. Prima, uno scacco allontana ancora un po' il re nero. Poi la tua torre va in quarta traversa. Quando il tuo re uscirà, la torre nera darà scacchi, e la tua torre parerà l'ultimo scacco. Questo si chiama costruire il ponte." },
+        "u5-l05-s01": {
+          "text": "Questa è la posizione di Lucena, il finale di torri più importante. Il tuo pedone è in settima e il tuo re davanti, sulla casella di promozione. La tua torre taglia fuori il re nero lungo la colonna e, e la torre nera sorveglia la colonna c perché il tuo re non esca da lì."
+        },
+        "u5-l05-s02": {
+          "text": "Il piano ha due passi. Prima, uno scacco allontana ancora un po' il re nero. Poi la tua torre va in quarta traversa. Quando il tuo re uscirà, la torre nera darà scacchi, e la tua torre parerà l'ultimo scacco. Questo si chiama costruire il ponte."
+        },
         "u5-l05-s03": {
           "prompt": "Primo passo: dai scacco dalla colonna f per allontanare il re nero.",
           "hint": "Porta sulla colonna del re nero la torre in e1.",
@@ -213,16 +349,26 @@
         },
         "u5-l05-s05": {
           "prompt": "Perché la torre va in quarta traversa?",
-          "options": ["Per parare gli scacchi della torre nera", "Per attaccare il re nero", "Per proteggere il pedone da dietro"],
+          "options": [
+            "Per parare gli scacchi della torre nera",
+            "Per attaccare il re nero",
+            "Per proteggere il pedone da dietro"
+          ],
           "explanation": "Quando il tuo re esce, la torre nera lo insegue con gli scacchi. La tua torre in quarta traversa si interpone al momento giusto: questo è il ponte.",
-          "feedback": ["", "Il re nero è tagliato fuori e lontano: la torre non cerca di attaccarlo.", "Il pedone lo protegge già il tuo re. La torre serve a fermare gli scacchi."]
+          "feedback": [
+            "",
+            "Il re nero è tagliato fuori e lontano: la torre non cerca di attaccarlo.",
+            "Il pedone lo protegge già il tuo re. La torre serve a fermare gli scacchi."
+          ]
         },
         "u5-l05-s06": {
           "prompt": "Vinci la posizione di Lucena: promuovi il pedone. Stockfish difende col Nero.",
           "success": "Corretto. Hai vinto la posizione di Lucena.",
           "hint": "Con quella mossa la vittoria sfugge. Ricorda il piano: scacco per allontanare il re, torre in quarta traversa e poi fai uscire il tuo re."
         },
-        "u5-l05-s07": { "text": "Riassunto: allontana il re avversario, porta la torre in quarta traversa, fai uscire il tuo re e para gli scacchi con la torre. Se il re di chi difende arriva davanti al pedone, la difesa è un'altra: la posizione di Philidor, che porta alla patta." }
+        "u5-l05-s07": {
+          "text": "Riassunto: allontana il re avversario, porta la torre in quarta traversa, fai uscire il tuo re e para gli scacchi con la torre. Se il re di chi difende arriva davanti al pedone, la difesa è un'altra: la posizione di Philidor, che porta alla patta."
+        }
       }
     }
   }

@@ -5,60 +5,148 @@
       "title": "La fourchette",
       "summary": "Une pièce en attaque deux à la fois",
       "steps": {
-        "u3-l01-s01": { "text": "Une fourchette, c'est une pièce qui en attaque deux à la fois : l'adversaire ne peut en sauver qu'une. Ici, le cavalier fait échec au roi et attaque la dame." },
-        "u3-l01-s02": { "text": "Les pions font aussi des fourchettes. En avançant, ce pion attaque la tour et le cavalier : l'une des deux pièces sera perdue." },
-        "u3-l01-s03": { "prompt": "Fais une fourchette avec le cavalier : attaque le roi et la tour.", "hint": "Cherche la case d'où le cavalier attaque g8 et e8 à la fois.", "success": "Correct. Cf6+ fait échec et attaque la tour : après l'échec, tu la prends." },
-        "u3-l01-s04": { "prompt": "Le cavalier n'est pas le seul à faire des fourchettes : trouves-en une avec le fou.", "hint": "Cherche un échec du fou qui, sur la même diagonale ou sur l'autre, attaque une grosse pièce.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u3-l01-s05": { "prompt": "Avance le pion pour attaquer deux pièces à la fois.", "hint": "Le pion prend en diagonale : cherche d'où il attaque les deux pièces.", "success": "Correct. Le pion attaque la tour et le cavalier." },
-        "u3-l01-s06": { "prompt": "Fais une fourchette avec la dame : échec au roi et attaque sur la tour.", "hint": "Cherche un échec sur la diagonale du roi qui attaque aussi, en diagonale, la tour en b7.", "success": "Correct. Dd5+ fait échec et attaque la tour en b7." },
-        "u3-l01-s07": { "prompt": "Gagne la dame avec une fourchette. Après l'échec, prends-la.", "hint": "Cherche un échec du cavalier qui attaque aussi la dame en c8.", "success": "Correct. Ce7+ et, quand le roi bouge, Cxc8 : tu as gagné la dame." },
+        "u3-l01-s01": {
+          "text": "Une fourchette, c'est une pièce qui en attaque deux à la fois : l'adversaire ne peut en sauver qu'une. Ici, le cavalier fait échec au roi et attaque la dame."
+        },
+        "u3-l01-s02": {
+          "text": "Les pions font aussi des fourchettes. En avançant, ce pion attaque la tour et le cavalier : l'une des deux pièces sera perdue."
+        },
+        "u3-l01-s03": {
+          "prompt": "Fais une fourchette avec le cavalier : attaque le roi et la tour.",
+          "hint": "Cherche la case d'où le cavalier attaque g8 et e8 à la fois.",
+          "success": "Correct. Cf6+ fait échec et attaque la tour : après l'échec, tu la prends."
+        },
+        "u3-l01-s04": {
+          "prompt": "Le cavalier n'est pas le seul à faire des fourchettes : trouves-en une avec le fou.",
+          "hint": "Cherche un échec du fou qui, sur la même diagonale ou sur l'autre, attaque une grosse pièce.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
+        "u3-l01-s05": {
+          "prompt": "Avance le pion pour attaquer deux pièces à la fois.",
+          "hint": "Le pion prend en diagonale : cherche d'où il attaque les deux pièces.",
+          "success": "Correct. Le pion attaque la tour et le cavalier."
+        },
+        "u3-l01-s06": {
+          "prompt": "Fais une fourchette avec la dame : échec au roi et attaque sur la tour.",
+          "hint": "Cherche un échec sur la diagonale du roi qui attaque aussi, en diagonale, la tour en b7.",
+          "success": "Correct. Dd5+ fait échec et attaque la tour en b7."
+        },
+        "u3-l01-s07": {
+          "prompt": "Gagne la dame avec une fourchette. Après l'échec, prends-la.",
+          "hint": "Cherche un échec du cavalier qui attaque aussi la dame en c8.",
+          "success": "Correct. Ce7+ et, quand le roi bouge, Cxc8 : tu as gagné la dame."
+        },
         "u3-l01-s08": {
           "prompt": "De quelle case le cavalier attaque-t-il les deux tours noires ?",
-          "options": ["f7", "e6", "g6"],
+          "options": [
+            "f7",
+            "e6",
+            "g6"
+          ],
           "explanation": "De f7, le cavalier attaque d8 et h8 : c'est une fourchette sur les deux tours.",
-          "feedback": ["", "De e6, le cavalier attaque d8, mais pas h8.", "De g6, le cavalier attaque h8, mais pas d8."]
+          "feedback": [
+            "",
+            "De e6, le cavalier attaque d8, mais pas h8.",
+            "De g6, le cavalier attaque h8, mais pas d8."
+          ]
         },
-        "u3-l01-s09": { "prompt": "Trouve la fourchette.", "hint": "Cherche un coup qui attaque deux pièces à la fois, de préférence le roi et une autre.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u3-l01-s10": { "prompt": "Trouve la fourchette.", "hint": "Cherche un coup qui attaque deux pièces à la fois, de préférence le roi et une autre.", "success": "Bien résolu : cette position vient d'une vraie partie." }
+        "u3-l01-s09": {
+          "prompt": "Trouve la fourchette.",
+          "hint": "Cherche un coup qui attaque deux pièces à la fois, de préférence le roi et une autre.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
+        "u3-l01-s10": {
+          "prompt": "Trouve la fourchette.",
+          "hint": "Cherche un coup qui attaque deux pièces à la fois, de préférence le roi et une autre.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        }
       }
     },
     "u3-l02": {
       "title": "Le clouage",
       "summary": "Une pièce qui ne peut pas bouger",
       "steps": {
-        "u3-l02-s01": { "text": "Le cavalier ne peut pas bouger : s'il le faisait, le fou ferait échec au roi. Il est cloué. Quand le roi est derrière, c'est un clouage absolu." },
-        "u3-l02-s02": { "text": "Si la dame est derrière, c'est un clouage relatif : le cavalier peut bouger, mais le fou prendrait la dame." },
+        "u3-l02-s01": {
+          "text": "Le cavalier ne peut pas bouger : s'il le faisait, le fou ferait échec au roi. Il est cloué. Quand le roi est derrière, c'est un clouage absolu."
+        },
+        "u3-l02-s02": {
+          "text": "Si la dame est derrière, c'est un clouage relatif : le cavalier peut bouger, mais le fou prendrait la dame."
+        },
         "u3-l02-s03": {
           "prompt": "Le cavalier noir en c6 peut-il bouger ?",
-          "options": ["Oui", "Non, il est cloué au roi"],
+          "options": [
+            "Oui",
+            "Non, il est cloué au roi"
+          ],
           "explanation": "Le fou en b5 vise le roi en e8 à travers le cavalier : si le cavalier bouge, le roi se retrouve en échec.",
-          "feedback": ["Regarde la diagonale du fou en b5 : qu'y a-t-il derrière le cavalier ?", ""]
+          "feedback": [
+            "Regarde la diagonale du fou en b5 : qu'y a-t-il derrière le cavalier ?",
+            ""
+          ]
         },
-        "u3-l02-s04": { "prompt": "Cloue le cavalier en c6 au roi avec ton fou.", "hint": "Le fou en f1 peut se placer sur la diagonale qui relie le cavalier au roi.", "success": "Correct. Fb5 cloue le cavalier : il ne peut pas bouger sans laisser le roi en échec." },
-        "u3-l02-s05": { "prompt": "Cloue la dame au roi et gagne-la.", "hint": "La dame et le roi noirs sont sur la même diagonale. Places-y le fou, protégé par le pion.", "success": "Correct. Fd4 cloue la dame : si elle prend le fou, le pion prend la dame." },
-        "u3-l02-s06": { "prompt": "Le cavalier en f6 est cloué à la dame. Attaque-le avec un pion.", "hint": "Un pion peut attaquer le cavalier : comme il est cloué, il a tout intérêt à ne pas bouger.", "success": "Correct. Le cavalier ne peut pas s'échapper sans abandonner la dame : tu gagnes une pièce." },
+        "u3-l02-s04": {
+          "prompt": "Cloue le cavalier en c6 au roi avec ton fou.",
+          "hint": "Le fou en f1 peut se placer sur la diagonale qui relie le cavalier au roi.",
+          "success": "Correct. Fb5 cloue le cavalier : il ne peut pas bouger sans laisser le roi en échec."
+        },
+        "u3-l02-s05": {
+          "prompt": "Cloue la dame au roi et gagne-la.",
+          "hint": "La dame et le roi noirs sont sur la même diagonale. Places-y le fou, protégé par le pion.",
+          "success": "Correct. Fd4 cloue la dame : si elle prend le fou, le pion prend la dame."
+        },
+        "u3-l02-s06": {
+          "prompt": "Le cavalier en f6 est cloué à la dame. Attaque-le avec un pion.",
+          "hint": "Un pion peut attaquer le cavalier : comme il est cloué, il a tout intérêt à ne pas bouger.",
+          "success": "Correct. Le cavalier ne peut pas s'échapper sans abandonner la dame : tu gagnes une pièce."
+        },
         "u3-l02-s07": {
           "prompt": "Ce clouage est-il absolu ou relatif ?",
-          "options": ["Absolu : le roi est derrière", "Relatif : la dame est derrière"],
+          "options": [
+            "Absolu : le roi est derrière",
+            "Relatif : la dame est derrière"
+          ],
           "explanation": "Derrière le cavalier, il y a la dame, pas le roi : le cavalier peut bouger, mais il ferait perdre la dame.",
-          "feedback": ["Regarde quelle pièce se trouve derrière le cavalier, sur la diagonale du fou.", ""]
+          "feedback": [
+            "Regarde quelle pièce se trouve derrière le cavalier, sur la diagonale du fou.",
+            ""
+          ]
         },
-        "u3-l02-s08": { "text": "Pour te défendre d'un clouage, protège la pièce clouée, interpose une autre pièce ou écarte le roi ou la dame de la ligne. Ici, Fe7 coupe la diagonale et le cavalier est de nouveau libre." },
-        "u3-l02-s09": { "prompt": "Profite du clouage.", "hint": "Cherche une pièce qui ne peut pas bouger parce que le roi ou la dame est derrière elle.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u3-l02-s10": { "prompt": "Profite du clouage.", "hint": "Cherche une pièce qui ne peut pas bouger parce que le roi ou la dame est derrière elle.", "success": "Bien résolu : cette position vient d'une vraie partie." }
+        "u3-l02-s08": {
+          "text": "Pour te défendre d'un clouage, protège la pièce clouée, interpose une autre pièce ou écarte le roi ou la dame de la ligne. Ici, Fe7 coupe la diagonale et le cavalier est de nouveau libre."
+        },
+        "u3-l02-s09": {
+          "prompt": "Profite du clouage.",
+          "hint": "Cherche une pièce qui ne peut pas bouger parce que le roi ou la dame est derrière elle.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
+        "u3-l02-s10": {
+          "prompt": "Profite du clouage.",
+          "hint": "Cherche une pièce qui ne peut pas bouger parce que le roi ou la dame est derrière elle.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        }
       }
     },
     "u3-l09": {
       "title": "L'enfilade",
       "summary": "Le clouage à l'envers",
       "steps": {
-        "u3-l09-s01": { "text": "La tour donne échec au roi et, derrière lui, sur la même colonne, se trouve la dame. Le roi doit s'écarter et la tour prend la dame. C'est une enfilade : tu attaques d'abord la pièce la plus précieuse et, quand elle s'éloigne, celle qui était derrière tombe." },
-        "u3-l09-s02": { "text": "C'est l'inverse du clouage. Ici le fou cloue le cavalier en c6 : la pièce de devant vaut moins que celle de derrière et ne peut pas bouger. Dans l'enfilade, celle de devant vaut plus : elle doit s'éloigner et laisse sans défense celle qui reste derrière." },
+        "u3-l09-s01": {
+          "text": "La tour donne échec au roi et, derrière lui, sur la même colonne, se trouve la dame. Le roi doit s'écarter et la tour prend la dame. C'est une enfilade : tu attaques d'abord la pièce la plus précieuse et, quand elle s'éloigne, celle qui était derrière tombe."
+        },
+        "u3-l09-s02": {
+          "text": "C'est l'inverse du clouage. Ici le fou cloue le cavalier en c6 : la pièce de devant vaut moins que celle de derrière et ne peut pas bouger. Dans l'enfilade, celle de devant vaut plus : elle doit s'éloigner et laisse sans défense celle qui reste derrière."
+        },
         "u3-l09-s03": {
           "prompt": "Le fou en f3 attaque la dame et derrière se trouve la tour en a8. Est-ce un clouage ou une enfilade ?",
-          "options": ["Clouage", "Enfilade"],
+          "options": [
+            "Clouage",
+            "Enfilade"
+          ],
           "explanation": "C'est une enfilade : la dame vaut plus que la tour et va devant. Si elle s'éloigne, le fou prend la tour.",
-          "feedback": ["Regarde quelle pièce est devant : celle qui vaut le plus ou celle qui vaut le moins ?", ""]
+          "feedback": [
+            "Regarde quelle pièce est devant : celle qui vaut le plus ou celle qui vaut le moins ?",
+            ""
+          ]
         },
         "u3-l09-s04": {
           "prompt": "Donne échec avec la tour pour que le roi s'écarte et que tu puisses prendre la dame.",
@@ -74,18 +162,30 @@
           "prompt": "Touche les deux pièces noires que le fou enfile.",
           "hint": "Suis la diagonale du fou : il passe par une pièce et atteint une autre, plus loin."
         },
-        "u3-l09-s07": { "text": "Pour éviter une enfilade, regarde les rangées, les colonnes et les diagonales avant de bouger. Si ton roi et une autre pièce précieuse restent sur la même ligne et que l'adversaire a une tour, une dame ou un fou qui vise celle-ci, sépare-les. Ici la tour en h1 menace Th5+ : en déplaçant le roi ou la dame hors de la rangée 5, on l'évite." },
+        "u3-l09-s07": {
+          "text": "Pour éviter une enfilade, regarde les rangées, les colonnes et les diagonales avant de bouger. Si ton roi et une autre pièce précieuse restent sur la même ligne et que l'adversaire a une tour, une dame ou un fou qui vise celle-ci, sépare-les. Ici la tour en h1 menace Th5+ : en déplaçant le roi ou la dame hors de la rangée 5, on l'évite."
+        },
         "u3-l09-s08": {
           "prompt": "Profite de l'enfilade.",
           "success": "Bien résolu : cette position vient d'une vraie partie.",
           "hint": "Cherche un échec qui oblige le roi à s'écarter et laisse la pièce derrière sans défense.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l09-s09": {
           "prompt": "Profite de l'enfilade.",
           "success": "Bien résolu : cette position vient d'une vraie partie.",
           "hint": "Cherche un échec qui oblige le roi à s'écarter et laisse la pièce derrière sans défense.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -93,126 +193,412 @@
       "title": "L'attaque à la découverte",
       "summary": "Une pièce s'écarte et en découvre une autre",
       "steps": {
-        "u3-l03-s01": { "text": "Dans une attaque à la découverte, une pièce bouge et découvre l'attaque de celle qui était derrière elle. Ici, le fou fait échec et, en même temps, la tour attaque la dame." },
-        "u3-l03-s02": { "prompt": "Déplace le cavalier avec échec et gagne la dame.", "hint": "Si le cavalier quitte e4 en faisant échec, la tour attaque la dame et il n'y a pas le temps de la sauver.", "success": "Correct. Cf6+ fait échec et découvre la tour sur la dame." },
-        "u3-l03-s03": { "prompt": "Avance un pion avec échec : en bougeant, il découvre l'attaque de ton fou.", "hint": "Le pion devant ton fou peut faire échec en avançant.", "success": "Bien résolu : cette position vient d'une vraie partie." },
+        "u3-l03-s01": {
+          "text": "Dans une attaque à la découverte, une pièce bouge et découvre l'attaque de celle qui était derrière elle. Ici, le fou fait échec et, en même temps, la tour attaque la dame."
+        },
+        "u3-l03-s02": {
+          "prompt": "Déplace le cavalier avec échec et gagne la dame.",
+          "hint": "Si le cavalier quitte e4 en faisant échec, la tour attaque la dame et il n'y a pas le temps de la sauver.",
+          "success": "Correct. Cf6+ fait échec et découvre la tour sur la dame."
+        },
+        "u3-l03-s03": {
+          "prompt": "Avance un pion avec échec : en bougeant, il découvre l'attaque de ton fou.",
+          "hint": "Le pion devant ton fou peut faire échec en avançant.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
         "u3-l03-s04": {
           "prompt": "Quelle pièce blanche dois-tu déplacer pour que la tour attaque la dame ?",
-          "options": ["Le fou en e4", "La tour en e1", "Le roi"],
+          "options": [
+            "Le fou en e4",
+            "La tour en e1",
+            "Le roi"
+          ],
           "explanation": "Le fou bloque la colonne e : quand il bouge, la tour attaque la dame.",
-          "feedback": ["", "La tour est déjà sur la colonne : c'est une autre pièce qui la bloque.", "Le roi n'est pas sur la colonne e."]
+          "feedback": [
+            "",
+            "La tour est déjà sur la colonne : c'est une autre pièce qui la bloque.",
+            "Le roi n'est pas sur la colonne e."
+          ]
         },
-        "u3-l03-s05": { "prompt": "Touche la pièce blanche qui, en bougeant, découvre une attaque sur la dame noire.", "hint": "Regarde la colonne a : une de tes pièces se trouve entre la tour et la dame." },
-        "u3-l03-s06": { "prompt": "Fais un échec à la découverte avec le fou et gagne la dame.", "hint": "Le fou peut partir en découvrant un échec et, en même temps, attaquer la dame en c8.", "success": "Correct. Ff5+ puis Fxc8 : l'échec de la tour n'a pas laissé le temps de sauver la dame." },
-        "u3-l03-s07": { "text": "Pour trouver des attaques à la découverte, cherche tes pièces alignées avec le roi ou la dame de l'adversaire, avec une autre de tes pièces au milieu. Si la pièce du milieu bouge avec une menace, l'adversaire ne peut pas répondre aux deux menaces." },
-        "u3-l03-s08": { "prompt": "Trouve l'attaque à la découverte.", "hint": "Déplace la pièce qui bloque une autre de tes pièces : tu attaques ainsi deux choses à la fois.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u3-l03-s09": { "prompt": "Trouve l'attaque à la découverte.", "hint": "Déplace la pièce qui bloque une autre de tes pièces : tu attaques ainsi deux choses à la fois.", "success": "Bien résolu : cette position vient d'une vraie partie." }
+        "u3-l03-s05": {
+          "prompt": "Touche la pièce blanche qui, en bougeant, découvre une attaque sur la dame noire.",
+          "hint": "Regarde la colonne a : une de tes pièces se trouve entre la tour et la dame."
+        },
+        "u3-l03-s06": {
+          "prompt": "Fais un échec à la découverte avec le fou et gagne la dame.",
+          "hint": "Le fou peut partir en découvrant un échec et, en même temps, attaquer la dame en c8.",
+          "success": "Correct. Ff5+ puis Fxc8 : l'échec de la tour n'a pas laissé le temps de sauver la dame."
+        },
+        "u3-l03-s07": {
+          "text": "Pour trouver des attaques à la découverte, cherche tes pièces alignées avec le roi ou la dame de l'adversaire, avec une autre de tes pièces au milieu. Si la pièce du milieu bouge avec une menace, l'adversaire ne peut pas répondre aux deux menaces."
+        },
+        "u3-l03-s08": {
+          "prompt": "Trouve l'attaque à la découverte.",
+          "hint": "Déplace la pièce qui bloque une autre de tes pièces : tu attaques ainsi deux choses à la fois.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
+        "u3-l03-s09": {
+          "prompt": "Trouve l'attaque à la découverte.",
+          "hint": "Déplace la pièce qui bloque une autre de tes pièces : tu attaques ainsi deux choses à la fois.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        }
       }
     },
     "u3-l04": {
       "title": "Échec double et double attaque",
       "summary": "Deux menaces en un seul coup",
       "steps": {
-        "u3-l04-s01": { "text": "Dans un échec double, deux pièces font échec à la fois. On ne peut pas bloquer ni prendre les deux : il ne reste qu'à déplacer le roi. Ici, la dame noire pourrait prendre le cavalier, mais l'échec de la tour resterait." },
-        "u3-l04-s02": { "prompt": "Fais un échec double avec le cavalier et le fou.", "hint": "Si le cavalier quitte la diagonale du fou en faisant échec, cela fait deux échecs à la fois.", "success": "Correct. Le cavalier fait échec et découvre l'échec du fou : le roi doit bouger." },
-        "u3-l04-s03": { "prompt": "Fais un échec double : c'est mat.", "hint": "Le cavalier peut faire échec et découvrir celui de la tour. Le roi est entouré de ses pièces.", "success": "Correct. Échec double et mat : le roi n'a nulle part où aller." },
-        "u3-l04-s04": { "text": "La dame excelle dans les doubles attaques : elle peut attaquer deux pièces sans défense à la fois, sur des lignes différentes." },
-        "u3-l04-s05": { "prompt": "Fais échec avec la dame et attaque la tour en même temps.", "hint": "Cherche un échec sur la diagonale du roi qui vise aussi la tour en a2.", "success": "Correct. Échec et attaque sur la tour : après l'échec, tu la prends." },
-        "u3-l04-s06": { "prompt": "Attaque en même temps le cavalier et le fou, qui sont sans défense.", "hint": "Le cavalier et le fou sont sur la même rangée : place-toi sur cette rangée.", "success": "Correct. La dame attaque les deux pièces : une seule peut être sauvée." },
+        "u3-l04-s01": {
+          "text": "Dans un échec double, deux pièces font échec à la fois. On ne peut pas bloquer ni prendre les deux : il ne reste qu'à déplacer le roi. Ici, la dame noire pourrait prendre le cavalier, mais l'échec de la tour resterait."
+        },
+        "u3-l04-s02": {
+          "prompt": "Fais un échec double avec le cavalier et le fou.",
+          "hint": "Si le cavalier quitte la diagonale du fou en faisant échec, cela fait deux échecs à la fois.",
+          "success": "Correct. Le cavalier fait échec et découvre l'échec du fou : le roi doit bouger."
+        },
+        "u3-l04-s03": {
+          "prompt": "Fais un échec double : c'est mat.",
+          "hint": "Le cavalier peut faire échec et découvrir celui de la tour. Le roi est entouré de ses pièces.",
+          "success": "Correct. Échec double et mat : le roi n'a nulle part où aller."
+        },
+        "u3-l04-s04": {
+          "text": "La dame excelle dans les doubles attaques : elle peut attaquer deux pièces sans défense à la fois, sur des lignes différentes."
+        },
+        "u3-l04-s05": {
+          "prompt": "Fais échec avec la dame et attaque la tour en même temps.",
+          "hint": "Cherche un échec sur la diagonale du roi qui vise aussi la tour en a2.",
+          "success": "Correct. Échec et attaque sur la tour : après l'échec, tu la prends."
+        },
+        "u3-l04-s06": {
+          "prompt": "Attaque en même temps le cavalier et le fou, qui sont sans défense.",
+          "hint": "Le cavalier et le fou sont sur la même rangée : place-toi sur cette rangée.",
+          "success": "Correct. La dame attaque les deux pièces : une seule peut être sauvée."
+        },
         "u3-l04-s07": {
           "prompt": "Pourquoi l'échec double est-il si fort ?",
-          "options": ["On ne peut y répondre qu'en déplaçant le roi", "C'est toujours mat", "Il gagne toujours la dame"],
+          "options": [
+            "On ne peut y répondre qu'en déplaçant le roi",
+            "C'est toujours mat",
+            "Il gagne toujours la dame"
+          ],
           "explanation": "Avec deux échecs à la fois, bloquer ou prendre une pièce ne suffit pas : le roi doit bouger.",
-          "feedback": ["", "Ce n'est pas toujours mat : parfois, le roi a une case libre.", "Cela dépend de la position : ce qui est sûr, c'est que le roi doit bouger."]
+          "feedback": [
+            "",
+            "Ce n'est pas toujours mat : parfois, le roi a une case libre.",
+            "Cela dépend de la position : ce qui est sûr, c'est que le roi doit bouger."
+          ]
         },
-        "u3-l04-s08": { "prompt": "Fais un échec double.", "hint": "Cherche un coup où deux pièces font échec à la fois.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u3-l04-s09": { "prompt": "Fais un échec double.", "hint": "Cherche un coup où deux pièces font échec à la fois.", "success": "Bien résolu : cette position vient d'une vraie partie." }
+        "u3-l04-s08": {
+          "prompt": "Fais un échec double.",
+          "hint": "Cherche un coup où deux pièces font échec à la fois.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
+        "u3-l04-s09": {
+          "prompt": "Fais un échec double.",
+          "hint": "Cherche un coup où deux pièces font échec à la fois.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        }
       }
     },
     "u3-l05": {
       "title": "Éliminer le défenseur",
       "summary": "Prends la pièce qui défend",
       "steps": {
-        "u3-l05-s01": { "text": "Si une pièce en défend une autre, prends ou échange celle qui défend : l'autre se retrouve sans protection. Ici, le cavalier en f6 défend la tour en d5. Si tu le prends avec échec, il n'y a pas le temps de sauver la tour." },
-        "u3-l05-s02": { "prompt": "Touche la pièce noire qui défend la tour en d5.", "hint": "Cherche quelle pièce noire pourrait reprendre en d5." },
-        "u3-l05-s03": { "prompt": "Élimine le défenseur avec échec et gagne la tour.", "hint": "Prends d'abord la pièce qui défend la tour.", "success": "Correct. Fxf6+ et, après Rxf6, Cxd5+ : la tour était sans défense." },
-        "u3-l05-s04": { "prompt": "Échange le défenseur du fou en b4 et gagne ce fou.", "hint": "Le cavalier en c6 défend le fou : ton fou peut le prendre.", "success": "Correct. Tu as échangé ton fou contre le cavalier et gagné le fou en b4." },
-        "u3-l05-s05": { "prompt": "Le cavalier en f6 défend h7. Élimine-le et menace de mat.", "hint": "Ta dame et ton cavalier attaquent h7. À part le roi, seul le cavalier en f6 le défend.", "success": "Correct. Sans le cavalier, Dxh7 est mat." },
+        "u3-l05-s01": {
+          "text": "Si une pièce en défend une autre, prends ou échange celle qui défend : l'autre se retrouve sans protection. Ici, le cavalier en f6 défend la tour en d5. Si tu le prends avec échec, il n'y a pas le temps de sauver la tour."
+        },
+        "u3-l05-s02": {
+          "prompt": "Touche la pièce noire qui défend la tour en d5.",
+          "hint": "Cherche quelle pièce noire pourrait reprendre en d5."
+        },
+        "u3-l05-s03": {
+          "prompt": "Élimine le défenseur avec échec et gagne la tour.",
+          "hint": "Prends d'abord la pièce qui défend la tour.",
+          "success": "Correct. Fxf6+ et, après Rxf6, Cxd5+ : la tour était sans défense."
+        },
+        "u3-l05-s04": {
+          "prompt": "Échange le défenseur du fou en b4 et gagne ce fou.",
+          "hint": "Le cavalier en c6 défend le fou : ton fou peut le prendre.",
+          "success": "Correct. Tu as échangé ton fou contre le cavalier et gagné le fou en b4."
+        },
+        "u3-l05-s05": {
+          "prompt": "Le cavalier en f6 défend h7. Élimine-le et menace de mat.",
+          "hint": "Ta dame et ton cavalier attaquent h7. À part le roi, seul le cavalier en f6 le défend.",
+          "success": "Correct. Sans le cavalier, Dxh7 est mat."
+        },
         "u3-l05-s06": {
           "prompt": "Quel coup gagne le plus de matériel ?",
-          "options": ["Fxf6+ puis Cxd5", "Cxd5 tout de suite", "Fh4"],
+          "options": [
+            "Fxf6+ puis Cxd5",
+            "Cxd5 tout de suite",
+            "Fh4"
+          ],
           "explanation": "Cxd5 Cxd5 échange ton cavalier contre la tour. Fxf6+ d'abord gagne la tour entière : le défenseur n'est plus là.",
-          "feedback": ["", "Cxd5 gagne quelque chose, mais le cavalier en f6 reprend. Élimine d'abord le défenseur.", "Fh4 ne gagne rien."]
+          "feedback": [
+            "",
+            "Cxd5 gagne quelque chose, mais le cavalier en f6 reprend. Élimine d'abord le défenseur.",
+            "Fh4 ne gagne rien."
+          ]
         },
-        "u3-l05-s07": { "text": "Avant d'attaquer une pièce, regarde qui la défend. Si tu peux prendre ou échanger le défenseur, la pièce se retrouve en prise." },
-        "u3-l05-s08": { "prompt": "Élimine le défenseur et gagne du matériel.", "hint": "Cherche quelle pièce en défend une autre, puis prends-la ou échange-la.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u3-l05-s09": { "prompt": "Élimine le défenseur et gagne du matériel.", "hint": "Cherche quelle pièce en défend une autre, puis prends-la ou échange-la.", "success": "Bien résolu : cette position vient d'une vraie partie." }
+        "u3-l05-s07": {
+          "text": "Avant d'attaquer une pièce, regarde qui la défend. Si tu peux prendre ou échanger le défenseur, la pièce se retrouve en prise."
+        },
+        "u3-l05-s08": {
+          "prompt": "Élimine le défenseur et gagne du matériel.",
+          "hint": "Cherche quelle pièce en défend une autre, puis prends-la ou échange-la.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
+        "u3-l05-s09": {
+          "prompt": "Élimine le défenseur et gagne du matériel.",
+          "hint": "Cherche quelle pièce en défend une autre, puis prends-la ou échange-la.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        }
       }
     },
     "u3-l06": {
       "title": "La déviation",
       "summary": "Écarte le défenseur de sa place",
       "steps": {
-        "u3-l06-s01": { "text": "La déviation oblige une pièce à cesser de défendre une case. Ici, la tour en d8 défend la dame et la dernière rangée. Si la dame blanche prend, la tour doit reprendre et laisse e8 libre." },
-        "u3-l06-s02": { "prompt": "Touche la pièce noire qui a deux tâches à la fois.", "hint": "Une pièce défend la dame et aussi la case e8." },
-        "u3-l06-s03": { "prompt": "Dévie la tour qui défend la dernière rangée et donne mat.", "hint": "La tour en c8 défend le fou et la dernière rangée. Prends le fou.", "success": "Correct. La tour a dû reprendre et Te8 a donné mat." },
-        "u3-l06-s04": { "prompt": "Fais échec avec la dame : la tour doit la prendre et la dernière rangée n'est plus défendue.", "hint": "Cherche un échec de la dame en e8 : ta tour vise aussi cette case.", "success": "Correct. De8+ oblige la tour à prendre et Txe8 est mat." },
-        "u3-l06-s05": { "prompt": "Le roi noir défend le fou en d8. Fais échec avec le pion pour le dévier et gagne le fou.", "hint": "Un échec de pion oblige le roi à bouger, et toute case l'éloigne du fou.", "success": "Bien résolu : cette position vient d'une vraie partie." },
+        "u3-l06-s01": {
+          "text": "La déviation oblige une pièce à cesser de défendre une case. Ici, la tour en d8 défend la dame et la dernière rangée. Si la dame blanche prend, la tour doit reprendre et laisse e8 libre."
+        },
+        "u3-l06-s02": {
+          "prompt": "Touche la pièce noire qui a deux tâches à la fois.",
+          "hint": "Une pièce défend la dame et aussi la case e8."
+        },
+        "u3-l06-s03": {
+          "prompt": "Dévie la tour qui défend la dernière rangée et donne mat.",
+          "hint": "La tour en c8 défend le fou et la dernière rangée. Prends le fou.",
+          "success": "Correct. La tour a dû reprendre et Te8 a donné mat."
+        },
+        "u3-l06-s04": {
+          "prompt": "Fais échec avec la dame : la tour doit la prendre et la dernière rangée n'est plus défendue.",
+          "hint": "Cherche un échec de la dame en e8 : ta tour vise aussi cette case.",
+          "success": "Correct. De8+ oblige la tour à prendre et Txe8 est mat."
+        },
+        "u3-l06-s05": {
+          "prompt": "Le roi noir défend le fou en d8. Fais échec avec le pion pour le dévier et gagne le fou.",
+          "hint": "Un échec de pion oblige le roi à bouger, et toute case l'éloigne du fou.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
         "u3-l06-s06": {
           "prompt": "Quelle pièce noire est surchargée ?",
-          "options": ["La tour en c8", "Le fou en c6", "Le roi"],
+          "options": [
+            "La tour en c8",
+            "Le fou en c6",
+            "Le roi"
+          ],
           "explanation": "La tour en c8 défend le fou et aussi la dernière rangée : elle ne peut pas faire les deux.",
-          "feedback": ["", "Le fou ne défend rien d'important : c'est la tour qui le défend.", "Le roi est bloqué derrière ses pions, mais il ne défend rien."]
+          "feedback": [
+            "",
+            "Le fou ne défend rien d'important : c'est la tour qui le défend.",
+            "Le roi est bloqué derrière ses pions, mais il ne défend rien."
+          ]
         },
-        "u3-l06-s07": { "text": "Une pièce qui défend deux choses à la fois est surchargée. Si tu l'obliges à s'occuper de l'une, l'autre n'est plus défendue." },
-        "u3-l06-s08": { "prompt": "Dévie le défenseur.", "hint": "Oblige une pièce adverse à cesser de défendre une case, presque toujours avec un échec.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u3-l06-s09": { "prompt": "Dévie le défenseur.", "hint": "Oblige une pièce adverse à cesser de défendre une case, presque toujours avec un échec.", "success": "Bien résolu : cette position vient d'une vraie partie." }
+        "u3-l06-s07": {
+          "text": "Une pièce qui défend deux choses à la fois est surchargée. Si tu l'obliges à s'occuper de l'une, l'autre n'est plus défendue."
+        },
+        "u3-l06-s08": {
+          "prompt": "Dévie le défenseur.",
+          "hint": "Oblige une pièce adverse à cesser de défendre une case, presque toujours avec un échec.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
+        "u3-l06-s09": {
+          "prompt": "Dévie le défenseur.",
+          "hint": "Oblige une pièce adverse à cesser de défendre une case, presque toujours avec un échec.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        }
       }
     },
     "u3-l07": {
       "title": "Mat du couloir et mat du berger",
       "summary": "Deux mats à connaître",
       "steps": {
-        "u3-l07-s01": { "text": "Dans le mat du couloir, le roi est enfermé par ses propres pions sur la dernière rangée, et une tour ou la dame donne mat." },
-        "u3-l07-s02": { "prompt": "Donne le mat du couloir.", "hint": "Le roi noir ne peut pas quitter la dernière rangée.", "success": "Correct. Td8 est mat." },
-        "u3-l07-s03": { "prompt": "Tu joues les Noirs. Donne le mat du couloir.", "hint": "Le roi blanc est enfermé par ses pions.", "success": "Correct. Te1 est mat." },
-        "u3-l07-s04": { "text": "Pour l'éviter, donne une sortie au roi : un coup de pion comme h3 libère h2. Une tour qui surveille la dernière rangée fait aussi l'affaire." },
+        "u3-l07-s01": {
+          "text": "Dans le mat du couloir, le roi est enfermé par ses propres pions sur la dernière rangée, et une tour ou la dame donne mat."
+        },
+        "u3-l07-s02": {
+          "prompt": "Donne le mat du couloir.",
+          "hint": "Le roi noir ne peut pas quitter la dernière rangée.",
+          "success": "Correct. Td8 est mat."
+        },
+        "u3-l07-s03": {
+          "prompt": "Tu joues les Noirs. Donne le mat du couloir.",
+          "hint": "Le roi blanc est enfermé par ses pions.",
+          "success": "Correct. Te1 est mat."
+        },
+        "u3-l07-s04": {
+          "text": "Pour l'éviter, donne une sortie au roi : un coup de pion comme h3 libère h2. Une tour qui surveille la dernière rangée fait aussi l'affaire."
+        },
         "u3-l07-s05": {
           "prompt": "Les Noirs menacent Td1 mat. Quel coup l'empêche ?",
-          "options": ["h3", "a3", "b4"],
+          "options": [
+            "h3",
+            "a3",
+            "b4"
+          ],
           "explanation": "Avec h3, le roi a la case h2 pour s'échapper : Td1+ n'est plus mat.",
-          "feedback": ["", "a3 ne donne aucune sortie au roi.", "b4 ne donne aucune sortie au roi."]
+          "feedback": [
+            "",
+            "a3 ne donne aucune sortie au roi.",
+            "b4 ne donne aucune sortie au roi."
+          ]
         },
-        "u3-l07-s06": { "text": "Le mat du berger : la dame et le fou attaquent ensemble f7, la case faible que seul le roi défend. Si les Noirs ne le voient pas, Dxf7 est mat." },
-        "u3-l07-s07": { "prompt": "Tu joues les Noirs. La dame et le fou menacent Dxf7 mat. Défends-toi.", "hint": "Défends f7 avec la dame ou le cavalier, ou attaque la dame blanche avec un pion.", "success": "Correct. Il n'y a plus de mat en f7." },
+        "u3-l07-s06": {
+          "text": "Le mat du berger : la dame et le fou attaquent ensemble f7, la case faible que seul le roi défend. Si les Noirs ne le voient pas, Dxf7 est mat."
+        },
+        "u3-l07-s07": {
+          "prompt": "Tu joues les Noirs. La dame et le fou menacent Dxf7 mat. Défends-toi.",
+          "hint": "Défends f7 avec la dame ou le cavalier, ou attaque la dame blanche avec un pion.",
+          "success": "Correct. Il n'y a plus de mat en f7."
+        },
         "u3-l07-s08": {
           "prompt": "Quelle case la dame et le fou blancs attaquent-ils ensemble ?",
-          "options": ["f7", "e5", "h7"],
+          "options": [
+            "f7",
+            "e5",
+            "h7"
+          ],
           "explanation": "f7 : la dame en h5 et le fou en c4 l'attaquent, et seul le roi la défend.",
-          "feedback": ["", "e5 n'est attaquée que par la dame.", "h7 n'est attaquée que par la dame, et la tour la défend."]
+          "feedback": [
+            "",
+            "e5 n'est attaquée que par la dame.",
+            "h7 n'est attaquée que par la dame, et la tour la défend."
+          ]
         },
-        "u3-l07-s09": { "prompt": "Donne le mat du couloir.", "hint": "Le roi est enfermé par ses propres pions sur la dernière rangée.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u3-l07-s10": { "prompt": "Donne le mat du couloir.", "hint": "Le roi est enfermé par ses propres pions sur la dernière rangée.", "success": "Bien résolu : cette position vient d'une vraie partie." }
+        "u3-l07-s09": {
+          "prompt": "Donne le mat du couloir.",
+          "hint": "Le roi est enfermé par ses propres pions sur la dernière rangée.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
+        "u3-l07-s10": {
+          "prompt": "Donne le mat du couloir.",
+          "hint": "Le roi est enfermé par ses propres pions sur la dernière rangée.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        }
+      }
+    },
+    "u9-l01": {
+      "title": "Pièces sans défense",
+      "summary": "Une pièce sans défense est une cible",
+      "steps": {
+        "u9-l01-s01": {
+          "text": "La dame blanche est en c5 et aucune pièce ne la défend. La dame noire en e7 l'attaque et la prend gratuitement. Une pièce que personne ne défend est une pièce sans défense."
+        },
+        "u9-l01-s02": {
+          "text": "Le fou noir en f2 a donné échec, mais aucune pièce ne le protège : le roi le prend. Avant de prendre, vérifie que la pièce adverse n'a pas de défense ; avant de jouer, vérifie que les tiennes en ont."
+        },
+        "u9-l01-s03": {
+          "prompt": "Touche les deux pièces blanches que personne ne défend. Ne compte ni le roi ni les pions.",
+          "hint": "Cherche les pièces blanches qu'aucune autre pièce ni aucun pion blanc ne protège."
+        },
+        "u9-l01-s04": {
+          "prompt": "Combien de pièces noires sont sans défense? Ne compte pas le roi ni les pions.",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "explanation": "Il y a quatre pièces noires sans défense. Quand l'adversaire a autant de pièces sans défense, il y a presque toujours une tactique dans l'air.",
+          "feedback": [
+            "Compte à nouveau : vérifie chaque pièce noire et vois si une autre pièce la protège.",
+            "Compte à nouveau : vérifie chaque pièce noire et vois si une autre pièce la protège.",
+            "",
+            "Compte à nouveau : vérifie chaque pièce noire et vois si une autre pièce la protège."
+          ]
+        },
+        "u9-l01-s05": {
+          "prompt": "Prends la pièce sans défense.",
+          "hint": "Une des pièces blanches est sans défense et tu peux la prendre avec échec.",
+          "success": "Correct. Txe1+ gagne une pièce que personne ne défendait."
+        },
+        "u9-l01-s06": {
+          "prompt": "Prends la pièce sans défense.",
+          "hint": "La pièce qui vient de donner échec n'a pas de défense : prends-la.",
+          "success": "Correct. Rxf2 gagne une pièce que personne ne défendait."
+        },
+        "u9-l01-s07": {
+          "prompt": "Prends la pièce sans défense.",
+          "hint": "La dame noire est sur une case où personne ne la protège.",
+          "success": "Correct. Rxb2 gagne une pièce que personne ne défendait."
+        },
+        "u9-l01-s08": {
+          "prompt": "Profite de la pièce sans défense.",
+          "success": "Bien résolu : cette position vient d'une partie réelle.",
+          "hint": "Cherche les pièces de l'adversaire que personne ne défend et commence par la plus précieuse.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u9-l01-s09": {
+          "prompt": "Profite de la pièce sans défense.",
+          "success": "Bien résolu : cette position vient d'une partie réelle.",
+          "hint": "Cherche les pièces de l'adversaire que personne ne défend et commence par la plus précieuse.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
       }
     },
     "u3-l08": {
       "title": "Avant de jouer : échecs, prises et menaces",
       "summary": "La routine pour ne pas perdre de pièces",
       "steps": {
-        "u3-l08-s01": { "text": "Avant chaque coup, une routine : d'abord, que menace le dernier coup de l'adversaire ? Ensuite, vérifie tes échecs, tes prises et tes menaces." },
-        "u3-l08-s02": { "prompt": "Les Noirs viennent de jouer b5. Touche ta pièce qui est attaquée.", "hint": "Le pion b5 attaque en diagonale." },
+        "u3-l08-s01": {
+          "text": "Avant chaque coup, une routine : d'abord, que menace le dernier coup de l'adversaire ? Ensuite, vérifie tes échecs, tes prises et tes menaces."
+        },
+        "u3-l08-s02": {
+          "prompt": "Les Noirs viennent de jouer b5. Touche ta pièce qui est attaquée.",
+          "hint": "Le pion b5 attaque en diagonale."
+        },
         "u3-l08-s03": {
           "prompt": "Les Noirs viennent de jouer Cb4. Que menacent-ils ?",
-          "options": ["Une fourchette en c2 : échec au roi et attaque sur la tour", "Un clouage", "Une attaque à la découverte"],
+          "options": [
+            "Une fourchette en c2 : échec au roi et attaque sur la tour",
+            "Un clouage",
+            "Une attaque à la découverte"
+          ],
           "explanation": "De c2, le cavalier ferait échec au roi en e1 et attaquerait la tour en a1.",
-          "feedback": ["", "Regarde où le cavalier peut sauter.", "Regarde où le cavalier peut sauter."]
+          "feedback": [
+            "",
+            "Regarde où le cavalier peut sauter.",
+            "Regarde où le cavalier peut sauter."
+          ]
         },
-        "u3-l08-s04": { "prompt": "Empêche la fourchette du cavalier en c2.", "hint": "Couvre la case c2, ou déplace le roi ou la tour.", "success": "Correct. La fourchette ne fonctionne plus." },
-        "u3-l08-s05": { "prompt": "Les Noirs ont laissé une pièce sans défense. Prends-la.", "hint": "Vérifie tes prises : quelle pièce noire personne ne défend ?", "success": "Correct. Le fou en g4 était sans défense." },
-        "u3-l08-s06": { "prompt": "Touche toutes les pièces noires que tu peux prendre gratuitement.", "hint": "Cherche les pièces noires que tes pièces attaquent et que personne ne défend." },
-        "u3-l08-s07": { "text": "Ton adversaire aussi peut utiliser contre toi les tactiques de cette unité. Vérifier les échecs, les prises et les menaces avant de jouer permet de les voir venir." },
-        "u3-l08-s08": { "prompt": "Vérifie les échecs, les prises et les menaces.", "hint": "Regarde quelles pièces adverses sont restées sans défense après son coup.", "success": "Bien résolu : cette position vient d'une vraie partie." },
-        "u3-l08-s09": { "prompt": "Vérifie les échecs, les prises et les menaces.", "hint": "Regarde quelles pièces adverses sont restées sans défense après son coup.", "success": "Bien résolu : cette position vient d'une vraie partie." }
+        "u3-l08-s04": {
+          "prompt": "Empêche la fourchette du cavalier en c2.",
+          "hint": "Couvre la case c2, ou déplace le roi ou la tour.",
+          "success": "Correct. La fourchette ne fonctionne plus."
+        },
+        "u3-l08-s05": {
+          "prompt": "Les Noirs ont laissé une pièce sans défense. Prends-la.",
+          "hint": "Vérifie tes prises : quelle pièce noire personne ne défend ?",
+          "success": "Correct. Le fou en g4 était sans défense."
+        },
+        "u3-l08-s06": {
+          "prompt": "Touche toutes les pièces noires que tu peux prendre gratuitement.",
+          "hint": "Cherche les pièces noires que tes pièces attaquent et que personne ne défend."
+        },
+        "u3-l08-s07": {
+          "text": "Ton adversaire aussi peut utiliser contre toi les tactiques de cette unité. Vérifier les échecs, les prises et les menaces avant de jouer permet de les voir venir."
+        },
+        "u3-l08-s08": {
+          "prompt": "Vérifie les échecs, les prises et les menaces.",
+          "hint": "Regarde quelles pièces adverses sont restées sans défense après son coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        },
+        "u3-l08-s09": {
+          "prompt": "Vérifie les échecs, les prises et les menaces.",
+          "hint": "Regarde quelles pièces adverses sont restées sans défense après son coup.",
+          "success": "Bien résolu : cette position vient d'une vraie partie."
+        }
       }
     }
   }

@@ -5,8 +5,12 @@
       "title": "Leitermatt",
       "summary": "Zwei Türme, Schach auf Schach",
       "steps": {
-        "u5-l06-s01": { "text": "Mit zwei Türmen ist das Matt eine Leiter: Ein Turm gibt Schach und drängt den König auf die nächste Reihe, der andere gibt von hinten Schach und drängt ihn auf die nächste, bis er am Rand des Bretts ankommt." },
-        "u5-l06-s02": { "text": "Jeder Turm schneidet eine Reihe ab und lässt den König nicht durch. Der Turm, der Schach gibt, bleibt weit vom König entfernt, damit er nicht geschlagen werden kann. Die Türme wechseln sich ab: Wenn einer Schach gibt, deckt der andere schon die Reihe dahinter." },
+        "u5-l06-s01": {
+          "text": "Mit zwei Türmen ist das Matt eine Leiter: Ein Turm gibt Schach und drängt den König auf die nächste Reihe, der andere gibt von hinten Schach und drängt ihn auf die nächste, bis er am Rand des Bretts ankommt."
+        },
+        "u5-l06-s02": {
+          "text": "Jeder Turm schneidet eine Reihe ab und lässt den König nicht durch. Der Turm, der Schach gibt, bleibt weit vom König entfernt, damit er nicht geschlagen werden kann. Die Türme wechseln sich ab: Wenn einer Schach gibt, deckt der andere schon die Reihe dahinter."
+        },
         "u5-l06-s03": {
           "prompt": "Der schwarze König steht auf e6. Gib mit dem Turm auf b4 Schach, um ihn auf die nächste Reihe zu drängen.",
           "hint": "Ziehe den Turm auf der b-Linie bis zur 6. Reihe. Der Turm auf a5 sperrt ihm den Weg nach unten.",
@@ -32,15 +36,21 @@
           "success": "Richtig. Du hast ein Leitermatt gesetzt.",
           "hint": "Mit diesem Zug entgeht dir der Sieg. Pass auf die Türme auf: Wenn der schwarze König einen schlagen kann, decke ihn oder ziehe ihn weg. Und lass dem König bis zum Matt immer ein Fluchtfeld, damit du ihn nicht patt setzt."
         },
-        "u5-l06-s08": { "text": "Zusammenfassung: Ein Turm gibt von weitem Schach, der andere schneidet die Reihe dahinter ab, und sie wechseln sich bis zum Rand ab. Wenn der König näherkommt, ziehe den Turm weg. Mit Dame und Turm oder mit zwei Damen ist die Idee dieselbe." }
+        "u5-l06-s08": {
+          "text": "Zusammenfassung: Ein Turm gibt von weitem Schach, der andere schneidet die Reihe dahinter ab, und sie wechseln sich bis zum Rand ab. Wenn der König näherkommt, ziehe den Turm weg. Mit Dame und Turm oder mit zwei Damen ist die Idee dieselbe."
+        }
       }
     },
     "u5-l01": {
       "title": "Matt mit der Dame",
       "summary": "König und Dame gegen König",
       "steps": {
-        "u5-l01-s01": { "text": "König und Dame gegen König gewinnen immer. Die Dame sperrt den gegnerischen König in einen „Kasten“, der immer kleiner wird, und dein König kommt näher, um beim Matt zu helfen." },
-        "u5-l01-s02": { "text": "Eine einfache Technik: Stelle die Dame einen Springerzug vom gegnerischen König entfernt auf. So nimmt sie ihm viele Felder, ohne Schach zu geben. Zieht der König, folgt ihm die Dame auf dieselbe Weise." },
+        "u5-l01-s01": {
+          "text": "König und Dame gegen König gewinnen immer. Die Dame sperrt den gegnerischen König in einen „Kasten“, der immer kleiner wird, und dein König kommt näher, um beim Matt zu helfen."
+        },
+        "u5-l01-s02": {
+          "text": "Eine einfache Technik: Stelle die Dame einen Springerzug vom gegnerischen König entfernt auf. So nimmt sie ihm viele Felder, ohne Schach zu geben. Zieht der König, folgt ihm die Dame auf dieselbe Weise."
+        },
         "u5-l01-s03": {
           "prompt": "Stelle die Dame einen Springerzug vom schwarzen König entfernt auf.",
           "hint": "Suche ein Feld, das ein Springer von d5 aus erreichen würde und auf das deine Dame ziehen kann.",
@@ -53,9 +63,17 @@
         },
         "u5-l01-s05": {
           "prompt": "Welcher dieser Züge setzt den schwarzen König patt?",
-          "options": ["Dg6", "Dg7", "Dh2+"],
+          "options": [
+            "Dg6",
+            "Dg7",
+            "Dh2+"
+          ],
           "explanation": "Nach Dg6 steht der schwarze König nicht im Schach, hat aber kein Feld mehr: Das ist Patt, und die Partie endet remis. Dg7 ist matt, weil dein König die Dame deckt.",
-          "feedback": ["", "Dg7 ist Schachmatt: Dein König auf f6 deckt die Dame.", "Dh2+ ist Schach, und der schwarze König entkommt nach g8."]
+          "feedback": [
+            "",
+            "Dg7 ist Schachmatt: Dein König auf f6 deckt die Dame.",
+            "Dh2+ ist Schach, und der schwarze König entkommt nach g8."
+          ]
         },
         "u5-l01-s06": {
           "prompt": "Setze matt, ohne den schwarzen König patt zu setzen.",
@@ -67,21 +85,29 @@
           "success": "Richtig. Du hast mit König und Dame mattgesetzt.",
           "hint": "Mit diesem Zug entgleitet dir der Sieg. Achte darauf, dass die Dame nicht ungedeckt bleibt und der schwarze König immer ein Feld hat."
         },
-        "u5-l01-s08": { "text": "Zusammenfassung: Sperre den König mit der Dame ein, bringe deinen König näher und setze am Rand matt. Prüfe vor jedem Zug, ob der gegnerische König noch ein Feld hat: Hat er keins und steht nicht im Schach, ist es Patt." }
+        "u5-l01-s08": {
+          "text": "Zusammenfassung: Sperre den König mit der Dame ein, bringe deinen König näher und setze am Rand matt. Prüfe vor jedem Zug, ob der gegnerische König noch ein Feld hat: Hat er keins und steht nicht im Schach, ist es Patt."
+        }
       }
     },
     "u5-l02": {
       "title": "Matt mit dem Turm",
       "summary": "König und Turm gegen König",
       "steps": {
-        "u5-l02-s01": { "text": "Der Turm schneidet den gegnerischen König ab: Hier lässt er ihn von der e-Linie aus nicht auf die andere Seite. Dein König kommt näher, und gemeinsam drängen sie ihn an den Rand." },
-        "u5-l02-s02": { "text": "Mattgesetzt wird am Rand, wenn sich die Könige gegenüberstehen: Dein König deckt die Felder auf der Reihe davor, und der Turm gibt auf der Grundreihe Schach." },
+        "u5-l02-s01": {
+          "text": "Der Turm schneidet den gegnerischen König ab: Hier lässt er ihn von der e-Linie aus nicht auf die andere Seite. Dein König kommt näher, und gemeinsam drängen sie ihn an den Rand."
+        },
+        "u5-l02-s02": {
+          "text": "Mattgesetzt wird am Rand, wenn sich die Könige gegenüberstehen: Dein König deckt die Felder auf der Reihe davor, und der Turm gibt auf der Grundreihe Schach."
+        },
         "u5-l02-s03": {
           "prompt": "Die Könige stehen sich gegenüber. Setze mit dem Turm matt.",
           "hint": "Bringe den Turm auf die Grundreihe.",
           "success": "Richtig. Das ist Schachmatt."
         },
-        "u5-l02-s04": { "text": "Stehen sich die Könige nicht gegenüber, mache einen Wartezug: Der Turm zieht auf seiner Reihe und schneidet den König weiter ab. Der schwarze König muss ziehen, und stellt er sich vor deinen König, folgt das Matt." },
+        "u5-l02-s04": {
+          "text": "Stehen sich die Könige nicht gegenüber, mache einen Wartezug: Der Turm zieht auf seiner Reihe und schneidet den König weiter ab. Der schwarze König muss ziehen, und stellt er sich vor deinen König, folgt das Matt."
+        },
         "u5-l02-s05": {
           "prompt": "Mache einen Wartezug: Ziehe den Turm auf der siebten Reihe und schneide den schwarzen König weiter ab.",
           "hint": "Der Turm muss auf der siebten Reihe bleiben, weit weg vom schwarzen König. Vorsicht bei g7: Dort schlägt ihn der schwarze König.",
@@ -89,35 +115,57 @@
         },
         "u5-l02-s06": {
           "prompt": "Warum sollen sich die Könige fürs Matt gegenüberstehen?",
-          "options": ["Dein König deckt die Fluchtfelder auf der Reihe davor", "So kann der schwarze König den Turm nicht schlagen", "Das ist eine Regel: Ohne gegenüberstehende Könige kein Matt"],
+          "options": [
+            "Dein König deckt die Fluchtfelder auf der Reihe davor",
+            "So kann der schwarze König den Turm nicht schlagen",
+            "Das ist eine Regel: Ohne gegenüberstehende Könige kein Matt"
+          ],
           "explanation": "Der Turm gibt auf der Grundreihe Schach, und dein König nimmt dem schwarzen König von gegenüber die drei Felder auf der Reihe davor. Es bleibt kein Ausweg.",
-          "feedback": ["", "Der Turm steht weit weg vom schwarzen König: Es geht nicht ums Schlagen, sondern um die Fluchtfelder.", "Das ist keine Regel: So nimmst du dem schwarzen König jeden Ausweg."]
+          "feedback": [
+            "",
+            "Der Turm steht weit weg vom schwarzen König: Es geht nicht ums Schlagen, sondern um die Fluchtfelder.",
+            "Das ist keine Regel: So nimmst du dem schwarzen König jeden Ausweg."
+          ]
         },
         "u5-l02-s07": {
           "prompt": "Setze matt mit König und Turm. Stockfish verteidigt den schwarzen König.",
           "success": "Richtig. Du hast mit König und Turm mattgesetzt.",
           "hint": "Mit diesem Zug entgleitet dir der Sieg. Pass auf den Turm auf: Wenn ihn der schwarze König schlagen kann, decke ihn oder ziehe ihn weg."
         },
-        "u5-l02-s08": { "text": "Zusammenfassung: Schneide den König mit dem Turm ab, bringe deinen König näher, nutze bei Bedarf Wartezüge und setze am Rand matt, wenn sich die Könige gegenüberstehen. Das dauert länger als mit der Dame, also hab Geduld." }
+        "u5-l02-s08": {
+          "text": "Zusammenfassung: Schneide den König mit dem Turm ab, bringe deinen König näher, nutze bei Bedarf Wartezüge und setze am Rand matt, wenn sich die Könige gegenüberstehen. Das dauert länger als mit der Dame, also hab Geduld."
+        }
       }
     },
     "u5-l03": {
       "title": "Die Opposition",
       "summary": "Das Duell der Könige",
       "steps": {
-        "u5-l03-s01": { "text": "Zwei Könige, die sich mit einem Feld dazwischen gegenüberstehen, kommen nicht weiter: Keiner darf die Felder betreten, die der andere kontrolliert. Wer nicht ziehen muss, hat die Opposition, denn der andere muss den Weg freigeben." },
+        "u5-l03-s01": {
+          "text": "Zwei Könige, die sich mit einem Feld dazwischen gegenüberstehen, kommen nicht weiter: Keiner darf die Felder betreten, die der andere kontrolliert. Wer nicht ziehen muss, hat die Opposition, denn der andere muss den Weg freigeben."
+        },
         "u5-l03-s02": {
           "prompt": "Schwarz am Zug. Wer hat die Opposition?",
-          "options": ["Weiß", "Schwarz", "Keiner"],
+          "options": [
+            "Weiß",
+            "Schwarz",
+            "Keiner"
+          ],
           "explanation": "Schwarz ist am Zug, also muss sein König zur Seite gehen. Die Opposition hat Weiß.",
-          "feedback": ["", "Die Opposition hat, wer nicht zieht. Hier zieht Schwarz.", "Die Könige stehen sich mit einem Feld dazwischen gegenüber: Einer der beiden hat sie."]
+          "feedback": [
+            "",
+            "Die Opposition hat, wer nicht zieht. Hier zieht Schwarz.",
+            "Die Könige stehen sich mit einem Feld dazwischen gegenüber: Einer der beiden hat sie."
+          ]
         },
         "u5-l03-s03": {
           "prompt": "Nimm die Opposition: Stelle deinen König dem schwarzen König gegenüber, mit einem Feld dazwischen.",
           "hint": "Der schwarze König steht auf e7. Bringe deinen König auf dieselbe Linie, zwei Reihen tiefer.",
           "success": "Richtig. Mit Ke5 hast du die Opposition, und der schwarze König muss den Weg freigeben."
         },
-        "u5-l03-s04": { "text": "Bei König und Bauer gegen König geht dein König vor den Bauern und gewinnt mit der Opposition Boden. Der Bauer rückt gedeckt dahinter nach." },
+        "u5-l03-s04": {
+          "text": "Bei König und Bauer gegen König geht dein König vor den Bauern und gewinnt mit der Opposition Boden. Der Bauer rückt gedeckt dahinter nach."
+        },
         "u5-l03-s05": {
           "prompt": "Nur ein Zug gewinnt. Finde ihn.",
           "hint": "Stelle deinen König vor den Bauern und dem schwarzen König gegenüber.",
@@ -125,9 +173,15 @@
         },
         "u5-l03-s06": {
           "prompt": "Weiß am Zug, und die Opposition hat Schwarz. Gewinn oder Remis?",
-          "options": ["Weiß gewinnt", "Remis"],
+          "options": [
+            "Weiß gewinnt",
+            "Remis"
+          ],
           "explanation": "Weiß gewinnt: Mit e3 macht der Bauer einen Wartezug, und die Opposition geht an Weiß über. Darum solltest du den Bauern nicht zu schnell ziehen.",
-          "feedback": ["", "Schau auf den Bauern: Er kann auch nur ein Feld vorrücken und so den Zug an Schwarz abgeben."]
+          "feedback": [
+            "",
+            "Schau auf den Bauern: Er kann auch nur ein Feld vorrücken und so den Zug an Schwarz abgeben."
+          ]
         },
         "u5-l03-s07": {
           "prompt": "Wandle den Bauern um. Stockfish verteidigt mit Schwarz.",
@@ -141,46 +195,163 @@
         }
       }
     },
+    "u6-l01": {
+      "title": "Zugzwang",
+      "summary": "Wenn Ziehen Verlieren heißt",
+      "steps": {
+        "u6-l01-s01": {
+          "text": "Im Schach darfst du nicht passen: Du musst immer ziehen. Manchmal verschlechtert jeder Zug die Stellung. Das nennt man Zugzwang: den Zwang, ziehen zu müssen."
+        },
+        "u6-l01-s02": {
+          "text": "Schau dir diese Stellung an. Jeder König deckt seinen Bauern und greift den gegnerischen an. Der König, der ziehen muss, deckt seinen Bauern nicht mehr: Er verliert ihn und damit die Partie. Es gewinnt, wer nicht ziehen muss."
+        },
+        "u6-l01-s03": {
+          "prompt": "Weiß am Zug. Was passiert?",
+          "options": [
+            "Weiß verliert seinen Bauern und die Partie",
+            "Weiß gewinnt den schwarzen Bauern",
+            "Es ist remis: Niemand kann gewinnen"
+          ],
+          "explanation": "Weiß steht im Zugzwang: Jeder Königszug lässt den Bauern auf d4 ungedeckt. Der schwarze König schlägt ihn, und sein Bauer wandelt sich um.",
+          "feedback": [
+            "",
+            "Um den schwarzen Bauern zu gewinnen, müsste Schwarz zuerst ziehen. Ist Weiß am Zug, verliert Weiß.",
+            "Wer zieht, verliert seinen Bauern, und danach wandelt sich der andere Bauer um."
+          ]
+        },
+        "u6-l01-s04": {
+          "text": "Zugzwang hilft auch beim Mattsetzen. Hier kann Schwarz nur den König und den Bauern auf g7 ziehen. Blockierst du den Bauern, muss der König ziehen, und er hat kein gutes Feld."
+        },
+        "u6-l01-s05": {
+          "prompt": "Matt in 2: Spiele einen stillen Zug ohne Schach, nach dem Schwarz keine guten Züge mehr hat.",
+          "success": "Richtig. Mit Tg6 ist der Bauer blockiert, der König musste nach a8, und Ta6 ist matt.",
+          "hint": "Stelle den Turm vor den Bauern auf g7: So kann er nicht vorrücken, und der schwarze König muss ziehen.",
+          "notes": [
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l01-s06": {
+          "text": "Hier würdest du gewinnen, wenn Schwarz am Zug wäre: Sein König müsste zur Seite gehen. Aber du bist am Zug. Die Lösung: Du gibst den Zug mit dem König ab. Du machst drei Schritte im Dreieck (e4, d3 und d4) und kommst aufs selbe Feld zurück. Der schwarze König kann nur hin und zurück, und jetzt ist er in derselben Stellung am Zug. Diese Technik heißt Dreiecksmanöver."
+        },
+        "u6-l01-s07": {
+          "prompt": "Beginne das Dreieck: Ziehe den König auf ein Feld, von dem aus du in zwei Schritten nach d4 zurückkommst.",
+          "hint": "Den Bauern vorzuziehen oder nach c3 zu gehen verspielt den Sieg. Bewege dich über die Felder daneben (e4, e3 oder d3), nah genug, um deinen Bauern auf c4 rechtzeitig wieder zu decken.",
+          "success": "Richtig. Von dort kommst du in zwei weiteren Schritten nach d4 zurück, und Schwarz ist am Zug."
+        },
+        "u6-l01-s08": {
+          "prompt": "Gewinne das Endspiel: Wandle einen Bauern um. Blockiert dich der schwarze König, nutze das Dreiecksmanöver, um ihn in Zugzwang zu bringen. Stockfish verteidigt mit Schwarz.",
+          "success": "Richtig. Du hast das Endspiel mit Zugzwang gewonnen.",
+          "hint": "Mit diesem Zug entgleitet dir der Sieg. Suche die Stellung, in der der schwarze König zur Seite gehen muss, und erreiche sie, wenn er am Zug ist."
+        },
+        "u6-l01-s09": {
+          "prompt": "Weiß am Zug. Nutze den Zugzwang, um das Endspiel zu gewinnen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Ziehe den König so, dass der gegnerische König zur Seite gehen muss und seine Bauern ungedeckt lässt.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l01-s10": {
+          "prompt": "Weiß am Zug. Nutze den Zugzwang, um das Endspiel zu gewinnen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Ziehe den König so, dass der gegnerische König zur Seite gehen muss und seine Bauern ungedeckt lässt.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l01-s11": {
+          "prompt": "Schwarz am Zug. Nutze den Zugzwang, um das Endspiel zu gewinnen.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Ziehe den König so, dass der gegnerische König zur Seite gehen muss und seine Bauern ungedeckt lässt.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
     "u5-l04": {
       "title": "Die Quadratregel",
       "summary": "Holt der König den Bauern ein?",
       "steps": {
-        "u5-l04-s01": { "text": "Ob ein König einen Bauern einholt, zeigt ein gedachtes Quadrat: Seine Seite reicht vom Bauern bis zur Umwandlungsreihe. Ist der König am Zug und kann er das Quadrat betreten, holt er den Bauern ein. Wenn nicht, wandelt sich der Bauer um." },
+        "u5-l04-s01": {
+          "text": "Ob ein König einen Bauern einholt, zeigt ein gedachtes Quadrat: Seine Seite reicht vom Bauern bis zur Umwandlungsreihe. Ist der König am Zug und kann er das Quadrat betreten, holt er den Bauern ein. Wenn nicht, wandelt sich der Bauer um."
+        },
         "u5-l04-s02": {
           "prompt": "Schwarz am Zug. Holt der schwarze König den Bauern ein?",
-          "options": ["Ja, er betritt das Quadrat", "Nein, der Bauer wandelt sich um"],
+          "options": [
+            "Ja, er betritt das Quadrat",
+            "Nein, der Bauer wandelt sich um"
+          ],
           "explanation": "Mit Ke5 oder Ke6 betritt der König das Quadrat. Von dort holt er den Bauern ein, bevor er sich umwandelt.",
-          "feedback": ["", "Schau auf e5 und e6: Sie liegen im Quadrat, und der schwarze König kommt mit einem Zug dorthin."]
+          "feedback": [
+            "",
+            "Schau auf e5 und e6: Sie liegen im Quadrat, und der schwarze König kommt mit einem Zug dorthin."
+          ]
         },
         "u5-l04-s03": {
           "prompt": "Schwarz am Zug. Und jetzt? Holt der schwarze König den Bauern ein?",
-          "options": ["Ja, er betritt das Quadrat", "Nein, der Bauer wandelt sich um"],
+          "options": [
+            "Ja, er betritt das Quadrat",
+            "Nein, der Bauer wandelt sich um"
+          ],
           "explanation": "Der schwarze König steht ein Feld weiter weg. Mit einem Zug betritt er das Quadrat nicht, und der Bauer wandelt sich um.",
-          "feedback": ["Der König auf g5 erreicht nur die f-Linie, und das Quadrat endet auf der e-Linie.", ""]
+          "feedback": [
+            "Der König auf g5 erreicht nur die f-Linie, und das Quadrat endet auf der e-Linie.",
+            ""
+          ]
         },
         "u5-l04-s04": {
           "prompt": "Weiß am Zug. Nur ein Zug gewinnt: Ziehst du den Bauern oder den König?",
           "hint": "Ziehst du den König, betritt der schwarze König das Quadrat. Ziehe den Bauern vor: Das Quadrat wird kleiner.",
           "success": "Richtig. Mit a5 wird das Quadrat kleiner und der schwarze König bleibt draußen."
         },
-        "u5-l04-s05": { "text": "Manchmal gibt es keinen Freibauern, aber du kannst einen schaffen. Bei drei Bauern gegen drei durchbricht b6 die Kette: Nach jedem Schlagzug rückt ein anderer weißer Bauer vor, und einer von ihnen wandelt sich um. Der schwarze König ist zu weit weg, um zu helfen." },
+        "u5-l04-s05": {
+          "text": "Manchmal gibt es keinen Freibauern, aber du kannst einen schaffen. Bei drei Bauern gegen drei durchbricht b6 die Kette: Nach jedem Schlagzug rückt ein anderer weißer Bauer vor, und einer von ihnen wandelt sich um. Der schwarze König ist zu weit weg, um zu helfen."
+        },
         "u5-l04-s06": {
           "prompt": "Mache den Durchbruch und schaffe einen Freibauern, der sich umwandelt.",
           "success": "Richtig. Der a-Bauer ist nicht mehr zu stoppen: Der schwarze König steht außerhalb des Quadrats.",
           "hint": "Beginne mit b6. Spiele nach dem Schlagen c6: Wenn der b-Bauer schlägt, hat dein a-Bauer freie Bahn.",
-          "notes": ["", "", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u5-l04-s07": {
           "prompt": "Gewinne das Bauernrennen.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Zähle die Felder: Der gegnerische König schafft es nicht ins Quadrat deines Bauern.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u5-l04-s08": {
           "prompt": "Gewinne das Bauernrennen.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Zähle die Felder: Der gegnerische König schafft es nicht ins Quadrat deines Bauern.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -188,8 +359,12 @@
       "title": "Die Lucena-Stellung",
       "summary": "Turm und Bauer gegen Turm",
       "steps": {
-        "u5-l05-s01": { "text": "Das ist die Lucena-Stellung, das wichtigste Turmendspiel. Dein Bauer steht auf der siebten Reihe und dein König davor, auf dem Umwandlungsfeld. Dein Turm schneidet den schwarzen König über die e-Linie ab, und der schwarze Turm bewacht die c-Linie, damit dein König dort nicht herauskommt." },
-        "u5-l05-s02": { "text": "Der Plan hat zwei Schritte. Erst vertreibt ein Schach den schwarzen König noch etwas weiter. Dann geht dein Turm auf die vierte Reihe. Wenn dein König herauskommt, gibt der schwarze Turm Schach, und beim letzten Schach zieht dein Turm dazwischen. Das nennt man die Brücke bauen." },
+        "u5-l05-s01": {
+          "text": "Das ist die Lucena-Stellung, das wichtigste Turmendspiel. Dein Bauer steht auf der siebten Reihe und dein König davor, auf dem Umwandlungsfeld. Dein Turm schneidet den schwarzen König über die e-Linie ab, und der schwarze Turm bewacht die c-Linie, damit dein König dort nicht herauskommt."
+        },
+        "u5-l05-s02": {
+          "text": "Der Plan hat zwei Schritte. Erst vertreibt ein Schach den schwarzen König noch etwas weiter. Dann geht dein Turm auf die vierte Reihe. Wenn dein König herauskommt, gibt der schwarze Turm Schach, und beim letzten Schach zieht dein Turm dazwischen. Das nennt man die Brücke bauen."
+        },
         "u5-l05-s03": {
           "prompt": "Erster Schritt: Gib Schach von der f-Linie, um den schwarzen König zu vertreiben.",
           "hint": "Bringe den Turm von e1 auf die Linie des schwarzen Königs.",
@@ -216,16 +391,26 @@
         },
         "u5-l05-s05": {
           "prompt": "Wozu geht der Turm auf die vierte Reihe?",
-          "options": ["Um bei den Schachgeboten des schwarzen Turms dazwischenzuziehen", "Um den schwarzen König anzugreifen", "Um den Bauern von hinten zu decken"],
+          "options": [
+            "Um bei den Schachgeboten des schwarzen Turms dazwischenzuziehen",
+            "Um den schwarzen König anzugreifen",
+            "Um den Bauern von hinten zu decken"
+          ],
           "explanation": "Wenn dein König herauskommt, verfolgt ihn der schwarze Turm mit Schachgeboten. Dein Turm auf der vierten Reihe zieht im richtigen Moment dazwischen: Das ist die Brücke.",
-          "feedback": ["", "Der schwarze König ist abgeschnitten und weit weg: Der Turm will ihn nicht angreifen.", "Den Bauern deckt schon dein König. Der Turm ist dazu da, die Schachgebote zu stoppen."]
+          "feedback": [
+            "",
+            "Der schwarze König ist abgeschnitten und weit weg: Der Turm will ihn nicht angreifen.",
+            "Den Bauern deckt schon dein König. Der Turm ist dazu da, die Schachgebote zu stoppen."
+          ]
         },
         "u5-l05-s06": {
           "prompt": "Gewinne die Lucena-Stellung: Wandle den Bauern um. Stockfish verteidigt mit Schwarz.",
           "success": "Richtig. Du hast die Lucena-Stellung gewonnen.",
           "hint": "Mit diesem Zug entgleitet dir der Sieg. Denk an den Plan: Schach, um den König zu vertreiben, Turm auf die vierte Reihe, und dann bringst du deinen König heraus."
         },
-        "u5-l05-s07": { "text": "Zusammenfassung: Vertreibe den gegnerischen König, bringe den Turm auf die vierte Reihe, hol deinen König heraus und ziehe bei den Schachgeboten mit dem Turm dazwischen. Kommt der König der verteidigenden Seite vor den Bauern, ist die Verteidigung eine andere: die Philidor-Stellung, die zum Remis führt." }
+        "u5-l05-s07": {
+          "text": "Zusammenfassung: Vertreibe den gegnerischen König, bringe den Turm auf die vierte Reihe, hol deinen König heraus und ziehe bei den Schachgeboten mit dem Turm dazwischen. Kommt der König der verteidigenden Seite vor den Bauern, ist die Verteidigung eine andere: die Philidor-Stellung, die zum Remis führt."
+        }
       }
     }
   }

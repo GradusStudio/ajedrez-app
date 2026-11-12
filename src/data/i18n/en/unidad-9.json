@@ -1,280 +1,623 @@
 {
-  "title": "Pieces and pawns",
+  "title": "Attack and defense",
   "lessons": {
-    "u9-l01": {
-      "title": "Loose pieces",
-      "summary": "A piece without defense is a target",
+    "u10-l01": {
+      "title": "The king that has not castled",
+      "summary": "A king in the center is a target",
       "steps": {
-        "u9-l01-s01": { "text": "The white queen is on c5 and no piece defends it. The black queen on e7 attacks it and captures it for free. A piece that nobody defends is a loose piece." },
-        "u9-l01-s02": { "text": "The black bishop on f2 gave check, but no piece protects it: the king captures it. Before capturing, check that the enemy piece has no defense; before moving, check that yours do." },
-        "u9-l01-s03": {
-          "prompt": "Tap the two white pieces nobody defends. Don't count the king or the pawns.",
-          "hint": "Look for the white pieces that no other white piece or pawn protects."
+        "u10-l01-s01": {
+          "text": "The white king is still on f1 without having castled, and its pieces don't protect it well. With Qh1+ Black forces the queen trade, the rook recaptures on h1 with check, the king has to go to f2 and the rook captures on d1. A king that has not castled gives checks the time they need."
         },
-        "u9-l01-s04": {
-          "prompt": "How many black pieces are undefended? Don't count the king or the pawns.",
-          "options": ["2", "3", "4", "5"],
-          "explanation": "There are four undefended black pieces. When your opponent has that many loose pieces, there is almost always a tactic around.",
-          "feedback": ["Count again: check each black piece and see whether another piece protects it.", "Count again: check each black piece and see whether another piece protects it.", "", "Count again: check each black piece and see whether another piece protects it."]
+        "u10-l01-s02": {
+          "text": "The black king is on d8 without having castled. With Qh8+ White forces the bishop to interpose, with Rd1+ sends the king to c8 and the queen captures the bishop on e8 with check. Each check takes a square away from the king."
         },
-        "u9-l01-s05": {
-          "prompt": "Capture the piece nobody defends.",
-          "hint": "One of the white pieces has no defense and you can capture it with check.",
-          "success": "Correct. Rxe1+ wins a piece nobody was defending."
+        "u10-l01-s03": {
+          "prompt": "Which of these two kings has not castled?",
+          "options": [
+            "The black king, on d8",
+            "The white king, on c1",
+            "Both have castled"
+          ],
+          "explanation": "The black king is still on d8, in the center, and White has already put theirs safe on c1.",
+          "feedback": [
+            "",
+            "The white king has already castled long: it is on c1, behind its pawns.",
+            "One of the two is still in the center."
+          ]
         },
-        "u9-l01-s06": {
-          "prompt": "Capture the piece nobody defends.",
-          "hint": "The piece that just gave check has no defense: capture it.",
-          "success": "Correct. Kxf2 wins a piece nobody was defending."
+        "u10-l01-s04": {
+          "prompt": "Tap the king that hasn't castled.",
+          "hint": "It is the king that is still in the center, surrounded by its own pieces."
         },
-        "u9-l01-s07": {
-          "prompt": "Capture the piece nobody defends.",
-          "hint": "The black queen is on a square where nobody protects it.",
-          "success": "Correct. Kxb2 wins a piece nobody was defending."
+        "u10-l01-s05": {
+          "prompt": "Attack the king that hasn't castled.",
+          "hint": "Look for a capture or a check that opens lines against the king that is still in the center.",
+          "success": "Correct. Qxe3 opens lines against the king that didn't castle."
         },
-        "u9-l01-s08": {
-          "prompt": "Take advantage of the loose piece.",
+        "u10-l01-s06": {
+          "prompt": "Attack the king that hasn't castled.",
+          "hint": "Look for a check that sends the king to a square where it loses material.",
+          "success": "Correct. Rg8+ opens lines against the king that didn't castle."
+        },
+        "u10-l01-s07": {
+          "prompt": "Attack the king that hasn't castled.",
+          "hint": "Look for a check or a trade that opens lines against the king that is still in the center.",
+          "success": "Correct. Qxh5+ opens lines against the king that didn't castle."
+        },
+        "u10-l01-s08": {
+          "prompt": "Attack the king that hasn't castled.",
           "success": "Well solved: this position comes from a real game.",
-          "hint": "Look for the enemy pieces nobody defends and start with the most valuable one.",
-          "notes": ["", "", "", ""]
+          "hint": "Look for the checks: the king that has not castled has few squares and nowhere to hide.",
+          "notes": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
         },
-        "u9-l01-s09": {
-          "prompt": "Take advantage of the loose piece.",
+        "u10-l01-s09": {
+          "prompt": "Attack the king that hasn't castled.",
           "success": "Well solved: this position comes from a real game.",
-          "hint": "Look for the enemy pieces nobody defends and start with the most valuable one.",
-          "notes": ["", "", "", ""]
+          "hint": "Look for the checks: the king that has not castled has few squares and nowhere to hide.",
+          "notes": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
-    "u9-l02": {
-      "title": "When to trade pieces",
-      "summary": "To trade or not to trade",
+    "u10-l02": {
+      "title": "Attacking with same-side castling",
+      "summary": "Everyone against the h pawn",
       "steps": {
-        "u9-l02-s01": { "text": "Almost every trade has good and bad sides. Trade when you are winning material, when the trade leaves your opponent with a weakness, when you are under attack, or when you are short of space. Don't trade when you are losing material, when you are the one attacking, or when you have more space." },
-        "u9-l02-s02": {
-          "prompt": "You are a rook up and it's White's move. What suits you?",
-          "options": ["Avoid trades", "Attack without trading anything", "Trade pieces to simplify"],
-          "explanation": "With an extra rook, every trade makes your advantage bigger: the fewer pieces left, the more an extra rook weighs.",
-          "feedback": ["Avoiding trades keeps the enemy pieces alive, and they are the ones that could complicate the game for you.", "Attacking without trading anything is risky when you already have the advantage.", ""]
+        "u10-l02-s01": {
+          "text": "With both kings castled kingside, the attack usually goes against the h pawn (h7 or h2). Here Bxh7+ gives check and, as the bishop leaves d3, the white queen on d1 sees the black queen on d6: the king captures the bishop and Qxd6 wins the queen."
         },
-        "u9-l02-s03": {
-          "prompt": "You are a rook down and it's White's move. What suits you?",
-          "options": ["Trade only the queens", "Avoid trades", "Trade pieces to simplify"],
-          "explanation": "With less material, every trade leaves you with fewer resources: it's better to keep pieces on the board to have options.",
-          "feedback": ["Trading queens also leaves you with fewer resources to complicate the game.", "", "Every trade brings the game closer to an ending where the missing rook is felt more."]
+        "u10-l02-s02": {
+          "text": "The f7, g7 and h7 pawns are the black king's shield, and the queen together with the bishop on c2 aim at h7. Qxh7+ forces the king to f8 and Qh8 is mate."
         },
-        "u9-l02-s04": {
-          "prompt": "You have less space than your opponent. What suits you?",
-          "options": ["Trade the pieces that cramp you", "Avoid all trades", "Advance the pawns"],
-          "explanation": "With little space the pieces get in each other's way. Every trade frees up squares for the ones that remain.",
-          "feedback": ["", "Avoiding trades leaves your pieces cramped.", "Advancing pawns without support usually creates weaknesses."]
-        },
-        "u9-l02-s05": {
-          "prompt": "You are attacking the enemy king with several pieces. What suits you?",
-          "options": ["Trade the pieces that attack", "Trade the queen right away", "Keep the attacking pieces on the board"],
-          "explanation": "To attack you need pieces. If you trade the ones that attack, your opponent defends more calmly.",
-          "feedback": ["Trading the pieces that attack is what the defending opponent wants.", "Trading the queen removes the piece that attacks the most.", ""]
-        },
-        "u9-l02-s06": { "text": "Summary: trade when you are winning, when you are under attack or when you are short of space. Don't trade when you are losing, when you are attacking or when you have more space. Before each trade, ask yourself what it leaves you and what it leaves your opponent." }
-      }
-    },
-    "u9-l03": {
-      "title": "Space",
-      "summary": "Squares in the enemy half that you control",
-      "steps": {
-        "u9-l03-s01": { "text": "Space is the number of squares in the enemy half that your pieces and pawns control. In this position White controls 8 squares in Black's half and Black controls 5 in White's half: White has more space, mostly thanks to its advanced pawn on e5." },
-        "u9-l03-s02": {
-          "prompt": "Tap the two squares in Black's half that the e5 pawn controls.",
-          "hint": "A pawn controls the two diagonal squares in front of it."
-        },
-        "u9-l03-s03": {
-          "prompt": "Who has more space in this position?",
-          "options": ["Both the same", "White", "Black"],
-          "explanation": "White controls 12 squares in Black's half; Black controls 7 in White's half.",
-          "feedback": ["It's not equal: White controls more squares in the enemy half.", "", "Count the squares in the enemy half that each side controls: White controls more."]
-        },
-        "u9-l03-s04": {
-          "prompt": "What usually suits the side that has more space?",
-          "options": ["Avoiding piece trades", "Trading queens right away", "Stopping moving pawns"],
-          "explanation": "With more space, its pieces move comfortably. Every trade frees the opponent, so it suits that side to keep the pieces.",
-          "feedback": ["", "Trading queens right away frees the cramped opponent.", "Stopping moving pawns doesn't help keep the space."]
-        },
-        "u9-l03-s05": {
-          "prompt": "What usually suits the side that has less space?",
-          "options": ["Avoid all trades", "Cramping its pieces even more", "Trading the pieces that cramp it"],
-          "explanation": "With little space the pieces get in each other's way. Every trade frees up squares for the ones that remain.",
-          "feedback": ["Avoiding trades leaves the pieces cramped.", "Cramping the pieces more makes the problem worse.", ""]
-        },
-        "u9-l03-s06": { "text": "Summary: space is counted in squares of the enemy half that you control. The side with more space avoids trades; the side with less seeks them." }
-      }
-    },
-    "u9-l04": {
-      "title": "Open and closed positions",
-      "summary": "How the pieces play depending on the pawns",
-      "steps": {
-        "u9-l04-s01": { "text": "Here no pawn is blocked in front of an enemy pawn: the center is open. Long-range pieces, like bishops and rooks, have free lines and threats arrive quickly." },
-        "u9-l04-s02": { "text": "In this other position the pawns on d5 and d6, and those on e4 and e5, face each other and are blocked. The center is closed: the pieces have few lines and the game is played with slow maneuvers and pawn breaks." },
-        "u9-l04-s03": {
-          "prompt": "Is this position open or closed?",
-          "options": ["Closed", "Open"],
-          "explanation": "The pawns on d4 and d5, and those on e5 and e6, are blocked face to face. The center is closed.",
-          "feedback": ["", "Look at the center pawns: there are two pairs facing each other that can't advance."]
-        },
-        "u9-l04-s04": {
-          "prompt": "Tap the two white pawns that are blocked by a black pawn.",
-          "hint": "Each one has a black pawn right in front of it."
-        },
-        "u9-l04-s05": {
-          "prompt": "In a closed position, which pieces usually work best?",
-          "options": ["Knights, which jump over the pawns", "Long-range bishops", "Rooks on open files"],
-          "explanation": "With the pawns blocking the lines, knights can jump over them and look for strong squares.",
-          "feedback": ["", "Bishops suffer when pawns close their diagonals.", "With the center closed there are few open files for the rooks."]
-        },
-        "u9-l04-s06": {
-          "prompt": "In an open position, which pieces usually work best?",
-          "options": ["Knights, which need fixed squares", "Pawns, which advance without obstacles", "Bishops and rooks, which have long lines"],
-          "explanation": "With free lines, bishops and rooks reach far and create threats from a distance.",
-          "feedback": ["Knights prefer fixed squares and closed centers.", "Pawns are not the pieces that win in open positions.", ""]
-        },
-        "u9-l04-s07": { "text": "Summary: with blocked pawns, the center is closed and the knights jump over them. With free lines, the center is open and bishops and rooks rule." }
-      }
-    },
-    "u9-l05": {
-      "title": "Good bishop and bad bishop",
-      "summary": "The bishop and its own pawns",
-      "steps": {
-        "u9-l05-s01": { "text": "The black bishop on c8 is a bad bishop: it has 5 of its own pawns on squares of its color, and the ones on b7 and e6 close both its diagonals. Its own pawns leave it with no way out." },
-        "u9-l05-s02": { "text": "In this position the black bishop came out to f5 before playing e6: it is outside the pawn chain and looks outward. It is a good bishop, active, even though its pawns are still on squares of the same color." },
-        "u9-l05-s03": {
-          "prompt": "Which of the black bishops is the bad one?",
-          "options": ["Neither", "The one on c8, which goes on light squares", "The one on f8, which goes on dark squares"],
-          "explanation": "The bishop on c8 has 5 of its own pawns on its color and the one on f8 only 3: the one on c8 is the bad one.",
-          "feedback": ["The e6 and d5 pawns get in the way of the bishop on c8: there is a bad one.", "", "The bishop on f8 has only 3 of its own pawns on its color: it has more room."]
-        },
-        "u9-l05-s04": {
-          "prompt": "Tap the two black pawns that close the diagonals of the bishop on c8.",
-          "hint": "Each of the bishop's two diagonals ends in one of its own pawns."
-        },
-        "u9-l05-s05": {
-          "prompt": "What can you do with a bad bishop?",
-          "options": ["Take it out of the pawn chain or trade it", "Put more pawns on squares of its color", "Leave it at home to protect it"],
-          "explanation": "A bad bishop improves if it leaves the chain before it closes, or if it is traded for an enemy piece.",
-          "feedback": ["", "More pawns on its color only get in its way more.", "Leaving it at home keeps it out of the game."]
-        },
-        "u9-l05-s06": { "text": "Summary: a bishop is good if its pawns are on squares of the other color and bad if they close its diagonals. Better to take it out before the pawn chain closes." }
-      }
-    },
-    "u9-l06": {
-      "title": "Backward pawn and pawn chains",
-      "summary": "Where to attack the pawn structure",
-      "steps": {
-        "u9-l06-s01": { "text": "The black pawn on d6 is a backward pawn: it has no pawns beside it to support it and it can't advance without the e4 pawn capturing it. The d5 square, right in front, is a target: a white piece can settle there without any black pawn driving it away." },
-        "u9-l06-s02": { "text": "The white pawns on b2, c3, d4 and e5 form a chain. The base, b2, is the only pawn in the chain that no other pawn protects. If the base is attacked, the whole chain is left without support; that is why Black aims the queen at b2." },
-        "u9-l06-s03": {
-          "prompt": "Tap the backward black pawn.",
-          "hint": "It's the pawn that can't advance without being captured and that none of its own pawns supports from the side."
-        },
-        "u9-l06-s04": {
-          "prompt": "Tap the base of the white pawn chain.",
-          "hint": "It's the pawn in the chain that has no pawn of its own protecting it."
-        },
-        "u9-l06-s05": {
-          "prompt": "How do you play against a backward pawn?",
-          "options": ["By trading all the pieces except the pawn", "By advancing one of your own pawns beside it", "By putting a piece on the square in front and pressuring the pawn"],
-          "explanation": "A piece on the square in front leaves it blocked and without support, and the opponent has to defend it with pieces.",
-          "feedback": ["Trading the pieces leaves the opponent free to defend it.", "Advancing a pawn beside it doesn't attack the backward pawn.", ""]
-        },
-        "u9-l06-s06": {
-          "prompt": "Where should you attack a pawn chain?",
-          "options": ["In the middle", "At the base", "At the head"],
-          "explanation": "The base is the pawn that holds up the others: if it falls, the whole chain loses its support.",
-          "feedback": ["The middle pawns are protected by the base.", "", "The head is protected by the rest of the chain."]
-        },
-        "u9-l06-s07": { "text": "Summary: against a backward pawn, a piece on the square in front. Against a pawn chain, attack the base." }
-      }
-    },
-    "u9-l07": {
-      "title": "Active Rooks",
-      "summary": "Open columns and the seventh rank",
-      "steps": {
-        "u9-l07-s01": {
-          "text": "The e-file is open and the rook on e1 can jump to e7. From the seventh rank, it attacks the pawns on a7, b7, f7, and g7, and traps the black king on the last rank."
-        },
-        "u9-l07-s02": {
-          "text": "Rooks also need to be connected. Here the king on g1 is between the two rooks on the first rank: if the king moves to h2, the rooks connect and protect each other."
-        },
-        "u9-l07-s03": {
-          "prompt": "Where is a rook stronger?",
-          "explanation": "On the seventh rank, the rook attacks pawns and cuts off the rival king. It is the most active square.",
+        "u10-l02-s03": {
+          "prompt": "How many black pieces defend the h7 pawn?",
           "options": [
-            "On the seventh rank, attacking pawns",
-            "In the corner, defending",
-            "In front of its own king"
+            "1",
+            "2",
+            "3"
           ],
+          "explanation": "The king on g8 and the knight on f6 defend it: two defenders. Before attacking, count attackers and defenders.",
           "feedback": [
+            "Count again: besides the king, look at which other black piece reaches h7.",
             "",
-            "In the corner, the rook is passive: it only defends.",
-            "In front of the king, it takes squares from your own piece."
+            "Count again: it is fewer than three."
           ]
         },
-        "u9-l07-s04": {
-          "prompt": "Move the rook from e1 to the seventh rank.",
-          "hint": "The e-file is open. The rook can climb up to the black pawn rank.",
-          "success": "Correct. Re7 moves the rook to the seventh rank, where it attacks the pawns and cuts off the king."
+        "u10-l02-s04": {
+          "prompt": "Tap the three pawns that protect the black king.",
+          "hint": "They are in front of the king, on the 7th rank."
         },
-        "u9-l07-s05": {
-          "prompt": "Tap the seventh rank square that the rook on e1 can go to.",
-          "hint": "Climb up the open file to rank 7."
+        "u10-l02-s05": {
+          "prompt": "Attack the opponent's castled position.",
+          "hint": "With both kings castled kingside, look for the pieces aiming at the 8th rank or at the h pawn.",
+          "success": "Correct. Re8+ takes advantage of the attack on the castled king."
         },
-        "u9-l07-s06": {
-          "text": "Summary: a rook is worth a lot with an open file, on the seventh rank, and connected to its partner. A passive rook, on the other hand, is almost a piece less."
+        "u10-l02-s06": {
+          "prompt": "Attack the opponent's castled position.",
+          "hint": "With both kings castled kingside, look for the pieces aiming at the h pawn.",
+          "success": "Correct. Bxh2+ takes advantage of the attack on the castled king."
+        },
+        "u10-l02-s07": {
+          "prompt": "Attack the opponent's castled position.",
+          "hint": "Look for a capture that leaves the king without the pawn that protects it.",
+          "success": "Correct. Qxg7# takes advantage of the attack on the castled king."
+        },
+        "u10-l02-s08": {
+          "prompt": "Attack the opponent's castled position.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the enemy pieces that defend the pawn shield and take them out of the way.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u10-l02-s09": {
+          "prompt": "Attack the opponent's castled position.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the enemy pieces that defend the pawn shield and take them out of the way.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u10-l02-s10": {
+          "prompt": "Attack the opponent's castled position.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the enemy pieces that defend the pawn shield and take them out of the way.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
-    "u9-l08": {
-      "title": "Pawn Breaks and Pawns Majority",
-      "summary": "Opening the game and creating a passed pawn",
+    "u10-l03": {
+      "title": "Opposite-side castling",
+      "summary": "Each side attacks the other's king",
       "steps": {
-        "u9-l08-s01": {
-          "text": "White has three pawns against two on the queenside: a majority. If they advance the pawns in order, they can create a passed pawn that wins the endgame."
+        "u10-l03-s01": {
+          "text": "The kings are on opposite wings: White's on b1 and Black's on g8. Black attacks on the queenside: Qxa2+ gives check, the king goes to c1 and Qa1 is mate. With opposite-side castling each side attacks the other's king and whoever arrives first wins."
         },
-        "u9-l08-s02": {
-          "text": "A break is a pawn advance that opens a file or a diagonal. Here c4 challenges the d5 pawn: if black captures, you open the c-file; if not, you exchange pawns on d5 and your d4 pawn gets more space."
+        "u10-l03-s02": {
+          "text": "Here the black king is on c8 and the white king on g1. White attacks on the queenside: Qxb7# is mate because the rook on b1 protects the queen and the king cannot capture it."
         },
-        "u9-l08-s03": {
-          "prompt": "What is a pawn majority?",
-          "explanation": "A majority is local: three pawns against two on a flank can create a passed pawn.",
+        "u10-l03-s03": {
+          "prompt": "With opposite-side castling, what is usually best?",
           "options": [
-            "Having more pawns than the opponent on a flank",
-            "Having more pieces",
-            "Exchanging all pawns"
+            "Moving the pawns that protect your own king",
+            "Trading all the pieces as soon as possible",
+            "Throwing pawns and pieces at the enemy king"
+          ],
+          "explanation": "Each side attacks the other's king: whoever arrives first wins. Pawns are thrown toward the enemy king, not toward your own.",
+          "feedback": [
+            "Moving the pawns of your castled position weakens your own king just when the opponent attacks.",
+            "Trading pieces puts out the attack and leaves both sides without play against the king.",
+            ""
+          ]
+        },
+        "u10-l03-s04": {
+          "prompt": "Tap the two kings.",
+          "hint": "One is on the queenside and the other on the kingside."
+        },
+        "u10-l03-s05": {
+          "prompt": "Attack the queenside king.",
+          "hint": "Look for the capture that leaves the king without its protection.",
+          "success": "Correct. Rxc7# attacks the queenside king."
+        },
+        "u10-l03-s06": {
+          "prompt": "Attack the queenside king.",
+          "hint": "Look for a check or a capture that wins material with the enemy king exposed.",
+          "success": "Correct. Nxd6+ attacks the queenside king."
+        },
+        "u10-l03-s07": {
+          "prompt": "Attack the queenside king.",
+          "hint": "Look for a check or a capture that wins material with the enemy king exposed.",
+          "success": "Correct. Bxd7+ attacks the queenside king."
+        },
+        "u10-l03-s08": {
+          "prompt": "Attack the queenside king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the checks: with opposite-side castling the attack arrives fast.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u10-l03-s09": {
+          "prompt": "Attack the queenside king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Look for the checks: with opposite-side castling the attack arrives fast.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u10-l04": {
+      "title": "Defending the king",
+      "summary": "Interposing a protected piece",
+      "steps": {
+        "u10-l04-s01": {
+          "text": "White gives check with Qd7+. Black doesn't run with the king: they interpose the rook on c7, protected by the king. If the queen captures, the king recaptures and the attacking piece disappears."
+        },
+        "u10-l04-s02": {
+          "text": "Black gives check with the queen on a2. White interposes the rook on c2, protected by the king: the queen has to capture it and the king recaptures."
+        },
+        "u10-l04-s03": {
+          "prompt": "Which piece protects the rook that interposes on c7?",
+          "options": [
+            "The bishop on c4",
+            "The king on b7",
+            "The queen on b2"
+          ],
+          "explanation": "The king on b7 is right next to c7: if the queen captured the rook, the king would recapture.",
+          "feedback": [
+            "The bishop on c4 is on a different diagonal and does not protect c7.",
+            "",
+            "The queen on b2 does not reach c7."
+          ]
+        },
+        "u10-l04-s04": {
+          "prompt": "Tap the square where a piece can interpose against the queen's check.",
+          "hint": "It is the only square between the queen and the king."
+        },
+        "u10-l04-s05": {
+          "prompt": "Answer the check by interposing a protected piece.",
+          "hint": "If you can't capture the piece giving check, see whether you can interpose a piece that your king protects.",
+          "success": "Correct. Rd7 interposes a protected piece: if they capture it, you recapture."
+        },
+        "u10-l04-s06": {
+          "prompt": "Answer the check by interposing a protected piece.",
+          "hint": "If you can't capture the piece giving check, see whether you can interpose a piece that your king protects.",
+          "success": "Correct. Rf7 interposes a protected piece: if they capture it, you recapture."
+        },
+        "u10-l04-s07": {
+          "prompt": "Answer the check by interposing a protected piece.",
+          "hint": "If you can't capture the piece giving check, see whether you can interpose a piece that your king protects.",
+          "success": "Correct. Bb6 interposes a protected piece: if they capture it, you recapture."
+        },
+        "u10-l04-s08": {
+          "prompt": "Defend the king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Interpose a protected piece: if they capture it, you recapture and the attacking piece is traded.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u10-l04-s09": {
+          "prompt": "Defend the king.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Interpose a protected piece: if they capture it, you recapture and the attacking piece is traded.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u6-l02": {
+      "title": "Prophylaxis",
+      "summary": "Anticipate your opponent's plan",
+      "steps": {
+        "u6-l02-s01": {
+          "text": "Before each move, ask yourself: what does my opponent want to do? Stopping that plan before it happens is called prophylaxis. In this Italian, the black bishop wants to go to g4 to pin your knight to the queen."
+        },
+        "u6-l02-s02": {
+          "prompt": "If the bishop reaches g4, why is that annoying?",
+          "options": [
+            "It pins the knight on f3: if the knight moves, the bishop captures the queen",
+            "It threatens checkmate",
+            "It attacks the pawn on e4"
+          ],
+          "explanation": "With the bishop on g4, the knight on f3 is pinned to the queen on d1: if the knight moves, the bishop captures the queen. The knight loses its freedom just when it has to defend the center.",
+          "feedback": [
+            "",
+            "There's no mate in sight: the problem is the pin on the knight.",
+            "From g4 the bishop doesn't attack the pawn on e4. The problem is the pin."
+          ]
+        },
+        "u6-l02-s03": {
+          "prompt": "Play the move that stops the bishop from going to g4.",
+          "hint": "A pawn can control the g4 square before the bishop gets there.",
+          "success": "Correct. With h3, the pawn controls g4 and the bishop can't go there anymore."
+        },
+        "u6-l02-s04": {
+          "text": "Your rook on the seventh rank attacks pawns, but before you capture, look at Black's threat: the rook on e8 wants to drop down to e1. Your king can't leave the back rank, because its own pawns shut it in."
+        },
+        "u6-l02-s05": {
+          "prompt": "Tap the square where the black rook would give checkmate.",
+          "hint": "The rook on e8 comes down the e-file to your first rank."
+        },
+        "u6-l02-s06": {
+          "prompt": "Prevent the back-rank mate before capturing pawns.",
+          "hint": "If you capture on b7, Re1 is mate. Open an escape square for your king by moving a pawn, or bring it closer to the e-file.",
+          "success": "Correct. The back-rank mate doesn't work anymore. Now you can think about capturing pawns."
+        },
+        "u6-l02-s07": {
+          "text": "Here the black queen and bishop point at the same square, next to your king. If you do nothing, Black has mate in one."
+        },
+        "u6-l02-s08": {
+          "prompt": "Tap the square where Black would give checkmate.",
+          "hint": "The queen on h4 and the bishop on d6 attack the same square, next to your king."
+        },
+        "u6-l02-s09": {
+          "prompt": "Stop the mate.",
+          "hint": "Use a pawn near your king: block the bishop's diagonal with the pawn on g2, or push the pawn on h2 so the queen has nowhere to deliver mate. After f4 the bishop captures and your king is exposed.",
+          "success": "Correct. The mate doesn't work anymore and your position holds."
+        },
+        "u6-l02-s10": {
+          "text": "To sum up: before you move, look at what your opponent threatens and wants to do in the next few moves. A quiet move played in time, like h3 or opening an escape square for your king, avoids much bigger problems."
+        }
+      }
+    },
+    "u10-l05": {
+      "title": "Defending with less material",
+      "summary": "Perpetual check, stalemate, and fortress",
+      "steps": {
+        "u10-l05-s01": {
+          "text": "When you have less material, you don't need to win: you need a draw. The black king on a8 has no squares and is not in check. It is stalemated, and the game ends in a draw."
+        },
+        "u10-l05-s02": {
+          "text": "Perpetual check is another lifeline: if your queen can check again and again, the opponent has no time to progress. Sometimes the position repeats and the game is a draw."
+        },
+        "u10-l05-s03": {
+          "prompt": "What are you looking for when you have less material?",
+          "explanation": "With less material, the goal is not to lose. Perpetual check, stalemate, and fortress are resources to save a half point.",
+          "options": [
+            "Draw: perpetual check, stalemate, or fortress",
+            "Change all pieces",
+            "Attack the rival king"
           ],
           "feedback": [
             "",
-            "Pieces do not count for a pawn majority.",
-            "Exchanging pawns without a plan does not create any advantage."
+            "Changing pieces doesn't always help if you are still down in material.",
+            "Attacking usually loses: the rival has more strength."
           ]
         },
-        "u9-l08-s04": {
-          "prompt": "What is a pawn break aiming for?",
-          "explanation": "The break opens lines or fixes a weakness for your pieces to enter through.",
+        "u10-l05-s04": {
+          "prompt": "Tap the three squares that control the black king.",
+          "hint": "The queen and the white king cover the three escape squares."
+        },
+        "u10-l05-s05": {
+          "prompt": "What is a fortress?",
+          "explanation": "In a fortress, the extra material is useless because the rival cannot enter. It is another way to draw.",
           "options": [
-            "Opening a file or creating a passed pawn",
-            "Exchanging queens",
-            "Defending the king"
+            "A position the rival cannot break even with more material",
+            "An attack on the king",
+            "Changing all pieces"
           ],
           "feedback": [
             "",
-            "Exchanging queens is not the goal of a break.",
-            "A break is a pawn idea, not a defensive move."
+            "A fortress is defensive, not an attack.",
+            "Changing pieces does not define a fortress."
           ]
         },
-        "u9-l08-s05": {
-          "prompt": "Tap the three white majority pawns on the queenside.",
-          "hint": "They are the three consecutive pawns on the queenside."
+        "u10-l05-s06": {
+          "text": "Summary: with less material, look for a draw. Stalemate, perpetual check, and fortress are your three resources. You don't need to win; you need not to lose."
+        }
+      }
+    },
+    "u10-l07": {
+      "title": "Making a plan",
+      "summary": "Choosing the idea before the move",
+      "steps": {
+        "u10-l07-s01": {
+          "text": "Before moving, choose a plan. Ask yourself what your worst piece is, where you have more space, and what weakness you can attack. The move comes after the idea."
         },
-        "u9-l08-s06": {
-          "text": "Summary: a pawn majority creates a passed pawn if you advance in order. A break opens lines or fixes a weakness. First the pawn plan, then the pieces."
+        "u10-l07-s02": {
+          "text": "Here White has more space in the center. A typical plan is to improve the bishop on c1, which is behind its pawns, and then attack the kingside. Pieces first, pawns later."
+        },
+        "u10-l07-s03": {
+          "prompt": "What plan makes the most sense here?",
+          "explanation": "With more space, the plan is to develop the worst piece and attack where you have an advantage. The bishop on c1 is the piece to improve.",
+          "options": [
+            "Improve the bishop on c1 and attack the kingside",
+            "Change all the pieces",
+            "Move the castling pawns"
+          ],
+          "feedback": [
+            "",
+            "Changing everything doesn't utilize your space.",
+            "Moving the castling pawns weakens your own king."
+          ]
+        },
+        "u10-l07-s04": {
+          "prompt": "Tap the square of the white piece that needs improvement.",
+          "hint": "It is the bishop behind its own pawns."
+        },
+        "u10-l07-s05": {
+          "prompt": "What question do you ask yourself before moving?",
+          "explanation": "A plan starts with the position: the worst piece, the space, and the opponent's weaknesses.",
+          "options": [
+            "What is my worst piece and where do I have an advantage?",
+            "What piece can I sacrifice?",
+            "How do I change all the pieces?"
+          ],
+          "feedback": [
+            "",
+            "Looking for sacrifices without a plan is starting from the end.",
+            "Changing everything is not a plan in itself."
+          ]
+        },
+        "u10-l07-s06": {
+          "text": "Summary: first the plan, then the move. Improve your worst piece, attack where you have space, and create a weakness in the opponent's field. A plan lasts several moves."
+        }
+      }
+    },
+    "u6-l04": {
+      "title": "Final review",
+      "summary": "Puzzles from the whole path",
+      "steps": {
+        "u6-l04-s01": {
+          "text": "Final review: sixteen puzzles from real games, with themes from the whole path. Before you move, go over checks, captures and threats. If you make a mistake, the hint tells you which theme to look for."
+        },
+        "u6-l04-s02": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: discovered attack. If the knight moves with check, your queen wins the black queen.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s03": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: fork. Your knight can give check and attack the rook at the same time.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s04": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: skewer. A bishop check forces the king to move and leaves the rook unprotected.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s05": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: deflection. A check on the first rank pulls away the rook that defends the queen.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s06": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: mate in 2. Capture the defending piece and follow up with a queen check.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s07": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: zugzwang. Bring your king closer to the white pawns: the enemy king can't defend them without stepping aside.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s08": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: pin. Trade the rooks, then pin the queen to its king with the bishop.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s09": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: promotion. Your pawn on d7 is one step away: promote it even if the rook can capture it.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s11": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: attraction. Sacrifice a rook by capturing the knight with check: the king recaptures and the other rook gives mate.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s12": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: overloading. Trade the rooks: the queen that recaptures leaves another piece without defense.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s13": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: intermediate move. Before recapturing the queen, give check by capturing the knight with the bishop.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s14": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: interference. A queen check forces the king between two rooks that protected each other.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s15": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: two-piece mate. Sacrifice a rook on g8 and finish with the other, supported by the knight.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s16": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: sacrifice. Give up the queen with check on d1: the bishop captures and the rook gives mate.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s17": {
+          "prompt": "Black to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: active king. Bring the king toward the enemy pawns instead of staying back.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s18": {
+          "prompt": "White to move. Find the best move.",
+          "success": "Well solved: this position comes from a real game.",
+          "hint": "Hint: loose piece. The bishop that gave check has no defense: capture it with the king.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u6-l04-s10": {
+          "text": "You've finished the Learn path. From here, the best thing is to practice: puzzles every day, openings in their tab and games against the bots to use everything you've learned."
         }
       }
     }

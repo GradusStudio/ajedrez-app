@@ -1,278 +1,371 @@
 {
-  "title": "Finali intermedi",
+  "title": "Pezzi e pedoni",
   "lessons": {
-    "u8-l01": {
-      "title": "Il re attivo",
-      "summary": "Nel finale anche il re attacca",
+    "u9-l02": {
+      "title": "Quando cambiare i pezzi",
+      "summary": "Cambiare o non cambiare",
       "steps": {
-        "u8-l01-s01": { "text": "Nel finale quasi non rimangono pezzi che danno matto, e il re diventa un pezzo di attacco. Qui il re nero marcia verso f4: da lì attacca il pedone in g4, e il re bianco è troppo lontano per difenderlo." },
-        "u8-l01-s02": { "text": "Lo stesso qui: il re nero esce verso f5 e attacca il pedone in g5. Il re bianco non può difenderlo e le nere lo prendono." },
-        "u8-l01-s03": {
-          "prompt": "Muovono le bianche. Cosa fa il re per vincere il pedone in a6?",
-          "options": ["Va in b6 e lo attacca", "Va in d5, verso il centro", "Va in b7 e si allontana dal pedone"],
-          "explanation": "Con Rb6 il re attacca il pedone in a6 e il re nero non riesce a difenderlo.",
-          "feedback": ["", "Verso il centro non vinci nulla: il pedone in a6 è accanto al tuo re.", "Allontanarsi dal pedone è l'opposto di quello che ti serve."]
+        "u9-l02-s01": {
+          "text": "Quasi tutti i cambi hanno aspetti buoni e aspetti cattivi. Conviene cambiare se stai guadagnando materiale, se il cambio lascia una debolezza all'avversario, se ti stanno attaccando o se hai poco spazio. Non conviene se stai perdendo materiale, se sei tu ad attaccare o se hai più spazio."
         },
-        "u8-l01-s04": {
-          "prompt": "Tocca la casella a cui deve andare il re nero per attaccare il pedone in g5.",
-          "hint": "Deve rimanere accanto al pedone, su una casella che il re bianco non possa sorvegliare."
+        "u9-l02-s02": {
+          "prompt": "Hai una torre in più e muovono le bianche. Cosa ti conviene?",
+          "options": [
+            "Evitare i cambi",
+            "Attaccare senza cambiare nulla",
+            "Cambiare i pezzi per semplificare"
+          ],
+          "explanation": "Con una torre in più, ogni cambio rende il tuo vantaggio più grande: meno pezzi rimangono, più pesa avere una torre in più.",
+          "feedback": [
+            "Evitare i cambi lascia vivi i pezzi dell'avversario, che sono quelli che potrebbero complicarti il gioco.",
+            "Attaccare senza cambiare nulla è rischioso quando hai già il vantaggio.",
+            ""
+          ]
         },
-        "u8-l01-s05": {
-          "prompt": "Attacca il pedone in a6 con il re.",
-          "hint": "Il re bianco può stare accanto al pedone. Il re nero non ci arriva per difenderlo.",
-          "success": "Corretto. Rb6 attacca il pedone e il re avversario non può difenderlo."
+        "u9-l02-s03": {
+          "prompt": "Stai perdendo una torre e muovono le bianche. Cosa ti conviene?",
+          "options": [
+            "Cambiare solo le donne",
+            "Evitare i cambi",
+            "Cambiare i pezzi per semplificare"
+          ],
+          "explanation": "Con meno materiale, ogni cambio ti lascia con meno risorse: conviene mantenere i pezzi sulla scacchiera per avere opzioni.",
+          "feedback": [
+            "Cambiare le donne ti lascia anche con meno risorse per complicare.",
+            "",
+            "Ogni cambio avvicina la partita a una fine dove la torre mancante si sente di più."
+          ]
         },
-        "u8-l01-s06": {
-          "prompt": "Prendi il pedone in a2 con il re.",
-          "hint": "Il pedone in a2 è accanto al tuo re e nessuno lo difende.",
-          "success": "Corretto. Rxa2 vince il pedone e libera la strada al pedone a."
+        "u9-l02-s04": {
+          "prompt": "Hai meno spazio dell'avversario. Cosa ti conviene?",
+          "options": [
+            "Cambiare i pezzi che ti stringono",
+            "Evitare tutti i cambi",
+            "Avanzare i pedoni"
+          ],
+          "explanation": "Con poco spazio i pezzi si ostacolano. Ogni cambio libera caselle per quelli che rimangono.",
+          "feedback": [
+            "",
+            "Evitare i cambi lascia i tuoi pezzi stretti.",
+            "Avanzare i pedoni senza supporto di solito crea debolezze."
+          ]
         },
-        "u8-l01-s07": {
-          "prompt": "Attacca il pedone in b7 con il re.",
-          "hint": "Il tuo re può aggirare il re nero e attaccare il pedone da un'altra casella.",
-          "success": "Corretto. Rc7 attacca il pedone in b7 e il re nero non può difenderlo."
+        "u9-l02-s05": {
+          "prompt": "Stai attaccando il re dell'avversario con diversi pezzi. Cosa ti conviene?",
+          "options": [
+            "Cambiare i pezzi che attaccano",
+            "Cambiare la donna subito",
+            "Mantenere i pezzi d'attacco sulla scacchiera"
+          ],
+          "explanation": "Per attaccare hai bisogno di pezzi. Se cambi quelli che attaccano, l'avversario si difende con più calma.",
+          "feedback": [
+            "Cambiare i pezzi che attaccano è quello che cerca l'avversario che si difende.",
+            "Cambiare la donna toglie il pezzo che attacca di più.",
+            ""
+          ]
         },
-        "u8-l01-s08": {
-          "prompt": "Vinci pedoni con il re.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Porta il re verso i pedoni dell'avversario: non restare a casa.",
-          "notes": ["", "", "", ""]
-        },
-        "u8-l01-s09": {
-          "prompt": "Vinci pedoni con il re.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Porta il re verso i pedoni dell'avversario: non restare a casa.",
-          "notes": ["", "", "", ""]
+        "u9-l02-s06": {
+          "text": "Riassunto: cambia quando stai vincendo, quando ti attaccano o quando ti manca spazio. Non cambiare quando stai perdendo, quando attacchi o quando hai più spazio. Prima di ogni cambio, chiediti cosa ti lascia e cosa lascia all'avversario."
         }
       }
     },
-    "u8-l02": {
-      "title": "Il pedone passato lontano",
-      "summary": "Un pedone lontano dal re avversario",
+    "u9-l03": {
+      "title": "Lo spazio",
+      "summary": "Le caselle della metà avversaria che controlli",
       "steps": {
-        "u8-l02-s01": { "text": "Il Bianco ha un pedone passato sulla colonna h, lontano dal re nero, che è all'altra estremità. Con h5 inizia la corsa: entrambi i giocatori promuovono, ma il Bianco arriva prima e la sua nuova donna, con scacchi, ferma il pedone nero." },
-        "u8-l02-s02": { "text": "Qui il pedone passato del Nero è sulla colonna a, lontano dal re bianco. Promuove senza che nessuno possa fermarlo, e i pedoni bianchi arrivano tardi." },
-        "u8-l02-s03": {
-          "prompt": "Muovono le bianche. Cosa conviene?",
-          "options": ["Spingi il pedone in h, che è lontano dal re nero", "Portare il re verso i pedoni della colonna a", "Muovi il pedone in g"],
-          "explanation": "Il re nero è all'altra punta e non riesce a fermare il pedone in h. Spingerlo vince la corsa.",
-          "feedback": ["", "Con il re lontano dal pedone in h, ciò che conta di più è che il pedone corra.", "Il pedone in g non ha lo stesso vantaggio: è più vicino al re dell'avversario."]
+        "u9-l03-s01": {
+          "text": "Lo spazio è il numero di caselle del campo avversario che controllano i tuoi pezzi e pedoni. In questa posizione le bianche controllano 8 caselle del campo nero e le nere 5 del campo bianco: le bianche hanno più spazio, soprattutto grazie al loro pedone avanzato in e5."
         },
-        "u8-l02-s04": {
-          "prompt": "Tocca il pedone passato che è più lontano dal re nero.",
-          "hint": "È il pedone che rimane sul bordo della scacchiera, opposto alla posizione del re nero."
+        "u9-l03-s02": {
+          "prompt": "Tocca le due caselle del campo nero che controlla il pedone in e5.",
+          "hint": "Un pedone controlla le due caselle diagonali che ha davanti."
         },
-        "u8-l02-s05": {
-          "prompt": "Spingi il pedone che è lontano dal re dell'avversario.",
-          "hint": "Il pedone in h non ha nulla che lo fermi: il re nero è dall'altra parte.",
-          "success": "Corretto. h5 inizia la corsa: il pedone promuove e il re nero arriva troppo tardi."
-        },
-        "u8-l02-s06": {
-          "prompt": "Spingi il pedone che è lontano dal re dell'avversario.",
-          "hint": "Il pedone a promuove prima che il re bianco possa fare qualcosa.",
-          "success": "Corretto. a4 inizia la corsa: il pedone promuove e il re bianco arriva troppo tardi."
-        },
-        "u8-l02-s07": {
-          "prompt": "Vinci la corsa dei pedoni.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Cerca il pedone più lontano dal re avversario e spingilo.",
-          "notes": ["", "", "", ""]
-        },
-        "u8-l02-s08": {
-          "prompt": "Vinci la corsa dei pedoni.",
-          "success": "Ben risolto: questa posizione viene da una partita vera.",
-          "hint": "Cerca il pedone più lontano dal re avversario e spingilo.",
-          "notes": ["", "", "", ""]
-        },
-        "u8-l02-s09": { "text": "Riassunto: un pedone passato lontano dal re avversario è un'arma a doppio taglio. O promuove, o il re avversario deve inseguirlo e lascia i suoi altri pedoni soli. Sono le due debolezze: il pedone passato e i pedoni che rimangono non protetti." }
-      }
-    },
-    "u8-l03": {
-      "title": "Donna contro pedone",
-      "summary": "Quando il pedone è a un passo dalla promozione",
-      "steps": {
-        "u8-l03-s01": { "text": "La donna bianca controlla d1 da a4: se il pedone promuove, la donna lo cattura con scacco. Nel frattempo il re bianco si avvicina e, insieme, finiscono il pedone e il re." },
-        "u8-l03-s02": { "text": "Al contrario, con un pedone di torre in settima e il re nero vicino all'angolo, la donna non può vincere. Il re nero si rifugia nell'angolo e ogni tentativo finisce in patta per stallo." },
-        "u8-l03-s03": {
-          "prompt": "Quale di questi pedoni in settima è solitamente una patta contro la donna?",
-          "options": ["Il pedone di torre, sulla colonna a", "Il pedone centrale, sulla colonna d", "Nessuno: la donna vince sempre"],
-          "explanation": "Con un pedone di torre e il re dell'avversario vicino, lo stallo salva il Nero. Con un pedone centrale, invece, la donna vince.",
-          "feedback": ["", "Con un pedone centrale la donna vince: il re non ha l'angolo per rifugiarsi.", "Con il pedone di torre e il re vicino all'angolo, la donna non vince."]
-        },
-        "u8-l03-s04": {
-          "prompt": "Il pedone nero vuole promuovere in d1. Tocca la casella che la donna controlla da a4.",
-          "hint": "Segui la diagonale della donna verso l'angolo in basso a destra."
-        },
-        "u8-l03-s05": {
-          "prompt": "Vinci con la donna e il re contro il pedone e il re. Stockfish difende.",
-          "success": "Corretto. La donna ha fermato il pedone e hai dato matto.",
-          "hint": "Con quella mossa la vittoria ti sfugge. Mantieni la donna a controllare la casella di promozione e avvicina il re senza mettere in stallo."
-        },
-        "u8-l03-s06": { "text": "Riassunto: la donna controlla la casella di promozione e il re si avvicina. Contro un pedone di torre in settima con il re vicino all'angolo, lo stallo dà patta." }
-      }
-    },
-    "u8-l04": {
-      "title": "La posizione di Philidor",
-      "summary": "La difesa sicura con la torre",
-      "steps": {
-        "u8-l04-s01": { "text": "Nel finale di torre e pedone contro torre, la difesa più sicura è la posizione di Philidor: la torre difensiva sulla sesta traversa e il re sull'ultima, davanti al pedone. Così il re e il pedone dell'avversario non possono avanzare." },
-        "u8-l04-s02": {
-          "prompt": "Su quale traversa mette la torre il lato che difende?",
-          "options": ["Sulla sesta traversa, la terza dal suo lato", "Sulla prima traversa, dietro il pedone", "Nella colonna del pedone"],
-          "explanation": "La torre sulla sesta traversa taglia il passaggio del re e del pedone: il re dell'avversario non può avanzare sulla sesta traversa.",
-          "feedback": ["", "Dietro il pedone serve più avanti, quando il pedone è già arrivato alla sesta traversa. All'inizio, la torre va in sesta.", "Nella colonna del pedone la torre sarebbe un bersaglio e non fermerebbe il re dell'avversario."]
-        },
-        "u8-l04-s03": {
-          "prompt": "La torre nera controlla la sesta traversa. Tocca le due caselle di quella traversa dove il re bianco o il pedone vogliono avanzare.",
-          "hint": "Sono davanti al re e al pedone bianchi, sulla sesta traversa."
-        },
-        "u8-l04-s04": {
-          "prompt": "Difendi il finale. Stockfish gioca con il Bianco e cerca di vincere. Resisti per 30 mosse senza perdere.",
-          "success": "Corretto. Hai tenuto per 30 mosse: la posizione di Philidor è una patta.",
-          "hint": "Con quella mossa le bianche vincono. Mantieni la torre sulla sesta traversa e il re sull'ultima, davanti al pedone."
-        },
-        "u8-l04-s05": { "text": "Riassunto: torre sulla sesta traversa e re sull'ultima. Quando il pedone arriva sulla sesta traversa, la torre passa dietro e dà scacchi da lontano." }
-      }
-    },
-    "u8-l05": {
-      "title": "Tagliare il re con la torre",
-      "summary": "La torre come muraglia",
-      "steps": {
-        "u8-l05-s01": { "text": "La torre in c1 controlla la colonna c: il re nero non può attraversarla e non arriva al pedone in b4. Nel frattempo il pedone avanza senza che nessuno possa fermarlo. Questo è tagliare il re con la torre." },
-        "u8-l05-s02": {
-          "prompt": "Tocca le tre caselle della colonna c per cui il re nero potrebbe passare sull'altra metà della scacchiera.",
-          "hint": "Sono le caselle della colonna c che sono accanto al re nero."
-        },
-        "u8-l05-s03": {
-          "prompt": "Perché il re nero non può avvicinarsi al pedone",
-          "options": ["La torre controlla la colonna c e le chiude il passo", "Il re bianco lo blocca", "Il pedone è protetto dalla torre"],
-          "explanation": "Per arrivare al pedone il re nero dovrebbe attraversare la colonna c, e la torre la sorveglia interamente.",
-          "feedback": ["", "Il re bianco è lontano dal re nero: ciò che gli blocca il passo è la torre.", "La torre non protegge il pedone in b4: quello che fa è tagliare la colonna."]
-        },
-        "u8-l05-s04": { "text": "Si può tagliare anche per traverse. Con Th5 la torre controlla la traversa 5: il re nero non può scendere e il pedone in b4 avanza con calma." },
-        "u8-l05-s05": {
-          "prompt": "Promuovi il pedone senza perdere la nuova donna. Stockfish difende.",
-          "success": "Corretto. La torre ha tagliato il re e il pedone ha promosso.",
-          "hint": "Con quella mossa la vittoria ti sfugge. Lascia la torre sulla colonna c e avanza il pedone."
-        },
-        "u8-l05-s06": {
-          "prompt": "Taglia il re con la torre e promuovi il pedone. Stockfish difende.",
-          "success": "Corretto. Hai tagliato il re e il pedone ha promosso.",
-          "hint": "Con quella mossa la vittoria ti sfugge. Metti la torre su una traversa o colonna che il re nero non possa attraversare."
-        },
-        "u8-l05-s07": { "text": "Riassunto: la torre taglia il re lungo una colonna o una traversa che lui non può attraversare. Con il re tagliato, il pedone avanza da solo." }
-      }
-    },
-    "u8-l06": {
-      "title": "Alfieri di colore diverso",
-      "summary": "Perché di solito sono patta",
-      "steps": {
-        "u8-l06-s01": { "text": "Con alfieri di colore diverso, ogni alfiere controlla caselle che l'altro non può attaccare. L'alfiere difensore frena il pedone e il re si rifugia dietro. Per questo un pedone in più di solito non basta per vincere." },
-        "u8-l06-s02": {
-          "prompt": "Un alfiere attacca solo caselle del suo colore. Quali caselle non può attaccare l'alfiere nero, che va sulle caselle chiare?",
-          "options": ["Le scure, come f4", "Le chiare, come f1", "Nessuna"],
-          "explanation": "L'alfiere nero in f1 va sulle caselle chiare. Il pedone in f4 è su una casella scura: quell'alfiere non potrà mai attaccarlo.",
-          "feedback": ["", "Le chiare sì le può attaccare: sono le sue.", "Ogni alfiere ha il suo colore e non può cambiarlo."]
-        },
-        "u8-l06-s03": {
-          "prompt": "Tocca il pedone bianco che l'alfiere nero non potrà mai attaccare.",
-          "hint": "È il pedone che è su una casella di colore diverso dal tuo alfiere."
-        },
-        "u8-l06-s04": {
-          "prompt": "Difendi il finale. Stockfish gioca con il Bianco e cerca di vincere. Resisti per 20 mosse senza perdere.",
-          "success": "Corretto. Hai resistito per 20 mosse: con alfieri di colore diverso, un pedone in meno non perde.",
-          "hint": "Con quella mossa le bianche vincono. Tieni il re vicino e lascia l'alfiere su una diagonale lunga che fermi il pedone."
-        },
-        "u8-l06-s05": { "text": "Riassunto: con alfieri di colore diverso, ognuno attacca caselle che l'altro non tocca, e il lato con un pedone in meno può resistere." }
-      }
-    },
-    "u8-l07": {
-      "title": "Alfiere contro cavallo",
-      "summary": "Ogni pezzo brilla in una posizione diversa",
-      "steps": {
-        "u8-l07-s01": {
-          "text": "Nel finale, l'alfiere e il cavallo valgono quasi lo stesso, ma non servono allo stesso modo. L'alfiere da c1 raggiunge entrambe le ali in poche mosse; il cavallo da f6 raggiunge solo le caselle vicine."
-        },
-        "u8-l07-s02": {
-          "text": "Qui il cavallo da d5 domina il centro e ha una casella forte. L'alfiere da c1, invece, ha poco spazio: i suoi pedoni in b2 e c3 gli chiudono il fianco di donna. Con la struttura fissa, il cavallo è il pezzo migliore."
-        },
-        "u8-l07-s03": {
-          "prompt": "Con pedoni su entrambi i fianchi, quale pezzo è solitamente più comodo?",
-          "explanation": "L'alfiere attraversa la scacchiera in una mossa e copre entrambe le ali. Il cavallo ha bisogno di diverse mosse per cambiare fianco.",
+        "u9-l03-s03": {
+          "prompt": "Chi ha più spazio in questa posizione?",
           "options": [
-            "L'alfiere",
-            "Il cavallo",
-            "Non importa"
+            "I due uguali",
+            "Il Bianco",
+            "Il Nero"
           ],
+          "explanation": "Il Bianco controlla 12 caselle nel campo nero; il Nero, 7 nel campo bianco.",
           "feedback": [
+            "Non è uguale: il Bianco controlla più caselle nel campo dell'avversario.",
             "",
-            "Il cavallo è forte vicino al centro, ma impiega tempo per passare da un'ala all'altra.",
-            "Non importa: la struttura dei pedoni decide quale pezzo vale di più."
+            "Conta le caselle del campo avversario che controlla ogni parte: le bianche controllano di più."
           ]
         },
-        "u8-l07-s04": {
-          "prompt": "Il pedone nero è a una mossa dalla promozione. Salva la partita.",
-          "hint": "Il cavallo può catturare il pedone da d3. Dopo averlo catturato, re e cavallo contro re non bastano per dare scacco matto.",
-          "success": "Corretto. Cxb2 elimina il pedone e la partita finisce in patta per mancanza di materiale."
-        },
-        "u8-l07-s05": {
-          "prompt": "Dopo aver catturato il pedone, come finisce la partita?",
-          "explanation": "Re e cavallo contro re non possono dare scacco matto. La partita è in patta.",
+        "u9-l03-s04": {
+          "prompt": "Cosa conviene di solito al lato che ha più spazio?",
           "options": [
-            "Vincono le bianche",
-            "È in patta per mancanza di materiale",
-            "Vincono le nere"
+            "Evitare i cambi di pezzi",
+            "Cambiare le donne subito",
+            "Smettere di muovere i pedoni"
           ],
+          "explanation": "Con più spazio, i suoi pezzi si muovono comodamente. Ogni cambio libera l'avversario, quindi conviene a lui mantenere i pezzi.",
           "feedback": [
-            "Con un solo cavallo non si può forzare lo scacco matto.",
             "",
-            "Il re nero non può nemmeno vincere: non rimane materiale per attaccare."
+            "Cambiare le donne subito libera l'avversario che è stretto.",
+            "Smettere di muovere i pedoni non aiuta a mantenere lo spazio."
           ]
         },
-        "u8-l07-s06": {
-          "prompt": "Tocca la casella del cavallo nero che domina il centro.",
-          "hint": "È su una casella centrale da cui attacca diversi punti."
+        "u9-l03-s05": {
+          "prompt": "Cosa conviene di solito al lato che ha meno spazio?",
+          "options": [
+            "Evitare tutti i cambi",
+            "Stringere ancora di più i suoi pezzi",
+            "Cambiare i pezzi che lo stringono"
+          ],
+          "explanation": "Con poco spazio i pezzi si ostacolano. Ogni cambio libera caselle per quelli che rimangono.",
+          "feedback": [
+            "Evitare i cambi lascia i pezzi stretti.",
+            "Stringere ancora di più i pezzi peggiora il problema.",
+            ""
+          ]
         },
-        "u8-l07-s07": {
-          "text": "Riepilogo: l'alfiere è migliore con pedoni su entrambi i fianchi; il cavallo, con una casella forte e pedoni fissi. E se l'avversario ha un pedone vicino alla promozione, dare il pezzo per quel pedone può salvare mezzo punto."
+        "u9-l03-s06": {
+          "text": "Riassunto: lo spazio si conta nelle caselle del campo avversario che controlli. Chi ha più spazio evita i cambi; chi ne ha meno, li cerca."
         }
       }
     },
-    "u8-l08": {
-      "title": "Le due debolezze",
-      "summary": "Attaccare una per vincere nell'altra",
+    "u9-l04": {
+      "title": "Posizioni aperte e chiuse",
+      "summary": "Come giocano i pezzi a seconda dei pedoni",
       "steps": {
-        "u8-l08-s01": {
-          "text": "I pedoni in a4 e h4 sono passati e separati. Il re nero può puntare solo su uno: se va sul fianco della regina, il pedone in h4 corre verso la promozione."
+        "u9-l04-s01": {
+          "text": "Qui non c'è nessun pedone bloccato di fronte a un pedone avversario: il centro è aperto. I pezzi di lungo raggio, come gli alfieri e le torri, hanno linee libere e le minacce arrivano velocemente."
         },
-        "u8-l08-s02": {
-          "text": "Lo stesso vale per i pezzi: i neri devono difendere a7 e h7. La tua torre attacca a7; se la torre nera va a difenderlo, cambi a h7. Un pezzo non può coprire due debolezze contemporaneamente."
+        "u9-l04-s02": {
+          "text": "In questa altra posizione i pedoni in d5 e d6, e quelli in e4 e e5, sono faccia a faccia e bloccati. Il centro è chiuso: i pezzi hanno poche linee e la partita si gioca con manovre lente e rotture di pedoni."
         },
-        "u8-l08-s03": {
-          "prompt": "Cosa fai quando il rivale ha due debolezze?",
-          "explanation": "Se il rivale difende una debolezza, l'altra rimane senza protezione. La chiave è costringerlo a scegliere.",
+        "u9-l04-s03": {
+          "prompt": "Questa posizione è aperta o chiusa?",
           "options": [
-            "Attaccare una per far allontanare il rivale e vincere nell'altra",
-            "Cambiare tutti i pezzi",
-            "Difendere i propri pedoni"
+            "Chiusa",
+            "Aperta"
+          ],
+          "explanation": "I pedoni in d4 e d5, e quelli in e5 e e6, sono bloccati faccia a faccia. Il centro è chiuso.",
+          "feedback": [
+            "",
+            "Guarda i pedoni al centro: ci sono due coppie faccia a faccia che non possono avanzare."
+          ]
+        },
+        "u9-l04-s04": {
+          "prompt": "Tocca i due pedoni bianchi che sono bloccati da un pedone nero.",
+          "hint": "Ognuno ha un pedone nero proprio davanti."
+        },
+        "u9-l04-s05": {
+          "prompt": "In una posizione chiusa, quali pezzi funzionano meglio di solito?",
+          "options": [
+            "I cavalli, che saltano sui pedoni",
+            "Gli alfieri a lungo raggio",
+            "Le torri in colonne aperte"
+          ],
+          "explanation": "Con i pedoni che bloccano le linee, i cavalli possono saltare sopra e cercare caselle forti.",
+          "feedback": [
+            "",
+            "Gli alfieri soffrono quando i pedoni chiudono le loro diagonali.",
+            "Con il centro chiuso ci sono poche colonne aperte per le torri."
+          ]
+        },
+        "u9-l04-s06": {
+          "prompt": "In una posizione aperta, quali pezzi funzionano meglio di solito?",
+          "options": [
+            "I cavalli, che necessitano caselle fisse",
+            "I pedoni, che avanzano senza ostacoli",
+            "Gli alfieri e le torri, che hanno linee lunghe"
+          ],
+          "explanation": "Con linee libere, gli alfieri e le torri arrivano lontano e creano minacce da lontano.",
+          "feedback": [
+            "I cavalli preferiscono caselle fisse e centri chiusi.",
+            "I pedoni non sono i pezzi che vincono nelle posizioni aperte.",
+            ""
+          ]
+        },
+        "u9-l04-s07": {
+          "text": "Riassunto: con pedoni bloccati, il centro è chiuso e i cavalli saltano sopra. Con linee libere, il centro è aperto e alfieri e torri comandano."
+        }
+      }
+    },
+    "u9-l05": {
+      "title": "Alfiere buono e alfiere cattivo",
+      "summary": "L'alfiere e i suoi pedoni",
+      "steps": {
+        "u9-l05-s01": {
+          "text": "L'alfiere nero in c8 è un alfiere cattivo: ha 5 pedoni propri su caselle del suo colore, e quelli in b7 ed e6 chiudono entrambe le diagonali. I suoi pedoni lo lasciano senza via di fuga."
+        },
+        "u9-l05-s02": {
+          "text": "In questa posizione l'alfiere nero è uscito in f5 prima di giocare e6: è fuori dalla catena di pedoni e guarda verso l'esterno. È un alfiere buono, attivo, anche se i suoi pedoni sono ancora su caselle dello stesso colore."
+        },
+        "u9-l05-s03": {
+          "prompt": "Quale degli alfieri neri è quello cattivo?",
+          "options": [
+            "Nessuno",
+            "Quello in c8, che va sulle caselle chiare",
+            "Quello in f8, che va sulle caselle scure"
+          ],
+          "explanation": "L'alfiere in c8 ha 5 pedoni propri sul suo colore e quello in f8 solo 3: quello in c8 è l'alfiere cattivo.",
+          "feedback": [
+            "I pedoni in e6 e d5 ostacolano l'alfiere in c8: ce n'è uno cattivo.",
+            "",
+            "L'alfiere in f8 ha solo 3 pedoni propri sul suo colore: ha più spazio."
+          ]
+        },
+        "u9-l05-s04": {
+          "prompt": "Tocca i due pedoni neri che chiudono le diagonali dell'alfiere in c8.",
+          "hint": "Ognuna delle due diagonali dell'alfiere finisce su un proprio pedone."
+        },
+        "u9-l05-s05": {
+          "prompt": "Cosa puoi fare con un alfiere cattivo?",
+          "options": [
+            "Toglierlo dalla catena di pedoni o cambiarlo",
+            "Mettere più pedoni sulle caselle del proprio colore",
+            "Lasciarlo a casa per proteggerlo"
+          ],
+          "explanation": "Un alfiere cattivo migliora se esce dalla catena prima che si chiuda o se viene scambiato per un pezzo dell'avversario.",
+          "feedback": [
+            "",
+            "Più pedoni del suo colore lo ostacolano solo di più.",
+            "Lasciarlo a casa lo tiene fuori dalla partita."
+          ]
+        },
+        "u9-l05-s06": {
+          "text": "Riassunto: un alfiere è buono se i suoi pedoni sono su caselle dell'altro colore e cattivo se gli chiudono le diagonali. Meglio toglierlo prima che la catena di pedoni si chiuda."
+        }
+      }
+    },
+    "u9-l06": {
+      "title": "Pedone arretrato e catene di pedoni",
+      "summary": "Dove attaccare la struttura di pedoni",
+      "steps": {
+        "u9-l06-s01": {
+          "text": "Il pedone nero in d6 è un pedone arretrato: non ha pedoni ai lati che lo supportino e non può avanzare senza che il pedone in e4 lo catturi. La casella in d5, proprio davanti, è un bersaglio: un pezzo bianco può stabilirsi lì senza che nessun pedone nero lo scacci."
+        },
+        "u9-l06-s02": {
+          "text": "I pedoni bianchi in b2, c3, d4 ed e5 formano una catena. La base, b2, è l'unico pedone della catena che nessun altro pedone protegge. Se si attacca la base, tutta la catena rimane senza supporto; per questo le nere puntano con la donna su b2."
+        },
+        "u9-l06-s03": {
+          "prompt": "Tocca il pedone nero arretrato.",
+          "hint": "È il pedone che non può avanzare senza che lo catturino e che nessun pedone proprio supporta da un lato."
+        },
+        "u9-l06-s04": {
+          "prompt": "Tocca la base della catena di pedoni bianchi.",
+          "hint": "È il pedone della catena che non ha nessun pedone proprio che lo protegga."
+        },
+        "u9-l06-s05": {
+          "prompt": "Come si gioca contro un pedone arretrato?",
+          "options": [
+            "Cambiare tutti i pezzi tranne il pedone",
+            "Avanzando un tuo pedone accanto ad esso",
+            "Mettendo un pezzo sulla casella davanti e mettendo pressione sul pedone"
+          ],
+          "explanation": "Un pezzo sulla casella davanti lo lascia bloccato e senza supporto, e l'avversario deve difenderlo con i pezzi.",
+          "feedback": [
+            "Cambiare i pezzi lascia l'avversario libero di difenderlo.",
+            "Avanzare un pedone accanto ad esso non attacca il pedone arretrato.",
+            ""
+          ]
+        },
+        "u9-l06-s06": {
+          "prompt": "Dove conviene attaccare una catena di pedoni?",
+          "options": [
+            "Nel mezzo",
+            "Alla base",
+            "In punta"
+          ],
+          "explanation": "La base è il pedone che sostiene gli altri: se cade, l'intera catena perde il suo supporto.",
+          "feedback": [
+            "I pedoni centrali sono protetti dalla base.",
+            "",
+            "La punta è protetta dal resto della catena."
+          ]
+        },
+        "u9-l06-s07": {
+          "text": "Riassunto: contro un pedone arretrato, un pezzo sulla casella davanti. Contro una catena di pedoni, attacca la base della catena."
+        }
+      }
+    },
+    "u9-l07": {
+      "title": "Torri attive",
+      "summary": "Colonne aperte e settima fila",
+      "steps": {
+        "u9-l07-s01": {
+          "text": "La colonna e è aperta e la torre di e1 può saltare a e7. Dalla settima fila attacca i pedoni di a7, b7, f7 e g7, e circonda il re nero sull'ultima fila."
+        },
+        "u9-l07-s02": {
+          "text": "Le torri devono anche essere collegate. Qui il re di g1 è tra le due torri della prima fila: se il re esce a h2, le torri si collegano e si proteggono a vicenda."
+        },
+        "u9-l07-s03": {
+          "prompt": "Dove è più forte una torre?",
+          "explanation": "Sulla settima fila la torre attacca pedoni e taglia il re avversario. È la casella più attiva.",
+          "options": [
+            "Sulla settima fila, attaccando pedoni",
+            "Nell'angolo, difendendo",
+            "Davanti al proprio re"
           ],
           "feedback": [
             "",
-            "Cambiare pezzi non crea nuove debolezze.",
-            "Difendere non vince: bisogna attaccare la debolezza del rivale."
+            "Nell'angolo la torre è passiva: solo difende.",
+            "Davanti al re toglie caselle alla tua stessa pezzo."
           ]
         },
-        "u8-l08-s04": {
-          "prompt": "Avanza un pedone passato affinché il re nero non possa raggiungere entrambi.",
-          "hint": "Uno dei due pedoni è lontano dal re nero. Scegline uno e corre.",
-          "success": "Corretto. Il re nero non può coprire entrambi i fianchi: uno dei pedoni si promuoverà."
+        "u9-l07-s04": {
+          "prompt": "Porta la torre di e1 sulla settima fila.",
+          "hint": "La colonna e è aperta. La torre può salire fino alla fila dei pedoni neri.",
+          "success": "Corretto. Te7 porta la torre sulla settima fila, dove attacca i pedoni e taglia il re."
         },
-        "u8-l08-s05": {
-          "prompt": "Tocca i due pedoni passati dei bianchi.",
-          "hint": "Sono i pedoni che si trovano sui due fianchi, senza pedoni avversari davanti."
+        "u9-l07-s05": {
+          "prompt": "Tocca la casella della settima fila a cui può andare la torre di e1.",
+          "hint": "Sali lungo la colonna aperta fino alla fila 7."
         },
-        "u8-l08-s06": {
-          "text": "Riassunto: una debolezza si difende; due debolezze no. Attacca una per far allontanare il rivale e vince nell'altra. Nelle finali di pedoni, due pedoni passati su fianchi opposti vincono per la stessa ragione."
+        "u9-l07-s06": {
+          "text": "Riepilogo: una torre vale molto con una colonna aperta, sulla settima fila e collegata al suo compagno. Una torre passiva, al contrario, è quasi un pezzo in meno."
+        }
+      }
+    },
+    "u9-l08": {
+      "title": "Rotture e maggioranze di pedoni",
+      "summary": "Aprire il gioco e creare un pedone passato",
+      "steps": {
+        "u9-l08-s01": {
+          "text": "I bianchi hanno tre pedoni contro due sul fianco di donna: una maggioranza. Se avanzano i pedoni in ordine, possono creare un pedone passato che vincerà la finale."
+        },
+        "u9-l08-s02": {
+          "text": "Una rottura è un avanzamento di pedone che apre una colonna o una diagonale. Qui c4 sfida il pedone di d5: se i neri catturano, apri la colonna c; se no, cambi pedoni in d5 e il tuo pedone di d4 ottiene più spazio."
+        },
+        "u9-l08-s03": {
+          "prompt": "Cos'è una maggioranza di pedoni?",
+          "explanation": "Una maggioranza è locale: tre pedoni contro due su un fianco possono creare un pedone passato.",
+          "options": [
+            "Avere più pedoni del rivale su un fianco",
+            "Avere più pezzi",
+            "Cambiare tutti i pedoni"
+          ],
+          "feedback": [
+            "",
+            "I pezzi non contano per una maggioranza di pedoni.",
+            "Cambiare pedoni senza piano non crea alcun vantaggio."
+          ]
+        },
+        "u9-l08-s04": {
+          "prompt": "Cosa cerca una rottura?",
+          "explanation": "La rottura apre linee o fissa una debolezza affinché i tuoi pezzi entrino da lì.",
+          "options": [
+            "Aprire una colonna o creare un pedone passato",
+            "Cambiare dame",
+            "Difendere il re"
+          ],
+          "feedback": [
+            "",
+            "Cambiare dame non è l'obiettivo di una rottura.",
+            "La rottura è un'idea di pedoni, non una mossa difensiva."
+          ]
+        },
+        "u9-l08-s05": {
+          "prompt": "Tocca i tre pedoni della maggioranza bianca sul fianco di donna.",
+          "hint": "Sono i tre pedoni consecutivi sul fianco di donna."
+        },
+        "u9-l08-s06": {
+          "text": "Riassunto: una maggioranza di pedoni crea un pedone passato se avanzi in ordine. Una rottura apre linee o fissa una debolezza. Prima il piano di pedoni, poi i pezzi."
         }
       }
     }

@@ -5,8 +5,12 @@
       "title": "Die Gabel",
       "summary": "Eine Figur greift zwei gleichzeitig an",
       "steps": {
-        "u3-l01-s01": { "text": "Eine Gabel ist eine Figur, die zwei andere gleichzeitig angreift: Der Gegner kann nur eine retten. Hier gibt der Springer dem König Schach und greift die Dame an." },
-        "u3-l01-s02": { "text": "Auch Bauern können Gabeln machen. Beim Vorrücken greift dieser Bauer den Turm und den Springer an: Einer der beiden geht verloren." },
+        "u3-l01-s01": {
+          "text": "Eine Gabel ist eine Figur, die zwei andere gleichzeitig angreift: Der Gegner kann nur eine retten. Hier gibt der Springer dem König Schach und greift die Dame an."
+        },
+        "u3-l01-s02": {
+          "text": "Auch Bauern können Gabeln machen. Beim Vorrücken greift dieser Bauer den Turm und den Springer an: Einer der beiden geht verloren."
+        },
         "u3-l01-s03": {
           "prompt": "Mach eine Gabel mit dem Springer: Greife den König und den Turm an.",
           "hint": "Suche das Feld, von dem aus der Springer g8 und e8 gleichzeitig angreift.",
@@ -16,7 +20,12 @@
           "prompt": "Nicht nur der Springer macht Gabeln: Finde eine mit dem Läufer.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche ein Läuferschach, das auf derselben oder der anderen Diagonale eine große Figur angreift.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l01-s05": {
           "prompt": "Ziehe den Bauern vor, um zwei Figuren gleichzeitig anzugreifen.",
@@ -32,25 +41,47 @@
           "prompt": "Gewinne die Dame mit einer Gabel. Schlage sie nach dem Schach.",
           "success": "Richtig. Se7+ und, wenn der König zieht, Sxc8: Du hast die Dame gewonnen.",
           "hint": "Suche ein Springerschach, das auch die Dame auf c8 angreift.",
-          "notes": ["", "", ""]
+          "notes": [
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l01-s08": {
           "prompt": "Von welchem Feld aus greift der Springer beide schwarzen Türme an?",
-          "options": ["f7", "e6", "g6"],
+          "options": [
+            "f7",
+            "e6",
+            "g6"
+          ],
           "explanation": "Von f7 aus greift der Springer d8 und h8 an: Das ist eine Gabel gegen beide Türme.",
-          "feedback": ["", "Von e6 aus greift der Springer d8 an, aber nicht h8.", "Von g6 aus greift der Springer h8 an, aber nicht d8."]
+          "feedback": [
+            "",
+            "Von e6 aus greift der Springer d8 an, aber nicht h8.",
+            "Von g6 aus greift der Springer h8 an, aber nicht d8."
+          ]
         },
         "u3-l01-s09": {
           "prompt": "Finde die Gabel.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche einen Zug, der zwei Figuren gleichzeitig angreift, am besten auch den König.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l01-s10": {
           "prompt": "Finde die Gabel.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche einen Zug, der zwei Figuren gleichzeitig angreift, am besten auch den König.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -58,13 +89,23 @@
       "title": "Die Fesselung",
       "summary": "Eine Figur, die nicht ziehen kann",
       "steps": {
-        "u3-l02-s01": { "text": "Der Springer darf nicht ziehen: Sonst gäbe der Läufer dem König Schach. Er ist gefesselt. Steht der König dahinter, ist es eine absolute Fesselung." },
-        "u3-l02-s02": { "text": "Steht die Dame dahinter, ist es eine relative Fesselung: Der Springer darf ziehen, aber der Läufer würde die Dame schlagen." },
+        "u3-l02-s01": {
+          "text": "Der Springer darf nicht ziehen: Sonst gäbe der Läufer dem König Schach. Er ist gefesselt. Steht der König dahinter, ist es eine absolute Fesselung."
+        },
+        "u3-l02-s02": {
+          "text": "Steht die Dame dahinter, ist es eine relative Fesselung: Der Springer darf ziehen, aber der Läufer würde die Dame schlagen."
+        },
         "u3-l02-s03": {
           "prompt": "Kann der schwarze Springer auf c6 ziehen?",
-          "options": ["Ja", "Nein, er ist an den König gefesselt"],
+          "options": [
+            "Ja",
+            "Nein, er ist an den König gefesselt"
+          ],
           "explanation": "Der Läufer auf b5 zielt durch den Springer auf den König auf e8: Zieht der Springer, steht der König im Schach.",
-          "feedback": ["Schau auf die Diagonale des Läufers auf b5: Was steht hinter dem Springer?", ""]
+          "feedback": [
+            "Schau auf die Diagonale des Läufers auf b5: Was steht hinter dem Springer?",
+            ""
+          ]
         },
         "u3-l02-s04": {
           "prompt": "Fessele den Springer auf c6 mit deinem Läufer an den König.",
@@ -83,22 +124,40 @@
         },
         "u3-l02-s07": {
           "prompt": "Ist diese Fesselung absolut oder relativ?",
-          "options": ["Absolut: Dahinter steht der König", "Relativ: Dahinter steht die Dame"],
+          "options": [
+            "Absolut: Dahinter steht der König",
+            "Relativ: Dahinter steht die Dame"
+          ],
           "explanation": "Hinter dem Springer steht die Dame, nicht der König: Der Springer darf ziehen, aber die Dame ginge verloren.",
-          "feedback": ["Schau, welche Figur auf der Diagonale des Läufers hinter dem Springer steht.", ""]
+          "feedback": [
+            "Schau, welche Figur auf der Diagonale des Läufers hinter dem Springer steht.",
+            ""
+          ]
         },
-        "u3-l02-s08": { "text": "Gegen eine Fesselung kannst du die gefesselte Figur decken, eine andere Figur dazwischenziehen oder den König oder die Dame aus der Schusslinie nehmen. Hier unterbricht Le7 die Diagonale, und der Springer ist wieder frei." },
+        "u3-l02-s08": {
+          "text": "Gegen eine Fesselung kannst du die gefesselte Figur decken, eine andere Figur dazwischenziehen oder den König oder die Dame aus der Schusslinie nehmen. Hier unterbricht Le7 die Diagonale, und der Springer ist wieder frei."
+        },
         "u3-l02-s09": {
           "prompt": "Nutze die Fesselung aus.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche eine Figur, die nicht ziehen kann, weil der König oder die Dame dahinter steht.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l02-s10": {
           "prompt": "Nutze die Fesselung aus.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche eine Figur, die nicht ziehen kann, weil der König oder die Dame dahinter steht.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -106,13 +165,23 @@
       "title": "Der Spieß",
       "summary": "Die Fesselung andersherum",
       "steps": {
-        "u3-l09-s01": { "text": "Der Turm gibt dem König Schach und hinter ihm, auf derselben Linie, steht die Dame. Der König muss ausweichen und der Turm schlägt die Dame. Das ist ein Spieß: Du greifst zuerst die wertvollere Figur an und, wenn sie ausweicht, fällt die dahinterstehende." },
-        "u3-l09-s02": { "text": "Es ist das Gegenteil der Fesselung. Hier fesselt der Läufer den Springer auf c6: Die Figur vorne ist weniger wert als die dahinter und kann nicht ziehen. Beim Spieß ist die vordere Figur wertvoller: Sie muss ausweichen und lässt die dahinter ungedeckt." },
+        "u3-l09-s01": {
+          "text": "Der Turm gibt dem König Schach und hinter ihm, auf derselben Linie, steht die Dame. Der König muss ausweichen und der Turm schlägt die Dame. Das ist ein Spieß: Du greifst zuerst die wertvollere Figur an und, wenn sie ausweicht, fällt die dahinterstehende."
+        },
+        "u3-l09-s02": {
+          "text": "Es ist das Gegenteil der Fesselung. Hier fesselt der Läufer den Springer auf c6: Die Figur vorne ist weniger wert als die dahinter und kann nicht ziehen. Beim Spieß ist die vordere Figur wertvoller: Sie muss ausweichen und lässt die dahinter ungedeckt."
+        },
         "u3-l09-s03": {
           "prompt": "Der Läufer auf f3 greift die Dame an und hinter ihm steht der Turm auf a8. Ist das eine Fesselung oder ein Spieß?",
-          "options": ["Fesselung", "Spieß"],
+          "options": [
+            "Fesselung",
+            "Spieß"
+          ],
           "explanation": "Es ist ein Spieß: Die Dame ist mehr wert als der Turm und steht vorne. Weicht sie aus, schlägt der Läufer den Turm.",
-          "feedback": ["Schau, welche Figur vorne ist: die, die mehr wert ist oder die, die weniger wert ist?", ""]
+          "feedback": [
+            "Schau, welche Figur vorne ist: die, die mehr wert ist oder die, die weniger wert ist?",
+            ""
+          ]
         },
         "u3-l09-s04": {
           "prompt": "Gib mit dem Turm Schach, damit der König weicht und du die Dame schlagen kannst.",
@@ -128,18 +197,30 @@
           "prompt": "Tippe auf die beiden schwarzen Figuren, die der Läufer spießt.",
           "hint": "Folge der Diagonale des Läufers: er geht durch eine Figur und erreicht eine andere dahinter."
         },
-        "u3-l09-s07": { "text": "Um einen Spieß zu vermeiden, schau dir vor dem Ziehen die Reihen, Linien und Diagonalen an. Wenn dein König und eine andere wertvolle Figur auf derselben Linie stehen und der Gegner dort einen Turm, eine Dame oder einen Läufer hat, der darauf zielt, trenne sie. Hier droht der Turm auf h1 mit Th5+: Wenn du den König oder die Dame von der 5. Reihe wegziehst, vermeidest du es." },
+        "u3-l09-s07": {
+          "text": "Um einen Spieß zu vermeiden, schau dir vor dem Ziehen die Reihen, Linien und Diagonalen an. Wenn dein König und eine andere wertvolle Figur auf derselben Linie stehen und der Gegner dort einen Turm, eine Dame oder einen Läufer hat, der darauf zielt, trenne sie. Hier droht der Turm auf h1 mit Th5+: Wenn du den König oder die Dame von der 5. Reihe wegziehst, vermeidest du es."
+        },
         "u3-l09-s08": {
           "prompt": "Nutze den Spieß aus.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche einen Schachzug, der den König zwingt, sich zu entfernen und die Figur dahinter ungedeckt lässt.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l09-s09": {
           "prompt": "Nutze den Spieß aus.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche einen Schachzug, der den König zwingt, sich zu entfernen und die Figur dahinter ungedeckt lässt.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -147,7 +228,9 @@
       "title": "Der Abzugsangriff",
       "summary": "Eine Figur zieht weg und gibt eine andere frei",
       "steps": {
-        "u3-l03-s01": { "text": "Beim Abzugsangriff zieht eine Figur weg und gibt den Angriff der Figur dahinter frei. Hier gibt der Läufer Schach, und gleichzeitig greift der Turm die Dame an." },
+        "u3-l03-s01": {
+          "text": "Beim Abzugsangriff zieht eine Figur weg und gibt den Angriff der Figur dahinter frei. Hier gibt der Läufer Schach, und gleichzeitig greift der Turm die Dame an."
+        },
         "u3-l03-s02": {
           "prompt": "Ziehe den Springer mit Schach und gewinne die Dame.",
           "hint": "Verlässt der Springer e4 mit Schach, greift der Turm die Dame an, und es bleibt keine Zeit, sie zu retten.",
@@ -157,13 +240,26 @@
           "prompt": "Ziehe einen Bauern mit Schach vor: Dabei gibt er den Angriff deines Läufers frei.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Der Bauer vor deinem Läufer kann beim Vorrücken Schach geben.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l03-s04": {
           "prompt": "Welche weiße Figur musst du ziehen, damit der Turm die Dame angreift?",
-          "options": ["Den Läufer auf e4", "Den Turm auf e1", "Den König"],
+          "options": [
+            "Den Läufer auf e4",
+            "Den Turm auf e1",
+            "Den König"
+          ],
           "explanation": "Der Läufer versperrt die e-Linie: Zieht er weg, greift der Turm die Dame an.",
-          "feedback": ["", "Der Turm steht schon auf der Linie: Eine andere Figur versperrt sie.", "Der König steht nicht auf der e-Linie."]
+          "feedback": [
+            "",
+            "Der Turm steht schon auf der Linie: Eine andere Figur versperrt sie.",
+            "Der König steht nicht auf der e-Linie."
+          ]
         },
         "u3-l03-s05": {
           "prompt": "Tippe auf die weiße Figur, die beim Wegziehen einen Angriff auf die schwarze Dame freigibt.",
@@ -173,20 +269,36 @@
           "prompt": "Gib mit dem Läufer Abzugsschach und gewinne die Dame.",
           "success": "Richtig. Lf5+ und danach Lxc8: Das Schach des Turms ließ keine Zeit, die Dame zu retten.",
           "hint": "Der Läufer kann mit Abzugsschach wegziehen und gleichzeitig die Dame auf c8 angreifen.",
-          "notes": ["", "", ""]
+          "notes": [
+            "",
+            "",
+            ""
+          ]
         },
-        "u3-l03-s07": { "text": "Um Abzugsangriffe zu finden, suche Figuren von dir, die mit dem gegnerischen König oder der Dame auf einer Geraden stehen, mit einer weiteren eigenen Figur dazwischen. Zieht die mittlere Figur mit einer Drohung, kann der Gegner nicht beides abwehren." },
+        "u3-l03-s07": {
+          "text": "Um Abzugsangriffe zu finden, suche Figuren von dir, die mit dem gegnerischen König oder der Dame auf einer Geraden stehen, mit einer weiteren eigenen Figur dazwischen. Zieht die mittlere Figur mit einer Drohung, kann der Gegner nicht beides abwehren."
+        },
         "u3-l03-s08": {
           "prompt": "Finde den Abzugsangriff.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Ziehe die Figur weg, die einer anderen von dir im Weg steht: So greifst du zwei Dinge gleichzeitig an.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l03-s09": {
           "prompt": "Finde den Abzugsangriff.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Ziehe die Figur weg, die einer anderen von dir im Weg steht: So greifst du zwei Dinge gleichzeitig an.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -194,7 +306,9 @@
       "title": "Doppelschach und Doppelangriff",
       "summary": "Zwei Drohungen in einem Zug",
       "steps": {
-        "u3-l04-s01": { "text": "Beim Doppelschach geben zwei Figuren gleichzeitig Schach. Man kann nicht beide blockieren oder schlagen: Es bleibt nur, den König zu ziehen. Hier könnte die schwarze Dame den Springer schlagen, aber das Schach des Turms bliebe." },
+        "u3-l04-s01": {
+          "text": "Beim Doppelschach geben zwei Figuren gleichzeitig Schach. Man kann nicht beide blockieren oder schlagen: Es bleibt nur, den König zu ziehen. Hier könnte die schwarze Dame den Springer schlagen, aber das Schach des Turms bliebe."
+        },
         "u3-l04-s02": {
           "prompt": "Gib Doppelschach mit Springer und Läufer.",
           "hint": "Verlässt der Springer die Diagonale des Läufers mit Schach, sind es zwei Schachgebote zugleich.",
@@ -205,7 +319,9 @@
           "hint": "Der Springer kann Schach geben und das des Turms freigeben. Der König ist von seinen eigenen Figuren umringt.",
           "success": "Richtig. Doppelschach und matt: Der König kann nirgendwohin."
         },
-        "u3-l04-s04": { "text": "Die Dame ist Expertin für Doppelangriffe: Sie kann zwei ungedeckte Figuren gleichzeitig angreifen, in verschiedenen Richtungen." },
+        "u3-l04-s04": {
+          "text": "Die Dame ist Expertin für Doppelangriffe: Sie kann zwei ungedeckte Figuren gleichzeitig angreifen, in verschiedenen Richtungen."
+        },
         "u3-l04-s05": {
           "prompt": "Gib mit der Dame Schach und greife gleichzeitig den Turm an.",
           "hint": "Suche ein Schach auf der Diagonale des Königs, das auch auf den Turm auf a2 zielt.",
@@ -218,21 +334,39 @@
         },
         "u3-l04-s07": {
           "prompt": "Warum ist Doppelschach so stark?",
-          "options": ["Die einzige Antwort ist ein Königszug", "Es ist immer matt", "Man gewinnt immer die Dame"],
+          "options": [
+            "Die einzige Antwort ist ein Königszug",
+            "Es ist immer matt",
+            "Man gewinnt immer die Dame"
+          ],
           "explanation": "Bei zwei Schachgeboten zugleich reicht es nicht, eine Figur zu blockieren oder zu schlagen: Der König muss ziehen.",
-          "feedback": ["", "Es ist nicht immer matt: Manchmal hat der König ein freies Feld.", "Das hängt von der Stellung ab: Sicher ist nur, dass der König ziehen muss."]
+          "feedback": [
+            "",
+            "Es ist nicht immer matt: Manchmal hat der König ein freies Feld.",
+            "Das hängt von der Stellung ab: Sicher ist nur, dass der König ziehen muss."
+          ]
         },
         "u3-l04-s08": {
           "prompt": "Gib Doppelschach.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche einen Zug, bei dem zwei Figuren gleichzeitig Schach geben.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l04-s09": {
           "prompt": "Gib Doppelschach.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche einen Zug, bei dem zwei Figuren gleichzeitig Schach geben.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -240,7 +374,9 @@
       "title": "Den Verteidiger beseitigen",
       "summary": "Schlage die deckende Figur",
       "steps": {
-        "u3-l05-s01": { "text": "Deckt eine Figur eine andere, schlage oder tausche die deckende Figur: Die andere steht dann ungedeckt da. Hier deckt der Springer auf f6 den Turm auf d5. Schlägst du den Springer mit Schach, bleibt keine Zeit, den Turm zu retten." },
+        "u3-l05-s01": {
+          "text": "Deckt eine Figur eine andere, schlage oder tausche die deckende Figur: Die andere steht dann ungedeckt da. Hier deckt der Springer auf f6 den Turm auf d5. Schlägst du den Springer mit Schach, bleibt keine Zeit, den Turm zu retten."
+        },
         "u3-l05-s02": {
           "prompt": "Tippe auf die schwarze Figur, die den Turm auf d5 deckt.",
           "hint": "Suche die schwarze Figur, die auf d5 zurückschlagen könnte."
@@ -249,13 +385,21 @@
           "prompt": "Beseitige den Verteidiger mit Schach und gewinne den Turm.",
           "success": "Richtig. Lxf6+ und, nach Kxf6, Sxd5+: Der Turm hatte keinen Verteidiger mehr.",
           "hint": "Schlage zuerst die Figur, die den Turm deckt.",
-          "notes": ["", "", ""]
+          "notes": [
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l05-s04": {
           "prompt": "Tausche den Verteidiger des Läufers auf b4 ab und gewinne den Läufer.",
           "success": "Richtig. Du hast deinen Läufer gegen den Springer getauscht und den Läufer auf b4 gewonnen.",
           "hint": "Der Springer auf c6 deckt den Läufer: Dein Läufer kann ihn schlagen.",
-          "notes": ["", "", ""]
+          "notes": [
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l05-s05": {
           "prompt": "Der Springer auf f6 deckt h7. Beseitige ihn und drohe matt.",
@@ -264,22 +408,42 @@
         },
         "u3-l05-s06": {
           "prompt": "Welcher Zug gewinnt mehr Material?",
-          "options": ["Lxf6+ und danach Sxd5", "Sxd5 sofort", "Lh4"],
+          "options": [
+            "Lxf6+ und danach Sxd5",
+            "Sxd5 sofort",
+            "Lh4"
+          ],
           "explanation": "Sxd5 Sxd5 gewinnt nur Turm gegen Springer. Lxf6+ zuerst gewinnt den ganzen Turm: Der Verteidiger ist weg.",
-          "feedback": ["", "Sxd5 gewinnt etwas, aber der Springer auf f6 schlägt zurück. Beseitige erst den Verteidiger.", "Lh4 gewinnt nichts."]
+          "feedback": [
+            "",
+            "Sxd5 gewinnt etwas, aber der Springer auf f6 schlägt zurück. Beseitige erst den Verteidiger.",
+            "Lh4 gewinnt nichts."
+          ]
         },
-        "u3-l05-s07": { "text": "Bevor du eine Figur angreifst, schau, wer sie deckt. Kannst du den Verteidiger schlagen oder abtauschen, hängt die Figur." },
+        "u3-l05-s07": {
+          "text": "Bevor du eine Figur angreifst, schau, wer sie deckt. Kannst du den Verteidiger schlagen oder abtauschen, hängt die Figur."
+        },
         "u3-l05-s08": {
           "prompt": "Beseitige den Verteidiger und gewinne Material.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche die Figur, die eine andere deckt, und schlage sie oder tausche sie ab.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l05-s09": {
           "prompt": "Beseitige den Verteidiger und gewinne Material.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Suche die Figur, die eine andere deckt, und schlage sie oder tausche sie ab.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -287,7 +451,9 @@
       "title": "Die Ablenkung",
       "summary": "Locke den Verteidiger weg",
       "steps": {
-        "u3-l06-s01": { "text": "Die Ablenkung zwingt eine Figur, ein Feld nicht mehr zu decken. Hier deckt der Turm auf d8 die Dame und die Grundreihe. Schlägt die weiße Dame, muss der Turm zurückschlagen und lässt e8 ungedeckt." },
+        "u3-l06-s01": {
+          "text": "Die Ablenkung zwingt eine Figur, ein Feld nicht mehr zu decken. Hier deckt der Turm auf d8 die Dame und die Grundreihe. Schlägt die weiße Dame, muss der Turm zurückschlagen und lässt e8 ungedeckt."
+        },
         "u3-l06-s02": {
           "prompt": "Tippe auf die schwarze Figur, die zwei Aufgaben gleichzeitig hat.",
           "hint": "Eine Figur deckt die Dame und auch das Feld e8."
@@ -296,38 +462,71 @@
           "prompt": "Lenke den Turm ab, der die Grundreihe deckt, und setze matt.",
           "success": "Richtig. Der Turm musste zurückschlagen, und Te8 war matt.",
           "hint": "Der Turm auf c8 deckt den Läufer und die Grundreihe. Schlage den Läufer.",
-          "notes": ["", "", ""]
+          "notes": [
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l06-s04": {
           "prompt": "Gib mit der Dame Schach: Der Turm muss sie schlagen, und die Grundreihe bleibt ungedeckt.",
           "success": "Richtig. De8+ zwingt den Turm zum Schlagen, und Txe8 ist matt.",
           "hint": "Suche ein Damenschach auf e8: Auch dein Turm zielt auf dieses Feld.",
-          "notes": ["", "", ""]
+          "notes": [
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l06-s05": {
           "prompt": "Der schwarze König deckt den Läufer auf d8. Gib mit dem Bauern Schach, um den König abzulenken, und gewinne den Läufer.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Ein Bauernschach zwingt den König zu ziehen, und jedes Feld entfernt ihn vom Läufer.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l06-s06": {
           "prompt": "Welche schwarze Figur ist überlastet?",
-          "options": ["Der Turm auf c8", "Der Läufer auf c6", "Der König"],
+          "options": [
+            "Der Turm auf c8",
+            "Der Läufer auf c6",
+            "Der König"
+          ],
           "explanation": "Der Turm auf c8 deckt den Läufer und auch die Grundreihe: Beides schafft er nicht.",
-          "feedback": ["", "Der Läufer deckt nichts Wichtiges: Er wird selbst vom Turm gedeckt.", "Der König kommt nicht an seinen Bauern vorbei, aber er deckt nichts."]
+          "feedback": [
+            "",
+            "Der Läufer deckt nichts Wichtiges: Er wird selbst vom Turm gedeckt.",
+            "Der König kommt nicht an seinen Bauern vorbei, aber er deckt nichts."
+          ]
         },
-        "u3-l06-s07": { "text": "Eine Figur, die zwei Dinge gleichzeitig deckt, ist überlastet. Zwingst du sie, sich um das eine zu kümmern, bleibt das andere ungedeckt." },
+        "u3-l06-s07": {
+          "text": "Eine Figur, die zwei Dinge gleichzeitig deckt, ist überlastet. Zwingst du sie, sich um das eine zu kümmern, bleibt das andere ungedeckt."
+        },
         "u3-l06-s08": {
           "prompt": "Lenke den Verteidiger ab.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Zwinge eine gegnerische Figur, ein Feld nicht mehr zu decken, meist mit einem Schach.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l06-s09": {
           "prompt": "Lenke den Verteidiger ab.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Zwinge eine gegnerische Figur, ein Feld nicht mehr zu decken, meist mit einem Schach.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -335,7 +534,9 @@
       "title": "Grundreihenmatt und Schäfermatt",
       "summary": "Zwei Matts, die man kennen sollte",
       "steps": {
-        "u3-l07-s01": { "text": "Beim Grundreihenmatt ist der König von seinen eigenen Bauern auf der Grundreihe eingesperrt, und ein Turm oder die Dame setzt matt." },
+        "u3-l07-s01": {
+          "text": "Beim Grundreihenmatt ist der König von seinen eigenen Bauern auf der Grundreihe eingesperrt, und ein Turm oder die Dame setzt matt."
+        },
         "u3-l07-s02": {
           "prompt": "Setze auf der Grundreihe matt.",
           "hint": "Der schwarze König kommt nicht von der Grundreihe weg.",
@@ -346,14 +547,26 @@
           "hint": "Der weiße König ist von seinen Bauern eingesperrt.",
           "success": "Richtig. Te1 ist matt."
         },
-        "u3-l07-s04": { "text": "Um das zu vermeiden, gib dem König einen Ausweg: Ein Bauernzug wie h3 macht h2 frei. Es hilft auch, wenn ein Turm die Grundreihe bewacht." },
+        "u3-l07-s04": {
+          "text": "Um das zu vermeiden, gib dem König einen Ausweg: Ein Bauernzug wie h3 macht h2 frei. Es hilft auch, wenn ein Turm die Grundreihe bewacht."
+        },
         "u3-l07-s05": {
           "prompt": "Schwarz droht Td1 matt. Welcher Zug verhindert das?",
-          "options": ["h3", "a3", "b4"],
+          "options": [
+            "h3",
+            "a3",
+            "b4"
+          ],
           "explanation": "Nach h3 hat der König das Fluchtfeld h2: Td1+ ist nicht mehr matt.",
-          "feedback": ["", "a3 gibt dem König keinen Ausweg.", "b4 gibt dem König keinen Ausweg."]
+          "feedback": [
+            "",
+            "a3 gibt dem König keinen Ausweg.",
+            "b4 gibt dem König keinen Ausweg."
+          ]
         },
-        "u3-l07-s06": { "text": "Das Schäfermatt: Dame und Läufer greifen gemeinsam f7 an, das schwache Feld, das nur der König deckt. Wenn Schwarz es nicht sieht, ist Dxf7 matt." },
+        "u3-l07-s06": {
+          "text": "Das Schäfermatt: Dame und Läufer greifen gemeinsam f7 an, das schwache Feld, das nur der König deckt. Wenn Schwarz es nicht sieht, ist Dxf7 matt."
+        },
         "u3-l07-s07": {
           "prompt": "Du spielst Schwarz. Dame und Läufer drohen Dxf7 matt. Verteidige dich.",
           "hint": "Decke f7 mit der Dame oder dem Springer, oder greife die weiße Dame mit einem Bauern an.",
@@ -361,21 +574,108 @@
         },
         "u3-l07-s08": {
           "prompt": "Welches Feld greifen die weiße Dame und der weiße Läufer gemeinsam an?",
-          "options": ["f7", "e5", "h7"],
+          "options": [
+            "f7",
+            "e5",
+            "h7"
+          ],
           "explanation": "f7: Die Dame auf h5 und der Läufer auf c4 greifen es an, und nur der König deckt es.",
-          "feedback": ["", "e5 wird nur von der Dame angegriffen.", "h7 wird nur von der Dame angegriffen, und der Turm deckt es."]
+          "feedback": [
+            "",
+            "e5 wird nur von der Dame angegriffen.",
+            "h7 wird nur von der Dame angegriffen, und der Turm deckt es."
+          ]
         },
         "u3-l07-s09": {
           "prompt": "Setze auf der Grundreihe matt.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Der König ist von seinen eigenen Bauern auf der Grundreihe eingesperrt.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l07-s10": {
           "prompt": "Setze auf der Grundreihe matt.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Der König ist von seinen eigenen Bauern auf der Grundreihe eingesperrt.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    "u9-l01": {
+      "title": "Hängende Figuren",
+      "summary": "Eine ungedeckte Figur ist ein Ziel",
+      "steps": {
+        "u9-l01-s01": {
+          "text": "Die weiße Dame steht auf c5 und keine Figur deckt sie. Die schwarze Dame auf e7 greift sie an und schlägt sie umsonst. Eine Figur, die niemand deckt, ist eine ungedeckte Figur."
+        },
+        "u9-l01-s02": {
+          "text": "Der schwarze Läufer auf f2 gab Schach, aber keine Figur deckt ihn: Der König schlägt ihn. Prüfe vor dem Schlagen, ob die gegnerische Figur ungedeckt ist; prüfe vor dem Ziehen, ob deine Figuren gedeckt sind."
+        },
+        "u9-l01-s03": {
+          "prompt": "Tippe auf die zwei weißen Figuren, die niemand deckt. Den König und die Bauern zählst du nicht mit.",
+          "hint": "Suche die weißen Figuren, die keine andere weiße Figur und kein weißer Bauer deckt."
+        },
+        "u9-l01-s04": {
+          "prompt": "Wie viele schwarze Figuren sind ungedeckt? Den König und die Bauern zählst du nicht mit.",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "explanation": "Es gibt vier ungedeckte schwarze Figuren. Wenn der Gegner so viele ungedeckte Figuren hat, liegt fast immer eine Taktik in der Luft.",
+          "feedback": [
+            "Zähle noch einmal: Überprüfe jede schwarze Figur und sieh, ob eine andere sie deckt.",
+            "Zähle noch einmal: Überprüfe jede schwarze Figur und sieh, ob eine andere sie deckt.",
+            "",
+            "Zähle noch einmal: Überprüfe jede schwarze Figur und sieh, ob eine andere sie deckt."
+          ]
+        },
+        "u9-l01-s05": {
+          "prompt": "Schlage die ungedeckte Figur.",
+          "hint": "Eine der weißen Figuren ist ungedeckt, und du kannst sie mit Schach schlagen.",
+          "success": "Richtig. Txe1+ gewinnt eine Figur, die niemand verteidigt hat."
+        },
+        "u9-l01-s06": {
+          "prompt": "Schlage die ungedeckte Figur.",
+          "hint": "Die Figur, die gerade Schach gegeben hat, ist ungedeckt: Schlage sie.",
+          "success": "Richtig. Kxf2 gewinnt eine Figur, die niemand verteidigt hat."
+        },
+        "u9-l01-s07": {
+          "prompt": "Schlage die ungedeckte Figur.",
+          "hint": "Die schwarze Dame steht auf einem Feld, das niemand deckt.",
+          "success": "Richtig. Kxb2 gewinnt eine Figur, die niemand verteidigt hat."
+        },
+        "u9-l01-s08": {
+          "prompt": "Nutze die ungedeckte Figur.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche nach den ungedeckten Figuren des Gegners und beginne mit der wertvollsten.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "u9-l01-s09": {
+          "prompt": "Nutze die ungedeckte Figur.",
+          "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
+          "hint": "Suche nach den ungedeckten Figuren des Gegners und beginne mit der wertvollsten.",
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     },
@@ -383,16 +683,26 @@
       "title": "Vor dem Zug: Schachgebote, Schlagzüge und Drohungen",
       "summary": "Die Routine, um keine Figuren zu verlieren",
       "steps": {
-        "u3-l08-s01": { "text": "Vor jedem Zug eine Routine: Frage dich zuerst, was der letzte Zug des Gegners droht. Danach prüfe deine Schachgebote, deine Schlagzüge und deine Drohungen." },
+        "u3-l08-s01": {
+          "text": "Vor jedem Zug eine Routine: Frage dich zuerst, was der letzte Zug des Gegners droht. Danach prüfe deine Schachgebote, deine Schlagzüge und deine Drohungen."
+        },
         "u3-l08-s02": {
           "prompt": "Schwarz hat gerade b5 gespielt. Tippe auf deine Figur, die jetzt angegriffen wird.",
           "hint": "Der Bauer auf b5 greift diagonal an."
         },
         "u3-l08-s03": {
           "prompt": "Schwarz hat gerade Sb4 gespielt. Was ist die Drohung?",
-          "options": ["Eine Gabel auf c2: Schach dem König und Angriff auf den Turm", "Eine Fesselung", "Ein Abzugsangriff"],
+          "options": [
+            "Eine Gabel auf c2: Schach dem König und Angriff auf den Turm",
+            "Eine Fesselung",
+            "Ein Abzugsangriff"
+          ],
           "explanation": "Von c2 aus würde der Springer dem König auf e1 Schach geben und den Turm auf a1 angreifen.",
-          "feedback": ["", "Schau, wohin der Springer springen kann.", "Schau, wohin der Springer springen kann."]
+          "feedback": [
+            "",
+            "Schau, wohin der Springer springen kann.",
+            "Schau, wohin der Springer springen kann."
+          ]
         },
         "u3-l08-s04": {
           "prompt": "Verhindere die Springergabel auf c2.",
@@ -408,18 +718,30 @@
           "prompt": "Tippe auf alle schwarzen Figuren, die du umsonst schlagen kannst.",
           "hint": "Suche schwarze Figuren, die du angreifst und die niemand deckt."
         },
-        "u3-l08-s07": { "text": "Die Taktiken dieser Einheit können auch gegen dich gespielt werden. Prüfst du vor dem Zug Schachgebote, Schlagzüge und Drohungen, siehst du sie kommen." },
+        "u3-l08-s07": {
+          "text": "Die Taktiken dieser Einheit können auch gegen dich gespielt werden. Prüfst du vor dem Zug Schachgebote, Schlagzüge und Drohungen, siehst du sie kommen."
+        },
         "u3-l08-s08": {
           "prompt": "Prüfe Schachgebote, Schlagzüge und Drohungen.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Schau, welche gegnerischen Figuren nach dem letzten Zug ungedeckt sind.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         },
         "u3-l08-s09": {
           "prompt": "Prüfe Schachgebote, Schlagzüge und Drohungen.",
           "success": "Gut gelöst: Diese Stellung stammt aus einer echten Partie.",
           "hint": "Schau, welche gegnerischen Figuren nach dem letzten Zug ungedeckt sind.",
-          "notes": ["", "", "", ""]
+          "notes": [
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       }
     }

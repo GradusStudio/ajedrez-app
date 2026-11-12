@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Chess } from 'chess.js';
-import { buildReview, factsFor, ratePly, winPercent } from './build';
+import { buildReview, factsFor, gameAccuracy, ratePly, winPercent } from './build';
 import { analyzeLine } from './lines';
 import { detectTactics } from './tactics';
 import { bookPositions, positionKey } from './book';
@@ -43,6 +43,30 @@ test('winPercent es simétrica', () => {
   assert.ok(Math.abs(winPercent(0, 'w') - 50) < 1e-9);
   assert.ok(Math.abs(winPercent(300, 'w') + winPercent(300, 'b') - 100) < 1e-9);
   assert.equal(winPercent(10000, 'w'), 100);
+});
+
+// Evaluaciones (desde las blancas) de una partida real revisada con Stockfish 19 lite a 11/16.
+// La media simple daba 92,7 / 88,9; Lichess mostraba 84 / 67 para la misma partida.
+const REAL_SCORES = [
+  31, 26, 66, 60, 60, 66, 75, 62, 74, 8, 15, -3, 273, 23, 325, 85, 687, 638, 780, 817, 1372, 829, 836, 680, 805, 816,
+  957, 1013, 1050, 981, 1092, 1139, 1512, 1503, 1762, 1630, 1942, 1907, 2020, 1910, 2736, 2672, 4308, 4256, 4342, 4730,
+  9997, 9998, 9998, 9996, 9999, 10000,
+];
+
+test('gameAccuracy: agregación de Lichess (media ponderada + armónica), no media simple', () => {
+  const a = gameAccuracy(true, REAL_SCORES);
+  // Valores de la fórmula de Lichess para estas evaluaciones (la captura de Lichess: 84 / 67).
+  assert.ok(Math.abs(a.w - 83.73) < 0.05, `blancas ${a.w}`);
+  assert.ok(Math.abs(a.b - 67.78) < 0.05, `negras ${a.b}`);
+});
+
+test('gameAccuracy: con evaluaciones constantes da 100', () => {
+  assert.deepEqual(gameAccuracy(true, Array(20).fill(30)), { w: 100, b: 100 });
+});
+
+test('gameAccuracy: una partida desde la posición negra alterna el color de cada jugada', () => {
+  // Con las negras abajo, la primera jugada es de las negras; una evaluación constante sigue dando 100.
+  assert.deepEqual(gameAccuracy(false, Array(10).fill(0)), { w: 100, b: 100 });
 });
 
 /** Evaluaciones inventadas: la jugada 3 (Dh5) pierde ventaja, el resto mantiene. */

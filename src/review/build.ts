@@ -126,8 +126,65 @@ function informative(fen: string, pv?: string[]): LineFacts | undefined {
 
 const sanOf = (fen: string, uci: string) => tryMove(fen, uci)?.san ?? '';
 
-/** Puntaje de precisión de una jugada (misma fórmula que Lichess, sobre puntos de probabilidad perdidos). */
-const moveAccuracy = (loss: number) => Math.max(0, Math.min(100, 103.1668 * Math.exp(-0.04354 * loss) - 3.1669));
+// ---------- Precisión (fórmula y agregación de Lichess) ----------
+// Move accuracy: 103.1668100711649 · e^(−0.04354415386753951 · winDiff) − 3.166924740191411 + 1,
+// donde winDiff son puntos de probabilidad de ganar perdidos (0–100).
+// https://github.com/lichess-org/lila/blob/master/modules/analyse/src/main/AccuracyPercent.scala
+const WIN_A = 0.00368208;
+const ACC_A = 103.1668100711649;
+const ACC_K = 0.04354415386753951;
+const ACC_B = -3.166924740191411;
+
+/** Probabilidad (0–100) de que ganen las blancas, a partir de una evaluación en centipeones. */
+export const whiteWinPercent = (cp: number) => 100 / (1 + Math.exp(-WIN_A * cp));
+
+/** Precisión de una jugada, a partir del win% del que jugó antes y después. */
+function moveAccuracy(before: number, after: number): number {
+  if (after >= before) return 100;
+  const raw = ACC_A * Math.exp(-ACC_K * (before - after)) + ACC_B;
+  return Math.min(100, Math.max(0, raw + 1)); // +1: margen por la incertidumbre del análisis
+}
+
+/** Desviación estándar poblacional (la misma que usa Lichess). */
+function stdDev(xs: number[]): number {
+  const mean = xs.reduce((a, b) => a + b, 0) / xs.length;
+  return Math.sqrt(xs.reduce((a, b) => a + (b - mean) ** 2, 0) / xs.length);
+}
+
+/**
+ * Precisión de cada bando al estilo de Lichess: promedio de la media ponderada por la volatilidad
+ * de las evaluaciones (ventana móvil) y de la media armónica. La media armónica castiga los errores
+ * aislados mucho más que una media simple; por eso no infla la precisión en partidas con pocos
+ * errores grandes.
+ */
+export function gameAccuracy(startWhite: boolean, scores: number[]): { w: number; b: number } {
+  if (scores.length < 2) return { w: 100, b: 100 };
+  const win = scores.map(whiteWinPercent);
+  const windowSize = Math.max(2, Math.min(8, Math.floor((scores.length - 1) / 10)));
+  const actualWindow = Math.min(windowSize, win.length);
+  const windows: number[][] = [];
+  for (let i = 0; i < Math.max(0, actualWindow - 2); i++) windows.push(win.slice(0, actualWindow));
+  for (let i = 0; i + actualWindow <= win.length; i++) windows.push(win.slice(i, i + actualWindow));
+  const weights = windows.map((w) => Math.max(0.5, Math.min(12, stdDev(w))));
+
+  const moves: Record<'w' | 'b', { acc: number; weight: number }[]> = { w: [], b: [] };
+  for (let i = 0; i < scores.length - 1; i++) {
+    const isWhite = (i % 2 === 0) === startWhite;
+    const before = isWhite ? win[i] : 100 - win[i];
+    const after = isWhite ? win[i + 1] : 100 - win[i + 1];
+    moves[isWhite ? 'w' : 'b'].push({ acc: moveAccuracy(before, after), weight: weights[i] ?? 1 });
+  }
+
+  const score = (xs: { acc: number; weight: number }[]) => {
+    if (xs.length === 0) return 100;
+    const total = xs.reduce((a, x) => a + x.weight, 0);
+    const weighted = total > 0 ? xs.reduce((a, x) => a + x.acc * x.weight, 0) / total : xs.reduce((a, x) => a + x.acc, 0) / xs.length;
+    // 1 / max(1, v): una jugada de 0 % no hace explotar la media armónica (como en Lichess).
+    const harmonic = xs.length / xs.reduce((a, x) => a + 1 / Math.max(1, x.acc), 0);
+    return (weighted + harmonic) / 2;
+  };
+  return { w: score(moves.w), b: score(moves.b) };
+}
 
 /**
  * Califica una jugada: `before` es la evaluación de la posición antes de jugarla y `after`, la de después.
@@ -186,22 +243,20 @@ export function buildReview(
 ): Review {
   const n = game.moves.length;
   const plies: ReviewPly[] = [];
-  const acc: Record<'w' | 'b', number[]> = { w: [], b: [] };
 
   game.moves.forEach((move, i) => {
     // Una jugada revisada a más profundidad se califica con su par profundo (nunca mezclado con el superficial).
     const deep = refined?.get(i);
-    const rated = ratePly(i + 1, move, deep?.before ?? evals[i], deep?.after ?? evals[i + 1], book, plies[i - 1]);
-    plies.push(rated);
-    acc[move.color].push(rated.quality === 'book' ? 100 : moveAccuracy(rated.loss));
+    plies.push(ratePly(i + 1, move, deep?.before ?? evals[i], deep?.after ?? evals[i + 1], book, plies[i - 1]));
   });
 
-  const mean = (xs: number[]) => (xs.length === 0 ? 100 : xs.reduce((a, b) => a + b, 0) / xs.length);
+  const scores = evals.slice(0, n + 1).map((e) => e.score);
   return {
     game,
-    scores: evals.slice(0, n + 1).map((e) => e.score),
+    scores,
     plies,
     highlights: plies.flatMap((p, i) => (p.highlight ? [i] : [])),
-    accuracy: { w: mean(acc.w), b: mean(acc.b) },
+    // Misma agregación que Lichess; con una media simple la precisión sale inflada.
+    accuracy: gameAccuracy(game.startFen.split(' ')[1] !== 'b', scores),
   };
 }

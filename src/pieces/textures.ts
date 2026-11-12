@@ -17,6 +17,8 @@ export const TEXTURES: Record<MaterialSetId, MaterialTextures> = {
     white: require('../../assets/texturas/madera-pieza-blanca.webp'),
     black: require('../../assets/texturas/madera-pieza-negra.webp'),
   },
+  // Las piezas usan una versión aclarada (blancas) u oscurecida (negras) de la misma piedra,
+  // con contraste local (CLAHE): las vetas se ven sin que la pieza se camufle con la casilla.
   marmol: {
     light: require('../../assets/texturas/marmol-casilla-clara.webp'),
     dark: require('../../assets/texturas/marmol-casilla-oscura.webp'),

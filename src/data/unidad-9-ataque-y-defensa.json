@@ -1,10 +1,10 @@
 {
-  "unit": 10,
+  "unit": 9,
   "title": "Ataque y defensa",
   "lessons": [
     {
       "id": "u10-l01",
-      "unit": 10,
+      "unit": 9,
       "order": 68,
       "title": "El rey sin enrocar",
       "summary": "Un rey en el centro es un blanco",
@@ -181,7 +181,7 @@
     },
     {
       "id": "u10-l02",
-      "unit": 10,
+      "unit": 9,
       "order": 69,
       "title": "Atacar con enroques del mismo lado",
       "summary": "Todos contra el peón de h",
@@ -369,7 +369,7 @@
     },
     {
       "id": "u10-l03",
-      "unit": 10,
+      "unit": 9,
       "order": 70,
       "title": "Enroques opuestos",
       "summary": "Cada bando ataca el rey del otro",
@@ -522,7 +522,7 @@
     },
     {
       "id": "u10-l04",
-      "unit": 10,
+      "unit": 9,
       "order": 71,
       "title": "Defender al rey",
       "summary": "Interponer una pieza protegida",
@@ -683,9 +683,135 @@
       ]
     },
     {
-      "id": "u10-l05",
-      "unit": 10,
+      "id": "u6-l02",
+      "unit": 9,
       "order": 72,
+      "title": "Profilaxis",
+      "summary": "Anticipar el plan del rival",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Antes de cada jugada, pregúntate: ¿qué quiere hacer mi rival? Impedir su plan antes de que lo haga se llama profilaxis. En esta Italiana, el alfil negro quiere ir a g4 para clavar tu caballo contra la dama.",
+          "fen": "r1bq1rk1/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQ1RK1 w - - 2 7",
+          "arrows": [
+            "c8g4"
+          ],
+          "id": "u6-l02-s01"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Si el alfil llega a g4, ¿por qué molesta?",
+          "fen": "r1bq1rk1/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQ1RK1 w - - 2 7",
+          "options": [
+            "Clava el caballo de f3: si se mueve, el alfil captura la dama",
+            "Amenaza dar jaque mate",
+            "Ataca el peón de e4"
+          ],
+          "answer": 0,
+          "explanation": "Con el alfil en g4, el caballo de f3 queda clavado contra la dama de d1: si se mueve, el alfil captura la dama. El caballo pierde libertad justo cuando tiene que defender el centro.",
+          "feedback": [
+            "",
+            "No hay mate a la vista: el problema es la clavada del caballo.",
+            "Desde g4 el alfil no ataca el peón de e4. El problema es la clavada."
+          ],
+          "id": "u6-l02-s02"
+        },
+        {
+          "type": "move",
+          "prompt": "Juega la jugada que impide que el alfil vaya a g4.",
+          "fen": "r1bq1rk1/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQ1RK1 w - - 2 7",
+          "solutions": [
+            "h2h3"
+          ],
+          "hint": "Un peón puede controlar la casilla g4 antes de que llegue el alfil.",
+          "success": "Correcto. Con h3, el peón controla g4 y el alfil ya no puede ir ahí.",
+          "id": "u6-l02-s03"
+        },
+        {
+          "type": "explain",
+          "text": "Tu torre en séptima ataca peones, pero antes de comer mira la amenaza negra: la torre de e8 quiere bajar a e1. Tu rey no puede salir de la primera fila, porque sus propios peones lo encierran.",
+          "fen": "4r1k1/ppR2ppp/8/8/8/8/PP3PPP/6K1 w - - 0 1",
+          "arrows": [
+            "e8e1"
+          ],
+          "id": "u6-l02-s04"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla donde la torre negra daría jaque mate.",
+          "fen": "4r1k1/ppR2ppp/8/8/8/8/PP3PPP/6K1 w - - 0 1",
+          "squares": [
+            "e1"
+          ],
+          "hint": "La torre de e8 baja por la columna e hasta tu primera fila.",
+          "id": "u6-l02-s05"
+        },
+        {
+          "type": "move",
+          "prompt": "Evita el mate del pasillo antes de comer peones.",
+          "fen": "4r1k1/ppR2ppp/8/8/8/8/PP3PPP/6K1 w - - 0 1",
+          "solutions": [
+            "f2f3",
+            "g1f1",
+            "g2g3",
+            "g2g4",
+            "f2f4",
+            "h2h4",
+            "h2h3",
+            "c7c1"
+          ],
+          "hint": "Si comes en b7, Te1 es mate. Abre una salida para tu rey moviendo un peón, o acércalo a la columna e.",
+          "success": "Correcto. El mate del pasillo ya no funciona. Ahora sí puedes pensar en comer peones.",
+          "id": "u6-l02-s06"
+        },
+        {
+          "type": "explain",
+          "text": "Aquí la dama y el alfil negros apuntan a la misma casilla, al lado de tu rey. Si no haces nada, las negras dan mate en una.",
+          "fen": "r4rk1/ppp2ppp/3b4/8/7q/8/PPP2PPP/R1BQ1RK1 w - - 0 1",
+          "arrows": [
+            "h4h2",
+            "d6h2"
+          ],
+          "id": "u6-l02-s07"
+        },
+        {
+          "type": "select_squares",
+          "prompt": "Toca la casilla donde las negras darían jaque mate.",
+          "fen": "r4rk1/ppp2ppp/3b4/8/7q/8/PPP2PPP/R1BQ1RK1 w - - 0 1",
+          "squares": [
+            "h2"
+          ],
+          "hint": "La dama de h4 y el alfil de d6 atacan la misma casilla, junto a tu rey.",
+          "id": "u6-l02-s08"
+        },
+        {
+          "type": "move",
+          "prompt": "Impide el mate.",
+          "fen": "r4rk1/ppp2ppp/3b4/8/7q/8/PPP2PPP/R1BQ1RK1 w - - 0 1",
+          "solutions": [
+            "g2g3",
+            "h2h3"
+          ],
+          "hint": "Usa un peón cerca de tu rey: tapa la diagonal del alfil con el peón de g2, o adelanta el peón de h2 para que la dama no tenga dónde dar mate. Con f4 el alfil captura y tu rey queda expuesto.",
+          "success": "Correcto. El mate ya no funciona y tu posición resiste.",
+          "id": "u6-l02-s09"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: antes de mover, mira qué amenaza el rival y qué quiere hacer en las próximas jugadas. Una jugada tranquila a tiempo, como h3 o abrir una salida al rey, evita problemas mucho más grandes.",
+          "fen": "4r1k1/ppR2ppp/8/8/8/8/PP3PPP/6K1 w - - 0 1",
+          "play": [
+            "h2h3"
+          ],
+          "id": "u6-l02-s10"
+        }
+      ]
+    },
+    {
+      "id": "u10-l05",
+      "unit": 9,
+      "order": 73,
       "title": "Defenderse con material de menos",
       "summary": "Jaque perpetuo, ahogado y fortaleza",
       "xp": 15,
@@ -770,92 +896,8 @@
       ]
     },
     {
-      "id": "u10-l06",
-      "unit": 10,
-      "order": 73,
-      "title": "Convertir una ventaja",
-      "summary": "Simplificar sin regalar la victoria",
-      "xp": 15,
-      "steps": [
-        {
-          "type": "explain",
-          "text": "Las blancas tienen un alfil de más. El plan es sencillo: cambiar piezas, no peones, llevar el rey al centro en el final y evitar que el rival consiga contrajuego.",
-          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
-          "highlight": [
-            "c4",
-            "d1",
-            "d8"
-          ],
-          "id": "u10-l06-s01"
-        },
-        {
-          "type": "explain",
-          "text": "Cambiar las damas reduce las posibilidades del rival. Después de un cambio, tu ventaja de material se nota más y el final es más fácil de jugar.",
-          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
-          "highlight": [
-            "d1",
-            "d8"
-          ],
-          "id": "u10-l06-s02"
-        },
-        {
-          "type": "quiz",
-          "prompt": "Cuando vas ganando, ¿qué cambias?",
-          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
-          "options": [
-            "Piezas, no peones",
-            "Peones, no piezas",
-            "Todo lo que se pueda"
-          ],
-          "answer": 0,
-          "explanation": "Cambiar piezas reduce el contrajuego. Cambiar peones puede dejar al rival con un peón pasado o una defensa más fácil.",
-          "feedback": [
-            "",
-            "Cambiar peones puede abrirle tablas al rival.",
-            "No conviene cambiar todo: busca simplificar, no regalar la ventaja."
-          ],
-          "id": "u10-l06-s03"
-        },
-        {
-          "type": "quiz",
-          "prompt": "¿Qué evitas cuando tienes ventaja?",
-          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
-          "options": [
-            "Abrir el juego sin necesidad",
-            "Simplificar",
-            "Activar el rey"
-          ],
-          "answer": 0,
-          "explanation": "Con ventaja, el rival necesita complicaciones. Tú buscas lo contrario: menos piezas y un final claro.",
-          "feedback": [
-            "",
-            "Simplificar es justo lo que quieres.",
-            "Activar el rey es bueno en el final."
-          ],
-          "id": "u10-l06-s04"
-        },
-        {
-          "type": "move",
-          "prompt": "Cambia las damas para simplificar.",
-          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
-          "solutions": [
-            "d1d8"
-          ],
-          "hint": "Tu dama y la del rival están en la columna d. Captura la suya.",
-          "success": "Correcto. Después de Txd8, quedas con torre y alfil contra torre: un final ganado.",
-          "id": "u10-l06-s05"
-        },
-        {
-          "type": "explain",
-          "text": "Resumen: con ventaja, simplifica. Cambia piezas, no peones; activa el rey y evita abrir el juego sin necesidad. La victoria se construye con paciencia.",
-          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
-          "id": "u10-l06-s06"
-        }
-      ]
-    },
-    {
       "id": "u10-l07",
-      "unit": 10,
+      "unit": 9,
       "order": 74,
       "title": "Hacer un plan",
       "summary": "Elegir la idea antes que la jugada",
@@ -939,7 +981,7 @@
     },
     {
       "id": "u6-l04",
-      "unit": 10,
+      "unit": 9,
       "order": 75,
       "title": "Repaso final",
       "summary": "Puzzles de toda la ruta",

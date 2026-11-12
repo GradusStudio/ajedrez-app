@@ -5,7 +5,7 @@
     {
       "id": "u5-l06",
       "unit": 5,
-      "order": 35,
+      "order": 36,
       "title": "Mate en escalera",
       "summary": "Dos torres, jaque tras jaque",
       "xp": 15,
@@ -110,7 +110,7 @@
     {
       "id": "u5-l01",
       "unit": 5,
-      "order": 36,
+      "order": 37,
       "title": "Mate con dama",
       "summary": "Rey y dama contra rey",
       "xp": 15,
@@ -220,7 +220,7 @@
     {
       "id": "u5-l02",
       "unit": 5,
-      "order": 37,
+      "order": 38,
       "title": "Mate con torre",
       "summary": "Rey y torre contra rey",
       "xp": 15,
@@ -323,7 +323,7 @@
     {
       "id": "u5-l03",
       "unit": 5,
-      "order": 38,
+      "order": 39,
       "title": "La oposición",
       "summary": "El duelo entre los reyes",
       "xp": 15,
@@ -436,9 +436,207 @@
       ]
     },
     {
+      "id": "u6-l01",
+      "unit": 5,
+      "order": 40,
+      "title": "Zugzwang",
+      "summary": "Cuando mover es perder",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "En ajedrez no se puede pasar el turno: siempre hay que mover. A veces cualquier jugada empeora la posición. A eso se le llama zugzwang, una palabra alemana que significa «obligación de mover».",
+          "fen": "8/8/8/2Kp4/3Pk3/8/8/8 b - - 0 1",
+          "id": "u6-l01-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Mira esta posición. Cada rey defiende su peón y ataca el peón rival. El rey que tenga que moverse deja de defender su peón: lo pierde, y con él la partida. Gana el que no tiene que mover.",
+          "fen": "8/8/8/2Kp4/3Pk3/8/8/8 b - - 0 1",
+          "highlight": [
+            "d4",
+            "d5"
+          ],
+          "id": "u6-l01-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Juegan las blancas. ¿Qué pasa?",
+          "fen": "8/8/8/2Kp4/3Pk3/8/8/8 w - - 0 1",
+          "options": [
+            "Las blancas pierden su peón y la partida",
+            "Las blancas ganan el peón negro",
+            "Es tablas: nadie puede ganar"
+          ],
+          "answer": 0,
+          "explanation": "Las blancas están en zugzwang: cualquier jugada del rey deja sin defensa el peón de d4. El rey negro lo captura y su peón corona.",
+          "feedback": [
+            "",
+            "Para ganar el peón negro, las negras tendrían que mover primero. Con el turno, las que pierden son las blancas.",
+            "El que mueve pierde su peón, y después el otro peón corona."
+          ],
+          "id": "u6-l01-s03"
+        },
+        {
+          "type": "explain",
+          "text": "El zugzwang también sirve para dar mate. Aquí las negras solo pueden mover el rey y el peón de g7. Si dejas el peón trabado, el rey tendrá que moverse, y no tiene ninguna casilla buena.",
+          "fen": "2K5/k5p1/8/6R1/8/8/8/8 w - - 0 1",
+          "id": "u6-l01-s04"
+        },
+        {
+          "type": "line",
+          "prompt": "Mate en 2: haz una jugada tranquila, sin jaque, que deje a las negras sin buenas jugadas.",
+          "fen": "2K5/k5p1/8/6R1/8/8/8/8 w - - 0 1",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "g5g6",
+              "san": "Tg6"
+            },
+            {
+              "uci": "a7a8",
+              "san": "Ra8"
+            },
+            {
+              "uci": "g6a6",
+              "san": "Ta6#"
+            }
+          ],
+          "success": "Correcto. Con Tg6 el peón quedó trabado, el rey tuvo que ir a a8 y Ta6 es mate.",
+          "hint": "Pon la torre delante del peón de g7: así no puede avanzar y el rey negro queda obligado a moverse.",
+          "id": "u6-l01-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Aquí ganarías si le tocara mover a las negras: su rey tendría que apartarse. Pero juegas tú. La solución es «pasar el turno» con el rey: das tres pasos en triángulo (e4, d3 y d4) y vuelves a la misma casilla. El rey negro solo puede ir y volver, y ahora le toca mover a él en la misma posición. Esa técnica se llama triangulación.",
+          "fen": "8/8/1k1p4/3P4/2PK4/8/8/8 w - - 0 1",
+          "play": [
+            "d4e4",
+            "b6c5",
+            "e4d3",
+            "c5b6",
+            "d3d4"
+          ],
+          "id": "u6-l01-s06"
+        },
+        {
+          "type": "move",
+          "prompt": "Empieza el triángulo: mueve el rey a una casilla desde la que puedas volver a d4 en dos pasos.",
+          "fen": "8/8/1k1p4/3P4/2PK4/8/8/8 w - - 0 1",
+          "solutions": [
+            "d4e4",
+            "d4e3",
+            "d4d3"
+          ],
+          "hint": "Avanzar el peón o ir a c3 deja escapar la victoria. Muévete por las casillas de al lado (e4, e3 o d3), lo bastante cerca para volver a defender tu peón de c4 a tiempo.",
+          "success": "Correcto. Desde ahí, en dos pasos más vuelves a d4 y le toca mover a las negras.",
+          "id": "u6-l01-s07"
+        },
+        {
+          "type": "practice",
+          "prompt": "Gana el final: corona un peón. Si el rey negro te bloquea, triangula para dejarlo en zugzwang. Stockfish defiende con las negras.",
+          "fen": "8/8/1k1p4/3P4/2PK4/8/8/8 w - - 0 1",
+          "side": "w",
+          "goal": "promote",
+          "maxMoves": 25,
+          "success": "Correcto. Usaste el zugzwang para ganar el final.",
+          "hint": "Con esa jugada se escapa la victoria. Busca la posición en la que el rey negro tenga que apartarse y llega a ella cuando le toque mover a él.",
+          "id": "u6-l01-s08"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las blancas. Usa el zugzwang para ganar el final.",
+          "fen": "8/3k4/5p2/1p1P1p1p/1P3P1P/2K5/8/8 b - - 0 51",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "d7d6",
+              "san": "Rd6"
+            },
+            {
+              "uci": "c3d4",
+              "san": "Rd4"
+            },
+            {
+              "uci": "d6d7",
+              "san": "Rd7"
+            },
+            {
+              "uci": "d4c5",
+              "san": "Rc5"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Mueve el rey para que el rey rival tenga que apartarse y deje sus peones sin defensa.",
+          "id": "u6-l01-s09"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las blancas. Usa el zugzwang para ganar el final.",
+          "fen": "8/8/5k2/p1p1P3/P2p1K2/3P4/8/8 b - - 0 52",
+          "orientation": "w",
+          "side": "w",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "f6e6",
+              "san": "Re6"
+            },
+            {
+              "uci": "f4e4",
+              "san": "Re4"
+            },
+            {
+              "uci": "e6f7",
+              "san": "Rf7"
+            },
+            {
+              "uci": "e4d5",
+              "san": "Rd5"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Mueve el rey para que el rey rival tenga que apartarse y deje sus peones sin defensa.",
+          "id": "u6-l01-s10"
+        },
+        {
+          "type": "line",
+          "prompt": "Juegan las negras. Usa el zugzwang para ganar el final.",
+          "fen": "8/3k4/5p2/1pP1p1p1/4P1Pp/2K2P1P/8/8 w - - 1 43",
+          "orientation": "b",
+          "side": "b",
+          "mode": "drill",
+          "moves": [
+            {
+              "uci": "c3b4",
+              "san": "Rb4"
+            },
+            {
+              "uci": "d7c6",
+              "san": "Rc6"
+            },
+            {
+              "uci": "b4c3",
+              "san": "Rc3"
+            },
+            {
+              "uci": "c6c5",
+              "san": "Rxc5"
+            }
+          ],
+          "success": "Bien resuelto: esta posición salió de una partida real.",
+          "hint": "Mueve el rey para que el rey rival tenga que apartarse y deje sus peones sin defensa.",
+          "id": "u6-l01-s11"
+        }
+      ]
+    },
+    {
       "id": "u5-l04",
       "unit": 5,
-      "order": 39,
+      "order": 41,
       "title": "La regla del cuadrado",
       "summary": "¿El rey alcanza al peón?",
       "xp": 15,
@@ -650,7 +848,7 @@
     {
       "id": "u5-l05",
       "unit": 5,
-      "order": 40,
+      "order": 42,
       "title": "La posición de Lucena",
       "summary": "Torre y peón contra torre",
       "xp": 15,

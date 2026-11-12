@@ -5,7 +5,7 @@
     {
       "id": "u4-l01",
       "unit": 4,
-      "order": 28,
+      "order": 29,
       "title": "Principios de apertura",
       "summary": "Centro, desarrollo y enroque",
       "xp": 15,
@@ -127,7 +127,7 @@
     {
       "id": "u4-l02",
       "unit": 4,
-      "order": 29,
+      "order": 30,
       "title": "Errores típicos de apertura",
       "summary": "Lo que conviene evitar",
       "xp": 15,
@@ -244,7 +244,7 @@
     {
       "id": "u4-l07",
       "unit": 4,
-      "order": 30,
+      "order": 31,
       "title": "Trampas que vas a ver",
       "summary": "Regalos con trampa en la apertura",
       "xp": 15,
@@ -365,7 +365,7 @@
     {
       "id": "u4-l03",
       "unit": 4,
-      "order": 31,
+      "order": 32,
       "title": "Estructura de peones",
       "summary": "Peones aislados, doblados y pasados",
       "xp": 15,
@@ -531,7 +531,7 @@
     {
       "id": "u4-l04",
       "unit": 4,
-      "order": 32,
+      "order": 33,
       "title": "Columnas abiertas y torres activas",
       "summary": "Dónde juegan mejor las torres",
       "xp": 15,
@@ -629,7 +629,7 @@
     {
       "id": "u4-l05",
       "unit": 4,
-      "order": 33,
+      "order": 34,
       "title": "Casillas débiles y puestos avanzados",
       "summary": "Casillas que los peones ya no cubren",
       "xp": 15,
@@ -726,7 +726,7 @@
     {
       "id": "u4-l06",
       "unit": 4,
-      "order": 34,
+      "order": 35,
       "title": "La pareja de alfiles",
       "summary": "Dos alfiles juntos valen más",
       "xp": 15,

@@ -25,6 +25,9 @@ test('asignaciones de ejemplo', () => {
   assert.equal(teacherOfTitle('La enfilada'), 'sofia');
   assert.equal(teacherOfTitle('Trampas que vas a ver'), 'tomas');
   assert.equal(teacherOfTitle('Mate en escalera'), 'ivo');
+  assert.equal(teacherOfTitle('Zugzwang'), 'ivo');
+  assert.equal(teacherOfTitle('Sacrificio de calidad'), 'valentina');
+  assert.equal(teacherOfTitle('Profilaxis'), 'lola');
   assert.equal(teacherOfTitle('La atracción'), 'tomas');
   assert.equal(teacherOfTitle('La sobrecarga'), 'sofia');
   assert.equal(teacherOfTitle('Mates de una sola pieza'), 'pipo');

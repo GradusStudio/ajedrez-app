@@ -1,10 +1,10 @@
 {
-  "unit": 8,
+  "unit": 7,
   "title": "Finales intermedios",
   "lessons": [
     {
       "id": "u8-l01",
-      "unit": 8,
+      "unit": 7,
       "order": 52,
       "title": "El rey activo",
       "summary": "En el final, el rey también ataca",
@@ -159,7 +159,7 @@
     },
     {
       "id": "u8-l02",
-      "unit": 8,
+      "unit": 7,
       "order": 53,
       "title": "El peón pasado alejado",
       "summary": "Un peón lejos del rey rival",
@@ -321,7 +321,7 @@
     },
     {
       "id": "u8-l03",
-      "unit": 8,
+      "unit": 7,
       "order": 54,
       "title": "Dama contra peón",
       "summary": "Cuando el peón está a un paso de coronar",
@@ -399,7 +399,7 @@
     },
     {
       "id": "u8-l04",
-      "unit": 8,
+      "unit": 7,
       "order": 55,
       "title": "La posición de Philidor",
       "summary": "La defensa segura con torre",
@@ -470,7 +470,7 @@
     },
     {
       "id": "u8-l05",
-      "unit": 8,
+      "unit": 7,
       "order": 56,
       "title": "Cortar al rey con la torre",
       "summary": "La torre como muralla",
@@ -566,7 +566,7 @@
     },
     {
       "id": "u8-l06",
-      "unit": 8,
+      "unit": 7,
       "order": 57,
       "title": "Alfiles de distinto color",
       "summary": "Por qué suelen ser tablas",
@@ -637,7 +637,7 @@
     },
     {
       "id": "u8-l07",
-      "unit": 8,
+      "unit": 7,
       "order": 58,
       "title": "Alfil contra caballo",
       "summary": "Cada pieza brilla en una posición distinta",
@@ -732,7 +732,7 @@
     },
     {
       "id": "u8-l08",
-      "unit": 8,
+      "unit": 7,
       "order": 59,
       "title": "Las dos debilidades",
       "summary": "Atacar una para ganar en la otra",
@@ -804,6 +804,90 @@
           "text": "Resumen: una debilidad se defiende; dos debilidades no. Ataca una para que el rival se aleje y gana en la otra. En los finales de peones, dos peones pasados en alas opuestas ganan por la misma razón.",
           "fen": "3r2k1/pp3ppp/8/8/8/8/PP3PPP/R5K1 w - - 0 1",
           "id": "u8-l08-s06"
+        }
+      ]
+    },
+    {
+      "id": "u10-l06",
+      "unit": 7,
+      "order": 60,
+      "title": "Convertir una ventaja",
+      "summary": "Simplificar sin regalar la victoria",
+      "xp": 15,
+      "steps": [
+        {
+          "type": "explain",
+          "text": "Las blancas tienen un alfil de más. El plan es sencillo: cambiar piezas, no peones, llevar el rey al centro en el final y evitar que el rival consiga contrajuego.",
+          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
+          "highlight": [
+            "c4",
+            "d1",
+            "d8"
+          ],
+          "id": "u10-l06-s01"
+        },
+        {
+          "type": "explain",
+          "text": "Cambiar las damas reduce las posibilidades del rival. Después de un cambio, tu ventaja de material se nota más y el final es más fácil de jugar.",
+          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
+          "highlight": [
+            "d1",
+            "d8"
+          ],
+          "id": "u10-l06-s02"
+        },
+        {
+          "type": "quiz",
+          "prompt": "Cuando vas ganando, ¿qué cambias?",
+          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
+          "options": [
+            "Piezas, no peones",
+            "Peones, no piezas",
+            "Todo lo que se pueda"
+          ],
+          "answer": 0,
+          "explanation": "Cambiar piezas reduce el contrajuego. Cambiar peones puede dejar al rival con un peón pasado o una defensa más fácil.",
+          "feedback": [
+            "",
+            "Cambiar peones puede abrirle tablas al rival.",
+            "No conviene cambiar todo: busca simplificar, no regalar la ventaja."
+          ],
+          "id": "u10-l06-s03"
+        },
+        {
+          "type": "quiz",
+          "prompt": "¿Qué evitas cuando tienes ventaja?",
+          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
+          "options": [
+            "Abrir el juego sin necesidad",
+            "Simplificar",
+            "Activar el rey"
+          ],
+          "answer": 0,
+          "explanation": "Con ventaja, el rival necesita complicaciones. Tú buscas lo contrario: menos piezas y un final claro.",
+          "feedback": [
+            "",
+            "Simplificar es justo lo que quieres.",
+            "Activar el rey es bueno en el final."
+          ],
+          "id": "u10-l06-s04"
+        },
+        {
+          "type": "move",
+          "prompt": "Cambia las damas para simplificar.",
+          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
+          "solutions": [
+            "d1d8"
+          ],
+          "hint": "Tu dama y la del rival están en la columna d. Captura la suya.",
+          "success": "Correcto. Después de Txd8, quedas con torre y alfil contra torre: un final ganado.",
+          "id": "u10-l06-s05"
+        },
+        {
+          "type": "explain",
+          "text": "Resumen: con ventaja, simplifica. Cambia piezas, no peones; activa el rey y evita abrir el juego sin necesidad. La victoria se construye con paciencia.",
+          "fen": "r2q2k1/pp3ppp/8/8/2B5/8/PP3PPP/3QR1K1 w - - 0 1",
+          "id": "u10-l06-s06"
         }
       ]
     }

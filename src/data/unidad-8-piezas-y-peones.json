@@ -1,163 +1,10 @@
 {
-  "unit": 9,
+  "unit": 8,
   "title": "Piezas y peones",
   "lessons": [
     {
-      "id": "u9-l01",
-      "unit": 9,
-      "order": 60,
-      "title": "Piezas sueltas",
-      "summary": "Una pieza sin defensa es un blanco",
-      "xp": 15,
-      "steps": [
-        {
-          "type": "explain",
-          "text": "La dama blanca está en c5 y ninguna pieza la defiende. La dama negra de e7 la ataca y la captura gratis. Una pieza que nadie defiende es una pieza suelta.",
-          "fen": "r4rk1/1pb1qppp/p4n2/2Qp4/4pP2/1P4P1/PB1P1PBP/R3K2R b KQ - 3 19",
-          "orientation": "b",
-          "play": [
-            "e7c5"
-          ],
-          "id": "u9-l01-s01"
-        },
-        {
-          "type": "explain",
-          "text": "El alfil negro de f2 dio jaque, pero ninguna pieza lo protege: el rey lo captura. Antes de capturar, comprueba que la pieza rival no tenga defensa; antes de jugar, comprueba que las tuyas sí la tengan.",
-          "fen": "rnb1k2r/pp3pp1/5q1p/3Q4/8/2N2N2/PP2PbPP/R3KB1R w KQkq - 0 10",
-          "play": [
-            "e1f2"
-          ],
-          "id": "u9-l01-s02"
-        },
-        {
-          "type": "select_squares",
-          "prompt": "Toca las dos piezas blancas que nadie defiende. No cuentes el rey ni los peones.",
-          "fen": "rn1qk2r/pp2bpp1/2pN1p1p/7b/2BP4/5P2/PPP1Q1PP/2KR2NR b kq - 2 11",
-          "orientation": "b",
-          "squares": [
-            "d6",
-            "h1"
-          ],
-          "hint": "Busca las piezas blancas a las que no llega ninguna otra pieza ni peón blancos.",
-          "id": "u9-l01-s03"
-        },
-        {
-          "type": "quiz",
-          "prompt": "¿Cuántas piezas negras no están defendidas? No cuentes el rey ni los peones.",
-          "fen": "r5k1/4qppp/pb2p3/8/P1rp1P2/5QP1/1PP4P/R4RK1 w - - 0 27",
-          "options": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": 2,
-          "explanation": "Hay cuatro piezas negras sin defensa. Cuando el rival tiene tantas piezas sueltas, casi siempre hay una táctica a la vista.",
-          "feedback": [
-            "Cuenta de nuevo: revisa cada pieza negra y mira si alguna otra la protege.",
-            "Cuenta de nuevo: revisa cada pieza negra y mira si alguna otra la protege.",
-            "",
-            "Cuenta de nuevo: revisa cada pieza negra y mira si alguna otra la protege."
-          ],
-          "id": "u9-l01-s04"
-        },
-        {
-          "type": "move",
-          "prompt": "Captura la pieza que nadie defiende.",
-          "fen": "r3r1k1/1b3p2/p1n2bpp/1p1p4/2pP1N2/NPP4P/P4PP1/R2BR1K1 b - - 1 21",
-          "orientation": "b",
-          "solutions": [
-            "e8e1"
-          ],
-          "hint": "Una de las piezas blancas no tiene defensa y puedes capturarla con jaque.",
-          "success": "Correcto. Txe1+ gana una pieza que nadie defendía.",
-          "id": "u9-l01-s05"
-        },
-        {
-          "type": "move",
-          "prompt": "Captura la pieza que nadie defiende.",
-          "fen": "1k1r3r/p1p2p2/1p1b4/3Q3p/P1PP4/1P3PP1/1B3qK1/R7 w - - 0 25",
-          "solutions": [
-            "g2f2"
-          ],
-          "hint": "La pieza que acaba de dar jaque no tiene defensa: captúrala.",
-          "success": "Correcto. Rxf2 gana una pieza que nadie defendía.",
-          "id": "u9-l01-s06"
-        },
-        {
-          "type": "move",
-          "prompt": "Captura la pieza que nadie defiende.",
-          "fen": "1k1r1b1r/ppp2ppp/4b3/3p4/4Q3/1P2PN2/PqP1BPPP/2KR1R2 w - - 0 14",
-          "solutions": [
-            "c1b2"
-          ],
-          "hint": "La dama negra está en una casilla donde nadie la protege.",
-          "success": "Correcto. Rxb2 gana una pieza que nadie defendía.",
-          "id": "u9-l01-s07"
-        },
-        {
-          "type": "line",
-          "prompt": "Aprovecha la pieza suelta.",
-          "fen": "r3k3/ppp1qp1p/2n1b1r1/8/2p2B2/2P2N2/P3QPPP/3R1RK1 b q - 0 15",
-          "orientation": "w",
-          "side": "w",
-          "mode": "drill",
-          "moves": [
-            {
-              "uci": "g6g2",
-              "san": "Txg2+"
-            },
-            {
-              "uci": "g1g2",
-              "san": "Rxg2"
-            },
-            {
-              "uci": "e6h3",
-              "san": "Ah3+"
-            },
-            {
-              "uci": "g2h3",
-              "san": "Rxh3"
-            }
-          ],
-          "success": "Bien resuelto: esta posición salió de una partida real.",
-          "hint": "Busca las piezas del rival que nadie defiende y empieza por la más valiosa.",
-          "id": "u9-l01-s08"
-        },
-        {
-          "type": "line",
-          "prompt": "Aprovecha la pieza suelta.",
-          "fen": "rn2k3/ppp3qp/3p2pB/4Pr2/3P4/2N4Q/PPP4K/R7 b q - 1 18",
-          "orientation": "w",
-          "side": "w",
-          "mode": "drill",
-          "moves": [
-            {
-              "uci": "g7h6",
-              "san": "Dxh6"
-            },
-            {
-              "uci": "h3h6",
-              "san": "Dxh6"
-            },
-            {
-              "uci": "f5h5",
-              "san": "Th5+"
-            },
-            {
-              "uci": "h6h5",
-              "san": "Dxh5"
-            }
-          ],
-          "success": "Bien resuelto: esta posición salió de una partida real.",
-          "hint": "Busca las piezas del rival que nadie defiende y empieza por la más valiosa.",
-          "id": "u9-l01-s09"
-        }
-      ]
-    },
-    {
       "id": "u9-l02",
-      "unit": 9,
+      "unit": 8,
       "order": 61,
       "title": "Cuándo cambiar piezas",
       "summary": "Cambiar o no cambiar",
@@ -256,7 +103,7 @@
     },
     {
       "id": "u9-l03",
-      "unit": 9,
+      "unit": 8,
       "order": 62,
       "title": "El espacio",
       "summary": "Casillas del campo rival que controlas",
@@ -344,7 +191,7 @@
     },
     {
       "id": "u9-l04",
-      "unit": 9,
+      "unit": 8,
       "order": 63,
       "title": "Posiciones abiertas y cerradas",
       "summary": "Cómo juegan las piezas según los peones",
@@ -441,7 +288,7 @@
     },
     {
       "id": "u9-l05",
-      "unit": 9,
+      "unit": 8,
       "order": 64,
       "title": "Alfil bueno y alfil malo",
       "summary": "El alfil y sus propios peones",
@@ -534,7 +381,7 @@
     },
     {
       "id": "u9-l06",
-      "unit": 9,
+      "unit": 8,
       "order": 65,
       "title": "Peón retrasado y cadenas de peones",
       "summary": "Dónde atacar la estructura de peones",
@@ -632,7 +479,7 @@
     },
     {
       "id": "u9-l07",
-      "unit": 9,
+      "unit": 8,
       "order": 66,
       "title": "Torres activas",
       "summary": "Columnas abiertas y la séptima fila",
@@ -711,7 +558,7 @@
     },
     {
       "id": "u9-l08",
-      "unit": 9,
+      "unit": 8,
       "order": 67,
       "title": "Rupturas y mayorías de peones",
       "summary": "Abrir el juego y crear un peón pasado",

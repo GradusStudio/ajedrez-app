@@ -1,4 +1,4 @@
-import { PIECE_SET_META, PieceSetId } from './pieceSets';
+import { PIECE_SET_META, PieceKey, PieceSetId } from './pieceSets';
 
 // Neón y vintage quedaron fuera por ahora (sus texturas siguen en assets/texturas y los textos en i18n).
 // Sets de piezas "de material": usan las siluetas del Clásico y las rellenan con una textura.
@@ -18,6 +18,18 @@ export const isMaterialSet = (id: string): id is MaterialSetId => id in MATERIAL
 
 /** Set cuyas siluetas se usan para dibujar `id`. */
 export const pathSetOf = (id: AnyPieceSetId): PieceSetId => (isMaterialSet(id) ? 'clasico' : id);
+
+/**
+ * Ids de los recortes SVG (silueta y tinta) de una pieza. Dependen solo del trazado: el set de siluetas y el
+ * tipo de pieza. Todos los sets de material comparten los trazados del Clásico, así que pueden repetir ids entre
+ * sí sin problema. Hace falta que sean distintos por tipo: en la web los SVG de toda la pantalla comparten el
+ * documento y `url(#id)` toma el primer elemento con ese id, por eso antes todas las piezas se recortaban con la
+ * silueta del rey (la primera que se dibujaba).
+ */
+export const pieceClipIds = (id: AnyPieceSetId, key: PieceKey): { sil: string; ink: string } => {
+  const base = `${pathSetOf(id)}-${key}`;
+  return { sil: `sil-${base}`, ink: `ink-${base}` };
+};
 
 export const PIECE_SET_LIST: { id: AnyPieceSetId }[] = [
   ...PIECE_SET_META,

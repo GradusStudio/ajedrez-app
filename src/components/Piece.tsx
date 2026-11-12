@@ -1,6 +1,6 @@
 import React from 'react';
 import Svg, { ClipPath, Defs, Image, Path } from 'react-native-svg';
-import { AnyPieceSetId, MATERIAL_SETS, isMaterialSet, pathSetOf } from '../pieces/materials';
+import { AnyPieceSetId, MATERIAL_SETS, isMaterialSet, pathSetOf, pieceClipIds } from '../pieces/materials';
 import { PIECE_PATHS, PieceKey } from '../pieces/pieceSets';
 import { TEXTURES } from '../pieces/textures';
 import { winterShapes } from '../pieces/winter';
@@ -29,33 +29,35 @@ const VIEW_BOX = `${-PAD} ${-PAD} ${100 + 2 * PAD} ${100 + 2 * PAD}`;
 function Piece({ type, color, size, set }: Props) {
   const { pieceSet } = usePieceSet();
   const id = set ?? pieceSet;
-  const paths = PIECE_PATHS[pathSetOf(id)][`${color}${type}` as PieceKey];
+  const key = `${color}${type}` as PieceKey;
+  const paths = PIECE_PATHS[pathSetOf(id)][key];
 
   if (isMaterialSet(id)) {
     const tex = TEXTURES[id];
     const { outline, rim, winter } = MATERIAL_SETS[id];
     const w = winter ? winterShapes(paths.sil) : null;
     const white = color === 'w';
+    const clip = pieceClipIds(id, key);
     const area = { x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'xMidYMid slice' } as const;
     return (
       <Svg width={size} height={size} viewBox={VIEW_BOX} pointerEvents="none">
         <Defs>
-          <ClipPath id="sil">
+          <ClipPath id={clip.sil}>
             <Path d={paths.sil} clipRule="evenodd" />
           </ClipPath>
-          <ClipPath id="ink">
+          <ClipPath id={clip.ink}>
             <Path d={paths.ink} clipRule="evenodd" />
           </ClipPath>
         </Defs>
         {w && <Path d={w.icicles} fill={white ? '#E4F4FF' : '#7FD4F0'} stroke={outline} strokeWidth={0.9} strokeLinejoin="round" />}
-        <Image {...area} href={tex.white} clipPath="url(#sil)" />
-        {w && white && <Path d={w.cap} fill="#FFFFFF" clipPath="url(#sil)" />}
+        <Image {...area} href={tex.white} clipPath={`url(#${clip.sil})`} />
+        {w && white && <Path d={w.cap} fill="#FFFFFF" clipPath={`url(#${clip.sil})`} />}
         {white ? (
           <Path d={paths.ink} fill={outline} fillRule="evenodd" />
         ) : (
           <>
-            <Image {...area} href={tex.black} clipPath="url(#ink)" />
-            {w && <Path d={w.cap} fill="#F2FAFF" clipPath="url(#ink)" />}
+            <Image {...area} href={tex.black} clipPath={`url(#${clip.ink})`} />
+            {w && <Path d={w.cap} fill="#F2FAFF" clipPath={`url(#${clip.ink})`} />}
             <Path d={paths.ink} fill="none" stroke={rim} strokeWidth={0.7} strokeOpacity={0.8} />
           </>
         )}

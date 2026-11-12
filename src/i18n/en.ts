@@ -347,6 +347,7 @@ export const en: Record<MessageKey, string> = {
   'game.rematch': 'Rematch',
   'game.backToOpening': 'Back to the opening',
   'game.otherBot': 'Choose another bot',
+  'game.analyze': 'Analyze game',
 
   // Análisis
   'analysis.title': 'Analysis',

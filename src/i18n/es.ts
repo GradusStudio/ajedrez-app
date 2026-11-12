@@ -346,6 +346,7 @@ export const es = {
   'game.rematch': 'Revancha',
   'game.backToOpening': 'Volver a la apertura',
   'game.otherBot': 'Elegir otro bot',
+  'game.analyze': 'Analizar partida',
 
   // Análisis
   'analysis.title': 'Análisis',

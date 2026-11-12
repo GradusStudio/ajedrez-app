@@ -23,6 +23,8 @@ import { ownsOngoing, shouldSaveOngoing } from '../progress/ongoingGuard';
 import { gameCountsForStreak } from '../progress/streak';
 import { useI18n } from '../i18n/I18nContext';
 import { es, MessageKey } from '../i18n/es';
+import { botGamePgn } from '../review/botGame';
+import { setPendingGame } from '../review/session';
 import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
@@ -43,6 +45,7 @@ type Props = {
   onExit: () => void;
   onRematch: () => void;
   onOtherBot: () => void;
+  onAnalyze: () => void;
 };
 
 // `reason` es una clave de es.ts; en el historial se guarda su texto en español, como antes.
@@ -62,7 +65,7 @@ const GOOD_MOVE_DELTA = 150;
 const idOf = (startedIso: string) => (startedIso ? { startedAt: startedIso } : null);
 
 // Partida contra un bot (mapa-de-pantallas.md, 2.10).
-export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initialStartedAt, onExit, onRematch, onOtherBot }: Props) {
+export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initialStartedAt, onExit, onRematch, onOtherBot, onAnalyze }: Props) {
   const { finishGame, saveOngoingGame, getProgress } = useProgress();
   const { settings } = useSettings();
   const { language, t } = useI18n();
@@ -146,6 +149,17 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     },
     [bot, chess, finishGame, saveOngoingGame, getProgress, practiceCourse, userColor, feedback, t]
   );
+
+  /** Lleva la partida recién jugada a la misma revisión que las partidas importadas. */
+  const analyze = () => {
+    if (!result) return;
+    const userName = t('game.you');
+    setPendingGame({
+      pgn: botGamePgn({ moves: uciMoves(chess), userColor, userName, botName: bot.name, kind: result.kind }),
+      username: userName,
+    });
+    onAnalyze();
+  };
 
   /** Después de cada jugada (del usuario o del bot): si la partida terminó la cierra y, si sigue, la guarda para continuarla. */
   const checkEnd = () => {
@@ -360,6 +374,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
         style={{ marginTop: space.md }}
       />
       <Button3D label={practiceCourse ? t('game.backToOpening') : t('game.otherBot')} onPress={onOtherBot} style={{ marginTop: space.sm }} />
+      {sans.length > 0 && <Button3D label={t('game.analyze')} onPress={analyze} style={{ marginTop: space.sm }} />}
     </>
   );
 

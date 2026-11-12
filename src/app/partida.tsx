@@ -66,6 +66,7 @@ function NewGame({ bot: botId, color, curso, n, moves, startedAt }: { bot: strin
         })
       }
       onOtherBot={() => (practiceCourse ? router.back() : router.dismissTo('/bots'))}
+      onAnalyze={() => router.push('/revision')}
     />
   );
 }

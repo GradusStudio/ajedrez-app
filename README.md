@@ -1,6 +1,6 @@
 # Gradus
 
-Gradus es una app gratuita para Android para aprender ajedrez: una ruta de 68 lecciones (de cómo se mueven las piezas a conceptos avanzados), 28 cursos de aperturas, 50.000 puzzles, bots con personalidad que juegan las aperturas enseñadas (y eligen sus jugadas como personas, con Maia) y un tablero de análisis con Stockfish.
+Gradus es una app gratuita para Android para aprender ajedrez: una ruta de 75 lecciones (de cómo se mueven las piezas al ataque y la defensa), 29 cursos de aperturas, 50.000 puzzles, bots con personalidad que juegan las aperturas enseñadas (y eligen sus jugadas como personas, con Maia) y un tablero de análisis con Stockfish.
 
 El nombre viene del latín *gradus*, «paso»: se aprende de a un paso, como en el clásico método *Gradus ad Parnassum*.
 

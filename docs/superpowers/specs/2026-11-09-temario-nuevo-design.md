@@ -2,6 +2,10 @@
 
 Fecha: 9-11-2026. Estado: **implementado en gran parte**. Ver la sección «Estado» al final.
 
+## Reorganización del 11-11-2026
+
+La Unidad 6 · Conceptos avanzados se disolvió: Zugzwang pasó a la Unidad 5 (Finales), Sacrificio de calidad a la Unidad 6 (Táctica intermedia) y Profilaxis a la Unidad 9 (Ataque y defensa). Además, Piezas sueltas pasó a la Unidad 3 (Táctica básica) y Convertir una ventaja a la Unidad 7 (Finales intermedios). La ruta queda en 9 unidades y 75 lecciones, sin renumerar ids y con `order` consecutivo.
+
 ## De dónde sale
 
 Se cotejaron las 41 lecciones de Aprender y los 28 cursos de aperturas con los libros de `C:\dev\material para lecciones` y con el libro de Levy Rozman *How to Win at Chess* (2023). Los libros que más aportaron:
@@ -143,7 +147,7 @@ Los cursos nuevos siguen el formato de `aperturas-v3.json` (Idea, Línea princip
 
 ## Decisiones (9-11-2026)
 
-1. **Unidades separadas:** D (Piezas y peones) y E (Ataque, defensa y plan) quedan como dos unidades distintas. En total serán 10 unidades.
+1. **Unidades separadas:** D (Piezas y peones) y E (Ataque, defensa y plan) quedan como dos unidades distintas. En total serán 10 unidades (la reorganización del 11-11-2026 dejó la ruta en 9; ver arriba).
 2. **Repaso final:** pasa al fondo de la ruta, como última lección de la Unidad 10, y repasa los temas de todas las unidades. Hasta que exista la Unidad 10 se queda donde está (final de la Unidad 6).
 3. **Profesores (decidido el 9-11-2026):** cada bot sigue enseñando lo que dice su ficha (`teaches` en bots.json y `2026-10-30-personajes-design.md`: Sofía tácticas, Ivo finales, Tomás trampas, Don Ramiro principios de apertura, Camila peones). Las unidades 7 a 10 se reparten por tema según esas fichas. La regla de «un bot por unidad en orden de nivel» queda descartada por ahora; el usuario piensa revisar las fichas más adelante y entonces se puede volver a ver.
 

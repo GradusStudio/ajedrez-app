@@ -4,9 +4,9 @@ Notación en español: R rey, D dama, T torre, A alfil, C caballo. Todas las lí
 
 ---
 
-## Parte 1 · Ruta rápida de lecciones (10 unidades, 68 lecciones, todas escritas)
+## Parte 1 · Ruta rápida de lecciones (9 unidades, 75 lecciones, todas escritas)
 
-Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzado) y en los cuatro niveles de chess.com (nuevo, principiante, intermedio, avanzado). Los títulos son propios.
+Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzado) y en los cuatro niveles de chess.com (nuevo, principiante, intermedio, avanzado). Los títulos son propios. La vieja Unidad 6 · Conceptos avanzados se disolvió el 11-11-2026: sus lecciones pasaron a Finales, Táctica intermedia y Ataque y defensa. Además, «Piezas sueltas» pasó a Táctica básica y «Convertir una ventaja» a Finales intermedios.
 
 ### Unidad 1 · Lo básico (12 lecciones, ya escritas en `unidad-1-lo-basico.json`)
 1. El tablero y las coordenadas
@@ -32,55 +32,61 @@ Inspirada en la progresión de Lichess (piezas, fundamentos, intermedio, avanzad
 17. Coronar bien (sin ahogar y con caballo; lo básico ya está en «El peón» de la unidad 1)
 18. Cómo se escriben las jugadas (notación)
 
-### Unidad 3 · Táctica básica (9 lecciones, ya escritas en `src/data/unidad-3-tactica-basica.json`)
-19. La horquilla
-20. La clavada
-- La enfilada (agregada el 9-11-2026, id `u3-l09`, va después de «La clavada»)
-21. El ataque a la descubierta
-22. Jaque doble y ataque doble
-23. Eliminar al defensor
-24. La desviación
-25. Mate del pasillo y mate del pastor (y cómo defenderse)
-26. Antes de mover: jaques, capturas y amenazas
+### Unidad 3 · Táctica básica (10 lecciones, ya escritas en `src/data/unidad-3-tactica-basica.json`)
+1. La horquilla
+2. La clavada
+3. La enfilada (agregada el 9-11-2026, id `u3-l09`)
+4. El ataque a la descubierta
+5. Jaque doble y ataque doble
+6. Eliminar al defensor
+7. La desviación
+8. Mate del pasillo y mate del pastor (y cómo defenderse)
+9. Piezas sueltas (movida de la Unidad 9 el 11-11-2026, id `u9-l01`)
+10. Antes de mover: jaques, capturas y amenazas
 
-«Valor de las piezas» se quitó: ya está en «Intercambios» (Unidad 1). «Piezas colgadas» pasó a ser «Antes de mover», porque lo básico ya está en «Proteger piezas». Cada lección termina con puzzles reales de Lichess del mismo tema.
+«Valor de las piezas» se quitó: ya está en «Intercambios» (Unidad 1). Lo de piezas sin defensa se reparte entre «Proteger piezas» (Unidad 1) y «Piezas sueltas» (esta unidad); «Antes de mover» es la rutina final. Cada lección termina con puzzles reales de Lichess del mismo tema.
 
 ### Unidad 4 · Apertura y estrategia (7 lecciones, ya escritas en `src/data/unidad-4-apertura-y-estrategia.json`)
-28. Principios de apertura: centro, desarrollo, enroque
-29. Errores típicos de apertura (dama temprana, mover la misma pieza dos veces)
-- Trampas que vas a ver (agregada el 9-11-2026, id `u4-l07`): Blackburne-Shilling y gambito Englund
-30. Estructura de peones: aislado, doblado, pasado
-31. Columnas abiertas y torres activas
-32. Casillas débiles y puestos avanzados para caballos
-33. La pareja de alfiles
+1. Principios de apertura: centro, desarrollo, enroque
+2. Errores típicos de apertura (dama temprana, mover la misma pieza dos veces)
+3. Trampas que vas a ver (agregada el 9-11-2026, id `u4-l07`): Blackburne-Shilling y gambito Englund
+4. Estructura de peones: aislado, doblado, pasado
+5. Columnas abiertas y torres activas
+6. Casillas débiles y puestos avanzados para caballos
+7. La pareja de alfiles
 
-### Unidad 5 · Finales (6 lecciones, ya escritas en `src/data/unidad-5-finales.json`)
-- Mate en escalera (agregada el 9-11-2026, id `u5-l06`, va primera de la unidad)
-34. Mate con dama y rey contra rey
-35. Mate con torre y rey contra rey
-36. Oposición entre reyes
-37. Regla del cuadrado y peón pasado
-38. Posición de Lucena (torre y peón)
+### Unidad 5 · Finales (7 lecciones, ya escritas en `src/data/unidad-5-finales.json`)
+1. Mate en escalera (agregada el 9-11-2026, id `u5-l06`, va primera de la unidad)
+2. Mate con dama y rey contra rey
+3. Mate con torre y rey contra rey
+4. Oposición entre reyes
+5. Zugzwang: cuando mover es perder (incluye triangulación; movida de la vieja Unidad 6 el 11-11-2026, id `u6-l01`)
+6. Regla del cuadrado y peón pasado
+7. Posición de Lucena (torre y peón)
 
-### Unidad 6 · Conceptos avanzados (3 lecciones, ya escritas en `src/data/unidad-6-conceptos-avanzados.json`)
-- Zugzwang: cuando mover es perder (incluye triangulación)
-- Profilaxis: anticipar el plan del rival
-- Sacrificio de calidad (torre por pieza menor)
-- Repaso final: puzzles de todos los temas de la ruta (agregado al escribir la unidad; desde el 9-11-2026 es la última lección de la Unidad 10)
+### Unidad 6 · Táctica intermedia (9 lecciones, escritas el 9-11-2026 en `src/data/unidad-6-tactica-intermedia.json`)
+1. La atracción
+2. La sobrecarga
+3. La jugada intermedia
+4. La interferencia
+5. Mates de una sola pieza
+6. Mates de dos piezas
+7. Sacrificio de calidad (torre por pieza menor; movido de la vieja Unidad 6 el 11-11-2026, id `u6-l03`)
+8. Sacrificar para abrir al rey
+9. Calcular: mate en dos y en tres
 
-### Unidad 7 · Táctica intermedia (8 lecciones, escritas el 9-11-2026 en `src/data/unidad-7-tactica-intermedia.json`)
-La atracción, La sobrecarga, La jugada intermedia, La interferencia, Mates de una sola pieza, Mates de dos piezas, Sacrificar para abrir al rey y Calcular: mate en dos y en tres. Cada una usa posiciones de puzzles reales de Lichess y termina con puzzles propios del tema. Propuesta completa (unidades 7 a 10) en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`.
+Cada una usa posiciones de puzzles reales de Lichess y termina con puzzles propios del tema. La vieja Unidad 6 · Conceptos avanzados se disolvió: Zugzwang pasó a la Unidad 5, Sacrificio de calidad a esta unidad y Profilaxis a la Unidad 9. Propuesta completa en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`.
 
-### Unidad 8 · Finales intermedios (8 lecciones, completadas el 11-11-2026 en `src/data/unidad-8-finales-intermedios.json`)
-El rey activo, El peón pasado alejado, Dama contra peón, La posición de Philidor, Cortar al rey con la torre, Alfiles de distinto color, Alfil contra caballo y Las dos debilidades. Los puzzles de Lichess son de finales de peones; las demás posiciones se verificaron con Stockfish.
+### Unidad 7 · Finales intermedios (9 lecciones, completadas el 11-11-2026 en `src/data/unidad-7-finales-intermedios.json`)
+El rey activo, El peón pasado alejado, Dama contra peón, La posición de Philidor, Cortar al rey con la torre, Alfiles de distinto color, Alfil contra caballo, Las dos debilidades y Convertir una ventaja (movida de la Unidad 10 el 11-11-2026, id `u10-l06`). Los puzzles de Lichess son de finales de peones; las demás posiciones se verificaron con Stockfish.
 
-### Unidad 9 · Piezas y peones (8 lecciones, completadas el 11-11-2026 en `src/data/unidad-9-piezas-y-peones.json`)
-Piezas sueltas, Cuándo cambiar piezas, El espacio, Posiciones abiertas y cerradas, Alfil bueno y alfil malo, Peón retrasado y cadenas de peones, Torres activas y Rupturas y mayorías de peones. Las respuestas de cada pregunta (peones bloqueados, casillas de espacio, piezas sin defensa, peones retrasados) se calculan con chess.js.
+### Unidad 8 · Piezas y peones (7 lecciones, completadas el 11-11-2026 en `src/data/unidad-8-piezas-y-peones.json`)
+Cuándo cambiar piezas, El espacio, Posiciones abiertas y cerradas, Alfil bueno y alfil malo, Peón retrasado y cadenas de peones, Torres activas y Rupturas y mayorías de peones. Piezas sueltas pasó a la Unidad 3 el 11-11-2026. Las respuestas de cada pregunta (peones bloqueados, casillas de espacio, piezas sin defensa, peones retrasados) se calculan con chess.js.
 
-### Unidad 10 · Ataque y defensa (8 lecciones, completadas el 11-11-2026 en `src/data/unidad-10-ataque-y-defensa.json`)
-El rey sin enrocar, Atacar con enroques del mismo lado, Enroques opuestos, Defender al rey (interponer una pieza protegida), Defenderse con material de menos, Convertir una ventaja, Hacer un plan y el Repaso final con 16 puzzles de toda la ruta.
+### Unidad 9 · Ataque y defensa (8 lecciones, completadas el 11-11-2026 en `src/data/unidad-9-ataque-y-defensa.json`)
+El rey sin enrocar, Atacar con enroques del mismo lado, Enroques opuestos, Defender al rey (interponer una pieza protegida), Profilaxis (movida de la vieja Unidad 6 el 11-11-2026, id `u6-l02`), Defenderse con material de menos, Hacer un plan y el Repaso final con 16 puzzles de toda la ruta (`u6-l04`). Convertir una ventaja pasó a la Unidad 7.
 
-Los números de este temario son los del plan original. En la app, las lecciones de la ruta van de la 1 a la 75 (Unidad 6: 41 a 43; Unidad 7: 44 a 51; Unidad 8: 52 a 59; Unidad 9: 60 a 67; Unidad 10: 68 a 75). Los ids de lección no se renumeran al insertar una nueva (el progreso guardado usa el id); `order` sí es consecutivo y es el número que se ve en pantalla.
+La ruta va de la 1 a la 75. La numeración de cada unidad en esta lista es la de la app; `order` es global y consecutivo (Unidad 1: 1-12; Unidad 2: 13-18; Unidad 3: 19-28; Unidad 4: 29-35; Unidad 5: 36-42; Unidad 6: 43-51; Unidad 7: 52-60; Unidad 8: 61-67; Unidad 9: 68-75). Los ids de lección no se renumeran al mover o insertar una lección (el progreso guardado usa el id).
 
 ### Formato de cada lección
 1. Explicación corta con tablero interactivo (máx. 3 pantallas).

@@ -189,13 +189,14 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 |---|---|---|---|
 | 1 | u3-l01 | La horquilla | 10 |
 | 2 | u3-l02 | La clavada | 10 |
-| 3 | u3-l03 | El ataque a la descubierta | 9 |
-| 4 | u3-l04 | Jaque doble y ataque doble | 9 |
-| 5 | u3-l05 | Eliminar al defensor | 9 |
-| 6 | u3-l06 | La desviación | 9 |
-| 7 | u3-l07 | Mate del pasillo y mate del pastor | 10 |
-| 8 | u3-l08 | Antes de mover: jaques, capturas y amenazas | 9 |
-| 9 | u3-l09 | La enfilada (va después de «La clavada») | 9 |
+| 3 | u3-l09 | La enfilada | 9 |
+| 4 | u3-l03 | El ataque a la descubierta | 9 |
+| 5 | u3-l04 | Jaque doble y ataque doble | 9 |
+| 6 | u3-l05 | Eliminar al defensor | 9 |
+| 7 | u3-l06 | La desviación | 9 |
+| 8 | u3-l07 | Mate del pasillo y mate del pastor | 10 |
+| 9 | u9-l01 | Piezas sueltas (movida de la Unidad 9 el 11-11-2026) | 9 |
+| 10 | u3-l08 | Antes de mover: jaques, capturas y amenazas | 9 |
 
 ## Contenido de la Unidad 4 · Apertura y estrategia
 
@@ -215,11 +216,11 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 |---|---|---|---|
 | 1 | u4-l01 | Principios de apertura | 8 |
 | 2 | u4-l02 | Errores típicos de apertura | 8 |
-| 3 | u4-l03 | Estructura de peones | 10 |
-| 4 | u4-l04 | Columnas abiertas y torres activas | 7 |
-| 5 | u4-l05 | Casillas débiles y puestos avanzados | 7 |
-| 6 | u4-l06 | La pareja de alfiles | 7 |
-| 7 | u4-l07 | Trampas que vas a ver (va después de «Errores típicos de apertura») | 8 |
+| 3 | u4-l07 | Trampas que vas a ver | 8 |
+| 4 | u4-l03 | Estructura de peones | 10 |
+| 5 | u4-l04 | Columnas abiertas y torres activas | 7 |
+| 6 | u4-l05 | Casillas débiles y puestos avanzados | 7 |
+| 7 | u4-l06 | La pareja de alfiles | 7 |
 
 ## Paso `practice` (práctica contra Stockfish)
 
@@ -243,7 +244,7 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 
 ## Contenido de la Unidad 5 · Finales
 
-`src/data/unidad-5-finales.json`: 6 lecciones, 47 pasos. Las lecciones de mates, oposición y Lucena terminan con prácticas contra Stockfish.
+`src/data/unidad-5-finales.json`: 7 lecciones, 58 pasos. Las lecciones de mates, oposición y Lucena terminan con prácticas contra Stockfish. «Zugzwang» se movió de la Unidad 6 el 11-11-2026 y va después de «La oposición».
 
 - **Validación con chess.js:**
   - Los ejercicios de «da mate» aceptan todas las jugadas que dan mate.
@@ -259,44 +260,25 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
   - Ninguna jugada buena se marcó como error, y todas cumplen el objetivo dentro de `maxMoves`.
   - Jugadas usadas: dama 8 de 20, torre 13 de 35, rey y peón 16 de 25, defensa 10 de 10 y Lucena 11 de 20.
 - **Puzzles de Lichess:** 2 carreras de peones al final de «La regla del cuadrado» (xW6Ug, VEzBQ).
+- **Zugzwang (movida de la Unidad 6 el 11-11-2026):** validación con chess.js del mate por zugzwang (Tg6; es el único mate en 2, no da jaque, la única respuesta negra es Ra8 y Ta6 es el único mate), el trébuchet (con cualquier turno solo se mueve el rey y cualquier jugada abandona su peón) y la triangulación (después de Re4, Rc5, Rd3, Rb6 y Rd4 se repite la posición con el turno de las negras). Stockfish 19 (profundidad 16 a 24): con blancas solo ganan Re4, Re3 y Rd3; Rc3 y c5 dejan tablas. La práctica se simuló: 13 de 25 jugadas, sin jugadas buenas marcadas como error. Puzzles de Lichess: dxvDC, FoRGt y 1Bee7.
 
 | # | id | Lección | Pasos |
 |---|---|---|---|
-| 1 | u5-l01 | Mate con dama | 8 |
-| 2 | u5-l02 | Mate con torre | 8 |
-| 3 | u5-l03 | La oposición | 8 |
-| 4 | u5-l04 | La regla del cuadrado | 8 |
-| 5 | u5-l05 | La posición de Lucena | 7 |
-| 6 | u5-l06 | Mate en escalera (va primera de la unidad) | 8 |
+| 1 | u5-l06 | Mate en escalera | 8 |
+| 2 | u5-l01 | Mate con dama | 8 |
+| 3 | u5-l02 | Mate con torre | 8 |
+| 4 | u5-l03 | La oposición | 8 |
+| 5 | u6-l01 | Zugzwang (movida de la Unidad 6 el 11-11-2026) | 11 |
+| 6 | u5-l04 | La regla del cuadrado | 8 |
+| 7 | u5-l05 | La posición de Lucena | 7 |
 
-## Contenido de la Unidad 6 · Conceptos avanzados
+## Unidad 6 · Conceptos avanzados (disuelta el 11-11-2026)
 
-`src/data/unidad-6-conceptos-avanzados.json`: 4 lecciones, 40 pasos (órdenes 41 a 44). Cierra la ruta de Aprender con un repaso final de puzzles de todos los temas.
+La vieja Unidad 6 tenía Zugzwang, Profilaxis, Sacrificio de calidad y el Repaso final. El Repaso final ya estaba al final de la ruta; el 11-11-2026 las otras tres pasaron a Finales (Zugzwang, después de «La oposición»), Táctica intermedia (Sacrificio de calidad, antes de «Sacrificar para abrir al rey») y Ataque y defensa (Profilaxis, después de «Defender al rey»). Los ids `u6-l01`, `u6-l02` y `u6-l03` se conservan porque el progreso guardado los usa. Las notas de validación están en las secciones de sus unidades nuevas.
 
-- **Validación con chess.js:**
-  - Mate por zugzwang (Tg6): es el único mate en 2, no da jaque, la única respuesta negra es Ra8, Ta6 es el único mate y, si las negras pudieran pasar, no habría mate.
-  - Trébuchet: con cualquier turno, solo se mueve el rey y cualquier jugada abandona su peón.
-  - Triangulación: después de Re4, Rc5, Rd3, Rb6 y Rd4 se repite la posición con el turno de las negras.
-  - Profilaxis: si las blancas pasan, Ag4 es posible y h3 controla g4. En el pasillo, Txb7 permite Te1 mate y, tras cada jugada aceptada, no hay mate en una. En h2, la amenaza es Dxh2 mate y g3 y h3 la impiden.
-  - Los puzzles no se repiten entre sí ni con las unidades 1 a 5, y ninguno tiene otro mate posible en la última jugada.
-- **Revisión con Stockfish (profundidad 16 a 24):**
-  - Triangulación (posición hallada con un programa de búsqueda): con blancas solo ganan Re4, Re3 y Rd3; Rc3 y c5 dejan tablas. Con el turno de las negras, todas pierden.
-  - h3 en la Italiana es la mejor jugada (+0,31). En el pasillo se aceptan las 7 jugadas que abren salida al rey o lo acercan (de +0,28 a +0,57) y Tc1 (−0,08). En h2 se aceptan g3 y h3; f4 queda en −1,53.
-  - Lo que afirman los textos: el trébuchet lo pierde el que mueve, la triangulación gana y la Italiana tras h3 está equilibrada.
-- **Simulación de la práctica:** triangulación, 13 de 25 jugadas, sin jugadas buenas marcadas como error.
-- **Puzzles de Lichess:** zugzwang (dxvDC, FoRGt, 1Bee7), sacrificio de calidad (SjHwN, EkrEH, LTQbv, p4P0n) y repaso final (8PHlY, Z2PVU, to19k, 1gxnS, 9XWAR, d49wh, Kv9DA, 7CgP1). Los de calidad se eligieron con un programa: la primera jugada es una torre que captura un alfil o un caballo y el rival la recaptura.
-- La lección de profilaxis no tiene puzzles de Lichess: los de los temas «jugada defensiva» y «jugada tranquila» casi siempre responden a un jaque o son finales de peones, y no muestran la idea de anticipar el plan rival.
+## Contenido de la Unidad 6 · Táctica intermedia (bloque B del temario nuevo)
 
-| # | id | Lección | Pasos |
-|---|---|---|---|
-| 1 | u6-l01 | Zugzwang | 11 |
-| 2 | u6-l02 | Profilaxis | 10 |
-| 3 | u6-l03 | Sacrificio de calidad | 9 |
-| 4 | u6-l04 | Repaso final (movido a la Unidad 10 el 9-11-2026) | 10 |
-
-## Contenido de la Unidad 7 · Táctica intermedia (bloque B del temario nuevo)
-
-`src/data/unidad-7-tactica-intermedia.json`: 8 lecciones, 73 pasos (órdenes 45 a 52), escritas el 9-11-2026. Textos propios; las posiciones salen de puzzles reales de Lichess (CC0) de `lichess-puzzles.json`.
+`src/data/unidad-6-tactica-intermedia.json`: 9 lecciones, 82 pasos (órdenes 43 a 51), escritas el 9-11-2026. Textos propios; las posiciones salen de puzzles reales de Lichess (CC0) de `lichess-puzzles.json`. «Sacrificio de calidad» se movió de la vieja Unidad 6 el 11-11-2026.
 
 | # | id | Lección | Pasos | Profesor |
 |---|---|---|---|---|
@@ -306,8 +288,11 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 4 | u7-l04 | La interferencia | 9 | Sofía |
 | 5 | u7-l05 | Mates de una sola pieza | 9 | Pipo |
 | 6 | u7-l06 | Mates de dos piezas | 9 | Valentina |
-| 7 | u7-l07 | Sacrificar para abrir al rey | 9 | Valentina |
-| 8 | u7-l08 | Calcular: mate en dos y en tres | 10 | Sofía |
+| 7 | u6-l03 | Sacrificio de calidad (movido de la vieja Unidad 6 el 11-11-2026) | 9 | Valentina |
+| 8 | u7-l07 | Sacrificar para abrir al rey | 9 | Valentina |
+| 9 | u7-l08 | Calcular: mate en dos y en tres | 10 | Sofía |
+
+- **Sacrificio de calidad (movido de la vieja Unidad 6 el 11-11-2026):** los puzzles se eligieron con un programa: la primera jugada es una torre que captura un alfil o un caballo y el rival la recaptura (SjHwN, EkrEH, LTQbv y p4P0n). Validación con chess.js y Stockfish 19.
 
 - **Estructura de cada lección:** dos explicaciones con las jugadas reproducidas sobre el tablero, un cuestionario, un paso de tocar casillas, dos ejercicios de una jugada y dos o tres puzzles con la línea completa (`line` en modo `drill`). Los profesores siguen la ficha de cada bot.
 - **Cómo se eligieron los puzzles:** por tema de Lichess (atracción, jugada intermedia, interferencia, mate ahogado, mates con dos piezas, mate en dos y en tres) y rating de 500 a 1100. La sobrecarga no es un tema de Lichess: se buscaron puzzles cuya recapturadora era la única defensora de otra pieza (script con chess.js), para no mezclarla con «Eliminar al defensor» (Unidad 3).
@@ -316,9 +301,9 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 - **Cuestionarios con respuesta calculada:** en la lección 8 las respuestas («2 respuestas legales», «1 jugada del rey») salen de chess.js, no de memoria.
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama (las frases de «Correcto. …» salen de plantillas con la notación de cada idioma) y revisadas a mano. Sin revisión de nativos. Términos nuevos en los glosarios de `docs/traducciones/`.
 
-## Contenido de la Unidad 8 · Finales intermedios (bloque C del temario nuevo)
+## Contenido de la Unidad 7 · Finales intermedios (bloque C del temario nuevo)
 
-`src/data/unidad-8-finales-intermedios.json`: 8 lecciones, 54 pasos (órdenes 52 a 59), escritas el 9-11-2026 y completadas el 11-11-2026. Todas las enseña Maestro Ivo.
+`src/data/unidad-7-finales-intermedios.json`: 9 lecciones, 60 pasos (órdenes 52 a 60), escritas el 9-11-2026 y completadas el 11-11-2026. Todas las enseña Maestro Ivo. «Convertir una ventaja» se movió de la Unidad 10 el 11-11-2026.
 
 | # | id | Lección | Pasos |
 |---|---|---|---|
@@ -330,36 +315,38 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 6 | u8-l06 | Alfiles de distinto color | 5 |
 | 7 | u8-l07 | Alfil contra caballo | 7 |
 | 8 | u8-l08 | Las dos debilidades | 6 |
+| 9 | u10-l06 | Convertir una ventaja (movida de la Unidad 10 el 11-11-2026) | 6 |
+
+- **Convertir una ventaja (movida de la Unidad 10 el 11-11-2026):** muestra el cambio de damas que deja torre y alfil contra torre; Stockfish 19 (profundidad 16) confirma que el cambio deja +5,17 para las blancas.
 
 - **Puzzles de Lichess (CC0):** las lecciones 1 y 2 usan finales de peones reales (el rey que gana peones, las carreras de un peón alejado). Cada ejercicio de una jugada tiene una sola solución y un margen claro sobre la segunda mejor (Stockfish, profundidad 14).
 - **Posiciones propias, verificadas con Stockfish 19 (profundidad 18 a 24):** dama contra peón central (mate en 10), dama contra peón de torre (0,00), Philidor (−0,27, tablas), torre que corta al rey por columna y por fila (mate en 13 y 11) y alfiles de distinto color con un peón de más (0,00). Las prácticas contra Stockfish se comprobaron contra los umbrales del paso `practice` (ganar: al menos +3; aguantar: más de −3).
 - **Lecciones 7 y 8 (11-11-2026):** «Alfil contra caballo» enseña cuándo brilla cada pieza y que dar el caballo por el último peón salva tablas; «Las dos debilidades» usa dos peones pasados en alas opuestas y una posición de torres. Validación: chess.js para todas las posiciones y soluciones; Stockfish 19 (profundidad 12 a 16) confirma `d3b2` como mejor jugada y que `a4a5` y `h4h5` conservan la victoria (+6,86 y +10,38 para las blancas).
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama (las frases «Correcto. …» salen de plantillas con la notación de cada idioma) y revisadas a mano. Sin revisión de nativos.
 
-## Contenido de la Unidad 9 · Piezas y peones (bloque D del temario nuevo)
+## Contenido de la Unidad 8 · Piezas y peones (bloque D del temario nuevo)
 
-`src/data/unidad-9-piezas-y-peones.json`: 8 lecciones, 53 pasos (órdenes 60 a 67), escritas el 9-11-2026 y completadas el 11-11-2026.
+`src/data/unidad-8-piezas-y-peones.json`: 7 lecciones, 44 pasos (órdenes 61 a 67), escritas el 9-11-2026 y completadas el 11-11-2026. «Piezas sueltas» pasó a la Unidad 3 el 11-11-2026.
 
 | # | id | Lección | Pasos | Profesor |
 |---|---|---|---|---|
-| 1 | u9-l01 | Piezas sueltas | 9 | Pipo |
-| 2 | u9-l02 | Cuándo cambiar piezas | 6 | Bruno |
-| 3 | u9-l03 | El espacio | 6 | Camila |
-| 4 | u9-l04 | Posiciones abiertas y cerradas | 7 | Lola |
-| 5 | u9-l05 | Alfil bueno y alfil malo | 6 | Ramiro |
-| 6 | u9-l06 | Peón retrasado y cadenas de peones | 7 | Camila |
-| 7 | u9-l07 | Torres activas | 6 | Valentina |
-| 8 | u9-l08 | Rupturas y mayorías de peones | 6 | Camila |
+| 1 | u9-l02 | Cuándo cambiar piezas | 6 | Bruno |
+| 2 | u9-l03 | El espacio | 6 | Camila |
+| 3 | u9-l04 | Posiciones abiertas y cerradas | 7 | Lola |
+| 4 | u9-l05 | Alfil bueno y alfil malo | 6 | Ramiro |
+| 5 | u9-l06 | Peón retrasado y cadenas de peones | 7 | Camila |
+| 6 | u9-l07 | Torres activas | 6 | Valentina |
+| 7 | u9-l08 | Rupturas y mayorías de peones | 6 | Camila |
 
 - **Qué se verificó y cómo:** la estrategia no se puede confirmar con un motor, así que las respuestas de las preguntas son hechos que calcula chess.js sobre las posiciones: las piezas sin defensa de un bando, las casillas del campo rival que controla cada bando (espacio), los peones bloqueados frente a un peón rival, los peones propios que están en casillas del color de un alfil, el peón retrasado y la base de una cadena de peones. Cada lección falla al armarse si algún dato no coincide con lo que dice el texto.
-- **Posiciones:** salen de las líneas de los cursos de aperturas (Avance de la Francesa, Escocesa, India de Rey, Najdorf y Caro-Kann) y, para la lección 1, de puzzles reales de Lichess (CC0) con Stockfish a profundidad 14 (una sola solución por ejercicio).
+- **Posiciones:** salen de las líneas de los cursos de aperturas (Avance de la Francesa, Escocesa, India de Rey, Najdorf y Caro-Kann). «Piezas sueltas» (ahora en la Unidad 3) usaba puzzles reales de Lichess (CC0) con Stockfish a profundidad 14 (una sola solución por ejercicio).
 - **Principios sin motor:** las preguntas de «qué suele convenir» (cambiar con ventaja de material, evitar cambios con más espacio, caballos en posiciones cerradas) enseñan reglas generales y están redactadas con «suele».
 - **Lecciones 7 y 8 (11-11-2026):** «Torres activas» muestra la columna abierta, la séptima fila y las torres conectadas; «Rupturas y mayorías de peones» explica la mayoría de tres contra dos y la ruptura c4. Validación: chess.js para todas las posiciones; Stockfish 19 (profundidad 12) confirma `Te7` como mejor jugada en la posición de torres. Las preguntas de estrategia se sostienen con hechos de la posición, no con una jugada única del motor.
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama y revisadas a mano (las frases «Correcto. …» salen de una plantilla con la notación de cada idioma). Sin revisión de nativos.
 
-## Contenido de la Unidad 10 · Ataque y defensa (bloque E del temario nuevo)
+## Contenido de la Unidad 9 · Ataque y defensa (bloque E del temario nuevo)
 
-`src/data/unidad-10-ataque-y-defensa.json`: 8 lecciones, 73 pasos (órdenes 68 a 75), escritas el 9-11-2026 y completadas el 11-11-2026.
+`src/data/unidad-9-ataque-y-defensa.json`: 8 lecciones, 77 pasos (órdenes 68 a 75), escritas el 9-11-2026 y completadas el 11-11-2026. «Profilaxis» se movió de la vieja Unidad 6 y «Convertir una ventaja» pasó a la Unidad 7.
 
 | # | id | Lección | Pasos | Profesor |
 |---|---|---|---|---|
@@ -367,19 +354,19 @@ Los ids no se deben cambiar una vez publicada la app: el progreso guardado y la 
 | 2 | u10-l02 | Atacar con enroques del mismo lado | 10 | Sofía |
 | 3 | u10-l03 | Enroques opuestos | 9 | Valentina |
 | 4 | u10-l04 | Defender al rey | 9 | Lola |
-| 5 | u10-l05 | Defenderse con material de menos | 6 | Ivo |
-| 6 | u10-l06 | Convertir una ventaja | 6 | Ivo |
+| 5 | u6-l02 | Profilaxis (movida de la vieja Unidad 6 el 11-11-2026) | 10 | Lola |
+| 6 | u10-l05 | Defenderse con material de menos | 6 | Ivo |
 | 7 | u10-l07 | Hacer un plan | 6 | Ramiro |
 | 8 | u6-l04 | Repaso final | 18 | Ada |
 
 - **Repaso final:** conserva el id `u6-l04` (el progreso guardado lo usa) pero es la última lección de la ruta. Tenía 10 pasos; se le agregaron 8 puzzles de Lichess de los temas nuevos (atracción, sobrecarga, jugada intermedia, interferencia, mate de dos piezas, sacrificio, rey activo, pieza suelta) y la despedida sigue al final.
 - **Qué se verificó y cómo:** los puzzles salen de la base de Lichess (CC0) por tema y rating, con una sola solución clara (hueco de 1,0 peón o más) comprobada con Stockfish 19; los ejercicios de «mover» aceptan todas las jugadas con la mejor evaluación o el mismo mate. Las preguntas de los cuestionarios y las casillas a tocar se calculan con chess.js (reyes sin enrocar, bando de enroque de cada rey, defensores de h7, piezas que interponen y quién las protege).
-- **Lecciones 5 a 7 (11-11-2026):** «Defenderse con material de menos» usa el ahogado (rey en a8, dama en b6) y explica el jaque perpetuo y la fortaleza; «Convertir una ventaja» muestra el cambio de damas que deja torre y alfil contra torre; «Hacer un plan» usa una estructura con espacio y una pieza mala. Validación: chess.js para todas las posiciones; Stockfish 19 (profundidad 16) confirma que el cambio de damas deja +5,17 para las blancas. Las lecciones de plan son conceptuales y no se validan con una jugada única.
+- **Lecciones 5 a 7 (11-11-2026):** «Profilaxis» (movida de la vieja Unidad 6) enseña a anticipar el plan rival; «Defenderse con material de menos» usa el ahogado (rey en a8, dama en b6) y explica el jaque perpetuo y la fortaleza; «Hacer un plan» usa una estructura con espacio y una pieza mala. Validación: chess.js para todas las posiciones. «Profilaxis»: si las blancas pasan, Ag4 es posible y h3 controla g4; en el pasillo, Txb7 permite Te1 mate; en h2, la amenaza es Dxh2 mate y g3/h3 la impiden. Las lecciones de plan son conceptuales y no se validan con una jugada única.
 - **Traducciones:** inglés escrito a mano; alemán, italiano y francés con gemma4 vía Ollama y corregidas a mano (gemma perdía los signos de pregunta y usaba calcos como «Bando» o «gespalten»). Las frases «Correcto. …» salen de una plantilla con la notación de cada idioma. Sin revisión de nativos.
 
 ## Lecciones agregadas el 9-11-2026 (bloque A del temario nuevo)
 
-Salen de la comparación con los libros de `C:devmaterial para lecciones` (propuesta en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`). Textos escritos de cero, sin copiar de los libros. Se insertaron sin renumerar ids; `order` se recalculó para toda la ruta (1 a 44).
+Salen de la comparación con los libros de `C:devmaterial para lecciones` (propuesta en `docs/superpowers/specs/2026-11-09-temario-nuevo-design.md`). Textos escritos de cero, sin copiar de los libros. Se insertaron sin renumerar ids; `order` se recalculó para toda la ruta (hoy 1 a 75).
 
 - **La enfilada** (`u3-l09`, después de «La clavada»): enfilada de rey y dama con torre, comparación con la clavada, identificar, dos ejercicios (torre contra rey y dama; alfil contra rey y torre), tocar las piezas enfiladas, cómo evitarla y dos puzzles de Lichess (DPWEJ y 43RQr).
 - **Trampas que vas a ver** (`u4-l07`, después de «Errores típicos de apertura»): trampa Blackburne-Shilling (3...Cd4) y gambito Englund (la trampa es 6.Ac3, que clava el alfil al rey tras ...Ab4; lo correcto es 6.Cc3). Frente a 3...Cd4 se aceptan todas las jugadas con evaluación de +0,3 o más.

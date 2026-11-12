@@ -1,14 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
-import { BotAvatar } from '../components/BotAvatar';
 import { ProgressBar } from '../components/ProgressBar';
 import { SettingRow } from '../components/SettingRow';
 import { StatIcon } from '../components/StatIcon';
 import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
-import { currentStreak, isPuzzleSolved, recordAgainst } from '../progress/progressStore';
+import { currentStreak, isPuzzleSolved } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
@@ -18,14 +17,15 @@ type Props = {
   onOpenCredits: () => void;
   onOpenPieces: () => void;
   onOpenBoards: () => void;
+  onOpenBotGames: () => void;
   /** Abre el repaso de los errores guardados de una lección. */
   onOpenReview: (lessonId: string, stepIds: string[]) => void;
 };
 
-// Perfil: racha, monedas, lecciones, aperturas, puzzles y bots; acceso a Ajustes y Créditos (mapa-de-pantallas.md, 2.11).
-export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onOpenBoards, onOpenReview }: Props) {
+// Perfil: racha, monedas, lecciones, aperturas y puzzles; acceso a Tableros, Piezas, Partidas contra bots, Ajustes y Créditos (mapa-de-pantallas.md, 2.11).
+export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onOpenBoards, onOpenBotGames, onOpenReview }: Props) {
   const { progress } = useProgress();
-  const { bots, openings, units, findLesson } = useContent();
+  const { openings, units, findLesson } = useContent();
   const { t, tn } = useI18n();
   const today = useTodayKey();
   // Errores que se pueden repasar (un paso pudo desaparecer si cambió el contenido de la lección).
@@ -40,10 +40,6 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
   const startedOpenings = openings
     .map((o) => ({ course: o, done: o.lessons.filter((l) => progress.lessons[l.id]).length }))
     .filter((x) => x.done > 0);
-  const playedBots = bots
-    .map((b) => ({ bot: b, r: recordAgainst(progress, b.id) }))
-    .filter((x) => x.r.wins + x.r.losses + x.r.draws > 0);
-
   return (
     <ColumnScrollView
       style={styles.screen}
@@ -77,23 +73,6 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
         ))
       )}
 
-      <Text style={styles.section}>{t('profile.botGames')}</Text>
-      {playedBots.length === 0 ? (
-        <Text style={styles.empty}>{t('profile.noBotGames')}</Text>
-      ) : (
-        playedBots.map(({ bot, r }) => (
-          <View key={bot.id} style={styles.botRow}>
-            <BotAvatar bot={bot} size={32} />
-            <Text style={[styles.rowLabel, { flex: 1 }]}>{bot.name}</Text>
-            <Text style={styles.record}>
-              {r.draws
-                ? t('profile.recordDraws', { wins: r.wins, losses: r.losses, draws: r.draws })
-                : t('profile.record', { wins: r.wins, losses: r.losses })}
-            </Text>
-          </View>
-        ))
-      )}
-
       <View style={{ height: space.xl }} />
       {reviewable.length > 0 && (
         <SettingRow
@@ -104,6 +83,7 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
       )}
       <SettingRow label={t('profile.boards')} description={t('profile.boards.description')} onPress={onOpenBoards} />
       <SettingRow label={t('profile.pieces')} description={t('profile.pieces.description')} onPress={onOpenPieces} />
+      <SettingRow label={t('profile.botGames')} description={t('profile.botGames.description')} onPress={onOpenBotGames} />
       <SettingRow label={t('profile.settings')} description={t('profile.settings.description')} onPress={onOpenSettings} />
       <SettingRow label={t('credits.title')} onPress={onOpenCredits} />
     </ColumnScrollView>
@@ -146,6 +126,4 @@ const styles = StyleSheet.create({
   openingBar: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.sm },
   rowLabel: { fontFamily: fonts.bold, fontSize: 15, color: colors.text },
   count: { fontFamily: fonts.extrabold, fontSize: 13, color: colors.textMuted },
-  botRow: { ...card, flexDirection: 'row', alignItems: 'center', gap: space.md, paddingVertical: space.sm, paddingHorizontal: 14, marginBottom: space.sm },
-  record: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted },
 });

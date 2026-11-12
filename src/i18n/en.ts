@@ -382,6 +382,8 @@ export const en: Record<MessageKey, string> = {
   'profile.openings': 'Openings',
   'profile.noOpenings': "You haven't started an opening yet.",
   'profile.botGames': 'Games against bots',
+  'profile.botGames.description': 'Your results against each bot',
+  'profile.botGames.subtitle': "Only bots you've played appear here.",
   'profile.noBotGames': "You haven't played a bot yet.",
   'profile.record': '{wins} won · {losses} lost',
   'profile.recordDraws': '{wins} won · {losses} lost · {draws} drawn',

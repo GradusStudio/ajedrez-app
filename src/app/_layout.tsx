@@ -122,6 +122,7 @@ function AppStack() {
       <Stack.Screen name="bot/[id]" />
       <Stack.Screen name="piezas" />
       <Stack.Screen name="tableros" />
+      <Stack.Screen name="historial-bots" />
       <Stack.Screen name="puzzle" />
       <Stack.Screen name="ajustes" />
       <Stack.Screen name="analisis-libre" />

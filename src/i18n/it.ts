@@ -383,6 +383,8 @@ export const it: Record<MessageKey, string> = {
   'profile.openings': 'Aperture',
   'profile.noOpenings': 'Non hai ancora iniziato nessuna apertura.',
   'profile.botGames': 'Partite contro i bot',
+  'profile.botGames.description': 'I tuoi risultati contro ogni bot',
+  'profile.botGames.subtitle': 'Appaiono solo i bot contro cui hai già giocato.',
   'profile.noBotGames': 'Non hai ancora giocato contro nessun bot.',
   'profile.record': 'Vinte: {wins} · Perse: {losses}',
   'profile.recordDraws': 'Vinte: {wins} · Perse: {losses} · Patte: {draws}',

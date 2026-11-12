@@ -381,6 +381,8 @@ export const es = {
   'profile.openings': 'Aperturas',
   'profile.noOpenings': 'Todavía no empezaste ninguna apertura.',
   'profile.botGames': 'Partidas contra bots',
+  'profile.botGames.description': 'Tus resultados contra cada bot',
+  'profile.botGames.subtitle': 'Solo aparecen los bots con los que ya jugaste.',
   'profile.noBotGames': 'Todavía no jugaste contra ningún bot.',
   'profile.record': '{wins} ganadas · {losses} perdidas',
   'profile.recordDraws': '{wins} ganadas · {losses} perdidas · {draws} tablas',

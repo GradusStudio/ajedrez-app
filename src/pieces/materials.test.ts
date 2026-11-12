@@ -15,6 +15,13 @@ test('cada tipo de pieza tiene su propio id de recorte', () => {
   }
 });
 
+test('cada instancia de pieza puede tener un id de recorte propio', () => {
+  const a = pieceClipIds('marmol', 'wq', 'pieza1');
+  const b = pieceClipIds('marmol', 'wq', 'pieza2');
+  assert.notEqual(a.sil, b.sil);
+  assert.notEqual(a.ink, b.ink);
+});
+
 test('silueta y tinta nunca comparten id', () => {
   for (const set of PIECE_SET_LIST) {
     for (const key of KEYS) {

@@ -20,14 +20,12 @@ export const isMaterialSet = (id: string): id is MaterialSetId => id in MATERIAL
 export const pathSetOf = (id: AnyPieceSetId): PieceSetId => (isMaterialSet(id) ? 'clasico' : id);
 
 /**
- * Ids de los recortes SVG (silueta y tinta) de una pieza. Dependen solo del trazado: el set de siluetas y el
- * tipo de pieza. Todos los sets de material comparten los trazados del Clásico, así que pueden repetir ids entre
- * sí sin problema. Hace falta que sean distintos por tipo: en la web los SVG de toda la pantalla comparten el
- * documento y `url(#id)` toma el primer elemento con ese id, por eso antes todas las piezas se recortaban con la
- * silueta del rey (la primera que se dibujaba).
+ * Ids de los recortes SVG (silueta y tinta) de una pieza. Dependen del trazado (set de siluetas y tipo de pieza)
+ * y, si se indica, de la instancia: en la web los SVG comparten el documento y `url(#id)` no se resuelve igual
+ * con ids repetidos en Safari, así que cada pieza les agrega su propio sufijo.
  */
-export const pieceClipIds = (id: AnyPieceSetId, key: PieceKey): { sil: string; ink: string } => {
-  const base = `${pathSetOf(id)}-${key}`;
+export const pieceClipIds = (id: AnyPieceSetId, key: PieceKey, instance = ''): { sil: string; ink: string } => {
+  const base = `${pathSetOf(id)}-${key}${instance ? `-${instance}` : ''}`;
   return { sil: `sil-${base}`, ink: `ink-${base}` };
 };
 

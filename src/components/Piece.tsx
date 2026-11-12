@@ -31,13 +31,15 @@ function Piece({ type, color, size, set }: Props) {
   const id = set ?? pieceSet;
   const key = `${color}${type}` as PieceKey;
   const paths = PIECE_PATHS[pathSetOf(id)][key];
+  // Id único por pieza: Safari no resuelve bien `url(#id)` cuando varios SVG repiten el mismo id.
+  const uid = React.useId().replace(/[^a-zA-Z0-9_-]/g, '');
 
   if (isMaterialSet(id)) {
     const tex = TEXTURES[id];
     const { outline, rim, winter } = MATERIAL_SETS[id];
     const w = winter ? winterShapes(paths.sil) : null;
     const white = color === 'w';
-    const clip = pieceClipIds(id, key);
+    const clip = pieceClipIds(id, key, uid);
     const area = { x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'xMidYMid slice' } as const;
     return (
       <Svg width={size} height={size} viewBox={VIEW_BOX} pointerEvents="none">

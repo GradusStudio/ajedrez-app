@@ -193,7 +193,7 @@ export const it: Record<MessageKey, string> = {
   'pieceSet.madera.name': 'Legno',
   'pieceSet.madera.description': 'Pezzi di legno chiaro e scuro. Caldo e classico.',
   'pieceSet.marmol.name': 'Marmo',
-  'pieceSet.marmol.description': 'Pietra lucida: marmo bianco e nero con venature dorate.',
+  'pieceSet.marmol.description': 'Pietra lucida: marmo bianco con venature grigie e marmo nero con venature bianche.',
   'pieceSet.neon.name': 'Neon',
   'pieceSet.neon.description': 'Luci al neon su sfondo scuro. Stile futuristico.',
   'pieceSet.vintage.name': 'Vintage',

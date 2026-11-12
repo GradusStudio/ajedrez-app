@@ -193,7 +193,7 @@ export const de: Record<MessageKey, string> = {
   'pieceSet.madera.name': 'Holz',
   'pieceSet.madera.description': 'Helle und dunkle Holzfiguren. Warm und klassisch.',
   'pieceSet.marmol.name': 'Marmor',
-  'pieceSet.marmol.description': 'Polierter Stein: weißer und schwarzer Marmor mit goldenen Adern.',
+  'pieceSet.marmol.description': 'Polierter Stein: weißer Marmor mit grauen Adern und schwarzer Marmor mit weißen Adern.',
   'pieceSet.neon.name': 'Neon',
   'pieceSet.neon.description': 'Neonlichter auf dunklem Grund. Futuristischer Stil.',
   'pieceSet.vintage.name': 'Vintage',

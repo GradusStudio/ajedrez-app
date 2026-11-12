@@ -192,7 +192,7 @@ export const en: Record<MessageKey, string> = {
   'pieceSet.madera.name': 'Wood',
   'pieceSet.madera.description': 'Light and dark wooden pieces. Warm and classic.',
   'pieceSet.marmol.name': 'Marble',
-  'pieceSet.marmol.description': 'Polished stone: white and black marble with golden veins.',
+  'pieceSet.marmol.description': 'Polished stone: white marble with grey veins and black marble with white veins.',
   'pieceSet.neon.name': 'Neon',
   'pieceSet.neon.description': 'Neon lights on a dark background. Futuristic style.',
   'pieceSet.vintage.name': 'Vintage',

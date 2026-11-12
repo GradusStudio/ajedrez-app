@@ -193,7 +193,7 @@ export const fr: Record<MessageKey, string> = {
   'pieceSet.madera.name': 'Bois',
   'pieceSet.madera.description': 'Pièces en bois clair et foncé. Chaleureux et classique.',
   'pieceSet.marmol.name': 'Marbre',
-  'pieceSet.marmol.description': 'Pierre polie : marbre blanc et noir aux veines dorées.',
+  'pieceSet.marmol.description': 'Pierre polie : marbre blanc aux veines grises et marbre noir aux veines blanches.',
   'pieceSet.neon.name': 'Néon',
   'pieceSet.neon.description': 'Lumières néon sur fond sombre. Style futuriste.',
   'pieceSet.vintage.name': 'Vintage',

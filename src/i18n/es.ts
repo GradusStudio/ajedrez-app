@@ -191,7 +191,7 @@ export const es = {
   'pieceSet.madera.name': 'Madera',
   'pieceSet.madera.description': 'Piezas de madera clara y oscura. Cálido y clásico.',
   'pieceSet.marmol.name': 'Mármol',
-  'pieceSet.marmol.description': 'Piedra pulida: mármol blanco y negro con vetas doradas.',
+  'pieceSet.marmol.description': 'Piedra pulida: mármol blanco con vetas grises y negro con vetas blancas.',
   'pieceSet.neon.name': 'Neón',
   'pieceSet.neon.description': 'Luces de neón sobre fondo oscuro. Estilo futurista.',
   'pieceSet.vintage.name': 'Vintage',

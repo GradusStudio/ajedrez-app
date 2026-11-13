@@ -11,6 +11,7 @@ import { useProgress } from '../progress/ProgressContext';
 import { recordAgainst } from '../progress/progressStore';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
+import { useWideGrid } from '../components/useWideGrid';
 
 type Props = { onOpenBot: (bot: Bot) => void; onContinue: () => void };
 
@@ -19,6 +20,7 @@ export function BotsScreen({ onOpenBot, onContinue }: Props) {
   const { progress } = useProgress();
   const { bots } = useContent();
   const { t } = useI18n();
+  const { gridStyle, cardStyle } = useWideGrid();
   // Partida sin terminar (en este dispositivo o venida de otro con la sincronización); solo si el bot sigue existiendo.
   const ongoingBot = progress.ongoingGame && bots.find((b) => b.id === progress.ongoingGame?.botId);
   return (
@@ -40,34 +42,40 @@ export function BotsScreen({ onOpenBot, onContinue }: Props) {
         </View>
       )}
 
-      {bots.map((bot) => {
-        const r = recordAgainst(progress, bot.id);
-        const played = r.wins + r.losses + r.draws;
-        return (
-          <Pressable
-            key={bot.id}
-            onPress={() => onOpenBot(bot)}
-            accessibilityRole="button"
-            accessibilityLabel={t('bots.cardLabel', { name: bot.name, tagline: bot.tagline, elo: bot.elo })}
-            style={({ pressed }) => [styles.card, pressed && { transform: [{ translateY: 2 }], borderBottomWidth: 2 }]}
-          >
-            <BotAvatar bot={bot} />
-            <View style={{ flex: 1 }}>
-              <Text style={styles.name}>
-                {bot.name} <Text style={styles.tagline}>· {bot.tagline}</Text>
-              </Text>
-              <Text style={styles.trait} numberOfLines={2}>
-                {bot.trait}
-              </Text>
-              <View style={styles.chips}>
-                <Chip label={t('common.level', { n: bot.elo })} />
-                <Chip label={t(`botStyle.${bot.style}`)} />
-                {played > 0 && <Chip label={t('bots.record', { wins: r.wins, played })} />}
+      <View style={gridStyle}>
+        {bots.map((bot) => {
+          const r = recordAgainst(progress, bot.id);
+          const played = r.wins + r.losses + r.draws;
+          return (
+            <Pressable
+              key={bot.id}
+              onPress={() => onOpenBot(bot)}
+              accessibilityRole="button"
+              accessibilityLabel={t('bots.cardLabel', { name: bot.name, tagline: bot.tagline, elo: bot.elo })}
+              style={({ pressed }) => [
+                styles.card,
+                cardStyle,
+                pressed && { transform: [{ translateY: 2 }], borderBottomWidth: 2 },
+              ]}
+            >
+              <BotAvatar bot={bot} />
+              <View style={{ flex: 1 }}>
+                <Text style={styles.name}>
+                  {bot.name} <Text style={styles.tagline}>· {bot.tagline}</Text>
+                </Text>
+                <Text style={styles.trait} numberOfLines={2}>
+                  {bot.trait}
+                </Text>
+                <View style={styles.chips}>
+                  <Chip label={t('common.level', { n: bot.elo })} />
+                  <Chip label={t(`botStyle.${bot.style}`)} />
+                  {played > 0 && <Chip label={t('bots.record', { wins: r.wins, played })} />}
+                </View>
               </View>
-            </View>
-          </Pressable>
-        );
-      })}
+            </Pressable>
+          );
+        })}
+      </View>
     </ColumnScrollView>
   );
 }

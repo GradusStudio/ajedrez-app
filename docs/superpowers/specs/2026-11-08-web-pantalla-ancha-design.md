@@ -121,3 +121,4 @@ Cada etapa termina en un commit, probada en el navegador a 1440 × 900, 1280 × 
 - `wideContentWidth` y `homeWideColumns` tienen pruebas puras; `tsc`, lint y `npm test` pasan.
 - En el celular y en ventanas angostas no cambia nada.
 - Corrección 13-11-2026: la barra pasó del borde de la columna al borde derecho de la pantalla; los anchos quedan en 560/624/640 y se reservan 20 px.
+- Corrección 2 (13-11-2026): el panel derecho pasó de una capa superpuesta a una columna `position: 'sticky'` dentro del scroll de la ruta; así la rueda del mouse sobre el panel también desplaza la página. Sigue fijo arriba, con el alto de la ventana como máximo.

@@ -95,7 +95,7 @@ Descartado: la ruta tiene 12 lecciones por unidad; el próximo paso y la racha s
   - Si `columns` existe, se renderiza:
     - Un `ScrollView` a todo el ancho de la pantalla, con su contenido centrado en una fila de `columns.total` y `gap: columns.gap`; la barra de desplazamiento queda contra el borde derecho de la pantalla.
     - Dentro de esa fila, la ruta ocupa `columns.route` con `paddingTop: statusBarTop(space.md)`, `paddingHorizontal: space.lg` y `paddingBottom: space.xxl`; adentro van `RecoveryCard` si corresponde y `UnitPath`. A la derecha se reserva un espacio de `columns.panel` para que la ruta no quede debajo del panel.
-    - El panel derecho de ancho `columns.panel` es una capa fija (`position: 'absolute'`, `pointerEvents="box-none"`) alineada con la fila, con `paddingRight: HOME_SCROLLBAR` para dejar libre la barra. No se mueve con el scroll de la ruta; si el alto o el tamaño de letra no alcanza, se desplaza por dentro. Contiene dos tarjetas:
+    - El panel derecho de ancho `columns.panel` es una columna más de la fila con `position: 'sticky'` y `alignSelf: 'flex-start'`: queda pegado arriba mientras la ruta se desplaza, pero vive dentro del mismo scroll, así la rueda sobre el panel también desplaza la página. Su alto máximo es el de la ventana; si el tamaño de letra no alcanza, se desplaza por dentro y al llegar al final sigue la página. Contiene dos tarjetas:
       1. **Próximo paso:** el mismo texto de `home.lessonCaption` con la lección sugerida y un `Button3D` primario con `common.continue` o `common.start`, que llama a `startLesson(suggested)`. Si no hay `suggested`, no se muestra.
       2. **Racha y monedas:** la misma fila de hoy (dos `StatIcon` con el número en dorado), dentro de una tarjeta. Se mantienen los `accessibilityLabel` `home.streakLabel` y `common.coinsLabel`.
     - `UnitMenu` queda en la raíz de la pantalla, como hoy.
@@ -182,6 +182,6 @@ Ninguna. La meta diaria quedó fuera de alcance por decisión del 12-11-2026 (op
 ## 11. Corrección (13-11-2026)
 
 - La barra de desplazamiento de Aprender pasó del borde de la columna de la ruta al borde derecho de la pantalla.
-- El scroll de la ruta ocupa todo el ancho; el panel sigue fijo en una capa superpuesta con `pointerEvents="box-none"`.
 - Se reservan `HOME_SCROLLBAR = 20` px a la derecha y se ajustan los anchos: 560 px de ruta a 960, 624 a 1024 y 640 desde 1200. La fila mide 864, 928 y 944, respectivamente.
 - El caso de 960 sigue sin desborde horizontal y ahora deja 20 px para la barra; el panel queda a 20 px del borde derecho.
+- Corrección 2 (13-11-2026): el panel estaba en una capa absoluta superpuesta y su `ScrollView` se quedaba con la rueda del mouse; con el puntero sobre la columna, la página no se desplazaba. Ahora el panel es una columna `position: 'sticky'` dentro del scroll de la ruta: sigue pegado arriba, la rueda sobre el panel desplaza la página y, si el panel necesita desplazarse por dentro, lo hace primero y después continúa la página. Comprobado en el navegador a 1280×800, 1024×650 y 960×650, y a 375 px sin cambios en el celular.

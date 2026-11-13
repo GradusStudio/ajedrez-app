@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { showDialog } from '../components/dialog';
-import { Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View, ViewStyle } from 'react-native';
 import { ColumnScrollView, useColumnWidth } from '../components/ColumnScrollView';
 import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
@@ -18,7 +18,7 @@ import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useWideLayout } from '../components/useWideLayout';
 import { wideContentWidth } from '../components/wideLayout';
-import { HOME_SCROLLBAR, homeWideColumns } from '../components/wideHome';
+import { homeWideColumns } from '../components/wideHome';
 
 type Props = {
   onStartLesson: (lesson: Lesson) => void;
@@ -27,6 +27,11 @@ type Props = {
 // Alto de cada fila de la ruta (nodo con su anillo + título) y desplazamiento en zigzag.
 const ROW = 150; // deja lugar a títulos de hasta 3 renglones
 const ZIGZAG = [0, 56, 0, -56];
+
+// La columna derecha de Aprender se queda arriba mientras la ruta se desplaza. `sticky` es de la
+// web y no está en los tipos de React Native; esta rama solo se renderiza en la web ancha.
+// `alignSelf: flex-start` evita que la columna se estire al alto de la fila (si no, no se pega).
+const stickyTop = { position: 'sticky', top: 0, alignSelf: 'flex-start' } as unknown as ViewStyle;
 
 // Pestaña Aprender: barra de racha y monedas, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
 export function HomeScreen({ onStartLesson }: Props) {
@@ -67,7 +72,7 @@ export function HomeScreen({ onStartLesson }: Props) {
     : null;
 
   const wide = useWideLayout();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const columns = wide ? homeWideColumns(wideContentWidth(width)) : null;
 
   const unitMenu = (
@@ -91,15 +96,10 @@ export function HomeScreen({ onStartLesson }: Props) {
               {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
               <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
             </View>
-            <View style={{ width: columns.panel }} />
-          </View>
-        </ScrollView>
-
-        <View style={styles.wideOverlay} pointerEvents="box-none">
-          <View style={[styles.wideOverlayRow, { width: columns.total, gap: columns.gap }]} pointerEvents="box-none">
-            <View style={{ width: columns.route }} pointerEvents="none" />
+            {/* El panel es una columna más de la fila, pegada arriba: la rueda sobre él sigue
+                desplazando la página (antes, una capa superpuesta se quedaba con el scroll). */}
             <ScrollView
-              style={{ width: columns.panel }}
+              style={[stickyTop, { width: columns.panel, maxHeight: height }]}
               contentContainerStyle={[styles.widePanelContent, { paddingTop: statusBarTop(space.md) }]}
             >
               {suggested && (
@@ -127,7 +127,7 @@ export function HomeScreen({ onStartLesson }: Props) {
               </View>
             </ScrollView>
           </View>
-        </View>
+        </ScrollView>
 
         {unitMenu}
       </View>
@@ -328,8 +328,6 @@ const styles = StyleSheet.create({
   wideScroll: { flex: 1 },
   wideScrollContent: { width: '100%', alignItems: 'center' },
   wideContentRow: { flexDirection: 'row' },
-  wideOverlay: { position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, alignItems: 'center', paddingRight: HOME_SCROLLBAR },
-  wideOverlayRow: { flex: 1, flexDirection: 'row' },
   wideRouteContent: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   widePanelContent: { gap: space.md, paddingBottom: space.lg },
   panelCard: {

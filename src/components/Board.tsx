@@ -251,7 +251,9 @@ function SquareBadge({ badge, sq, orientation }: { badge: { square: string; colo
         zIndex: 15,
       }}
     >
-      <Text style={{ color: '#FFFFFF', fontWeight: '900', fontSize: size * 0.5 }}>{badge.label}</Text>
+      <Text selectable={false} style={{ color: '#FFFFFF', fontWeight: '900', fontSize: size * 0.5 }}>
+        {badge.label}
+      </Text>
     </View>
   );
 }
@@ -589,10 +591,14 @@ export function Board({
           {mate?.escapes.includes(square) && <FadeSquare key={`esc-${anim.id}`} color={boardHighlight.mateEscape} still={reduced} />}
 
           {c === 0 && (
-            <Text style={[styles.rank, { color: labelColor, fontSize: Math.max(9, sq * 0.2) }]}>{8 - br}</Text>
+            <Text selectable={false} style={[styles.rank, { color: labelColor, fontSize: Math.max(9, sq * 0.2) }]}>
+              {8 - br}
+            </Text>
           )}
           {r === 7 && (
-            <Text style={[styles.file, { color: labelColor, fontSize: Math.max(9, sq * 0.2) }]}>{FILES[bc]}</Text>
+            <Text selectable={false} style={[styles.file, { color: labelColor, fontSize: Math.max(9, sq * 0.2) }]}>
+              {FILES[bc]}
+            </Text>
           )}
 
           {captured && captured.cell === `${br}${bc}` && (

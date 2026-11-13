@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Tabs } from 'expo-router/js-tabs';
 import { colors, fonts, radius, space } from '../theme';
+import { SIDEBAR_ICON_WIDTH, SIDEBAR_WIDTH } from './wideLayout';
 
 type TabBarProps = Parameters<NonNullable<React.ComponentProps<typeof Tabs>['tabBar']>>[0];
 
@@ -69,8 +70,8 @@ const styles = StyleSheet.create({
     paddingTop: space.xl,
     paddingHorizontal: space.md,
   },
-  sideWide: { width: 232 },
-  sideCompact: { width: 76, paddingHorizontal: space.sm },
+  sideWide: { width: SIDEBAR_WIDTH },
+  sideCompact: { width: SIDEBAR_ICON_WIDTH, paddingHorizontal: space.sm },
   brand: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: space.sm, marginBottom: space.xl },
   brandCompact: { justifyContent: 'center', paddingHorizontal: 0 },
   logo: { width: 36, height: 36, borderRadius: 10 },

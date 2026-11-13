@@ -116,7 +116,8 @@ Cada etapa termina en un commit, probada en el navegador a 1440 × 900, 1280 × 
 ## 11. Etapa 3, hecha (12-11-2026)
 
 - Bots y Aperturas usan `WideListColumn` de 960 px y una grilla de dos columnas; el patrón vive en `useWideGrid` y lo comparten seis pantallas: Créditos, Piezas, Tableros, historial de bots, Bots y Aperturas.
-- Aprender usa una fila centrada: ruta con scroll propio (580 px a 960 de ventana, 640 desde 1024) y panel fijo de 280 px con próximo paso, racha y monedas. La tarjeta flotante no se muestra en ancho.
-- La barra de desplazamiento de la ruta queda entre la ruta y el panel.
+- Aprender usa un scroll a todo el ancho con una fila centrada: ruta con scroll propio (560 px a 960, 624 a 1024, 640 desde 1200) y panel fijo de 280 px con próximo paso, racha y monedas. La tarjeta flotante no se muestra en ancho.
+- La barra de desplazamiento de la ruta queda contra el borde derecho de la pantalla; se reservan 20 px (`HOME_SCROLLBAR`) a la derecha y el panel queda antes de la barra.
 - `wideContentWidth` y `homeWideColumns` tienen pruebas puras; `tsc`, lint y `npm test` pasan.
 - En el celular y en ventanas angostas no cambia nada.
+- Corrección 13-11-2026: la barra pasó del borde de la columna al borde derecho de la pantalla; los anchos quedan en 560/624/640 y se reservan 20 px.

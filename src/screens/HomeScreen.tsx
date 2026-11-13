@@ -18,7 +18,7 @@ import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useWideLayout } from '../components/useWideLayout';
 import { wideContentWidth } from '../components/wideLayout';
-import { homeWideColumns } from '../components/wideHome';
+import { HOME_SCROLLBAR, homeWideColumns } from '../components/wideHome';
 
 type Props = {
   onStartLesson: (lesson: Lesson) => void;
@@ -85,44 +85,50 @@ export function HomeScreen({ onStartLesson }: Props) {
   if (columns) {
     return (
       <View style={styles.screen}>
-        <View style={[styles.wideRow, { width: columns.total, gap: columns.gap }]}>
-          <ScrollView
-            style={{ width: columns.route }}
-            contentContainerStyle={[styles.wideRouteContent, { paddingTop: statusBarTop(space.md) }]}
-          >
-            {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
-            <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
-          </ScrollView>
-
-          <ScrollView
-            style={{ width: columns.panel }}
-            contentContainerStyle={[styles.widePanelContent, { paddingTop: statusBarTop(space.md) }]}
-          >
-            {suggested && (
-              <View style={styles.panelCard}>
-                <Text style={styles.panelCaption} numberOfLines={2}>
-                  {t('home.lessonCaption', { order: suggested.order, title: suggested.title })}
-                </Text>
-                <Button3D
-                  label={progress.drafts[suggested.id] ? t('common.continue') : t('common.start')}
-                  variant="primary"
-                  onPress={() => startLesson(suggested)}
-                  style={{ marginTop: space.sm }}
-                />
-              </View>
-            )}
-            <View style={[styles.panelCard, styles.panelStats]}>
-              <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
-                <StatIcon name="streak" />
-                <Text style={styles.statText}>{streak}</Text>
-              </View>
-              <View style={styles.stat} accessibilityLabel={t('common.coinsLabel', { n: progress.coins })}>
-                <StatIcon name="coin" />
-                <Text style={styles.statText}>{progress.coins}</Text>
-              </View>
+        <ScrollView style={styles.wideScroll} contentContainerStyle={styles.wideScrollContent}>
+          <View style={[styles.wideContentRow, { width: columns.total, gap: columns.gap }]}>
+            <View style={[styles.wideRouteContent, { width: columns.route, paddingTop: statusBarTop(space.md) }]}>
+              {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
+              <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
             </View>
-          </ScrollView>
+            <View style={{ width: columns.panel }} />
+          </View>
+        </ScrollView>
+
+        <View style={styles.wideOverlay} pointerEvents="box-none">
+          <View style={[styles.wideOverlayRow, { width: columns.total, gap: columns.gap }]} pointerEvents="box-none">
+            <View style={{ width: columns.route }} pointerEvents="none" />
+            <ScrollView
+              style={{ width: columns.panel }}
+              contentContainerStyle={[styles.widePanelContent, { paddingTop: statusBarTop(space.md) }]}
+            >
+              {suggested && (
+                <View style={styles.panelCard}>
+                  <Text style={styles.panelCaption} numberOfLines={2}>
+                    {t('home.lessonCaption', { order: suggested.order, title: suggested.title })}
+                  </Text>
+                  <Button3D
+                    label={progress.drafts[suggested.id] ? t('common.continue') : t('common.start')}
+                    variant="primary"
+                    onPress={() => startLesson(suggested)}
+                    style={{ marginTop: space.sm }}
+                  />
+                </View>
+              )}
+              <View style={[styles.panelCard, styles.panelStats]}>
+                <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
+                  <StatIcon name="streak" />
+                  <Text style={styles.statText}>{streak}</Text>
+                </View>
+                <View style={styles.stat} accessibilityLabel={t('common.coinsLabel', { n: progress.coins })}>
+                  <StatIcon name="coin" />
+                  <Text style={styles.statText}>{progress.coins}</Text>
+                </View>
+              </View>
+            </ScrollView>
+          </View>
         </View>
+
         {unitMenu}
       </View>
     );
@@ -319,7 +325,11 @@ function UnitPath({
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg },
-  wideRow: { flex: 1, flexDirection: 'row', alignSelf: 'center' },
+  wideScroll: { flex: 1 },
+  wideScrollContent: { width: '100%', alignItems: 'center' },
+  wideContentRow: { flexDirection: 'row' },
+  wideOverlay: { position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, alignItems: 'center', paddingRight: HOME_SCROLLBAR },
+  wideOverlayRow: { flex: 1, flexDirection: 'row' },
   wideRouteContent: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   widePanelContent: { gap: space.md, paddingBottom: space.lg },
   panelCard: {

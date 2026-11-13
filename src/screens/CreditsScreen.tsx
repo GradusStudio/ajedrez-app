@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
-import { useWideLayout } from '../components/useWideLayout';
+import { useWideGrid } from '../components/useWideGrid';
 import { AppLink } from '../components/AppLink';
 import { useI18n } from '../i18n/I18nContext';
 import { SOURCE_URL } from '../links';
@@ -80,7 +80,7 @@ const credits = (t: Translate): Credit[] => [
 // Créditos y licencias (mapa-de-pantallas.md, 2.13). Obligatoria para cumplir la GPL de Stockfish y de Maia.
 export function CreditsScreen({ onBack }: { onBack: () => void }) {
   const { t } = useI18n();
-  const wide = useWideLayout();
+  const { gridStyle, cardStyle } = useWideGrid();
   return (
     <ColumnScrollView
       style={styles.screen}
@@ -95,9 +95,9 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
       {PRIVACY_PAGE_AVAILABLE && <AppLink href="/privacidad" style={styles.privacyLink}>{t('privacy.link')}</AppLink>}
       {PRIVACY_PAGE_AVAILABLE && <AppLink href="/terminos" style={styles.privacyLink}>{t('terms.link')}</AppLink>}
 
-      <View style={wide ? styles.grid : undefined}>
+      <View style={gridStyle}>
         {credits(t).map((c) => (
-          <View key={c.name} style={[styles.card, wide && styles.cardWide]}>
+          <View key={c.name} style={[styles.card, cardStyle]}>
           <Text style={styles.name}>{c.name}</Text>
           <Text style={styles.license}>{c.license}</Text>
           <Text style={styles.what}>{c.what}</Text>
@@ -115,8 +115,6 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: space.md },
-  cardWide: { width: '48%', marginBottom: 0 },
   back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },

@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { BotAvatar } from '../components/BotAvatar';
 import { statusBarTop } from '../components/statusBarTop';
-import { useWideLayout } from '../components/useWideLayout';
+import { useWideGrid } from '../components/useWideGrid';
 import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
@@ -17,7 +17,7 @@ export function BotGamesScreen({ onBack, onOpenBot }: Props) {
   const { progress } = useProgress();
   const { bots } = useContent();
   const { t } = useI18n();
-  const wide = useWideLayout();
+  const { gridStyle, cardStyle } = useWideGrid();
   const played = bots
     .map((bot) => ({ bot, record: recordAgainst(progress, bot.id) }))
     .filter(({ record }) => record.wins + record.losses + record.draws > 0);
@@ -36,7 +36,7 @@ export function BotGamesScreen({ onBack, onOpenBot }: Props) {
       {played.length === 0 ? (
         <Text style={styles.empty}>{t('profile.noBotGames')}</Text>
       ) : (
-        <View style={wide ? styles.grid : undefined}>
+        <View style={gridStyle}>
           {played.map(({ bot, record }) => {
             const text = record.draws
               ? t('profile.recordDraws', { wins: record.wins, losses: record.losses, draws: record.draws })
@@ -47,7 +47,7 @@ export function BotGamesScreen({ onBack, onOpenBot }: Props) {
                 onPress={() => onOpenBot(bot.id)}
                 accessibilityRole="button"
                 accessibilityLabel={`${bot.name}, ${text}`}
-                style={({ pressed }) => [styles.card, wide && styles.cardWide, pressed && styles.cardPressed]}
+                style={({ pressed }) => [styles.card, cardStyle, pressed && styles.cardPressed]}
               >
                 <BotAvatar bot={bot} />
                 <View style={{ flex: 1 }}>
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
   empty: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
-  grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: space.md },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -86,7 +85,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     marginBottom: space.sm,
   },
-  cardWide: { width: '48%', marginBottom: 0 },
   cardPressed: { transform: [{ translateY: 2 }], borderBottomWidth: 2 },
   name: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
   record: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: 2 },

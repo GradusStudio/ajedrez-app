@@ -10,6 +10,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
+import { useWideGrid } from '../components/useWideGrid';
 
 type Props = { onOpenCourse: (course: OpeningCourse) => void };
 
@@ -19,6 +20,7 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
   const { progress } = useProgress();
   const { openings } = useContent();
   const { t } = useI18n();
+  const { gridStyle, cardStyle } = useWideGrid();
   const [color, setColor] = useState<'w' | 'b'>('w');
   const list = openings.filter((o) => o.color === color);
 
@@ -50,34 +52,40 @@ export function OpeningsScreen({ onOpenCourse }: Props) {
         })}
       </View>
 
-      {list.map((course) => {
-        const done = course.lessons.filter((l) => progress.lessons[l.id]).length;
-        return (
-          <Pressable
-            key={course.id}
-            onPress={() => onOpenCourse(course)}
-            accessibilityRole="button"
-            accessibilityLabel={t('openings.cardLabel', { name: course.name, done, total: course.lessons.length })}
-            style={({ pressed }) => [styles.card, pressed && { transform: [{ translateY: 2 }], borderBottomWidth: 2 }]}
-          >
-            <Text style={styles.cardTitle}>{course.name}</Text>
-            <Text style={styles.cardSummary} numberOfLines={2}>
-              {course.summary}
-            </Text>
-            <View style={styles.progressRow}>
-              <ProgressBar value={done / course.lessons.length} />
-              <Text style={styles.count}>
-                {done}/{course.lessons.length}
+      <View style={gridStyle}>
+        {list.map((course) => {
+          const done = course.lessons.filter((l) => progress.lessons[l.id]).length;
+          return (
+            <Pressable
+              key={course.id}
+              onPress={() => onOpenCourse(course)}
+              accessibilityRole="button"
+              accessibilityLabel={t('openings.cardLabel', { name: course.name, done, total: course.lessons.length })}
+              style={({ pressed }) => [
+                styles.card,
+                cardStyle,
+                pressed && { transform: [{ translateY: 2 }], borderBottomWidth: 2 },
+              ]}
+            >
+              <Text style={styles.cardTitle}>{course.name}</Text>
+              <Text style={styles.cardSummary} numberOfLines={2}>
+                {course.summary}
               </Text>
-            </View>
-            <View style={styles.chips}>
-              {course.botStyles.map((s) => (
-                <Chip key={s} label={t('openings.botChip', { style: t(`botStyle.${s as BotStyle}`) })} />
-              ))}
-            </View>
-          </Pressable>
-        );
-      })}
+              <View style={styles.progressRow}>
+                <ProgressBar value={done / course.lessons.length} />
+                <Text style={styles.count}>
+                  {done}/{course.lessons.length}
+                </Text>
+              </View>
+              <View style={styles.chips}>
+                {course.botStyles.map((s) => (
+                  <Chip key={s} label={t('openings.botChip', { style: t(`botStyle.${s as BotStyle}`) })} />
+                ))}
+              </View>
+            </Pressable>
+          );
+        })}
+      </View>
 
       <View style={styles.guide}>
         <Text style={styles.guideTitle}>{t('openings.guide.title')}</Text>

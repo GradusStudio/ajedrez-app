@@ -111,4 +111,12 @@ Cada etapa termina en un commit, probada en el navegador a 1440 × 900, 1280 × 
 - Ajustes usa la columna de 640 px de las pestañas (`WideListColumn`).
 - Créditos, Piezas y Tableros usan una columna de 960 px (`WIDE_GRID_COLUMN`) y una grilla de 2 columnas para las tarjetas.
 - En el celular y en ventanas angostas no cambia nada.
-- Sigue pendiente de la etapa 3: grillas en Bots y Aperturas, y la columna derecha de Aprender.
+- Etapa 3 completada el 12-11-2026: ver la sección 11.
+
+## 11. Etapa 3, hecha (12-11-2026)
+
+- Bots y Aperturas usan `WideListColumn` de 960 px y una grilla de dos columnas; el patrón vive en `useWideGrid` y lo comparten seis pantallas: Créditos, Piezas, Tableros, historial de bots, Bots y Aperturas.
+- Aprender usa una fila centrada: ruta con scroll propio (580 px a 960 de ventana, 640 desde 1024) y panel fijo de 280 px con próximo paso, racha y monedas. La tarjeta flotante no se muestra en ancho.
+- La barra de desplazamiento de la ruta queda entre la ruta y el panel.
+- `wideContentWidth` y `homeWideColumns` tienen pruebas puras; `tsc`, lint y `npm test` pasan.
+- En el celular y en ventanas angostas no cambia nada.

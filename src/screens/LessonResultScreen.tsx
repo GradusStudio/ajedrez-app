@@ -1,8 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
-import { StatIcon } from '../components/StatIcon';
+import { CountUp } from '../components/CountUp';
+import { COIN_EDGE, StatIcon } from '../components/StatIcon';
+import { useReducedMotion } from '../components/useReducedMotion';
 import { Bot } from '../data/bots';
 import { useI18n } from '../i18n/I18nContext';
 import { BubbleRow } from '../lesson/TeacherBubble';
@@ -36,6 +38,32 @@ type Props = {
 
 export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer, installOffer, extra }: Props) {
   const { t, tn } = useI18n();
+  const reduced = useReducedMotion();
+  const perfect = mode === 'lesson' && errors === 0;
+  // La tarjeta de monedas late una vez en una lección perfecta y la llama se enciende al mostrar la racha.
+  const [celebrate] = useState(() => new Animated.Value(1));
+  const [ignite] = useState(() => new Animated.Value(streak > 0 ? 0.6 : 1));
+
+  useEffect(() => {
+    if (!perfect || reduced) return;
+    const pulse = Animated.sequence([
+      Animated.timing(celebrate, { toValue: 1.07, duration: 240, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+      Animated.timing(celebrate, { toValue: 1, duration: 300, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+    ]);
+    pulse.start();
+    return () => pulse.stop();
+  }, [perfect, reduced, celebrate]);
+
+  useEffect(() => {
+    if (reduced) {
+      ignite.setValue(1);
+      return;
+    }
+    if (streak > 0) {
+      Animated.spring(ignite, { toValue: 1, friction: 5, tension: 80, useNativeDriver: true }).start();
+    }
+  }, [streak, reduced, ignite]);
+
   return (
     // Con scroll: en un teléfono chico con letra grande, «Continuar» no puede quedar afuera.
     <ColumnScrollView
@@ -52,14 +80,16 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
       )}
 
       <View style={styles.row}>
-        <View style={styles.stat}>
+        <Animated.View style={[styles.stat, styles.coinStat, { transform: [{ scale: celebrate }] }]}>
           <StatIcon name="coin" size={22} />
-          <Text style={[styles.statValue, { color: colors.gold }]}>+{coinsEarned}</Text>
+          <Text style={[styles.statValue, { color: colors.gold }]}>+<CountUp value={coinsEarned} /></Text>
           <Text style={styles.statLabel}>{tn('lessonResult.coin', coinsEarned)}</Text>
-        </View>
+        </Animated.View>
         <View style={styles.stat}>
-          <StatIcon name="streak" size={22} />
-          <Text style={[styles.statValue, { color: colors.gold }]}>{streak}</Text>
+          <Animated.View style={{ transform: [{ scale: ignite }] }}>
+            <StatIcon name="streak" size={22} />
+          </Animated.View>
+          <Text style={[styles.statValue, { color: colors.gold }]}><CountUp value={streak} /></Text>
           <Text style={styles.statLabel}>{tn('lessonResult.streakDay', streak)}</Text>
         </View>
         <View style={styles.stat}>
@@ -125,6 +155,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: space.lg,
     paddingHorizontal: space.xs,
+  },
+  // Monedas como protagonista: borde dorado, con el canto 3D del color del canto de la moneda (StatIcon).
+  coinStat: {
+    borderColor: colors.gold,
+    borderBottomColor: COIN_EDGE,
   },
   statValue: { fontFamily: fonts.extrabold, fontSize: 30, color: colors.text, marginTop: space.xs },
   statLabel: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: 2, textAlign: 'center' },

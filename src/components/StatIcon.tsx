@@ -5,7 +5,7 @@ import { colors } from '../theme';
 type Props = { name: 'streak' | 'coin'; size?: number; color?: string };
 
 // Borde y brillo de la moneda, sobre el dorado de `gold`.
-const COIN_EDGE = '#B8901C';
+export const COIN_EDGE = '#B8901C';
 
 // Íconos de racha (llama) y monedas, en `gold` (mapa-de-pantallas.md, sección 6).
 export function StatIcon({ name, size = 18, color = colors.gold }: Props) {

@@ -74,10 +74,10 @@
 ## Hitos
 1. Reproductor de lecciones: HECHO.
 2. Guardar progreso + 6 pestañas + ruta de Aprender, racha, meta diaria y repaso de errores: HECHO (probado en el celular).
-3. Paso `line` (aperturas guiadas y drill, con explicación antes de cada jugada) + pestaña Aperturas con los 28 cursos: HECHO (ver LEEME-hito3.md).
-4. Bots con Stockfish (pestaña Bots, ficha, partida, práctica de aperturas): HECHO (probado en el celular; ver LEEME-hito4.md). Niveles de Pipo a Valentina recalibrados midiendo partidas entre bots vecinos (docs/bots.md, "Calibración"). Desde el 2-11-2026 juegan con Maia, recalibrados contra los bots anteriores (docs/maia.md); falta probarlos en el celular.
-5. Puzzles: 50.000 (al principio 10.000) de la base abierta de Lichess (CC0), puzzle del día y práctica por nivel y tema: HECHO (probado en el celular; ver LEEME-hito5.md y docs/puzzles.md).
-6. Perfil, Ajustes, Créditos, bienvenida, sonidos, vibración, recordatorio diario, 5 temas de tablero y animación de jugadas: HECHO (probado en el celular; ver LEEME-hito6.md). Después: arrastrar piezas, transiciones, selector de coronación y análisis en vivo.
+3. Paso `line` (aperturas guiadas y drill, con explicación antes de cada jugada) + pestaña Aperturas con los 28 cursos: HECHO.
+4. Bots con Stockfish (pestaña Bots, ficha, partida, práctica de aperturas): HECHO (probado en el celular). Niveles de Pipo a Valentina recalibrados midiendo partidas entre bots vecinos (docs/bots.md, "Calibración"). Desde el 2-11-2026 juegan con Maia, recalibrados contra los bots anteriores (docs/maia.md); falta probarlos en el celular.
+5. Puzzles: 50.000 (al principio 10.000) de la base abierta de Lichess (CC0), puzzle del día y práctica por nivel y tema: HECHO (probado en el celular; ver docs/puzzles.md).
+6. Perfil, Ajustes, Créditos, bienvenida, sonidos, vibración, recordatorio diario, 5 temas de tablero y animación de jugadas: HECHO (probado en el celular). Después: arrastrar piezas, transiciones, selector de coronación y análisis en vivo.
 7. **Cambio del 7-11-2026:** Gradus no se publica en Google Play (la ficha muestra el nombre legal del desarrollador): se publica como app web instalable en `graduschess.com` (ver «Versión web» arriba, `docs/web/publicar-en-cloudflare.md` y `docs/superpowers/specs/2026-11-07-version-web-design.md`). Lo que sigue es el plan anterior, ya no vigente: 7. Prueba cerrada en Google Play (12 testers, 14 días). Preparado el 3-11-2026: `eas.json` con perfil de producción (`.aab`) y envío a pista interna, `expo-asset` instalado, paquetes alineados, política de privacidad y lista de pasos en `docs/tienda/` (`lanzamiento.md`). Falta: cuenta de Play Console, correo de contacto, URL de la política, gráfico de funciones y capturas, y probar el APK `preview` (ya armado, ver «Pendientes y avisos») fuera de Expo Go.
 
 ## Pendientes y avisos

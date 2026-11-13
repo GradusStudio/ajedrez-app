@@ -5,7 +5,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { boardThemePrice, isBoardThemeOwned } from '../pieces/shop';
 import { useProgress } from '../progress/ProgressContext';
 import { useSettings } from '../settings/SettingsContext';
-import { useWideLayout } from './useWideLayout';
+import { useWideGrid } from './useWideGrid';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { BoardThemeId, boardThemes, colors, fonts, radius, space } from '../theme';
 import { SquareTexture } from './SquareTexture';
@@ -19,7 +19,7 @@ const CELL = 36;
  */
 export function BoardThemePicker() {
   const { t } = useI18n();
-  const wide = useWideLayout();
+  const { gridStyle, cardStyle } = useWideGrid();
   const { update } = useSettings();
   const { progress, buyBoardTheme } = useProgress();
   const inUse = useBoardTheme();
@@ -38,7 +38,7 @@ export function BoardThemePicker() {
   };
 
   return (
-    <View style={wide ? styles.grid : undefined}>
+    <View style={gridStyle}>
       {(Object.keys(boardThemes) as BoardThemeId[]).map((id) => {
         const theme = boardThemes[id];
         const selected = id === inUse;
@@ -52,7 +52,7 @@ export function BoardThemePicker() {
             accessibilityRole="radio"
             accessibilityState={{ selected }}
             accessibilityLabel={owned ? t('settings.boardThemeLabel', { name }) : t('settings.boardThemeLabelPriced', { name, price })}
-            style={[styles.card, wide && styles.cardWide, selected && styles.cardSelected]}
+            style={[styles.card, cardStyle, selected && styles.cardSelected]}
           >
             <View style={styles.header}>
               <Text style={styles.name}>{name}</Text>
@@ -93,8 +93,6 @@ const styles = StyleSheet.create({
     marginBottom: space.md,
   },
   cardSelected: { borderColor: colors.primary, borderBottomColor: colors.primaryShadow },
-  grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: space.md },
-  cardWide: { width: '48%', marginBottom: 0 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: space.sm },
   name: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text },
   check: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary },

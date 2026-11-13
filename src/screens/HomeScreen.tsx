@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { showDialog } from '../components/dialog';
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { ColumnScrollView, useColumnWidth } from '../components/ColumnScrollView';
 import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
@@ -16,6 +16,9 @@ import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
+import { useWideLayout } from '../components/useWideLayout';
+import { wideContentWidth } from '../components/wideLayout';
+import { homeWideColumns } from '../components/wideHome';
 
 type Props = {
   onStartLesson: (lesson: Lesson) => void;
@@ -63,6 +66,68 @@ export function HomeScreen({ onStartLesson }: Props) {
     ? { left: '50%' as const, right: undefined, width: column - space.lg * 2, marginLeft: -(column - space.lg * 2) / 2 }
     : null;
 
+  const wide = useWideLayout();
+  const { width } = useWindowDimensions();
+  const columns = wide ? homeWideColumns(wideContentWidth(width)) : null;
+
+  const unitMenu = (
+    <UnitMenu
+      visible={menuOpen}
+      selected={unit.unit}
+      onSelect={(n) => {
+        setChosen(n);
+        setMenuOpen(false);
+      }}
+      onClose={() => setMenuOpen(false)}
+    />
+  );
+
+  if (columns) {
+    return (
+      <View style={styles.screen}>
+        <View style={[styles.wideRow, { width: columns.total, gap: columns.gap }]}>
+          <ScrollView
+            style={{ width: columns.route }}
+            contentContainerStyle={[styles.wideRouteContent, { paddingTop: statusBarTop(space.md) }]}
+          >
+            {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
+            <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
+          </ScrollView>
+
+          <ScrollView
+            style={{ width: columns.panel }}
+            contentContainerStyle={[styles.widePanelContent, { paddingTop: statusBarTop(space.md) }]}
+          >
+            {suggested && (
+              <View style={styles.panelCard}>
+                <Text style={styles.panelCaption} numberOfLines={2}>
+                  {t('home.lessonCaption', { order: suggested.order, title: suggested.title })}
+                </Text>
+                <Button3D
+                  label={progress.drafts[suggested.id] ? t('common.continue') : t('common.start')}
+                  variant="primary"
+                  onPress={() => startLesson(suggested)}
+                  style={{ marginTop: space.sm }}
+                />
+              </View>
+            )}
+            <View style={[styles.panelCard, styles.panelStats]}>
+              <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
+                <StatIcon name="streak" />
+                <Text style={styles.statText}>{streak}</Text>
+              </View>
+              <View style={styles.stat} accessibilityLabel={t('common.coinsLabel', { n: progress.coins })}>
+                <StatIcon name="coin" />
+                <Text style={styles.statText}>{progress.coins}</Text>
+              </View>
+            </View>
+          </ScrollView>
+        </View>
+        {unitMenu}
+      </View>
+    );
+  }
+
   return (
     <View style={styles.screen}>
       <ColumnScrollView
@@ -87,15 +152,7 @@ export function HomeScreen({ onStartLesson }: Props) {
         <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
       </ColumnScrollView>
 
-      <UnitMenu
-        visible={menuOpen}
-        selected={unit.unit}
-        onSelect={(n) => {
-          setChosen(n);
-          setMenuOpen(false);
-        }}
-        onClose={() => setMenuOpen(false)}
-      />
+      {unitMenu}
 
       {/* Botón flotante con la lección sugerida */}
       {suggested && (
@@ -262,6 +319,20 @@ function UnitPath({
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg },
+  wideRow: { flex: 1, flexDirection: 'row', alignSelf: 'center' },
+  wideRouteContent: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
+  widePanelContent: { gap: space.md, paddingBottom: space.lg },
+  panelCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.control,
+    borderWidth: 2,
+    borderColor: colors.surfaceRaised,
+    borderBottomWidth: 4,
+    borderBottomColor: colors.surfaceShadow,
+    padding: space.md,
+  },
+  panelCaption: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text },
+  panelStats: { flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' },
   statsRow: { flexDirection: 'row', gap: space.lg },
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   statText: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.gold },

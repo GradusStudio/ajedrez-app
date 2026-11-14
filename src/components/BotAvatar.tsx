@@ -21,11 +21,11 @@ const STYLE_COLOR: Record<BotStyle, { bg: string; edge: string }> = {
 const AVATARS: Record<string, { source: ImageSourcePropType; scale: number }> = {
   ada: { source: require('../../assets/bots/ada.webp'), scale: 0.89 },
   ivo: { source: require('../../assets/bots/ivo.webp'), scale: 1 },
-  sofia: { source: require('../../assets/bots/sofia.webp'), scale: 1 },
+  sofia: { source: require('../../assets/bots/sofia.webp'), scale: 0.93 },
   bruno: { source: require('../../assets/bots/bruno.webp'), scale: 1 },
   camila: { source: require('../../assets/bots/camila.webp'), scale: 1 },
   ramiro: { source: require('../../assets/bots/ramiro.webp'), scale: 1 },
-  valentina: { source: require('../../assets/bots/valentina.webp'), scale: 1 },
+  valentina: { source: require('../../assets/bots/valentina.webp'), scale: 0.95 },
   tomas: { source: require('../../assets/bots/tomas.webp'), scale: 1 },
   lola: { source: require('../../assets/bots/lola.webp'), scale: 1 },
   pipo: { source: require('../../assets/bots/pipo.webp'), scale: 1 },

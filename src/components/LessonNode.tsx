@@ -4,6 +4,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { NodeState } from '../progress/path';
 import { colors, fonts } from '../theme';
 import { Circle3D } from './Circle3D';
+import { useReducedMotion } from './useReducedMotion';
 
 export const NODE_SIZE = 64;
 const RING_GAP = 4; // espacio entre el nodo y el anillo de la lección actual
@@ -24,10 +25,14 @@ const LOOK: Record<NodeState, { bg: string; edge: string; text: string }> = {
 // Nodo circular de la ruta de lecciones, con canto 3D. El actual tiene anillo y late suavemente.
 export function LessonNode({ state, order, label, onPress }: Props) {
   const { t } = useI18n();
+  const reduced = useReducedMotion();
   const [pulse] = useState(() => new Animated.Value(1));
 
   useEffect(() => {
-    if (state !== 'current') return;
+    if (state !== 'current' || reduced) {
+      pulse.setValue(1);
+      return;
+    }
     const loop = Animated.loop(
       Animated.sequence([
         Animated.timing(pulse, { toValue: 1.08, duration: 700, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
@@ -36,7 +41,7 @@ export function LessonNode({ state, order, label, onPress }: Props) {
     );
     loop.start();
     return () => loop.stop();
-  }, [state, pulse]);
+  }, [state, reduced, pulse]);
 
   const look = LOOK[state];
   const status = t(`lessonNode.${state}`);

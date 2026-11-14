@@ -5,12 +5,15 @@ import { ColumnScrollView, useColumnWidth } from '../components/ColumnScrollView
 import Svg, { Line, Path } from 'react-native-svg';
 import { Button3D } from '../components/Button3D';
 import { LessonNode, NODE_BOX } from '../components/LessonNode';
+import { MiniBoard } from '../components/MiniBoard';
 import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
 import { Lesson, Unit } from '../data/lessonTypes';
+import progressGamesRaw from '../data/progressGames.json';
 import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { lessonStates, suggestedLesson } from '../progress/path';
+import { piecesFromFen, progressPosition, type ProgressGamesFile } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
@@ -27,6 +30,9 @@ type Props = {
 // Alto de cada fila de la ruta (nodo con su anillo + título) y desplazamiento en zigzag.
 const ROW = 150; // deja lugar a títulos de hasta 3 renglones
 const ZIGZAG = [0, 56, 0, -56];
+
+// Partidas de progreso de las unidades (progressGame.json, tareas 8 y 9 de agentes.md).
+const progressGames = (progressGamesRaw as unknown as ProgressGamesFile).units;
 
 // La columna derecha de Aprender se queda arriba mientras la ruta se desplaza. `sticky` es de la
 // web y no está en los tipos de React Native; esta rama solo se renderiza en la web ancha.
@@ -155,7 +161,7 @@ export function HomeScreen({ onStartLesson }: Props) {
         </View>
         {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
 
-        <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
+        <UnitRail key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
       </ColumnScrollView>
 
       {unitMenu}
@@ -322,6 +328,84 @@ function UnitPath({
   );
 }
 
+/** Riel recto para celular y web angosta: cabecera con el tablero de progreso y las lecciones. */
+function UnitRail({
+  unit,
+  onStartLesson,
+  onOpenMenu,
+}: {
+  unit: Unit;
+  onStartLesson: (lesson: Lesson) => void;
+  onOpenMenu: () => void;
+}) {
+  const { progress } = useProgress();
+  const { t } = useI18n();
+  const lessons = unit.lessons;
+  const states = lessonStates(lessons, progress);
+  const doneCount = states.filter((s) => s === 'done').length;
+  const current = lessons[states.indexOf('current')];
+  const game = progressGames[String(unit.unit)] ?? { moves: [], side: 'w' as const };
+  const position = progressPosition(game, doneCount, lessons.length);
+  const pieces = piecesFromFen(position.fen);
+  const legend =
+    position.total === 0
+      ? t('home.progressStart')
+      : position.complete
+        ? t('home.progressComplete')
+        : t('home.progressMove', { n: position.played, total: position.total });
+
+  const openLesson = (lesson: Lesson, i: number) => {
+    if (states[i] === 'locked') {
+      showDialog(t('lesson.lockedTitle'), t('home.lockedMessage', { title: current?.title ?? '' }));
+      return;
+    }
+    onStartLesson(lesson);
+  };
+
+  return (
+    <>
+      <View style={[styles.unitCard, styles.unitCardRail]}>
+        <Pressable
+          onPress={onOpenMenu}
+          accessibilityRole="button"
+          accessibilityLabel={t('home.unitCardLabel', { n: unit.unit, title: unit.title })}
+          style={({ pressed }) => [styles.unitCardPress, pressed && { opacity: 0.85 }]}
+        >
+          <View style={styles.unitCaptionRow}>
+            <Text style={styles.unitCaption}>{t('home.unit', { n: unit.unit })}</Text>
+            <Chevron />
+          </View>
+          <Text style={styles.unitTitle}>{t('home.unitTitle', { title: unit.title, done: doneCount, total: lessons.length })}</Text>
+        </Pressable>
+        <View accessible accessibilityRole="image" accessibilityLabel={t('home.progressBoardLabel', { legend })}>
+          <MiniBoard size={120} corner="a1" span={8} pieces={pieces} lastMove={position.lastMove} />
+        </View>
+      </View>
+
+      <View style={styles.rail}>
+        {lessons.length > 1 && <View style={styles.railLine} />}
+        {lessons.map((lesson, i) => (
+          <View key={lesson.id} style={styles.railRow}>
+            <LessonNode
+              state={states[i]}
+              order={lesson.order}
+              label={lesson.title}
+              onPress={() => openLesson(lesson, i)}
+            />
+            <Text
+              style={[styles.railLabel, states[i] === 'locked' && { color: colors.textMuted }]}
+              numberOfLines={3}
+              maxFontSizeMultiplier={1.3}
+            >
+              {lesson.title}
+            </Text>
+          </View>
+        ))}
+      </View>
+    </>
+  );
+}
+
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg },
@@ -365,6 +449,21 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   unitTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: '#FFFFFF' },
+  unitCardRail: { gap: space.md },
+  unitCardPress: { flex: 1 },
+  unitCaptionRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
+  rail: { marginTop: space.xl, position: 'relative', gap: space.md },
+  railLine: {
+    position: 'absolute',
+    left: NODE_BOX / 2 - 3,
+    top: NODE_BOX / 2,
+    bottom: NODE_BOX / 2,
+    width: 6,
+    borderRadius: 6,
+    backgroundColor: colors.surfaceRaised,
+  },
+  railRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
+  railLabel: { flex: 1, fontFamily: fonts.bold, fontSize: 15, color: colors.text },
   nodeWrap: { position: 'absolute', width: 160, alignItems: 'center' },
   // Fondo del color de la pantalla: la línea que une los nodos pasa por detrás del título sin cortarlo.
   nodeLabel: {

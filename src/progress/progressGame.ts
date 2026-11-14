@@ -26,6 +26,9 @@ export type ProgressGamesFile = {
   units: Record<string, ProgressGame>;
 };
 
+/** Pieza en el formato de MiniBoard y Board: color + tipo ('wn', 'bk'...). */
+export type FenPiece = `${'w' | 'b'}${'p' | 'n' | 'b' | 'r' | 'q' | 'k'}`;
+
 /**
  * Posición del tablero con `lessonsDone` lecciones hechas: la que queda después de la
  * jugada número `lessonsDone` del bando que estudia, con las del rival que haya antes.
@@ -79,4 +82,15 @@ export function progressPosition(
     total: studyMoves,
     complete: studied === studyMoves,
   };
+}
+
+/** Piezas de una posición, listas para MiniBoard: casilla -> 'wn', 'bk'... */
+export function piecesFromFen(fen: string): Record<string, FenPiece> {
+  const pieces: Record<string, FenPiece> = {};
+  for (const row of new Chess(fen).board()) {
+    for (const piece of row) {
+      if (piece) pieces[piece.square] = `${piece.color}${piece.type}`;
+    }
+  }
+  return pieces;
 }

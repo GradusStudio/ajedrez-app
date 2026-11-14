@@ -17,6 +17,8 @@ type Props = {
   dots?: string[];
   /** Flecha amarilla, origen y destino (ej. 'b5e8'). */
   arrow?: string;
+  /** Última jugada a resaltar (origen y destino), como en el tablero grande. */
+  lastMove?: { from: string; to: string } | null;
 };
 
 const fileOf = (sq: string) => sq.charCodeAt(0) - 97;
@@ -26,7 +28,7 @@ const rankOf = (sq: string) => Number(sq[1]) - 1;
  * Recorte de tablero sin interacción, para ilustrar una idea en poco espacio (por ejemplo, la elección de nivel de la
  * bienvenida). Usa los colores planos del tablero elegido y el set de piezas del usuario.
  */
-export function MiniBoard({ size, corner, span, pieces, dots = [], arrow }: Props) {
+export function MiniBoard({ size, corner, span, pieces, dots = [], arrow, lastMove = null }: Props) {
   const theme = boardThemes[useBoardTheme()];
   const sq = size / span;
   const f0 = fileOf(corner);
@@ -64,6 +66,13 @@ export function MiniBoard({ size, corner, span, pieces, dots = [], arrow }: Prop
     <View style={{ width: size, height: size, borderRadius: 6, overflow: 'hidden' }} pointerEvents="none">
       <Svg width={size} height={size} style={{ position: 'absolute' }}>
         {squares}
+        {lastMove &&
+          [lastMove.from, lastMove.to].map((s) => {
+            const x = fileOf(s) - f0;
+            const y = span - 1 - (rankOf(s) - r0);
+            if (x < 0 || x >= span || y < 0 || y >= span) return null;
+            return <Rect key={`lm${s}`} x={x * sq} y={y * sq} width={sq} height={sq} fill={boardHighlight.lastMove} />;
+          })}
         {dots.map((d) => {
           const c = center(d);
           return <Circle key={d} cx={c.x} cy={c.y} r={sq * 0.22} fill={boardHighlight.legalMove} />;

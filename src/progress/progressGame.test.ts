@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Chess } from 'chess.js';
-import { progressPosition, type ProgressGame, type ProgressGamesFile } from './progressGame';
+import { progressPosition, piecesFromFen, type ProgressGame, type ProgressGamesFile } from './progressGame';
 import gamesRaw from '../data/progressGames.json';
 
 const START = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
@@ -87,6 +87,20 @@ test('unidad completa: muestra el final aunque sobren jugadas', () => {
   assert.equal(p.played, 5);
   assert.equal(p.total, 5);
   assert.equal(p.complete, true);
+});
+
+test('piecesFromFen: la posición inicial tiene las 32 piezas', () => {
+  const pieces = piecesFromFen(START);
+  assert.equal(Object.keys(pieces).length, 32);
+  assert.equal(pieces['e1'], 'wk');
+  assert.equal(pieces['d8'], 'bq');
+  assert.equal(pieces['a2'], 'wp');
+});
+
+test('piecesFromFen: después de 1.e4 el peón cambió de casilla', () => {
+  const pieces = piecesFromFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1');
+  assert.equal(pieces['e4'], 'wp');
+  assert.equal(pieces['e2'], undefined);
 });
 
 const units = (gamesRaw as ProgressGamesFile).units;

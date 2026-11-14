@@ -47,16 +47,24 @@ Parte del prototipo `prototipo-rediseno.html` (13-11-2026, fuera de git) y de lo
 
 Solo con `useWideLayout()` verdadero. La barra lateral es la `WideSidebar` que ya existe; no se construye otra.
 
+**Referencia visual: `prototipo-rediseno-v2.html`** (14-11-2026, raíz del repo, fuera de git; usa las piezas Clásico y las posiciones reales de `progressGame.ts`). Manda sobre el prototipo v1. Se abre en una ventana de 1100 px o más.
+
 **Estado «elegir»** (el que se ve al entrar):
-- Columna izquierda (unos 250 px): título de la unidad («Unidad 1 · Cómo se mueven las piezas»), botón ▲ «anterior», la media corona y botón ▼ «siguiente unidad» (o «siguiente apertura»).
-- **Media corona:** 3 gajos (anterior, actual, siguiente) con radio interno y separación entre gajos, como el prototipo (`R 150`, `RIN 55`, separación 3°). Actual en verde primario con texto blanco; vecinos en `raised` al 70 %; un hueco sin unidad, en `surface` al 26 %. Rótulos: `U1`…`U9` en Aprender; nombre corto en Aperturas (sección 4).
-- Pasar de unidad: botones, rueda del mouse, deslizar en vertical sobre la corona, flechas ↑/↓ del teclado y tocar un gajo vecino. Gira 60° en 260 ms y se vuelve a dibujar. Con `useReducedMotion`, sin giro.
-- Tocar el gajo actual (o Enter) abre el riel.
-- Tablero a la derecha (hasta 440 px), no interactivo, con la partida de la unidad o apertura a la vista (sección 1) y la leyenda debajo. Al cambiar de unidad, el tablero cambia sin animar el deslizamiento de piezas (son posiciones de otra partida).
+- **Un solo eje:** la columna de la corona (300 px) y el tablero (480 px) van centrados en la pantalla, separados 64 px, y el centro de la corona queda a la altura del centro del tablero.
+- **Encabezado** encima de la corona, de alto fijo (104 px, para que no salte): «UNIDAD 2» chico (12 px, 900, mayúsculas, verde) y el nombre grande (24 px, 900, blanco, 2 renglones como máximo), alineados a la izquierda. Al cambiar de unidad, fundido de 140 ms.
+- **Media corona** (`R 230`, `RIN 92`, separación de 2,4° a cada lado del gajo). Los gajos son **botones 3D** como `Button3D`: cara + canto del mismo gajo corrido 5 px hacia abajo; al apretar el actual, la cara baja la mitad del canto. Actual: `primary` con canto `primaryShadow`; vecinos: `surfaceRaised` con canto `surfaceShadow`, opacos (no semitransparentes: no parecen desactivados). El color se interpola según lo cerca que esté cada gajo del centro, así que durante el giro el verde pasa de uno a otro de forma continua. Donde no hay unidad, no se dibuja nada.
+- **Eje:** una línea vertical de 4 px en `surfaceRaised` a lo largo del lado recto de la corona; lo que gira más allá de ±90° se esconde detrás del eje.
+- **Rótulos:** en Aprender, solo el número (48 px el actual, 22 px los vecinos, siempre derechos); en Aperturas, el nombre corto (20 / 15 px).
+- **Flechas:** dos botones redondos 3D (`Circle3D`, 44 px, `surfaceRaised` con canto `surfaceShadow`, chevron blanco) **dentro del hueco** de la corona, uno arriba y otro abajo del centro. Sin texto; etiqueta de accesibilidad «Unidad anterior» / «Unidad siguiente». Desactivados en los extremos (35 %).
+- **Giro fluido:** la posición de la corona es un número continuo animado con un resorte críticamente amortiguado (rigidez 240, amortiguación 2·√240, sin rebote), no un giro de 60° y redibujo. Tocar varias veces seguidas suma objetivos sin cortar el movimiento. Arrastre vertical con el dedo o el mouse (150 px = un gajo), con resistencia en los extremos e inercia al soltar. Rueda del mouse o panel táctil: cada 60 px de desplazamiento, un gajo. Flechas ↑/↓ del teclado; Enter o espacio abre el riel. Con `useReducedMotion`, salta sin animar. En React Native, **sin dependencias nuevas** (el proyecto no tiene reanimated ni gesture-handler): `Animated.Value` para la posición, `Animated.spring` con `stiffness: 240`, `damping: 31`, `mass: 1` y `velocity` del gesto, y `PanResponder` para el arrastre (la rueda, solo en la web). Se dibujan todos los gajos y cada uno se rota con `transform` interpolado desde la misma posición.
+- Tocar el gajo actual abre el riel; tocar un vecino lo trae al centro.
+- **Tablero** de 480 px a la derecha, no interactivo, con piezas y tema del usuario, coordenadas, última jugada en `boardHighlight.lastMove` y, si la posición es mate, el rey en `boardHighlight.mate`. Leyenda debajo: «**Jugada 3 de 9** · avanza con cada lección» (la parte en negrita, en dorado). Al cambiar de unidad, las piezas se funden (160 ms); al completar una lección, la última pieza movida se desliza desde su casilla de origen (340 ms).
+- Foco: el anillo dorado solo aparece al usar el teclado; con el mouse o el dedo no se mueve el foco.
 - Al abrir la pestaña se muestra la unidad de `progress.lastUnit` (como hoy) o la de la lección sugerida.
 
 **Estado «riel»** (al elegir una unidad):
-- La columna de la corona sale por la izquierda, el tablero se corre hacia la izquierda y el riel (380 px) entra desde la derecha (400 ms). El tablero sigue mostrando esa partida.
+- La columna de la corona sale por la izquierda con fundido, el tablero se corre hasta quedar **centrado en el espacio que deja el riel**, y el riel (400 px, borde izquierdo de 2 px en `surfaceRaised`) entra desde la derecha (520 ms, `cubic-bezier(0.22, 1, 0.36, 1)`). El tablero sigue mostrando esa partida.
+- Los nodos del riel son círculos 3D de 44 px (como las flechas); hecho y actual en verde con canto `primaryShadow`, el actual con halo. El botón grande queda pegado abajo (`sticky`) aunque la unidad tenga muchas lecciones.
 - Cabecera: botón «volver» (`Button3D` secundario) y título («UNIDAD 1» chico en verde, nombre grande).
 - Riel recto con un nodo por lección: hecho (verde con ✓), actual (verde con halo), abierto y bloqueado. Estados con `lessonStates` de `src/progress/path.ts` (respeta `LOCK_LESSONS`). Tocar un nodo hecho, actual o abierto empieza esa lección; uno bloqueado no hace nada (con su estado en la etiqueta de accesibilidad).
 - Botón grande al final: «Empezar» (0 hechas), «Continuar» o «Repasar» (unidad completa). Abre la lección sugerida de la unidad.

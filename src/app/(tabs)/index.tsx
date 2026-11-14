@@ -10,6 +10,7 @@ export default function StartTab() {
       <StartScreen
         onLesson={(lesson) => router.push({ pathname: '/leccion/[id]', params: { id: lesson.id } })}
         onDaily={(id) => router.push({ pathname: '/puzzle', params: { id, modo: 'dia' } })}
+        onFirstPuzzle={() => router.push({ pathname: '/puzzle', params: { modo: 'practica', nivel: 'facil' } })}
         onContinueGame={() => router.push({ pathname: '/partida', params: { continuar: '1' } })}
         onBot={(bot) => router.push({ pathname: '/bot/[id]', params: { id: bot.id } })}
         onCourse={(course) => router.push({ pathname: '/apertura/[id]', params: { id: course.id } })}

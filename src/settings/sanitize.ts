@@ -19,6 +19,8 @@ export type Settings = {
   installOffered: boolean;
   /** Consejos de Pipo ya vistos (`tipId`), para mostrarlos una sola vez. */
   seenTips: string[];
+  /** El festejo de «Ya sabes usar Gradus» de los primeros pasos ya se vio (no se repite). */
+  firstStepsCelebrated: boolean;
   /** Mostrar el nivel de puzzles propio (oculto, se sigue calculando y la práctica se sigue ajustando). */
   showPuzzleRating: boolean;
   /** Práctica de puzzles: dificultad automática según el nivel o elegida a mano. */
@@ -39,6 +41,7 @@ export const defaultSettings: Settings = {
   reminderOffered: false,
   installOffered: false,
   seenTips: [],
+  firstStepsCelebrated: false,
   showPuzzleRating: true,
   puzzleMode: 'auto',
   puzzleLevel: null,
@@ -63,6 +66,7 @@ export function sanitizeSettings(raw: Partial<Settings>): Settings {
     reminderOffered: bool(r.reminderOffered, d.reminderOffered),
     installOffered: bool(r.installOffered, d.installOffered),
     seenTips: Array.isArray(r.seenTips) ? (r.seenTips as unknown[]).filter((x): x is string => typeof x === 'string') : d.seenTips,
+    firstStepsCelebrated: bool(r.firstStepsCelebrated, d.firstStepsCelebrated),
     showPuzzleRating: bool(r.showPuzzleRating, d.showPuzzleRating),
     puzzleMode: r.puzzleMode === 'manual' ? 'manual' : 'auto',
     openAllUnits: bool(r.openAllUnits, d.openAllUnits),

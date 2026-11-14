@@ -7,7 +7,9 @@ import { ColumnScrollView } from '../components/ColumnScrollView';
 import { MiniBoard } from '../components/MiniBoard';
 import { StatIcon } from '../components/StatIcon';
 import { StreakFlame, flameStateOf } from '../components/StreakFlame';
+import { TabIcon } from '../components/TabIcon';
 import { Tip } from '../components/Tip';
+import { getTabBarTarget } from '../components/tabBarTarget';
 import { statusBarTop } from '../components/statusBarTop';
 import { useWideLayout } from '../components/useWideLayout';
 import { Bot } from '../data/bots';
@@ -25,15 +27,32 @@ import { useTodayKey } from '../settings/useTodayKey';
 import { useSettings } from '../settings/SettingsContext';
 import { TIP_MESSAGES, type TipId } from '../settings/tips';
 import { useTips } from '../settings/useTips';
+import { firstSteps, firstStepsDone, type FirstStepId } from '../start/firstSteps';
+import type { MessageKey } from '../i18n/es';
 import { Puzzle, puzzleGoal } from '../puzzles/puzzles';
 import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
 import { type, colors, fonts, space } from '../theme';
 
 const progressGames = (progressGamesRaw as unknown as ProgressGamesFile).units;
 
+/** Textos de cada paso de «Tus primeros pasos». */
+const FS_TEXT: Record<FirstStepId, { title: MessageKey; text: MessageKey }> = {
+  lesson: { title: 'start.firstSteps.lesson.title', text: 'start.firstSteps.lesson.text' },
+  puzzle: { title: 'start.firstSteps.puzzle.title', text: 'start.firstSteps.puzzle.text' },
+  game: { title: 'start.firstSteps.game.title', text: 'start.firstSteps.game.text' },
+};
+
+const FS_STATE: Record<'done' | 'next' | 'later', MessageKey> = {
+  done: 'start.firstSteps.done',
+  next: 'start.firstSteps.next',
+  later: 'start.firstSteps.later',
+};
+
 type Props = {
   onLesson: (lesson: Lesson) => void;
   onDaily: (id: string) => void;
+  /** Primer puzzle Fácil de los primeros pasos (no el del día, que puede ser difícil). */
+  onFirstPuzzle: () => void;
   onContinueGame: () => void;
   onBot: (bot: Bot) => void;
   onCourse: (course: OpeningCourse) => void;
@@ -43,16 +62,16 @@ type Props = {
  * Pestaña Inicio (feedback del primer tester, 14-11-2026): saludo con el profesor, seguir aprendiendo
  * con el tablero de progreso, puzzle del día, racha, bots y aperturas.
  */
-export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse }: Props) {
+export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, onBot, onCourse }: Props) {
   const { progress } = useProgress();
-  const { settings } = useSettings();
+  const { settings, update } = useSettings();
   const { units, bots, openings } = useContent();
   const { t, number, tn } = useI18n();
   const wide = useWideLayout();
   const today = useTodayKey();
   const heroRef = useRef<React.ComponentRef<typeof View>>(null);
   const statsRef = useRef<React.ComponentRef<typeof View>>(null);
-  const tipIds: TipId[] = ['home.next', 'home.streak'];
+  const tipIds: TipId[] = ['home.tabs', 'home.next', 'home.streak'];
   if (progress.coins > 0) tipIds.push('coins.first');
   const tips = useTips(tipIds);
   const tipMessage = tips.current ? TIP_MESSAGES[tips.current] : null;
@@ -61,10 +80,19 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
   // Una cuenta nueva no vio nada todavía: el consejo de Inicio habla del comienzo, no de «seguir».
   const tipText = tips.current === 'home.next' && newAccount ? 'tips.home.next.textNew' : tipMessage?.text;
 
+  // Primeros pasos de la cuenta nueva (spec del feedback del tester, sección 2): se leen del progreso.
+  const fsSteps = firstSteps(progress);
+  const fsDone = firstStepsDone(fsSteps);
+  const celebrateFirstSteps = fsDone && !settings.firstStepsCelebrated;
+  const showFirstSteps = !fsDone || celebrateFirstSteps;
+  const stepsRef = useRef<React.ComponentRef<typeof View>>(null);
+
   const streak = currentStreak(progress, today);
   const status = streakStatusNow(progress, today);
   const openUnits = unitOpen(units, progress, progress.profile.level, settings.openAllUnits);
   const lesson = suggestedLesson(units.filter((u) => openUnits.includes(u.unit)), progress);
+  // El primer paso abre siempre la primera lección de la ruta.
+  const firstLesson = units.flatMap((u) => u.lessons).find((l) => l.id === 'u1-l01') ?? lesson;
   const unit = lesson ? units.find((u) => u.lessons.some((l) => l.id === lesson.id)) : undefined;
   const teacher = teacherForLesson(lesson?.id ?? units[0]?.lessons[0]?.id ?? '');
   const previous = lesson && unit ? unit.lessons[unit.lessons.findIndex((l) => l.id === lesson.id) - 1] : undefined;
@@ -94,6 +122,19 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
   const ongoingBot = progress.ongoingGame ? bots.find((b) => b.id === progress.ongoingGame?.botId) : undefined;
   const recommendedIndex = level === 'nuevo' ? 0 : level === 'basico' ? 2 : 4;
   const recommendedBot = bots[Math.min(recommendedIndex, Math.max(0, bots.length - 1))] ?? bots[0];
+  // Pipo guía los primeros pasos y es el rival de la primera partida.
+  const pipo = bots.find((b) => b.id === 'pipo') ?? recommendedBot;
+  const greeter = showFirstSteps ? pipo : teacher;
+
+  const runFirstStep = (id: FirstStepId) => {
+    if (id === 'lesson') {
+      if (firstLesson) onLesson(firstLesson);
+    } else if (id === 'puzzle') {
+      onFirstPuzzle();
+    } else {
+      onBot(pipo);
+    }
+  };
 
   // Curso empezado más recientemente; si no hay ninguno, uno recomendado según el nivel.
   const startedCourse = openings
@@ -239,6 +280,83 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
     </CardSurface>
   ) : null;
 
+  // Tarjeta de los tres primeros pasos: uno solo tiene el botón verde, el que toca hacer.
+  const firstStepsCard = (
+    <CardSurface ref={stepsRef} style={styles.card} radius={20}>
+      <Text accessibilityRole="header" aria-level={2} style={styles.k}>
+        {celebrateFirstSteps ? t('start.firstSteps.celebrate.title') : t('start.firstSteps.title')}
+      </Text>
+      {celebrateFirstSteps ? (
+        <>
+          <Text style={[styles.sub, { marginTop: space.sm }]}>{t('start.firstSteps.celebrate.text')}</Text>
+          <Button3D
+            label={t('start.firstSteps.celebrate.ok')}
+            variant="primary"
+            onPress={() => update({ firstStepsCelebrated: true })}
+            style={{ marginTop: space.md, alignSelf: 'flex-start' }}
+          />
+        </>
+      ) : (
+        <View style={[styles.fsRow, !wide && styles.fsColumn]}>
+          {fsSteps.map((s) => (
+            <View key={s.id} style={styles.fsStep}>
+              <View style={styles.fsHead}>
+                <View style={[styles.fsBadge, s.state === 'done' && styles.fsBadgeDone, s.state === 'next' && styles.fsBadgeNext]}>
+                  {s.state === 'done' ? (
+                    <Text style={[styles.fsCheck, { color: colors.bg }]}>✓</Text>
+                  ) : (
+                    <TabIcon
+                      name={s.id === 'lesson' ? 'learn' : s.id === 'puzzle' ? 'puzzles' : 'bots'}
+                      color={s.state === 'next' ? colors.bg : colors.textMuted}
+                      size={16}
+                    />
+                  )}
+                </View>
+                <Text style={[styles.fsState, s.state === 'next' && styles.fsStateNext]}>{t(FS_STATE[s.state])}</Text>
+              </View>
+              <Text style={styles.fsTitle}>{t(FS_TEXT[s.id].title)}</Text>
+              <Text style={styles.sub}>{t(FS_TEXT[s.id].text)}</Text>
+              {s.state === 'next' && (
+                <Button3D
+                  label={t('common.start')}
+                  variant="primary"
+                  onPress={() => runFirstStep(s.id)}
+                  style={{ marginTop: space.md, alignSelf: 'flex-start' }}
+                />
+              )}
+            </View>
+          ))}
+        </View>
+      )}
+    </CardSurface>
+  );
+
+  const firstStepsStreak = (
+    <CardSurface style={styles.card} radius={20}>
+      <View style={styles.streakTop}>
+        <StreakFlame state={flameStateOf(status.kind)} size={24} />
+        <Text style={styles.streakNumber}>{tn('start.streakDays', streak)}</Text>
+      </View>
+      <Text style={styles.sub}>{streakText}</Text>
+    </CardSurface>
+  );
+
+  const exploreCard = (
+    <CardSurface style={styles.card} radius={20}>
+      <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('start.explore.title')}</Text>
+      {[
+        { name: t('tabs.openings'), text: t('start.explore.openings') },
+        { name: t('tabs.bots'), text: t('start.explore.bots') },
+        { name: t('tabs.analysis'), text: t('start.explore.analysis') },
+      ].map((row) => (
+        <View key={row.name} style={styles.exploreRow}>
+          <Text style={styles.exploreName}>{row.name}</Text>
+          <Text style={styles.sub}>{row.text}</Text>
+        </View>
+      ))}
+    </CardSurface>
+  );
+
   return (
     <ColumnScrollView
       role="main"
@@ -246,17 +364,25 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
       <View style={styles.hello}>
-        <BotAvatar bot={teacher} size={wide ? 104 : 72} expression="acierto" />
+        <BotAvatar bot={greeter} size={wide ? 104 : 72} expression="acierto" />
         <View style={styles.helloTextWrap}>
           <Text accessibilityRole="header" aria-level={1} style={[styles.helloTitle, wide && styles.helloTitleWide]}>
             {firstTime ? t('start.greetingNew') : t('start.greeting')}
           </Text>
-          <Text style={styles.helloText}>{t('start.says', { name: teacher.name, text: phrase })}</Text>
+          <Text style={styles.helloText}>
+            {showFirstSteps ? t('start.firstSteps.hello') : t('start.says', { name: teacher.name, text: phrase })}
+          </Text>
         </View>
         {stats}
       </View>
 
-      {wide ? (
+      {showFirstSteps ? (
+        <>
+          {firstStepsCard}
+          {firstStepsStreak}
+          {exploreCard}
+        </>
+      ) : wide ? (
         <View style={styles.grid}>
           <View style={styles.colLeft}>
             {heroCard}
@@ -284,7 +410,15 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
         text={tipText ? t(tipText) : ''}
         step={tips.step}
         total={tips.total}
-        target={tips.current === 'home.next' ? heroRef : statsRef}
+        target={
+          tips.current === 'home.tabs'
+            ? getTabBarTarget()
+            : tips.current === 'home.next'
+              ? showFirstSteps
+                ? stepsRef
+                : heroRef
+              : statsRef
+        }
         onNext={tips.next}
         onClose={tips.close}
       />
@@ -431,4 +565,19 @@ const styles = StyleSheet.create({
   stepOn: { backgroundColor: colors.flame },
   stepToday: { borderWidth: 2, borderColor: colors.gold },
   botRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginTop: space.md },
+
+  // Primeros pasos de la cuenta nueva
+  fsRow: { flexDirection: 'row', gap: space.lg, marginTop: space.md },
+  fsColumn: { flexDirection: 'column' },
+  fsStep: { flex: 1, minWidth: 0 },
+  fsHead: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginBottom: 4 },
+  fsBadge: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surfaceRaised },
+  fsBadgeDone: { backgroundColor: colors.primary },
+  fsBadgeNext: { backgroundColor: colors.gold },
+  fsCheck: { fontFamily: fonts.extrabold, fontSize: 15 },
+  fsState: { fontFamily: fonts.extrabold, fontSize: type.caption, color: colors.textMuted, letterSpacing: 0.5, textTransform: 'uppercase' },
+  fsStateNext: { color: colors.gold },
+  fsTitle: { fontFamily: fonts.extrabold, fontSize: 20, lineHeight: 26, color: colors.text },
+  exploreRow: { marginTop: space.md },
+  exploreName: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
 });

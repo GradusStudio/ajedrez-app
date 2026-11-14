@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Tabs } from 'expo-router/js-tabs';
 import { type, colors, fonts, radius, space } from '../theme';
 import { SIDEBAR_ICON_WIDTH, SIDEBAR_WIDTH } from './wideLayout';
+import { setTabBarTarget } from './tabBarTarget';
 
 type TabBarProps = Parameters<NonNullable<React.ComponentProps<typeof Tabs>['tabBar']>>[0];
 
@@ -12,8 +13,15 @@ type TabBarProps = Parameters<NonNullable<React.ComponentProps<typeof Tabs>['tab
  * Diseño: docs/superpowers/specs/2026-11-08-web-pantalla-ancha-design.md.
  */
 export function WideSidebar({ state, descriptors, emitter, navigateToTab, labels }: TabBarProps & { labels: boolean }) {
+  // El consejo de las pestañas ilumina esta barra (ver tabBarTarget.ts).
+  const barRef = useRef<React.ComponentRef<typeof View>>(null);
+  useEffect(() => {
+    setTabBarTarget(barRef);
+    return () => setTabBarTarget(null);
+  }, []);
+
   return (
-    <View role="navigation" style={[styles.side, labels ? styles.sideWide : styles.sideCompact]}>
+    <View ref={barRef} role="navigation" style={[styles.side, labels ? styles.sideWide : styles.sideCompact]}>
       <View style={[styles.brand, !labels && styles.brandCompact]}>
         <Image source={require('../../assets/icon.png')} style={styles.logo} accessibilityIgnoresInvertColors />
         {labels && <Text style={styles.brandText}>Gradus</Text>}

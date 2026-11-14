@@ -28,10 +28,10 @@ type Props = {
   onOpen: (index: number) => void;
 };
 
-// Geometría del prototipo v2: media corona abierta a la derecha, con el eje en CX.
+// Geometría del prototipo v2: media corona abierta a la derecha, con el eje en CX (pegado a la barra lateral).
 const R = 230;
 const RIN = 92;
-const CX = 8;
+const CX = 0;
 const CY = R + 8;
 const DEPTH = 5;
 const STEP = 60;
@@ -39,6 +39,9 @@ const GAP = 2.4;
 const W = R + 16;
 const H = 2 * R + 16 + DEPTH;
 const HALF = STEP / 2 - GAP;
+
+/** Ancho de la media corona: las pantallas anchas lo usan para dejarle el lugar exacto a la izquierda. */
+export const WHEEL_WIDTH = W;
 
 const pt = (deg: number, radius: number) => ({
   x: CX + radius * Math.cos((deg * Math.PI) / 180),

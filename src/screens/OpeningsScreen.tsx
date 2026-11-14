@@ -11,7 +11,7 @@ import { RecoveryCard } from '../components/RecoveryCard';
 import { Segmented } from '../components/Segmented';
 import { StatIcon } from '../components/StatIcon';
 import { StreakFlame, flameStateOf } from '../components/StreakFlame';
-import { UnitWheel } from '../components/UnitWheel';
+import { UnitWheel, WHEEL_WIDTH } from '../components/UnitWheel';
 import { BotStyle } from '../data/bots';
 import { Lesson, OpeningCourse } from '../data/lessonTypes';
 import { useContent } from '../data/useContent';
@@ -180,27 +180,29 @@ export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
               />
             </Animated.View>
 
-            <Animated.View style={[styles.boardCol, boardStyle]}>
-              <View
-                accessible
-                accessibilityRole="image"
-                accessibilityLabel={t('home.progressBoardLabel', { legend })}
-              >
-                <BoardSizeContext.Provider value={480}>
-                  <Board
-                    key={active.id}
-                    fen={position.fen}
-                    orientation={game.side}
-                    lastMove={position.lastMove}
-                    interactive={false}
-                  />
-                </BoardSizeContext.Provider>
-              </View>
-              <View style={styles.legendRow}>
-                <Text style={styles.legendStrong}>{legend}</Text>
-                {showHint && <Text style={styles.legendHint}>{t('home.progressHint')}</Text>}
-              </View>
-            </Animated.View>
+            <View style={styles.boardArea}>
+              <Animated.View style={[styles.boardCol, boardStyle]}>
+                <View
+                  accessible
+                  accessibilityRole="image"
+                  accessibilityLabel={t('home.progressBoardLabel', { legend })}
+                >
+                  <BoardSizeContext.Provider value={480}>
+                    <Board
+                      key={active.id}
+                      fen={position.fen}
+                      orientation={game.side}
+                      lastMove={position.lastMove}
+                      interactive={false}
+                    />
+                  </BoardSizeContext.Provider>
+                </View>
+                <View style={styles.legendRow}>
+                  <Text style={styles.legendStrong}>{legend}</Text>
+                  {showHint && <Text style={styles.legendHint}>{t('home.progressHint')}</Text>}
+                </View>
+              </Animated.View>
+            </View>
           </View>
 
           <Animated.View style={[styles.railWrap, railStyle]} pointerEvents={railOpen ? 'auto' : 'none'}>
@@ -349,11 +351,11 @@ const styles = StyleSheet.create({
   statsRow: { flexDirection: 'row', gap: space.lg },
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   statText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.gold },
-  scene: { flex: 1, position: 'relative', overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  sceneRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 64, width: 844 },
-  leftCol: { width: 300 },
-  segWrap: { height: 56, justifyContent: 'center' },
-  head: { height: 104, justifyContent: 'flex-end', paddingLeft: space.lg, marginBottom: space.lg },
+  scene: { flex: 1, position: 'relative', overflow: 'hidden', justifyContent: 'center' },
+  sceneRow: { flexDirection: 'row', alignItems: 'flex-start' },
+  leftCol: { width: WHEEL_WIDTH },
+  segWrap: { width: 300, height: 56, justifyContent: 'center', paddingLeft: space.xl },
+  head: { width: 300, height: 104, justifyContent: 'flex-end', paddingLeft: space.xl, marginBottom: space.lg },
   over: {
     fontFamily: fonts.extrabold,
     fontSize: type.caption,
@@ -363,6 +365,7 @@ const styles = StyleSheet.create({
   },
   name: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text, lineHeight: type.title + 4 },
   boardCol: { width: 480, marginTop: 174 },
+  boardArea: { flex: 1, alignItems: 'center' },
   legendRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.lg },
   legendStrong: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.gold },
   legendHint: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },

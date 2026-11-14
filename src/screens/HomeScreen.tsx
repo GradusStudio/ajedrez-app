@@ -14,7 +14,7 @@ import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
 import { StreakFlame, flameStateOf } from '../components/StreakFlame';
 import { Tip } from '../components/Tip';
-import { UnitWheel } from '../components/UnitWheel';
+import { UnitWheel, WHEEL_WIDTH } from '../components/UnitWheel';
 import { Lesson, Unit } from '../data/lessonTypes';
 import progressGamesRaw from '../data/progressGames.json';
 import { useContent } from '../data/useContent';
@@ -238,27 +238,29 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
               </View>
             </Animated.View>
 
-            <Animated.View style={[styles.boardCol, boardStyle]}>
-              <View
-                accessible
-                accessibilityRole="image"
-                accessibilityLabel={t('home.progressBoardLabel', { legend })}
-              >
-                <BoardSizeContext.Provider value={480}>
-                  <Board
-                    key={unit.unit}
-                    fen={position.fen}
-                    orientation={game.side}
-                    lastMove={position.lastMove}
-                    interactive={false}
-                  />
-                </BoardSizeContext.Provider>
-              </View>
-              <View style={styles.legendRow}>
-                <Text style={styles.legendStrong}>{legend}</Text>
-                {showHint && <Text style={styles.legendHint}>{t('home.progressHint')}</Text>}
-              </View>
-            </Animated.View>
+            <View style={styles.boardArea}>
+              <Animated.View style={[styles.boardCol, boardStyle]}>
+                <View
+                  accessible
+                  accessibilityRole="image"
+                  accessibilityLabel={t('home.progressBoardLabel', { legend })}
+                >
+                  <BoardSizeContext.Provider value={480}>
+                    <Board
+                      key={unit.unit}
+                      fen={position.fen}
+                      orientation={game.side}
+                      lastMove={position.lastMove}
+                      interactive={false}
+                    />
+                  </BoardSizeContext.Provider>
+                </View>
+                <View style={styles.legendRow}>
+                  <Text style={styles.legendStrong}>{legend}</Text>
+                  {showHint && <Text style={styles.legendHint}>{t('home.progressHint')}</Text>}
+                </View>
+              </Animated.View>
+            </View>
           </View>
 
           <Animated.View style={[styles.railWrap, railStyle]} pointerEvents={railOpen ? 'auto' : 'none'}>
@@ -517,10 +519,11 @@ const styles = StyleSheet.create({
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   statText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.gold },
   wideTop: { paddingHorizontal: space.lg, gap: space.sm },
-  scene: { flex: 1, position: 'relative', overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  sceneRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 64, width: 844 },
-  leftCol: { width: 300 },
-  head: { height: 104, justifyContent: 'flex-end', paddingLeft: space.lg, marginBottom: space.lg },
+  scene: { flex: 1, position: 'relative', overflow: 'hidden', justifyContent: 'center' },
+  sceneRow: { flexDirection: 'row', alignItems: 'flex-start' },
+  leftCol: { width: WHEEL_WIDTH },
+  head: { width: 300, height: 104, justifyContent: 'flex-end', paddingLeft: space.xl, marginBottom: space.lg },
+  boardArea: { flex: 1, alignItems: 'center' },
   over: {
     fontFamily: fonts.extrabold,
     fontSize: type.caption,

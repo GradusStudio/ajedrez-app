@@ -29,7 +29,11 @@
   --blue-shadow: #2f6fa0;
   --text: #ffffff;
   --muted: #c3c2c1;
-  --board-edge: #4f6a38;
+  --table: #1b1917;
+  --lamp: 255, 196, 128;
+  --frame: #4a2c17;
+  --frame-hi: #6b4226;
+  --frame-edge: #2c190c;
   --gutter: 16px;
   --max: 1080px;
 }
@@ -40,11 +44,24 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  background: var(--table);
 }
 
 body {
   margin: 0;
-  background: var(--bg);
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      ellipse 46vmax 38vmax at var(--lamp-x, 50%) var(--lamp-y, 44%),
+      rgba(var(--lamp), 0.3),
+      rgba(var(--lamp), 0.16) 55%,
+      rgba(var(--lamp), 0.04) 80%,
+      transparent 100%
+    ),
+    radial-gradient(ellipse 120% 100% at var(--lamp-x, 50%) 40%, transparent 45%, rgba(0, 0, 0, 0.6) 100%),
+    linear-gradient(180deg, #262421 0, var(--table) 900px);
+  background-repeat: no-repeat;
+  background-attachment: fixed, fixed, scroll;
   color: var(--text);
   font-family: 'Nunito', system-ui, sans-serif;
   font-weight: 700;
@@ -113,17 +130,37 @@ main {
 }
 .board-wrap {
   grid-area: board;
+  position: relative;
+  isolation: isolate;
   width: 100%;
   max-width: 520px;
+}
+/* Sombra de contacto: el tablero apoya sobre la mesa. */
+.board-wrap::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 6%;
+  right: 6%;
+  bottom: -26px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.75), transparent);
+  filter: blur(6px);
 }
 
 /* Tablero: el dibujo es un SVG y encima van los botones de las casillas que se pueden tocar. */
 .board {
   position: relative;
   aspect-ratio: 1;
-  border-radius: 10px;
-  overflow: hidden;
-  border-bottom: 6px solid var(--board-edge);
+  border-radius: 6px;
+  overflow: visible;
+  box-shadow:
+    0 0 0 12px var(--frame),
+    0 0 0 13px var(--frame-hi),
+    0 10px 0 12px var(--frame-edge),
+    0 34px 60px 10px rgba(0, 0, 0, 0.55);
+  margin: 13px 13px 36px;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
@@ -132,11 +169,24 @@ main {
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: 4px;
+}
+/* Luz de la lámpara sobre el tablero: más clara arriba a la izquierda. */
+.board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 4px;
+  pointer-events: none;
+  background: linear-gradient(150deg, rgba(var(--lamp), 0.16), transparent 45%, rgba(0, 0, 0, 0.18));
+  mix-blend-mode: soft-light;
 }
 .sq {
   position: absolute;
   width: 12.5%;
   height: 12.5%;
+  z-index: 2;
 }
 .hl-sel {
   background: rgba(247, 198, 49, 0.6);
@@ -158,7 +208,7 @@ main {
   background: none;
   cursor: grab;
   transition: transform 220ms ease-out;
-  z-index: 2;
+  z-index: 3;
 }
 .pawn svg {
   display: block;
@@ -169,7 +219,7 @@ main {
 .pawn.dragging {
   cursor: grabbing;
   transition: none;
-  z-index: 3;
+  z-index: 4;
 }
 .pawn:focus-visible,
 .target:focus-visible {
@@ -186,7 +236,7 @@ main {
   border: 0;
   background: none;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
 }
 .target::after {
   content: '';
@@ -222,7 +272,8 @@ main {
 }
 .bubble {
   position: relative;
-  background: var(--surface);
+  background: rgba(48, 46, 43, 0.92);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   border: 2px solid var(--raised);
   border-bottom-width: 4px;
   border-bottom-color: var(--surface-shadow);
@@ -426,6 +477,21 @@ main {
   }
 }
 
+@media (max-width: 879px) {
+  body {
+    --lamp-x: 50%;
+    --lamp-y: 44%;
+  }
+  .board {
+    box-shadow:
+      0 0 0 8px var(--frame),
+      0 0 0 9px var(--frame-hi),
+      0 7px 0 8px var(--frame-edge),
+      0 24px 40px 6px rgba(0, 0, 0, 0.55);
+    margin: 9px 9px 28px;
+  }
+}
+
 /* Computadora: tablero a la izquierda y el texto a la derecha. */
 @media (min-width: 880px) {
   .top {
@@ -452,6 +518,11 @@ main {
   }
   .board-wrap {
     align-self: start;
+    margin-left: -13px;
+  }
+  body {
+    --lamp-x: 29%;
+    --lamp-y: 44%;
   }
   .teacher {
     margin-top: 32px;

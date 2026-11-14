@@ -95,8 +95,9 @@ function texts(lang: Lang): Record<string, string> {
 
 // ---------- Tablero ----------
 
-const LIGHT = '#EBECD0';
-const DARK = '#779556';
+/** Colores promedio del tema Madera (src/theme.ts): coordenadas y respaldo de las texturas. */
+const WOOD_LIGHT = '#E0BE8A';
+const WOOD_DARK = '#7A4A2A';
 /** Margen de la pieza dentro de la casilla, como Piece.tsx (89 % de la casilla). */
 const PIECE_SCALE = 0.89;
 
@@ -107,14 +108,25 @@ function pieceSvg(key: PieceKey, x: number, y: number): string {
 }
 
 function boardHtml(lang: Lang): string {
+  // Dos patrones de 2 × 2 casillas: la veta no se repite casilla a casilla (como SquareTexture).
+  // Van dentro del SVG: sin JavaScript nuevo y con la misma CSP (las imágenes son de 'self').
+  const defs =
+    '<defs>' +
+    '<pattern id="mc" patternUnits="userSpaceOnUse" width="200" height="200">' +
+    '<image href="/portada/texturas/madera-casilla-clara.webp" width="200" height="200" preserveAspectRatio="none"/>' +
+    '</pattern>' +
+    '<pattern id="mo" patternUnits="userSpaceOnUse" width="200" height="200">' +
+    '<image href="/portada/texturas/madera-casilla-oscura.webp" width="200" height="200" preserveAspectRatio="none"/>' +
+    '</pattern>' +
+    '</defs>';
   const parts: string[] = [];
   for (let y = 0; y < 8; y++) {
     for (let x = 0; x < 8; x++) {
-      parts.push(`<rect x="${x * 100}" y="${y * 100}" width="100" height="100" fill="${(x + y) % 2 === 0 ? LIGHT : DARK}"/>`);
+      parts.push(`<rect x="${x * 100}" y="${y * 100}" width="100" height="100" fill="url(#${(x + y) % 2 === 0 ? 'mc' : 'mo'})"/>`);
     }
   }
   // Coordenadas como en la app: letras en la primera fila (abajo a la derecha) y números en la columna a.
-  const coord = (x: number, y: number) => ((x + y) % 2 === 0 ? DARK : LIGHT);
+  const coord = (x: number, y: number) => ((x + y) % 2 === 0 ? WOOD_DARK : WOOD_LIGHT);
   for (let x = 0; x < 8; x++) {
     parts.push(`<text x="${x * 100 + 93}" y="${793}" text-anchor="end" fill="${coord(x, 7)}">${String.fromCharCode(97 + x)}</text>`);
   }
@@ -122,7 +134,7 @@ function boardHtml(lang: Lang): string {
     parts.push(`<text x="7" y="${y * 100 + 24}" fill="${coord(0, y)}">${8 - y}</text>`);
   }
   parts.push(pieceSvg('wk', 4, 7), pieceSvg('bk', 4, 0));
-  const svg = `<svg viewBox="0 0 800 800" aria-hidden="true" font-family="Nunito, system-ui, sans-serif" font-weight="800" font-size="20">${parts.join('')}</svg>`;
+  const svg = `<svg viewBox="0 0 800 800" aria-hidden="true" font-family="Nunito, system-ui, sans-serif" font-weight="800" font-size="20">${defs}${parts.join('')}</svg>`;
   const p = PIECE_PATHS.clasico.wp;
   const pawn = `<button class="pawn" id="pawn" type="button" aria-label="${esc(fmt(own[lang].pawnLabel, { sq: 'e2' }))}" style="transform:translate(400%,600%)"><svg viewBox="0 0 100 100" aria-hidden="true"><g transform="translate(5.5 5.5) scale(${PIECE_SCALE})"><path fill="#FFFFFF" fill-rule="evenodd" d="${p.sil}"/><path fill="#111111" fill-rule="evenodd" d="${p.ink}"/></g></svg></button>`;
   return `${svg}<div class="sq" id="hl-a" hidden></div><div class="sq" id="hl-b" hidden></div>${pawn}`;
@@ -151,6 +163,12 @@ function render(template: string, values: Record<string, string>): string {
 
 async function images(): Promise<void> {
   fs.mkdirSync(path.join(OUT, 'bots'), { recursive: true });
+  // Texturas del tablero de madera (las mismas de la app): 13 KB entre las dos.
+  const texDir = path.join(OUT, 'texturas');
+  fs.mkdirSync(texDir, { recursive: true });
+  for (const f of ['madera-casilla-clara.webp', 'madera-casilla-oscura.webp']) {
+    fs.copyFileSync(path.join(ROOT, 'assets', 'texturas', f), path.join(texDir, f));
+  }
   // Los avatares originales miden 1254 px: en la portada se ven a 64 px (128 para pantallas densas).
   for (const b of bots) {
     await sharp(path.join(ROOT, 'assets', 'bots', `${b.id}.webp`))

@@ -31,6 +31,7 @@ import { useSettings } from '../settings/SettingsContext';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
+import { BoardStage } from '../components/BoardStage';
 import { useWideLayout } from '../components/useWideLayout';
 
 /** Alto fuera del tablero en pantalla ancha: la fila de arriba y los márgenes (el resultado va en el panel). */
@@ -53,7 +54,13 @@ type Props = {
 // `reason` es una clave de es.ts; en el historial se guarda su texto en español, como antes.
 type Result = { kind: 'win' | 'loss' | 'draw'; reason: MessageKey };
 // Resultado ya guardado, con las monedas ganadas (victoria), el premio del día y si se recuperó la racha.
-type Finished = Result & { coins: number; dailyBonus: number; streakRecovered: boolean; streakLit: boolean };
+type Finished = Result & {
+  coins: number;
+  dailyBonus: number;
+  streakRecovered: boolean;
+  streakLit: boolean;
+  rewardSquare?: Square | null;
+};
 
 // Tope del tiempo de práctica por partida, por si la app queda abierta sin usar.
 const MAX_SESSION_SECONDS = 30 * 60;
@@ -65,6 +72,17 @@ const GOOD_MOVE_DELTA = 150;
 
 /** Identidad de la partida de esta pantalla para decidir si puede escribir la guardada (ver ongoingGuard.ts). */
 const idOf = (startedIso: string) => (startedIso ? { startedAt: startedIso } : null);
+
+/** Casilla del rey del bando que acaba de quedar en jaque mate. */
+function matedKingSquare(chess: Chess): Square | null {
+  const loser = chess.turn();
+  for (const row of chess.board()) {
+    for (const piece of row) {
+      if (piece && piece.type === 'k' && piece.color === loser) return piece.square;
+    }
+  }
+  return null;
+}
 
 // Partida contra un bot (mapa-de-pantallas.md, 2.10).
 export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initialStartedAt, onExit, onRematch, onOtherBot, onAnalyze }: Props) {
@@ -147,7 +165,11 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
         bot.elo,
         gameCountsForStreak(quit, chess.history().length)
       );
-      setResult({ ...r, ...earned });
+      setResult({
+        ...r,
+        ...earned,
+        rewardSquare: r.kind === 'win' && chess.isCheckmate() ? matedKingSquare(chess) : null,
+      });
     },
     [bot, chess, finishGame, saveOngoingGame, getProgress, practiceCourse, userColor, feedback, t]
   );
@@ -302,7 +324,24 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
   const wide = useWideLayout();
   const contentWidth = useBoardLayoutWidth(GAME_RESERVE);
 
-  const board = <Board fen={fen} orientation={userColor} interactive={userTurn} lastMove={lastMove} onMove={onUserMove} />;
+  const board = (
+    <BoardStage
+      orientation={userColor}
+      bonusLabel={t('coinReward.bonus')}
+      reward={
+        result && result.coins + result.dailyBonus > 0
+          ? {
+              key: `${result.kind}-${result.coins}-${result.dailyBonus}`,
+              square: result.rewardSquare ?? null,
+              amount: result.coins,
+              bonus: result.dailyBonus,
+            }
+          : null
+      }
+    >
+      <Board fen={fen} orientation={userColor} interactive={userTurn} lastMove={lastMove} onMove={onUserMove} />
+    </BoardStage>
+  );
   const botBlock = (
     <>
       <View style={styles.playerRow}>

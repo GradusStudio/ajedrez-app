@@ -20,6 +20,7 @@ export const en: Record<MessageKey, string> = {
   'common.yourTurn': 'Your turn',
   'common.coinsLabel': '{n} coins',
   'common.dailyBonus': 'Daily bonus: +{n} coins.',
+  'coinReward.bonus': 'with the daily bonus',
   'common.streakRecovered': 'You recovered your streak.',
   'streak.litToday': 'You lit your streak today',
   'streak.daysShort': 'M T W T F S S',

@@ -21,6 +21,7 @@ import { colors, fonts, radius, space } from '../theme';
 import { styles as reviewStyles } from './review/reviewStyles';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
+import { BoardStage } from '../components/BoardStage';
 import { ColumnScrollView, useColumnBarPadding } from '../components/ColumnScrollView';
 import { useWideLayout } from '../components/useWideLayout';
 
@@ -71,6 +72,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
   const [results, setResults] = useState<boolean[]>([]);
   const [coins, setCoins] = useState(0);
   const [lastCoins, setLastCoins] = useState(0);
+  const [rewardSquare, setRewardSquare] = useState<Square | null>(null);
   const [ended, setEnded] = useState(false);
   // Pantalla ancha (web): tablero a la izquierda y el globo y los botones en el panel; el final, en la columna.
   const wide = useWideLayout();
@@ -108,6 +110,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
     setResults((r) => [...r, true]);
     setCoins((c) => c + earned);
     setLastCoins(earned);
+    setRewardSquare(m.to);
     setStatus('solved');
   };
 
@@ -123,6 +126,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
     setFen(play(tp.fen, tp.bestUci) ?? tp.fen);
     setLastMove(toSquares(tp.bestUci));
     setLastCoins(0);
+    setRewardSquare(null);
     setResults((r) => [...r, false]);
     setStatus('shown');
   };
@@ -137,6 +141,8 @@ export function TurningPointQuizScreen({ onExit }: Props) {
     setWrongMove(null);
     setErrors(0);
     setHintUsed(false);
+    setLastCoins(0);
+    setRewardSquare(null);
   };
 
   const top = (
@@ -200,15 +206,24 @@ export function TurningPointQuizScreen({ onExit }: Props) {
       : t(tp.quality === 'blunder' ? 'quiz.playedBlunder' : 'quiz.playedMistake', { move: fmt(tp.playedSan) });
 
   const board = (
-    <Board
-      key={index}
-      fen={fen}
+    <BoardStage
       orientation={quiz.me}
-      interactive={status === 'playing' && !wrongMove}
-      lastMove={lastMove}
-      highlight={status === 'playing' && hintUsed && !wrongMove ? [tp.bestUci.slice(0, 2)] : undefined}
-      onMove={handleMove}
-    />
+      reward={
+        lastCoins > 0
+          ? { key: `${index}-${lastCoins}`, square: rewardSquare, amount: lastCoins }
+          : null
+      }
+    >
+      <Board
+        key={index}
+        fen={fen}
+        orientation={quiz.me}
+        interactive={status === 'playing' && !wrongMove}
+        lastMove={lastMove}
+        highlight={status === 'playing' && hintUsed && !wrongMove ? [tp.bestUci.slice(0, 2)] : undefined}
+        onMove={handleMove}
+      />
+    </BoardStage>
   );
   const coachBubble = bubble(face, t('quiz.prompt'), bubbleText);
   const controls = (

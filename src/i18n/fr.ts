@@ -21,6 +21,7 @@ export const fr: Record<MessageKey, string> = {
   'common.coinsLabel': 'Jetons : {n}',
   'common.dailyBonus': 'Bonus du jour : +{n} jetons.',
   'common.streakRecovered': 'Tu as récupéré ta série.',
+  'coinReward.bonus': 'avec le bonus du jour',
   "streak.litToday": "Tu as allumé ta série aujourd'hui",
   'streak.daysShort': 'L M M J V S D',
   'common.reviewMistakes': 'Revoir les erreurs',

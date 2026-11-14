@@ -17,6 +17,7 @@ import { displayThemes, Puzzle, puzzleGoal, userColor } from '../puzzles/puzzles
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
+import { BoardStage } from '../components/BoardStage';
 
 /** Alto fuera del tablero en pantalla ancha: fila de arriba, panel de abajo y márgenes. */
 const PUZZLE_RESERVE = 200;
@@ -54,6 +55,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   const [status, setStatus] = useState<Status>('playing');
   const [errors, setErrors] = useState(0);
   const [earned, setEarned] = useState<Earned | null>(null);
+  const [rewardSquare, setRewardSquare] = useState<Square | null>(null);
   const [hintUsed, setHintUsed] = useState(false);
   const [showHint, setShowHint] = useState(false);
   // Jugada equivocada que quedó en el tablero hasta tocar "Reintentar".
@@ -105,11 +107,12 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const finish = (result: PuzzleResult) => {
+  const finish = (result: PuzzleResult, square: Square | null) => {
     if (finished.current) return;
     finished.current = true;
     if (result !== 'failed') feedback.correct();
     setStatus(result === 'failed' ? 'failed' : 'solved');
+    setRewardSquare(square);
     setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS), puzzle.rating));
   };
 
@@ -151,7 +154,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
     const next = ply + 1;
     setPly(next);
     if (mates || next >= moves.length) {
-      finish(errors === 0 && !hintUsed ? 'clean' : 'solved');
+      finish(errors === 0 && !hintUsed ? 'clean' : 'solved', m.to);
     } else {
       later(() => apply(next), OPPONENT_DELAY_MS);
     }
@@ -176,7 +179,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
   const showSolution = () => {
     chargeFail();
     setShowHint(false);
-    finish('failed');
+    finish('failed', wrongMove?.to ?? lastMove?.to ?? null);
     for (let i = ply, step = 1; i < moves.length; i++, step++) {
       const index = i;
       later(() => apply(index), SOLUTION_STEP_MS * step);
@@ -218,14 +221,29 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
           reserveHeight={PUZZLE_RESERVE}
           narrowGap={0}
           board={
-            <Board
-              fen={fen}
+            <BoardStage
               orientation={me}
-              interactive={userTurn && !wrongMove}
-              lastMove={lastMove}
-              highlight={showHint && expected ? [expected.slice(0, 2)] : undefined}
-              onMove={handleMove}
-            />
+              bonusLabel={t('coinReward.bonus')}
+              reward={
+                earned && (earned.coins > 0 || earned.dailyBonus > 0)
+                  ? {
+                      key: `${puzzle.id}-${earned.coins}-${earned.dailyBonus}`,
+                      square: rewardSquare,
+                      amount: earned.coins,
+                      bonus: earned.dailyBonus,
+                    }
+                  : null
+              }
+            >
+              <Board
+                fen={fen}
+                orientation={me}
+                interactive={userTurn && !wrongMove}
+                lastMove={lastMove}
+                highlight={showHint && expected ? [expected.slice(0, 2)] : undefined}
+                onMove={handleMove}
+              />
+            </BoardStage>
           }
         >
           <Text style={[styles.prompt, contentWidth ? { marginTop: 0 } : null]}>{t('puzzles.prompt', { side, goal: puzzleGoal(puzzle, t) })}</Text>

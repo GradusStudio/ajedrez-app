@@ -20,6 +20,7 @@ export const de: Record<MessageKey, string> = {
   'common.yourTurn': 'Du bist dran',
   'common.coinsLabel': 'Münzen: {n}',
   'common.dailyBonus': 'Tagesbonus: +{n} Münzen.',
+  'coinReward.bonus': 'mit dem Tagesbonus',
   'common.streakRecovered': 'Du hast deine Serie zurückgeholt.',
   'streak.litToday': 'Du hast deine Serie heute entzündet',
   'streak.daysShort': 'M D M D F S S',

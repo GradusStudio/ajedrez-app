@@ -32,7 +32,8 @@
       "side": "w"
     },
     "8": {
-      "moves": [],
+      "startFen": "7k/ppp5/8/PPP5/8/8/8/7K w - - 0 1",
+      "moves": ["b5b6", "a7b6", "c5c6", "b7c6", "a5a6", "h8g7", "a6a7", "g7f7", "a7a8q"],
       "side": "w"
     },
     "9": {

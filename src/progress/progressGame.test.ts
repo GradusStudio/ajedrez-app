@@ -142,6 +142,25 @@ for (const unit of [1, 2, 3, 4, 6, 9]) {
   });
 }
 
-test('unidad 8 sigue pendiente: posición inicial sin jugadas', () => {
-  assert.equal(units['8'].moves.length, 0);
+test('unidad 8: la ruptura de peones avanza hasta coronar', () => {
+  const game = units['8'];
+  assert.equal(game.startFen, '7k/ppp5/8/PPP5/8/8/8/7K w - - 0 1');
+  assert.equal(game.moves.length, 9);
+
+  const inicio = progressPosition(game, 0, 7);
+  assert.equal(inicio.fen, game.startFen);
+  assert.equal(inicio.played, 0);
+  assert.equal(inicio.total, 5);
+  assert.equal(inicio.complete, false);
+
+  const dos = progressPosition(game, 2, 7);
+  assert.deepEqual(dos.lastMove, { from: 'c5', to: 'c6' });
+  assert.equal(dos.played, 2);
+  assert.equal(dos.complete, false);
+
+  const final = progressPosition(game, 7, 7);
+  assert.equal(final.complete, true);
+  assert.equal(final.played, 5);
+  assert.deepEqual(final.lastMove, { from: 'a7', to: 'a8' });
+  assert.equal(piecesFromFen(final.fen)['a8'], 'wq');
 });

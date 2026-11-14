@@ -13,11 +13,13 @@ type Props = {
   onButton?: () => void;
   /** Pantalla ancha: ancho del tablero con su panel (useBoardLayoutWidth), para alinear el contenido con ellos. */
   contentWidth?: number | null;
+  /** Contenido extra debajo del mensaje (por ejemplo, la pastilla de racha). */
+  extra?: React.ReactNode;
 };
 
 // Panel inferior de la lección: verde al acertar, rojo al fallar (design.md).
 // Los paneles de acierto y error suben desde abajo al aparecer.
-export function FeedbackPanel({ kind, title, message, buttonLabel, onButton, contentWidth }: Props) {
+export function FeedbackPanel({ kind, title, message, buttonLabel, onButton, contentWidth, extra }: Props) {
   const bg = kind === 'correct' ? colors.correctBg : kind === 'wrong' ? colors.incorrectBg : colors.surface;
   const titleColor = kind === 'correct' ? colors.primary : kind === 'wrong' ? colors.danger : colors.text;
   const panel = (
@@ -27,6 +29,7 @@ export function FeedbackPanel({ kind, title, message, buttonLabel, onButton, con
         <View style={contentWidth ? { flex: 1 } : undefined}>
           {!!title && <Text style={[styles.title, { color: titleColor }]}>{title}</Text>}
           {!!message && <Text style={styles.message}>{message}</Text>}
+          {extra}
         </View>
         {!!buttonLabel && onButton && (
           <Button3D

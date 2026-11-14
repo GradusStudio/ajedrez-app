@@ -3,6 +3,7 @@ import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
 import { CountUp } from '../components/CountUp';
+import { StreakIgniteCard } from '../components/StreakIgniteCard';
 import { COIN_EDGE, StatIcon } from '../components/StatIcon';
 import { useReducedMotion } from '../components/useReducedMotion';
 import { Bot } from '../data/bots';
@@ -25,6 +26,8 @@ type Props = {
   streak: number;
   /** Con esta lección se completó la recuperación de la racha. */
   streakRecovered: boolean;
+  /** La lección encendió la racha hoy: la tarjeta hace la animación completa. */
+  streakLit: boolean;
   onContinue: () => void;
   /** Solo si hubo errores: abre el repaso de los pasos fallados. */
   onReviewMistakes?: () => void;
@@ -36,13 +39,13 @@ type Props = {
   extra?: React.ReactNode;
 };
 
-export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, onContinue, onReviewMistakes, reminderOffer, installOffer, extra }: Props) {
+export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, dailyBonus, streak, streakRecovered, streakLit, onContinue, onReviewMistakes, reminderOffer, installOffer, extra }: Props) {
   const { t, tn } = useI18n();
   const reduced = useReducedMotion();
   const perfect = mode === 'lesson' && errors === 0;
-  // La tarjeta de monedas late una vez en una lección perfecta y la llama se enciende al mostrar la racha.
+  // La tarjeta de monedas late una vez en una lección perfecta y la llama hace el reencendido.
   const [celebrate] = useState(() => new Animated.Value(1));
-  const [ignite] = useState(() => new Animated.Value(streak > 0 ? 0.6 : 1));
+  const [todayIndex] = useState(() => (new Date().getDay() + 6) % 7);
 
   useEffect(() => {
     if (!perfect || reduced) return;
@@ -53,16 +56,6 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
     pulse.start();
     return () => pulse.stop();
   }, [perfect, reduced, celebrate]);
-
-  useEffect(() => {
-    if (reduced) {
-      ignite.setValue(1);
-      return;
-    }
-    if (streak > 0) {
-      Animated.spring(ignite, { toValue: 1, friction: 5, tension: 80, useNativeDriver: true }).start();
-    }
-  }, [streak, reduced, ignite]);
 
   return (
     // Con scroll: en un teléfono chico con letra grande, «Continuar» no puede quedar afuera.
@@ -86,18 +79,19 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
           <Text style={styles.statLabel}>{tn('lessonResult.coin', coinsEarned)}</Text>
         </Animated.View>
         <View style={styles.stat}>
-          <Animated.View style={{ transform: [{ scale: ignite }] }}>
-            <StatIcon name="streak" size={22} />
-          </Animated.View>
-          <Text style={[styles.statValue, { color: colors.gold }]}><CountUp value={streak} /></Text>
-          <Text style={styles.statLabel}>{tn('lessonResult.streakDay', streak)}</Text>
-        </View>
-        <View style={styles.stat}>
           <View style={{ height: 22 }} />
           <Text style={styles.statValue}>{errors}</Text>
           <Text style={styles.statLabel}>{tn('lessonResult.error', errors)}</Text>
         </View>
       </View>
+
+      <StreakIgniteCard
+        streak={streak}
+        streakLit={streakLit}
+        streakRecovered={streakRecovered}
+        state="safe"
+        todayIndex={todayIndex}
+      />
 
       {mode === 'replay' && (
         <Text style={styles.note}>{t('lessonResult.replayNote')}</Text>

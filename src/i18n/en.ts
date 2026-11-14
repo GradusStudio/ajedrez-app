@@ -21,6 +21,8 @@ export const en: Record<MessageKey, string> = {
   'common.coinsLabel': '{n} coins',
   'common.dailyBonus': 'Daily bonus: +{n} coins.',
   'common.streakRecovered': 'You recovered your streak.',
+  'streak.litToday': 'You lit your streak today',
+  'streak.daysShort': 'M T W T F S S',
   'common.reviewMistakes': 'Review mistakes',
   'common.backToProfile': 'Back to Profile',
   'common.backProfile': '‹ Profile',

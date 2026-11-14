@@ -21,6 +21,8 @@ export const de: Record<MessageKey, string> = {
   'common.coinsLabel': 'Münzen: {n}',
   'common.dailyBonus': 'Tagesbonus: +{n} Münzen.',
   'common.streakRecovered': 'Du hast deine Serie zurückgeholt.',
+  'streak.litToday': 'Du hast deine Serie heute entzündet',
+  'streak.daysShort': 'M D M D F S S',
   'common.reviewMistakes': 'Fehler wiederholen',
   'common.backToProfile': 'Zurück zum Profil',
   'common.backProfile': '‹ Profil',

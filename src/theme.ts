@@ -4,6 +4,7 @@ export const colors = {
   primary: '#81B64C',
   primaryShadow: '#45753C',
   gold: '#F7C631',
+  flame: '#F5912F',
   danger: '#FA412D',
   dangerShadow: '#A02A1E',
 

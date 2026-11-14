@@ -10,6 +10,7 @@ import { ProgressBar } from '../components/ProgressBar';
 import { RecoveryCard } from '../components/RecoveryCard';
 import { Segmented } from '../components/Segmented';
 import { StatIcon } from '../components/StatIcon';
+import { StreakFlame, flameStateOf } from '../components/StreakFlame';
 import { UnitWheel } from '../components/UnitWheel';
 import { BotStyle } from '../data/bots';
 import { Lesson, OpeningCourse } from '../data/lessonTypes';
@@ -130,8 +131,8 @@ export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
         <View style={[styles.wideTop, { paddingTop: statusBarTop(space.md) }]}>
           <View style={styles.statsRow}>
             <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
-              <StatIcon name="streak" />
-              <Text style={styles.statText}>{streak}</Text>
+              <StreakFlame state={flameStateOf(status.kind)} size={18} />
+              <Text style={[styles.statText, status.kind !== 'safe' && { color: colors.textMuted }]}>{streak}</Text>
             </View>
             <View style={styles.stat} accessibilityLabel={t('common.coinsLabel', { n: progress.coins })}>
               <StatIcon name="coin" />

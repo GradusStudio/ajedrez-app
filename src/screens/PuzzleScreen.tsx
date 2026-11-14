@@ -6,10 +6,11 @@ import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { FadeIn } from '../components/FadeIn';
 import { FeedbackPanel } from '../components/FeedbackPanel';
+import { StreakPill } from '../components/StreakPill';
 import { useFeedback } from '../feedback/feedback';
 import { useI18n } from '../i18n/I18nContext';
 import { Earned, useProgress } from '../progress/ProgressContext';
-import { PuzzleResult } from '../progress/progressStore';
+import { currentStreak, PuzzleResult } from '../progress/progressStore';
 import { currentRating, formatDelta } from '../progress/puzzleRating';
 import { useSettings } from '../settings/SettingsContext';
 import { displayThemes, Puzzle, puzzleGoal, userColor } from '../puzzles/puzzles';
@@ -271,6 +272,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
           buttonLabel={onNext ? t('puzzles.next') : t('common.continue')}
           onButton={onNext ?? onExit}
           contentWidth={contentWidth}
+          extra={<StreakPill streak={currentStreak(progress)} streakLit={earned?.streakLit ?? false} />}
         />
       )}
       {status === 'failed' && (

@@ -31,8 +31,15 @@ import { markPracticed } from './practiceMark';
 import { useCrossTabSync } from './useCrossTabSync';
 
 /** Monedas ganadas por algo terminado, y aparte el premio del día si se cumplió en ese momento. */
+/** `streakLit`: la acción encendió la racha hoy (la primera del día que la mantiene). */
 /** `rating`: nivel de puzzles después del puzzle y cuánto cambió (solo `finishPuzzle`; null si no lo movió). */
-export type Earned = { coins: number; dailyBonus: number; streakRecovered: boolean; rating?: { rating: number; delta: number } | null };
+export type Earned = {
+  coins: number;
+  dailyBonus: number;
+  streakRecovered: boolean;
+  streakLit: boolean;
+  rating?: { rating: number; delta: number } | null;
+};
 
 type ProgressValue = {
   progress: Progress;
@@ -115,7 +122,12 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     (f: LessonFinish) => {
       const result = withLessonFinished(current.current, f);
       commit(result.progress);
-      return { coins: result.coinsEarned, dailyBonus: result.dailyBonus, streakRecovered: result.streakRecovered };
+      return {
+        coins: result.coinsEarned,
+        dailyBonus: result.dailyBonus,
+        streakRecovered: result.streakRecovered,
+        streakLit: result.streakLit,
+      };
     },
     [commit]
   );
@@ -124,7 +136,12 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     (r: ReviewFinish) => {
       const result = withReviewFinished(current.current, r);
       commit(result.progress);
-      return { coins: 0, dailyBonus: result.dailyBonus, streakRecovered: result.streakRecovered };
+      return {
+        coins: 0,
+        dailyBonus: result.dailyBonus,
+        streakRecovered: result.streakRecovered,
+        streakLit: result.streakLit,
+      };
     },
     [commit]
   );
@@ -158,12 +175,16 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
 
   /** Guarda el resultado y separa las monedas propias del premio del día. */
   const commitEarned = useCallback(
-    (before: Progress, r: { progress: Progress; coinsEarned: number; streakRecovered: boolean }): Earned => {
+    (
+      before: Progress,
+      r: { progress: Progress; coinsEarned: number; streakRecovered: boolean; streakLit: boolean }
+    ): Earned => {
       commit(r.progress);
       return {
         coins: r.coinsEarned,
         dailyBonus: r.progress.coins - before.coins - r.coinsEarned,
         streakRecovered: r.streakRecovered,
+        streakLit: r.streakLit,
       };
     },
     [commit]

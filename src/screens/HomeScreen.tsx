@@ -12,6 +12,7 @@ import { LessonRail } from '../components/LessonRail';
 import { MiniBoard } from '../components/MiniBoard';
 import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
+import { StreakFlame, flameStateOf } from '../components/StreakFlame';
 import { UnitWheel } from '../components/UnitWheel';
 import { Lesson, Unit } from '../data/lessonTypes';
 import progressGamesRaw from '../data/progressGames.json';
@@ -33,6 +34,9 @@ type Props = {
 
 // Partidas de progreso de las unidades (progressGame.json, tareas 8 y 10 de agentes.md).
 const progressGames = (progressGamesRaw as unknown as ProgressGamesFile).units;
+
+/** Última fecha en que la barra hizo el rebote de la llama (una vez por día y por sesión). */
+let flameShownDate = '';
 
 // Pestaña Aprender: barra de racha y monedas, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
 export function HomeScreen({ onStartLesson }: Props) {
@@ -79,6 +83,19 @@ export function HomeScreen({ onStartLesson }: Props) {
   const [rail] = useState(() => new Animated.Value(0));
   const [boardFade] = useState(() => new Animated.Value(1));
   const [titleFade] = useState(() => new Animated.Value(1));
+  const [flameBounce] = useState(() => new Animated.Value(1));
+
+  // Rebote corto de la llama la primera vez que la barra la muestra encendida en el día.
+  useEffect(() => {
+    if (status.kind !== 'safe' || reduced || flameShownDate === today) return;
+    flameShownDate = today;
+    const bounce = Animated.sequence([
+      Animated.timing(flameBounce, { toValue: 1.25, duration: 140, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+      Animated.timing(flameBounce, { toValue: 1, duration: 260, easing: Easing.out(Easing.ease), useNativeDriver: true }),
+    ]);
+    bounce.start();
+    return () => bounce.stop();
+  }, [status.kind, reduced, today, flameBounce]);
 
   // Entrada y salida del riel: la corona sale a la izquierda y el tablero se corre.
   useEffect(() => {
@@ -164,8 +181,10 @@ export function HomeScreen({ onStartLesson }: Props) {
         <View style={[styles.wideTop, { paddingTop: statusBarTop(space.md) }]}>
           <View style={styles.statsRow}>
             <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
-              <StatIcon name="streak" />
-              <Text style={styles.statText}>{streak}</Text>
+              <Animated.View style={{ transform: [{ scale: flameBounce }] }}>
+                <StreakFlame state={flameStateOf(status.kind)} size={18} />
+              </Animated.View>
+              <Text style={[styles.statText, status.kind !== 'safe' && { color: colors.textMuted }]}>{streak}</Text>
             </View>
             <View style={styles.stat} accessibilityLabel={t('common.coinsLabel', { n: progress.coins })}>
               <StatIcon name="coin" />
@@ -249,8 +268,10 @@ export function HomeScreen({ onStartLesson }: Props) {
         {/* Racha y monedas */}
         <View style={styles.statsRow}>
           <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
-            <StatIcon name="streak" />
-            <Text style={styles.statText}>{streak}</Text>
+            <Animated.View style={{ transform: [{ scale: flameBounce }] }}>
+              <StreakFlame state={flameStateOf(status.kind)} size={18} />
+            </Animated.View>
+            <Text style={[styles.statText, status.kind !== 'safe' && { color: colors.textMuted }]}>{streak}</Text>
           </View>
           <View style={styles.stat} accessibilityLabel={t('common.coinsLabel', { n: progress.coins })}>
             <StatIcon name="coin" />

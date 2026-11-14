@@ -398,6 +398,15 @@ test('resuelto con errores sin fallo cobrado antes: baja', () => {
   assert.deepEqual(r.ratingChange, { rating: 980, delta: -20 });
 });
 
+test('streakLit: un puzzle con solución vista no enciende la racha; uno resuelto, sí', () => {
+  const failed = withPuzzleFinished(v4(), 's1', 'failed', 10, 1000, at);
+  assert.equal(failed.streakLit, false);
+  const clean = withPuzzleFinished(v4(), 's2', 'clean', 10, 1000, at);
+  assert.equal(clean.streakLit, true);
+  const again = withPuzzleFinished(clean.progress, 's3', 'clean', 10, 1000, at);
+  assert.equal(again.streakLit, false);
+});
+
 test('un puzzle ya terminado antes no se cobra como fallo', () => {
   const done = withPuzzleFinished(v4(), 'y', 'clean', 10, 1000, at).progress;
   assert.equal(withPuzzleFailedNow(done, 'y', 1000, at).delta, null);

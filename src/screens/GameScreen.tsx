@@ -10,6 +10,7 @@ import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { StatIcon } from '../components/StatIcon';
+import { StreakPill } from '../components/StreakPill';
 import { Bot } from '../data/bots';
 import { OpeningCourse } from '../data/lessonTypes';
 import { EngineView } from '../engine/EngineView';
@@ -20,6 +21,7 @@ import { useFeedback } from '../feedback/feedback';
 import { useProgress } from '../progress/ProgressContext';
 import { replayMoves, uciMoves } from '../progress/ongoingGame';
 import { ownsOngoing, shouldSaveOngoing } from '../progress/ongoingGuard';
+import { currentStreak } from '../progress/progressStore';
 import { gameCountsForStreak } from '../progress/streak';
 import { useI18n } from '../i18n/I18nContext';
 import { es, MessageKey } from '../i18n/es';
@@ -51,7 +53,7 @@ type Props = {
 // `reason` es una clave de es.ts; en el historial se guarda su texto en español, como antes.
 type Result = { kind: 'win' | 'loss' | 'draw'; reason: MessageKey };
 // Resultado ya guardado, con las monedas ganadas (victoria), el premio del día y si se recuperó la racha.
-type Finished = Result & { coins: number; dailyBonus: number; streakRecovered: boolean };
+type Finished = Result & { coins: number; dailyBonus: number; streakRecovered: boolean; streakLit: boolean };
 
 // Tope del tiempo de práctica por partida, por si la app queda abierta sin usar.
 const MAX_SESSION_SECONDS = 30 * 60;
@@ -367,6 +369,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
       {result.kind === 'win' && result.coins === 0 && !practiceCourse && <Text style={styles.coinsNote}>{t('game.coinsNote')}</Text>}
       {result.dailyBonus > 0 && <Text style={styles.coinsText}>{t('common.dailyBonus', { n: result.dailyBonus })}</Text>}
       {result.streakRecovered && <Text style={styles.coinsText}>{t('common.streakRecovered')}</Text>}
+      <StreakPill streak={currentStreak(getProgress())} streakLit={result.streakLit} />
       <Button3D
         label={practiceCourse ? t('game.rematchPractice') : t('game.rematch')}
         variant="primary"

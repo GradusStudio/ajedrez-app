@@ -21,7 +21,7 @@ const urlCount = (v: string | undefined, max: number) => {
 };
 
 export default function ResultRoute() {
-  const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; premio?: string; recuperada?: string; fallos?: string; modo?: string }>();
+  const params = useLocalSearchParams<{ id: string; errors: string; monedas: string; premio?: string; recuperada?: string; encendida?: string; fallos?: string; modo?: string }>();
   const { progress } = useProgress();
   const { settings, update } = useSettings();
   const { findLesson, findBot } = useContent();
@@ -92,6 +92,7 @@ export default function ResultRoute() {
       dailyBonus={urlCount(params.premio, 100)}
       streak={currentStreak(progress)}
       streakRecovered={params.recuperada === '1'}
+      streakLit={params.encendida === '1'}
       onContinue={() => router.back()}
       reminderOffer={offer}
       installOffer={showInstall ? { onInstall: () => router.push('/instalar'), copyFirst: needsCopyBeforeInstall(platform) } : undefined}

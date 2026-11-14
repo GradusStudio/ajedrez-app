@@ -54,7 +54,7 @@ export default function LessonRoute() {
         router.back();
       }}
       onFinish={(result) => {
-        let earned = { coins: 0, dailyBonus: 0, streakRecovered: false };
+        let earned = { coins: 0, dailyBonus: 0, streakRecovered: false, streakLit: false };
         if (isReview) {
           earned = finishReview({
             lessonId: base.id,
@@ -81,6 +81,7 @@ export default function LessonRoute() {
             monedas: String(earned.coins),
             premio: String(earned.dailyBonus),
             ...(earned.streakRecovered ? { recuperada: '1' } : {}),
+            ...(earned.streakLit ? { encendida: '1' } : {}),
             fallos: result.mistakes.join(','),
             modo: isReview ? 'repaso' : 'leccion',
           },

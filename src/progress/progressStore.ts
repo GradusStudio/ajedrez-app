@@ -180,20 +180,21 @@ export function withPractice(p: Progress, seconds: number, today = todayKey()): 
 
 /**
  * Registra una acción del día en la racha y paga el premio del día con la primera de cada día.
- * `streakRecovered` es true si con ella se completó una recuperación.
+ * `streakRecovered` es true si con ella se completó una recuperación; `streakLit`, si encendió la racha hoy.
  */
 function withStreak(
   p: Progress,
   action: StreakAction,
   today: string
-): { progress: Progress; dailyBonus: number; streakRecovered: boolean } {
-  const { streak, recovered } = withStreakAction(p.streak, action, today);
+): { progress: Progress; dailyBonus: number; streakRecovered: boolean; streakLit: boolean } {
+  const { streak, recovered, lit } = withStreakAction(p.streak, action, today);
   const next: Progress = { ...p, streak };
-  if (p.rewards.goalDate === today) return { progress: next, dailyBonus: 0, streakRecovered: recovered };
+  if (p.rewards.goalDate === today) return { progress: next, dailyBonus: 0, streakRecovered: recovered, streakLit: lit };
   return {
     progress: withCoins({ ...next, rewards: { ...next.rewards, goalDate: today } }, DAILY_BONUS_COINS),
     dailyBonus: DAILY_BONUS_COINS,
     streakRecovered: recovered,
+    streakLit: lit,
   };
 }
 
@@ -235,7 +236,7 @@ export function withLessonFinished(
   p: Progress,
   f: LessonFinish,
   now = new Date()
-): { progress: Progress; coinsEarned: number; dailyBonus: number; streakRecovered: boolean } {
+): { progress: Progress; coinsEarned: number; dailyBonus: number; streakRecovered: boolean; streakLit: boolean } {
   const today = todayKey(now);
   const iso = now.toISOString();
   const prev = p.lessons[f.lessonId];
@@ -250,7 +251,13 @@ export function withLessonFinished(
   next = withPractice(next, f.seconds, today);
   const streak = withStreak(next, 'lesson', today);
   next = withMistakes(streak.progress, f.lessonId, f.mistakes, iso);
-  return { progress: next, coinsEarned, dailyBonus: streak.dailyBonus, streakRecovered: streak.streakRecovered };
+  return {
+    progress: next,
+    coinsEarned,
+    dailyBonus: streak.dailyBonus,
+    streakRecovered: streak.streakRecovered,
+    streakLit: streak.streakLit,
+  };
 }
 
 export type ReviewFinish = {
@@ -265,7 +272,7 @@ export function withReviewFinished(
   p: Progress,
   r: ReviewFinish,
   now = new Date()
-): { progress: Progress; dailyBonus: number; streakRecovered: boolean } {
+): { progress: Progress; dailyBonus: number; streakRecovered: boolean; streakLit: boolean } {
   const today = todayKey(now);
   const solved = r.stepIds.filter((id) => !r.failed.includes(id));
   let next: Progress = { ...p, mistakes: p.mistakes.filter((m) => !solved.includes(m.stepId)) };
@@ -286,7 +293,7 @@ export function withGameFinished(
   botElo: number,
   countsForStreak: boolean,
   now = new Date()
-): { progress: Progress; coinsEarned: number; streakRecovered: boolean } {
+): { progress: Progress; coinsEarned: number; streakRecovered: boolean; streakLit: boolean } {
   const today = todayKey(now);
   let next: Progress = { ...p, games: [{ ...game, playedAt: now.toISOString() }, ...p.games].slice(0, MAX_GAMES) };
   let coinsEarned = 0;
@@ -295,9 +302,9 @@ export function withGameFinished(
     next = withCoins({ ...next, rewards: { ...next.rewards, botWins: { ...next.rewards.botWins, [game.botId]: today } } }, coinsEarned);
   }
   next = withPractice(next, seconds, today);
-  if (!countsForStreak) return { progress: next, coinsEarned, streakRecovered: false };
+  if (!countsForStreak) return { progress: next, coinsEarned, streakRecovered: false, streakLit: false };
   const streak = withStreak(next, 'bot', today);
-  return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered };
+  return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered, streakLit: streak.streakLit };
 }
 
 /** Un precio es un entero no negativo: con uno negativo o NaN, «gastar» sumaría monedas o rompería el saldo. */
@@ -365,7 +372,7 @@ export function withPuzzleFinished(
   seconds: number,
   puzzleRating: number,
   now = new Date()
-): { progress: Progress; coinsEarned: number; streakRecovered: boolean; ratingChange: { rating: number; delta: number } | null } {
+): { progress: Progress; coinsEarned: number; streakRecovered: boolean; streakLit: boolean; ratingChange: { rating: number; delta: number } | null } {
   const today = todayKey(now);
   const prev = p.puzzles[id];
   const best = prev && PUZZLE_RANK[prev.result] >= PUZZLE_RANK[result] ? prev.result : result;
@@ -381,9 +388,15 @@ export function withPuzzleFinished(
   }
   next = withCoins(next, coinsEarned);
   next = withPractice(next, seconds, today);
-  if (!puzzleCountsForStreak(result)) return { progress: next, coinsEarned, streakRecovered: false, ratingChange };
+  if (!puzzleCountsForStreak(result)) return { progress: next, coinsEarned, streakRecovered: false, streakLit: false, ratingChange };
   const streak = withStreak(next, 'puzzle', today);
-  return { progress: streak.progress, coinsEarned, streakRecovered: streak.streakRecovered, ratingChange };
+  return {
+    progress: streak.progress,
+    coinsEarned,
+    streakRecovered: streak.streakRecovered,
+    streakLit: streak.streakLit,
+    ratingChange,
+  };
 }
 
 /** El puzzle todavía no movió el nivel: no está terminado ni tiene un fallo ya cobrado. */

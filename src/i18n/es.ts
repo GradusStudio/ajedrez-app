@@ -20,6 +20,8 @@ export const es = {
   'common.coinsLabel': '{n} monedas',
   'common.dailyBonus': 'Premio del día: +{n} monedas.',
   'common.streakRecovered': 'Recuperaste tu racha.',
+  'streak.litToday': 'Encendiste la racha de hoy',
+  'streak.daysShort': 'L M M J V S D',
   'common.reviewMistakes': 'Repasar errores',
   'common.backToProfile': 'Volver a Perfil',
   'common.backProfile': '‹ Perfil',

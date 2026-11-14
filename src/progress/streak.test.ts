@@ -4,6 +4,7 @@ import {
   gameCountsForStreak,
   puzzleCountsForStreak,
   streakStatus,
+  weekSteps,
   withStreakAction,
   type DayActions,
   type Streak,
@@ -86,6 +87,47 @@ test('reloj atrasado no reinicia la racha', () => {
 test('hoy con las tres acciones de ayer no marca nada', () => {
   assert.equal(streakStatus({ ...s(5, '2026-10-29'), actions: all('2026-10-29') }, '2026-10-30').done.lesson, false);
 });
+test('streakLit: la primera acción del día enciende la racha', () => {
+  const r = withStreakAction(s(5, '2026-10-29'), 'lesson', '2026-10-30');
+  assert.equal(r.lit, true);
+});
+test('streakLit: la segunda acción del día no la vuelve a encender', () => {
+  const first = withStreakAction(s(5, '2026-10-29'), 'lesson', '2026-10-30');
+  const second = withStreakAction(first.streak, 'puzzle', '2026-10-30');
+  assert.equal(second.lit, false);
+});
+test('streakLit: la recuperación enciende la racha al completar la tercera acción', () => {
+  const a = withStreakAction(s(10, '2026-10-28'), 'puzzle', '2026-10-30');
+  const b = withStreakAction(a.streak, 'lesson', '2026-10-30');
+  const c = withStreakAction(b.streak, 'bot', '2026-10-30');
+  assert.equal(a.lit, false);
+  assert.equal(b.lit, false);
+  assert.equal(c.lit, true);
+  assert.equal(c.recovered, true);
+});
+test('streakLit: una racha nueva desde cero también se enciende', () => {
+  const r = withStreakAction(s(0, null), 'puzzle', '2026-10-30');
+  assert.equal(r.lit, true);
+  assert.equal(r.streak.current, 1);
+});
+test('streakLit: con la racha ya segura no se enciende otra vez', () => {
+  const r = withStreakAction(s(5, '2026-10-30'), 'bot', '2026-10-30');
+  assert.equal(r.lit, false);
+});
+
+test('weekSteps: una racha de 6 con hoy segura enciende la semana hasta hoy', () => {
+  assert.deepEqual(weekSteps(6, 4, true), [true, true, true, true, true, false, false]);
+});
+test('weekSteps: racha de 5 sin practicar hoy deja hoy apagado', () => {
+  assert.deepEqual(weekSteps(5, 4, false), [true, true, true, true, false, false, false]);
+});
+test('weekSteps: racha de 1 recién encendida solo marca hoy', () => {
+  assert.deepEqual(weekSteps(1, 4, true), [false, false, false, false, true, false, false]);
+});
+test('weekSteps: una racha larga enciende toda la semana hasta hoy', () => {
+  assert.deepEqual(weekSteps(10, 2, true), [true, true, true, false, false, false, false]);
+});
+
 test('puzzle con solución vista no cuenta', () => {
   assert.equal(puzzleCountsForStreak('failed'), false);
   assert.equal(puzzleCountsForStreak('solved'), true);

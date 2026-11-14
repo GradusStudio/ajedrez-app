@@ -4,10 +4,11 @@ import { ColumnScrollView } from '../components/ColumnScrollView';
 import { ProgressBar } from '../components/ProgressBar';
 import { SettingRow } from '../components/SettingRow';
 import { StatIcon } from '../components/StatIcon';
+import { StreakFlame, flameStateOf, type FlameState } from '../components/StreakFlame';
 import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
-import { currentStreak, isPuzzleSolved } from '../progress/progressStore';
+import { currentStreak, isPuzzleSolved, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
@@ -48,7 +49,12 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
       <Text style={styles.title}>{t('profile.title')}</Text>
 
       <View style={styles.grid}>
-        <Stat icon="streak" value={currentStreak(progress, today)} label={t('profile.streakDays', { best: progress.streak.best })} />
+        <Stat
+          icon="streak"
+          flameState={flameStateOf(streakStatusNow(progress, today).kind)}
+          value={currentStreak(progress, today)}
+          label={t('profile.streakDays', { best: progress.streak.best })}
+        />
         <Stat icon="coin" value={progress.coins} label={t('profile.coins')} />
         <Stat value={`${lessonsDone}/${unitLessons.length}`} label={t('profile.lessons')} />
         <Stat value={puzzlesSolved} label={t('profile.puzzlesSolved')} />
@@ -90,12 +96,33 @@ export function ProfileScreen({ onOpenSettings, onOpenCredits, onOpenPieces, onO
   );
 }
 
-function Stat({ icon, value, label }: { icon?: 'streak' | 'coin'; value: number | string; label: string }) {
+function Stat({
+  icon,
+  value,
+  label,
+  flameState,
+}: {
+  icon?: 'streak' | 'coin';
+  value: number | string;
+  label: string;
+  flameState?: FlameState;
+}) {
   return (
     <View style={styles.stat}>
       <View style={styles.statTop}>
-        {icon && <StatIcon name={icon} size={20} />}
-        <Text style={[styles.statValue, icon && { color: colors.gold }]}>{value}</Text>
+        {icon === 'streak' && flameState ? (
+          <StreakFlame state={flameState} size={20} />
+        ) : (
+          icon && <StatIcon name={icon} size={20} />
+        )}
+        <Text
+          style={[
+            styles.statValue,
+            icon && { color: icon === 'streak' && flameState !== 'lit' ? colors.textMuted : colors.gold },
+          ]}
+        >
+          {value}
+        </Text>
       </View>
       <Text style={styles.statLabel}>{label}</Text>
     </View>

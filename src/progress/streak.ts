@@ -67,12 +67,27 @@ export function streakStatus(s: Streak, today: string): StreakStatus {
   return statusOf(resolveStreak(s, today), today);
 }
 
-/** Registra una acción de hoy y devuelve la racha nueva; `recovered` es true al completar una recuperación. */
+/**
+ * Días de la semana que muestra la escalera de la llama, de lunes a domingo.
+ * `todayIndex` va de 0 (lunes) a 6 (domingo); los días futuros quedan apagados.
+ */
+export function weekSteps(streak: number, todayIndex: number, safeToday: boolean): boolean[] {
+  return Array.from({ length: 7 }, (_, i) => {
+    if (i > todayIndex) return false;
+    if (i === todayIndex) return safeToday;
+    return streak >= todayIndex - i + (safeToday ? 1 : 0);
+  });
+}
+
+/**
+ * Registra una acción de hoy y devuelve la racha nueva. `recovered` es true al completar una recuperación;
+ * `lit` es true si con esta acción la racha pasó a segura hoy (la primera del día que la mantiene).
+ */
 export function withStreakAction(
   s: Streak,
   action: StreakAction,
   today: string,
-): { streak: Streak; recovered: boolean } {
+): { streak: Streak; recovered: boolean; lit: boolean } {
   const base = resolveStreak(s, today);
   const { kind, done } = statusOf(base, today);
   const actions: DayActions = { date: today, ...done, [action]: true };
@@ -84,15 +99,15 @@ export function withStreakAction(
   });
   switch (kind) {
     case 'safe':
-      return { streak: next(base.current, base.lastActiveDate), recovered: false };
+      return { streak: next(base.current, base.lastActiveDate), recovered: false, lit: false };
     case 'active':
-      return { streak: next(base.current + 1, today), recovered: false };
+      return { streak: next(base.current + 1, today), recovered: false, lit: true };
     case 'recovering':
       return allDone(actions)
-        ? { streak: next(base.current, today), recovered: true }
-        : { streak: next(base.current, base.lastActiveDate), recovered: false };
+        ? { streak: next(base.current, today), recovered: true, lit: true }
+        : { streak: next(base.current, base.lastActiveDate), recovered: false, lit: false };
     default:
-      return { streak: next(1, today), recovered: false };
+      return { streak: next(1, today), recovered: false, lit: true };
   }
 }
 

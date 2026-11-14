@@ -1,0 +1,94 @@
+# Menú de Aprender y Aperturas: media corona, riel y tablero de progreso
+
+Fecha: 14-11-2026 · Diseño: opus · Implementación: lingling (tareas en `agentes.md`).
+Parte del prototipo `prototipo-rediseno.html` (13-11-2026, fuera de git) y de los bocetos del usuario (`C:\Bobeda obsidian\ideas\Gradus\Gradus - Ideas de menú.md`). Este documento manda sobre el prototipo donde no coinciden.
+
+## Decisiones del usuario (14-11-2026)
+
+1. **Web ancha (960 px o más):** el menú va como en el prototipo: barra lateral, media corona de 3 gajos, tablero a la derecha y riel de lecciones que entra desde la derecha.
+2. **Celular (y web angosta):** un solo **riel vertical recto**. Se quita la ruta en zigzag porque se parece demasiado a Duolingo.
+3. **El tablero es la barra de progreso.** Cada unidad y cada apertura tiene su propia partida, que avanza una jugada por cada lección hecha. No hay barras ni arcos de progreso en los gajos.
+4. **Aperturas:** selector Blancas / Negras y la corona recorre las aperturas de ese color.
+5. **La grilla de puntos de los bocetos no va.** Representaba el tablero.
+
+## 1. Tablero de progreso (la pieza central)
+
+### Regla
+
+- Cada unidad o curso de apertura tiene una partida: `startFen` (opcional; si falta, la posición inicial), la lista de jugadas en UCI y el **bando que estudia** (`side`: `w` o `b`).
+- Con `k` lecciones hechas de esa unidad o curso, el tablero muestra la posición **justo después de la jugada número `k` del bando que estudia**, con las jugadas del rival que haya antes.
+  - Ejemplo, Italiana (blancas): 0 lecciones = posición inicial; 1 = después de `1.e4`; 2 = después de `1.e4 e5 2.Cf3`; 3 = después de `2...Cc6 3.Ac4`.
+  - En un curso de negras: 1 = después de `1.e4 c5` (si la primera jugada es de las blancas, se muestra junto con la respuesta).
+- Si la partida tiene menos jugadas del bando que lecciones, se queda en la posición final.
+- **Unidad o curso completo: siempre la posición final de la partida**, aunque sobren jugadas. El final se revela al terminar (en casi todas las partidas de unidad es un mate).
+- La última jugada mostrada va resaltada (`lastMove`). En la web, debajo del tablero: «Jugada 3 de 9» (`k` sobre el total de jugadas del bando; completo = «Partida completa»).
+- `k` se cuenta con `progress.lessons` (lecciones hechas de esa unidad o curso), no con la lección sugerida.
+
+### Partidas
+
+- **Aperturas:** la línea principal del curso (paso `line` de la lección `l02` de cada apertura, ya en UCI en `aperturas-v3.json`). `side` = `color` del curso. Sin datos nuevos.
+- **Unidades:** archivo nuevo `src/data/progressGames.json` (una sola copia: las jugadas no se traducen). Candidatas (partidas históricas; las jugadas no tienen derechos):
+
+| Unidad | Partida | Por qué |
+|---|---|---|
+| 1 · Cómo se mueven las piezas | Greco, 1620: `1.e4 b6 2.d4 Ab7 3.Ad3 f5 4.exf5 Axg2 5.Dh5+ g6 6.fxg6 Cf6 7.gxh7+ Cxh5 8.Ag6#` | corta, mueven peón, alfil, dama y caballo, termina en mate |
+| 2 · Reglas especiales | Ed. Lasker – Thomas, Londres 1912 (termina `18.Rd2#`) | el rey negro cruza todo el tablero; enroque de las negras |
+| 3 · Táctica básica | Mate de Legal: `1.e4 e5 2.Cf3 d6 3.Ac4 Ag4 4.Cc3 g6 5.Cxe5 Axd1 6.Axf7+ Re7 7.Cd5#` | sacrificio de dama y mate con piezas menores |
+| 4 · Apertura y estrategia | Morphy – Duque de Brunswick y Conde Isouard, París 1858 («la partida de la ópera», termina `17.Td8#`) | desarrollo rápido contra un rival que no desarrolla |
+| 5 · Finales | posición de Lucena (`startFen`) jugada hasta coronar, con la maniobra del puente | es una lección de la unidad |
+| 6 · Táctica intermedia | Réti – Tartakower, Viena 1910 (termina `11.Ad8#`) | sacrificio de dama, atracción y jaque doble |
+| 7 · Finales intermedios | estudio de Réti, 1921 (`startFen` `7K/8/k1P5/7p/8/8/8/8 w - - 0 1`, el rey alcanza al peón) | rey activo |
+| 8 · Piezas y peones | **pendiente: la elige opus** antes de cerrar la tarea 8 | — |
+| 9 · Ataque y defensa | Anderssen – Kieseritzky, Londres 1851 («la inmortal», termina `23.Ae7#`) | ataque al rey sin enrocar |
+
+`side` = `w` en todas (en Lucena y Réti, el bando que juega primero). Una prueba valida cada partida con chess.js (jugadas legales; la final de 1, 2, 3, 4, 6 y 9 es mate). **Si una jugada transcrita aquí falla, se avisa en `agentes.md`; no se inventa una corrección.** Hasta que la Unidad 8 tenga su partida, se muestra la posición inicial sin avanzar.
+
+## 2. Web ancha: corona, tablero y riel
+
+Solo con `useWideLayout()` verdadero. La barra lateral es la `WideSidebar` que ya existe; no se construye otra.
+
+**Estado «elegir»** (el que se ve al entrar):
+- Columna izquierda (unos 250 px): título de la unidad («Unidad 1 · Cómo se mueven las piezas»), botón ▲ «anterior», la media corona y botón ▼ «siguiente unidad» (o «siguiente apertura»).
+- **Media corona:** 3 gajos (anterior, actual, siguiente) con radio interno y separación entre gajos, como el prototipo (`R 150`, `RIN 55`, separación 3°). Actual en verde primario con texto blanco; vecinos en `raised` al 70 %; un hueco sin unidad, en `surface` al 26 %. Rótulos: `U1`…`U9` en Aprender; nombre corto en Aperturas (sección 4).
+- Pasar de unidad: botones, rueda del mouse, deslizar en vertical sobre la corona, flechas ↑/↓ del teclado y tocar un gajo vecino. Gira 60° en 260 ms y se vuelve a dibujar. Con `useReducedMotion`, sin giro.
+- Tocar el gajo actual (o Enter) abre el riel.
+- Tablero a la derecha (hasta 440 px), no interactivo, con la partida de la unidad o apertura a la vista (sección 1) y la leyenda debajo. Al cambiar de unidad, el tablero cambia sin animar el deslizamiento de piezas (son posiciones de otra partida).
+- Al abrir la pestaña se muestra la unidad de `progress.lastUnit` (como hoy) o la de la lección sugerida.
+
+**Estado «riel»** (al elegir una unidad):
+- La columna de la corona sale por la izquierda, el tablero se corre hacia la izquierda y el riel (380 px) entra desde la derecha (400 ms). El tablero sigue mostrando esa partida.
+- Cabecera: botón «volver» (`Button3D` secundario) y título («UNIDAD 1» chico en verde, nombre grande).
+- Riel recto con un nodo por lección: hecho (verde con ✓), actual (verde con halo), abierto y bloqueado. Estados con `lessonStates` de `src/progress/path.ts` (respeta `LOCK_LESSONS`). Tocar un nodo hecho, actual o abierto empieza esa lección; uno bloqueado no hace nada (con su estado en la etiqueta de accesibilidad).
+- Botón grande al final: «Empezar» (0 hechas), «Continuar» o «Repasar» (unidad completa). Abre la lección sugerida de la unidad.
+- Escape y «volver» regresan a «elegir».
+- Barra de racha y monedas: arriba del todo, como en la Aprender de hoy.
+
+## 3. Celular y web angosta: riel vertical
+
+Reemplaza la ruta en zigzag de `HomeScreen` (solo Aprender; la pestaña Aperturas del celular no cambia en esta etapa).
+- Un riel recto, centrado a la izquierda (como el riel de la web), con los mismos nodos y estados de la sección 2. Se quitan `ZIGZAG` y el desplazamiento de `LessonNode`.
+- Cabecera de cada unidad: tarjeta con el nombre y un **tablero chico** (unos 120 px) con la posición de progreso de la sección 1. Así el tablero sigue siendo la barra de progreso en el teléfono.
+- Se mantienen el menú de unidades, el botón flotante, la tarjeta de recuperación de racha y la barra de racha y monedas.
+
+## 4. Aperturas en la web ancha
+
+- La misma pantalla de la sección 2, con un `Segmented` Blancas / Negras arriba de la corona (la elección se recuerda mientras dura la sesión). La corona recorre las aperturas de ese color en el orden de hoy.
+- El riel lista las lecciones del curso (Idea, Línea principal, guías y Repaso) con sus estados; el botón abre la sugerida. «Ver curso» lleva a la ficha actual (`OpeningDetailScreen`) para lo que el riel no muestra.
+- Nombre corto para el gajo (campo nuevo `short` en los datos traducidos de aperturas, 11 caracteres como máximo). Español: Londres, Italiana, Vienesa, Escandinava, Najdorf, Dragón, Ataque IR, India Rey, Moderna, Pirc, Escocesa, Evans, Blackmar, Caro-Kann, Ruy López, Rossolimo, Alapin, G. Dama, G. Rey, Albin, Catalana, Inglesa, Danés, Francesa, Nimzoindia, Petrov, GD Decl., GD Acep., Holandesa. En, de, it y fr con gemma4 vía Ollama (sin revisión de nativos), con el mismo tope.
+
+## 5. Accesibilidad y textos
+
+- Cada gajo es un botón con etiqueta completa («Unidad 2: Reglas especiales, 3 de 6 lecciones»). El tablero lleva `accessibilityLabel` con la leyenda.
+- Áreas táctiles de 44 px o más. Contraste del texto de los gajos vecinos: `muted` sobre `raised`, revisar que pase 4.5:1.
+- Textos nuevos en `src/i18n/<lang>.ts` para los cinco idiomas (`noHardcoded.test.ts` tiene que pasar). Sin exclamaciones (docs/design.md).
+
+## 6. Fuera de alcance
+
+Progreso dentro de los gajos, grilla de puntos, cambiar la pestaña Aperturas del celular, animar las piezas del tablero de progreso al completar una lección (puede ir después, con `MovingPiece`).
+
+## 7. Cómo se comprueba
+
+- `npm test`: pruebas del módulo puro de la sección 1 (Italiana con 0, 1, 2 y 3 lecciones; curso de negras; partida corta con más lecciones que jugadas; unidad completa = final) y validación de todas las partidas.
+- `npx expo lint` y `npx tsc --noEmit` sin errores.
+- Navegador (`web-dev`): ancho de 1280 px (corona, riel, teclado, aperturas por color) y 375 px (riel vertical). Capturas en el resumen de cada tarea.
+- El celular con Expo Go lo prueba el usuario.

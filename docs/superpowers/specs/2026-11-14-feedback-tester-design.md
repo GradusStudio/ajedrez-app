@@ -87,9 +87,11 @@ Segunda tanda del mismo tester: «quedaría mejor el personaje completo con un g
 - **Panel de 400 px** a la derecha del tablero (600 px), con la misma altura que el tablero:
   1. Nombre del profesor (15 px, verde).
   2. **Globo blanco** (`#FFFFFF`, texto `#262421` de 19 px, radio 22 px, canto `#C9C6BF` de 5 px) con la cola hacia abajo, apuntando al profesor.
-  3. **«Continuar» 30 px debajo del globo**, de todo el ancho del panel (no en la barra del pie). En pasos con jugada, el botón aparece en el mismo lugar cuando corresponde.
-  4. **Profesor de cuerpo entero** abajo del panel (unos 190 × 250 px), parado sobre una sombra suave, mirando hacia el globo. Cambia de pose con la expresión (`explica`, `piensa`, `acierto`, `pista`).
-- Acierto y error: el aviso reemplaza al globo en el mismo lugar (verde o rojo, como hoy) y el botón queda debajo.
+  3. **Profesor de cuerpo entero** justo debajo del globo, 26 px por debajo de la cola (unos 190 × 250 px), parado sobre una sombra suave, mirando hacia el globo. Cambia de pose con la expresión (`explica`, `piensa`, `acierto`, `pista`).
+  4. **«Continuar» debajo del profesor**, 20 px por debajo, de todo el ancho del panel (no en la barra del pie). En pasos con jugada, el botón aparece en el mismo lugar cuando corresponde.
+
+  Orden fijado por el autor (14-11-2026): **globo → profesor → botón**.
+- Acierto y error: el aviso reemplaza al globo en el mismo lugar (verde o rojo, como hoy); el profesor y el botón siguen debajo.
 - **Arte:** hace falta una versión de cuerpo entero de cada bot con sus cuatro expresiones (se suma al rediseño de bots). Mientras no exista, se usa el avatar de busto actual a 190 px en el lugar del cuerpo.
 - En el celular no cambia: tablero arriba, texto y botón abajo, al alcance del pulgar.
 - La misma regla para las demás pantallas con tablero en pantalla ancha (puzzles, quiz, práctica de aperturas): la acción principal va pegada al texto que la pide, dentro del panel.

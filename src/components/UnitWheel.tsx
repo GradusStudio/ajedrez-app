@@ -11,6 +11,8 @@ export type WheelItem = {
   /** Número en Aprender, nombre corto en Aperturas. */
   label: string;
   accessibilityLabel: string;
+  /** Unidad cerrada: gajo con el color de los vecinos y un candado chico debajo del número. */
+  locked?: boolean;
 };
 
 type Props = {
@@ -322,20 +324,24 @@ export function UnitWheel({
             const e = t * t * (3 - 2 * t);
             const press = pressed === i ? DEPTH / 2 : 0;
             const p = labelPoint(a);
+            const face = item.locked ? mixColor(colors.surfaceRaised, colors.surfaceShadow, e) : mixColor(colors.surfaceRaised, colors.primary, e);
+            const edge = item.locked ? mixColor(colors.surfaceShadow, colors.surfaceShadow, e) : mixColor(colors.surfaceShadow, colors.primaryShadow, e);
+            const labelColor = item.locked ? mixColor(colors.outline, colors.textMuted, e) : mixColor(colors.textMuted, colors.text, e);
+            const lockColor = mixColor(colors.surfaceRaised, colors.textMuted, e);
             return (
               <G key={item.key}>
                 <Path
                   d={WEDGE}
                   transform={`translate(0 ${DEPTH}) rotate(${a} ${CX} ${CY})`}
-                  fill={mixColor(colors.surfaceShadow, colors.primaryShadow, e)}
-                  stroke={mixColor(colors.surfaceShadow, colors.primaryShadow, e)}
+                  fill={mixColor(colors.surfaceShadow, colors.surfaceShadow, e)}
+                  stroke={mixColor(colors.surfaceShadow, colors.surfaceShadow, e)}
                   strokeWidth={2}
                 />
                 <Path
                   d={WEDGE}
                   transform={`translate(0 ${press}) rotate(${a} ${CX} ${CY})`}
-                  fill={mixColor(colors.surfaceRaised, colors.primary, e)}
-                  stroke={mixColor(colors.surfaceShadow, colors.primaryShadow, e)}
+                  fill={face}
+                  stroke={edge}
                   strokeWidth={2}
                   accessibilityLabel={item.accessibilityLabel}
                 />
@@ -346,10 +352,22 @@ export function UnitWheel({
                   alignmentBaseline="middle"
                   fontFamily={fonts.extrabold}
                   fontSize={labels === 'short' ? 15 + 5 * e : 22 + 26 * e}
-                  fill={mixColor(colors.textMuted, colors.text, e)}
+                  fill={labelColor}
                 >
                   {item.label}
                 </SvgText>
+                {item.locked && labels === 'number' && (
+                  <G transform={`translate(${p.x - 6} ${p.y + 20 + 12 * e}) scale(${0.7 + 0.5 * e})`}>
+                    <Path
+                      d="M2.5 5V3.5a3.5 3.5 0 0 1 7 0V5"
+                      stroke={lockColor}
+                      strokeWidth={1.8}
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <Rect x={0} y={5} width={12} height={9} rx={2} fill={lockColor} />
+                  </G>
+                )}
               </G>
             );
           })}

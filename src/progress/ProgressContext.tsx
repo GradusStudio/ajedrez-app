@@ -25,6 +25,7 @@ import {
   withTurningPointSolved,
   withBoardThemeBought,
   withReset,
+  withUnitTestPassed,
 } from './progressStore';
 import { mergeImport, mergeProgress, sameProgress } from './merge';
 import { markPracticed } from './practiceMark';
@@ -54,6 +55,8 @@ type ProgressValue = {
   saveDraft: (lessonId: string, draft: LessonDraft | null) => void;
   /** Recuerda la unidad de la última lección empezada en Aprender. */
   setLastUnit: (unit: number) => void;
+  /** Aprueba la prueba de una unidad: la abre sin marcar lecciones ni dar monedas. */
+  passUnitTest: (unit: number) => void;
   addPractice: (seconds: number) => void;
   /** Guarda (o quita, con null) la partida contra un bot sin terminar, para seguirla después o desde otro dispositivo. */
   saveOngoingGame: (game: OngoingGame | null) => void;
@@ -152,6 +155,8 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   );
 
   const setLastUnit = useCallback((unit: number) => commit(withLastUnit(current.current, unit)), [commit]);
+
+  const passUnitTest = useCallback((unit: number) => commit(withUnitTestPassed(current.current, unit)), [commit]);
 
   const saveOngoingGame = useCallback(
     (game: OngoingGame | null) => {
@@ -274,6 +279,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         finishReview,
         saveDraft,
         setLastUnit,
+        passUnitTest,
         addPractice,
         saveOngoingGame,
         openPuzzle,

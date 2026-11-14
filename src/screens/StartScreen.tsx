@@ -15,12 +15,13 @@ import progressGamesRaw from '../data/progressGames.json';
 import { teacherForLesson } from '../data/teachers';
 import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
-import { lessonStates, suggestedLesson } from '../progress/path';
+import { lessonStates, suggestedLesson, unitOpen } from '../progress/path';
 import { piecesFromFen, progressPosition, type ProgressGamesFile } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { weekSteps } from '../progress/streak';
 import { useTodayKey } from '../settings/useTodayKey';
+import { useSettings } from '../settings/SettingsContext';
 import { TIP_MESSAGES, type TipId } from '../settings/tips';
 import { useTips } from '../settings/useTips';
 import { Puzzle, puzzleGoal } from '../puzzles/puzzles';
@@ -43,6 +44,7 @@ type Props = {
  */
 export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse }: Props) {
   const { progress } = useProgress();
+  const { settings } = useSettings();
   const { units, bots, openings } = useContent();
   const { t, number, tn } = useI18n();
   const wide = useWideLayout();
@@ -56,7 +58,8 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
 
   const streak = currentStreak(progress, today);
   const status = streakStatusNow(progress, today);
-  const lesson = suggestedLesson(units, progress);
+  const openUnits = unitOpen(units, progress, progress.profile.level, settings.openAllUnits);
+  const lesson = suggestedLesson(units.filter((u) => openUnits.includes(u.unit)), progress);
   const unit = lesson ? units.find((u) => u.lessons.some((l) => l.id === lesson.id)) : undefined;
   const firstTime = Object.keys(progress.lessons).length === 0;
   const teacher = teacherForLesson(lesson?.id ?? units[0]?.lessons[0]?.id ?? '');

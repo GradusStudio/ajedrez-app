@@ -105,6 +105,12 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
         value={settings.showPuzzleRating}
         onValueChange={(v) => update({ showPuzzleRating: v })}
       />
+      <SettingRow
+        label={t('settings.openAllUnits')}
+        description={t('settings.openAllUnits.description')}
+        value={settings.openAllUnits}
+        onValueChange={(v) => update({ openAllUnits: v })}
+      />
       {REMINDER_SUPPORT === 'supported' && (
         <>
           <SettingRow

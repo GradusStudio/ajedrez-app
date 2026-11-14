@@ -19,11 +19,12 @@ import { Lesson, Unit } from '../data/lessonTypes';
 import progressGamesRaw from '../data/progressGames.json';
 import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
-import { lessonStates, suggestedLesson } from '../progress/path';
+import { lessonStates, suggestedLesson, unitOpen } from '../progress/path';
 import { piecesFromFen, progressPosition, type ProgressGamesFile } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
+import { useSettings } from '../settings/SettingsContext';
 import { TIP_MESSAGES } from '../settings/tips';
 import { useTips } from '../settings/useTips';
 import { type, colors, fonts, radius, space } from '../theme';
@@ -33,6 +34,7 @@ import { useWideLayout } from '../components/useWideLayout';
 
 type Props = {
   onStartLesson: (lesson: Lesson) => void;
+  onOpenUnitTest: (unit: number) => void;
 };
 
 // Partidas de progreso de las unidades (progressGame.json, tareas 8 y 10 de agentes.md).
@@ -42,21 +44,26 @@ const progressGames = (progressGamesRaw as unknown as ProgressGamesFile).units;
 let flameShownDate = '';
 
 // Pestaña Aprender: barra de racha y monedas, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
-export function HomeScreen({ onStartLesson }: Props) {
+export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
   const { progress, setLastUnit } = useProgress();
+  const { settings } = useSettings();
   const { units } = useContent();
   const { t } = useI18n();
+  const openUnitNumbers = unitOpen(units, progress, progress.profile.level, settings.openAllUnits);
+  const openCatalog = units.filter((u) => openUnitNumbers.includes(u.unit));
   // Unidad elegida en el menú o en la corona. Sin elegir, se muestra la de la última lección
   // empezada (guardada en el progreso) o, la primera vez, la de la lección sugerida.
   const [chosen, setChosen] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const globalSuggested = suggestedLesson(units, progress);
+  const globalSuggested = suggestedLesson(openCatalog, progress);
   const unit =
     units.find((u) => u.unit === (chosen ?? progress.lastUnit)) ??
     units.find((u) => u.lessons.some((l) => l.id === globalSuggested?.id)) ??
     units[0];
-  // El botón flotante sigue a la unidad en pantalla; si ya está completa, sugiere otra.
-  const suggested = unit.lessons.find((l) => !progress.lessons[l.id]) ?? globalSuggested;
+  // El botón flotante sigue a la unidad en pantalla; si está cerrada, la prueba para saltar.
+  const unitIsOpen = openUnitNumbers.includes(unit.unit);
+  const lockedMessage = unit.unit > 1 ? t('unitTest.lockedMessage', { unit: unit.unit - 1 }) : '';
+  const suggested = unitIsOpen ? (unit.lessons.find((l) => !progress.lessons[l.id]) ?? globalSuggested) : undefined;
 
   /** Abre la lección y recuerda su unidad, para mostrarla al volver y al abrir la app. */
   const startLesson = (lesson: Lesson) => {
@@ -148,7 +155,7 @@ export function HomeScreen({ onStartLesson }: Props) {
   if (wide) {
     const unitIndex = Math.max(0, units.findIndex((u) => u.unit === unit.unit));
     const game = progressGames[String(unit.unit)] ?? { moves: [], side: 'w' as const };
-    const states = lessonStates(unit.lessons, progress);
+    const states = unitIsOpen ? lessonStates(unit.lessons, progress) : unit.lessons.map(() => 'locked' as const);
     const doneCount = states.filter((s) => s === 'done').length;
     const position = progressPosition(game, doneCount, unit.lessons.length);
     const legend =
@@ -163,10 +170,17 @@ export function HomeScreen({ onStartLesson }: Props) {
       doneCount >= unit.lessons.length ? t('home.review') : doneCount === 0 ? t('common.start') : t('common.continue');
     const wheelItems = units.map((u) => {
       const done = u.lessons.filter((l) => progress.lessons[l.id]).length;
+      const open = openUnitNumbers.includes(u.unit);
       return {
         key: String(u.unit),
         label: String(u.unit),
-        accessibilityLabel: t('home.unitWheelLabel', { n: u.unit, title: u.title, done, total: u.lessons.length }),
+        locked: !open,
+        accessibilityLabel: t(open ? 'home.unitWheelLabel' : 'home.unitWheelLocked', {
+          n: u.unit,
+          title: u.title,
+          done,
+          total: u.lessons.length,
+        }),
       };
     });
     const leftStyle = {
@@ -258,6 +272,10 @@ export function HomeScreen({ onStartLesson }: Props) {
               backLabel={t('home.back')}
               actionLabel={actionLabel}
               onAction={() => startLesson(suggestedForUnit)}
+              unitLocked={!unitIsOpen}
+              lockedMessage={lockedMessage}
+              testLabel={t('unitTest.button')}
+              onTest={() => onOpenUnitTest(unit.unit)}
             />
           </Animated.View>
         </View>
@@ -296,7 +314,15 @@ export function HomeScreen({ onStartLesson }: Props) {
         </View>
         {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
 
-        <UnitRail key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} cardRef={tipTarget} />
+        <UnitRail
+          key={unit.unit}
+          unit={unit}
+          onStartLesson={startLesson}
+          onOpenMenu={() => setMenuOpen(true)}
+          cardRef={tipTarget}
+          locked={!unitIsOpen}
+          lockedMessage={lockedMessage}
+        />
       </ColumnScrollView>
 
       <Tip
@@ -310,8 +336,15 @@ export function HomeScreen({ onStartLesson }: Props) {
 
       {unitMenu}
 
-      {/* Botón flotante con la lección sugerida */}
-      {suggested && (
+      {/* Botón flotante: la lección sugerida o la prueba para abrir una unidad cerrada */}
+      {!unitIsOpen ? (
+        <View style={[styles.floating, floatingWide]} onLayout={(e) => setFloatingHeight(e.nativeEvent.layout.height)}>
+          <Text style={styles.floatingCaption} numberOfLines={3}>
+            {lockedMessage}
+          </Text>
+          <Button3D label={t('unitTest.button')} variant="primary" onPress={() => onOpenUnitTest(unit.unit)} />
+        </View>
+      ) : suggested ? (
         <View style={[styles.floating, floatingWide]} onLayout={(e) => setFloatingHeight(e.nativeEvent.layout.height)}>
           <Text style={styles.floatingCaption} numberOfLines={2}>
             {t('home.lessonCaption', { order: suggested.order, title: suggested.title })}
@@ -322,7 +355,7 @@ export function HomeScreen({ onStartLesson }: Props) {
             onPress={() => startLesson(suggested)}
           />
         </View>
-      )}
+      ) : null}
     </View>
   );
 }
@@ -392,17 +425,22 @@ function UnitRail({
   onStartLesson,
   onOpenMenu,
   cardRef,
+  locked = false,
+  lockedMessage,
 }: {
   unit: Unit;
   onStartLesson: (lesson: Lesson) => void;
   onOpenMenu: () => void;
   /** Tarjeta de la unidad, para el consejo de Pipo. */
   cardRef?: React.RefObject<React.ComponentRef<typeof View> | null>;
+  /** Unidad cerrada (nivel «nuevo»). */
+  locked?: boolean;
+  lockedMessage?: string;
 }) {
   const { progress } = useProgress();
   const { t } = useI18n();
   const lessons = unit.lessons;
-  const states = lessonStates(lessons, progress);
+  const states = locked ? lessons.map(() => 'locked' as const) : lessonStates(lessons, progress);
   const doneCount = states.filter((s) => s === 'done').length;
   const current = lessons[states.indexOf('current')];
   const game = progressGames[String(unit.unit)] ?? { moves: [], side: 'w' as const };
@@ -416,6 +454,10 @@ function UnitRail({
         : t('home.progressMove', { n: position.played, total: position.total });
 
   const openLesson = (lesson: Lesson, i: number) => {
+    if (locked) {
+      showDialog(t('unitTest.lockedTitle'), lockedMessage ?? '');
+      return;
+    }
     if (states[i] === 'locked') {
       showDialog(t('lesson.lockedTitle'), t('home.lockedMessage', { title: current?.title ?? '' }));
       return;
@@ -437,6 +479,7 @@ function UnitRail({
             <Chevron />
           </View>
           <Text style={styles.unitTitle}>{t('home.unitTitle', { title: unit.title, done: doneCount, total: lessons.length })}</Text>
+          {locked && lockedMessage ? <Text style={styles.unitLocked}>{lockedMessage}</Text> : null}
         </Pressable>
         <View accessible accessibilityRole="image" accessibilityLabel={t('home.progressBoardLabel', { legend })}>
           <MiniBoard size={120} corner="a1" span={8} pieces={pieces} lastMove={position.lastMove} />
@@ -563,4 +606,5 @@ const styles = StyleSheet.create({
   menuLabel: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text },
   menuCount: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted },
   floatingCaption: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.text, marginBottom: space.sm },
+  unitLocked: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
 });

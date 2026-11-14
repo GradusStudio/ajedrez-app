@@ -81,6 +81,20 @@ export const es = {
   'settings.tipsReset': 'Volver a ver los consejos',
   'settings.tipsReset.description': 'Los consejos de Pipo vuelven a aparecer la próxima vez que abras la app.',
 
+  // Unidades y prueba para saltar
+  'unitTest.title': 'Prueba de la Unidad {unit}',
+  'unitTest.button': 'Hacer la prueba',
+  'unitTest.lockedTitle': 'Unidad cerrada',
+  'unitTest.lockedMessage': 'Terminá la Unidad {unit} para abrir esta.',
+  'unitTest.exitMessage': 'Si salís ahora, la prueba no queda aprobada.',
+  'unitTest.passed.title': 'Prueba aprobada',
+  'unitTest.passed.message': 'La Unidad {unit} quedó abierta.',
+  'unitTest.failed.title': 'Casi',
+  'unitTest.failed.message': 'Se aprueba con un error como máximo. Podés repetirla ahora.',
+  'settings.openAllUnits': 'Abrir todas las unidades',
+  'settings.openAllUnits.description': 'Para el nivel «Nunca jugué»: todas las unidades disponibles desde el principio.',
+  'home.unitWheelLocked': 'Unidad {n}: {title}, cerrada, {done} de {total} lecciones',
+
   // Aprender
   'home.streakLabel': 'Racha de {n} días',
   'home.lessonCaption': 'Lección {order} · {title}',

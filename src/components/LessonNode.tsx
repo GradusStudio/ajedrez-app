@@ -4,6 +4,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { NodeState } from '../progress/path';
 import { type, colors, fonts } from '../theme';
 import { Circle3D } from './Circle3D';
+import { LockIcon } from './LockIcon';
 import { useReducedMotion } from './useReducedMotion';
 
 export const NODE_SIZE = 64;
@@ -57,7 +58,11 @@ export function LessonNode({ state, order, label, onPress }: Props) {
       >
         {({ pressed }) => (
           <Circle3D size={NODE_SIZE} color={look.bg} edge={look.edge} depth={DEPTH} pressed={pressed}>
+            {state === 'locked' ? (
+            <LockIcon size={22} color={look.text} />
+          ) : (
             <Text style={[styles.text, { color: look.text }]}>{state === 'done' ? '✓' : order}</Text>
+          )}
           </Circle3D>
         )}
       </Pressable>

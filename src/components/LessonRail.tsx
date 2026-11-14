@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button3D } from './Button3D';
 import { Circle3D } from './Circle3D';
+import { LockIcon } from './LockIcon';
 import { Lesson } from '../data/lessonTypes';
 import { useI18n } from '../i18n/I18nContext';
 import { NodeState } from '../progress/path';
@@ -20,6 +21,11 @@ type Props = {
   /** Acción secundaria opcional (Aperturas: «Ver curso»). */
   secondaryLabel?: string;
   onSecondary?: () => void;
+  /** Unidad cerrada (nivel «nuevo»): aviso y botón para hacer la prueba. */
+  unitLocked?: boolean;
+  lockedMessage?: string;
+  testLabel?: string;
+  onTest?: () => void;
 };
 
 const FACE = 44;
@@ -38,6 +44,10 @@ export function LessonRail({
   onAction,
   secondaryLabel,
   onSecondary,
+  unitLocked = false,
+  lockedMessage,
+  testLabel,
+  onTest,
 }: Props) {
   return (
     <View style={styles.rail}>
@@ -58,10 +68,19 @@ export function LessonRail({
         ))}
       </ScrollView>
 
-      {secondaryLabel && onSecondary && (
-        <Button3D label={secondaryLabel} onPress={onSecondary} style={styles.action} />
+      {unitLocked ? (
+        <View style={styles.lockedBox}>
+          <Text style={styles.lockedText}>{lockedMessage}</Text>
+          <Button3D label={testLabel ?? ''} onPress={onTest ?? (() => {})} variant="primary" style={styles.action} />
+        </View>
+      ) : (
+        <>
+          {secondaryLabel && onSecondary && (
+            <Button3D label={secondaryLabel} onPress={onSecondary} style={styles.action} />
+          )}
+          <Button3D label={actionLabel} onPress={onAction} variant="primary" style={styles.action} />
+        </>
       )}
-      <Button3D label={actionLabel} onPress={onAction} variant="primary" style={styles.action} />
     </View>
   );
 }
@@ -94,9 +113,13 @@ function RailRow({ lesson, state, onPress }: { lesson: Lesson; state: NodeState;
           edge={done || current ? colors.primaryShadow : colors.surfaceShadow}
           pressed={down && !locked}
         >
-          <Text style={[styles.dotText, { color: locked ? colors.outline : done || current ? '#FFFFFF' : colors.text }]}>
-            {done ? '✓' : lesson.order}
-          </Text>
+          {locked ? (
+            <LockIcon size={18} color={colors.outline} />
+          ) : (
+            <Text style={[styles.dotText, { color: done || current ? '#FFFFFF' : colors.text }]}>
+              {done ? '✓' : lesson.order}
+            </Text>
+          )}
         </Circle3D>
       </View>
       <Text style={[styles.label, locked && styles.labelLocked]} numberOfLines={3} maxFontSizeMultiplier={1.3}>
@@ -152,5 +175,7 @@ const styles = StyleSheet.create({
   dotText: { fontFamily: fonts.extrabold, fontSize: type.body },
   label: { flex: 1, fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
   labelLocked: { color: colors.textMuted },
+  lockedBox: { marginTop: space.lg },
+  lockedText: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, lineHeight: 20 },
   action: { marginTop: space.lg },
 });

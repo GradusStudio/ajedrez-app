@@ -82,6 +82,20 @@ export const fr: Record<MessageKey, string> = {
   'settings.tipsReset': 'Revoir les conseils',
   'settings.tipsReset.description': 'Les conseils de Pipo réapparaîtront la prochaine fois que tu ouvriras l’app.',
 
+  // Unidades y prueba para saltar
+  'unitTest.title': 'Test de l\'unité {unit}',
+  'unitTest.button': 'Faire le test',
+  'unitTest.lockedTitle': 'Unité verrouillée',
+  'unitTest.lockedMessage': 'Termine l\'unité {unit} pour ouvrir celle-ci.',
+  'unitTest.exitMessage': 'Si tu sors maintenant, le test ne sera pas validé.',
+  'unitTest.passed.title': 'Test réussi',
+  'unitTest.passed.message': 'L\'unité {unit} est maintenant ouverte.',
+  'unitTest.failed.title': 'Presque',
+  'unitTest.failed.message': 'On réussit avec une erreur au maximum. Tu peux réessayer tout de suite.',
+  'settings.openAllUnits': 'Ouvrir toutes les unités',
+  'settings.openAllUnits.description': 'Pour le niveau « Je n\'ai jamais joué » : toutes les unités disponibles dès le début.',
+  'home.unitWheelLocked': 'Unité {n} : {title}, verrouillée, {done} sur {total} leçons',
+
   // Aprender
   'home.streakLabel': 'Jours de série : {n}',
   'home.lessonCaption': 'Leçon {order} · {title}',

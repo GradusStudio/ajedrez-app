@@ -78,6 +78,8 @@ export type Progress = {
   puzzles: Record<string, PuzzleRecord>; // por id de puzzle de Lichess
   /** Puntos de giro (quiz de la revisión de partidas) ya cobrados, por `turningPointKey`. Se agregó sin subir la versión: si falta, vale []. */
   turningPoints: string[];
+  /** Unidades abiertas al aprobar su prueba (nivel «nuevo»). Se agregó sin subir la versión: si falta, vale []. */
+  unitTests: number[];
   lastUnit?: number; // unidad de la última lección empezada en Aprender, la que se muestra al abrir la app
   /** Nivel de puzzles (puzzleRating.ts). Se agregó sin subir la versión: si falta, vale el nivel inicial de la bienvenida. */
   puzzleRating?: PuzzleRating;
@@ -125,6 +127,7 @@ export const emptyProgress: Progress = {
   games: [],
   puzzles: {},
   turningPoints: [],
+  unitTests: [],
 };
 
 // ---------- Lectura para mostrar ----------
@@ -154,8 +157,7 @@ export function withBalance(p: Omit<Progress, 'coins'>): Progress {
 }
 
 /** Suma a un contador del dispositivo actual y recalcula el saldo. */
-function withLedger(p: Progress, field: keyof CoinCounters, amount: number): Progress {
-  if (!amount) return p;
+function withLedger(p: Progress, field: keyof CoinCounters, amount: number): Progress {  if (!amount) return p;
   const mine = p.coinLedger[p.deviceId] ?? { earned: 0, spent: 0 };
   return withBalance({ ...p, coinLedger: { ...p.coinLedger, [p.deviceId]: { ...mine, [field]: mine[field] + amount } } });
 }
@@ -207,6 +209,11 @@ export function withDraft(p: Progress, lessonId: string, draft: LessonDraft | nu
 
 export function withLastUnit(p: Progress, unit: number, now = new Date()): Progress {
   return p.lastUnit === unit ? p : { ...p, lastUnit: unit, stamps: { ...p.stamps, lastUnit: now.toISOString() } };
+}
+
+/** Anota que se aprobó la prueba de `unit`: la abre sin marcar lecciones ni dar monedas. */
+export function withUnitTestPassed(p: Progress, unit: number): Progress {
+  return p.unitTests.includes(unit) ? p : { ...p, unitTests: [...p.unitTests, unit] };
 }
 
 /** Suma un fallo a cada paso de `stepIds`. */

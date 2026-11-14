@@ -124,6 +124,7 @@ function AppStack() {
       <Stack.Screen name="tableros" />
       <Stack.Screen name="historial-bots" />
       <Stack.Screen name="puzzle" />
+      <Stack.Screen name="prueba-unidad" options={{ gestureEnabled: false }} />
       <Stack.Screen name="ajustes" />
       <Stack.Screen name="analisis-libre" />
       <Stack.Screen name="importar-partida" />

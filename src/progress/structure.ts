@@ -37,6 +37,7 @@ export function hasUsableStructure(p: Record<string, unknown>): boolean {
   for (const k of ['pieceSets', 'boardThemes', 'turningPoints']) {
     if (has(k) && !isStrings(p[k])) return false;
   }
+  if (has('unitTests') && !(Array.isArray(p.unitTests) && p.unitTests.every(isInt))) return false;
   if (has('deviceId') && !isString(p.deviceId)) return false;
   if (has('resetAt') && !isStringOrNull(p.resetAt)) return false;
   if (has('stamps') && !(isRecord(p.stamps) && Object.values(p.stamps).every((v) => v === undefined || isString(v)))) return false;
@@ -77,7 +78,7 @@ export function hasUsableStructure(p: Record<string, unknown>): boolean {
 /** Campos que son un registro de entradas independientes: si una está dañada, se quita solo esa. */
 const RECORD_FIELDS = ['lessons', 'puzzles', 'drafts', 'coinLedger', 'stamps'];
 /** Campos que son una lista de elementos independientes. */
-const LIST_FIELDS = ['mistakes', 'games', 'pieceSets', 'boardThemes', 'turningPoints'];
+const LIST_FIELDS = ['mistakes', 'games', 'pieceSets', 'boardThemes', 'turningPoints', 'unitTests'];
 
 /**
  * Para el progreso que la propia app guardó (no para un archivo ajeno): en vez de descartarlo entero porque un campo

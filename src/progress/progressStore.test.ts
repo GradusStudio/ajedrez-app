@@ -10,6 +10,7 @@ import {
   randomId,
   withBoardThemeBought,
   withLastUnit,
+  withUnitTestPassed,
   withOngoingGame,
   withPuzzleOpened,
   type OngoingGame,
@@ -140,6 +141,13 @@ test('withProfile marca stamps.level solo si cambia el nivel', () => {
   const q = withProfile(p, { level: 'casual' }, at);
   assert.equal(q.profile.level, 'casual');
   assert.equal(q.stamps.level, at.toISOString());
+});
+
+test('withUnitTestPassed abre la unidad una sola vez', () => {
+  const p = { ...emptyProgress, unitTests: [] };
+  const once = withUnitTestPassed(p, 3);
+  assert.deepEqual(once.unitTests, [3]);
+  assert.equal(withUnitTestPassed(once, 3), once);
 });
 
 test('withLastUnit marca stamps.lastUnit', () => {

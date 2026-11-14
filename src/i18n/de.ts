@@ -82,6 +82,20 @@ export const de: Record<MessageKey, string> = {
   'settings.tipsReset': 'Tipps erneut anzeigen',
   'settings.tipsReset.description': 'Pipos Tipps erscheinen beim nächsten Öffnen der App wieder.',
 
+  // Unidades y prueba para saltar
+  'unitTest.title': 'Test für Einheit {unit}',
+  'unitTest.button': 'Test machen',
+  'unitTest.lockedTitle': 'Einheit gesperrt',
+  'unitTest.lockedMessage': 'Schließe Einheit {unit} ab, um diese zu öffnen.',
+  'unitTest.exitMessage': 'Wenn du jetzt gehst, gilt der Test als nicht bestanden.',
+  'unitTest.passed.title': 'Test bestanden',
+  'unitTest.passed.message': 'Einheit {unit} ist jetzt offen.',
+  'unitTest.failed.title': 'Fast',
+  'unitTest.failed.message': 'Du bestehst mit höchstens einem Fehler. Du kannst es sofort wiederholen.',
+  'settings.openAllUnits': 'Alle Einheiten öffnen',
+  'settings.openAllUnits.description': 'Für das Niveau „Nie gespielt“: alle Einheiten von Anfang an verfügbar.',
+  'home.unitWheelLocked': 'Einheit {n}: {title}, gesperrt, {done} von {total} Lektionen',
+
   // Aprender
   'home.streakLabel': 'Serientage: {n}',
   'home.lessonCaption': 'Lektion {order} · {title}',

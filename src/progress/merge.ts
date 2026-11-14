@@ -68,6 +68,7 @@ function mergeRecord<T>(a: Record<string, T>, b: Record<string, T>, both: (x: T,
 }
 
 const union = (a: string[], b: string[]) => [...new Set([...a, ...b])].sort();
+const unionNumbers = (a: number[], b: number[]) => [...new Set([...a, ...b])].sort((x, y) => x - y);
 
 function mergeLesson(a: LessonProgress, b: LessonProgress): LessonProgress {
   return {
@@ -254,6 +255,7 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
     games: mergeGames(local.games, incoming.games),
     puzzles,
     turningPoints: union(local.turningPoints, incoming.turningPoints),
+    unitTests: unionNumbers(local.unitTests ?? [], incoming.unitTests ?? []),
   };
   const opened = mergeOpened(local.puzzlesOpened ?? [], incoming.puzzlesOpened ?? []).filter((id) => !puzzles[id]).slice(0, MAX_OPENED);
   if (opened.length) merged.puzzlesOpened = opened;

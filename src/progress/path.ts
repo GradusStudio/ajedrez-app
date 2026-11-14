@@ -1,4 +1,4 @@
-import { Lesson, Unit } from '../data/lessonTypes';
+import { Lesson, Step, Unit } from '../data/lessonTypes';
 import { Progress } from './progressStore';
 
 /**
@@ -45,4 +45,43 @@ export function suggestedLesson(units: Unit[], progress: Progress): Lesson | und
     if (pending) return pending;
   }
   return undefined;
+}
+
+/**
+ * Números de las unidades abiertas, en orden.
+ * - Cualquier nivel distinto de `nuevo` (o con «Abrir todas las unidades»): todas.
+ * - `nuevo`: la Unidad 1; una unidad con alguna lección hecha cuenta como abierta; también se abre
+ *   con la prueba aprobada o al terminar todas las lecciones de la anterior.
+ */
+export function unitOpen(
+  units: Unit[],
+  progress: Progress,
+  level: Progress['profile']['level'] = progress.profile.level,
+  openAll = false,
+): number[] {
+  const everything = openAll || level !== 'nuevo';
+  return units
+    .filter((u, i) => {
+      if (everything || i === 0) return true;
+      if (u.lessons.some((l) => progress.lessons[l.id])) return true;
+      if ((progress.unitTests ?? []).includes(u.unit)) return true;
+      const previous = units[i - 1];
+      return previous.lessons.every((l) => progress.lessons[l.id]);
+    })
+    .map((u) => u.unit);
+}
+
+const TEST_STEP_TYPES = new Set<Step['type']>(['move', 'line', 'quiz']);
+
+/**
+ * Ejercicios para la prueba de una unidad: uno por lección, el último de tipo move/line/quiz,
+ * empezando por las últimas lecciones. Hasta `count` (6).
+ */
+export function unitTestSteps(unit: Unit, count = 6): Step[] {
+  const steps: Step[] = [];
+  for (let i = unit.lessons.length - 1; i >= 0 && steps.length < count; i--) {
+    const step = [...unit.lessons[i].steps].reverse().find((s) => TEST_STEP_TYPES.has(s.type));
+    if (step) steps.push(step);
+  }
+  return steps;
 }

@@ -25,6 +25,8 @@ export type Settings = {
   puzzleMode: 'auto' | 'manual';
   /** Último nivel elegido a mano (null: el que contiene el nivel de puzzles). */
   puzzleLevel: Level | null;
+  /** Nivel «nuevo»: todas las unidades abiertas desde el principio, sin esperar a la prueba. */
+  openAllUnits: boolean;
 };
 
 export const defaultSettings: Settings = {
@@ -40,6 +42,7 @@ export const defaultSettings: Settings = {
   showPuzzleRating: true,
   puzzleMode: 'auto',
   puzzleLevel: null,
+  openAllUnits: false,
 };
 
 const LANGUAGES = ['auto', 'es', 'en', 'de', 'it', 'fr'];
@@ -62,6 +65,7 @@ export function sanitizeSettings(raw: Partial<Settings>): Settings {
     seenTips: Array.isArray(r.seenTips) ? (r.seenTips as unknown[]).filter((x): x is string => typeof x === 'string') : d.seenTips,
     showPuzzleRating: bool(r.showPuzzleRating, d.showPuzzleRating),
     puzzleMode: r.puzzleMode === 'manual' ? 'manual' : 'auto',
+    openAllUnits: bool(r.openAllUnits, d.openAllUnits),
     puzzleLevel: typeof r.puzzleLevel === 'string' && Object.hasOwn(LEVELS, r.puzzleLevel) ? (r.puzzleLevel as Level) : null,
     reminder: {
       enabled: bool(rr.enabled, d.reminder.enabled),

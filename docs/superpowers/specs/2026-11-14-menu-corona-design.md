@@ -38,10 +38,10 @@ Parte del prototipo `prototipo-rediseno.html` (13-11-2026, fuera de git) y de lo
 | 5 · Finales | posición de Lucena (`startFen`) jugada hasta coronar, con la maniobra del puente | es una lección de la unidad |
 | 6 · Táctica intermedia | Réti – Tartakower, Viena 1910 (termina `11.Ad8#`) | sacrificio de dama, atracción y jaque doble |
 | 7 · Finales intermedios | estudio de Réti, 1921 (`startFen` `7K/8/k1P5/7p/8/8/8/8 w - - 0 1`, el rey alcanza al peón) | rey activo |
-| 8 · Piezas y peones | **pendiente: la elige opus** antes de cerrar la tarea 8 | — |
+| 8 · Piezas y peones | ruptura de tres peones contra tres (`startFen` `7k/ppp5/8/PPP5/8/8/8/7K w - - 0 1`): `b5b6 a7b6 c5c6 b7c6 a5a6 h8g7 a6a7 g7f7 a7a8q` (1.b6 axb6 2.c6 bxc6 3.a6 y corona) | es la lección «Rupturas y mayorías»; un peón pasa aunque sean tres contra tres. Elegida por opus el 14-11; chess.js y Stockfish (profundidad 22: 1.b6 es la mejor, +6,5, y sigue esta misma línea) |
 | 9 · Ataque y defensa | Anderssen – Kieseritzky, Londres 1851 («la inmortal», termina `23.Ae7#`) | ataque al rey sin enrocar |
 
-`side` = `w` en todas (en Lucena y Réti, el bando que juega primero). Una prueba valida cada partida con chess.js (jugadas legales; la final de 1, 2, 3, 4, 6 y 9 es mate). **Si una jugada transcrita aquí falla, se avisa en `agentes.md`; no se inventa una corrección.** Hasta que la Unidad 8 tenga su partida, se muestra la posición inicial sin avanzar.
+`side` = `w` en todas (en Lucena y Réti, el bando que juega primero). Una prueba valida cada partida con chess.js (jugadas legales; la final de 1, 2, 3, 4, 6 y 9 es mate). **Si una jugada transcrita aquí falla, se avisa en `agentes.md`; no se inventa una corrección.** La Unidad 8 parte de una posición (`startFen`), como la 5 y la 7.
 
 ## 2. Web ancha: corona, tablero y riel
 

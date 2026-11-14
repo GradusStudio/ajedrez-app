@@ -23,3 +23,17 @@ export function reviewProgress(reviewing: ReviewAt, current: number, total: numb
   const done = reviewing !== null || solvedCurrent ? 1 : 0;
   return Math.min(1, (shown + done) / total);
 }
+
+/** Jugada a la que lleva «Jugada anterior» en el visor de una línea: nunca antes de la primera. */
+export function moveBack(viewPly: number): number {
+  return Math.max(0, viewPly - 1);
+}
+
+/**
+ * Jugada a la que lleva «Jugada siguiente»: la siguiente ya hecha o null (volver a la jugada actual)
+ * si se llega a la última. Mirar la jugada actual no tiene anterior que avanzar.
+ */
+export function moveForward(viewPly: number, ply: number): number | null {
+  if (viewPly >= ply) return null;
+  return viewPly + 1 >= ply ? null : viewPly + 1;
+}

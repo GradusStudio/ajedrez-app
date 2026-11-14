@@ -9,6 +9,7 @@ import { useI18n } from '../../i18n/I18nContext';
 import { useSettings } from '../../settings/SettingsContext';
 import { LineStep as LineStepData } from '../../data/lessonTypes';
 import { LESSON_RESERVE, StepCallbacks } from '../stepTypes';
+import { moveBack, moveForward } from '../review';
 import { TeacherBubble } from '../TeacherBubble';
 import { type, colors, fonts, radius, space } from '../../theme';
 
@@ -192,7 +193,7 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked, replay }: 
       {ply > 0 && (
         <View style={styles.viewer}>
           <Pressable
-            onPress={() => setViewAt(Math.max(0, viewPly - 1))}
+            onPress={() => setViewAt(moveBack(viewPly))}
             disabled={viewPly <= 0}
             accessibilityRole="button"
             accessibilityLabel={t('review.ctrlPrev')}
@@ -202,7 +203,7 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked, replay }: 
             <Text style={styles.viewerGlyph}>‹</Text>
           </Pressable>
           <Pressable
-            onPress={() => setViewAt(viewPly + 1 >= ply ? null : viewPly + 1)}
+            onPress={() => setViewAt(moveForward(viewPly, ply))}
             disabled={!viewingBack}
             accessibilityRole="button"
             accessibilityLabel={t('review.ctrlNext')}

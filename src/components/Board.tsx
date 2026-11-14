@@ -1,12 +1,14 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
   GestureResponderEvent,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
   View,
+  type ViewStyle,
 } from 'react-native';
 import Svg, { Line, Polygon } from 'react-native-svg';
 import { Chess, Square } from 'chess.js';
@@ -20,6 +22,8 @@ import { useReducedMotion } from './useReducedMotion';
 import { Captured, computeMove, Offsets } from './boardAnimation';
 import { SquareTexture } from './SquareTexture';
 import Piece, { PieceColor, PieceType } from './Piece';
+import { isDoubleTap, TapPoint } from './boardTap';
+import { useContextMenu } from './useContextMenu';
 
 export type PromotionPiece = 'q' | 'r' | 'b' | 'n';
 export type BoardMove = { from: Square; to: Square; promotion?: PromotionPiece };
@@ -29,6 +33,9 @@ const PROMOTION_PIECES: PromotionPiece[] = ['q', 'n', 'r', 'b'];
 // El toque que abre el selector también puede generar un clic sobre la primera opción (la dama),
 // porque el navegador lo dispara después del toque. Se ignora lo que llegue en este margen.
 const PROMOTION_TAP_GUARD_MS = 150;
+// En la web, el doble toque sobre el tablero no debe hacer zoom (spec del premove).
+const WEB_TOUCH: ViewStyle | undefined =
+  Platform.OS === 'web' ? ({ touchAction: 'manipulation' } as unknown as ViewStyle) : undefined;
 
 type Props = {
   /** Posición a mostrar, en notación FEN. El tablero no guarda la partida: la guarda quien lo usa. */
@@ -53,6 +60,14 @@ type Props = {
   pickedSquares?: string[];
   /** Si se pasa y el tablero no es interactivo, se llama al tocar cualquier casilla. */
   onSquarePress?: (square: Square) => void;
+  /** Destinos de las jugadas preparadas; se marcan como una casilla marcada. */
+  premoveDests?: string[];
+  /** Clic derecho, Escape o doble toque sobre el tablero: cancela las jugadas preparadas. */
+  onPremoveCancel?: () => void;
+  /** false: no reproduce el sonido de jugada (lo hace quien usa el tablero). */
+  sound?: boolean;
+  /** Tablero de plan: sin jaque ni mate, y la última jugada (la preparada) en azul. */
+  plan?: boolean;
 };
 
 const YELLOW_ARROW = 'rgba(247, 198, 49, 0.9)';
@@ -271,6 +286,10 @@ export function Board({
   showMovesFrom,
   pickedSquares = [],
   onSquarePress,
+  premoveDests = [],
+  onPremoveCancel,
+  sound = true,
+  plan = false,
 }: Props) {
   // En pantalla ancha el tamaño lo fija BoardLayout; si no, sale del ancho de la ventana.
   const sq = useBoardSide() / 8;
@@ -294,6 +313,19 @@ export function Board({
   // Inclinación de la pieza arrastrada (grados).
   const [dragRot] = useState(() => new Animated.Value(0));
   const reduced = useReducedMotion();
+
+  const boardRef = useRef<React.ComponentRef<typeof View>>(null);
+  const lastTap = useRef<TapPoint | null>(null);
+  /** Cierra lo que esté abierto (coronación, arrastre, selección) antes de borrar la cola. */
+  const cancelPremoves = useCallback(() => {
+    lastTap.current = null;
+    setPromo(null);
+    setDropped(null);
+    setDrag(null);
+    setSelected(null);
+    onPremoveCancel?.();
+  }, [onPremoveCancel]);
+  useContextMenu(boardRef, onPremoveCancel ? cancelPremoves : undefined);
 
   const chess = useMemo(() => new Chess(fen), [fen]);
   const grid = useMemo(() => chess.board(), [chess]);
@@ -331,7 +363,7 @@ export function Board({
 
   // Sonido de la jugada (solo si hubo una jugada, no al cargar otra posición).
   useEffect(() => {
-    if (anim.id > 0 && anim.moved) feedback.move(!!anim.captured);
+    if (sound && anim.id > 0 && anim.moved) feedback.move(!!anim.captured);
     // Solo cuando cambia la jugada (anim.id).
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [anim.id]);
@@ -358,19 +390,20 @@ export function Board({
     return t;
   }, [fen, chess, showMovesFrom, selected]);
 
-  // Casilla del rey en jaque (si la hay)
+  // Casilla del rey en jaque (si la hay). En el tablero de plan no se muestra: la posición preparada
+  // puede dejar al rey del bot en jaque y todavía no es una jugada real.
   const checkSquare = useMemo(() => {
-    if (!chess.isCheck()) return null;
+    if (plan || !chess.isCheck()) return null;
     for (const row of grid) {
       for (const cell of row) {
         if (cell && cell.type === 'k' && cell.color === turn) return cell.square;
       }
     }
     return null;
-  }, [chess, grid, turn]);
+  }, [plan, chess, grid, turn]);
 
   // Jaque mate: el rey vencido y las casillas vacías a su alrededor (spec de animaciones de piezas).
-  const mate = useMemo(() => mateSquares(fen), [fen]);
+  const mate = useMemo(() => (plan ? null : mateSquares(fen)), [fen, plan]);
 
   const handlePress = (square: Square) => {
     if (!interactive) {
@@ -513,16 +546,25 @@ export function Board({
       const g = gesture.current;
       clearTimeout(g.idle);
       if (g.dragging && g.from) {
+        lastTap.current = null;
         const { x, y } = pointOf(e);
         drop(g.from, squareAt(x, y));
       } else if (g.from) {
-        handlePress(g.from); // fue un toque
+        const { x, y } = pointOf(e);
+        const tap = { time: Date.now(), x, y };
+        if (onPremoveCancel && isDoubleTap(lastTap.current, tap)) {
+          cancelPremoves();
+        } else {
+          lastTap.current = tap;
+          handlePress(g.from); // fue un toque
+        }
       }
       g.dragging = false;
     },
     onResponderTerminate: () => {
       clearTimeout(gesture.current.idle);
       gesture.current.dragging = false;
+      lastTap.current = null;
       dragRot.setValue(0);
       setDrag(null);
     },
@@ -544,7 +586,7 @@ export function Board({
 
       const isLast = lastMove && (lastMove.from === square || lastMove.to === square);
       const isSelected = selected === square;
-      const isMarked = highlight.includes(square);
+      const isMarked = highlight.includes(square) || premoveDests.includes(square);
       const isPicked = pickedSquares.includes(square);
       const isCheck = checkSquare === square;
       const isMateKing = mate?.king === square;
@@ -568,7 +610,7 @@ export function Board({
           }}
         >
           <SquareTexture theme={boardTheme} light={isLight} size={sq} seed={br * 3 + bc * 5} />
-          {isLast && <View style={[styles.fill, { backgroundColor: boardHighlight.lastMove }]} />}
+          {isLast && !plan && <View style={[styles.fill, { backgroundColor: boardHighlight.lastMove }]} />}
           {isMarked && (
             <View
               style={[
@@ -578,6 +620,14 @@ export function Board({
             />
           )}
           {isPicked && (
+            <View
+              style={[
+                styles.fill,
+                { backgroundColor: boardHighlight.pick, borderWidth: Math.max(3, sq * 0.07), borderColor: boardHighlight.pickBorder },
+              ]}
+            />
+          )}
+          {isLast && plan && (
             <View
               style={[
                 styles.fill,
@@ -666,7 +716,7 @@ export function Board({
   // El tablero recorta sus esquinas redondeadas; la pieza arrastrada va afuera de ese recorte para poder
   // asomarse por encima del borde.
   return (
-    <View style={{ width: boardPx, height: boardPx, alignSelf: 'center' }}>
+    <View ref={boardRef} style={[{ width: boardPx, height: boardPx, alignSelf: 'center' }, WEB_TOUCH]}>
       <View style={[styles.board, { width: boardPx, height: boardPx }]}>
         {rows}
         {(arrows.length > 0 || colorArrows.length > 0) && (

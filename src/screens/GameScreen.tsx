@@ -6,6 +6,7 @@ import { detectOpening } from '../bots/book';
 import { enginesFor, thinkMove } from '../bots/brain';
 import { movesText, resolveNotation } from '../chess/notation';
 import { Board, BoardMove } from '../components/Board';
+import { clipPremoves, planPremoveFen, resolvePremove, type Premove } from '../game/premove';
 import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
@@ -110,6 +111,13 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     practiceCourse ? t('game.practiceSpeech', { name: practiceCourse.name }) : bot.lines.greeting
   );
   const [result, setResult] = useState<Finished | null>(null);
+  // Jugadas preparadas mientras el bot piensa (spec 2026-11-13-premove).
+  const [premoves, setPremoves] = useState<Premove[]>([]);
+  const [premovePending, setPremovePending] = useState(false);
+  const premovesRef = useRef<Premove[]>([]);
+  const premoveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  // Un toque en la ventana en que se aplica la jugada del bot no debe jugar ni preparar nada.
+  const botMoving = useRef(false);
 
   const botColor = userColor === 'w' ? 'b' : 'w';
   const startedAt = useRef(0); // se fija al montar: el render tiene que ser puro
@@ -128,6 +136,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     if (!startedIso.current) startedIso.current = new Date().toISOString();
     return () => {
       alive.current = false;
+      clearTimeout(premoveTimer.current);
     };
   }, []);
 
@@ -142,11 +151,25 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     setLastMove(last ? { from: last.from, to: last.to } : null);
   };
 
+  const setPremoveQueue = useCallback((next: Premove[]) => {
+    premovesRef.current = next;
+    setPremoves(next);
+  }, []);
+
+  const clearPremoveQueue = useCallback(() => {
+    premovesRef.current = [];
+    setPremoves([]);
+    setPremovePending(false);
+    clearTimeout(premoveTimer.current);
+    premoveTimer.current = undefined;
+  }, []);
+
   const end = useCallback(
     // quit: se rindió o abandonó (cuenta para la racha solo con 10 jugadas o más).
     (r: Result, quit = false) => {
       if (finished.current) return;
       finished.current = true;
+      clearPremoveQueue();
       // Solo se quita lo guardado si es esta misma partida: otro dispositivo pudo haber empezado otra.
       if (ownsOngoing(getProgress().ongoingGame, idOf(startedIso.current))) saveOngoingGame(null);
       if (r.kind === 'win') feedback.correct();
@@ -171,7 +194,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
         rewardSquare: r.kind === 'win' && chess.isCheckmate() ? matedKingSquare(chess) : null,
       });
     },
-    [bot, chess, finishGame, saveOngoingGame, getProgress, practiceCourse, userColor, feedback, t]
+    [bot, chess, finishGame, saveOngoingGame, getProgress, practiceCourse, userColor, feedback, t, clearPremoveQueue]
   );
 
   /** Lleva la partida recién jugada a la misma revisión que las partidas importadas. */
@@ -210,6 +233,46 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     }
   };
 
+  // La ejecución de la cola lee `sync` y `checkEnd` por ref: no debe capturar la versión del render en que se armó.
+  const syncRef = useRef(sync);
+  const checkEndRef = useRef(checkEnd);
+  useEffect(() => {
+    syncRef.current = sync;
+    checkEndRef.current = checkEnd;
+  });
+
+  /** Ejecuta la primera jugada de la cola 300 ms después de la jugada del bot, si sigue siendo legal. */
+  const runPremoves = useCallback(() => {
+    const queue = premovesRef.current;
+    if (queue.length === 0) return;
+    const first = resolvePremove(chess.fen(), queue[0]);
+    if (!first) {
+      setPremoveQueue([]);
+      return;
+    }
+    setPremovePending(true);
+    premoveTimer.current = setTimeout(() => {
+      if (!alive.current || finished.current) return;
+      try {
+        const played = chess.move({ from: first.from, to: first.to, promotion: first.promotion });
+        feedback.move(!!played.captured);
+      } catch {
+        setPremoveQueue([]);
+        setPremovePending(false);
+        return;
+      }
+      syncRef.current();
+      setPremoveQueue(clipPremoves(chess.fen(), premovesRef.current.slice(1)));
+      setPremovePending(false);
+      checkEndRef.current();
+    }, 300);
+  }, [chess, feedback, setPremoveQueue]);
+
+  const runPremovesRef = useRef(runPremoves);
+  useEffect(() => {
+    runPremovesRef.current = runPremoves;
+  }, [runPremoves]);
+
   // Turno del bot.
   useEffect(() => {
     if (!ready || result || chess.turn() !== botColor) return;
@@ -236,12 +299,18 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
           prevScore.current = move.score;
         }
         sincePhrase.current++;
+        botMoving.current = true;
         try {
-          chess.move({ from: move.uci.slice(0, 2), to: move.uci.slice(2, 4), promotion: move.uci[4] ?? 'q' });
+          const played = chess.move({ from: move.uci.slice(0, 2), to: move.uci.slice(2, 4), promotion: move.uci[4] ?? 'q' });
+          feedback.move(!!played.captured);
         } catch {
+          botMoving.current = false;
           return;
         }
         sync();
+        // Sin la partida terminada, la primera jugada preparada se ejecuta 300 ms después (suena y se ve primero).
+        if (!chess.isGameOver()) runPremovesRef.current();
+        botMoving.current = false;
         checkEnd();
       },
       () => {} // motor caído: se muestra "Reintentar" y este efecto vuelve a correr con el motor nuevo
@@ -254,10 +323,32 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, fen, result]);
 
-  const onUserMove = (m: BoardMove) => {
-    if (result || !ready || chess.turn() !== userColor) return;
+  const userTurn = ready && !result && chess.turn() === userColor;
+  const thinking = ready && !result && chess.turn() === botColor;
+
+  // Tablero de plan: mientras el bot piensa se muestran las jugadas preparadas con el turno en el usuario.
+  // Con el rey del bot en jaque no se planea: pasar el turno dejaría una posición ilegal.
+  const planning = thinking && !premovePending && !engineError && !chess.isCheck();
+  const planFen = planning ? planPremoveFen(fen, premoves) : null;
+  const canPlan = planning && planFen !== null;
+  const shownFen = canPlan && planFen ? planFen : fen;
+  const lastPremove = premoves[premoves.length - 1];
+  const shownLastMove = canPlan ? (lastPremove ? { from: lastPremove.from, to: lastPremove.to } : null) : lastMove;
+  const boardInteractive = !result && !engineError && !premovePending && (canPlan || userTurn);
+
+  const onBoardMove = (m: BoardMove) => {
+    if (result || !ready || engineError || botMoving.current) return;
+    if (canPlan) {
+      // El bot pudo haber movido ya en este mismo tick: manda el turno en vivo, no el del render.
+      if (chess.turn() !== botColor) return;
+      const next = [...premovesRef.current, { from: m.from, to: m.to, promotion: m.promotion }];
+      if (planPremoveFen(chess.fen(), next) !== null) setPremoveQueue(next);
+      return;
+    }
+    if (premovePending || chess.turn() !== userColor) return;
     try {
-      chess.move({ from: m.from, to: m.to, promotion: m.promotion });
+      const played = chess.move({ from: m.from, to: m.to, promotion: m.promotion });
+      feedback.move(!!played.captured);
     } catch {
       return;
     }
@@ -308,8 +399,6 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     return () => sub.remove();
   });
 
-  const userTurn = ready && !result && chess.turn() === userColor;
-  const thinking = ready && !result && chess.turn() === botColor;
   const status = engineError
     ? t('game.status.engineDown')
     : !ready
@@ -339,7 +428,17 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
           : null
       }
     >
-      <Board fen={fen} orientation={userColor} interactive={userTurn} lastMove={lastMove} onMove={onUserMove} />
+      <Board
+        fen={shownFen}
+        orientation={userColor}
+        interactive={boardInteractive}
+        lastMove={shownLastMove}
+        onMove={onBoardMove}
+        premoveDests={premoves.map((p) => p.to)}
+        onPremoveCancel={premoves.length > 0 || premovePending ? clearPremoveQueue : undefined}
+        sound={false}
+        plan={canPlan}
+      />
     </BoardStage>
   );
   const botBlock = (
@@ -431,6 +530,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
             setMaia(null);
             if (bot.fallback) setMaiaFailed(true);
             else setEngineError(msg);
+            clearPremoveQueue();
           }}
         />
       )}
@@ -441,6 +541,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
           onError={(msg) => {
             setEngineError(msg);
             setEngine(null);
+            clearPremoveQueue();
           }}
         />
       )}

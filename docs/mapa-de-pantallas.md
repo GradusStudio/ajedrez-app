@@ -135,6 +135,7 @@ Tablero libre con jugadas legales (chess.js): deshacer, voltear, reiniciar y nue
 ### 2.10 Partida contra bot · hecha en el hito 4
 - Bot arriba, con su estado ("Preparando a Lola…", "Pensando…", "Te toca") y un globo con su frase. Debajo, el tablero, "Tú", el indicador "Apertura: Sistema Londres" (solo cuando la partida coincide con una única apertura enseñada) y la lista de jugadas en español.
 - Acciones: "Ofrecer tablas" y "Rendirse". Deshacer queda pendiente.
+- Mientras el bot piensa se pueden preparar jugadas en cadena sobre un tablero de plan (la última se ve en azul); se ejecutan solas si siguen siendo legales. Clic derecho, Escape o doble toque borra la cola.
 - Salir con la ✕ o con "atrás" a mitad de la partida pide confirmación y cuenta como derrota.
 - Resultado en un panel inferior (verde, rojo o neutro): "Ganaste", "Perdiste" o "Tablas", con el motivo (jaque mate, rey ahogado, triple repetición, etc.). Botones: "Revancha" (con los colores cambiados) y "Elegir otro bot".
 - Modo práctica desde el detalle de una apertura: chip "Práctica: …", y los botones del resultado pasan a ser "Practicar otra vez" y "Volver a la apertura".

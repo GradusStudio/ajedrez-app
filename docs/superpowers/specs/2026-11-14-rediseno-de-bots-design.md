@@ -60,6 +60,8 @@ Los mismos de hoy, para que la app no cambie:
 - Revisar la escala de cada avatar dentro del círculo en `AVATARS` de `src/components/BotAvatar.tsx`.
 - Los originales de 1024 y las variantes descartadas, fuera de git (como `C:/dev/expresiones-originales-png`).
 
+- **Cuerpo entero** (pedido de un tester, 14-11-2026): además del busto, cada bot necesita una versión de cuerpo entero, parado, en tres cuartos mirando a la izquierda (hacia el globo de la lección), con sus cuatro expresiones como poses: `assets/bots/cuerpo/<id>-<expresion>.webp`, 768 × 1024, transparente. Se usa en el panel de la lección en pantalla ancha (spec del feedback, sección 6).
+
 ## 5. Nombres por idioma
 
 Hoy los cinco idiomas usan el nombre español. Propuesta (el español no cambia):

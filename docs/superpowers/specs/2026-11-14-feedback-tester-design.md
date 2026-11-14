@@ -79,3 +79,26 @@ Decisión del autor: **pestaña nueva, la primera** (siete en total). Al abrir l
 - `npm test` (pruebas nuevas de `path.ts` y de los consejos vistos), `npx expo lint`, `npx tsc --noEmit`, `noHardcoded`.
 - Navegador (`web-dev`): a 1366 × 768 (letra, profesor, Inicio, consejos, corona con candados) y a 375 px (Inicio en columna, siete pestañas, riel con unidad cerrada). Una cuenta nueva con nivel `nuevo` y otra con `casual`.
 - Pedirle al mismo tester que lo pruebe de nuevo.
+
+## 6. Lección en pantalla ancha: profesor de cuerpo entero, globo y botón junto al texto
+
+Segunda tanda del mismo tester: «quedaría mejor el personaje completo con un globo de diálogo» y «el botón de continuar está muy abajo». Hoy, en pantalla ancha, el texto del profesor está arriba a la derecha y «Continuar» en una barra al pie de la pantalla: la vista cruza toda la ventana. **Prototipo:** `prototipo-leccion.html`.
+
+- **Panel de 400 px** a la derecha del tablero (600 px), con la misma altura que el tablero:
+  1. Nombre del profesor (15 px, verde).
+  2. **Globo blanco** (`#FFFFFF`, texto `#262421` de 19 px, radio 22 px, canto `#C9C6BF` de 5 px) con la cola hacia abajo, apuntando al profesor.
+  3. **«Continuar» 30 px debajo del globo**, de todo el ancho del panel (no en la barra del pie). En pasos con jugada, el botón aparece en el mismo lugar cuando corresponde.
+  4. **Profesor de cuerpo entero** abajo del panel (unos 190 × 250 px), parado sobre una sombra suave, mirando hacia el globo. Cambia de pose con la expresión (`explica`, `piensa`, `acierto`, `pista`).
+- Acierto y error: el aviso reemplaza al globo en el mismo lugar (verde o rojo, como hoy) y el botón queda debajo.
+- **Arte:** hace falta una versión de cuerpo entero de cada bot con sus cuatro expresiones (se suma al rediseño de bots). Mientras no exista, se usa el avatar de busto actual a 190 px en el lugar del cuerpo.
+- En el celular no cambia: tablero arriba, texto y botón abajo, al alcance del pulgar.
+- La misma regla para las demás pantallas con tablero en pantalla ancha (puzzles, quiz, práctica de aperturas): la acción principal va pegada al texto que la pide, dentro del panel.
+
+## 7. Corona pegada al borde
+
+El tester dijo que la rueda «está un poco alejada del borde y se ve rara». En la versión v2 se le había dado aire respecto de la barra lateral; en la app real queda flotando a unos 160 px.
+
+- El **eje** de la corona (la línea vertical del lado recto) **coincide con el borde derecho de la barra lateral**: la media corona sale de la barra, como si girara desde ella. Las flechas siguen en el hueco.
+- El encabezado («UNIDAD 1» y el nombre) arranca a 24 px de la barra, sobre la corona.
+- El tablero queda centrado en el espacio que sobra a la derecha de la corona.
+- En Aperturas, lo mismo (el selector Blancas / Negras va arriba del encabezado, alineado igual).

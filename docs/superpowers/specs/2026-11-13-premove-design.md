@@ -102,7 +102,7 @@ Diferencias de Gradus: tablero de plan con cola FIFO, validación estricta, solo
 - `Board` es compartido con lecciones, puzzles, revisión y análisis. Las props nuevas quedan apagadas por defecto. El premio de monedas (`BoardStage`) envuelve al tablero y se conserva.
 - La validación estricta rechaza premoves que Lichess sí permite, como el de una pieza clavada. Es deliberado.
 - El doble toque puede confundirse con dos toques rápidos normales. Se acota a toques sin arrastre, a menos de 30 px y dentro de 300 ms; además solo se escucha con la cola no vacía.
-- Un toque justo cuando termina de aplicarse la jugada del bot podría llegar antes de que React redibuje. Se cubre con la lectura en vivo de `chess.turn()`/`chess.fen()` y el ref `botMoving`; si aun así el render está viejo, el toque se ignora en vez de jugar contra una posición que ya no está en pantalla.
+- Un toque o un arrastre justo cuando termina de aplicarse la jugada del bot podría llegar antes de que React redibuje. Se cubre con la lectura en vivo de `chess.turn()`/`chess.fen()`, el ref `botMoving` (que dura hasta que React dibuja) y dos guardas: una jugada real solo se acepta con la cola vacía, y un arrastre cuyo `fen` cambió a mitad del gesto se descarta. Si aun así el render está viejo, el toque se ignora en vez de jugar contra una posición que ya no está en pantalla.
 
 ## Accesibilidad
 

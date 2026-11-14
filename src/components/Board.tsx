@@ -358,6 +358,7 @@ export function Board({
     setAnim({ fen, orientation, grid, offsets: newOffsets, captured: move.captured, moved, settle, id: anim.id + 1 });
     if (selected) setSelected(null);
     if (promo) setPromo(null);
+    if (drag) setDrag(null);
   }
   const { offsets, captured, settle } = anim;
 
@@ -486,6 +487,8 @@ export function Board({
     from: null as Square | null,
     over: null as Square | null,
     dragging: false,
+    // FEN que se estaba mostrando cuando empezó el gesto: si cambia (jugada del bot), el arrastre se descarta.
+    fen: '',
     lastX: 0,
     lastT: 0,
     tilt: 0,
@@ -503,7 +506,7 @@ export function Board({
       const { locationX: x, locationY: y, pageX, pageY } = e.nativeEvent;
       const from = squareAt(x, y);
       clearTimeout(gesture.current.idle);
-      gesture.current = { x, y, pageX, pageY, from, over: null, dragging: false, lastX: x, lastT: Date.now(), tilt: 0, idle: undefined };
+      gesture.current = { x, y, pageX, pageY, from, over: null, dragging: false, fen, lastX: x, lastT: Date.now(), tilt: 0, idle: undefined };
       if (dropped) setDropped(null);
       // Devolver true impide que el ScrollView nativo de Android se quede con el dedo. Solo sobre una pieza
       // que se puede mover: empezando en otra casilla, la pantalla se sigue pudiendo desplazar.
@@ -547,8 +550,13 @@ export function Board({
       clearTimeout(g.idle);
       if (g.dragging && g.from) {
         lastTap.current = null;
-        const { x, y } = pointOf(e);
-        drop(g.from, squareAt(x, y));
+        if (g.fen !== fen) {
+          // La posición cambió a mitad del arrastre (jugada del bot): no se juega contra el tablero nuevo.
+          setDrag(null);
+        } else {
+          const { x, y } = pointOf(e);
+          drop(g.from, squareAt(x, y));
+        }
       } else if (g.from) {
         const { x, y } = pointOf(e);
         const tap = { time: Date.now(), x, y };

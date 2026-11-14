@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Chess } from 'chess.js';
-import { clipPremoves, passTurn, planPremoveFen, resolvePremove, type Premove } from './premove';
+import { canPlayRealMove, clipPremoves, passTurn, planPremoveFen, resolvePremove, resolvePremoveFor, type Premove } from './premove';
 
 const blackToMove = '4k3/8/8/8/8/8/P7/4K3 b - - 0 1';
+const whiteToMove = '4k3/8/8/8/8/8/P7/4K3 w - - 0 1';
 
 test('passTurn: cambia el turno y borra el paso al paso', () => {
   assert.equal(passTurn('4k3/8/8/8/8/8/P7/4K3 b - e3 0 1'), '4k3/8/8/8/8/8/P7/4K3 w - - 0 1');
@@ -77,4 +78,19 @@ test('resolvePremove: legal en la posición real, ilegal y coronación', () => {
 test('resolvePremove: el enroque se prueba en la posición real', () => {
   const castle = { from: 'e1', to: 'g1' } as const;
   assert.equal(resolvePremove('4k3/8/8/8/8/8/8/4K2R w K - 0 1', castle), castle);
+});
+
+test('canPlayRealMove: solo con el turno del usuario y la cola vacía', () => {
+  const premove = { from: 'a2', to: 'a4' } as const;
+  assert.equal(canPlayRealMove(whiteToMove, [], false, 'w'), true);
+  assert.equal(canPlayRealMove(whiteToMove, [premove], false, 'w'), false);
+  assert.equal(canPlayRealMove(whiteToMove, [], true, 'w'), false);
+  assert.equal(canPlayRealMove(blackToMove, [], false, 'w'), false);
+});
+
+test('resolvePremoveFor: no ejecuta la premove si el turno no es del usuario', () => {
+  const premove = { from: 'a2', to: 'a4' } as const;
+  assert.equal(resolvePremoveFor(whiteToMove, premove, 'w'), premove);
+  assert.equal(resolvePremoveFor(blackToMove, premove, 'w'), null);
+  assert.equal(resolvePremoveFor(whiteToMove, { from: 'a2', to: 'a5' }, 'w'), null);
 });

@@ -58,3 +58,28 @@ export function resolvePremove(fen: string, premove: Premove): Premove | null {
     return null;
   }
 }
+
+/**
+ * Una jugada real solo se acepta si es el turno del usuario y no hay jugadas preparadas (ni una a punto de
+ * ejecutarse). Así un arrastre empezado en el tablero de plan no se convierte en jugada real si el bot mueve.
+ */
+export function canPlayRealMove(fen: string, premoves: readonly Premove[], pending: boolean, userColor: 'w' | 'b'): boolean {
+  if (pending || premoves.length > 0) return false;
+  try {
+    return new Chess(fen).turn() === userColor;
+  } catch {
+    return false;
+  }
+}
+
+/** Resuelve la premove solo si el turno de la posición es del usuario; se revalida justo antes de ejecutarla. */
+export function resolvePremoveFor(fen: string, premove: Premove, userColor: 'w' | 'b'): Premove | null {
+  try {
+    const chess = new Chess(fen);
+    if (chess.turn() !== userColor) return null;
+    chess.move({ from: premove.from, to: premove.to, promotion: premove.promotion });
+    return premove;
+  } catch {
+    return null;
+  }
+}

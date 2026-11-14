@@ -6,7 +6,7 @@ import { detectOpening } from '../bots/book';
 import { enginesFor, thinkMove } from '../bots/brain';
 import { movesText, resolveNotation } from '../chess/notation';
 import { Board, BoardMove } from '../components/Board';
-import { clipPremoves, planPremoveFen, resolvePremove, type Premove } from '../game/premove';
+import { canPlayRealMove, clipPremoves, planPremoveFen, resolvePremoveFor, type Premove } from '../game/premove';
 import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
@@ -140,6 +140,11 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     };
   }, []);
 
+  // El bloqueo de toques por la jugada del bot dura hasta que React dibuja la posición nueva.
+  useEffect(() => {
+    botMoving.current = false;
+  }, [fen]);
+
   const uciHistory = () => uciMoves(chess);
   const sans = chess.history();
   const opening = detectOpening(uciHistory());
@@ -245,7 +250,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
   const runPremoves = useCallback(() => {
     const queue = premovesRef.current;
     if (queue.length === 0) return;
-    const first = resolvePremove(chess.fen(), queue[0]);
+    const first = resolvePremoveFor(chess.fen(), queue[0], userColor);
     if (!first) {
       setPremoveQueue([]);
       return;
@@ -253,8 +258,15 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     setPremovePending(true);
     premoveTimer.current = setTimeout(() => {
       if (!alive.current || finished.current) return;
+      // Se revalida al ejecutar: si la posición cambió en estos 300 ms, se descarta la cola.
+      const still = resolvePremoveFor(chess.fen(), first, userColor);
+      if (!still) {
+        setPremoveQueue([]);
+        setPremovePending(false);
+        return;
+      }
       try {
-        const played = chess.move({ from: first.from, to: first.to, promotion: first.promotion });
+        const played = chess.move({ from: still.from, to: still.to, promotion: still.promotion });
         feedback.move(!!played.captured);
       } catch {
         setPremoveQueue([]);
@@ -266,7 +278,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
       setPremovePending(false);
       checkEndRef.current();
     }, 300);
-  }, [chess, feedback, setPremoveQueue]);
+  }, [chess, feedback, setPremoveQueue, userColor]);
 
   const runPremovesRef = useRef(runPremoves);
   useEffect(() => {
@@ -310,7 +322,6 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
         sync();
         // Sin la partida terminada, la primera jugada preparada se ejecuta 300 ms después (suena y se ve primero).
         if (!chess.isGameOver()) runPremovesRef.current();
-        botMoving.current = false;
         checkEnd();
       },
       () => {} // motor caído: se muestra "Reintentar" y este efecto vuelve a correr con el motor nuevo
@@ -345,7 +356,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
       if (planPremoveFen(chess.fen(), next) !== null) setPremoveQueue(next);
       return;
     }
-    if (premovePending || chess.turn() !== userColor) return;
+    if (!canPlayRealMove(chess.fen(), premovesRef.current, premovePending, userColor)) return;
     try {
       const played = chess.move({ from: m.from, to: m.to, promotion: m.promotion });
       feedback.move(!!played.captured);

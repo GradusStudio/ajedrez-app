@@ -544,15 +544,15 @@
     },
     "material": {
       "exploit": [
-        "Le moteur voit {seq} : tu gagnes {n} points de matériel.",
+        "Regarde la suite : {seq}. Tu gagnes {n} points de matériel.",
         "{first} lance une séquence qui te laisse {n} points d'avance en matériel."
       ],
       "allows": [
-        "Le moteur voit {seq} : tu perds {n} points de matériel.",
+        "Regarde la suite : {seq}. Tu perds {n} points de matériel.",
         "Avec {first}, ton adversaire finit avec {n} points de matériel d'avance."
       ],
       "missed": [
-        "Le moteur voyait {seq} : tu aurais gagné {n} points de matériel.",
+        "Il y avait une meilleure continuation : {seq}. Tu aurais gagné {n} points de matériel.",
         "Avec {first} tu aurais pu gagner {n} points de matériel."
       ]
     }

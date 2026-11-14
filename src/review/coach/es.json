@@ -544,15 +544,15 @@
     },
     "material": {
       "exploit": [
-        "El motor ve {seq}: ganas {n} puntos de material.",
+        "Mira cómo sigue: {seq}. Ganas {n} puntos de material.",
         "Con {first} empieza una secuencia que te deja {n} puntos de material arriba."
       ],
       "allows": [
-        "El motor ve {seq}: pierdes {n} puntos de material.",
+        "Mira cómo sigue: {seq}. Pierdes {n} puntos de material.",
         "Con {first}, el rival queda {n} puntos de material arriba."
       ],
       "missed": [
-        "El motor veía {seq}: ganabas {n} puntos de material.",
+        "Había una continuación mejor: {seq}. Ganabas {n} puntos de material.",
         "Con {first} podías ganar {n} puntos de material."
       ]
     }

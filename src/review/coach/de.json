@@ -544,15 +544,15 @@
     },
     "material": {
       "exploit": [
-        "Die Engine sieht {seq}: du gewinnst {n} Materialpunkte.",
+        "Schau, wie es weitergeht: {seq}. Du gewinnst {n} Materialpunkte.",
         "{first} beginnt eine Sequenz, die dir {n} Materialpunkte Vorsprung bringt."
       ],
       "allows": [
-        "Die Engine sieht {seq}: du verlierst {n} Materialpunkte.",
+        "Schau, wie es weitergeht: {seq}. Du verlierst {n} Materialpunkte.",
         "Mit {first} liegt dein Gegner {n} Materialpunkte vorn."
       ],
       "missed": [
-        "Die Engine sah {seq}: Damit hättest du {n} Materialpunkte gewonnen.",
+        "Es gab eine bessere Fortsetzung: {seq}. Damit hättest du {n} Materialpunkte gewonnen.",
         "Mit {first} hättest du {n} Materialpunkte gewinnen können."
       ]
     }

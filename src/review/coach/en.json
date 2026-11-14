@@ -544,15 +544,15 @@
     },
     "material": {
       "exploit": [
-        "The engine sees {seq}: you win {n} points of material.",
+        "Look at what follows: {seq}. You win {n} points of material.",
         "{first} starts a sequence that leaves you {n} points of material ahead."
       ],
       "allows": [
-        "The engine sees {seq}: you lose {n} points of material.",
+        "Look at what follows: {seq}. You lose {n} points of material.",
         "With {first}, your opponent ends up {n} points of material ahead."
       ],
       "missed": [
-        "The engine saw {seq}: you won {n} points of material.",
+        "There was a better continuation: {seq}. You would have won {n} points of material.",
         "With {first} you could have won {n} points of material."
       ]
     }

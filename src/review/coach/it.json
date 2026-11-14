@@ -544,15 +544,15 @@
     },
     "material": {
       "exploit": [
-        "Il motore vede {seq}: vinci {n} punti di materiale.",
+        "Guarda come continua: {seq}. Vinci {n} punti di materiale.",
         "{first} inizia una sequenza che ti lascia {n} punti di materiale in vantaggio."
       ],
       "allows": [
-        "Il motore vede {seq}: perdi {n} punti di materiale.",
+        "Guarda come continua: {seq}. Perdi {n} punti di materiale.",
         "Con {first}, il tuo avversario finisce con {n} punti di materiale in vantaggio."
       ],
       "missed": [
-        "Il motore vedeva {seq}: avresti vinto {n} punti di materiale.",
+        "C'era una continuazione migliore: {seq}. Avresti vinto {n} punti di materiale.",
         "Con {first} avresti potuto vincere {n} punti di materiale."
       ]
     }

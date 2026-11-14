@@ -2,6 +2,16 @@
 
 Fecha: 14-11-2026 · Diseño: opus · Antecedentes y licencias: vault, `Gradus - Rediseño de bots.md`.
 
+## Cambio de rumbo (14-11-2026, tarde)
+
+Tras las pruebas con Anima (amanatsu y WAI-ANIMA con el LoRA Nyaccent, hojas en `prototipo-bots/`), el autor decidió **no rehacer los 10 bots**: el estilo actual (chibi 3D cálido, hecho con ChatGPT) ya es el «amigable» de Gradus. Solo se hace, **en el mismo estilo y con ChatGPT** usando la imagen actual de cada bot como referencia:
+- el atuendo nuevo de **Valentina** (piloto de carreras) y **Sofía** (detective), con sus cuatro expresiones: **hecho el 14-11-2026**, archivos en `prototipo-bots/nuevos/` (tarea 24 de `agentes.md` para instalarlos);
+- el **cuerpo entero** de cada bot para el panel de la lección: hechos Valentina y Sofía; faltan los otros ocho.
+
+**Fondo transparente:** ChatGPT dibuja el cuadriculado dentro de la imagen. Se le pide la misma imagen sobre verde puro `#00FF00` y se quita el verde por código (umbral de verdor 30–110 y corrección del borde verdoso); recorte limpio sobre fondo oscuro y blanco.
+
+Lo que sigue de este documento (Anima, fichas, nombres) queda como antecedente, salvo la tabla de nombres por idioma, que sigue vigente.
+
 ## Decisiones del autor (14-11-2026)
 
 1. **Modelo:** Anima (CircleStone Labs). Su licencia (CircleStone Labs Non-Commercial License v1.2) limita el **modelo**, no las imágenes: sección 2(e), las imágenes se pueden usar para cualquier fin. El modelo nunca va dentro de la app ni como servicio. Créditos tiene que decir con qué se hicieron los avatares nuevos.

@@ -1,6 +1,8 @@
 # Premove en cadena con tablero de plan
 
-Fecha: 13-11-2026. Estado: **propuesto; espera aprobación del autor**.
+Fecha: 13-11-2026. Estado: **aprobado**. Revisado por opus el 14-11-2026; las respuestas a la revisión (cancelación, carrera con la jugada del bot, tablero de plan y accesibilidad) están incorporadas acá y en el plan.
+
+> Orden de ejecución (opus, 14-11): el premove va después de las tareas del tester (17 a 21), que ya están cerradas.
 
 ## Por qué
 
@@ -60,25 +62,34 @@ Diferencias de Gradus: tablero de plan con cola FIFO, validación estricta, solo
   - Pruebas en `src/game/premove.test.ts`.
 - **`Board.tsx`**:
   - `premoveDests?: Square[]`: resalta esos destinos con `boardHighlight.mark`.
-  - `onPremoveCancel?: () => void`: se llama con un clic derecho en la web o con un doble toque seguido sobre el tablero en el celular. El clic derecho se implementa con un hook `.web.ts` que escucha `contextmenu` y evita el menú del navegador. El doble toque se detecta en los gestos del tablero: dos toques sin arrastre, dentro de 300 ms y a menos de 30 px, borran la cola; si el dedo se mueve, el gesto sigue como siempre.
+  - `onPremoveCancel?: () => void`: se llama con un clic derecho (web), con Escape (web) o con un doble toque seguido sobre el tablero (celular). Antes de avisar, cierra el selector de coronación, la pieza recién soltada, el arrastre y la selección, y borra el último toque. El clic derecho se implementa con un hook `.web.ts` que escucha `contextmenu` y evita el menú del navegador; el mismo hook escucha Escape. El doble toque se detecta en los gestos del tablero: dos toques sin arrastre, dentro de 300 ms y a menos de 30 px, borran la cola; si el dedo se mueve, el gesto sigue como siempre.
   - `sound?: boolean` (por defecto `true`): con `false` el tablero no reproduce el sonido de jugada. Así el plan no suena; `GameScreen` reproduce los sonidos de las jugadas reales.
+  - `plan?: boolean` (por defecto `false`): tablero de plan. No muestra jaque ni jaque mate, y pinta la última jugada con `boardHighlight.pick` (azul) en vez del dorado de una jugada real, por encima del marcador dorado del destino.
+  - En la web el tablero lleva `touch-action: manipulation` para que el doble toque no haga zoom.
   - Sin estas props, el tablero se comporta igual que hoy.
 - **`GameScreen.tsx`**:
-  - Cola `premoves` y estado `premovePending`.
-  - Mientras el bot piensa, muestra el plan (`fen={planPremoveFen(...)}`) y acepta jugadas: las agrega a la cola en vez de jugarlas.
+  - Cola `premoves` y estado `premovePending`; `premovesRef` para leer la cola desde los efectos y un temporizador cancelable.
+  - Mientras el bot piensa, muestra el plan (`fen={planPremoveFen(...)}`) y acepta jugadas: las agrega a la cola en vez de jugarlas. El plan no aparece si el rey del bot está en jaque.
+  - `onBoardMove` mira `chess.turn()` y `chess.fen()` en vivo, no el FEN del render; un ref `botMoving` ignora los toques mientras se aplica la jugada del bot. Así un toque no se pierde ni se juega contra una posición vieja.
+  - `runPremoves` es estable (`useCallback` con refs a `sync` y `checkEnd`), y el efecto del bot lo llama sin agregarlo a sus dependencias: la cola no vuelve a lanzar el motor.
+  - En el plan, `lastMove` es la última premove (pintada en azul) o `null` si la cola está vacía; el tablero va con `plan={canPlan}`.
   - En el turno real muestra la posición real y juega como hoy.
-  - Reproduce los sonidos de las jugadas reales (usuario, bot y premove) porque el tablero va con `sound={false}`.
+  - Reproduce los sonidos de las jugadas reales (usuario, bot y premove ejecutado) porque el tablero va con `sound={false}`.
+  - La cancelación (clic derecho, Escape o doble toque) solo está activa si hay jugadas en la cola o una a punto de ejecutarse (`premovePending`): un doble toque normal no se consume ni se bloquea el menú contextual cuando no hay nada que borrar.
   - Temporizador de 300 ms, cancelado al desmontar.
-  - Limpia la cola al terminar la partida, al salir, al desmontar y si falla el motor.
+  - Limpia la cola al terminar la partida, al salir, al desmontar y si falla el motor. Conserva `BoardStage` (premio de monedas, tarea 3) y pasa las props nuevas al `Board` de adentro.
 - **`docs/design.md`**: fila nueva en la tabla de resaltados: «Destino de jugada preparada: `gold` al 70% con borde `gold` (mismo `mark`), sin marcar el origen ni agregar texto».
 
 ## Decisiones
 
 - Tablero de plan en lugar de una cola sin simulación.
+- La última jugada del plan se pinta en azul (`pick`), no en dorado, para no confundirla con una jugada real; el plan no muestra jaque ni mate.
+- Con el rey del bot en jaque no se planea: el tablero de plan no aparece (una posición con el rival en jaque y el turno cambiado es ilegal).
 - Cola FIFO sin límite, una jugada por turno del bot.
 - Validación estricta con `chess.js` en el plan y en la posición real.
 - 300 ms de espera antes de ejecutar.
-- Clic derecho (web) y doble toque en el tablero (celular) borran toda la cola.
+- Clic derecho, Escape (web) y doble toque en el tablero (celular) borran toda la cola; la cancelación solo se activa con la cola no vacía o una jugada a punto de ejecutarse.
+- Cancelar cierra el selector de coronación, la pieza soltada, el arrastre y la selección antes de borrar la cola.
 - Coronación con el menú normal, guardada en la jugada.
 - Sin textos.
 - Sonidos solo de jugadas reales.
@@ -88,19 +99,19 @@ Diferencias de Gradus: tablero de plan con cola FIFO, validación estricta, solo
 
 - El plan no muestra las respuestas del bot. Si cambian la posición, la cola se corta en la primera jugada inválida, como se pidió.
 - Con una cola, al volver a la posición real el tablero puede cambiar de golpe y la jugada del bot no verse como un deslizamiento, porque la posición anterior era el plan.
-- `Board` es compartido con lecciones, puzzles, revisión y análisis. Las props nuevas quedan apagadas por defecto.
-- La tarea 3 del tablero de agentes (premio de monedas) también quiere tocar `Board.tsx`; espera a que termine esta tarea.
+- `Board` es compartido con lecciones, puzzles, revisión y análisis. Las props nuevas quedan apagadas por defecto. El premio de monedas (`BoardStage`) envuelve al tablero y se conserva.
 - La validación estricta rechaza premoves que Lichess sí permite, como el de una pieza clavada. Es deliberado.
-- El doble toque puede confundirse con dos toques rápidos normales. Se acota a toques sin arrastre, a menos de 30 px y dentro de 300 ms; hay que probar que no corte la cola sin querer.
+- El doble toque puede confundirse con dos toques rápidos normales. Se acota a toques sin arrastre, a menos de 30 px y dentro de 300 ms; además solo se escucha con la cola no vacía.
+- Un toque justo cuando termina de aplicarse la jugada del bot podría llegar antes de que React redibuje. Se cubre con la lectura en vivo de `chess.turn()`/`chess.fen()` y el ref `botMoving`; si aun así el render está viejo, el toque se ignora en vez de jugar contra una posición que ya no está en pantalla.
 
 ## Accesibilidad
 
 - Sin textos nuevos, por pedido del autor.
 - El tablero ya tiene etiquetas por casilla.
-- El doble toque no reemplaza al clic derecho en lectores de pantalla; en la web se mantiene el clic derecho.
+- En la web, Escape cancela la cola mientras haya algo que cancelar. El doble toque no reemplaza al clic derecho en lectores de pantalla: en el celular nativo el doble toque es el gesto de activación del lector, así que la cancelación por gesto queda como limitación documentada para esos usuarios.
 - No se agregan animaciones; el plan usa las animaciones que ya existen y respeta «reducir movimiento».
 
 ## Comprobación
 
 - `npx tsc --noEmit`, `npx expo lint` (0/0), `npm test`.
-- En el navegador y en el celular: peón que avanza a4, a5, a6, a7 y corona con el menú; cadena con otra pieza; clic derecho y doble toque que borran todo; una jugada que el bot invalida y corta la cola; en pantalla ancha y a 375 px; con «reducir movimiento» activo; sonidos solo en jugadas reales; comprobar que los textos del tablero siguen sin poder seleccionarse en la web.
+- En el navegador y en el celular: peón que avanza a4, a5, a6, a7 y corona con el menú; cadena con otra pieza; la última jugada del plan se ve azul y las demás amarillas; clic derecho, Escape y doble toque que borran todo; una jugada que el bot invalida y corta la cola; cancelar con el selector de coronación abierto; un toque normal con la cola vacía no borra nada ni consume el doble toque; con el rey del bot en jaque no aparece el plan; en pantalla ancha y a 375 px; con «reducir movimiento» activo; sonidos solo en jugadas reales; comprobar que los textos del tablero siguen sin poder seleccionarse en la web; que el premio de monedas al ganar sigue funcionando.

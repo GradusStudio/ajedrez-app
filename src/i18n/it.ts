@@ -54,7 +54,7 @@ export const it: Record<MessageKey, string> = {
   'home.unitsLabel': 'Unità',
   'home.unitWheelLabel': 'Unità {n}: {title}, {done} di {total} lezioni',
   'home.back': 'Indietro',
-  'home.review': 'Ripassare',
+  'home.review': 'Ripassa',
   'lesson.lockedTitle': 'Lezione bloccata',
   'lessonNode.label': 'Lezione {order}: {label}, {status}',
   'lessonNode.done': 'completata',

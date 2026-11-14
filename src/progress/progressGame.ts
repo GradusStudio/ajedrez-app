@@ -1,4 +1,4 @@
-import { Chess } from 'chess.js';
+import { Chess, type Square } from 'chess.js';
 
 /** Una partida de progreso: cada lección hecha avanza una jugada del bando que estudia. */
 export type ProgressGame = {
@@ -10,9 +10,11 @@ export type ProgressGame = {
   side: 'w' | 'b';
 };
 
+export type ProgressLastMove = { from: Square; to: Square };
+
 export type ProgressGamePosition = {
   fen: string;
-  lastMove: { from: string; to: string } | null;
+  lastMove: ProgressLastMove | null;
   /** Jugadas del bando que estudia incluidas (de 0 a total). */
   played: number;
   /** Jugadas del bando que estudia en toda la partida. */
@@ -47,9 +49,9 @@ export function progressPosition(
   let studyMoves = 0;
   let studied = 0;
   let fen = chess.fen();
-  let lastMove: { from: string; to: string } | null = null;
+  let lastMove: ProgressLastMove | null = null;
   let finalFen = fen;
-  let finalLastMove: { from: string; to: string } | null = null;
+  let finalLastMove: ProgressLastMove | null = null;
 
   for (const uci of game.moves) {
     const turn = chess.turn();

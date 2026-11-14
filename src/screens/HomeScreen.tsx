@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useIsFocused } from 'expo-router';
 import { showDialog } from '../components/dialog';
-import { Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View, ViewStyle } from 'react-native';
+import { Animated, Easing, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView, useColumnWidth } from '../components/ColumnScrollView';
-import Svg, { Line, Path } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
+import { Board } from '../components/Board';
+import { BoardSizeContext } from '../components/BoardSizeContext';
 import { Button3D } from '../components/Button3D';
 import { LessonNode, NODE_BOX } from '../components/LessonNode';
+import { LessonRail } from '../components/LessonRail';
 import { MiniBoard } from '../components/MiniBoard';
 import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
+import { UnitWheel } from '../components/UnitWheel';
 import { Lesson, Unit } from '../data/lessonTypes';
 import progressGamesRaw from '../data/progressGames.json';
 import { useContent } from '../data/useContent';
@@ -19,33 +24,23 @@ import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
 import { colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
+import { useReducedMotion } from '../components/useReducedMotion';
 import { useWideLayout } from '../components/useWideLayout';
-import { wideContentWidth } from '../components/wideLayout';
-import { homeWideColumns } from '../components/wideHome';
 
 type Props = {
   onStartLesson: (lesson: Lesson) => void;
 };
 
-// Alto de cada fila de la ruta (nodo con su anillo + título) y desplazamiento en zigzag.
-const ROW = 150; // deja lugar a títulos de hasta 3 renglones
-const ZIGZAG = [0, 56, 0, -56];
-
-// Partidas de progreso de las unidades (progressGame.json, tareas 8 y 9 de agentes.md).
+// Partidas de progreso de las unidades (progressGame.json, tareas 8 y 10 de agentes.md).
 const progressGames = (progressGamesRaw as unknown as ProgressGamesFile).units;
-
-// La columna derecha de Aprender se queda arriba mientras la ruta se desplaza. `sticky` es de la
-// web y no está en los tipos de React Native; esta rama solo se renderiza en la web ancha.
-// `alignSelf: flex-start` evita que la columna se estire al alto de la fila (si no, no se pega).
-const stickyTop = { position: 'sticky', top: 0, alignSelf: 'flex-start' } as unknown as ViewStyle;
 
 // Pestaña Aprender: barra de racha y monedas, y la ruta de cada unidad (mapa-de-pantallas.md, 2.3).
 export function HomeScreen({ onStartLesson }: Props) {
   const { progress, setLastUnit } = useProgress();
   const { units } = useContent();
   const { t } = useI18n();
-  // Unidad elegida en el menú. Sin elegir, se muestra la de la última lección empezada
-  // (guardada en el progreso) o, la primera vez, la de la lección sugerida.
+  // Unidad elegida en el menú o en la corona. Sin elegir, se muestra la de la última lección
+  // empezada (guardada en el progreso) o, la primera vez, la de la lección sugerida.
   const [chosen, setChosen] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const globalSuggested = suggestedLesson(units, progress);
@@ -78,8 +73,42 @@ export function HomeScreen({ onStartLesson }: Props) {
     : null;
 
   const wide = useWideLayout();
-  const { width, height } = useWindowDimensions();
-  const columns = wide ? homeWideColumns(wideContentWidth(width)) : null;
+  const focused = useIsFocused();
+  const reduced = useReducedMotion();
+  const [railOpen, setRailOpen] = useState(false);
+  const [rail] = useState(() => new Animated.Value(0));
+  const [boardFade] = useState(() => new Animated.Value(1));
+  const [titleFade] = useState(() => new Animated.Value(1));
+
+  // Entrada y salida del riel: la corona sale a la izquierda y el tablero se corre.
+  useEffect(() => {
+    if (!wide) return;
+    Animated.timing(rail, {
+      toValue: railOpen ? 1 : 0,
+      duration: reduced ? 0 : 520,
+      easing: Easing.bezier(0.22, 1, 0.36, 1),
+      useNativeDriver: true,
+    }).start();
+  }, [wide, railOpen, rail, reduced]);
+
+  // Al cambiar de unidad, el tablero y el encabezado se funden.
+  useEffect(() => {
+    if (!wide) return;
+    boardFade.setValue(0);
+    Animated.timing(boardFade, { toValue: 1, duration: reduced ? 0 : 160, useNativeDriver: true }).start();
+    titleFade.setValue(0);
+    Animated.timing(titleFade, { toValue: 1, duration: reduced ? 0 : 140, useNativeDriver: true }).start();
+  }, [wide, unit.unit, boardFade, titleFade, reduced]);
+
+  // Escape cierra el riel, como el botón Volver.
+  useEffect(() => {
+    if (!wide || !focused || Platform.OS !== 'web' || !railOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setRailOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [wide, focused, railOpen]);
 
   const unitMenu = (
     <UnitMenu
@@ -93,49 +122,118 @@ export function HomeScreen({ onStartLesson }: Props) {
     />
   );
 
-  if (columns) {
+  if (wide) {
+    const unitIndex = Math.max(0, units.findIndex((u) => u.unit === unit.unit));
+    const game = progressGames[String(unit.unit)] ?? { moves: [], side: 'w' as const };
+    const states = lessonStates(unit.lessons, progress);
+    const doneCount = states.filter((s) => s === 'done').length;
+    const position = progressPosition(game, doneCount, unit.lessons.length);
+    const legend =
+      position.total === 0
+        ? t('home.progressSoon')
+        : position.complete
+          ? t('home.progressComplete')
+          : t('home.progressMove', { n: position.played, total: position.total });
+    const showHint = position.total > 0 && !position.complete;
+    const suggestedForUnit = unit.lessons.find((l) => !progress.lessons[l.id]) ?? unit.lessons[0];
+    const actionLabel =
+      doneCount >= unit.lessons.length ? t('home.review') : doneCount === 0 ? t('common.start') : t('common.continue');
+    const wheelItems = units.map((u) => {
+      const done = u.lessons.filter((l) => progress.lessons[l.id]).length;
+      return {
+        key: String(u.unit),
+        label: String(u.unit),
+        accessibilityLabel: t('home.unitWheelLabel', { n: u.unit, title: u.title, done, total: u.lessons.length }),
+      };
+    });
+    const leftStyle = {
+      opacity: rail.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }),
+      transform: [{ translateX: rail.interpolate({ inputRange: [0, 1], outputRange: [0, -140] }) }],
+    };
+    const boardStyle = {
+      opacity: boardFade,
+      transform: [{ translateX: rail.interpolate({ inputRange: [0, 1], outputRange: [0, -382] }) }],
+    };
+    const railStyle = {
+      opacity: rail,
+      transform: [{ translateX: rail.interpolate({ inputRange: [0, 1], outputRange: [400, 0] }) }],
+    };
+
     return (
       <View style={styles.screen}>
-        <ScrollView style={styles.wideScroll} contentContainerStyle={styles.wideScrollContent}>
-          <View style={[styles.wideContentRow, { width: columns.total, gap: columns.gap }]}>
-            <View style={[styles.wideRouteContent, { width: columns.route, paddingTop: statusBarTop(space.md) }]}>
-              {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
-              <UnitPath key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
+        <View style={[styles.wideTop, { paddingTop: statusBarTop(space.md) }]}>
+          <View style={styles.statsRow}>
+            <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
+              <StatIcon name="streak" />
+              <Text style={styles.statText}>{streak}</Text>
             </View>
-            {/* El panel es una columna más de la fila, pegada arriba: la rueda sobre él sigue
-                desplazando la página (antes, una capa superpuesta se quedaba con el scroll). */}
-            <ScrollView
-              style={[stickyTop, { width: columns.panel, maxHeight: height }]}
-              contentContainerStyle={[styles.widePanelContent, { paddingTop: statusBarTop(space.md) }]}
-            >
-              {suggested && (
-                <View style={styles.panelCard}>
-                  <Text style={styles.panelCaption} numberOfLines={2}>
-                    {t('home.lessonCaption', { order: suggested.order, title: suggested.title })}
-                  </Text>
-                  <Button3D
-                    label={progress.drafts[suggested.id] ? t('common.continue') : t('common.start')}
-                    variant="primary"
-                    onPress={() => startLesson(suggested)}
-                    style={{ marginTop: space.sm }}
-                  />
-                </View>
-              )}
-              <View style={[styles.panelCard, styles.panelStats]}>
-                <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
-                  <StatIcon name="streak" />
-                  <Text style={styles.statText}>{streak}</Text>
-                </View>
-                <View style={styles.stat} accessibilityLabel={t('common.coinsLabel', { n: progress.coins })}>
-                  <StatIcon name="coin" />
-                  <Text style={styles.statText}>{progress.coins}</Text>
-                </View>
-              </View>
-            </ScrollView>
+            <View style={styles.stat} accessibilityLabel={t('common.coinsLabel', { n: progress.coins })}>
+              <StatIcon name="coin" />
+              <Text style={styles.statText}>{progress.coins}</Text>
+            </View>
           </View>
-        </ScrollView>
+          {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
+        </View>
 
-        {unitMenu}
+        <View style={styles.scene}>
+          <View style={styles.sceneRow}>
+            <Animated.View style={[styles.leftCol, leftStyle]} pointerEvents={railOpen ? 'none' : 'auto'}>
+              <View style={styles.head}>
+                <Animated.View style={{ opacity: titleFade }}>
+                  <Text style={styles.over}>{t('home.unit', { n: unit.unit })}</Text>
+                  <Text style={styles.name} numberOfLines={2}>
+                    {unit.title}
+                  </Text>
+                </Animated.View>
+              </View>
+              <UnitWheel
+                items={wheelItems}
+                initialIndex={unitIndex}
+                previousLabel={t('home.prevUnitLabel')}
+                nextLabel={t('home.nextUnitLabel')}
+                enabled={focused && !railOpen}
+                onActiveChange={(i) => setChosen(units[i].unit)}
+                onOpen={() => setRailOpen(true)}
+              />
+            </Animated.View>
+
+            <Animated.View style={[styles.boardCol, boardStyle]}>
+              <View
+                accessible
+                accessibilityRole="image"
+                accessibilityLabel={t('home.progressBoardLabel', { legend })}
+              >
+                <BoardSizeContext.Provider value={480}>
+                  <Board
+                    key={unit.unit}
+                    fen={position.fen}
+                    orientation={game.side}
+                    lastMove={position.lastMove}
+                    interactive={false}
+                  />
+                </BoardSizeContext.Provider>
+              </View>
+              <View style={styles.legendRow}>
+                <Text style={styles.legendStrong}>{legend}</Text>
+                {showHint && <Text style={styles.legendHint}>{t('home.progressHint')}</Text>}
+              </View>
+            </Animated.View>
+          </View>
+
+          <Animated.View style={[styles.railWrap, railStyle]} pointerEvents={railOpen ? 'auto' : 'none'}>
+            <LessonRail
+              caption={t('home.unit', { n: unit.unit })}
+              title={unit.title}
+              lessons={unit.lessons}
+              states={states}
+              onStartLesson={startLesson}
+              onBack={() => setRailOpen(false)}
+              backLabel={t('home.back')}
+              actionLabel={actionLabel}
+              onAction={() => startLesson(suggestedForUnit)}
+            />
+          </Animated.View>
+        </View>
       </View>
     );
   }
@@ -242,92 +340,6 @@ function UnitMenu({
   );
 }
 
-/** Encabezado de una unidad (abre el menú de unidades) y su ruta: línea que une los nodos y los nodos encima. */
-function UnitPath({
-  unit,
-  onStartLesson,
-  onOpenMenu,
-}: {
-  unit: Unit;
-  onStartLesson: (lesson: Lesson) => void;
-  onOpenMenu: () => void;
-}) {
-  const { progress } = useProgress();
-  const { t } = useI18n();
-  const [width, setWidth] = useState(0);
-  const lessons = unit.lessons;
-  const states = lessonStates(lessons, progress);
-  const doneCount = states.filter((s) => s === 'done').length;
-  const current = lessons[states.indexOf('current')];
-  const centers = lessons.map((_, i) => ({ x: width / 2 + ZIGZAG[i % ZIGZAG.length], y: i * ROW + NODE_BOX / 2 }));
-
-  const openLesson = (lesson: Lesson, i: number) => {
-    if (states[i] === 'locked') {
-      showDialog(t('lesson.lockedTitle'), t('home.lockedMessage', { title: current?.title ?? '' }));
-      return;
-    }
-    onStartLesson(lesson);
-  };
-
-  return (
-    <>
-      <Pressable
-        onPress={onOpenMenu}
-        accessibilityRole="button"
-        accessibilityLabel={t('home.unitCardLabel', { n: unit.unit, title: unit.title })}
-        style={({ pressed }) => [styles.unitCard, pressed && { opacity: 0.85 }]}
-      >
-        <View style={{ flex: 1 }}>
-          <Text style={styles.unitCaption}>{t('home.unit', { n: unit.unit })}</Text>
-          <Text style={styles.unitTitle}>{t('home.unitTitle', { title: unit.title, done: doneCount, total: lessons.length })}</Text>
-        </View>
-        <Chevron />
-      </Pressable>
-
-      <View
-        style={{ height: lessons.length * ROW, marginTop: space.xl }}
-        onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-      >
-        {width > 0 && (
-          <>
-            <Svg style={StyleSheet.absoluteFill} width={width} height={lessons.length * ROW}>
-              {centers.slice(1).map((c, i) => (
-                <Line
-                  key={i}
-                  x1={centers[i].x}
-                  y1={centers[i].y}
-                  x2={c.x}
-                  y2={c.y}
-                  stroke={states[i] === 'done' ? colors.primary : colors.surfaceRaised}
-                  strokeWidth={6}
-                  strokeLinecap="round"
-                />
-              ))}
-            </Svg>
-            {lessons.map((lesson, i) => (
-              <View key={lesson.id} style={[styles.nodeWrap, { left: centers[i].x - 80, top: i * ROW }]}>
-                <LessonNode
-                  state={states[i]}
-                  order={lesson.order}
-                  label={lesson.title}
-                  onPress={() => openLesson(lesson, i)}
-                />
-                <Text
-                  style={[styles.nodeLabel, states[i] === 'locked' && { color: colors.textMuted }]}
-                  numberOfLines={3}
-                  maxFontSizeMultiplier={1.3}
-                >
-                  {lesson.title}
-                </Text>
-              </View>
-            ))}
-          </>
-        )}
-      </View>
-    </>
-  );
-}
-
 /** Riel recto para celular y web angosta: cabecera con el tablero de progreso y las lecciones. */
 function UnitRail({
   unit,
@@ -409,25 +421,27 @@ function UnitRail({
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg },
-  wideScroll: { flex: 1 },
-  wideScrollContent: { width: '100%', alignItems: 'center' },
-  wideContentRow: { flexDirection: 'row' },
-  wideRouteContent: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  widePanelContent: { gap: space.md, paddingBottom: space.lg },
-  panelCard: {
-    backgroundColor: colors.surface,
-    borderRadius: radius.control,
-    borderWidth: 2,
-    borderColor: colors.surfaceRaised,
-    borderBottomWidth: 4,
-    borderBottomColor: colors.surfaceShadow,
-    padding: space.md,
-  },
-  panelCaption: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text },
-  panelStats: { flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' },
   statsRow: { flexDirection: 'row', gap: space.lg },
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   statText: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.gold },
+  wideTop: { paddingHorizontal: space.lg, gap: space.sm },
+  scene: { flex: 1, position: 'relative', overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  sceneRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 64, width: 844 },
+  leftCol: { width: 300 },
+  head: { height: 104, justifyContent: 'flex-end', paddingLeft: space.lg, marginBottom: space.lg },
+  over: {
+    fontFamily: fonts.extrabold,
+    fontSize: 12,
+    color: colors.primary,
+    letterSpacing: 1.2,
+    textTransform: 'uppercase',
+  },
+  name: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text, lineHeight: 28 },
+  boardCol: { width: 480, marginTop: 118 },
+  legendRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.lg },
+  legendStrong: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.gold },
+  legendHint: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
+  railWrap: { position: 'absolute', top: 0, right: 0, bottom: 0, width: 400, zIndex: 2 },
   unitCard: {
     marginTop: space.lg,
     backgroundColor: colors.primary,
@@ -464,19 +478,6 @@ const styles = StyleSheet.create({
   },
   railRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   railLabel: { flex: 1, fontFamily: fonts.bold, fontSize: 15, color: colors.text },
-  nodeWrap: { position: 'absolute', width: 160, alignItems: 'center' },
-  // Fondo del color de la pantalla: la línea que une los nodos pasa por detrás del título sin cortarlo.
-  nodeLabel: {
-    fontFamily: fonts.bold,
-    fontSize: 13,
-    color: colors.text,
-    textAlign: 'center',
-    marginTop: space.xs,
-    backgroundColor: colors.bg,
-    paddingHorizontal: 6,
-    borderRadius: 6,
-    overflow: 'hidden',
-  },
   floating: {
     position: 'absolute',
     left: space.lg,

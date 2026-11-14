@@ -17,7 +17,7 @@ type ListField = (typeof LIST_FIELDS)[number];
 export type StepText = Partial<Record<StringField, string>> & Partial<Record<ListField | 'notes', string[]>>;
 export type LessonText = { title?: string; summary?: string; steps?: Record<string, StepText> };
 export type UnitText = { title?: string; lessons?: Record<string, LessonText> };
-export type OpeningText = { name?: string; summary?: string; lessons?: Record<string, LessonText> };
+export type OpeningText = { name?: string; short?: string; summary?: string; lessons?: Record<string, LessonText> };
 export type BotText = {
   name?: string;
   tagline?: string;
@@ -85,6 +85,7 @@ export function applyOpeningText(course: OpeningCourse, text: OpeningText | unde
   return {
     ...course,
     name: isText(text.name) ? text.name : course.name,
+    short: isText(text.short) ? text.short : course.short,
     summary: isText(text.summary) ? text.summary : course.summary,
     lessons: applyLessons(course.lessons, text.lessons),
   };

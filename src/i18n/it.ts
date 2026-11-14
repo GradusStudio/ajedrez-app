@@ -231,6 +231,13 @@ export const it: Record<MessageKey, string> = {
   // Aperturas
   'openings.title': 'Aperture',
   'openings.subtitle': 'Scegli con quale colore vuoi studiare',
+  'openings.wheelWhite': 'Apertura · bianco',
+  'openings.wheelBlack': 'Apertura · nero',
+  'openings.viewCourse': 'Vedi corso',
+  'openings.wheelLabel': 'Apertura {name}, {done} di {total} lezioni',
+  'openings.prevLabel': 'Apertura precedente',
+  'openings.nextLabel': 'Apertura successiva',
+  'openings.progressSoon': 'La partita di questa apertura arriverà presto',
   'openings.guide.title': 'Come scegliere il tuo repertorio',
   'openings.guide.text': "Scegli un'apertura con il Bianco, una risposta a 1.e4 e una a 1.d4. Poche linee conosciute bene valgono più di molte conosciute a metà. Se ti piace attaccare, cerca l'iniziativa; se preferisci la tecnica, cerca strutture solide e piani chiari.",
   'openings.tabWhite': 'Aperture col Bianco',

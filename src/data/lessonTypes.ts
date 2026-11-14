@@ -113,6 +113,8 @@ export type Unit = {
 export type OpeningCourse = {
   id: string; // 'london'
   name: string; // 'Sistema Londres'
+  /** Nombre corto para el gajo de la corona (11 caracteres como máximo). */
+  short: string;
   color: 'w' | 'b'; // el color con el que se juega
   summary: string;
   botStyles: string[]; // personalidades de bot que la usan

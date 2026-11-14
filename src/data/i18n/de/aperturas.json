@@ -1,6 +1,7 @@
 {
   "london": {
     "name": "London-System",
+    "short": "London",
     "summary": "Ein Aufbau, den du dir leicht merken kannst: Du spielst fast immer dieselben Züge, egal was der Gegner macht.",
     "lessons": {
       "london-l01": {
@@ -576,6 +577,7 @@
   },
   "italian": {
     "name": "Italienische Partie",
+    "short": "Italienisch",
     "summary": "Schnelle Entwicklung, der Läufer zielt auf f7, und der Plan ist klar: rochieren und das Zentrum besetzen.",
     "lessons": {
       "italian-l01": {
@@ -1107,6 +1109,7 @@
   },
   "vienna": {
     "name": "Wiener Partie",
+    "short": "Wiener",
     "summary": "Eine flexible Eröffnung: Du kannst mit dem f4-Gambit angreifen oder mit dem Läufer Druck auf f7 machen.",
     "lessons": {
       "vienna-l01": {
@@ -1915,6 +1918,7 @@
   },
   "scandinavian": {
     "name": "Skandinavische Verteidigung",
+    "short": "Skandinav.",
     "summary": "Du stellst das weiße Zentrum schon mit dem ersten Zug infrage, mit einem einfachen Plan und wenigen Varianten zum Merken.",
     "lessons": {
       "scandinavian-l01": {
@@ -2372,6 +2376,7 @@
   },
   "sicilian": {
     "name": "Sizilianische Verteidigung (Najdorf)",
+    "short": "Najdorf",
     "summary": "Die kämpferischste Antwort auf 1.e4: eine asymmetrische Struktur und Spiel auf Gewinn mit Schwarz.",
     "lessons": {
       "sicilian-l01": {
@@ -3273,6 +3278,7 @@
   },
   "dragon": {
     "name": "Drachenvariante",
+    "short": "Drachen",
     "summary": "Fianchetto mit dem Läufer auf g7: eine sehr scharfe Struktur, in der beide Seiten angreifen.",
     "lessons": {
       "dragon-l01": {
@@ -3942,6 +3948,7 @@
   },
   "kia": {
     "name": "Königsindischer Angriff",
+    "short": "Königsangr.",
     "summary": "Ein System: dieselbe Struktur (g3, Lg2, d3, e4) gegen fast jede Verteidigung.",
     "lessons": {
       "kia-l01": {
@@ -4291,6 +4298,7 @@
   },
   "kings-indian": {
     "name": "Königsindische Verteidigung",
+    "short": "Königsind.",
     "summary": "Du überlässt Weiß das Zentrum, um es später anzugreifen, und gehst dann auf seinen König los.",
     "lessons": {
       "kings-indian-l01": {
@@ -4905,6 +4913,7 @@
   },
   "modern": {
     "name": "Moderne Verteidigung",
+    "short": "Modern",
     "summary": "Eine hypermoderne Verteidigung: Du überlässt Weiß das Zentrum und machst aus der Ferne Druck darauf.",
     "lessons": {
       "modern-l01": {
@@ -5751,6 +5760,7 @@
   },
   "pirc": {
     "name": "Pirc-Verteidigung",
+    "short": "Pirc",
     "summary": "Flexibel und solide: Du erlaubst ein großes Zentrum und greifst es mit Figuren an.",
     "lessons": {
       "pirc-l01": {
@@ -6137,6 +6147,7 @@
   },
   "scotch": {
     "name": "Schottische Partie",
+    "short": "Schottisch",
     "summary": "Du öffnest sofort das Zentrum: direkter als die Italienische Partie und mit aktivem Spiel.",
     "lessons": {
       "scotch-l01": {
@@ -6780,6 +6791,7 @@
   },
   "evans": {
     "name": "Evans-Gambit",
+    "short": "Evans",
     "summary": "Du opferst einen Bauern für Zeit und Zentrum: schneller Angriff und viel taktisches Spiel.",
     "lessons": {
       "evans-l01": {
@@ -7362,6 +7374,7 @@
   },
   "bdg": {
     "name": "Blackmar-Diemer-Gambit",
+    "short": "Blackmar",
     "summary": "Bauer für Entwicklung und Angriff, mit vielen Fallen. Enthält das Ryder-Gambit, bei dem du auch den Bauern auf d4 anbietest.",
     "lessons": {
       "bdg-l01": {
@@ -7968,6 +7981,7 @@
   },
   "caro-kann": {
     "name": "Caro-Kann-Verteidigung",
+    "short": "Caro-Kann",
     "summary": "Eine sehr solide Verteidigung: Deine Struktur steht fest, und dein Läufer bleibt frei.",
     "lessons": {
       "caro-kann-l01": {
@@ -8697,6 +8711,7 @@
   },
   "ruy-lopez": {
     "name": "Spanische Partie",
+    "short": "Spanisch",
     "summary": "Die am meisten studierte Eröffnung: ständiger Druck auf das schwarze Zentrum, ganz ohne Eile.",
     "lessons": {
       "ruy-lopez-l01": {
@@ -9337,6 +9352,7 @@
   },
   "rossolimo": {
     "name": "Rossolimo-Variante",
+    "short": "Rossolimo",
     "summary": "Eine solide Art, gegen den Sizilianer zu spielen: Du weichst den theorielastigsten Varianten aus.",
     "lessons": {
       "rossolimo-l01": {
@@ -9850,6 +9866,7 @@
   },
   "alapin": {
     "name": "Alapin-Variante",
+    "short": "Alapin",
     "summary": "Gegen den Sizilianer: Du bereitest d4 mit c3 vor und weichst der Theorie der offenen Varianten aus.",
     "lessons": {
       "alapin-l01": {
@@ -10441,6 +10458,7 @@
   },
   "queens-gambit": {
     "name": "Damengambit",
+    "short": "Damengambit",
     "summary": "Eine klassische Eröffnung: Du bietest einen Bauern an, den du fast immer zurückholst, und kontrollierst das Zentrum.",
     "lessons": {
       "queens-gambit-l01": {
@@ -11488,6 +11506,7 @@
   },
   "kings-gambit": {
     "name": "Königsgambit",
+    "short": "Königsgamb.",
     "summary": "Die romantische Eröffnung: Du opferst sofort einen Bauern und greifst mit allem an.",
     "lessons": {
       "kings-gambit-l01": {
@@ -12211,6 +12230,7 @@
   },
   "albin": {
     "name": "Albin-Gegengambit",
+    "short": "Albin",
     "summary": "Du antwortest auf das Damengambit mit einem Bauern auf d4, der die ganze Partie über stört.",
     "lessons": {
       "albin-l01": {
@@ -12702,6 +12722,7 @@
   },
   "catalan": {
     "name": "Katalanische Eröffnung",
+    "short": "Katalanisch",
     "summary": "Der g2-Läufer übt Druck auf der langen Diagonale aus: eine elegante Eröffnung mit viel Druck.",
     "lessons": {
       "catalan-l01": {
@@ -13196,6 +13217,7 @@
   },
   "english": {
     "name": "Englische Eröffnung",
+    "short": "Englisch",
     "summary": "Du kontrollierst das Zentrum mit einem Flügelbauern und spielst ruhig und flexibel.",
     "lessons": {
       "english-l01": {
@@ -13919,6 +13941,7 @@
   },
   "danish": {
     "name": "Nordisches Gambit",
+    "short": "Nordisch",
     "summary": "Du opferst einen oder zwei Bauern, um deine Läufer gegen die Rochadestellung loszuschicken.",
     "lessons": {
       "danish-l01": {
@@ -14519,6 +14542,7 @@
   },
   "french": {
     "name": "Französische Verteidigung",
+    "short": "Französisch",
     "summary": "Eine solide Verteidigung: Du gibst etwas Raum ab und bekommst dafür eine feste Struktur und Gegenangriff.",
     "lessons": {
       "french-l01": {
@@ -15311,6 +15335,7 @@
   },
   "nimzo-indian": {
     "name": "Nimzowitsch-Indische Verteidigung",
+    "short": "Nimzo-Ind.",
     "summary": "Du fesselst den Springer auf c3 und kämpfst mit Figuren um das Zentrum.",
     "lessons": {
       "nimzo-indian-l01": {
@@ -16039,6 +16064,7 @@
   },
   "petrov": {
     "name": "Russische Verteidigung",
+    "short": "Petrov",
     "summary": "Du kopierst den weißen Angriff, statt dich zu verteidigen: solide, symmetrisch und schwer zu schlagen.",
     "lessons": {
       "petrov-l01": {
@@ -16415,6 +16441,7 @@
   },
   "queens-gambit-declined": {
     "name": "Abgelehntes Damengambit",
+    "short": "Damen abg.",
     "summary": "Du deckst das Zentrum mit ...e6 und spielst solide: die klassische Antwort auf das Gambit.",
     "lessons": {
       "queens-gambit-declined-l01": {
@@ -17309,6 +17336,7 @@
   },
   "queens-gambit-accepted": {
     "name": "Angenommenes Damengambit",
+    "short": "Damen ang.",
     "summary": "Wenn Schwarz auf c4 schlägt, holst du den Bauern mit Entwicklung und Kontrolle über das Zentrum zurück.",
     "lessons": {
       "queens-gambit-accepted-l01": {
@@ -17837,6 +17865,7 @@
   },
   "dutch": {
     "name": "Holländische Verteidigung",
+    "short": "Holländisch",
     "summary": "Eine Verteidigung mit festem Schema gegen 1.d4: Wähle die Klassische, die Stonewall oder die Leningrader Variante und spiele mit einem klaren Plan.",
     "lessons": {
       "dutch-l01": {

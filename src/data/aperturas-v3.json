@@ -4,6 +4,7 @@
     {
       "id": "london",
       "name": "Sistema Londres",
+      "short": "Londres",
       "color": "w",
       "summary": "Un esquema fácil de recordar: casi siempre juegas las mismas jugadas, sin importar lo que haga el rival.",
       "botStyles": [
@@ -2011,6 +2012,7 @@
     {
       "id": "italian",
       "name": "Partida Italiana",
+      "short": "Italiana",
       "color": "w",
       "summary": "Desarrollo rápido, el alfil apunta a f7 y un plan claro: enrocar y ocupar el centro.",
       "botStyles": [
@@ -3728,6 +3730,7 @@
     {
       "id": "vienna",
       "name": "Partida Vienesa",
+      "short": "Vienesa",
       "color": "w",
       "summary": "Una apertura flexible: puedes atacar con el gambito f4 o presionar f7 con el alfil.",
       "botStyles": [
@@ -6488,6 +6491,7 @@
     {
       "id": "scandinavian",
       "name": "Defensa Escandinava",
+      "short": "Escandinava",
       "color": "b",
       "summary": "Cuestionas el centro blanco desde la primera jugada, con un plan sencillo y pocas líneas que memorizar.",
       "botStyles": [
@@ -8034,6 +8038,7 @@
     {
       "id": "sicilian",
       "name": "Defensa Siciliana (Najdorf)",
+      "short": "Najdorf",
       "color": "b",
       "summary": "La respuesta más combativa a 1.e4: estructura asimétrica y juego por ganar con negras.",
       "botStyles": [
@@ -11116,6 +11121,7 @@
     {
       "id": "dragon",
       "name": "Dragón Siciliano",
+      "short": "Dragón",
       "color": "b",
       "summary": "Fianchetto con el alfil de g7: una estructura muy aguda donde ambos bandos atacan.",
       "botStyles": [
@@ -13617,6 +13623,7 @@
     {
       "id": "kia",
       "name": "Ataque Indio de Rey",
+      "short": "Ataque IR",
       "color": "w",
       "summary": "Un sistema: la misma estructura (g3, Ag2, d3, e4) contra casi cualquier defensa.",
       "botStyles": [
@@ -14790,6 +14797,7 @@
     {
       "id": "kings-indian",
       "name": "Defensa India de Rey",
+      "short": "India Rey",
       "color": "b",
       "summary": "Dejas el centro a las blancas para atacarlo después, con ataque sobre su rey.",
       "botStyles": [
@@ -17067,6 +17075,7 @@
     {
       "id": "modern",
       "name": "Defensa Moderna",
+      "short": "Moderna",
       "color": "b",
       "summary": "Una defensa hipermoderna: dejas el centro a las blancas y lo presionas desde lejos.",
       "botStyles": [
@@ -19879,6 +19888,7 @@
     {
       "id": "pirc",
       "name": "Defensa Pirc",
+      "short": "Pirc",
       "color": "b",
       "summary": "Flexible y sólida: permites un gran centro y lo atacas con piezas.",
       "botStyles": [
@@ -21201,6 +21211,7 @@
     {
       "id": "scotch",
       "name": "Partida Escocesa",
+      "short": "Escocesa",
       "color": "w",
       "summary": "Abres el centro de inmediato: más directa que la Italiana y con juego activo.",
       "botStyles": [
@@ -23241,6 +23252,7 @@
     {
       "id": "evans",
       "name": "Gambito Evans",
+      "short": "Evans",
       "color": "w",
       "summary": "Sacrificas un peón para ganar tiempo y centro: ataque rápido y mucho juego táctico.",
       "botStyles": [
@@ -25228,6 +25240,7 @@
     {
       "id": "bdg",
       "name": "Gambito Blackmar-Diemer",
+      "short": "Blackmar",
       "color": "w",
       "summary": "Peón por desarrollo y ataque, con muchas trampas. Incluye el Gambito Ryder, donde también ofreces el peón de d4.",
       "botStyles": [
@@ -27105,6 +27118,7 @@
     {
       "id": "caro-kann",
       "name": "Defensa Caro-Kann",
+      "short": "Caro-Kann",
       "color": "b",
       "summary": "Una defensa muy sólida: tu estructura es firme y tu alfil queda libre.",
       "botStyles": [
@@ -29590,6 +29604,7 @@
     {
       "id": "ruy-lopez",
       "name": "Ruy López",
+      "short": "Ruy López",
       "color": "w",
       "summary": "La apertura más estudiada: presión constante sobre el centro negro sin prisa.",
       "botStyles": [
@@ -31788,6 +31803,7 @@
     {
       "id": "rossolimo",
       "name": "Variante Rossolimo",
+      "short": "Rossolimo",
       "color": "w",
       "summary": "Una forma sólida de jugar contra la Siciliana: evitas las líneas más teóricas.",
       "botStyles": [
@@ -33331,6 +33347,7 @@
     {
       "id": "alapin",
       "name": "Variante Alapin",
+      "short": "Alapin",
       "color": "w",
       "summary": "Contra la Siciliana: preparas d4 con c3 y evitas la teoría de las líneas abiertas.",
       "botStyles": [
@@ -35312,6 +35329,7 @@
     {
       "id": "queens-gambit",
       "name": "Gambito de dama",
+      "short": "G. Dama",
       "color": "w",
       "summary": "Una apertura clásica: ofreces un peón que casi siempre recuperas, y controlas el centro.",
       "botStyles": [
@@ -38535,6 +38553,7 @@
     {
       "id": "kings-gambit",
       "name": "Gambito de rey",
+      "short": "G. Rey",
       "color": "w",
       "summary": "La apertura romántica: sacrificas un peón de inmediato y atacas con todo.",
       "botStyles": [
@@ -40977,6 +40996,7 @@
     {
       "id": "albin",
       "name": "Contragambito Albin",
+      "short": "Albin",
       "color": "b",
       "summary": "Respondes al Gambito de dama con un peón en d4 que molesta durante toda la partida.",
       "botStyles": [
@@ -42722,6 +42742,7 @@
     {
       "id": "catalan",
       "name": "Apertura Catalana",
+      "short": "Catalana",
       "color": "w",
       "summary": "El alfil de g2 presiona la diagonal larga: una apertura elegante y de mucha presión.",
       "botStyles": [
@@ -44397,6 +44418,7 @@
     {
       "id": "english",
       "name": "Apertura Inglesa",
+      "short": "Inglesa",
       "color": "w",
       "summary": "Controlas el centro con un peón de flanco y juegas con calma y flexibilidad.",
       "botStyles": [
@@ -46660,6 +46682,7 @@
     {
       "id": "danish",
       "name": "Gambito Danés",
+      "short": "Danés",
       "color": "w",
       "summary": "Sacrificas uno o dos peones para lanzar tus alfiles contra el enroque.",
       "botStyles": [
@@ -48613,6 +48636,7 @@
     {
       "id": "french",
       "name": "Defensa Francesa",
+      "short": "Francesa",
       "color": "b",
       "summary": "Una defensa sólida: cedes algo de espacio a cambio de una estructura firme y contraataque.",
       "botStyles": [
@@ -51349,6 +51373,7 @@
     {
       "id": "nimzo-indian",
       "name": "Defensa Nimzoindia",
+      "short": "Nimzoindia",
       "color": "b",
       "summary": "Clavas el caballo de c3 y peleas por el centro con piezas.",
       "botStyles": [
@@ -53747,6 +53772,7 @@
     {
       "id": "petrov",
       "name": "Defensa Petrov",
+      "short": "Petrov",
       "color": "b",
       "summary": "Copias el ataque blanco en lugar de defender: sólida, simétrica y difícil de batir.",
       "botStyles": [
@@ -54983,6 +55009,7 @@
     {
       "id": "queens-gambit-declined",
       "name": "Gambito de dama declinado",
+      "short": "GD Decl.",
       "color": "b",
       "summary": "Defiendes el centro con ...e6 y juegas con solidez: la respuesta clásica al gambito.",
       "botStyles": [
@@ -57970,6 +57997,7 @@
     {
       "id": "queens-gambit-accepted",
       "name": "Gambito de dama aceptado",
+      "short": "GD Acep.",
       "color": "w",
       "summary": "Cuando las negras capturan en c4, recuperas el peón con desarrollo y control del centro.",
       "botStyles": [
@@ -59799,6 +59827,7 @@
     {
       "id": "dutch",
       "name": "Defensa Holandesa",
+      "short": "Holandesa",
       "color": "b",
       "summary": "Una defensa de esquema fijo contra 1.d4: eliges la Clásica, la Stonewall o la Leningrado y juegas con un plan claro.",
       "botStyles": [

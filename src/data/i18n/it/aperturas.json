@@ -1,6 +1,7 @@
 {
   "london": {
     "name": "Sistema London",
+    "short": "London",
     "summary": "Uno schema facile da ricordare: giochi quasi sempre le stesse mosse, qualunque cosa faccia l'avversario.",
     "lessons": {
       "london-l01": {
@@ -576,6 +577,7 @@
   },
   "italian": {
     "name": "Partita Italiana",
+    "short": "Italiana",
     "summary": "Sviluppo rapido, l'alfiere punta a f7 e un piano chiaro: arroccare e occupare il centro.",
     "lessons": {
       "italian-l01": {
@@ -1107,6 +1109,7 @@
   },
   "vienna": {
     "name": "Partita Viennese",
+    "short": "Viennese",
     "summary": "Un'apertura flessibile: puoi attaccare col gambetto f4 o premere su f7 con l'alfiere.",
     "lessons": {
       "vienna-l01": {
@@ -1915,6 +1918,7 @@
   },
   "scandinavian": {
     "name": "Difesa Scandinava",
+    "short": "Scandinava",
     "summary": "Metti in discussione il centro bianco dalla prima mossa, con un piano semplice e poche linee da ricordare.",
     "lessons": {
       "scandinavian-l01": {
@@ -2372,6 +2376,7 @@
   },
   "sicilian": {
     "name": "Difesa Siciliana (Najdorf)",
+    "short": "Najdorf",
     "summary": "La risposta più combattiva a 1.e4: struttura asimmetrica e gioco per vincere col Nero.",
     "lessons": {
       "sicilian-l01": {
@@ -3273,6 +3278,7 @@
   },
   "dragon": {
     "name": "Siciliana Dragone",
+    "short": "Dragone",
     "summary": "Fianchetto con l'alfiere in g7: una struttura molto tagliente in cui attaccano entrambi i giocatori.",
     "lessons": {
       "dragon-l01": {
@@ -3942,6 +3948,7 @@
   },
   "kia": {
     "name": "Attacco Est-Indiano",
+    "short": "Est-Indiano",
     "summary": "Un sistema: la stessa struttura (g3, Ag2, d3, e4) contro quasi ogni difesa.",
     "lessons": {
       "kia-l01": {
@@ -4291,6 +4298,7 @@
   },
   "kings-indian": {
     "name": "Difesa Est-Indiana",
+    "short": "Est-Indiana",
     "summary": "Lasci il centro al Bianco per attaccarlo dopo, con un attacco contro il suo re.",
     "lessons": {
       "kings-indian-l01": {
@@ -4905,6 +4913,7 @@
   },
   "modern": {
     "name": "Difesa Moderna",
+    "short": "Moderna",
     "summary": "Una difesa ipermoderna: lasci il centro al Bianco e premi su di esso da lontano.",
     "lessons": {
       "modern-l01": {
@@ -5751,6 +5760,7 @@
   },
   "pirc": {
     "name": "Difesa Pirc",
+    "short": "Pirc",
     "summary": "Flessibile e solida: permetti un grande centro e lo attacchi con i pezzi.",
     "lessons": {
       "pirc-l01": {
@@ -6137,6 +6147,7 @@
   },
   "scotch": {
     "name": "Partita Scozzese",
+    "short": "Scozzese",
     "summary": "Apri subito il centro: più diretta dell'Italiana e con gioco attivo.",
     "lessons": {
       "scotch-l01": {
@@ -6780,6 +6791,7 @@
   },
   "evans": {
     "name": "Gambetto Evans",
+    "short": "Evans",
     "summary": "Sacrifichi un pedone per guadagnare tempo e centro: attacco rapido e molto gioco tattico.",
     "lessons": {
       "evans-l01": {
@@ -7362,6 +7374,7 @@
   },
   "bdg": {
     "name": "Gambetto Blackmar-Diemer",
+    "short": "Blackmar",
     "summary": "Pedone in cambio di sviluppo e attacco, con molte trappole. Include il Gambetto Ryder, dove offri anche il pedone di d4.",
     "lessons": {
       "bdg-l01": {
@@ -7968,6 +7981,7 @@
   },
   "caro-kann": {
     "name": "Difesa Caro-Kann",
+    "short": "Caro-Kann",
     "summary": "Una difesa molto solida: la tua struttura è compatta e il tuo alfiere resta libero.",
     "lessons": {
       "caro-kann-l01": {
@@ -8697,6 +8711,7 @@
   },
   "ruy-lopez": {
     "name": "Apertura Spagnola",
+    "short": "Spagnola",
     "summary": "L'apertura più studiata: una pressione costante sul centro nero, senza fretta.",
     "lessons": {
       "ruy-lopez-l01": {
@@ -9337,6 +9352,7 @@
   },
   "rossolimo": {
     "name": "Variante Rossolimo",
+    "short": "Rossolimo",
     "summary": "Un modo solido di giocare contro la Siciliana: eviti le linee più teoriche.",
     "lessons": {
       "rossolimo-l01": {
@@ -9850,6 +9866,7 @@
   },
   "alapin": {
     "name": "Variante Alapin",
+    "short": "Alapin",
     "summary": "Contro la Siciliana: prepari d4 con c3 ed eviti la teoria delle linee aperte.",
     "lessons": {
       "alapin-l01": {
@@ -10441,6 +10458,7 @@
   },
   "queens-gambit": {
     "name": "Gambetto di Donna",
+    "short": "G. Donna",
     "summary": "Un'apertura classica: offri un pedone che quasi sempre recuperi, e controlli il centro.",
     "lessons": {
       "queens-gambit-l01": {
@@ -11488,6 +11506,7 @@
   },
   "kings-gambit": {
     "name": "Gambetto di Re",
+    "short": "G. Re",
     "summary": "L'apertura romantica: sacrifichi subito un pedone e attacchi con tutte le forze.",
     "lessons": {
       "kings-gambit-l01": {
@@ -12211,6 +12230,7 @@
   },
   "albin": {
     "name": "Controgambetto Albin",
+    "short": "Albin",
     "summary": "Rispondi al Gambetto di Donna con un pedone in d4 che dà fastidio per tutta la partita.",
     "lessons": {
       "albin-l01": {
@@ -12702,6 +12722,7 @@
   },
   "catalan": {
     "name": "Apertura Catalana",
+    "short": "Catalana",
     "summary": "L'alfiere in g2 preme sulla diagonale lunga: un'apertura elegante e di forte pressione.",
     "lessons": {
       "catalan-l01": {
@@ -13196,6 +13217,7 @@
   },
   "english": {
     "name": "Apertura Inglese",
+    "short": "Inglese",
     "summary": "Controlli il centro con un pedone laterale e giochi con calma e flessibilità.",
     "lessons": {
       "english-l01": {
@@ -13919,6 +13941,7 @@
   },
   "danish": {
     "name": "Gambetto Danese",
+    "short": "Danese",
     "summary": "Sacrifichi uno o due pedoni per lanciare i tuoi alfieri contro l'arrocco.",
     "lessons": {
       "danish-l01": {
@@ -14519,6 +14542,7 @@
   },
   "french": {
     "name": "Difesa Francese",
+    "short": "Francese",
     "summary": "Una difesa solida: cedi un po' di spazio in cambio di una struttura salda e del contrattacco.",
     "lessons": {
       "french-l01": {
@@ -15311,6 +15335,7 @@
   },
   "nimzo-indian": {
     "name": "Difesa Nimzo-Indiana",
+    "short": "Nimzo-Ind.",
     "summary": "Inchiodi il cavallo in c3 e lotti per il centro con i pezzi.",
     "lessons": {
       "nimzo-indian-l01": {
@@ -16039,6 +16064,7 @@
   },
   "petrov": {
     "name": "Difesa Petrov",
+    "short": "Petrov",
     "summary": "Copi l'attacco del Bianco invece di difenderti: solida, simmetrica e difficile da battere.",
     "lessons": {
       "petrov-l01": {
@@ -16415,6 +16441,7 @@
   },
   "queens-gambit-declined": {
     "name": "Gambetto di Donna Rifiutato",
+    "short": "GD Rifiut.",
     "summary": "Difendi il centro con ...e6 e giochi con solidità: la risposta classica al gambetto.",
     "lessons": {
       "queens-gambit-declined-l01": {
@@ -17309,6 +17336,7 @@
   },
   "queens-gambit-accepted": {
     "name": "Gambetto di Donna Accettato",
+    "short": "GD Accett.",
     "summary": "Quando il Nero cattura in c4, recuperi il pedone sviluppando e controllando il centro.",
     "lessons": {
       "queens-gambit-accepted-l01": {
@@ -17837,6 +17865,7 @@
   },
   "dutch": {
     "name": "Difesa Olandese",
+    "short": "Olandese",
     "summary": "Una difesa a schema fisso contro 1.d4: scegli la Classica, la Stonewall o la Leningrado e gioca con un piano chiaro.",
     "lessons": {
       "dutch-l01": {

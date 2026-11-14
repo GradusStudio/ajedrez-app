@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Chess } from 'chess.js';
-import { progressPosition, piecesFromFen, type ProgressGame, type ProgressGamesFile } from './progressGame';
+import { openingGame, progressPosition, piecesFromFen, type ProgressGame, type ProgressGamesFile } from './progressGame';
 import gamesRaw from '../data/progressGames.json';
+import { openings } from '../data/openings';
 
 const START = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 
@@ -101,6 +102,34 @@ test('piecesFromFen: después de 1.e4 el peón cambió de casilla', () => {
   const pieces = piecesFromFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1');
   assert.equal(pieces['e4'], 'wp');
   assert.equal(pieces['e2'], undefined);
+});
+
+test('apertura: la partida sale de la línea principal de l02', () => {
+  const london = openings.find((o) => o.id === 'london');
+  assert.ok(london);
+  const game = openingGame(london);
+  assert.equal(game.side, 'w');
+  assert.deepEqual(game.moves.slice(0, 4), ['d2d4', 'd7d5', 'c1f4', 'g8f6']);
+  assert.equal(game.startFen?.split(' ')[0], START.split(' ')[0]);
+  const p = progressPosition(game, 2, london.lessons.length);
+  assert.equal(p.played, 2);
+  assert.deepEqual(p.lastMove, { from: 'c1', to: 'f4' });
+});
+
+test('apertura de negras: el bando que estudia es b', () => {
+  const scandi = openings.find((o) => o.id === 'scandinavian');
+  assert.ok(scandi);
+  const game = openingGame(scandi);
+  assert.equal(game.side, 'b');
+  assert.ok(game.moves.length > 0);
+  const p = progressPosition(game, 1, scandi.lessons.length);
+  assert.equal(p.played, 1);
+  assert.notEqual(p.fen, START);
+});
+
+test('apertura sin línea principal: no hay jugadas', () => {
+  const sinLinea = { ...openings[0], lessons: [] };
+  assert.deepEqual(openingGame(sinLinea).moves, []);
 });
 
 const units = (gamesRaw as ProgressGamesFile).units;

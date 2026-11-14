@@ -1,6 +1,7 @@
 {
   "london": {
     "name": "Système de Londres",
+    "short": "Londres",
     "summary": "Un schéma facile à retenir : tu joues presque toujours les mêmes coups, quoi que fasse l'adversaire.",
     "lessons": {
       "london-l01": {
@@ -576,6 +577,7 @@
   },
   "italian": {
     "name": "Partie italienne",
+    "short": "Italienne",
     "summary": "Développement rapide, le fou vise f7 et un plan clair : roquer et occuper le centre.",
     "lessons": {
       "italian-l01": {
@@ -1107,6 +1109,7 @@
   },
   "vienna": {
     "name": "Partie viennoise",
+    "short": "Viennoise",
     "summary": "Une ouverture souple : tu peux attaquer avec le gambit f4 ou faire pression sur f7 avec le fou.",
     "lessons": {
       "vienna-l01": {
@@ -1915,6 +1918,7 @@
   },
   "scandinavian": {
     "name": "Défense scandinave",
+    "short": "Scandinave",
     "summary": "Tu contestes le centre blanc dès le premier coup, avec un plan simple et peu de lignes à retenir.",
     "lessons": {
       "scandinavian-l01": {
@@ -2372,6 +2376,7 @@
   },
   "sicilian": {
     "name": "Défense sicilienne (Najdorf)",
+    "short": "Najdorf",
     "summary": "La réponse la plus combative à 1.e4 : une structure asymétrique et une partie où les Noirs jouent pour gagner.",
     "lessons": {
       "sicilian-l01": {
@@ -3273,6 +3278,7 @@
   },
   "dragon": {
     "name": "Sicilienne Dragon",
+    "short": "Dragon",
     "summary": "Fianchetto avec le fou en g7 : une structure très tranchante où les deux camps attaquent.",
     "lessons": {
       "dragon-l01": {
@@ -3942,6 +3948,7 @@
   },
   "kia": {
     "name": "Attaque est-indienne",
+    "short": "Attaque EI",
     "summary": "Un système : la même structure (g3, Fg2, d3, e4) contre presque toutes les défenses.",
     "lessons": {
       "kia-l01": {
@@ -4291,6 +4298,7 @@
   },
   "kings-indian": {
     "name": "Défense est-indienne",
+    "short": "Défense EI",
     "summary": "Tu laisses le centre aux Blancs pour l'attaquer ensuite, avec une attaque sur leur roi.",
     "lessons": {
       "kings-indian-l01": {
@@ -4905,6 +4913,7 @@
   },
   "modern": {
     "name": "Défense moderne",
+    "short": "Moderne",
     "summary": "Une défense hypermoderne : tu laisses le centre aux Blancs et tu fais pression dessus de loin.",
     "lessons": {
       "modern-l01": {
@@ -5751,6 +5760,7 @@
   },
   "pirc": {
     "name": "Défense Pirc",
+    "short": "Pirc",
     "summary": "Souple et solide : tu laisses un grand centre aux Blancs et tu l'attaques avec tes pièces.",
     "lessons": {
       "pirc-l01": {
@@ -6137,6 +6147,7 @@
   },
   "scotch": {
     "name": "Partie écossaise",
+    "short": "Écossaise",
     "summary": "Tu ouvres le centre tout de suite : plus directe que l'Italienne, avec un jeu actif.",
     "lessons": {
       "scotch-l01": {
@@ -6780,6 +6791,7 @@
   },
   "evans": {
     "name": "Gambit Evans",
+    "short": "Evans",
     "summary": "Tu sacrifies un pion pour gagner du temps et le centre : attaque rapide et beaucoup de jeu tactique.",
     "lessons": {
       "evans-l01": {
@@ -7362,6 +7374,7 @@
   },
   "bdg": {
     "name": "Gambit Blackmar-Diemer",
+    "short": "Blackmar",
     "summary": "Un pion pour le développement et l'attaque, avec de nombreux pièges. Inclut le gambit Ryder, où tu offres aussi le pion de d4.",
     "lessons": {
       "bdg-l01": {
@@ -7968,6 +7981,7 @@
   },
   "caro-kann": {
     "name": "Défense Caro-Kann",
+    "short": "Caro-Kann",
     "summary": "Une défense très solide : ta structure est saine et ton fou reste libre.",
     "lessons": {
       "caro-kann-l01": {
@@ -8697,6 +8711,7 @@
   },
   "ruy-lopez": {
     "name": "Partie espagnole",
+    "short": "Espagnole",
     "summary": "L'ouverture la plus étudiée : une pression constante sur le centre noir, sans se presser.",
     "lessons": {
       "ruy-lopez-l01": {
@@ -9337,6 +9352,7 @@
   },
   "rossolimo": {
     "name": "Variante Rossolimo",
+    "short": "Rossolimo",
     "summary": "Une façon solide de jouer contre la Sicilienne : tu évites les lignes les plus théoriques.",
     "lessons": {
       "rossolimo-l01": {
@@ -9850,6 +9866,7 @@
   },
   "alapin": {
     "name": "Variante Alapine",
+    "short": "Alapine",
     "summary": "Contre la Sicilienne : tu prépares d4 avec c3 et tu évites la théorie des lignes ouvertes.",
     "lessons": {
       "alapin-l01": {
@@ -10441,6 +10458,7 @@
   },
   "queens-gambit": {
     "name": "Gambit dame",
+    "short": "G. Dame",
     "summary": "Une ouverture classique : tu offres un pion que tu récupères presque toujours, et tu contrôles le centre.",
     "lessons": {
       "queens-gambit-l01": {
@@ -11488,6 +11506,7 @@
   },
   "kings-gambit": {
     "name": "Gambit roi",
+    "short": "G. Roi",
     "summary": "L'ouverture romantique : tu sacrifies un pion tout de suite et tu attaques de toutes tes forces.",
     "lessons": {
       "kings-gambit-l01": {
@@ -12211,6 +12230,7 @@
   },
   "albin": {
     "name": "Contre-gambit Albin",
+    "short": "Albin",
     "summary": "Tu réponds au Gambit dame avec un pion en d4 qui gêne pendant toute la partie.",
     "lessons": {
       "albin-l01": {
@@ -12702,6 +12722,7 @@
   },
   "catalan": {
     "name": "Ouverture catalane",
+    "short": "Catalane",
     "summary": "Le fou en g2 fait pression sur la grande diagonale : une ouverture élégante, avec beaucoup de pression.",
     "lessons": {
       "catalan-l01": {
@@ -13196,6 +13217,7 @@
   },
   "english": {
     "name": "Ouverture anglaise",
+    "short": "Anglaise",
     "summary": "Tu contrôles le centre avec un pion de l'aile et tu joues calmement, avec souplesse.",
     "lessons": {
       "english-l01": {
@@ -13919,6 +13941,7 @@
   },
   "danish": {
     "name": "Gambit danois",
+    "short": "Danois",
     "summary": "Tu sacrifies un ou deux pions pour lancer tes fous contre le roque.",
     "lessons": {
       "danish-l01": {
@@ -14519,6 +14542,7 @@
   },
   "french": {
     "name": "Défense française",
+    "short": "Française",
     "summary": "Une défense solide : tu cèdes un peu d'espace en échange d'une structure robuste et d'une contre-attaque.",
     "lessons": {
       "french-l01": {
@@ -15311,6 +15335,7 @@
   },
   "nimzo-indian": {
     "name": "Défense nimzo-indienne",
+    "short": "Nimzo-Ind.",
     "summary": "Tu cloues le cavalier en c3 et tu luttes pour le centre avec tes pièces.",
     "lessons": {
       "nimzo-indian-l01": {
@@ -16039,6 +16064,7 @@
   },
   "petrov": {
     "name": "Défense Petrov",
+    "short": "Petrov",
     "summary": "Tu copies l'attaque blanche au lieu de te défendre : solide, symétrique et difficile à battre.",
     "lessons": {
       "petrov-l01": {
@@ -16415,6 +16441,7 @@
   },
   "queens-gambit-declined": {
     "name": "Gambit dame refusé",
+    "short": "GD refusé",
     "summary": "Tu défends le centre avec ...e6 et tu joues solidement : la réponse classique au gambit.",
     "lessons": {
       "queens-gambit-declined-l01": {
@@ -17309,6 +17336,7 @@
   },
   "queens-gambit-accepted": {
     "name": "Gambit dame accepté",
+    "short": "GD accepté",
     "summary": "Quand les Noirs prennent en c4, tu récupères le pion en te développant et en contrôlant le centre.",
     "lessons": {
       "queens-gambit-accepted-l01": {
@@ -17837,6 +17865,7 @@
   },
   "dutch": {
     "name": "Défense Hollandaise",
+    "short": "Hollandaise",
     "summary": "Une défense à schéma fixe contre 1.d4 : choisis la Classique, la Stonewall ou la Leningrad et joue avec un plan clair.",
     "lessons": {
       "dutch-l01": {

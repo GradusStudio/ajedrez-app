@@ -1,4 +1,5 @@
 import { Chess, type Square } from 'chess.js';
+import type { LineStep, OpeningCourse } from '../data/lessonTypes';
 
 /** Una partida de progreso: cada lección hecha avanza una jugada del bando que estudia. */
 export type ProgressGame = {
@@ -95,4 +96,12 @@ export function piecesFromFen(fen: string): Record<string, FenPiece> {
     }
   }
   return pieces;
+}
+
+/** Partida de una apertura: la línea principal de su lección l02, con el bando del curso. */
+export function openingGame(course: OpeningCourse): ProgressGame {
+  const lesson = course.lessons.find((l) => l.id.endsWith('-l02'));
+  const step = lesson?.steps.find((s): s is LineStep => s.type === 'line');
+  if (!step) return { moves: [], side: course.color };
+  return { startFen: step.fen, moves: step.moves.map((m) => m.uci), side: course.color };
 }

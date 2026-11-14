@@ -7,7 +7,10 @@ import { OpeningsScreen } from '../../screens/OpeningsScreen';
 export default function OpeningsTab() {
   return (
     <WideListColumn width={WIDE_GRID_COLUMN}>
-      <OpeningsScreen onOpenCourse={(course) => router.push({ pathname: '/apertura/[id]', params: { id: course.id } })} />
+      <OpeningsScreen
+        onOpenCourse={(course) => router.push({ pathname: '/apertura/[id]', params: { id: course.id } })}
+        onStartLesson={(lesson) => router.push({ pathname: '/leccion/[id]', params: { id: lesson.id } })}
+      />
     </WideListColumn>
   );
 }

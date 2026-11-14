@@ -17,6 +17,9 @@ type Props = {
   backLabel: string;
   actionLabel: string;
   onAction: () => void;
+  /** Acción secundaria opcional (Aperturas: «Ver curso»). */
+  secondaryLabel?: string;
+  onSecondary?: () => void;
 };
 
 const FACE = 44;
@@ -33,6 +36,8 @@ export function LessonRail({
   backLabel,
   actionLabel,
   onAction,
+  secondaryLabel,
+  onSecondary,
 }: Props) {
   return (
     <View style={styles.rail}>
@@ -53,6 +58,9 @@ export function LessonRail({
         ))}
       </ScrollView>
 
+      {secondaryLabel && onSecondary && (
+        <Button3D label={secondaryLabel} onPress={onSecondary} style={styles.action} />
+      )}
       <Button3D label={actionLabel} onPress={onAction} variant="primary" style={styles.action} />
     </View>
   );

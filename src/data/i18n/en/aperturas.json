@@ -1,6 +1,7 @@
 {
   "london": {
     "name": "London System",
+    "short": "London",
     "summary": "An easy setup to remember: you play nearly the same moves almost every time, whatever your opponent does.",
     "lessons": {
       "london-l01": {
@@ -576,6 +577,7 @@
   },
   "italian": {
     "name": "Italian Game",
+    "short": "Italian",
     "summary": "Quick development, a bishop aimed at f7 and a clear plan: castle and take the center.",
     "lessons": {
       "italian-l01": {
@@ -1107,6 +1109,7 @@
   },
   "vienna": {
     "name": "Vienna Game",
+    "short": "Vienna",
     "summary": "A flexible opening: you can attack with the f4 gambit or pressure f7 with your bishop.",
     "lessons": {
       "vienna-l01": {
@@ -1915,6 +1918,7 @@
   },
   "scandinavian": {
     "name": "Scandinavian Defense",
+    "short": "Scandi",
     "summary": "You challenge White's center from the very first move, with a simple plan and few lines to memorize.",
     "lessons": {
       "scandinavian-l01": {
@@ -2372,6 +2376,7 @@
   },
   "sicilian": {
     "name": "Sicilian Defense (Najdorf)",
+    "short": "Najdorf",
     "summary": "The most combative answer to 1.e4: an unbalanced structure and playing to win with Black.",
     "lessons": {
       "sicilian-l01": {
@@ -3273,6 +3278,7 @@
   },
   "dragon": {
     "name": "Sicilian Dragon",
+    "short": "Dragon",
     "summary": "A fianchetto with the g7 bishop: a very sharp structure where both sides attack.",
     "lessons": {
       "dragon-l01": {
@@ -3942,6 +3948,7 @@
   },
   "kia": {
     "name": "King's Indian Attack",
+    "short": "KIA",
     "summary": "A system: the same structure (g3, Bg2, d3, e4) against almost any defense.",
     "lessons": {
       "kia-l01": {
@@ -4291,6 +4298,7 @@
   },
   "kings-indian": {
     "name": "King's Indian Defense",
+    "short": "K-Indian",
     "summary": "You give White the center so you can attack it later, along with an attack on the king.",
     "lessons": {
       "kings-indian-l01": {
@@ -4905,6 +4913,7 @@
   },
   "modern": {
     "name": "Modern Defense",
+    "short": "Modern",
     "summary": "A hypermodern defense: you give White the center and pressure it from a distance.",
     "lessons": {
       "modern-l01": {
@@ -5751,6 +5760,7 @@
   },
   "pirc": {
     "name": "Pirc Defense",
+    "short": "Pirc",
     "summary": "Flexible and solid: you allow a big center and attack it with your pieces.",
     "lessons": {
       "pirc-l01": {
@@ -6137,6 +6147,7 @@
   },
   "scotch": {
     "name": "Scotch Game",
+    "short": "Scotch",
     "summary": "You open the center right away: more direct than the Italian, with active play.",
     "lessons": {
       "scotch-l01": {
@@ -6780,6 +6791,7 @@
   },
   "evans": {
     "name": "Evans Gambit",
+    "short": "Evans",
     "summary": "You sacrifice a pawn to gain time and the center: a fast attack and lots of tactical play.",
     "lessons": {
       "evans-l01": {
@@ -7362,6 +7374,7 @@
   },
   "bdg": {
     "name": "Blackmar-Diemer Gambit",
+    "short": "Blackmar",
     "summary": "A pawn for development and attack, with many traps. Includes the Ryder Gambit, where you also offer the d4 pawn.",
     "lessons": {
       "bdg-l01": {
@@ -7968,6 +7981,7 @@
   },
   "caro-kann": {
     "name": "Caro-Kann Defense",
+    "short": "Caro-Kann",
     "summary": "A very solid defense: your structure is firm and your bishop stays free.",
     "lessons": {
       "caro-kann-l01": {
@@ -8697,6 +8711,7 @@
   },
   "ruy-lopez": {
     "name": "Ruy Lopez",
+    "short": "Ruy López",
     "summary": "The most studied opening: steady pressure on Black's center, with no rush.",
     "lessons": {
       "ruy-lopez-l01": {
@@ -9337,6 +9352,7 @@
   },
   "rossolimo": {
     "name": "Rossolimo Variation",
+    "short": "Rossolimo",
     "summary": "A solid way to play against the Sicilian: you avoid the most theoretical lines.",
     "lessons": {
       "rossolimo-l01": {
@@ -9850,6 +9866,7 @@
   },
   "alapin": {
     "name": "Alapin Variation",
+    "short": "Alapin",
     "summary": "Against the Sicilian: you prepare d4 with c3 and avoid the theory of the open lines.",
     "lessons": {
       "alapin-l01": {
@@ -10441,6 +10458,7 @@
   },
   "queens-gambit": {
     "name": "Queen's Gambit",
+    "short": "Q. Gambit",
     "summary": "A classic opening: you offer a pawn you almost always win back, and you control the center.",
     "lessons": {
       "queens-gambit-l01": {
@@ -11488,6 +11506,7 @@
   },
   "kings-gambit": {
     "name": "King's Gambit",
+    "short": "K. Gambit",
     "summary": "The romantic opening: you sacrifice a pawn right away and attack with everything.",
     "lessons": {
       "kings-gambit-l01": {
@@ -12211,6 +12230,7 @@
   },
   "albin": {
     "name": "Albin Countergambit",
+    "short": "Albin",
     "summary": "You answer the Queen's Gambit with a pawn on d4 that bothers White for the whole game.",
     "lessons": {
       "albin-l01": {
@@ -12702,6 +12722,7 @@
   },
   "catalan": {
     "name": "Catalan Opening",
+    "short": "Catalan",
     "summary": "The g2 bishop presses along the long diagonal: an elegant opening full of pressure.",
     "lessons": {
       "catalan-l01": {
@@ -13196,6 +13217,7 @@
   },
   "english": {
     "name": "English Opening",
+    "short": "English",
     "summary": "You control the center with a flank pawn and play calmly and flexibly.",
     "lessons": {
       "english-l01": {
@@ -13919,6 +13941,7 @@
   },
   "danish": {
     "name": "Danish Gambit",
+    "short": "Danish",
     "summary": "You sacrifice one or two pawns to launch your bishops at the castled king.",
     "lessons": {
       "danish-l01": {
@@ -14519,6 +14542,7 @@
   },
   "french": {
     "name": "French Defense",
+    "short": "French",
     "summary": "A solid defense: you give up some space in exchange for a firm structure and counterattack.",
     "lessons": {
       "french-l01": {
@@ -15311,6 +15335,7 @@
   },
   "nimzo-indian": {
     "name": "Nimzo-Indian Defense",
+    "short": "Nimzo",
     "summary": "You pin the c3 knight and fight for the center with your pieces.",
     "lessons": {
       "nimzo-indian-l01": {
@@ -16039,6 +16064,7 @@
   },
   "petrov": {
     "name": "Petrov Defense",
+    "short": "Petrov",
     "summary": "You mirror White's attack instead of defending: solid, symmetrical and hard to beat.",
     "lessons": {
       "petrov-l01": {
@@ -16415,6 +16441,7 @@
   },
   "queens-gambit-declined": {
     "name": "Queen's Gambit Declined",
+    "short": "QGD",
     "summary": "You defend the center with ...e6 and play solidly: the classical answer to the gambit.",
     "lessons": {
       "queens-gambit-declined-l01": {
@@ -17309,6 +17336,7 @@
   },
   "queens-gambit-accepted": {
     "name": "Queen's Gambit Accepted",
+    "short": "QGA",
     "summary": "When Black captures on c4, you win back the pawn with development and control of the center.",
     "lessons": {
       "queens-gambit-accepted-l01": {
@@ -17837,6 +17865,7 @@
   },
   "dutch": {
     "name": "Dutch Defense",
+    "short": "Dutch",
     "summary": "A fixed-scheme defense against 1.d4: choose the Classical, the Stonewall or the Leningrad and play with a clear plan.",
     "lessons": {
       "dutch-l01": {

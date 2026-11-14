@@ -30,12 +30,37 @@ export const en: Record<MessageKey, string> = {
   'common.incorrect': 'Incorrect',
 
   // Pestañas
+  'tabs.start': 'Home',
   'tabs.learn': 'Learn',
   'tabs.openings': 'Openings',
   'tabs.puzzles': 'Puzzles',
   'tabs.bots': 'Bots',
   'tabs.analysis': 'Analysis',
   'tabs.profile': 'Profile',
+
+  // Inicio
+  'start.greeting': 'Welcome back',
+  'start.greetingNew': "Let's begin",
+  'start.says': '{name}: “{text}”',
+  'start.firstLesson': 'Your first lesson: {title}.',
+  'start.nextLesson': 'Today: {title}.',
+  'start.afterLesson': 'You know {last}. Today: {next}.',
+  'start.allDone': 'You finished all the lessons. Review them whenever you like.',
+  'start.continue': 'Keep learning',
+  'start.lessonLine': 'Unit {unit} · {title} · lesson {n} of {total}',
+  'start.streak': 'Your streak',
+  'start.streakDays.one': '1 day',
+  'start.streakDays.other': '{n} days',
+  'start.streakSafe': 'You practiced today. Tomorrow, a lesson or a puzzle.',
+  'start.streakActive': 'Practice today to keep it going.',
+  'start.streakRecovering': 'Recover it with a lesson, a puzzle and a game.',
+  'start.streakNone': 'Start your streak today with a lesson.',
+  'start.botResume': 'Unfinished game with {name}',
+  'start.botMove': 'Move {n} · your turn',
+  'start.courseProgress': '{done} of {total} lessons · next: {next}',
+  'start.courseComplete': '{done} of {total} lessons · course complete',
+  'start.courseStart': 'Start the course',
+  'start.courseButton': 'Continue the course',
 
   // Aprender
   'home.streakLabel': '{n}-day streak',

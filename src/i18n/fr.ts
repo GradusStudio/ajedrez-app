@@ -30,12 +30,37 @@ export const fr: Record<MessageKey, string> = {
   'common.incorrect': 'Incorrect',
 
   // Pestañas
+  'tabs.start': 'Accueil',
   'tabs.learn': 'Apprendre',
   'tabs.openings': 'Ouvertures',
   'tabs.puzzles': 'Puzzles',
   'tabs.bots': 'Bots',
   'tabs.analysis': 'Analyse',
   'tabs.profile': 'Profil',
+
+  // Inicio
+  'start.greeting': 'Bon retour',
+  'start.greetingNew': 'Commençons',
+  'start.says': '{name} : « {text} »',
+  'start.firstLesson': 'Ta première leçon : {title}.',
+  'start.nextLesson': 'Aujourd\'hui : {title}.',
+  'start.afterLesson': 'Tu connais {last}. Aujourd\'hui : {next}.',
+  'start.allDone': 'Tu as terminé toutes les leçons. Révise-les quand tu veux.',
+  'start.continue': 'Continuer à apprendre',
+  'start.lessonLine': 'Unité {unit} · {title} · leçon {n} sur {total}',
+  'start.streak': 'Ta série',
+  'start.streakDays.one': '1 jour',
+  'start.streakDays.other': '{n} jours',
+  'start.streakSafe': 'Tu as pratiqué aujourd\'hui. Demain, une leçon ou un puzzle.',
+  'start.streakActive': 'Pratique aujourd\'hui pour garder ta série.',
+  'start.streakRecovering': 'Récupère-la avec une leçon, un puzzle et une partie.',
+  'start.streakNone': 'Commence ta série aujourd\'hui avec une leçon.',
+  'start.botResume': 'Partie inachevée avec {name}',
+  'start.botMove': 'Coup {n} · à toi de jouer',
+  'start.courseProgress': '{done} sur {total} leçons · la prochaine : {next}',
+  'start.courseComplete': '{done} sur {total} leçons · cours terminé',
+  'start.courseStart': 'Commencer le cours',
+  'start.courseButton': 'Continuer le cours',
 
   // Aprender
   'home.streakLabel': 'Jours de série : {n}',

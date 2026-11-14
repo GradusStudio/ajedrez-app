@@ -29,12 +29,37 @@ export const es = {
   'common.incorrect': 'Incorrecto',
 
   // Pestañas
+  'tabs.start': 'Inicio',
   'tabs.learn': 'Aprender',
   'tabs.openings': 'Aperturas',
   'tabs.puzzles': 'Puzzles',
   'tabs.bots': 'Bots',
   'tabs.analysis': 'Análisis',
   'tabs.profile': 'Perfil',
+
+  // Inicio
+  'start.greeting': 'Hola de nuevo',
+  'start.greetingNew': 'Empecemos',
+  'start.says': '{name}: «{text}»',
+  'start.firstLesson': 'Tu primera lección: {title}.',
+  'start.nextLesson': 'Hoy toca {title}.',
+  'start.afterLesson': 'Ya sabes {last}. Hoy toca {next}.',
+  'start.allDone': 'Terminaste todas las lecciones. Repásalas cuando quieras.',
+  'start.continue': 'Seguir aprendiendo',
+  'start.lessonLine': 'Unidad {unit} · {title} · lección {n} de {total}',
+  'start.streak': 'Tu racha',
+  'start.streakDays.one': '1 día',
+  'start.streakDays.other': '{n} días',
+  'start.streakSafe': 'Ya practicaste hoy. Mañana, una lección o un puzzle.',
+  'start.streakActive': 'Practica hoy para mantenerla.',
+  'start.streakRecovering': 'Recupera la racha con una lección, un puzzle y una partida.',
+  'start.streakNone': 'Empieza tu racha hoy con una lección.',
+  'start.botResume': 'Partida sin terminar con {name}',
+  'start.botMove': 'Jugada {n} · te toca jugar',
+  'start.courseProgress': '{done} de {total} lecciones · la próxima: {next}',
+  'start.courseComplete': '{done} de {total} lecciones · curso completo',
+  'start.courseStart': 'Empezar el curso',
+  'start.courseButton': 'Seguir el curso',
 
   // Aprender
   'home.streakLabel': 'Racha de {n} días',

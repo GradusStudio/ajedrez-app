@@ -1,7 +1,19 @@
 import React from 'react';
 import { router } from 'expo-router';
-import { HomeScreen } from '../../screens/HomeScreen';
+import { WideListColumn } from '../../components/WideListColumn';
+import { WIDE_GRID_COLUMN } from '../../components/wideLayout';
+import { StartScreen } from '../../screens/StartScreen';
 
-export default function LearnTab() {
-  return <HomeScreen onStartLesson={(lesson) => router.push({ pathname: '/leccion/[id]', params: { id: lesson.id } })} />;
+export default function StartTab() {
+  return (
+    <WideListColumn width={WIDE_GRID_COLUMN}>
+      <StartScreen
+        onLesson={(lesson) => router.push({ pathname: '/leccion/[id]', params: { id: lesson.id } })}
+        onDaily={(id) => router.push({ pathname: '/puzzle', params: { id, modo: 'dia' } })}
+        onContinueGame={() => router.push({ pathname: '/partida', params: { continuar: '1' } })}
+        onBot={(bot) => router.push({ pathname: '/bot/[id]', params: { id: bot.id } })}
+        onCourse={(course) => router.push({ pathname: '/apertura/[id]', params: { id: course.id } })}
+      />
+    </WideListColumn>
+  );
 }

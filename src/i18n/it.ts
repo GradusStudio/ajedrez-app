@@ -30,12 +30,37 @@ export const it: Record<MessageKey, string> = {
   'common.incorrect': 'Sbagliato',
 
   // Pestañas
+  'tabs.start': 'Inizio',
   'tabs.learn': 'Impara',
   'tabs.openings': 'Aperture',
   'tabs.puzzles': 'Puzzle',
   'tabs.bots': 'Bot',
   'tabs.analysis': 'Analisi',
   'tabs.profile': 'Profilo',
+
+  // Inicio
+  'start.greeting': 'Ciao di nuovo',
+  'start.greetingNew': 'Iniziamo',
+  'start.says': '{name}: «{text}»',
+  'start.firstLesson': 'La tua prima lezione: {title}.',
+  'start.nextLesson': 'Oggi tocca {title}.',
+  'start.afterLesson': 'Conosci già {last}. Oggi tocca {next}.',
+  'start.allDone': 'Hai finito tutte le lezioni. Ripassale quando vuoi.',
+  'start.continue': 'Continua a imparare',
+  'start.lessonLine': 'Unità {unit} · {title} · lezione {n} di {total}',
+  'start.streak': 'La tua serie',
+  'start.streakDays.one': '1 giorno',
+  'start.streakDays.other': '{n} giorni',
+  'start.streakSafe': 'Hai già praticato oggi. Domani, una lezione o un puzzle.',
+  'start.streakActive': 'Pratica oggi per mantenere la serie.',
+  'start.streakRecovering': 'Recupera la serie con una lezione, un puzzle e una partita.',
+  'start.streakNone': 'Inizia la serie oggi con una lezione.',
+  'start.botResume': 'Partita non finita con {name}',
+  'start.botMove': 'Mossa {n} · tocca a te',
+  'start.courseProgress': '{done} di {total} lezioni · la prossima: {next}',
+  'start.courseComplete': '{done} di {total} lezioni · corso completato',
+  'start.courseStart': 'Inizia il corso',
+  'start.courseButton': 'Continua il corso',
 
   // Aprender
   'home.streakLabel': 'Giorni di serie: {n}',

@@ -30,12 +30,37 @@ export const de: Record<MessageKey, string> = {
   'common.incorrect': 'Falsch',
 
   // Pestañas
+  'tabs.start': 'Start',
   'tabs.learn': 'Lernen',
   'tabs.openings': 'Eröffnung',
   'tabs.puzzles': 'Puzzles',
   'tabs.bots': 'Bots',
   'tabs.analysis': 'Analyse',
   'tabs.profile': 'Profil',
+
+  // Inicio
+  'start.greeting': 'Willkommen zurück',
+  'start.greetingNew': 'Fangen wir an',
+  'start.says': '{name}: „{text}“',
+  'start.firstLesson': 'Deine erste Lektion: {title}.',
+  'start.nextLesson': 'Heute: {title}.',
+  'start.afterLesson': 'Du kennst {last}. Heute: {next}.',
+  'start.allDone': 'Du hast alle Lektionen abgeschlossen. Wiederhole sie, wann immer du willst.',
+  'start.continue': 'Weiterlernen',
+  'start.lessonLine': 'Einheit {unit} · {title} · Lektion {n} von {total}',
+  'start.streak': 'Deine Serie',
+  'start.streakDays.one': '1 Tag',
+  'start.streakDays.other': '{n} Tage',
+  'start.streakSafe': 'Du hast heute geübt. Morgen: eine Lektion oder ein Puzzle.',
+  'start.streakActive': 'Übe heute, um die Serie zu halten.',
+  'start.streakRecovering': 'Hole die Serie mit einer Lektion, einem Puzzle und einer Partie zurück.',
+  'start.streakNone': 'Starte deine Serie heute mit einer Lektion.',
+  'start.botResume': 'Unbeendete Partie gegen {name}',
+  'start.botMove': 'Zug {n} · du bist am Zug',
+  'start.courseProgress': '{done} von {total} Lektionen · als Nächstes: {next}',
+  'start.courseComplete': '{done} von {total} Lektionen · Kurs abgeschlossen',
+  'start.courseStart': 'Kurs starten',
+  'start.courseButton': 'Kurs fortsetzen',
 
   // Aprender
   'home.streakLabel': 'Serientage: {n}',

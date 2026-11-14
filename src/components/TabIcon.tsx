@@ -2,7 +2,7 @@ import React from 'react';
 import { ColorValue } from 'react-native';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
 
-export type TabIconName = 'learn' | 'openings' | 'puzzles' | 'bots' | 'analysis' | 'profile';
+export type TabIconName = 'home' | 'learn' | 'openings' | 'puzzles' | 'bots' | 'analysis' | 'profile';
 
 type Props = { name: TabIconName; color: ColorValue; size?: number };
 
@@ -11,6 +11,14 @@ export function TabIcon({ name, color, size = 24 }: Props) {
   const line = { fill: 'none', stroke: color, strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' } as const;
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24">
+      {name === 'home' && (
+        // Casa
+        <>
+          <Path d="M3 11.5 12 4l9 7.5" {...line} />
+          <Path d="M5.5 10.5V20h13v-9.5" {...line} />
+          <Path d="M9.5 20v-5.5h5V20" {...line} />
+        </>
+      )}
       {name === 'learn' && (
         // Libro abierto
         <>

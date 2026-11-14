@@ -17,7 +17,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { isQuizAnswer, peekPendingQuiz, turningPointKey } from '../review/turningPoints';
 import { useSettings } from '../settings/SettingsContext';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { styles as reviewStyles } from './review/reviewStyles';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
@@ -280,16 +280,16 @@ export function TurningPointQuizScreen({ onExit }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   center: { alignItems: 'center', justifyContent: 'center', padding: space.lg },
-  muted: { fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted },
+  muted: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xl },
   topRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginBottom: space.md },
-  close: { fontFamily: fonts.extrabold, fontSize: 22, color: colors.textMuted },
+  close: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.textMuted },
   coachRow: { flexDirection: 'row', gap: space.md, alignItems: 'flex-start' },
   chipBox: { flexShrink: 1 },
   // Alto mínimo para que el tablero no salte cuando cambia el texto del globo.
   bubble: { flex: 1, backgroundColor: colors.surface, borderRadius: radius.control, padding: space.md, minHeight: 96 },
-  bubbleTitle: { fontFamily: fonts.extrabold, fontSize: 15, color: colors.text },
-  bubbleText: { fontFamily: fonts.semibold, fontSize: 14, lineHeight: 20, color: colors.textMuted, marginTop: 4 },
+  bubbleTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  bubbleText: { fontFamily: fonts.semibold, fontSize: type.body, lineHeight: 20, color: colors.textMuted, marginTop: 4 },
   actions: { flexDirection: 'row', gap: space.sm, marginTop: space.lg },
   wrongCard: {
     marginTop: space.lg,
@@ -303,9 +303,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   wrongTitle: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.danger },
-  wrongText: { fontFamily: fonts.semibold, fontSize: 15, color: colors.text, marginTop: 4, lineHeight: 21 },
+  wrongText: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.text, marginTop: 4, lineHeight: 21 },
   results: { marginTop: space.lg, backgroundColor: colors.surface, borderRadius: radius.control, paddingVertical: space.sm, paddingHorizontal: space.md },
   resultRow: { paddingVertical: space.sm },
-  resultStatus: { fontFamily: fonts.extrabold, fontSize: 14 },
-  resultText: { fontFamily: fonts.semibold, fontSize: 14, lineHeight: 20, color: colors.text, marginTop: 2 },
+  resultStatus: { fontFamily: fonts.extrabold, fontSize: type.body },
+  resultText: { fontFamily: fonts.semibold, fontSize: type.body, lineHeight: 20, color: colors.text, marginTop: 2 },
 });

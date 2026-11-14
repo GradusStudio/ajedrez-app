@@ -9,7 +9,7 @@ import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { recordAgainst } from '../progress/progressStore';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useWideGrid } from '../components/useWideGrid';
 
@@ -83,8 +83,8 @@ export function BotsScreen({ onOpenBot, onContinue }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2 },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
   card: {
     flexDirection: 'row',
     gap: space.md,
@@ -109,9 +109,9 @@ const styles = StyleSheet.create({
     padding: space.md,
     marginBottom: space.lg,
   },
-  resumeTitle: { fontFamily: fonts.extrabold, fontSize: 15, color: colors.text },
-  name: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  tagline: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
-  trait: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: 2, lineHeight: 18 },
+  resumeTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  name: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  tagline: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
+  trait: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, lineHeight: 18 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.xs, marginTop: space.sm },
 });

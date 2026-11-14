@@ -7,7 +7,7 @@ import { QuizStep as QuizStepData } from '../../data/lessonTypes';
 import { useI18n } from '../../i18n/I18nContext';
 import { LESSON_RESERVE, StepCallbacks } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
-import { colors, fonts, radius, space } from '../../theme';
+import { type, colors, fonts, radius, space } from '../../theme';
 
 type Props = { step: QuizStepData } & StepCallbacks;
 
@@ -78,5 +78,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
     marginBottom: space.sm,
   },
-  optionText: { fontFamily: fonts.bold, fontSize: 16, color: colors.text },
+  optionText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text },
 });

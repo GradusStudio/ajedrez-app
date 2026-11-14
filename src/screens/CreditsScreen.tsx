@@ -7,7 +7,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { SOURCE_URL } from '../links';
 import { PRIVACY_PAGE_AVAILABLE } from '../privacyPage';
 import { STOCKFISH_VERSION } from '../engine/stockfish/stockfishAssets';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Credit = { name: string; what: string; note?: string; license: string; links?: { label: string; url: string }[] };
@@ -115,11 +115,11 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
-  note: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted, marginBottom: space.lg },
-  privacyLink: { fontSize: 14, marginBottom: space.sm },
+  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
+  note: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.lg },
+  privacyLink: { fontSize: type.secondary, marginBottom: space.sm },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,
@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     marginBottom: space.sm,
   },
-  name: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  license: { fontFamily: fonts.bold, fontSize: 12, color: colors.gold, marginTop: 2 },
-  what: { fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted, marginTop: space.xs, lineHeight: 20 },
-  link: { fontSize: 13, marginTop: space.xs },
+  name: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  license: { fontFamily: fonts.bold, fontSize: type.caption, color: colors.gold, marginTop: 2 },
+  what: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted, marginTop: space.xs, lineHeight: 20 },
+  link: { fontSize: type.secondary, marginTop: space.xs },
 });

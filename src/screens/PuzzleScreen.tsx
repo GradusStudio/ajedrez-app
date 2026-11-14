@@ -14,7 +14,7 @@ import { currentStreak, PuzzleResult } from '../progress/progressStore';
 import { currentRating, formatDelta } from '../progress/puzzleRating';
 import { useSettings } from '../settings/SettingsContext';
 import { displayThemes, Puzzle, puzzleGoal, userColor } from '../puzzles/puzzles';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
 import { BoardStage } from '../components/BoardStage';
@@ -311,9 +311,9 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xl },
   topRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginBottom: space.md },
-  close: { fontFamily: fonts.extrabold, fontSize: 22, color: colors.textMuted },
-  prompt: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text, marginTop: space.lg },
-  meta: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: 2 },
+  close: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.textMuted },
+  prompt: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text, marginTop: space.lg },
+  meta: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: 2 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.xs, marginTop: space.sm },
   actions: { flexDirection: 'row', gap: space.sm, marginTop: space.lg },
   wrongCard: {
@@ -328,5 +328,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   wrongTitle: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.danger },
-  wrongText: { fontFamily: fonts.semibold, fontSize: 15, color: colors.text, marginTop: 4, lineHeight: 21 },
+  wrongText: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.text, marginTop: 4, lineHeight: 21 },
 });

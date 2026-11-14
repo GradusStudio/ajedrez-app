@@ -7,7 +7,7 @@ import { Chip } from '../components/Chip';
 import { Bot } from '../data/bots';
 import { useContent } from '../data/useContent';
 import { useI18n, MessageKey } from '../i18n/I18nContext';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 export type ColorChoice = 'w' | 'b' | 'random';
@@ -95,10 +95,10 @@ export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.md },
+  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.md },
   header: { flexDirection: 'row', alignItems: 'center', gap: space.lg },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  tagline: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  tagline: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.xs, marginTop: space.sm },
   bubble: {
     marginTop: space.lg,
@@ -107,16 +107,16 @@ const styles = StyleSheet.create({
     paddingVertical: space.md,
     paddingHorizontal: 14,
   },
-  bubbleText: { fontFamily: fonts.bold, fontSize: 15, color: colors.text, lineHeight: 21 },
+  bubbleText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text, lineHeight: 21 },
   label: {
     fontFamily: fonts.extrabold,
-    fontSize: 12,
+    fontSize: type.caption,
     color: colors.textMuted,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
     marginTop: space.lg,
   },
-  body: { fontFamily: fonts.bold, fontSize: 14, color: colors.text, marginTop: space.xs, lineHeight: 20 },
+  body: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text, marginTop: space.xs, lineHeight: 20 },
   segmented: { flexDirection: 'row', gap: space.sm, marginTop: space.sm },
   segment: {
     flex: 1,
@@ -128,5 +128,5 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   segmentSelected: { borderColor: colors.primary, backgroundColor: colors.surfaceRaised },
-  segmentText: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.textMuted },
+  segmentText: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
 });

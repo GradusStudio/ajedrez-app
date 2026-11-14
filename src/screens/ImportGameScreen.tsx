@@ -17,7 +17,7 @@ import { MessageKey, useI18n } from '../i18n/I18nContext';
 import { parseGame } from '../review/pgn';
 import { setPendingGame } from '../review/session';
 import { cleanUsername, fetchGames, FetchError, GameSource, ListedGame, parseStoredUsers, validUsername } from '../review/sources';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Tab = GameSource | 'pgn';
@@ -206,9 +206,9 @@ export function ImportGameScreen({ onBack, onReview }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.md },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  label: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text, marginBottom: space.sm },
+  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.md },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  label: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.text, marginBottom: space.sm },
   input: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,
@@ -217,13 +217,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 10,
     fontFamily: fonts.semibold,
-    fontSize: 16,
+    fontSize: type.body,
     color: colors.text,
   },
-  pgnInput: { minHeight: 160, fontSize: 14 },
+  pgnInput: { minHeight: 160, fontSize: type.body },
   center: { alignItems: 'center', gap: space.sm, marginTop: space.xl },
-  muted: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted },
-  error: { fontFamily: fonts.bold, fontSize: 14, color: colors.danger, marginTop: space.md },
+  muted: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted },
+  error: { fontFamily: fonts.bold, fontSize: type.body, color: colors.danger, marginTop: space.md },
   game: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     marginBottom: space.sm,
   },
-  players: { fontFamily: fonts.bold, fontSize: 14, color: colors.text },
-  meta: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: 2 },
-  chip: { fontFamily: fonts.extrabold, fontSize: 13 },
+  players: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text },
+  meta: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: 2 },
+  chip: { fontFamily: fonts.extrabold, fontSize: type.secondary },
 });

@@ -17,7 +17,7 @@ import { QuizStep } from './steps/QuizStep';
 import { SelectSquaresStep } from './steps/SelectSquaresStep';
 import { TeacherContext } from './TeacherContext';
 import { teacherExpression } from './teacherExpression';
-import { colors, fonts, space } from '../theme';
+import { type, colors, fonts, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useBoardLayoutWidth } from '../components/BoardLayout';
 import { LESSON_RESERVE } from './stepTypes';
@@ -220,6 +220,6 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   header: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.lg, paddingBottom: space.md },
-  close: { fontFamily: fonts.extrabold, fontSize: 22, color: colors.textMuted },
+  close: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.textMuted },
   content: { paddingHorizontal: space.lg, paddingTop: space.md, paddingBottom: space.xl },
 });

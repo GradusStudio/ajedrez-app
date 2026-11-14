@@ -11,7 +11,7 @@ import { UciEngine } from '../../engine/uci';
 import { PracticeStep as PracticeStepData } from '../../data/lessonTypes';
 import { LESSON_RESERVE, StepCallbacks } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
-import { colors, fonts, space } from '../../theme';
+import { type, colors, fonts, space } from '../../theme';
 
 type Props = { step: PracticeStepData } & StepCallbacks;
 
@@ -222,7 +222,7 @@ export function PracticeStep({ step, onCorrect, onWrong, locked }: Props) {
 }
 
 const styles = StyleSheet.create({
-  turn: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: space.xs },
+  turn: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: space.xs },
   errorCard: { marginTop: space.md },
-  errorText: { fontFamily: fonts.bold, fontSize: 14, color: colors.danger, lineHeight: 20 },
+  errorText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.danger, lineHeight: 20 },
 });

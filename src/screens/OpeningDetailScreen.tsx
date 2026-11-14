@@ -12,7 +12,7 @@ import { Lesson, OpeningCourse } from '../data/lessonTypes';
 import { useI18n } from '../i18n/I18nContext';
 import { lessonStates, NodeState } from '../progress/path';
 import { useProgress } from '../progress/ProgressContext';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
@@ -117,12 +117,12 @@ export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
+  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.xs, marginTop: space.sm },
-  summary: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: space.md, lineHeight: 20 },
+  summary: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: space.md, lineHeight: 20 },
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md },
-  count: { fontFamily: fonts.extrabold, fontSize: 13, color: colors.textMuted },
+  count: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -137,10 +137,10 @@ const styles = StyleSheet.create({
     marginBottom: space.sm,
   },
   cardCurrent: { borderColor: colors.primary, borderBottomColor: colors.primaryShadow },
-  badgeText: { fontFamily: fonts.extrabold, fontSize: 16, color: '#FFFFFF' },
-  cardTitle: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  cardCaption: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: 2 },
+  badgeText: { fontFamily: fonts.extrabold, fontSize: type.body, color: '#FFFFFF' },
+  cardTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  cardCaption: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
   coins: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  xp: { fontFamily: fonts.extrabold, fontSize: 13, color: colors.gold },
-  practiceNote: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: space.sm, textAlign: 'center' },
+  xp: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.gold },
+  practiceNote: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: space.sm, textAlign: 'center' },
 });

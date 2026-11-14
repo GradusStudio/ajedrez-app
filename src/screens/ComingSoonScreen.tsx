@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { title: string; description: string; milestone: number };
@@ -23,7 +23,7 @@ export function ComingSoonScreen({ title, description, milestone }: Props) {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg, paddingHorizontal: space.lg },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
     paddingVertical: space.md,
     paddingHorizontal: 14,
   },
-  badge: { fontFamily: fonts.extrabold, fontSize: 12, color: colors.gold, marginBottom: space.xs },
-  description: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
+  badge: { fontFamily: fonts.extrabold, fontSize: type.caption, color: colors.gold, marginBottom: space.xs },
+  description: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },
 });

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { colors, fonts } from '../theme';
+import { type, colors, fonts } from '../theme';
 import { planCoinReward, type CoinWave } from './coinRewardPlan';
 import { COIN_EDGE, StatIcon } from './StatIcon';
 import { useReducedMotion } from './useReducedMotion';
@@ -330,5 +330,5 @@ const styles = StyleSheet.create({
     minWidth: 38,
     fontVariant: ['tabular-nums'],
   },
-  bonus: { fontFamily: fonts.bold, fontSize: 10, color: colors.textMuted, marginTop: -3 },
+  bonus: { fontFamily: fonts.bold, fontSize: type.caption, color: colors.textMuted, marginTop: -3 },
 });

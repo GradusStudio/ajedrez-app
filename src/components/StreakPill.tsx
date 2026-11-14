@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
-import { colors, fonts, space } from '../theme';
+import { type, colors, fonts, space } from '../theme';
 import { StreakFlame } from './StreakFlame';
 import { useReducedMotion } from './useReducedMotion';
 
@@ -66,5 +66,5 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.surfaceRaised,
   },
-  text: { fontFamily: fonts.bold, fontSize: 14, color: colors.text },
+  text: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.text },
 });

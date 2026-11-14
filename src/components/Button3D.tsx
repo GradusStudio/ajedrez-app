@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
-import { colors, fonts, radius } from '../theme';
+import { type, colors, fonts, radius } from '../theme';
 
 type Variant = 'primary' | 'secondary' | 'destructive' | 'danger';
 
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: fonts.extrabold,
-    fontSize: 14,
+    fontSize: type.button,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },

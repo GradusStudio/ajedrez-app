@@ -11,7 +11,7 @@ import { Level, levelOf, levelRange, LEVELS, Puzzle, PRACTICE_THEMES, puzzleGoal
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
 import { levelsWithPuzzles, PuzzleSource } from '../puzzles/source';
 import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
@@ -197,8 +197,8 @@ function nearest(level: Level, levels: Level[]): Level {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2 },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,
@@ -212,17 +212,17 @@ const styles = StyleSheet.create({
   dailyCard: { marginTop: space.lg, borderColor: colors.gold, borderBottomColor: '#B8901C' },
   caption: {
     fontFamily: fonts.extrabold,
-    fontSize: 12,
+    fontSize: type.caption,
     color: colors.gold,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   cardTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text, marginTop: 2 },
-  cardText: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2 },
+  cardText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: 2 },
   section: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text, marginTop: space.xl },
   label: {
     fontFamily: fonts.extrabold,
-    fontSize: 12,
+    fontSize: type.caption,
     color: colors.textMuted,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
   segmented: { flexDirection: 'row', gap: space.sm },
   mode: { minHeight: 44, justifyContent: 'center', paddingHorizontal: space.sm },
   ratingCard: { marginTop: space.sm },
-  ratingText: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
+  ratingText: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
   ratingNumber: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.gold },
   segment: {
     flex: 1,
@@ -244,8 +244,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   segmentSelected: { borderColor: colors.primary, backgroundColor: colors.surfaceRaised },
-  segmentText: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.textMuted },
-  segmentSub: { fontFamily: fonts.semibold, fontSize: 11, color: colors.textMuted },
+  segmentText: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
+  segmentSub: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted },
   themes: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   theme: {
     borderRadius: 999,
@@ -256,6 +256,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.md,
   },
   themeSelected: { borderColor: colors.primary, backgroundColor: colors.surfaceRaised },
-  themeText: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted },
-  count: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: space.sm, textAlign: 'center' },
+  themeText: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
+  count: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: space.sm, textAlign: 'center' },
 });

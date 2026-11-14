@@ -5,7 +5,7 @@ import { Circle3D } from './Circle3D';
 import { Lesson } from '../data/lessonTypes';
 import { useI18n } from '../i18n/I18nContext';
 import { NodeState } from '../progress/path';
-import { colors, fonts, space } from '../theme';
+import { type, colors, fonts, space } from '../theme';
 
 type Props = {
   caption: string;
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   headText: { flex: 1 },
   caption: {
     fontFamily: fonts.extrabold,
-    fontSize: 12,
+    fontSize: type.caption,
     color: colors.primary,
     letterSpacing: 1.2,
     textTransform: 'uppercase',
@@ -149,8 +149,8 @@ const styles = StyleSheet.create({
     borderRadius: (FACE + 10) / 2,
     backgroundColor: 'rgba(129, 182, 76, 0.25)',
   },
-  dotText: { fontFamily: fonts.extrabold, fontSize: 16 },
-  label: { flex: 1, fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
+  dotText: { fontFamily: fonts.extrabold, fontSize: type.body },
+  label: { flex: 1, fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
   labelLocked: { color: colors.textMuted },
   action: { marginTop: space.lg },
 });

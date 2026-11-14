@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
 import { StreakAction } from '../progress/streak';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 
 const ITEMS: StreakAction[] = ['puzzle', 'lesson', 'bot'];
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.surfaceShadow,
     padding: space.md,
   },
-  title: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text },
+  title: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
   row: { flexDirection: 'row', gap: space.sm, marginTop: space.sm },
   item: {
     flex: 1,
@@ -52,6 +52,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceRaised,
   },
   itemDone: { backgroundColor: colors.primary },
-  itemText: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted },
+  itemText: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
   itemTextDone: { color: colors.text },
 });

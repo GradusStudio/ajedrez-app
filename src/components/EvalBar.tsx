@@ -3,7 +3,7 @@ import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
 import { formatScore, whiteShare } from '../engine/evalFormat';
 import { useBoardSide } from './BoardSizeContext';
-import { colors, fonts, radius } from '../theme';
+import { type, colors, fonts, radius } from '../theme';
 
 /** Barra de evaluación: blanco a la izquierda, negro a la derecha; se desliza al cambiar. */
 export function EvalBar({ score, decimal }: { score: number | null; decimal: string }) {
@@ -38,5 +38,5 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   barWhite: { position: 'absolute', left: 0, top: 0, bottom: 0, backgroundColor: '#F2F2F2' },
-  barLabel: { position: 'absolute', fontFamily: fonts.extrabold, fontSize: 12 },
+  barLabel: { position: 'absolute', fontFamily: fonts.extrabold, fontSize: type.caption },
 });

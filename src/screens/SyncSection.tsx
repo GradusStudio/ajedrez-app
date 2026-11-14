@@ -7,7 +7,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { DriveKeyLeftError } from '../sync/driveSyncTypes';
 import { isPopupError } from '../sync/popupError';
 import { useDriveSync } from '../sync/DriveSyncContext';
-import { colors, fonts, space } from '../theme';
+import { type, colors, fonts, space } from '../theme';
 
 // Bloque de Ajustes > Datos para sincronizar el progreso entre dispositivos con una llave guardada en el Drive de la persona.
 // Solo aparece en la web.
@@ -78,10 +78,10 @@ export function SyncSection() {
 
 const styles = StyleSheet.create({
   box: { marginBottom: space.lg },
-  title: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  text: { fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted, marginTop: space.xs, lineHeight: 21 },
-  status: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary, marginTop: space.md },
+  title: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  text: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted, marginTop: space.xs, lineHeight: 21 },
+  status: { fontFamily: fonts.bold, fontSize: type.body, color: colors.primary, marginTop: space.md },
   statusProblem: { color: colors.gold },
-  note: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: space.sm, lineHeight: 19 },
+  note: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: space.sm, lineHeight: 19 },
   button: { marginTop: space.md },
 });

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, fonts, radius, space } from '../../theme';
+import { type, colors, fonts, radius, space } from '../../theme';
 
 const BUBBLE_H = 190; // alto fijo del globo: así el tablero nunca se mueve (unas 7 líneas de texto y el resto se desliza)
 
@@ -7,9 +7,9 @@ export const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.lg },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.md },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  muted: { fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted },
+  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.md },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  muted: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted },
   analyzing: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text },
 
   // Barra superior: volver · título · ajustes
@@ -30,14 +30,14 @@ export const styles = StyleSheet.create({
   },
   bubbleContent: { padding: space.md },
   bubbleHead: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginBottom: 4 },
-  bubbleTitle: { flex: 1, fontFamily: fonts.extrabold, fontSize: 15, color: colors.text },
-  bubbleText: { fontFamily: fonts.semibold, fontSize: 14, lineHeight: 20, color: colors.textMuted },
-  bubbleLine: { fontFamily: fonts.bold, fontSize: 13, lineHeight: 19, color: colors.textMuted, marginTop: 8 },
-  bubbleExplain: { fontFamily: fonts.semibold, fontSize: 14, lineHeight: 20, color: colors.text, marginTop: 6 },
+  bubbleTitle: { flex: 1, fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  bubbleText: { fontFamily: fonts.semibold, fontSize: type.body, lineHeight: 20, color: colors.textMuted },
+  bubbleLine: { fontFamily: fonts.bold, fontSize: type.secondary, lineHeight: 19, color: colors.textMuted, marginTop: 8 },
+  bubbleExplain: { fontFamily: fonts.semibold, fontSize: type.body, lineHeight: 20, color: colors.text, marginTop: 6 },
   miniBadge: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
-  miniBadgeText: { fontFamily: fonts.extrabold, fontSize: 11, color: '#FFFFFF' },
+  miniBadgeText: { fontFamily: fonts.extrabold, fontSize: type.caption, color: '#FFFFFF' },
   evalChip: { backgroundColor: '#F2F2F2', borderRadius: 6, paddingVertical: 2, paddingHorizontal: 6 },
-  evalChipText: { fontFamily: fonts.extrabold, fontSize: 12, color: colors.bg },
+  evalChipText: { fontFamily: fonts.extrabold, fontSize: type.caption, color: colors.bg },
 
   // Resumen
   graph: { alignSelf: 'center', backgroundColor: '#403D39', borderRadius: radius.bar, overflow: 'hidden' },
@@ -53,16 +53,16 @@ export const styles = StyleSheet.create({
     paddingHorizontal: space.sm,
   },
   playerCardMe: { borderColor: colors.primary },
-  playerName: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text, maxWidth: '100%' },
+  playerName: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.text, maxWidth: '100%' },
   accBox: { marginTop: space.sm, backgroundColor: '#F2F2F2', borderRadius: radius.bar, paddingVertical: 4, paddingHorizontal: 14 },
-  accNum: { fontFamily: fonts.extrabold, fontSize: 22, color: colors.bg },
-  accLabel: { fontFamily: fonts.bold, fontSize: 12, color: colors.textMuted, marginTop: 4 },
+  accNum: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.bg },
+  accLabel: { fontFamily: fonts.bold, fontSize: type.caption, color: colors.textMuted, marginTop: 4 },
   catTable: { marginTop: space.lg, backgroundColor: colors.surface, borderRadius: radius.control, paddingVertical: space.sm, paddingHorizontal: space.md },
   catRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 6 },
-  catLabel: { flex: 1, fontFamily: fonts.bold, fontSize: 15, color: colors.text },
+  catLabel: { flex: 1, fontFamily: fonts.bold, fontSize: type.body, color: colors.text },
   catCount: { width: 48, textAlign: 'center', fontFamily: fonts.extrabold, fontSize: 17, color: colors.outline },
   catIcon: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  catGlyph: { fontFamily: fonts.extrabold, fontSize: 12, color: '#FFFFFF' },
+  catGlyph: { fontFamily: fonts.extrabold, fontSize: type.caption, color: '#FFFFFF' },
 
   // Tira de jugadas
   strip: { flexDirection: 'row', alignItems: 'center', marginTop: space.md },
@@ -81,9 +81,9 @@ export const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
   moveChipCurrent: { backgroundColor: colors.primaryShadow, borderColor: colors.primary },
-  moveNo: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted },
-  moveBadge: { fontFamily: fonts.extrabold, fontSize: 13 },
-  moveText: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted },
+  moveNo: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
+  moveBadge: { fontFamily: fonts.extrabold, fontSize: type.secondary },
+  moveText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },
 
   // Barra inferior
   bottomBar: {
@@ -98,7 +98,7 @@ export const styles = StyleSheet.create({
     borderTopColor: colors.surfaceRaised,
   },
   tool: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2, paddingVertical: 4 },
-  toolLabel: { fontFamily: fonts.bold, fontSize: 11, color: colors.textMuted },
+  toolLabel: { fontFamily: fonts.bold, fontSize: type.caption, color: colors.textMuted },
 
   // Ajustes (hoja inferior)
   modalRoot: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.55)' },
@@ -112,11 +112,11 @@ export const styles = StyleSheet.create({
   },
   sheetHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: space.md },
   sheetTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text },
-  sectionTitle: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text, marginBottom: space.sm },
+  sectionTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text, marginBottom: space.sm },
   hlRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: space.sm },
   hlArrow: { fontFamily: fonts.extrabold, fontSize: 28, color: colors.text, paddingHorizontal: space.lg },
-  hlText: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted },
+  hlText: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
   coachPick: { alignItems: 'center', width: 72, paddingVertical: 6, borderRadius: radius.control, borderWidth: 2, borderColor: 'transparent' },
   coachPickOn: { borderColor: colors.primary, backgroundColor: colors.surfaceRaised },
-  coachName: { fontFamily: fonts.bold, fontSize: 11, color: colors.textMuted, marginTop: 2 },
+  coachName: { fontFamily: fonts.bold, fontSize: type.caption, color: colors.textMuted, marginTop: 2 },
 });

@@ -10,7 +10,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, isPuzzleSolved, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
@@ -141,16 +141,16 @@ const card = {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.lg },
   stat: { ...card, flexBasis: '48%', flexGrow: 1, paddingVertical: space.md, paddingHorizontal: 14 },
   statTop: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
-  statValue: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  statLabel: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: 2 },
+  statValue: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  statLabel: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: 2 },
   section: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text, marginTop: space.xl, marginBottom: space.sm },
-  empty: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
+  empty: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },
   openingRow: { ...card, paddingVertical: space.md, paddingHorizontal: 14, marginBottom: space.sm },
   openingBar: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.sm },
-  rowLabel: { fontFamily: fonts.bold, fontSize: 15, color: colors.text },
-  count: { fontFamily: fonts.extrabold, fontSize: 13, color: colors.textMuted },
+  rowLabel: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text },
+  count: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
 });

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button3D } from '../components/Button3D';
 import { useI18n } from '../i18n/I18nContext';
 import { applyUpdate } from '../pwa/register';
-import { colors, fonts, space } from '../theme';
+import { type, colors, fonts, space } from '../theme';
 import { PuzzlesState } from './usePuzzles';
 
 /**
@@ -29,5 +29,5 @@ export function PuzzlesStatus({ state }: { state: Exclude<PuzzlesState, { status
 
 const styles = StyleSheet.create({
   box: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: space.lg, backgroundColor: colors.bg },
-  text: { fontFamily: fonts.bold, fontSize: 16, color: colors.textMuted, textAlign: 'center' },
+  text: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, textAlign: 'center' },
 });

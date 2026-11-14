@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 
 type Option<T extends string | number> = { value: T; label: string; sub?: string };
 
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   selected: { borderColor: colors.primary, backgroundColor: colors.surfaceRaised },
-  label: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.textMuted },
-  sub: { fontFamily: fonts.semibold, fontSize: 11, color: colors.textMuted },
+  label: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
+  sub: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted },
 });

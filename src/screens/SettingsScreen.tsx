@@ -18,7 +18,7 @@ import { usePieceSet } from '../settings/PieceSetContext';
 import { cancelDailyReminder, ensureReminderPermission, REMINDER_SUPPORT } from '../settings/reminders';
 import { useSettings } from '../settings/SettingsContext';
 import { useBoardTheme } from '../settings/useBoardTheme';
-import { colors, fonts, space } from '../theme';
+import { type, colors, fonts, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { onBack: () => void; onOpenPieces: () => void; onOpenBoards: () => void };
@@ -186,13 +186,13 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
+  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   section: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text, marginTop: space.xl, marginBottom: space.sm },
   dataButton: { marginBottom: space.sm },
   label: {
     fontFamily: fonts.extrabold,
-    fontSize: 12,
+    fontSize: type.caption,
     color: colors.textMuted,
     textTransform: 'uppercase',
     letterSpacing: 0.5,

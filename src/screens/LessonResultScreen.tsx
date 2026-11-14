@@ -10,7 +10,7 @@ import { Bot } from '../data/bots';
 import { useI18n } from '../i18n/I18nContext';
 import { BubbleRow } from '../lesson/TeacherBubble';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
@@ -134,8 +134,8 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { flexGrow: 1, paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  heading: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  lesson: { fontFamily: fonts.bold, fontSize: 16, color: colors.textMuted, marginTop: 4 },
+  heading: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  lesson: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: 4 },
   teacher: { marginTop: space.xl },
   row: { flexDirection: 'row', gap: space.sm, marginTop: space.xxl },
   stat: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     borderBottomColor: COIN_EDGE,
   },
   statValue: { fontFamily: fonts.extrabold, fontSize: 30, color: colors.text, marginTop: space.xs },
-  statLabel: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: 2, textAlign: 'center' },
+  statLabel: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: 2, textAlign: 'center' },
   offer: {
     marginTop: space.xl,
     backgroundColor: colors.surface,
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.surfaceShadow,
     padding: space.lg,
   },
-  offerTitle: { fontFamily: fonts.bold, fontSize: 16, color: colors.text, textAlign: 'center' },
-  offerText: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, textAlign: 'center', marginTop: space.xs, lineHeight: 20 },
-  note: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: space.lg, textAlign: 'center' },
+  offerTitle: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text, textAlign: 'center' },
+  offerText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, textAlign: 'center', marginTop: space.xs, lineHeight: 20 },
+  note: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: space.lg, textAlign: 'center' },
 });

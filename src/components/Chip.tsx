@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors, fonts, space } from '../theme';
+import { type, colors, fonts, space } from '../theme';
 
 // Chip de estado (mapa-de-pantallas.md, sección 6): color de la apertura, estilo del bot, nivel.
 export function Chip({ label }: { label: string }) {
@@ -19,5 +19,5 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     paddingHorizontal: space.sm + 2,
   },
-  text: { fontFamily: fonts.bold, fontSize: 12, color: colors.textMuted },
+  text: { fontFamily: fonts.bold, fontSize: type.caption, color: colors.textMuted },
 });

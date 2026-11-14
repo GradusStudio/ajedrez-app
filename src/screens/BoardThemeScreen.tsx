@@ -5,7 +5,7 @@ import { BoardThemePicker } from '../components/BoardThemePicker';
 import { StatIcon } from '../components/StatIcon';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
-import { colors, fonts, space } from '../theme';
+import { type, colors, fonts, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 // Pantalla "Tableros" (también la tienda de tableros): se abre desde Perfil y desde Ajustes. El cambio se aplica al tocar un tablero.
@@ -36,10 +36,10 @@ export function BoardThemeScreen({ onBack }: { onBack: () => void }) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
+  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
   titleRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   balance: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   balanceText: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.gold },
-  subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
+  subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
 });

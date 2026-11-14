@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 
 type Props = {
   label: string;
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
     marginBottom: space.sm,
   },
-  label: { fontFamily: fonts.bold, fontSize: 16, color: colors.text },
-  description: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: 2 },
-  detail: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted },
+  label: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text },
+  description: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: 2 },
+  detail: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },
 });

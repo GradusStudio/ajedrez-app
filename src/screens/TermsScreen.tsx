@@ -5,7 +5,7 @@ import { AppLink } from '../components/AppLink';
 import type { MessageKey } from '../i18n/es';
 import { useI18n } from '../i18n/I18nContext';
 import { CONTACT_EMAIL, SOURCE_URL } from '../links';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 // Cada sección es un título y un párrafo: terms.<id>.title / terms.<id>.text. `extra` agrega un enlace debajo.
@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   backButton: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text, marginTop: space.xs },
-  updated: { fontFamily: fonts.bold, fontSize: 13, color: colors.textMuted, marginTop: space.xs, lineHeight: 19 },
+  back: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text, marginTop: space.xs },
+  updated: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: space.xs, lineHeight: 19 },
   summary: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,
@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
     padding: space.lg,
     marginTop: space.lg,
   },
-  summaryText: { fontFamily: fonts.bold, fontSize: 15, color: colors.text, lineHeight: 23 },
+  summaryText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text, lineHeight: 23 },
   section: { marginTop: space.xl },
   heading: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text },
-  text: { fontFamily: fonts.semibold, fontSize: 15, color: colors.textMuted, marginTop: space.sm, lineHeight: 23 },
-  link: { fontSize: 15, marginTop: space.xs },
+  text: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted, marginTop: space.sm, lineHeight: 23 },
+  link: { fontSize: type.body, marginTop: space.xs },
 });

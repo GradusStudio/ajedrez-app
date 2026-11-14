@@ -28,7 +28,7 @@ import { es, MessageKey } from '../i18n/es';
 import { botGamePgn } from '../review/botGame';
 import { setPendingGame } from '../review/session';
 import { useSettings } from '../settings/SettingsContext';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
 import { BoardStage } from '../components/BoardStage';
@@ -484,11 +484,11 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xl },
   topRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginBottom: space.sm },
-  close: { fontFamily: fonts.extrabold, fontSize: 22, color: colors.textMuted },
+  close: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.textMuted },
   playerRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
-  playerName: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  playerMeta: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
-  status: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted },
+  playerName: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  playerMeta: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
+  status: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted },
   bubble: {
     alignSelf: 'flex-start',
     backgroundColor: colors.surfaceRaised,
@@ -499,10 +499,10 @@ const styles = StyleSheet.create({
     marginBottom: space.md,
     maxWidth: '100%',
   },
-  bubbleText: { fontFamily: fonts.bold, fontSize: 14, color: colors.text, lineHeight: 20 },
+  bubbleText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text, lineHeight: 20 },
   youRow: { flexDirection: 'row', alignItems: 'baseline', flexWrap: 'wrap', gap: space.sm, marginTop: space.md },
-  opening: { fontFamily: fonts.bold, fontSize: 13, color: colors.gold },
-  notation: { fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },
+  opening: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.gold },
+  notation: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },
   actions: { flexDirection: 'row', gap: space.sm, marginTop: space.lg },
   errorCard: {
     marginTop: space.lg,
@@ -510,12 +510,12 @@ const styles = StyleSheet.create({
     borderRadius: radius.control,
     padding: space.md,
   },
-  errorText: { fontFamily: fonts.bold, fontSize: 14, color: colors.text },
+  errorText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text },
   resultPanel: { paddingHorizontal: space.lg, paddingTop: space.lg, paddingBottom: space.xl },
   resultCard: { marginTop: space.lg, borderRadius: radius.control, padding: space.lg },
-  resultTitle: { fontFamily: fonts.extrabold, fontSize: 22 },
-  resultReason: { fontFamily: fonts.semibold, fontSize: 15, color: colors.text, marginTop: 4 },
+  resultTitle: { fontFamily: fonts.extrabold, fontSize: type.title },
+  resultReason: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.text, marginTop: 4 },
   coinsRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.sm },
-  coinsText: { fontFamily: fonts.extrabold, fontSize: 15, color: colors.gold, marginTop: space.xs },
-  coinsNote: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: space.sm },
+  coinsText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.gold, marginTop: space.xs },
+  coinsNote: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: space.sm },
 });

@@ -21,7 +21,7 @@ import { openingGame, progressPosition } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useReducedMotion } from '../components/useReducedMotion';
 import { useWideGrid } from '../components/useWideGrid';
@@ -300,8 +300,8 @@ export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2 },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
   segmented: {
     flexDirection: 'row',
     gap: space.sm,
@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   segmentSelected: { borderColor: colors.primary, backgroundColor: colors.surfaceRaised },
-  segmentText: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.textMuted },
+  segmentText: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,
@@ -330,10 +330,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     marginBottom: space.sm,
   },
-  cardTitle: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  cardSummary: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: 2, lineHeight: 18 },
+  cardTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  cardSummary: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, lineHeight: 18 },
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md },
-  count: { fontFamily: fonts.extrabold, fontSize: 13, color: colors.textMuted },
+  count: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
   guide: {
     marginTop: space.lg,
     padding: space.md,
@@ -342,13 +342,13 @@ const styles = StyleSheet.create({
     borderColor: colors.surfaceRaised,
     backgroundColor: colors.surface,
   },
-  guideTitle: { fontFamily: fonts.extrabold, fontSize: 15, color: colors.text },
-  guideText: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: space.xs, lineHeight: 19 },
+  guideTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  guideText: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: space.xs, lineHeight: 19 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.xs, marginTop: space.sm },
   wideTop: { paddingHorizontal: space.lg, gap: space.sm },
   statsRow: { flexDirection: 'row', gap: space.lg },
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
-  statText: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.gold },
+  statText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.gold },
   scene: { flex: 1, position: 'relative', overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   sceneRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 64, width: 844 },
   leftCol: { width: 300 },
@@ -356,15 +356,15 @@ const styles = StyleSheet.create({
   head: { height: 104, justifyContent: 'flex-end', paddingLeft: space.lg, marginBottom: space.lg },
   over: {
     fontFamily: fonts.extrabold,
-    fontSize: 12,
+    fontSize: type.caption,
     color: colors.primary,
     letterSpacing: 1.2,
     textTransform: 'uppercase',
   },
-  name: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text, lineHeight: 28 },
+  name: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text, lineHeight: type.title + 4 },
   boardCol: { width: 480, marginTop: 174 },
   legendRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.lg },
-  legendStrong: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.gold },
-  legendHint: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
+  legendStrong: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.gold },
+  legendHint: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
   railWrap: { position: 'absolute', top: 0, right: 0, bottom: 0, width: 400, zIndex: 2 },
 });

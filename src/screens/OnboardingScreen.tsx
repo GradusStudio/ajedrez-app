@@ -10,7 +10,7 @@ import { declineInstallOffer, isInstallOfferDeclined } from '../pwa/installOffer
 import { playedOnPortada } from '../pwa/portadaMark';
 import { useInstallPlatform } from '../pwa/useInstallPlatform';
 import { PlayerLevel } from '../progress/progressStore';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   dots: { flexDirection: 'row', gap: space.sm },
   dot: { width: 28, height: 8, borderRadius: radius.bar, backgroundColor: colors.surfaceRaised },
   dotOn: { backgroundColor: colors.primary },
-  skip: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
+  skip: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
   body: { flex: 1 },
   host: { flexDirection: 'row', alignItems: 'flex-start', gap: space.md, marginBottom: space.xl },
   bubble: {
@@ -161,10 +161,10 @@ const styles = StyleSheet.create({
     paddingVertical: space.md,
     paddingHorizontal: 14,
   },
-  name: { fontFamily: fonts.extrabold, fontSize: 13, color: colors.gold },
+  name: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.gold },
   bubbleText: { fontFamily: fonts.bold, fontSize: 17, color: colors.text, lineHeight: 24, marginTop: 2 },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  text: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  text: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },
   choice: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -179,6 +179,6 @@ const styles = StyleSheet.create({
     marginBottom: space.sm,
   },
   choiceBody: { flex: 1 },
-  choiceLabel: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  choiceText: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: 2 },
+  choiceLabel: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  choiceText: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
 });

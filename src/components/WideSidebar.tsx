@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Tabs } from 'expo-router/js-tabs';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { SIDEBAR_ICON_WIDTH, SIDEBAR_WIDTH } from './wideLayout';
 
 type TabBarProps = Parameters<NonNullable<React.ComponentProps<typeof Tabs>['tabBar']>>[0];
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   brand: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: space.sm, marginBottom: space.xl },
   brandCompact: { justifyContent: 'center', paddingHorizontal: 0 },
   logo: { width: 36, height: 36, borderRadius: 10 },
-  brandText: { fontFamily: fonts.extrabold, fontSize: 22, color: colors.text },
+  brandText: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   list: { gap: space.xs },
   item: {
     flexDirection: 'row',
@@ -91,5 +91,5 @@ const styles = StyleSheet.create({
   itemHover: { backgroundColor: colors.surfaceShadow },
   itemOn: { backgroundColor: colors.surfaceRaised, borderColor: colors.surfaceRaised },
   itemFocus: { borderColor: colors.gold },
-  label: { fontFamily: fonts.extrabold, fontSize: 15 },
+  label: { fontFamily: fonts.extrabold, fontSize: type.body },
 });

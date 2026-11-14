@@ -8,7 +8,7 @@ import { useProgress } from '../progress/ProgressContext';
 import { usePieceSet } from '../settings/PieceSetContext';
 import { useWideGrid } from './useWideGrid';
 import { useBoardTheme } from '../settings/useBoardTheme';
-import { boardThemes, colors, fonts, radius, space } from '../theme';
+import { type, boardThemes, colors, fonts, radius, space } from '../theme';
 import { SquareTexture } from './SquareTexture';
 import Piece, { PieceColor, PieceType } from './Piece';
 import { StatIcon } from './StatIcon';
@@ -112,9 +112,9 @@ const styles = StyleSheet.create({
   cardSelected: { borderColor: colors.primary, borderBottomColor: colors.primaryShadow },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   name: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text },
-  check: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary },
+  check: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.primary },
   price: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
-  priceText: { fontFamily: fonts.extrabold, fontSize: 15, color: colors.gold },
-  description: { fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.sm },
+  priceText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.gold },
+  description: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, marginBottom: space.sm },
   preview: { flexDirection: 'row', borderRadius: 8, overflow: 'hidden', alignSelf: 'flex-start' },
 });

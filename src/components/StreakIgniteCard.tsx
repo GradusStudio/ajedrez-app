@@ -3,13 +3,13 @@ import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle, Defs, RadialGradient, Stop } from 'react-native-svg';
 import { useI18n } from '../i18n/I18nContext';
 import { weekSteps, type StreakStatus } from '../progress/streak';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { StreakFlame } from './StreakFlame';
 import { useReducedMotion } from './useReducedMotion';
 
 const FLAME = 96;
 const STAGE = 120;
-const COUNT_LINE = 44;
+const COUNT_LINE = type.display + 4;
 const SPARK_COUNT = 6;
 const SPARK_SIZE = FLAME / 24;
 
@@ -303,18 +303,18 @@ const styles = StyleSheet.create({
     height: COUNT_LINE,
     lineHeight: COUNT_LINE,
     fontFamily: fonts.extrabold,
-    fontSize: 40,
+    fontSize: type.display,
     color: colors.gold,
     textAlign: 'center',
   },
-  label: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.xs },
-  message: { fontFamily: fonts.bold, fontSize: 14, color: colors.gold, marginTop: space.sm, textAlign: 'center' },
+  label: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: space.xs },
+  message: { fontFamily: fonts.bold, fontSize: type.body, color: colors.gold, marginTop: space.sm, textAlign: 'center' },
   week: { flexDirection: 'row', alignItems: 'flex-end', gap: 6, marginTop: space.xl },
   day: { alignItems: 'center', gap: 5 },
   step: { width: 26, borderRadius: 5, borderBottomWidth: 3, transformOrigin: '50% 100%' },
   stepDone: { backgroundColor: colors.flame, borderBottomColor: '#B8601E' },
   stepOff: { backgroundColor: colors.surfaceRaised, borderBottomColor: colors.surfaceShadow },
   stepToday: { borderWidth: 2, borderColor: colors.flame, borderBottomWidth: 5 },
-  dayLabel: { fontFamily: fonts.bold, fontSize: 11, color: colors.textMuted },
+  dayLabel: { fontFamily: fonts.bold, fontSize: type.caption, color: colors.textMuted },
   dayLabelToday: { color: colors.gold },
 });

@@ -10,7 +10,7 @@ import { useSettings } from '../../settings/SettingsContext';
 import { LineStep as LineStepData } from '../../data/lessonTypes';
 import { LESSON_RESERVE, StepCallbacks } from '../stepTypes';
 import { TeacherBubble } from '../TeacherBubble';
-import { colors, fonts, radius, space } from '../../theme';
+import { type, colors, fonts, radius, space } from '../../theme';
 
 type Props = { step: LineStepData } & StepCallbacks;
 
@@ -185,7 +185,7 @@ function notation(step: LineStepData, ply: number, san: (s: string) => string): 
 }
 
 const styles = StyleSheet.create({
-  turn: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted, marginTop: space.xs },
+  turn: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: space.xs },
   noteCard: {
     marginTop: space.md,
     backgroundColor: colors.surface,
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   noteCardActive: { borderColor: colors.primary, borderBottomColor: colors.primaryShadow },
-  noteTitle: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  noteText: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, lineHeight: 20, marginTop: space.xs },
-  notation: { fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted, marginTop: space.md, lineHeight: 22 },
+  noteTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  noteText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, lineHeight: 20, marginTop: space.xs },
+  notation: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted, marginTop: space.md, lineHeight: 22 },
 });

@@ -18,7 +18,7 @@ import { EvalBar } from '../components/EvalBar';
 import { formatScore, whiteScore } from '../engine/evalFormat';
 import { AnalysisUpdate } from '../engine/uci';
 import { useUciEngine } from '../engine/useUciEngine';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
 
@@ -251,9 +251,9 @@ export function FreePlayScreen({ onBack }: { onBack?: () => void } = {}) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.md },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2 },
+  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.md },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   engineHeader: { flexDirection: 'row', alignItems: 'center' },
-  engineMeta: { fontFamily: fonts.semibold, fontSize: 12, color: colors.textMuted },
+  engineMeta: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted },
   line: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -277,10 +277,10 @@ const styles = StyleSheet.create({
   },
   scoreChip: { minWidth: 52, paddingVertical: 3, paddingHorizontal: 6, borderRadius: 6, backgroundColor: '#F2F2F2', alignItems: 'center' },
   scoreChipBlack: { backgroundColor: '#1B1A18' },
-  scoreText: { fontFamily: fonts.extrabold, fontSize: 13, color: '#262421' },
-  pv: { flex: 1, fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted },
+  scoreText: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: '#262421' },
+  pv: { flex: 1, fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted },
   pvFirst: { fontFamily: fonts.extrabold, color: colors.text },
-  question: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text, marginBottom: 4 },
-  notation: { fontFamily: fonts.semibold, fontSize: 14, color: colors.textMuted },
+  question: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text, marginBottom: 4 },
+  notation: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
 });

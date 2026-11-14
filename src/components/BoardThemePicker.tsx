@@ -7,7 +7,7 @@ import { useProgress } from '../progress/ProgressContext';
 import { useSettings } from '../settings/SettingsContext';
 import { useWideGrid } from './useWideGrid';
 import { useBoardTheme } from '../settings/useBoardTheme';
-import { BoardThemeId, boardThemes, colors, fonts, radius, space } from '../theme';
+import { type, BoardThemeId, boardThemes, colors, fonts, radius, space } from '../theme';
 import { SquareTexture } from './SquareTexture';
 import { StatIcon } from './StatIcon';
 
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   cardSelected: { borderColor: colors.primary, borderBottomColor: colors.primaryShadow },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: space.sm },
   name: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text },
-  check: { fontFamily: fonts.bold, fontSize: 14, color: colors.primary },
+  check: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.primary },
   price: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
-  priceText: { fontFamily: fonts.extrabold, fontSize: 15, color: colors.gold },
+  priceText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.gold },
   preview: { flexDirection: 'row', borderRadius: 8, overflow: 'hidden', alignSelf: 'flex-start' },
 });

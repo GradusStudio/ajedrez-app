@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { useI18n, MessageKey } from '../i18n/I18nContext';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = { onGame: () => void; onFree: () => void };
@@ -45,8 +45,8 @@ export function AnalysisMenuScreen({ onGame, onFree }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2 },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -63,5 +63,5 @@ const styles = StyleSheet.create({
   icon: { width: 56, height: 56, borderRadius: 28, borderBottomWidth: 4, alignItems: 'center', justifyContent: 'center' },
   glyph: { fontSize: 30, color: '#FFFFFF' },
   cardTitle: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text, marginBottom: 2 },
-  cardDesc: { fontFamily: fonts.semibold, fontSize: 13, lineHeight: 18, color: colors.textMuted },
+  cardDesc: { fontFamily: fonts.semibold, fontSize: type.secondary, lineHeight: 18, color: colors.textMuted },
 });

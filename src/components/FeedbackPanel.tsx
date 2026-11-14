@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button3D } from './Button3D';
 import { FadeIn } from './FadeIn';
-import { colors, fonts, space } from '../theme';
+import { type, colors, fonts, space } from '../theme';
 
 type Props = {
   kind: 'neutral' | 'correct' | 'wrong';
@@ -55,5 +55,5 @@ const styles = StyleSheet.create({
   title: { fontFamily: fonts.extrabold, fontSize: 18 },
   wideRow: { alignSelf: 'center', flexDirection: 'row', alignItems: 'center', gap: space.xl },
   wideButton: { minWidth: 240 },
-  message: { fontFamily: fonts.semibold, fontSize: 15, color: colors.text, marginTop: 4, lineHeight: 21 },
+  message: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.text, marginTop: 4, lineHeight: 21 },
 });

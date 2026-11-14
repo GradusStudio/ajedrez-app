@@ -6,7 +6,7 @@ import { Button3D } from '../components/Button3D';
 import type { MessageKey } from '../i18n/es';
 import { useI18n } from '../i18n/I18nContext';
 import { InstallPlatform, needsCopyBeforeInstall } from '../pwa/installPlatform';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type System = Exclude<InstallPlatform, 'installed'>;
@@ -125,15 +125,15 @@ const styles = StyleSheet.create({
   column: { width: '100%' },
   icon: { width: 72, height: 72, borderRadius: 16 },
   brand: { fontFamily: fonts.extrabold, fontSize: 28, color: colors.text, marginTop: space.md },
-  tagline: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.xs, lineHeight: 22 },
-  privacy: { fontSize: 14, marginTop: space.xl },
-  terms: { fontSize: 14, marginTop: space.sm },
+  tagline: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: space.xs, lineHeight: 22 },
+  privacy: { fontSize: type.secondary, marginTop: space.xl },
+  terms: { fontSize: type.secondary, marginTop: space.sm },
   block: { marginTop: space.xl },
   heading: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text },
-  text: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },
+  text: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: space.sm, lineHeight: 22 },
   button: { marginTop: space.md, minHeight: 48 },
   stepsTitle: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text, marginBottom: space.md },
-  others: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.textMuted, marginTop: space.xl },
+  others: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted, marginTop: space.xl },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.control,
@@ -143,11 +143,11 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.surfaceShadow,
     padding: space.lg,
   },
-  copyFirst: { fontFamily: fonts.bold, fontSize: 15, color: colors.textMuted, lineHeight: 22, marginBottom: space.lg },
+  copyFirst: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, lineHeight: 22, marginBottom: space.lg },
   step: { flexDirection: 'row', alignItems: 'flex-start', gap: space.md },
   num: { width: 28, height: 28, borderRadius: 14, backgroundColor: colors.surfaceRaised, alignItems: 'center', justifyContent: 'center' },
-  numText: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.text },
-  stepText: { flex: 1, fontFamily: fonts.bold, fontSize: 15, color: colors.text, lineHeight: 22, paddingTop: 3 },
+  numText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  stepText: { flex: 1, fontFamily: fonts.bold, fontSize: type.body, color: colors.text, lineHeight: 22, paddingTop: 3 },
   toggle: {
     minHeight: 48,
     flexDirection: 'row',
@@ -161,6 +161,6 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.surfaceShadow,
     paddingHorizontal: 14,
   },
-  toggleText: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  chevron: { fontFamily: fonts.bold, fontSize: 16, color: colors.textMuted },
+  toggleText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  chevron: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },
 });

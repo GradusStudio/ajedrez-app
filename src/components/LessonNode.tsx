@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../i18n/I18nContext';
 import { NodeState } from '../progress/path';
-import { colors, fonts } from '../theme';
+import { type, colors, fonts } from '../theme';
 import { Circle3D } from './Circle3D';
 import { useReducedMotion } from './useReducedMotion';
 
@@ -79,5 +79,5 @@ const styles = StyleSheet.create({
   },
   // El nodo queda centrado en el anillo; el canto asoma por debajo, dentro del anillo.
   node: { position: 'absolute', left: RING_GAP + RING_WIDTH, top: RING_GAP + RING_WIDTH - DEPTH / 2 },
-  text: { fontFamily: fonts.extrabold, fontSize: 22 },
+  text: { fontFamily: fonts.extrabold, fontSize: type.title },
 });

@@ -8,7 +8,7 @@ import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { recordAgainst } from '../progress/progressStore';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 
 type Props = { onBack: () => void; onOpenBot: (botId: string) => void };
 
@@ -67,10 +67,10 @@ export function BotGamesScreen({ onBack, onOpenBot }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginBottom: space.sm },
-  title: { fontFamily: fonts.extrabold, fontSize: 24, color: colors.text },
-  subtitle: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
-  empty: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted },
+  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
+  title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
+  subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
+  empty: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     marginBottom: space.sm,
   },
   cardPressed: { transform: [{ translateY: 2 }], borderBottomWidth: 2 },
-  name: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
-  record: { fontFamily: fonts.semibold, fontSize: 13, color: colors.textMuted, marginTop: 2 },
-  chev: { fontFamily: fonts.extrabold, fontSize: 22, color: colors.textMuted },
+  name: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  record: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
+  chev: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.textMuted },
 });

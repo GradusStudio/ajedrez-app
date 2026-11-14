@@ -4,7 +4,7 @@ import { BotAvatar } from '../components/BotAvatar';
 import { BotExpression } from '../components/botFace';
 import { Bot } from '../data/bots';
 import { useI18n } from '../i18n/I18nContext';
-import { colors, fonts, radius, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 import { useTeacher } from './TeacherContext';
 
 const FACE_SIZE = 52;
@@ -44,6 +44,6 @@ const styles = StyleSheet.create({
   bubble: { flex: 1, backgroundColor: colors.surfaceRaised, borderRadius: radius.control, paddingVertical: space.md, paddingHorizontal: 14 },
   text: { fontFamily: fonts.bold, fontSize: 18, color: colors.text, lineHeight: 26 },
   welcome: { marginBottom: space.md },
-  name: { fontFamily: fonts.extrabold, fontSize: 14, color: colors.primary },
-  welcomeText: { fontFamily: fonts.bold, fontSize: 14, color: colors.textMuted, lineHeight: 20, marginTop: 2 },
+  name: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.primary },
+  welcomeText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, lineHeight: 20, marginTop: 2 },
 });

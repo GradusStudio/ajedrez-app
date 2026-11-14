@@ -37,6 +37,12 @@ export const fonts = {
   extrabold: 'Nunito_800ExtraBold',
 } as const;
 
+// Escala de letra (feedback del primer tester, 14-11-2026): tokens semánticos. En el celular y en
+// la web angosta conservan los tamaños de siempre; en la web ancha (960 px o más al cargar) suben
+// según typeScale.web.ts. En la web ancha no queda texto por debajo de 13 px.
+export { type } from './typeScale';
+export type { TypeRole } from './typeScale';
+
 // Temas del tablero (Ajustes > Tema del tablero). "verde" es el de design.md.
 export const boardThemes = {
   verde: { name: 'Verde', light: '#EBECD0', dark: '#779556' },

@@ -64,7 +64,7 @@ export function LessonRail({
       <ScrollView style={styles.scroll} contentContainerStyle={styles.track} showsVerticalScrollIndicator={false}>
         <View style={styles.line} pointerEvents="none" />
         {lessons.map((lesson, i) => (
-          <RailRow key={lesson.id} lesson={lesson} state={states[i]} onPress={() => onStartLesson(lesson)} />
+          <RailRow key={lesson.id} lesson={lesson} index={i} state={states[i]} onPress={() => onStartLesson(lesson)} />
         ))}
       </ScrollView>
 
@@ -85,8 +85,8 @@ export function LessonRail({
   );
 }
 
-/** Fila del riel: círculo 3D con el número o el ✓, y el título de la lección. */
-function RailRow({ lesson, state, onPress }: { lesson: Lesson; state: NodeState; onPress: () => void }) {
+/** Fila del riel: círculo 3D con el número dentro de la unidad o el ✓, y el título de la lección. */
+function RailRow({ lesson, index, state, onPress }: { lesson: Lesson; index: number; state: NodeState; onPress: () => void }) {
   const { t } = useI18n();
   const [down, setDown] = useState(false);
   const locked = state === 'locked';
@@ -100,7 +100,7 @@ function RailRow({ lesson, state, onPress }: { lesson: Lesson; state: NodeState;
       onPressOut={() => setDown(false)}
       disabled={locked}
       accessibilityRole="button"
-      accessibilityLabel={t('lessonNode.label', { order: lesson.order, label: lesson.title, status })}
+      accessibilityLabel={t('lessonNode.label', { order: index + 1, label: lesson.title, status })}
       accessibilityState={{ disabled: locked }}
       style={({ pressed }) => [styles.row, pressed && !locked && { opacity: 0.85 }]}
     >
@@ -116,8 +116,8 @@ function RailRow({ lesson, state, onPress }: { lesson: Lesson; state: NodeState;
           {locked ? (
             <LockIcon size={18} color={colors.outline} />
           ) : (
-            <Text style={[styles.dotText, { color: done || current ? '#FFFFFF' : colors.text }]}>
-              {done ? '✓' : lesson.order}
+            <Text style={[styles.dotText, { color: done || current ? colors.bg : colors.text }]}>
+              {done ? '✓' : index + 1}
             </Text>
           )}
         </Circle3D>

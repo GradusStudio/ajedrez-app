@@ -161,6 +161,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   okPressed: { transform: [{ translateY: 2 }], borderBottomWidth: 1 },
-  okText: { fontFamily: fonts.extrabold, fontSize: type.body, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: 0.5 },
+  okText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.bg, textTransform: 'uppercase', letterSpacing: 0.5 },
   step: { fontFamily: fonts.bold, fontSize: 13, color: '#8A8580' },
 });

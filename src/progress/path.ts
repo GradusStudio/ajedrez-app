@@ -21,6 +21,11 @@ export function lessonStates(lessons: Lesson[], progress: Progress): NodeState[]
   });
 }
 
+/** Número de la lección dentro de su unidad (1, 2, …); 0 si no está en la lista. */
+export function lessonNumberInUnit(lessons: Lesson[], lessonId: string): number {
+  return lessons.findIndex((l) => l.id === lessonId) + 1;
+}
+
 /**
  * Lección sugerida para el botón "Empezar": la siguiente de la unidad donde se terminó
  * la última lección (o la unidad siguiente, si esa ya está completa). Al principio, la de la Unidad 1.

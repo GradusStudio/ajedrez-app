@@ -80,7 +80,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
             </Text>
             <Button3D
               label={dailyDone ? t('puzzles.seeAgain') : t('puzzles.solve')}
-              variant={dailyDone ? 'secondary' : 'primary'}
+              variant="secondary"
               onPress={() => onOpenDaily(daily.puzzle.id)}
               style={{ marginTop: space.md }}
             />

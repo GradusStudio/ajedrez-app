@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { Lesson, Step, Unit } from '../data/lessonTypes';
 import type { Progress } from './progressStore';
-import { unitOpen, unitTestSteps } from './path';
+import { lessonNumberInUnit, unitOpen, unitTestSteps } from './path';
 
 const step = (id: string, type: Step['type']): Step =>
   ({
@@ -58,6 +58,17 @@ const progress = (patch: Partial<Progress> = {}): Progress =>
 
 const done = (ids: string[]) =>
   Object.fromEntries(ids.map((id) => [id, { done: true as const, errors: 0, completedAt: '2026-11-14T00:00:00.000Z', completions: 1 }]));
+
+test('lessonNumberInUnit: cuenta dentro de la unidad, no el orden global', () => {
+  const lessons = [
+    { ...lesson('a', []), order: 61 },
+    { ...lesson('b', []), order: 62 },
+    { ...lesson('c', []), order: 63 },
+  ];
+  assert.equal(lessonNumberInUnit(lessons, 'a'), 1);
+  assert.equal(lessonNumberInUnit(lessons, 'c'), 3);
+  assert.equal(lessonNumberInUnit(lessons, 'z'), 0);
+});
 
 const units = [
   unit(1, [lesson('u1-l01', ['explain', 'move']), lesson('u1-l02', ['quiz'])]),

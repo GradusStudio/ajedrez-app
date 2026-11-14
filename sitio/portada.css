@@ -331,7 +331,7 @@ main {
   border-radius: 16px;
   background: var(--primary);
   border-bottom: 4px solid var(--primary-shadow);
-  color: #fff;
+  color: var(--bg);
   font-size: 16px;
   font-weight: 800;
   text-transform: uppercase;
@@ -446,6 +446,7 @@ main {
   color: var(--primary);
   font-weight: 800;
   text-underline-offset: 3px;
+  padding-block: 2px;
 }
 
 /* Pie */
@@ -461,6 +462,7 @@ main {
   color: var(--muted);
 }
 .foot a {
+  padding-block: 2px;
   text-decoration: none;
 }
 .foot a:hover {

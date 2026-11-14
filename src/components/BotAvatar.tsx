@@ -31,6 +31,25 @@ const AVATARS: Record<string, { source: ImageSourcePropType; scale: number }> = 
   pipo: { source: require('../../assets/bots/pipo.webp'), scale: 1 },
 };
 
+// Cuerpo entero (768 × 1024, fondo transparente) para el panel ancho de la lección.
+const BODIES: Record<string, ImageSourcePropType> = {
+  ada: require('../../assets/bots/cuerpo/ada.webp'),
+  ivo: require('../../assets/bots/cuerpo/ivo.webp'),
+  sofia: require('../../assets/bots/cuerpo/sofia.webp'),
+  bruno: require('../../assets/bots/cuerpo/bruno.webp'),
+  camila: require('../../assets/bots/cuerpo/camila.webp'),
+  ramiro: require('../../assets/bots/cuerpo/ramiro.webp'),
+  valentina: require('../../assets/bots/cuerpo/valentina.webp'),
+  tomas: require('../../assets/bots/cuerpo/tomas.webp'),
+  lola: require('../../assets/bots/cuerpo/lola.webp'),
+  pipo: require('../../assets/bots/cuerpo/pipo.webp'),
+};
+
+/** Cuerpo entero del bot para el panel ancho; sin imagen, el llamador usa el busto. */
+export function botBodySource(id: string): ImageSourcePropType | undefined {
+  return BODIES[id];
+}
+
 // `expression`: cara del bot (explica, piensa, acierto, pista); sin imagen para esa cara, muestra el avatar.
 export function BotAvatar({ bot, size = 48, expression }: { bot: Bot; size?: number; expression?: BotExpression }) {
   const c = STYLE_COLOR[bot.style];

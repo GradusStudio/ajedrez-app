@@ -67,7 +67,7 @@ Todos: `border-radius: 16px`, padding `12px 18px`, borde inferior de **4px** (ef
 
 | Variante | Fondo | Texto | Borde inferior | Uso |
 |---|---|---|---|---|
-| Primario | `primary` | `#FFFFFF` | `primary-shadow` | Acción principal (máximo uno por pantalla) |
+| Primario | `primary` | `bg` (`#262421`) | `primary-shadow` | Acción principal (máximo uno por pantalla); 6,4:1 de contraste, también en hover |
 | Secundario | `surface-raised` | `#FFFFFF` | `surface-shadow` | Acciones alternativas |
 | Destructivo | transparente, borde 2px `surface-raised` | `danger` | 4px `surface-raised` | Salir, abandonar |
 | Opción de respuesta | `surface-raised` | `#FFFFFF` | `surface-shadow` | Jugadas en lecciones y puzzles |

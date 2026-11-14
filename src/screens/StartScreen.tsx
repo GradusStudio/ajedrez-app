@@ -15,7 +15,7 @@ import progressGamesRaw from '../data/progressGames.json';
 import { teacherForLesson } from '../data/teachers';
 import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
-import { lessonStates, suggestedLesson, unitOpen } from '../progress/path';
+import { lessonNumberInUnit, lessonStates, suggestedLesson, unitOpen } from '../progress/path';
 import { piecesFromFen, progressPosition, type ProgressGamesFile } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
@@ -55,13 +55,16 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
   if (progress.coins > 0) tipIds.push('coins.first');
   const tips = useTips(tipIds);
   const tipMessage = tips.current ? TIP_MESSAGES[tips.current] : null;
+  const firstTime = Object.keys(progress.lessons).length === 0;
+  const newAccount = firstTime && Object.keys(progress.drafts).length === 0;
+  // Una cuenta nueva no vio nada todavía: el consejo de Inicio habla del comienzo, no de «seguir».
+  const tipText = tips.current === 'home.next' && newAccount ? 'tips.home.next.textNew' : tipMessage?.text;
 
   const streak = currentStreak(progress, today);
   const status = streakStatusNow(progress, today);
   const openUnits = unitOpen(units, progress, progress.profile.level, settings.openAllUnits);
   const lesson = suggestedLesson(units.filter((u) => openUnits.includes(u.unit)), progress);
   const unit = lesson ? units.find((u) => u.lessons.some((l) => l.id === lesson.id)) : undefined;
-  const firstTime = Object.keys(progress.lessons).length === 0;
   const teacher = teacherForLesson(lesson?.id ?? units[0]?.lessons[0]?.id ?? '');
   const previous = lesson && unit ? unit.lessons[unit.lessons.findIndex((l) => l.id === lesson.id) - 1] : undefined;
   const phrase = lesson
@@ -140,16 +143,16 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
 
   const heroCard = (
     <View ref={heroRef} style={styles.card}>
-      <Text style={styles.k}>{t('start.continue')}</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('start.continue')}</Text>
       {lesson && unit && position ? (
         <View style={[styles.heroRow, !wide && styles.heroColumn]}>
           <View style={{ flex: 1 }}>
             <Text style={styles.cardTitle}>{lesson.title}</Text>
             <Text style={styles.sub}>
-              {t('start.lessonLine', { unit: unit.unit, title: unit.title, n: lesson.order, total: unit.lessons.length })}
+              {t('start.lessonLine', { unit: unit.unit, title: unit.title, n: lessonNumberInUnit(unit.lessons, lesson.id), total: unit.lessons.length })}
             </Text>
             <Button3D
-              label={t('common.continue')}
+              label={progress.drafts[lesson.id] ? t('common.continue') : t('common.start')}
               variant="primary"
               onPress={() => onLesson(lesson)}
               style={{ marginTop: space.md, alignSelf: 'flex-start' }}
@@ -174,7 +177,7 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
 
   const streakCard = (
     <View style={styles.card}>
-      <Text style={styles.k}>{t('start.streak')}</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('start.streak')}</Text>
       <View style={styles.streakTop}>
         <StreakFlame state={flameStateOf(status.kind)} size={wide ? 36 : 28} />
         <Text style={styles.streakNumber}>{tn('start.streakDays', streak)}</Text>
@@ -198,7 +201,7 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
 
   const botsCard = (
     <View style={styles.card}>
-      <Text style={styles.k}>{t('tabs.bots')}</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('tabs.bots')}</Text>
       <View style={styles.botRow}>
         <BotAvatar bot={ongoingBot ?? recommendedBot} size={wide ? 64 : 52} expression="acierto" />
         <View style={{ flex: 1 }}>
@@ -212,7 +215,7 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
           </Text>
           <Button3D
             label={ongoingBot ? t('common.continue') : t('common.play')}
-            variant={ongoingBot ? 'primary' : 'secondary'}
+            variant="secondary"
             onPress={() => (ongoingBot ? onContinueGame() : onBot(recommendedBot))}
             style={{ marginTop: space.sm, alignSelf: 'flex-start' }}
           />
@@ -223,7 +226,7 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
 
   const openingsCard = course ? (
     <View style={styles.card}>
-      <Text style={styles.k}>{t('tabs.openings')}</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('tabs.openings')}</Text>
       <Text style={styles.cardTitleSmall}>{course.name}</Text>
       <Text style={styles.sub}>{courseLine}</Text>
       <Button3D
@@ -237,13 +240,14 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
 
   return (
     <ColumnScrollView
+      role="main"
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.md) }]}
     >
       <View style={styles.hello}>
         <BotAvatar bot={teacher} size={wide ? 104 : 72} expression="acierto" />
         <View style={styles.helloTextWrap}>
-          <Text style={[styles.helloTitle, wide && styles.helloTitleWide]}>
+          <Text accessibilityRole="header" aria-level={1} style={[styles.helloTitle, wide && styles.helloTitleWide]}>
             {firstTime ? t('start.greetingNew') : t('start.greeting')}
           </Text>
           <Text style={styles.helloText}>{t('start.says', { name: teacher.name, text: phrase })}</Text>
@@ -276,7 +280,7 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
       <Tip
         visible={!!tips.current}
         title={tipMessage ? t(tipMessage.title) : ''}
-        text={tipMessage ? t(tipMessage.text) : ''}
+        text={tipText ? t(tipText) : ''}
         step={tips.step}
         total={tips.total}
         target={tips.current === 'home.next' ? heroRef : statsRef}
@@ -357,7 +361,7 @@ function DailyPuzzleCard({ wide, onOpen }: { wide: boolean; onOpen: (id: string)
           </Text>
           <Button3D
             label={done ? t('puzzles.seeAgain') : t('puzzles.solve')}
-            variant={done ? 'secondary' : 'primary'}
+            variant="secondary"
             onPress={() => onOpen(daily.puzzle.id)}
             style={{ marginTop: space.md, alignSelf: 'flex-start' }}
           />
@@ -368,7 +372,7 @@ function DailyPuzzleCard({ wide, onOpen }: { wide: boolean; onOpen: (id: string)
 
   return (
     <View style={styles.card}>
-      <Text style={styles.k}>{t('puzzles.daily')}</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('puzzles.daily')}</Text>
       {body}
     </View>
   );

@@ -13,7 +13,7 @@ type TabBarProps = Parameters<NonNullable<React.ComponentProps<typeof Tabs>['tab
  */
 export function WideSidebar({ state, descriptors, emitter, navigateToTab, labels }: TabBarProps & { labels: boolean }) {
   return (
-    <View style={[styles.side, labels ? styles.sideWide : styles.sideCompact]}>
+    <View role="navigation" style={[styles.side, labels ? styles.sideWide : styles.sideCompact]}>
       <View style={[styles.brand, !labels && styles.brandCompact]}>
         <Image source={require('../../assets/icon.png')} style={styles.logo} accessibilityIgnoresInvertColors />
         {labels && <Text style={styles.brandText}>Gradus</Text>}

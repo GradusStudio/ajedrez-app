@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { BotAvatar } from '../components/BotAvatar';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { BotAvatar, botBodySource } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { BotExpression } from '../components/botFace';
 import { useWideLayout } from '../components/useWideLayout';
@@ -40,6 +40,7 @@ export function TeacherBubble({ children }: { children: string }) {
     const notice = panel.status !== 'idle';
     const noticeBg = panel.status === 'correct' ? colors.correctBg : colors.incorrectBg;
     const tailBg = notice ? noticeBg : '#FFFFFF';
+    const body = botBodySource(bot.id);
     return (
       <View accessible accessibilityLabel={label}>
         <Text style={styles.wideName}>{bot.name}</Text>
@@ -60,7 +61,11 @@ export function TeacherBubble({ children }: { children: string }) {
         </View>
         <View style={[styles.wideTail, { backgroundColor: tailBg }, notice && { borderColor: tailBg }]} />
         <View style={styles.wideTeacher}>
-          <BotAvatar bot={bot} size={190} expression={expression} />
+          {body ? (
+            <Image source={body} style={styles.wideBody} resizeMode="contain" fadeDuration={0} accessibilityElementsHidden importantForAccessibility="no" />
+          ) : (
+            <BotAvatar bot={bot} size={190} expression={expression} />
+          )}
         </View>
         {!!panel.buttonLabel && panel.onButton && (
           <Button3D
@@ -126,6 +131,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     elevation: 8,
   },
+  wideBody: { width: 190, height: 253 },
   wideButton: { marginTop: 20, alignSelf: 'stretch' },
   wideNoticeTitle: { fontFamily: fonts.extrabold, fontSize: 19 },
   wideNoticeText: { fontFamily: fonts.bold, fontSize: 17, lineHeight: 23, color: '#FFFFFF', marginTop: 4 },

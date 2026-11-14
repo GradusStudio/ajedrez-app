@@ -207,7 +207,9 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
   };
 
   return (
-    <View style={styles.screen}>
+    <View role="main" style={styles.screen}>
+      {/* Título para lectores de pantalla: la lección no muestra un encabezado visible. */}
+      <Text accessibilityRole="header" aria-level={1} style={styles.srOnly}>{lesson.title}</Text>
       <View style={[styles.header, { paddingTop: statusBarTop(space.sm) }, contentWidth ? { width: contentWidth + space.lg * 2, alignSelf: 'center' } : null]}>
         <Pressable onPress={confirmExit} accessibilityRole="button" accessibilityLabel={t('common.exit')} hitSlop={12}>
           <Text style={styles.close}>✕</Text>
@@ -237,6 +239,7 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
+  srOnly: { position: 'absolute', width: 1, height: 1, overflow: 'hidden', opacity: 0 },
   header: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.lg, paddingBottom: space.md },
   close: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.textMuted },
   content: { paddingHorizontal: space.lg, paddingTop: space.md, paddingBottom: space.xl },

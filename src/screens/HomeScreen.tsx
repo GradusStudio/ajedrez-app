@@ -19,7 +19,7 @@ import { Lesson, Unit } from '../data/lessonTypes';
 import progressGamesRaw from '../data/progressGames.json';
 import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
-import { lessonStates, suggestedLesson, unitOpen } from '../progress/path';
+import { lessonNumberInUnit, lessonStates, suggestedLesson, unitOpen } from '../progress/path';
 import { piecesFromFen, progressPosition, type ProgressGamesFile } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
@@ -51,14 +51,18 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
   const { t } = useI18n();
   const openUnitNumbers = unitOpen(units, progress, progress.profile.level, settings.openAllUnits);
   const openCatalog = units.filter((u) => openUnitNumbers.includes(u.unit));
-  // Unidad elegida en el menú o en la corona. Sin elegir, se muestra la de la última lección
-  // empezada (guardada en el progreso) o, la primera vez, la de la lección sugerida.
+  // Unidad elegida en el menú o en la corona. Sin elegir, se muestra la unidad de la lección que sugiere
+  // Inicio (la misma regla en las dos pantallas); si no hay, la de la última lección empezada.
   const [chosen, setChosen] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const globalSuggested = suggestedLesson(openCatalog, progress);
+  const suggestedUnit = globalSuggested
+    ? units.find((u) => u.lessons.some((l) => l.id === globalSuggested.id))
+    : undefined;
   const unit =
-    units.find((u) => u.unit === (chosen ?? progress.lastUnit)) ??
-    units.find((u) => u.lessons.some((l) => l.id === globalSuggested?.id)) ??
+    (chosen !== null ? units.find((u) => u.unit === chosen) : undefined) ??
+    suggestedUnit ??
+    units.find((u) => u.unit === progress.lastUnit) ??
     units[0];
   // El botón flotante sigue a la unidad en pantalla; si está cerrada, la prueba para saltar.
   const unitIsOpen = openUnitNumbers.includes(unit.unit);
@@ -93,6 +97,8 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
   const focused = useIsFocused();
   const reduced = useReducedMotion();
   const [railOpen, setRailOpen] = useState(false);
+  const leftRef = useRef<React.ComponentRef<typeof Animated.View>>(null);
+  const railRef = useRef<React.ComponentRef<typeof Animated.View>>(null);
   const [rail] = useState(() => new Animated.Value(0));
   const [boardFade] = useState(() => new Animated.Value(1));
   const [titleFade] = useState(() => new Animated.Value(1));
@@ -139,6 +145,24 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [wide, focused, railOpen]);
+
+  // Con el riel abierto, la corona sale del orden de Tab (y del árbol accesible) y el foco pasa a «Volver».
+  useEffect(() => {
+    if (Platform.OS !== 'web') return;
+    const left = leftRef.current as unknown as HTMLElement | null;
+    const rail = railRef.current as unknown as HTMLElement | null;
+    if (left) left.inert = railOpen;
+    if (rail) rail.inert = !railOpen;
+  }, [railOpen]);
+
+  useEffect(() => {
+    if (Platform.OS !== 'web' || !railOpen) return;
+    const id = setTimeout(() => {
+      const node = railRef.current as unknown as HTMLElement | null;
+      node?.querySelector<HTMLElement>(`[aria-label="${t('home.back')}"]`)?.focus();
+    }, 60);
+    return () => clearTimeout(id);
+  }, [railOpen, t]);
 
   const unitMenu = (
     <UnitMenu
@@ -197,7 +221,7 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
     };
 
     return (
-      <View style={styles.screen}>
+      <View role="main" style={styles.screen}>
         <View style={[styles.wideTop, { paddingTop: statusBarTop(space.md) }]}>
           <View style={styles.statsRow}>
             <View style={styles.stat} accessibilityLabel={t('home.streakLabel', { n: streak })}>
@@ -216,11 +240,17 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
 
         <View style={styles.scene}>
           <View style={styles.sceneRow}>
-            <Animated.View style={[styles.leftCol, leftStyle]} pointerEvents={railOpen ? 'none' : 'auto'}>
+            <Animated.View
+              ref={leftRef}
+              style={[styles.leftCol, leftStyle]}
+              pointerEvents={railOpen ? 'none' : 'auto'}
+              accessibilityElementsHidden={railOpen}
+              importantForAccessibility={railOpen ? 'no-hide-descendants' : 'auto'}
+            >
               <View style={styles.head}>
                 <Animated.View style={{ opacity: titleFade }}>
                   <Text style={styles.over}>{t('home.unit', { n: unit.unit })}</Text>
-                  <Text style={styles.name} numberOfLines={2}>
+                  <Text accessibilityRole="header" aria-level={1} style={styles.name} numberOfLines={2}>
                     {unit.title}
                   </Text>
                 </Animated.View>
@@ -263,7 +293,13 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
             </View>
           </View>
 
-          <Animated.View style={[styles.railWrap, railStyle]} pointerEvents={railOpen ? 'auto' : 'none'}>
+          <Animated.View
+            ref={railRef}
+            style={[styles.railWrap, railStyle]}
+            pointerEvents={railOpen ? 'auto' : 'none'}
+            accessibilityElementsHidden={!railOpen}
+            importantForAccessibility={!railOpen ? 'no-hide-descendants' : 'auto'}
+          >
             <LessonRail
               caption={t('home.unit', { n: unit.unit })}
               title={unit.title}
@@ -294,7 +330,7 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
   }
 
   return (
-    <View style={styles.screen}>
+    <View role="main" style={styles.screen}>
       <ColumnScrollView
         contentContainerStyle={[
           styles.content,
@@ -349,7 +385,7 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
       ) : suggested ? (
         <View style={[styles.floating, floatingWide]} onLayout={(e) => setFloatingHeight(e.nativeEvent.layout.height)}>
           <Text style={styles.floatingCaption} numberOfLines={2}>
-            {t('home.lessonCaption', { order: suggested.order, title: suggested.title })}
+            {t('home.lessonCaption', { order: lessonNumberInUnit(unit.lessons, suggested.id), title: suggested.title })}
           </Text>
           <Button3D
             label={progress.drafts[suggested.id] ? t('common.continue') : t('common.start')}
@@ -480,7 +516,7 @@ function UnitRail({
             <Text style={styles.unitCaption}>{t('home.unit', { n: unit.unit })}</Text>
             <Chevron />
           </View>
-          <Text style={styles.unitTitle}>{t('home.unitTitle', { title: unit.title, done: doneCount, total: lessons.length })}</Text>
+          <Text accessibilityRole="header" aria-level={2} style={styles.unitTitle}>{t('home.unitTitle', { title: unit.title, done: doneCount, total: lessons.length })}</Text>
           {locked && lockedMessage ? <Text style={styles.unitLocked}>{lockedMessage}</Text> : null}
         </Pressable>
         <View accessible accessibilityRole="image" accessibilityLabel={t('home.progressBoardLabel', { legend })}>
@@ -494,7 +530,7 @@ function UnitRail({
           <View key={lesson.id} style={styles.railRow}>
             <LessonNode
               state={states[i]}
-              order={lesson.order}
+              order={i + 1}
               label={lesson.title}
               onPress={() => openLesson(lesson, i)}
             />
@@ -552,12 +588,11 @@ const styles = StyleSheet.create({
   unitCaption: {
     fontFamily: fonts.extrabold,
     fontSize: type.caption,
-    color: '#FFFFFF',
-    opacity: 0.85,
+    color: colors.bg,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
-  unitTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: '#FFFFFF' },
+  unitTitle: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.bg },
   unitCardRail: { gap: space.md },
   unitCardPress: { flex: 1 },
   unitCaptionRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs },

@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
 import { CountUp } from '../components/CountUp';
 import { StreakIgniteCard } from '../components/StreakIgniteCard';
 import { COIN_EDGE, StatIcon } from '../components/StatIcon';
+import { Tip } from '../components/Tip';
 import { useReducedMotion } from '../components/useReducedMotion';
 import { Bot } from '../data/bots';
 import { useI18n } from '../i18n/I18nContext';
 import { BubbleRow } from '../lesson/TeacherBubble';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
+import { TIP_MESSAGES } from '../settings/tips';
+import { useTips } from '../settings/useTips';
 import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
@@ -46,6 +49,17 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
   // La tarjeta de monedas late una vez en una lección perfecta y la llama hace el reencendido.
   const [celebrate] = useState(() => new Animated.Value(1));
   const [todayIndex] = useState(() => (new Date().getDay() + 6) % 7);
+  const tips = useTips(coinsEarned > 0 || dailyBonus > 0 ? ['coins.first'] : []);
+  const coinRef = useRef<React.ComponentRef<typeof View>>(null);
+  const [showCoinTip, setShowCoinTip] = useState(false);
+  const tipMessage = tips.current ? TIP_MESSAGES[tips.current] : null;
+  const hasCoinTip = !!tips.current;
+
+  useEffect(() => {
+    if (!hasCoinTip) return;
+    const id = setTimeout(() => setShowCoinTip(true), 1400);
+    return () => clearTimeout(id);
+  }, [hasCoinTip]);
 
   useEffect(() => {
     if (!perfect || reduced) return;
@@ -73,7 +87,7 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
       )}
 
       <View style={styles.row}>
-        <Animated.View style={[styles.stat, styles.coinStat, { transform: [{ scale: celebrate }] }]}>
+        <Animated.View ref={coinRef} style={[styles.stat, styles.coinStat, { transform: [{ scale: celebrate }] }]}>
           <StatIcon name="coin" size={22} />
           <Text style={[styles.statValue, { color: colors.gold }]}>+<CountUp value={coinsEarned} /></Text>
           <Text style={styles.statLabel}>{tn('lessonResult.coin', coinsEarned)}</Text>
@@ -127,6 +141,15 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
       {onReviewMistakes && (
         <Button3D label={t('common.reviewMistakes')} onPress={onReviewMistakes} style={{ marginTop: space.md }} />
       )}
+
+      <Tip
+        visible={showCoinTip && !!tips.current}
+        title={tipMessage ? t(tipMessage.title) : ''}
+        text={tipMessage ? t(tipMessage.text) : ''}
+        target={coinRef}
+        onNext={tips.next}
+        onClose={tips.close}
+      />
     </ColumnScrollView>
   );
 }

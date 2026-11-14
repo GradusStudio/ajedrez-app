@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { BoardThemePicker } from '../components/BoardThemePicker';
 import { StatIcon } from '../components/StatIcon';
+import { Tip } from '../components/Tip';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
+import { TIP_MESSAGES } from '../settings/tips';
+import { useTips } from '../settings/useTips';
 import { type, colors, fonts, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
@@ -12,6 +15,9 @@ import { statusBarTop } from '../components/statusBarTop';
 export function BoardThemeScreen({ onBack }: { onBack: () => void }) {
   const { progress } = useProgress();
   const { t } = useI18n();
+  const tips = useTips(['shop']);
+  const tipMessage = tips.current ? TIP_MESSAGES[tips.current] : null;
+  const gridRef = useRef<React.ComponentRef<typeof View>>(null);
   return (
     <ColumnScrollView
       style={styles.screen}
@@ -28,7 +34,17 @@ export function BoardThemeScreen({ onBack }: { onBack: () => void }) {
         </View>
       </View>
       <Text style={styles.subtitle}>{t('boards.subtitle')}</Text>
-      <BoardThemePicker />
+      <View ref={gridRef}>
+        <BoardThemePicker />
+      </View>
+      <Tip
+        visible={!!tips.current}
+        title={tipMessage ? t(tipMessage.title) : ''}
+        text={tipMessage ? t(tipMessage.text) : ''}
+        target={gridRef}
+        onNext={tips.next}
+        onClose={tips.close}
+      />
     </ColumnScrollView>
   );
 }

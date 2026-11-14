@@ -169,6 +169,14 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
         onValueChange={(v) => update({ vibration: v })}
       />
 
+      {/* Consejos */}
+      <Text style={styles.section}>{t('settings.tipsSection')}</Text>
+      <SettingRow
+        label={t('settings.tipsReset')}
+        description={t('settings.tipsReset.description')}
+        onPress={() => update({ seenTips: [] })}
+      />
+
       {/* Datos */}
       <Text style={styles.section}>{t('settings.data')}</Text>
       <SyncSection />

@@ -61,6 +61,26 @@ export const es = {
   'start.courseStart': 'Empezar el curso',
   'start.courseButton': 'Seguir el curso',
 
+  // Consejos de Pipo
+  'tips.ok': 'Entendido',
+  'tips.step': '{n} de {total}',
+  'tips.close': 'Cerrar consejo',
+  'tips.home.next.title': 'Tu próximo paso',
+  'tips.home.next.text': 'Acá seguís desde donde quedaste: la lección sugerida y el tablero que avanza con cada lección.',
+  'tips.home.streak.title': 'Racha y monedas',
+  'tips.home.streak.text': 'La llama y las monedas que ganás se juntan acá.',
+  'tips.learn.wheel.title': 'Elegí una unidad',
+  'tips.learn.wheel.text': 'Girá la corona con las flechas, la rueda del mouse o arrastrando. Tocá la unidad del centro para ver sus lecciones.',
+  'tips.learn.rail.title': 'Tus lecciones',
+  'tips.learn.rail.text': 'Se abren de a una. El tablero de cada unidad avanza con cada lección que terminás.',
+  'tips.shop.title': 'La tienda',
+  'tips.shop.text': 'Las monedas que ganás se gastan acá. Tocá un tablero o un set para verlo y comprarlo.',
+  'tips.coins.title': 'Monedas',
+  'tips.coins.text': 'Ganaste monedas por resolverlo sin errores. Se juntan arriba, junto a la llama.',
+  'settings.tipsSection': 'Consejos',
+  'settings.tipsReset': 'Volver a ver los consejos',
+  'settings.tipsReset.description': 'Los consejos de Pipo vuelven a aparecer la próxima vez que abras la app.',
+
   // Aprender
   'home.streakLabel': 'Racha de {n} días',
   'home.lessonCaption': 'Lección {order} · {title}',

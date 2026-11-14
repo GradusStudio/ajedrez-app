@@ -17,6 +17,8 @@ export type Settings = {
   reminderOffered: boolean;
   /** Ya se mostró la tarjeta de instalar Gradus al terminar una lección (web; no se repite). */
   installOffered: boolean;
+  /** Consejos de Pipo ya vistos (`tipId`), para mostrarlos una sola vez. */
+  seenTips: string[];
   /** Mostrar el nivel de puzzles propio (oculto, se sigue calculando y la práctica se sigue ajustando). */
   showPuzzleRating: boolean;
   /** Práctica de puzzles: dificultad automática según el nivel o elegida a mano. */
@@ -34,6 +36,7 @@ export const defaultSettings: Settings = {
   reminder: { enabled: false, hour: 19 },
   reminderOffered: false,
   installOffered: false,
+  seenTips: [],
   showPuzzleRating: true,
   puzzleMode: 'auto',
   puzzleLevel: null,
@@ -56,6 +59,7 @@ export function sanitizeSettings(raw: Partial<Settings>): Settings {
     vibration: bool(r.vibration, d.vibration),
     reminderOffered: bool(r.reminderOffered, d.reminderOffered),
     installOffered: bool(r.installOffered, d.installOffered),
+    seenTips: Array.isArray(r.seenTips) ? (r.seenTips as unknown[]).filter((x): x is string => typeof x === 'string') : d.seenTips,
     showPuzzleRating: bool(r.showPuzzleRating, d.showPuzzleRating),
     puzzleMode: r.puzzleMode === 'manual' ? 'manual' : 'auto',
     puzzleLevel: typeof r.puzzleLevel === 'string' && Object.hasOwn(LEVELS, r.puzzleLevel) ? (r.puzzleLevel as Level) : null,

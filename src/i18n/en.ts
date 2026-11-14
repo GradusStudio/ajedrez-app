@@ -62,6 +62,26 @@ export const en: Record<MessageKey, string> = {
   'start.courseStart': 'Start the course',
   'start.courseButton': 'Continue the course',
 
+  // Consejos de Pipo
+  'tips.ok': 'Got it',
+  'tips.step': '{n} of {total}',
+  'tips.close': 'Close tip',
+  'tips.home.next.title': 'Your next step',
+  'tips.home.next.text': 'Pick up where you left off: the suggested lesson and the board that advances with each lesson.',
+  'tips.home.streak.title': 'Streak and coins',
+  'tips.home.streak.text': 'Your flame and the coins you earn gather here.',
+  'tips.learn.wheel.title': 'Choose a unit',
+  'tips.learn.wheel.text': 'Turn the wheel with the arrows, the mouse wheel or by dragging. Tap the center unit to see its lessons.',
+  'tips.learn.rail.title': 'Your lessons',
+  'tips.learn.rail.text': 'They unlock one at a time. Each unit’s board advances with every lesson you finish.',
+  'tips.shop.title': 'The shop',
+  'tips.shop.text': 'The coins you earn are spent here. Tap a board or a set to see it and buy it.',
+  'tips.coins.title': 'Coins',
+  'tips.coins.text': 'You earned coins for solving it without mistakes. They gather up top, next to the flame.',
+  'settings.tipsSection': 'Tips',
+  'settings.tipsReset': 'Show the tips again',
+  'settings.tipsReset.description': 'Pipo’s tips will appear again the next time you open the app.',
+
   // Aprender
   'home.streakLabel': '{n}-day streak',
   'home.lessonCaption': 'Lesson {order} · {title}',

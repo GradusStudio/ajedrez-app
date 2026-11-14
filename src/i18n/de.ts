@@ -62,6 +62,26 @@ export const de: Record<MessageKey, string> = {
   'start.courseStart': 'Kurs starten',
   'start.courseButton': 'Kurs fortsetzen',
 
+  // Consejos de Pipo
+  'tips.ok': 'Verstanden',
+  'tips.step': '{n} von {total}',
+  'tips.close': 'Tipp schließen',
+  'tips.home.next.title': 'Dein nächster Schritt',
+  'tips.home.next.text': 'Hier machst du weiter: die vorgeschlagene Lektion und das Brett, das mit jeder Lektion vorankommt.',
+  'tips.home.streak.title': 'Serie und Münzen',
+  'tips.home.streak.text': 'Deine Flamme und die verdienten Münzen sammeln sich hier.',
+  'tips.learn.wheel.title': 'Wähle eine Einheit',
+  'tips.learn.wheel.text': 'Drehe das Rad mit den Pfeilen, dem Mausrad oder durch Ziehen. Tippe auf die Einheit in der Mitte, um ihre Lektionen zu sehen.',
+  'tips.learn.rail.title': 'Deine Lektionen',
+  'tips.learn.rail.text': 'Sie öffnen sich eine nach der anderen. Das Brett jeder Einheit kommt mit jeder abgeschlossenen Lektion voran.',
+  'tips.shop.title': 'Der Laden',
+  'tips.shop.text': 'Hier gibst du die verdienten Münzen aus. Tippe auf ein Brett oder ein Set, um es anzusehen und zu kaufen.',
+  'tips.coins.title': 'Münzen',
+  'tips.coins.text': 'Du hast Münzen für das fehlerfreie Lösen bekommen. Sie sammeln sich oben neben der Flamme.',
+  'settings.tipsSection': 'Tipps',
+  'settings.tipsReset': 'Tipps erneut anzeigen',
+  'settings.tipsReset.description': 'Pipos Tipps erscheinen beim nächsten Öffnen der App wieder.',
+
   // Aprender
   'home.streakLabel': 'Serientage: {n}',
   'home.lessonCaption': 'Lektion {order} · {title}',

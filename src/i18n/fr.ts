@@ -62,6 +62,26 @@ export const fr: Record<MessageKey, string> = {
   'start.courseStart': 'Commencer le cours',
   'start.courseButton': 'Continuer le cours',
 
+  // Consejos de Pipo
+  'tips.ok': 'Compris',
+  'tips.step': '{n} sur {total}',
+  'tips.close': 'Fermer le conseil',
+  'tips.home.next.title': 'Ton prochain pas',
+  'tips.home.next.text': 'Reprends ici où tu t\'étais arrêté : la leçon suggérée et l\'échiquier qui avance à chaque leçon.',
+  'tips.home.streak.title': 'Série et jetons',
+  'tips.home.streak.text': 'Ta flamme et les jetons que tu gagnes se rassemblent ici.',
+  'tips.learn.wheel.title': 'Choisis une unité',
+  'tips.learn.wheel.text': 'Tourne la couronne avec les flèches, la molette de la souris ou en glissant. Touche l\'unité au centre pour voir ses leçons.',
+  'tips.learn.rail.title': 'Tes leçons',
+  'tips.learn.rail.text': 'Elles s\'ouvrent une par une. L\'échiquier de chaque unité avance à chaque leçon terminée.',
+  'tips.shop.title': 'La boutique',
+  'tips.shop.text': 'Les jetons que tu gagnes se dépensent ici. Touche un échiquier ou un jeu pour le voir et l\'acheter.',
+  'tips.coins.title': 'Jetons',
+  'tips.coins.text': 'Tu as gagné des jetons pour l\'avoir résolu sans erreur. Ils se rassemblent en haut, à côté de la flamme.',
+  'settings.tipsSection': 'Conseils',
+  'settings.tipsReset': 'Revoir les conseils',
+  'settings.tipsReset.description': 'Les conseils de Pipo réapparaîtront la prochaine fois que tu ouvriras l’app.',
+
   // Aprender
   'home.streakLabel': 'Jours de série : {n}',
   'home.lessonCaption': 'Leçon {order} · {title}',

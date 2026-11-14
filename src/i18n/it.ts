@@ -62,6 +62,26 @@ export const it: Record<MessageKey, string> = {
   'start.courseStart': 'Inizia il corso',
   'start.courseButton': 'Continua il corso',
 
+  // Consejos de Pipo
+  'tips.ok': 'Capito',
+  'tips.step': '{n} di {total}',
+  'tips.close': 'Chiudi il consiglio',
+  'tips.home.next.title': 'Il tuo prossimo passo',
+  'tips.home.next.text': 'Qui riprendi da dove eri rimasto: la lezione suggerita e il tabellone che avanza con ogni lezione.',
+  'tips.home.streak.title': 'Serie e monete',
+  'tips.home.streak.text': 'La fiamma e le monete che guadagni si raccolgono qui.',
+  'tips.learn.wheel.title': 'Scegli un\'unità',
+  'tips.learn.wheel.text': 'Gira la corona con le frecce, la rotella del mouse o trascinando. Tocca l\'unità al centro per vedere le sue lezioni.',
+  'tips.learn.rail.title': 'Le tue lezioni',
+  'tips.learn.rail.text': 'Si aprono una alla volta. Il tabellone di ogni unità avanza con ogni lezione che completi.',
+  'tips.shop.title': 'Il negozio',
+  'tips.shop.text': 'Le monete che guadagni si spendono qui. Tocca un tabellone o un set per vederlo e comprarlo.',
+  'tips.coins.title': 'Monete',
+  'tips.coins.text': 'Hai guadagnato monete risolvendolo senza errori. Si raccolgono in alto, accanto alla fiamma.',
+  'settings.tipsSection': 'Consigli',
+  'settings.tipsReset': 'Rivedi i consigli',
+  'settings.tipsReset.description': 'I consigli di Pipo ricompaiono la prossima volta che apri l’app.',
+
   // Aprender
   'home.streakLabel': 'Giorni di serie: {n}',
   'home.lessonCaption': 'Lezione {order} · {title}',

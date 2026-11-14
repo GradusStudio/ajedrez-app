@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
@@ -6,6 +6,7 @@ import { ColumnScrollView } from '../components/ColumnScrollView';
 import { MiniBoard } from '../components/MiniBoard';
 import { StatIcon } from '../components/StatIcon';
 import { StreakFlame, flameStateOf } from '../components/StreakFlame';
+import { Tip } from '../components/Tip';
 import { statusBarTop } from '../components/statusBarTop';
 import { useWideLayout } from '../components/useWideLayout';
 import { Bot } from '../data/bots';
@@ -20,6 +21,8 @@ import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { weekSteps } from '../progress/streak';
 import { useTodayKey } from '../settings/useTodayKey';
+import { TIP_MESSAGES, type TipId } from '../settings/tips';
+import { useTips } from '../settings/useTips';
 import { Puzzle, puzzleGoal } from '../puzzles/puzzles';
 import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
 import { type, colors, fonts, space } from '../theme';
@@ -44,6 +47,12 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
   const { t, number, tn } = useI18n();
   const wide = useWideLayout();
   const today = useTodayKey();
+  const heroRef = useRef<React.ComponentRef<typeof View>>(null);
+  const statsRef = useRef<React.ComponentRef<typeof View>>(null);
+  const tipIds: TipId[] = ['home.next', 'home.streak'];
+  if (progress.coins > 0) tipIds.push('coins.first');
+  const tips = useTips(tipIds);
+  const tipMessage = tips.current ? TIP_MESSAGES[tips.current] : null;
 
   const streak = currentStreak(progress, today);
   const status = streakStatusNow(progress, today);
@@ -114,7 +123,7 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
           : t('start.streakNone');
 
   const stats = (
-    <View style={[styles.stats, wide ? styles.statsWide : styles.statsNarrow]}>
+    <View ref={statsRef} style={[styles.stats, wide ? styles.statsWide : styles.statsNarrow]}>
       <View style={styles.pill} accessible accessibilityLabel={t('home.streakLabel', { n: streak })}>
         <StreakFlame state={flameStateOf(status.kind)} size={20} pulse={false} />
         <Text style={styles.pillText}>{number(streak)}</Text>
@@ -127,7 +136,7 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
   );
 
   const heroCard = (
-    <View style={styles.card}>
+    <View ref={heroRef} style={styles.card}>
       <Text style={styles.k}>{t('start.continue')}</Text>
       {lesson && unit && position ? (
         <View style={[styles.heroRow, !wide && styles.heroColumn]}>
@@ -260,6 +269,17 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
           {openingsCard}
         </>
       )}
+
+      <Tip
+        visible={!!tips.current}
+        title={tipMessage ? t(tipMessage.title) : ''}
+        text={tipMessage ? t(tipMessage.text) : ''}
+        step={tips.step}
+        total={tips.total}
+        target={tips.current === 'home.next' ? heroRef : statsRef}
+        onNext={tips.next}
+        onClose={tips.close}
+      />
     </ColumnScrollView>
   );
 }

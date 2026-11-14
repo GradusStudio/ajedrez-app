@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIsFocused } from 'expo-router';
 import { showDialog } from '../components/dialog';
 import { Animated, Easing, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -13,6 +13,7 @@ import { MiniBoard } from '../components/MiniBoard';
 import { RecoveryCard } from '../components/RecoveryCard';
 import { StatIcon } from '../components/StatIcon';
 import { StreakFlame, flameStateOf } from '../components/StreakFlame';
+import { Tip } from '../components/Tip';
 import { UnitWheel } from '../components/UnitWheel';
 import { Lesson, Unit } from '../data/lessonTypes';
 import progressGamesRaw from '../data/progressGames.json';
@@ -23,6 +24,8 @@ import { piecesFromFen, progressPosition, type ProgressGamesFile } from '../prog
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
+import { TIP_MESSAGES } from '../settings/tips';
+import { useTips } from '../settings/useTips';
 import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useReducedMotion } from '../components/useReducedMotion';
@@ -77,6 +80,9 @@ export function HomeScreen({ onStartLesson }: Props) {
     : null;
 
   const wide = useWideLayout();
+  const tipTarget = useRef<React.ComponentRef<typeof View>>(null);
+  const tips = useTips([wide ? 'learn.wheel' : 'learn.rail']);
+  const tipMessage = tips.current ? TIP_MESSAGES[tips.current] : null;
   const focused = useIsFocused();
   const reduced = useReducedMotion();
   const [railOpen, setRailOpen] = useState(false);
@@ -205,15 +211,17 @@ export function HomeScreen({ onStartLesson }: Props) {
                   </Text>
                 </Animated.View>
               </View>
-              <UnitWheel
-                items={wheelItems}
-                initialIndex={unitIndex}
-                previousLabel={t('home.prevUnitLabel')}
-                nextLabel={t('home.nextUnitLabel')}
-                enabled={focused && !railOpen}
-                onActiveChange={(i) => setChosen(units[i].unit)}
-                onOpen={() => setRailOpen(true)}
-              />
+              <View ref={tipTarget}>
+                <UnitWheel
+                  items={wheelItems}
+                  initialIndex={unitIndex}
+                  previousLabel={t('home.prevUnitLabel')}
+                  nextLabel={t('home.nextUnitLabel')}
+                  enabled={focused && !railOpen}
+                  onActiveChange={(i) => setChosen(units[i].unit)}
+                  onOpen={() => setRailOpen(true)}
+                />
+              </View>
             </Animated.View>
 
             <Animated.View style={[styles.boardCol, boardStyle]}>
@@ -253,6 +261,14 @@ export function HomeScreen({ onStartLesson }: Props) {
             />
           </Animated.View>
         </View>
+        <Tip
+          visible={!!tips.current}
+          title={tipMessage ? t(tipMessage.title) : ''}
+          text={tipMessage ? t(tipMessage.text) : ''}
+          target={tipTarget}
+          onNext={tips.next}
+          onClose={tips.close}
+        />
       </View>
     );
   }
@@ -280,8 +296,17 @@ export function HomeScreen({ onStartLesson }: Props) {
         </View>
         {status.kind === 'recovering' && <RecoveryCard days={status.days} done={status.done} />}
 
-        <UnitRail key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} />
+        <UnitRail key={unit.unit} unit={unit} onStartLesson={startLesson} onOpenMenu={() => setMenuOpen(true)} cardRef={tipTarget} />
       </ColumnScrollView>
+
+      <Tip
+        visible={!!tips.current}
+        title={tipMessage ? t(tipMessage.title) : ''}
+        text={tipMessage ? t(tipMessage.text) : ''}
+        target={tipTarget}
+        onNext={tips.next}
+        onClose={tips.close}
+      />
 
       {unitMenu}
 
@@ -366,10 +391,13 @@ function UnitRail({
   unit,
   onStartLesson,
   onOpenMenu,
+  cardRef,
 }: {
   unit: Unit;
   onStartLesson: (lesson: Lesson) => void;
   onOpenMenu: () => void;
+  /** Tarjeta de la unidad, para el consejo de Pipo. */
+  cardRef?: React.RefObject<React.ComponentRef<typeof View> | null>;
 }) {
   const { progress } = useProgress();
   const { t } = useI18n();
@@ -397,7 +425,7 @@ function UnitRail({
 
   return (
     <>
-      <View style={[styles.unitCard, styles.unitCardRail]}>
+      <View ref={cardRef} style={[styles.unitCard, styles.unitCardRail]}>
         <Pressable
           onPress={onOpenMenu}
           accessibilityRole="button"

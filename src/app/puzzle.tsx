@@ -10,7 +10,6 @@ import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
 import { PuzzleSource } from '../puzzles/source';
 import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
 import { PuzzleScreen } from '../screens/PuzzleScreen';
-import { colors } from '../theme';
 
 /**
  * Un puzzle. Parámetros: modo (dia | practica), id (puzzle del día), nivel y tema (práctica).
@@ -92,7 +91,7 @@ function PuzzleLoaded({ source }: { source: PuzzleSource }) {
 
   return (
     // Fondo oscuro debajo del fundido de entrada de cada puzzle.
-    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+    <View style={{ flex: 1, backgroundColor: 'transparent' }}>
       <PuzzleScreen
         key={current.puzzle.id}
         puzzle={current.puzzle}

@@ -120,7 +120,7 @@ function Steps({ system, open, first }: { system: System; open: boolean; first?:
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { flexGrow: 1, paddingHorizontal: space.lg, paddingBottom: space.xxl, alignItems: 'center' },
   column: { width: '100%' },
   icon: { width: 72, height: 72, borderRadius: 16 },

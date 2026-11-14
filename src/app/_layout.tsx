@@ -24,11 +24,12 @@ import { ColumnContext } from '../components/ColumnScrollView';
 import { COLUMN_MAX } from '../components/boardSize';
 import { useRouteMeta } from '../seo/useRouteMeta';
 import { DriveSyncProvider } from '../sync/DriveSyncContext';
+import { AppBackground } from '../components/AppBackground';
 import { colors } from '../theme';
 
-// Tema de la navegación: su `background` es el fondo que se ve detrás de las pantallas mientras se deslizan
-// (con el tema por defecto es claro y se veía un destello blanco al abrir y volver de un menú).
-const navTheme = { ...DarkTheme, colors: { ...DarkTheme.colors, background: colors.bg, card: colors.surface, border: colors.surfaceRaised } };
+// Tema de la navegación: su `background` es el fondo que se ve detrás de las pantallas mientras se deslizan.
+// Transparente para que se vea el AppBackground (luz cálida) que está detrás de todo.
+const navTheme = { ...DarkTheme, colors: { ...DarkTheme.colors, background: 'transparent', card: colors.surface, border: colors.surfaceRaised } };
 
 // La pantalla de carga sigue visible hasta que AppStack termina de cargar fuentes y datos.
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -69,8 +70,9 @@ export default function RootLayout() {
           <DriveSyncProvider>
             <PieceSetProvider>
               <StatusBar style="light" />
-              {/* Vista raíz oscura: si algo deja ver lo que hay detrás de las pantallas, que no sea blanco. */}
-              <View style={{ flex: 1, backgroundColor: colors.bg }}>
+              {/* Fondo fijo de la app; las pantallas van encima con fondo transparente. */}
+              <View style={{ flex: 1, backgroundColor: colors.bgBottom }}>
+                <AppBackground />
                 <WebColumn>
                   <ThemeProvider value={navTheme}>{fontsLoaded ? <AppStack /> : <Loading />}</ThemeProvider>
                 </WebColumn>
@@ -96,7 +98,7 @@ function AppStack() {
   // va encerrada en la columna entera (`inColumn`).
   const wide = useWideLayout();
   const inColumn = {
-    contentStyle: { backgroundColor: colors.bg, ...(wide ? { width: '100%' as const, maxWidth: COLUMN_MAX, alignSelf: 'center' as const } : null) },
+    contentStyle: { backgroundColor: 'transparent', ...(wide ? { width: '100%' as const, maxWidth: COLUMN_MAX, alignSelf: 'center' as const } : null) },
   };
 
   // Si lo guardado no se pudo leer, la persona tiene que saber que esta sesión no se guarda.
@@ -115,7 +117,7 @@ function AppStack() {
     // que la animación por defecto de Android). La bienvenida y el resultado aparecen con un fundido.
     <ColumnContext.Provider value={wide ? COLUMN_MAX : null}>
     <Stack
-      screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg }, animation: 'ios_from_right' }}
+      screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent' }, animation: 'ios_from_right' }}
     >
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="apertura/[id]" />

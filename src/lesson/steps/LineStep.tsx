@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Chess, Square } from 'chess.js';
 import { resolveNotation, sanFromSpanish } from '../../chess/notation';
 import { BoardLayout } from '../../components/BoardLayout';
@@ -25,18 +25,57 @@ const SAN_MARK = '\u0001';
  *   la explicación queda fija mientras responde el rival. Tras un error, una flecha marca la jugada.
  * drill: sin explicaciones ni ayudas; un error se marca y se reintenta.
  */
-export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
+export function LineStep({ step, onCorrect, onWrong, onClear, locked, replay }: Props) {
   const { notation: notationSetting } = useSettings().settings;
   const { language, t } = useI18n();
   // Las jugadas de los datos están en español; se muestran en la notación elegida en Ajustes.
   const san = (s: string) => sanFromSpanish(s, resolveNotation(notationSetting, language));
-  const [chess] = useState(() => new Chess(step.fen));
-  const [ply, setPly] = useState(0); // jugadas ya hechas
-  const [fen, setFen] = useState(step.fen);
-  const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(null);
+  const [chess] = useState(() => {
+    const c = new Chess(step.fen);
+    // En repaso, la línea aparece completa, como quedó al terminarla.
+    if (replay) {
+      for (const m of step.moves) {
+        try {
+          c.move({ from: m.uci.slice(0, 2) as Square, to: m.uci.slice(2, 4) as Square, promotion: m.uci[4] ?? 'q' });
+        } catch {
+          break;
+        }
+      }
+    }
+    return c;
+  });
+  const [ply, setPly] = useState(replay ? step.moves.length : 0); // jugadas ya hechas
+  const [fen, setFen] = useState(replay ? chess.fen() : step.fen);
+  const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(() => {
+    if (!replay || step.moves.length === 0) return null;
+    const m = step.moves[step.moves.length - 1];
+    return { from: m.uci.slice(0, 2) as Square, to: m.uci.slice(2, 4) as Square };
+  });
   const [showHint, setShowHint] = useState(false);
   // Jugada equivocada a la vista (posición aparte: la partida real no cambia) hasta "Reintentar".
   const [wrong, setWrong] = useState<{ fen: string; move: { from: Square; to: Square } } | null>(null);
+  // Visor de las jugadas ya hechas: null = jugada actual; un número = jugada que se está mirando.
+  const [viewAt, setViewAt] = useState<number | null>(null);
+  const viewingBack = viewAt !== null;
+  const viewPly = viewAt ?? ply;
+
+  // Posición que muestra el tablero: la actual o la de la jugada que se está mirando.
+  const view = useMemo(() => {
+    if (!viewingBack) return { fen, lastMove };
+    const probe = new Chess(step.fen);
+    let last: { from: Square; to: Square } | null = null;
+    for (const m of step.moves.slice(0, viewPly)) {
+      const from = m.uci.slice(0, 2) as Square;
+      const to = m.uci.slice(2, 4) as Square;
+      try {
+        probe.move({ from, to, promotion: m.uci[4] ?? 'q' });
+        last = { from, to };
+      } catch {
+        break;
+      }
+    }
+    return { fen: probe.fen(), lastMove: last };
+  }, [viewingBack, fen, lastMove, step, viewPly]);
 
   const guided = step.mode === 'guided';
   const finished = ply >= step.moves.length;
@@ -64,6 +103,7 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
 
   // Turno del rival: juega solo. Al terminar la línea, el paso queda resuelto.
   useEffect(() => {
+    if (replay) return;
     if (finished) {
       onCorrect(step.success ?? t(guided ? 'lesson.line.successGuided' : 'lesson.line.successDrill'));
       return;
@@ -76,7 +116,7 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
   }, [ply]);
 
   const handleMove = (m: BoardMove) => {
-    if (!expected || locked) return;
+    if (!expected || locked || viewingBack) return;
     // Si la línea corona, también cuenta la pieza (uci de 5 letras).
     if (`${m.from}${m.to}${expected.uci.length === 5 ? m.promotion ?? '' : ''}` === expected.uci) {
       setShowHint(false);
@@ -109,13 +149,13 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
       board={
         <>
           <Board
-            fen={wrong?.fen ?? fen}
+            fen={wrong?.fen ?? view.fen}
             orientation={step.orientation ?? step.side}
-            interactive={userTurn && !locked}
-            lastMove={wrong?.move ?? lastMove}
+            interactive={userTurn && !locked && !viewingBack}
+            lastMove={wrong?.move ?? view.lastMove}
             // En guiado se marcan el origen y el destino de la jugada que toca (no mientras se ve el error).
-            highlight={guided && expected && !wrong ? [expected.uci.slice(0, 2), expected.uci.slice(2, 4)] : undefined}
-            arrows={showHint && expected && !wrong ? [expected.uci.slice(0, 4)] : undefined}
+            highlight={guided && expected && !wrong && !viewingBack ? [expected.uci.slice(0, 2), expected.uci.slice(2, 4)] : undefined}
+            arrows={showHint && expected && !wrong && !viewingBack ? [expected.uci.slice(0, 4)] : undefined}
             onMove={handleMove}
           />
         </>
@@ -135,7 +175,7 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
       </Text>
 
       {/* key = jugada explicada: cada explicación nueva aparece con su animación */}
-      {card && (
+      {card && !viewingBack && (
         <FadeIn key={cardIndex} delay={80} style={[styles.noteCard, !cardPlayed && styles.noteCardActive]}>
           <Text style={styles.noteTitle}>
             {cardBefore}
@@ -146,7 +186,38 @@ export function LineStep({ step, onCorrect, onWrong, onClear, locked }: Props) {
         </FadeIn>
       )}
 
-      <Text style={styles.notation}>{ply === 0 ? t('lesson.line.noMoves') : notation(step, ply, san)}</Text>
+      <Text style={styles.notation}>{viewPly === 0 ? t('lesson.line.noMoves') : notation(step, viewPly, san)}</Text>
+
+      {/* Visor de las jugadas ya hechas (feedback del tester, sección 3). */}
+      {ply > 0 && (
+        <View style={styles.viewer}>
+          <Pressable
+            onPress={() => setViewAt(Math.max(0, viewPly - 1))}
+            disabled={viewPly <= 0}
+            accessibilityRole="button"
+            accessibilityLabel={t('review.ctrlPrev')}
+            accessibilityState={{ disabled: viewPly <= 0 }}
+            style={[styles.viewerBtn, viewPly <= 0 && styles.viewerBtnOff]}
+          >
+            <Text style={styles.viewerGlyph}>‹</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => setViewAt(viewPly + 1 >= ply ? null : viewPly + 1)}
+            disabled={!viewingBack}
+            accessibilityRole="button"
+            accessibilityLabel={t('review.ctrlNext')}
+            accessibilityState={{ disabled: !viewingBack }}
+            style={[styles.viewerBtn, !viewingBack && styles.viewerBtnOff]}
+          >
+            <Text style={styles.viewerGlyph}>›</Text>
+          </Pressable>
+          {viewingBack && (
+            <Pressable onPress={() => setViewAt(null)} accessibilityRole="button" style={styles.currentBtn}>
+              <Text style={styles.currentText}>{t('lesson.line.backToCurrent')}</Text>
+            </Pressable>
+          )}
+        </View>
+      )}
     </BoardLayout>
   );
 }
@@ -201,4 +272,19 @@ const styles = StyleSheet.create({
   noteTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
   noteText: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, lineHeight: 20, marginTop: space.xs },
   notation: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted, marginTop: space.md, lineHeight: 22 },
+  viewer: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md },
+  viewerBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.surfaceRaised,
+    borderBottomWidth: 3,
+    borderBottomColor: colors.surfaceShadow,
+  },
+  viewerBtnOff: { opacity: 0.4 },
+  viewerGlyph: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text, lineHeight: 22 },
+  currentBtn: { marginLeft: 'auto', paddingVertical: 6 },
+  currentText: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.primary },
 });

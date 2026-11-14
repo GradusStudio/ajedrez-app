@@ -11,7 +11,7 @@ import { Level, levelOf, levelRange, LEVELS, Puzzle, PRACTICE_THEMES, puzzleGoal
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
 import { levelsWithPuzzles, PuzzleSource } from '../puzzles/source';
 import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
-import { type, colors, fonts, radius, space } from '../theme';
+import { cardSkin, type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
@@ -195,17 +195,14 @@ function nearest(level: Level, levels: Level[]): Level {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
   card: {
-    backgroundColor: colors.surface,
+    ...cardSkin,
     borderRadius: radius.control,
     borderWidth: 2,
-    borderColor: colors.surfaceRaised,
-    borderBottomWidth: 4,
-    borderBottomColor: colors.surfaceShadow,
     paddingVertical: space.md,
     paddingHorizontal: 14,
   },

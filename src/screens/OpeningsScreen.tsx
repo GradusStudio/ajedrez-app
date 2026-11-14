@@ -21,7 +21,7 @@ import { openingGame, progressPosition } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
-import { type, colors, fonts, radius, space } from '../theme';
+import { cardSkin, type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useReducedMotion } from '../components/useReducedMotion';
 import { useWideGrid } from '../components/useWideGrid';
@@ -300,7 +300,7 @@ export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
@@ -322,12 +322,9 @@ const styles = StyleSheet.create({
   segmentSelected: { borderColor: colors.primary, backgroundColor: colors.surfaceRaised },
   segmentText: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
   card: {
-    backgroundColor: colors.surface,
+    ...cardSkin,
     borderRadius: radius.control,
     borderWidth: 2,
-    borderColor: colors.surfaceRaised,
-    borderBottomWidth: 4,
-    borderBottomColor: colors.surfaceShadow,
     paddingVertical: space.md,
     paddingHorizontal: 14,
     marginBottom: space.sm,

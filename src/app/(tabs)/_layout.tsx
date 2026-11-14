@@ -59,7 +59,7 @@ export default function TabsLayout() {
               {children}
             </Text>
           ),
-        sceneStyle: { backgroundColor: colors.bg },
+        sceneStyle: { backgroundColor: 'transparent' },
         // Cambio de pestaña con un fundido corto, en vez del corte seco.
         animation: 'fade',
       }}

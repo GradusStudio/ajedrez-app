@@ -93,7 +93,7 @@ export function BotDetailScreen({ bot, onPlay, onBack }: Props) {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.md },
   header: { flexDirection: 'row', alignItems: 'center', gap: space.lg },

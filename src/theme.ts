@@ -9,6 +9,15 @@ export const colors = {
   dangerShadow: '#A02A1E',
 
   bg: '#262421',
+  // Fondo de la app (luz cálida, viñeta y base): ver AppBackground.tsx. `bg` queda para los textos
+  // oscuros sobre verde y para la barra del sistema.
+  bgTop: '#2A2724',
+  bgBottom: '#1D1B19',
+  lamp: 'rgba(255, 196, 128, 0.13)',
+  cardTop: 'rgba(60, 58, 55, 0.78)',
+  cardBottom: 'rgba(48, 46, 43, 0.78)',
+  cardBorder: 'rgba(255, 255, 255, 0.07)',
+  cardShadow: 'rgba(0, 0, 0, 0.28)',
   surface: '#302E2B',
   surfaceRaised: '#3C3A37',
   surfaceShadow: '#2B2926',
@@ -26,6 +35,18 @@ export const colors = {
 export const radius = {
   control: 16,
   bar: 8,
+} as const;
+
+// Relieve de tarjeta del fondo nuevo (spec del feedback del tester, sección 1): composición plana del
+// mismo degradé de CardSurface, para estilos de tarjeta que no pueden envolverse en el componente.
+export const cardSkin = {
+  backgroundColor: 'rgba(60, 58, 55, 0.78)',
+  borderColor: 'rgba(255, 255, 255, 0.07)',
+  shadowColor: '#000000',
+  shadowOpacity: 0.28,
+  shadowRadius: 24,
+  shadowOffset: { width: 0, height: 10 },
+  elevation: 6,
 } as const;
 
 export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 } as const;

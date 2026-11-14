@@ -19,7 +19,7 @@ export function NotFoundScreen({ onHome }: { onHome: () => void }) {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg, paddingHorizontal: space.lg, alignItems: 'center' },
+  screen: { flex: 1, backgroundColor: 'transparent', paddingHorizontal: space.lg, alignItems: 'center' },
   glyph: { fontSize: 64, color: colors.textMuted },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text, marginTop: space.lg, textAlign: 'center' },
   text: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted, marginTop: space.sm, lineHeight: 23, textAlign: 'center' },

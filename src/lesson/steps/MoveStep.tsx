@@ -9,10 +9,24 @@ import { TeacherBubble } from '../TeacherBubble';
 
 type Props = { step: MoveStepData } & StepCallbacks;
 
-export function MoveStep({ step, onCorrect, onWrong, locked }: Props) {
-  const [fen, setFen] = useState(step.fen);
-  const [solved, setSolved] = useState(false);
-  const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(null);
+export function MoveStep({ step, onCorrect, onWrong, locked, replay }: Props) {
+  // En repaso, el tablero queda con la primera solución jugada, como al terminar el paso.
+  const [replayState] = useState(() => {
+    if (!replay) return null;
+    const uci = step.solutions[0];
+    const from = uci.slice(0, 2) as Square;
+    const to = uci.slice(2, 4) as Square;
+    try {
+      const chess = new Chess(step.fen);
+      chess.move({ from, to, promotion: uci.length === 5 ? uci[4] : undefined });
+      return { fen: chess.fen(), lastMove: { from, to } };
+    } catch {
+      return { fen: step.fen, lastMove: null };
+    }
+  });
+  const [fen, setFen] = useState(replayState?.fen ?? step.fen);
+  const [solved, setSolved] = useState(!!replay);
+  const [lastMove, setLastMove] = useState<{ from: Square; to: Square } | null>(replayState?.lastMove ?? null);
 
   const handleMove = (m: BoardMove) => {
     if (solved || locked) return;

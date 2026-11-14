@@ -134,6 +134,8 @@ export const it: Record<MessageKey, string> = {
   // Lección
   'lesson.exitTitle': 'Vuoi uscire dalla lezione?',
   'lesson.keepGoing': 'Continua',
+  'lesson.previousStep': 'Passo precedente',
+  'lesson.reviewContinue': 'Continua',
   'lesson.exitMessage': 'I tuoi progressi restano salvati.',
   'lesson.exitReviewMessage': 'Gli errori restano salvati per ripassarli più tardi.',
   'lesson.reviewTitle': 'Ripasso: {title}',
@@ -152,6 +154,7 @@ export const it: Record<MessageKey, string> = {
   'lesson.line.played': 'Hai giocato {san}',
   'lesson.line.yourMove': 'La tua mossa: {san}',
   'lesson.line.noMoves': 'Ancora nessuna mossa',
+  'lesson.line.backToCurrent': 'Torna alla mossa attuale',
   'lesson.practice.stalemate': 'Hai messo il re in stallo: la partita finisce patta. Lascia sempre una casella libera.',
   'lesson.practice.drawn': 'Così la partita finisce patta.',
   'lesson.practice.outOfMoves': "Le {n} mosse sono finite. Riprova dall'inizio.",

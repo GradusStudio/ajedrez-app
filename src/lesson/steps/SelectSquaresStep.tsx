@@ -13,10 +13,10 @@ import { space } from '../../theme';
 
 type Props = { step: SelectSquaresStepData } & StepCallbacks;
 
-export function SelectSquaresStep({ step, onCorrect, onWrong, locked }: Props) {
+export function SelectSquaresStep({ step, onCorrect, onWrong, locked, replay }: Props) {
   const { t } = useI18n();
   const [picked, setPicked] = useState<string[]>([]);
-  const [solved, setSolved] = useState(false);
+  const [solved, setSolved] = useState(!!replay);
 
   // Tras un error, las casillas elegidas quedan marcadas para corregirlas después de "Reintentar".
   // No se pueden marcar más casillas que las de la respuesta: con una sola, tocar otra la reemplaza;

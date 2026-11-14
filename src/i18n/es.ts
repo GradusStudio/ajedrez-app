@@ -133,6 +133,8 @@ export const es = {
   // Lección
   'lesson.exitTitle': '¿Salir de la lección?',
   'lesson.keepGoing': 'Seguir',
+  'lesson.previousStep': 'Paso anterior',
+  'lesson.reviewContinue': 'Seguir',
   'lesson.exitMessage': 'Tu avance queda guardado.',
   'lesson.exitReviewMessage': 'Los errores siguen guardados para repasarlos después.',
   'lesson.reviewTitle': 'Repaso: {title}',
@@ -151,6 +153,7 @@ export const es = {
   'lesson.line.played': 'Jugaste {san}',
   'lesson.line.yourMove': 'Tu jugada: {san}',
   'lesson.line.noMoves': 'Aún no hay jugadas',
+  'lesson.line.backToCurrent': 'Volver a la jugada actual',
   'lesson.practice.stalemate': 'Ahogaste al rey: la partida termina en tablas. Deja siempre una casilla libre.',
   'lesson.practice.drawn': 'Así la partida termina en tablas.',
   'lesson.practice.outOfMoves': 'Se terminaron las {n} jugadas. Prueba de nuevo desde el principio.',

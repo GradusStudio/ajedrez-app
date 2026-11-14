@@ -22,7 +22,7 @@ export function ComingSoonScreen({ title, description, milestone }: Props) {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg, paddingHorizontal: space.lg },
+  screen: { flex: 1, backgroundColor: 'transparent', paddingHorizontal: space.lg },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   card: {
     backgroundColor: colors.surface,

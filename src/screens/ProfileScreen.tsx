@@ -10,7 +10,7 @@ import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, isPuzzleSolved, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
-import { type, colors, fonts, radius, space } from '../theme';
+import { cardSkin, type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
@@ -130,16 +130,13 @@ function Stat({
 }
 
 const card = {
-  backgroundColor: colors.surface,
+  ...cardSkin,
   borderRadius: radius.control,
   borderWidth: 2,
-  borderColor: colors.surfaceRaised,
-  borderBottomWidth: 4,
-  borderBottomColor: colors.surfaceShadow,
 } as const;
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.lg },

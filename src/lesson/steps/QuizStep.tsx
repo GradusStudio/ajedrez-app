@@ -11,10 +11,10 @@ import { type, colors, fonts, radius, space } from '../../theme';
 
 type Props = { step: QuizStepData } & StepCallbacks;
 
-export function QuizStep({ step, onCorrect, onWrong, locked }: Props) {
+export function QuizStep({ step, onCorrect, onWrong, locked, replay }: Props) {
   const { t } = useI18n();
   const [wrong, setWrong] = useState<number[]>([]);
-  const [solved, setSolved] = useState(false);
+  const [solved, setSolved] = useState(!!replay);
 
   const pick = (i: number) => {
     // La opción equivocada queda marcada en rojo; tras "Reintentar" se elige otra.

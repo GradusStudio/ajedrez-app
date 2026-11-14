@@ -593,7 +593,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xl },
   topRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginBottom: space.sm },
   close: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.textMuted },

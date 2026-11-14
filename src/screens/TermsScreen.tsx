@@ -51,7 +51,7 @@ export function TermsScreen({ onBack }: { onBack: () => void }) {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   backButton: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
   back: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },

@@ -28,6 +28,6 @@ export function PuzzlesStatus({ state }: { state: Exclude<PuzzlesState, { status
 }
 
 const styles = StyleSheet.create({
-  box: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: space.lg, backgroundColor: colors.bg },
+  box: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: space.lg, backgroundColor: 'transparent' },
   text: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, textAlign: 'center' },
 });

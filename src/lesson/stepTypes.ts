@@ -12,6 +12,11 @@ export type StepCallbacks = {
   onClear?: () => void;
   /** true mientras se ve el panel rojo: el paso no acepta jugadas ni respuestas hasta "Reintentar". */
   locked?: boolean;
+  /**
+   * Repaso de un paso ya resuelto («Paso anterior»): se muestra como quedó al terminarlo, sin pedir
+   * la jugada otra vez y sin avisar al reproductor (no cobra errores ni da monedas).
+   */
+  replay?: boolean;
 };
 
 /**

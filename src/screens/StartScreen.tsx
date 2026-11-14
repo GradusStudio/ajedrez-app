@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
+import { CardSurface } from '../components/CardSurface';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { MiniBoard } from '../components/MiniBoard';
 import { StatIcon } from '../components/StatIcon';
@@ -142,7 +143,7 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
   );
 
   const heroCard = (
-    <View ref={heroRef} style={styles.card}>
+    <CardSurface ref={heroRef} style={styles.card} radius={20}>
       <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('start.continue')}</Text>
       {lesson && unit && position ? (
         <View style={[styles.heroRow, !wide && styles.heroColumn]}>
@@ -172,11 +173,11 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
       ) : (
         <Text style={styles.sub}>{t('start.allDone')}</Text>
       )}
-    </View>
+    </CardSurface>
   );
 
   const streakCard = (
-    <View style={styles.card}>
+    <CardSurface style={styles.card} radius={20}>
       <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('start.streak')}</Text>
       <View style={styles.streakTop}>
         <StreakFlame state={flameStateOf(status.kind)} size={wide ? 36 : 28} />
@@ -196,11 +197,11 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
           />
         ))}
       </View>
-    </View>
+    </CardSurface>
   );
 
   const botsCard = (
-    <View style={styles.card}>
+    <CardSurface style={styles.card} radius={20}>
       <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('tabs.bots')}</Text>
       <View style={styles.botRow}>
         <BotAvatar bot={ongoingBot ?? recommendedBot} size={wide ? 64 : 52} expression="acierto" />
@@ -221,11 +222,11 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
           />
         </View>
       </View>
-    </View>
+    </CardSurface>
   );
 
   const openingsCard = course ? (
-    <View style={styles.card}>
+    <CardSurface style={styles.card} radius={20}>
       <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('tabs.openings')}</Text>
       <Text style={styles.cardTitleSmall}>{course.name}</Text>
       <Text style={styles.sub}>{courseLine}</Text>
@@ -235,7 +236,7 @@ export function StartScreen({ onLesson, onDaily, onContinueGame, onBot, onCourse
         onPress={() => onCourse(course)}
         style={{ marginTop: space.md, alignSelf: 'flex-start' }}
       />
-    </View>
+    </CardSurface>
   ) : null;
 
   return (
@@ -371,15 +372,15 @@ function DailyPuzzleCard({ wide, onOpen }: { wide: boolean; onOpen: (id: string)
   }
 
   return (
-    <View style={styles.card}>
+    <CardSurface style={styles.card} radius={20}>
       <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('puzzles.daily')}</Text>
       {body}
-    </View>
+    </CardSurface>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   hello: { flexDirection: 'row', alignItems: 'center', gap: space.lg, flexWrap: 'wrap', marginBottom: space.xl },
   helloTextWrap: { flex: 1, minWidth: 200 },
@@ -405,9 +406,6 @@ const styles = StyleSheet.create({
   colLeft: { flex: 1.35, gap: space.lg },
   colRight: { flex: 1, gap: space.lg },
   card: {
-    backgroundColor: colors.surface,
-    borderWidth: 2,
-    borderColor: colors.surfaceRaised,
     borderRadius: 20,
     padding: space.lg,
   },

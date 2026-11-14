@@ -141,7 +141,7 @@ function Choice({
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg, paddingHorizontal: space.lg, paddingBottom: space.xxl },
+  screen: { flex: 1, backgroundColor: 'transparent', paddingHorizontal: space.lg, paddingBottom: space.xxl },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: space.xl },
   dots: { flexDirection: 'row', gap: space.sm },
   dot: { width: 28, height: 8, borderRadius: radius.bar, backgroundColor: colors.surfaceRaised },

@@ -13,7 +13,7 @@ import { BubbleRow } from '../lesson/TeacherBubble';
 import { OFFER_REMINDER_HOUR } from '../settings/reminderPlan';
 import { TIP_MESSAGES } from '../settings/tips';
 import { useTips } from '../settings/useTips';
-import { type, colors, fonts, radius, space } from '../theme';
+import { cardSkin, type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
 type Props = {
@@ -155,7 +155,7 @@ export function LessonResultScreen({ title, teacher, mode, errors, coinsEarned, 
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { flexGrow: 1, paddingHorizontal: space.lg, paddingBottom: space.xxl },
   heading: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   lesson: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: 4 },
@@ -163,12 +163,9 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: space.sm, marginTop: space.xxl },
   stat: {
     flex: 1,
-    backgroundColor: colors.surface,
+    ...cardSkin,
     borderRadius: radius.control,
     borderWidth: 2,
-    borderColor: colors.surfaceRaised,
-    borderBottomWidth: 4,
-    borderBottomColor: colors.surfaceShadow,
     alignItems: 'center',
     paddingVertical: space.lg,
     paddingHorizontal: space.xs,
@@ -182,12 +179,9 @@ const styles = StyleSheet.create({
   statLabel: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: 2, textAlign: 'center' },
   offer: {
     marginTop: space.xl,
-    backgroundColor: colors.surface,
+    ...cardSkin,
     borderRadius: radius.control,
     borderWidth: 2,
-    borderColor: colors.surfaceRaised,
-    borderBottomWidth: 4,
-    borderBottomColor: colors.surfaceShadow,
     padding: space.lg,
   },
   offerTitle: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text, textAlign: 'center' },

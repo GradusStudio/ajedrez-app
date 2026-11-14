@@ -287,7 +287,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   center: { alignItems: 'center', justifyContent: 'center', padding: space.lg },
   muted: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xl },

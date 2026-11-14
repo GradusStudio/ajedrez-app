@@ -134,6 +134,8 @@ export const fr: Record<MessageKey, string> = {
   // Lección
   'lesson.exitTitle': 'Quitter la leçon ?',
   'lesson.keepGoing': 'Continuer',
+  'lesson.previousStep': 'Étape précédente',
+  'lesson.reviewContinue': 'Continuer',
   'lesson.exitMessage': 'Ta progression est enregistrée.',
   'lesson.exitReviewMessage': 'Tes erreurs restent enregistrées pour les revoir plus tard.',
   'lesson.reviewTitle': 'Révision : {title}',
@@ -152,6 +154,7 @@ export const fr: Record<MessageKey, string> = {
   'lesson.line.played': 'Tu as joué {san}',
   'lesson.line.yourMove': 'Ton coup : {san}',
   'lesson.line.noMoves': 'Pas encore de coups',
+  'lesson.line.backToCurrent': 'Revenir au coup actuel',
   'lesson.practice.stalemate': 'Tu as mis le roi pat : la partie est nulle. Laisse toujours une case libre.',
   'lesson.practice.drawn': 'Ainsi, la partie se termine par une nulle.',
   'lesson.practice.outOfMoves': 'Les {n} coups sont épuisés. Réessaie depuis le début.',

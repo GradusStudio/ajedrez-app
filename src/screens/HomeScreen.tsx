@@ -27,7 +27,7 @@ import { useTodayKey } from '../settings/useTodayKey';
 import { useSettings } from '../settings/SettingsContext';
 import { TIP_MESSAGES } from '../settings/tips';
 import { useTips } from '../settings/useTips';
-import { type, colors, fonts, radius, space } from '../theme';
+import { cardSkin, type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useReducedMotion } from '../components/useReducedMotion';
 import { useWideLayout } from '../components/useWideLayout';
@@ -549,7 +549,7 @@ function UnitRail({
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg },
   statsRow: { flexDirection: 'row', gap: space.lg },
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
@@ -613,21 +613,17 @@ const styles = StyleSheet.create({
     left: space.lg,
     right: space.lg,
     bottom: space.lg,
-    backgroundColor: colors.surface,
+    ...cardSkin,
     borderRadius: radius.control,
     borderWidth: 2,
-    borderColor: colors.surfaceRaised,
-    borderBottomWidth: 4,
-    borderBottomColor: colors.surfaceShadow,
     padding: space.md,
   },
   backdrop: { flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.6)', paddingHorizontal: space.lg },
   menu: {
     maxHeight: '70%',
-    backgroundColor: colors.surface,
+    ...cardSkin,
     borderRadius: radius.control,
     borderWidth: 2,
-    borderColor: colors.surfaceRaised,
     padding: space.sm,
   },
   menuTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text, padding: space.sm },

@@ -134,6 +134,8 @@ export const en: Record<MessageKey, string> = {
   // Lección
   'lesson.exitTitle': 'Exit the lesson?',
   'lesson.keepGoing': 'Stay',
+  'lesson.previousStep': 'Previous step',
+  'lesson.reviewContinue': 'Continue',
   'lesson.exitMessage': 'Your progress is saved.',
   'lesson.exitReviewMessage': 'Your mistakes stay saved so you can review them later.',
   'lesson.reviewTitle': 'Review: {title}',
@@ -152,6 +154,7 @@ export const en: Record<MessageKey, string> = {
   'lesson.line.played': 'You played {san}',
   'lesson.line.yourMove': 'Your move: {san}',
   'lesson.line.noMoves': 'No moves yet',
+  'lesson.line.backToCurrent': 'Back to the current move',
   'lesson.practice.stalemate': 'You stalemated the king: the game ends in a draw. Always leave a free square.',
   'lesson.practice.drawn': 'Played this way, the game ends in a draw.',
   'lesson.practice.outOfMoves': "You've used all {n} moves. Try again from the start.",

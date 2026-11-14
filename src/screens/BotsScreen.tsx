@@ -9,7 +9,7 @@ import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { useProgress } from '../progress/ProgressContext';
 import { recordAgainst } from '../progress/progressStore';
-import { type, colors, fonts, radius, space } from '../theme';
+import { cardSkin, type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useWideGrid } from '../components/useWideGrid';
 
@@ -81,19 +81,16 @@ export function BotsScreen({ onOpenBot, onContinue }: Props) {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
   card: {
     flexDirection: 'row',
     gap: space.md,
-    backgroundColor: colors.surface,
+    ...cardSkin,
     borderRadius: radius.control,
     borderWidth: 2,
-    borderColor: colors.surfaceRaised,
-    borderBottomWidth: 4,
-    borderBottomColor: colors.surfaceShadow,
     paddingVertical: space.md,
     paddingHorizontal: 14,
     marginBottom: space.sm,
@@ -102,7 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: space.md,
-    backgroundColor: colors.surface,
+    ...cardSkin,
     borderRadius: radius.control,
     borderWidth: 2,
     borderColor: colors.primary,

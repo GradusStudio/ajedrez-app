@@ -64,9 +64,10 @@ export function WideSidebar({ state, descriptors, emitter, navigateToTab, labels
 const styles = StyleSheet.create({
   side: {
     height: '100%',
-    backgroundColor: colors.surface,
+    // Deja ver la luz del fondo (spec del fondo, sección 1).
+    backgroundColor: 'rgba(20, 19, 17, 0.45)',
     borderRightWidth: 2,
-    borderRightColor: colors.surfaceRaised,
+    borderRightColor: 'rgba(255, 255, 255, 0.06)',
     paddingTop: space.xl,
     paddingHorizontal: space.md,
   },

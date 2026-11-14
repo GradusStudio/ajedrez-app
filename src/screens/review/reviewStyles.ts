@@ -4,7 +4,7 @@ import { type, colors, fonts, radius, space } from '../../theme';
 const BUBBLE_H = 190; // alto fijo del globo: así el tablero nunca se mueve (unas 7 líneas de texto y el resto se desliza)
 
 export const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.lg },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.md },

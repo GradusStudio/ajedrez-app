@@ -23,6 +23,7 @@ import { statusBarTop } from '../components/statusBarTop';
 import { useBoardLayoutWidth } from '../components/BoardLayout';
 import { useWideLayout } from '../components/useWideLayout';
 import { LESSON_RESERVE } from './stepTypes';
+import { previousStep, reviewProgress } from './review';
 
 export type LessonResult = { errors: number; xp: number; mistakes: string[] }; // xp: monedas de la lección
 
@@ -54,6 +55,11 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
   const [message, setMessage] = useState('');
   const [mistakes, setMistakes] = useState<string[]>(start?.mistakes ?? []);
   const [errors, setErrors] = useState(start?.errors ?? 0);
+  // Repaso con «Paso anterior»: null = paso actual; un número = paso ya resuelto que se está mirando.
+  const [viewAt, setViewAt] = useState<number | null>(null);
+  const reviewing = viewAt !== null;
+  const visibleIndex = viewAt ?? index;
+  const activeStep: Step = lesson.steps[visibleIndex];
 
   const step: Step = lesson.steps[index];
   const total = lesson.steps.length;
@@ -66,14 +72,14 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
     const bot = findBot(teacherForLesson(lessonId).id) ?? teacherForLesson(lessonId);
     return { bot, welcome: start || noWelcome ? undefined : pickPhrase(bot.teaching.welcome) };
   });
-  const guided = step.type === 'line' && step.mode === 'guided';
+  const guided = activeStep.type === 'line' && activeStep.mode === 'guided';
   const teacher = useMemo(
     () => ({
       bot: opening.bot,
-      expression: teacherExpression(step.type, status, guided),
-      welcome: index === 0 ? opening.welcome : undefined,
+      expression: teacherExpression(activeStep.type, reviewing ? 'correct' : status, guided),
+      welcome: !reviewing && index === 0 ? opening.welcome : undefined,
     }),
-    [opening, step.type, status, guided, index]
+    [opening, activeStep.type, status, guided, index, reviewing]
   );
 
   const feedback = useFeedback();
@@ -170,20 +176,22 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
   });
 
   const renderStep = () => {
-    const callbacks = { onCorrect, onWrong, locked: status === 'wrong' };
-    switch (step.type) {
+    // En repaso, los pasos van bloqueados y con `replay`: muestran cómo quedaron al terminarlos y no
+    // vuelven a avisar (no cobran errores ni dan monedas).
+    const callbacks = { onCorrect, onWrong, locked: reviewing || status === 'wrong', replay: reviewing };
+    switch (activeStep.type) {
       case 'explain':
-        return <ExplainStep step={step} />;
+        return <ExplainStep step={activeStep} />;
       case 'move':
-        return <MoveStep step={step} {...callbacks} />;
+        return <MoveStep step={activeStep} {...callbacks} />;
       case 'quiz':
-        return <QuizStep step={step} {...callbacks} />;
+        return <QuizStep step={activeStep} {...callbacks} />;
       case 'select_squares':
-        return <SelectSquaresStep step={step} {...callbacks} />;
+        return <SelectSquaresStep step={activeStep} {...callbacks} />;
       case 'line':
-        return <LineStep step={step} {...callbacks} onClear={onClear} />;
+        return <LineStep step={activeStep} {...callbacks} onClear={onClear} />;
       case 'practice':
-        return <PracticeStep step={step} {...callbacks} />;
+        return <PracticeStep step={activeStep} {...callbacks} />;
     }
   };
 
@@ -191,20 +199,28 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
   // Pantalla ancha: encabezado y panel de abajo alineados con el tablero y su panel.
   const contentWidth = useBoardLayoutWidth(LESSON_RESERVE);
   const wide = useWideLayout();
-  const progress = (index + (status === 'correct' ? 1 : 0)) / total;
-  // El panel ancho muestra el aviso y el botón junto al profesor, no en la barra del pie.
-  const panel: LessonPanelState = {
-    status,
-    title: status === 'correct' ? t('lesson.correct') : status === 'wrong' ? t('common.incorrect') : undefined,
-    message: status === 'idle' ? undefined : message,
-    buttonLabel:
-      status === 'wrong'
-        ? t('common.retry')
-        : status === 'correct' || step.type === 'explain'
-          ? continueLabel
-          : undefined,
-    onButton: status === 'wrong' ? retry : next,
+  const progress = reviewProgress(viewAt, index, total, status === 'correct');
+  // Retroceder al paso anterior ya resuelto (se puede seguir retrocediendo) y volver al paso actual.
+  const canGoBack = visibleIndex > 0;
+  const goBack = () => {
+    if (canGoBack) setViewAt(previousStep(index, viewAt));
   };
+  const backToCurrent = () => setViewAt(null);
+  // El panel ancho muestra el aviso y el botón junto al profesor, no en la barra del pie.
+  const panel: LessonPanelState = reviewing
+    ? { status: 'idle', buttonLabel: t('lesson.reviewContinue'), onButton: backToCurrent }
+    : {
+        status,
+        title: status === 'correct' ? t('lesson.correct') : status === 'wrong' ? t('common.incorrect') : undefined,
+        message: status === 'idle' ? undefined : message,
+        buttonLabel:
+          status === 'wrong'
+            ? t('common.retry')
+            : status === 'correct' || step.type === 'explain'
+              ? continueLabel
+              : undefined,
+        onButton: status === 'wrong' ? retry : next,
+      };
 
   return (
     <View role="main" style={styles.screen}>
@@ -214,23 +230,37 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
         <Pressable onPress={confirmExit} accessibilityRole="button" accessibilityLabel={t('common.exit')} hitSlop={12}>
           <Text style={styles.close}>✕</Text>
         </Pressable>
+        <Pressable
+          onPress={goBack}
+          disabled={!canGoBack}
+          accessibilityRole="button"
+          accessibilityLabel={t('lesson.previousStep')}
+          accessibilityState={{ disabled: !canGoBack }}
+          hitSlop={6}
+          style={[styles.backBtn, !canGoBack && styles.backBtnOff]}
+        >
+          <Text style={styles.backGlyph}>←</Text>
+        </Pressable>
         <ProgressBar value={progress} />
       </View>
 
       <LessonPanelContext.Provider value={wide ? panel : null}>
         <TeacherContext.Provider value={teacher}>
-          {/* key = id del paso: cada paso empieza con su estado limpio y con el tablero a la vista */}
-          <ScrollView key={step.id} contentContainerStyle={styles.content}>
+          {/* key = id del paso (o del repaso): cada paso empieza con su estado limpio y con el tablero a la vista */}
+          <ScrollView key={reviewing ? `review-${activeStep.id}` : activeStep.id} contentContainerStyle={styles.content}>
             {renderStep()}
           </ScrollView>
         </TeacherContext.Provider>
       </LessonPanelContext.Provider>
 
-      {!wide && step.type === 'explain' && <FeedbackPanel kind="neutral" buttonLabel={continueLabel} onButton={next} contentWidth={contentWidth} />}
-      {!wide && step.type !== 'explain' && status === 'correct' && (
+      {!wide && reviewing && (
+        <FeedbackPanel kind="neutral" buttonLabel={t('lesson.reviewContinue')} onButton={backToCurrent} contentWidth={contentWidth} />
+      )}
+      {!wide && !reviewing && step.type === 'explain' && <FeedbackPanel kind="neutral" buttonLabel={continueLabel} onButton={next} contentWidth={contentWidth} />}
+      {!wide && !reviewing && step.type !== 'explain' && status === 'correct' && (
         <FeedbackPanel kind="correct" title={t('lesson.correct')} message={message} buttonLabel={continueLabel} onButton={next} contentWidth={contentWidth} />
       )}
-      {!wide && step.type !== 'explain' && status === 'wrong' && (
+      {!wide && !reviewing && step.type !== 'explain' && status === 'wrong' && (
         <FeedbackPanel kind="wrong" title={t('common.incorrect')} message={message} buttonLabel={t('common.retry')} onButton={retry} contentWidth={contentWidth} />
       )}
     </View>
@@ -238,9 +268,21 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.bg },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   srOnly: { position: 'absolute', width: 1, height: 1, overflow: 'hidden', opacity: 0 },
   header: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.lg, paddingBottom: space.md },
   close: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.textMuted },
+  backBtn: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.surfaceRaised,
+    borderBottomWidth: 3,
+    borderBottomColor: colors.surfaceShadow,
+  },
+  backBtnOff: { opacity: 0.4 },
+  backGlyph: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text, lineHeight: 22 },
   content: { paddingHorizontal: space.lg, paddingTop: space.md, paddingBottom: space.xl },
 });

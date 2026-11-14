@@ -31,8 +31,8 @@ test('ancho: con mucho alto no pasa de 720', () => {
   assert.equal(wideBoardPixels({ width: 2560, height: 1440, reserveHeight: 200 }), 720);
 });
 test('ancho: en una ventana justa manda el ancho (deja 380 de panel y los márgenes)', () => {
-  // 960 - 380 (panel) - 32 (separación) - 48 (márgenes) = 500 -> 496
-  assert.equal(wideBoardPixels({ width: 960, height: 1200, reserveHeight: 200 }), 496);
+  // 960 - 400 (panel) - 32 (separación) - 48 (márgenes) = 480 -> 480
+  assert.equal(wideBoardPixels({ width: 960, height: 1200, reserveHeight: 200 }), 480);
 });
 test('ancho: siempre múltiplo de 8 y nunca menos de 320', () => {
   for (let h = 300; h <= 1400; h += 7) {

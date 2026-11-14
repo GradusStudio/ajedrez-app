@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button3D } from './Button3D';
 import { FadeIn } from './FadeIn';
-import { type, colors, fonts, space } from '../theme';
+import { type, colors, fonts, radius, space } from '../theme';
 
 type Props = {
   kind: 'neutral' | 'correct' | 'wrong';
@@ -50,10 +50,51 @@ export function FeedbackPanel({ kind, title, message, buttonLabel, onButton, con
   );
 }
 
+/**
+ * El mismo aviso, dentro del panel de la derecha (pantalla ancha): el botón va pegado al texto
+ * que lo pide, en vez de una barra al pie de la pantalla (spec del tester, sección 6).
+ */
+export function PanelFeedback({ kind, title, message, buttonLabel, onButton, extra }: Omit<Props, 'contentWidth'>) {
+  const bg = kind === 'correct' ? colors.correctBg : kind === 'wrong' ? colors.incorrectBg : colors.surface;
+  const border = kind === 'correct' ? colors.primary : kind === 'wrong' ? colors.danger : colors.surfaceRaised;
+  const titleColor = kind === 'correct' ? colors.primary : kind === 'wrong' ? colors.danger : colors.text;
+  const panel = (
+    <View style={[styles.inlinePanel, { backgroundColor: bg, borderColor: border }]}>
+      {!!title && <Text style={[styles.inlineTitle, { color: titleColor }]}>{title}</Text>}
+      {!!message && <Text style={styles.inlineMessage}>{message}</Text>}
+      {extra}
+      {!!buttonLabel && onButton && (
+        <Button3D
+          label={buttonLabel}
+          variant={kind === 'wrong' ? 'danger' : 'primary'}
+          onPress={onButton}
+          style={styles.inlineButton}
+        />
+      )}
+    </View>
+  );
+  if (kind === 'neutral') return panel;
+  return (
+    <FadeIn from={40} duration={220}>
+      {panel}
+    </FadeIn>
+  );
+}
+
 const styles = StyleSheet.create({
   panel: { paddingHorizontal: space.lg, paddingTop: space.lg, paddingBottom: space.xl },
   title: { fontFamily: fonts.extrabold, fontSize: 18 },
   wideRow: { alignSelf: 'center', flexDirection: 'row', alignItems: 'center', gap: space.xl },
   wideButton: { minWidth: 240 },
   message: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.text, marginTop: 4, lineHeight: 21 },
+  inlinePanel: {
+    marginTop: space.lg,
+    borderWidth: 2,
+    borderBottomWidth: 4,
+    borderRadius: radius.control,
+    padding: space.lg,
+  },
+  inlineTitle: { fontFamily: fonts.extrabold, fontSize: 18 },
+  inlineMessage: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.text, marginTop: 4, lineHeight: 21 },
+  inlineButton: { marginTop: space.md },
 });

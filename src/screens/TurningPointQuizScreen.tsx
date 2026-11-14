@@ -7,7 +7,7 @@ import type { BotExpression } from '../components/botFace';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { FadeIn } from '../components/FadeIn';
-import { FeedbackPanel } from '../components/FeedbackPanel';
+import { FeedbackPanel, PanelFeedback } from '../components/FeedbackPanel';
 import { resolveNotation, sanFromEnglish } from '../chess/notation';
 import { bots } from '../data/bots';
 import { pickPhrase } from '../data/teachers';
@@ -252,6 +252,15 @@ export function TurningPointQuizScreen({ onExit }: Props) {
           <BoardLayout reserveHeight={QUIZ_RESERVE} board={board}>
             {coachBubble}
             {controls}
+            {wide && status !== 'playing' && (
+              <PanelFeedback
+                kind={status === 'solved' ? 'correct' : 'neutral'}
+                title={status === 'solved' ? t('quiz.correct', { move: best }) : t('quiz.solution', { move: best })}
+                message={status === 'solved' && lastCoins > 0 ? tn('puzzles.earnedCoins', lastCoins) : ''}
+                buttonLabel={index + 1 < points.length ? t('quiz.next') : t('quiz.finish')}
+                onButton={goNext}
+              />
+            )}
           </BoardLayout>
         ) : (
           <>
@@ -263,7 +272,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
         )}
       </ScrollView>
 
-      {status !== 'playing' && (
+      {!wide && status !== 'playing' && (
         <FeedbackPanel
           kind={status === 'solved' ? 'correct' : 'neutral'}
           title={status === 'solved' ? t('quiz.correct', { move: best }) : t('quiz.solution', { move: best })}

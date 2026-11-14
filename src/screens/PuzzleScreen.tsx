@@ -5,7 +5,7 @@ import { Board, BoardMove } from '../components/Board';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { FadeIn } from '../components/FadeIn';
-import { FeedbackPanel } from '../components/FeedbackPanel';
+import { FeedbackPanel, PanelFeedback } from '../components/FeedbackPanel';
 import { StreakPill } from '../components/StreakPill';
 import { useFeedback } from '../feedback/feedback';
 import { useI18n } from '../i18n/I18nContext';
@@ -18,6 +18,7 @@ import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
 import { BoardStage } from '../components/BoardStage';
+import { useWideLayout } from '../components/useWideLayout';
 
 /** Alto fuera del tablero en pantalla ancha: fila de arriba, panel de abajo y márgenes. */
 const PUZZLE_RESERVE = 200;
@@ -206,6 +207,15 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
 
   // Pantalla ancha: la fila de arriba y el panel de abajo se alinean con el tablero y su panel.
   const contentWidth = useBoardLayoutWidth(PUZZLE_RESERVE);
+  const wide = useWideLayout();
+  const finishLabel = onNext ? t('puzzles.next') : t('common.continue');
+  const finishAction = onNext ?? onExit;
+  const solvedMessage = [
+    errors === 0 && !hintUsed ? t('puzzles.solvedClean') : errors > 0 ? tn('puzzles.solvedErrors', errors) : t('puzzles.solvedHint'),
+    ...coinsMessage(earned),
+    ...ratingMessage(),
+  ].join(' ');
+  const failedMessage = [t('puzzles.solutionMessage'), ...coinsMessage(earned), ...ratingMessage()].join(' ');
 
   return (
     <Animated.View style={[styles.screen, { opacity: fade }]}>
@@ -275,31 +285,40 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
               <Button3D label={t('puzzles.showSolution')} variant="destructive" onPress={showSolution} style={{ flex: 1 }} />
             </View>
           )}
+          {wide && status === 'solved' && (
+            <PanelFeedback
+              kind="correct"
+              title={t('puzzles.solved')}
+              message={solvedMessage}
+              buttonLabel={finishLabel}
+              onButton={finishAction}
+              extra={<StreakPill streak={currentStreak(progress)} streakLit={earned?.streakLit ?? false} />}
+            />
+          )}
+          {wide && status === 'failed' && (
+            <PanelFeedback kind="neutral" title={t('puzzles.solution')} message={failedMessage} buttonLabel={finishLabel} onButton={finishAction} />
+          )}
         </BoardLayout>
       </ScrollView>
 
-      {status === 'solved' && (
+      {!wide && status === 'solved' && (
         <FeedbackPanel
           kind="correct"
           title={t('puzzles.solved')}
-          message={[
-            errors === 0 && !hintUsed ? t('puzzles.solvedClean') : errors > 0 ? tn('puzzles.solvedErrors', errors) : t('puzzles.solvedHint'),
-            ...coinsMessage(earned),
-            ...ratingMessage(),
-          ].join(' ')}
-          buttonLabel={onNext ? t('puzzles.next') : t('common.continue')}
-          onButton={onNext ?? onExit}
+          message={solvedMessage}
+          buttonLabel={finishLabel}
+          onButton={finishAction}
           contentWidth={contentWidth}
           extra={<StreakPill streak={currentStreak(progress)} streakLit={earned?.streakLit ?? false} />}
         />
       )}
-      {status === 'failed' && (
+      {!wide && status === 'failed' && (
         <FeedbackPanel
           kind="neutral"
           title={t('puzzles.solution')}
-          message={[t('puzzles.solutionMessage'), ...coinsMessage(earned), ...ratingMessage()].join(' ')}
-          buttonLabel={onNext ? t('puzzles.next') : t('common.continue')}
-          onButton={onNext ?? onExit}
+          message={failedMessage}
+          buttonLabel={finishLabel}
+          onButton={finishAction}
           contentWidth={contentWidth}
         />
       )}

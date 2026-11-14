@@ -16,10 +16,12 @@ import { PracticeStep } from './steps/PracticeStep';
 import { QuizStep } from './steps/QuizStep';
 import { SelectSquaresStep } from './steps/SelectSquaresStep';
 import { TeacherContext } from './TeacherContext';
+import { LessonPanelContext, LessonPanelState } from './LessonPanelContext';
 import { teacherExpression } from './teacherExpression';
 import { type, colors, fonts, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 import { useBoardLayoutWidth } from '../components/BoardLayout';
+import { useWideLayout } from '../components/useWideLayout';
 import { LESSON_RESERVE } from './stepTypes';
 
 export type LessonResult = { errors: number; xp: number; mistakes: string[] }; // xp: monedas de la lección
@@ -188,7 +190,21 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
   const continueLabel = isLast ? t('lesson.finish') : t('common.continue');
   // Pantalla ancha: encabezado y panel de abajo alineados con el tablero y su panel.
   const contentWidth = useBoardLayoutWidth(LESSON_RESERVE);
+  const wide = useWideLayout();
   const progress = (index + (status === 'correct' ? 1 : 0)) / total;
+  // El panel ancho muestra el aviso y el botón junto al profesor, no en la barra del pie.
+  const panel: LessonPanelState = {
+    status,
+    title: status === 'correct' ? t('lesson.correct') : status === 'wrong' ? t('common.incorrect') : undefined,
+    message: status === 'idle' ? undefined : message,
+    buttonLabel:
+      status === 'wrong'
+        ? t('common.retry')
+        : status === 'correct' || step.type === 'explain'
+          ? continueLabel
+          : undefined,
+    onButton: status === 'wrong' ? retry : next,
+  };
 
   return (
     <View style={styles.screen}>
@@ -199,18 +215,20 @@ export function LessonPlayer({ lesson, lessonId, noWelcome, initial, exitMessage
         <ProgressBar value={progress} />
       </View>
 
-      <TeacherContext.Provider value={teacher}>
-        {/* key = id del paso: cada paso empieza con su estado limpio y con el tablero a la vista */}
-        <ScrollView key={step.id} contentContainerStyle={styles.content}>
-          {renderStep()}
-        </ScrollView>
-      </TeacherContext.Provider>
+      <LessonPanelContext.Provider value={wide ? panel : null}>
+        <TeacherContext.Provider value={teacher}>
+          {/* key = id del paso: cada paso empieza con su estado limpio y con el tablero a la vista */}
+          <ScrollView key={step.id} contentContainerStyle={styles.content}>
+            {renderStep()}
+          </ScrollView>
+        </TeacherContext.Provider>
+      </LessonPanelContext.Provider>
 
-      {step.type === 'explain' && <FeedbackPanel kind="neutral" buttonLabel={continueLabel} onButton={next} contentWidth={contentWidth} />}
-      {step.type !== 'explain' && status === 'correct' && (
+      {!wide && step.type === 'explain' && <FeedbackPanel kind="neutral" buttonLabel={continueLabel} onButton={next} contentWidth={contentWidth} />}
+      {!wide && step.type !== 'explain' && status === 'correct' && (
         <FeedbackPanel kind="correct" title={t('lesson.correct')} message={message} buttonLabel={continueLabel} onButton={next} contentWidth={contentWidth} />
       )}
-      {step.type !== 'explain' && status === 'wrong' && (
+      {!wide && step.type !== 'explain' && status === 'wrong' && (
         <FeedbackPanel kind="wrong" title={t('common.incorrect')} message={message} buttonLabel={t('common.retry')} onButton={retry} contentWidth={contentWidth} />
       )}
     </View>

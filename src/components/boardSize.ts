@@ -8,7 +8,7 @@ export function boardPixels(windowWidth: number): number {
 }
 
 /** Pantalla ancha (web, `useWideLayout`): ancho del panel de la derecha, separación y márgenes de los costados. */
-export const WIDE_PANEL = 380;
+export const WIDE_PANEL = 400;
 export const WIDE_GAP = 32;
 const WIDE_SIDES = 48;
 const WIDE_MAX = 720;

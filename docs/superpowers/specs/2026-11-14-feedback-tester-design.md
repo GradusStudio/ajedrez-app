@@ -31,11 +31,11 @@ Decisión del autor: el tester usó la web en la computadora. En el celular no c
 - Un **consejo** es un globo blanco con la cara de Pipo (64 px), un título en negrita (17 px), una o dos frases (16 px) y el botón «Entendido». Lo que explica se ilumina con un borde dorado de 4 px y el resto de la pantalla se oscurece al 55 %. Si hay varios seguidos, abajo a la derecha dice «1 de 2» y «Entendido» pasa al siguiente.
 - **Aparece una sola vez**, la primera vez que se ve cada cosa. Se guarda en los ajustes (`seenTips: string[]`, sin tocar `PROGRESS_VERSION`). En Ajustes, «Volver a ver los consejos» los borra.
 - Escape o tocar fuera también cierra (cuenta como visto). Con lector de pantalla: el globo es un diálogo con su texto como etiqueta y el foco va al botón.
-- **Consejos iniciales** (textos en los cinco idiomas):
+- **Consejos iniciales** (textos en los cinco idiomas; en español, siempre de tú, como el resto de la app — corrección del 14-11-2026):
   - **Inicio** (primera visita): «Tu próximo paso» (la tarjeta Seguir aprendiendo y el tablero de progreso) y «Racha y monedas».
-  - **Corona de Aprender** (pantalla ancha): «Elegí una unidad»: «Girá la corona con las flechas, la rueda del mouse o arrastrando. Tocá la unidad del centro para ver sus lecciones».
-  - **Riel del celular:** «Tus lecciones»: «Se abren de a una. El tablero de cada unidad avanza con cada lección que terminás».
-  - **Piezas y Tableros** (primera visita a la tienda): «La tienda»: «Las monedas que ganás se gastan acá. Tocá un tablero o un set para verlo y comprarlo».
+  - **Corona de Aprender** (pantalla ancha): «Elige una unidad»: «Gira la corona con las flechas, la rueda del mouse o arrastrando. Toca la unidad del centro para ver sus lecciones».
+  - **Riel del celular:** «Tus lecciones»: «Se abren de a una. El tablero de cada unidad avanza con cada lección que terminas».
+  - **Piezas y Tableros** (primera visita a la tienda): «La tienda»: «Las monedas que ganas se gastan aquí. Toca un tablero o un set para verlo y comprarlo».
   - **Primer premio de monedas:** «Monedas»: «Ganaste monedas por resolverlo sin errores. Se juntan arriba, junto a la llama».
 
 ## 4. Unidades de a una para quien empieza

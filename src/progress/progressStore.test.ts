@@ -127,7 +127,7 @@ test('ganar monedas suma a earned del dispositivo y coins sigue al libro', () =>
   const r = withLessonFinished(v4(), { lessonId: 'x', lessonCoins: 15, errors: 0, mistakes: [], seconds: 30 }, now);
   assert.deepEqual(r.progress.coinLedger, { dev1: { earned: 25, spent: 0 } });
   assert.equal(r.progress.coins, 25);
-  const r2 = withPuzzleFinished(r.progress, 'p', 'clean', 10, 1000, now);
+  const r2 = withPuzzleFinished(r.progress, 'p', 'clean', 10, 1000, [], now);
   assert.equal(r2.progress.coins, 27);
   assert.equal(r2.progress.coins, coinBalance(r2.progress.coinLedger));
 });
@@ -385,7 +385,7 @@ test('el fallo se cobra en el momento y una sola vez', () => {
 
 test('abandonar tras un error y volver: resolverlo no suma, sale de pending y da las monedas de siempre', () => {
   const failed = withPuzzleFailedNow(v4({ profile: { level: 'casual' } }), 'x', 1400, at).progress;
-  const r = withPuzzleFinished(failed, 'x', 'clean', 10, 1400, at);
+  const r = withPuzzleFinished(failed, 'x', 'clean', 10, 1400, [], at);
   assert.equal(r.ratingChange, null);
   assert.equal(r.progress.puzzleRating?.rating, 1380);
   assert.deepEqual(r.progress.puzzleRating?.pending, []);
@@ -394,29 +394,36 @@ test('abandonar tras un error y volver: resolverlo no suma, sale de pending y da
 });
 
 test('un acierto limpio nuevo sube; el mismo puzzle otra vez no mueve el nivel', () => {
-  const r = withPuzzleFinished(v4(), 'y', 'clean', 10, 1000, at);
+  const r = withPuzzleFinished(v4(), 'y', 'clean', 10, 1000, [], at);
   assert.deepEqual(r.ratingChange, { rating: 1020, delta: 20 });
-  const again = withPuzzleFinished(r.progress, 'y', 'clean', 10, 1000, at);
+  const again = withPuzzleFinished(r.progress, 'y', 'clean', 10, 1000, [], at);
   assert.equal(again.ratingChange, null);
   assert.equal(again.progress.puzzleRating?.rating, 1020);
 });
 
+test('withPuzzleFinished guarda los temas del puzzle y los une si se repite', () => {
+  const r = withPuzzleFinished(v4(), 't1', 'clean', 10, 1000, ['fork', 'pin'], at);
+  assert.deepEqual(r.progress.puzzles.t1.themes, ['fork', 'pin']);
+  const again = withPuzzleFinished(r.progress, 't1', 'solved', 10, 1000, ['pin', 'sacrifice'], at);
+  assert.deepEqual(again.progress.puzzles.t1.themes, ['fork', 'pin', 'sacrifice']);
+});
+
 test('resuelto con errores sin fallo cobrado antes: baja', () => {
-  const r = withPuzzleFinished(v4(), 'z', 'solved', 10, 1000, at);
+  const r = withPuzzleFinished(v4(), 'z', 'solved', 10, 1000, [], at);
   assert.deepEqual(r.ratingChange, { rating: 980, delta: -20 });
 });
 
 test('streakLit: un puzzle con solución vista no enciende la racha; uno resuelto, sí', () => {
-  const failed = withPuzzleFinished(v4(), 's1', 'failed', 10, 1000, at);
+  const failed = withPuzzleFinished(v4(), 's1', 'failed', 10, 1000, [], at);
   assert.equal(failed.streakLit, false);
-  const clean = withPuzzleFinished(v4(), 's2', 'clean', 10, 1000, at);
+  const clean = withPuzzleFinished(v4(), 's2', 'clean', 10, 1000, [], at);
   assert.equal(clean.streakLit, true);
-  const again = withPuzzleFinished(clean.progress, 's3', 'clean', 10, 1000, at);
+  const again = withPuzzleFinished(clean.progress, 's3', 'clean', 10, 1000, [], at);
   assert.equal(again.streakLit, false);
 });
 
 test('un puzzle ya terminado antes no se cobra como fallo', () => {
-  const done = withPuzzleFinished(v4(), 'y', 'clean', 10, 1000, at).progress;
+  const done = withPuzzleFinished(v4(), 'y', 'clean', 10, 1000, [], at).progress;
   assert.equal(withPuzzleFailedNow(done, 'y', 1000, at).delta, null);
 });
 

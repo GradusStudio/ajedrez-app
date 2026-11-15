@@ -30,7 +30,7 @@ export type Mistake = { stepId: string; lessonId: string; count: number; lastSee
  * failed = se miró la solución. Se guarda el mejor resultado obtenido.
  */
 export type PuzzleResult = 'clean' | 'solved' | 'failed';
-export type PuzzleRecord = { result: PuzzleResult; at: string };
+export type PuzzleRecord = { result: PuzzleResult; at: string; /** Temas del puzzle, para contar los resueltos por tema. */ themes?: string[] };
 
 /** Partida contra un bot, ya terminada. */
 export type GameRecord = {
@@ -378,13 +378,18 @@ export function withPuzzleFinished(
   result: PuzzleResult,
   seconds: number,
   puzzleRating: number,
+  themes: string[] = [],
   now = new Date()
 ): { progress: Progress; coinsEarned: number; streakRecovered: boolean; streakLit: boolean; ratingChange: { rating: number; delta: number } | null } {
   const today = todayKey(now);
   const prev = p.puzzles[id];
   const best = prev && PUZZLE_RANK[prev.result] >= PUZZLE_RANK[result] ? prev.result : result;
   const coinsEarned = isPuzzleSolved(p, id) ? 0 : PUZZLE_COINS[result];
-  let next: Progress = { ...p, puzzles: { ...p.puzzles, [id]: { result: best, at: now.toISOString() } } };
+  const savedThemes = [...new Set([...(prev?.themes ?? []), ...themes])];
+  let next: Progress = {
+    ...p,
+    puzzles: { ...p.puzzles, [id]: { result: best, at: now.toISOString(), ...(savedThemes.length ? { themes: savedThemes } : {}) } },
+  };
   let ratingChange: { rating: number; delta: number } | null = null;
   if (isFirstPlay(p, id)) {
     const r = applyRating(ratingState(p), puzzleRating, result === 'clean' ? 1 : 0, now);

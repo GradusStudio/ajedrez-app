@@ -207,6 +207,16 @@ export function mergePuzzleRating(
 }
 
 /** Combina el progreso local con otro (importado o bajado de Drive). El resultado conserva `local.deviceId`. */
+/** Un mismo puzzle en dos copias: el mejor resultado y la fecha más reciente, con los temas de ambos. */
+function mergePuzzleRecord(a: PuzzleRecord, b: PuzzleRecord): PuzzleRecord {
+  const base =
+    a.result === b.result
+      ? { result: a.result, at: laterDate(a.at, b.at) }
+      : pick(a, b, PUZZLE_RANK[a.result] - PUZZLE_RANK[b.result]);
+  const themes = [...new Set([...(a.themes ?? []), ...(b.themes ?? [])])];
+  return themes.length ? { ...base, themes } : base;
+}
+
 export function mergeProgress(local: Progress, incoming: Progress): Progress {
   // Si se borró el progreso en uno de los dos después que en el otro, gana entera esa versión.
   const resetCmp = cmpDate(local.resetAt, incoming.resetAt);
@@ -222,9 +232,7 @@ export function mergeProgress(local: Progress, incoming: Progress): Progress {
       ([id]) => !Object.prototype.hasOwnProperty.call(lessons, id)
     )
   );
-  const puzzles = mergeRecord(local.puzzles, incoming.puzzles, (a, b) =>
-    a.result === b.result ? { result: a.result, at: laterDate(a.at, b.at) } : pick(a, b, PUZZLE_RANK[a.result] - PUZZLE_RANK[b.result])
-  );
+  const puzzles = mergeRecord(local.puzzles, incoming.puzzles, mergePuzzleRecord);
   const coinLedger = refundOverspend(mergeRecord(local.coinLedger, incoming.coinLedger, (a, b) => ({
     earned: Math.max(a.earned, b.earned),
     spent: Math.max(a.spent, b.spent),

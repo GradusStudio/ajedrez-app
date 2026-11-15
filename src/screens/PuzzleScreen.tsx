@@ -114,7 +114,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
     if (result !== 'failed') feedback.correct();
     setStatus(result === 'failed' ? 'failed' : 'solved');
     setRewardSquare(square);
-    setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS), puzzle.rating));
+    setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS), puzzle.rating, puzzle.themes));
   };
 
   /** Baja el nivel de puzzles ahora, aunque después se salga sin terminar. */

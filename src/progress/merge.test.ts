@@ -546,6 +546,16 @@ test('nivel de puzzles: si un lado no tiene historial se usa el del otro', () =>
   assert.deepEqual(mergeProgress(b, a).puzzleRating?.history, history);
 });
 
+test('puzzles: los temas se unen al combinar el mismo registro', () => {
+  const a = make({ puzzles: { p1: { result: 'clean', at: '2026-11-01T00:00:00.000Z', themes: ['fork', 'pin'] } } });
+  const b = make({ puzzles: { p1: { result: 'solved', at: '2026-11-02T00:00:00.000Z', themes: ['pin', 'sacrifice'] } } });
+  const merged = mergeProgress(a, b);
+  assert.equal(merged.puzzles.p1.result, 'clean');
+  assert.deepEqual(merged.puzzles.p1.themes, ['fork', 'pin', 'sacrifice']);
+  const once = mergeProgress(a, b);
+  assert.deepEqual(mergeProgress(once, once), once);
+});
+
 // ---------- Partida en curso ----------
 
 const juego = (moves: string[]) => ({ botId: 'pipo', userColor: 'w' as const, moves, startedAt: '2026-11-09T10:00:00.000Z' });

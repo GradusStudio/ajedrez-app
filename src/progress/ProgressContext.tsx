@@ -68,8 +68,8 @@ type ProgressValue = {
     botElo: number,
     countsForStreak: boolean
   ) => Earned;
-  /** `puzzleRating`: rating de Lichess del puzzle (mueve el nivel de puzzles la primera vez). */
-  finishPuzzle: (id: string, result: PuzzleResult, seconds: number, puzzleRating: number) => Earned;
+  /** `puzzleRating`: rating de Lichess del puzzle (mueve el nivel de puzzles la primera vez). `themes`: los del puzzle. */
+  finishPuzzle: (id: string, result: PuzzleResult, seconds: number, puzzleRating: number, themes: string[]) => Earned;
   /** Fallo cobrado en el momento (error, pista o «Ver solución»): devuelve cuánto bajó el nivel, o null si no cuenta. */
   failPuzzle: (id: string, puzzleRating: number) => number | null;
   /** Punto de giro encontrado en el quiz de la revisión: devuelve las monedas (0 si ya se había cobrado). */
@@ -202,8 +202,8 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   );
 
   const finishPuzzle = useCallback(
-    (id: string, result: PuzzleResult, seconds: number, puzzleRating: number) => {
-      const r = withPuzzleFinished(current.current, id, result, seconds, puzzleRating);
+    (id: string, result: PuzzleResult, seconds: number, puzzleRating: number, themes: string[]) => {
+      const r = withPuzzleFinished(current.current, id, result, seconds, puzzleRating, themes);
       return { ...commitEarned(current.current, r), rating: r.ratingChange };
     },
     [commitEarned]

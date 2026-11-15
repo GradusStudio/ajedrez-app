@@ -20,6 +20,7 @@ import {
   withPuzzleFailedNow,
   withPuzzleFinished,
   withReset,
+  recordOf,
   type Progress,
 } from './progressStore';
 
@@ -528,4 +529,20 @@ test('withPuzzleOpened guarda como mucho 200, los más recientes', () => {
   assert.equal(p.puzzlesOpened?.length, 200);
   assert.equal(p.puzzlesOpened?.[0], 'p204');
   assert.equal(p.puzzlesOpened?.[199], 'p5');
+});
+
+test('recordOf cuenta solo las partidas reales contra ese bot y conserva su orden', () => {
+  const game = (botId: string, result: 'win' | 'loss' | 'draw', practiceCourseId?: string) => ({
+    botId,
+    userColor: 'w' as const,
+    result,
+    reason: 'Jaque mate',
+    moves: ['e2e4'],
+    playedAt: '2026-11-15T10:00:00.000Z',
+    practiceCourseId,
+  });
+  const games = [game('pipo', 'win'), game('pipo', 'loss', 'london'), game('lola', 'win'), game('pipo', 'draw')];
+  const r = recordOf(games, 'pipo');
+  assert.deepEqual({ wins: r.wins, losses: r.losses, draws: r.draws, total: r.total }, { wins: 1, losses: 0, draws: 1, total: 2 });
+  assert.deepEqual(r.games.map((g) => g.result), ['win', 'draw']);
 });

@@ -446,13 +446,23 @@ export function withTurningPointSolved(p: Progress, key: string, clean: boolean)
 }
 
 /** Victorias, derrotas y tablas contra un bot (sin contar el modo práctica). */
-export function recordAgainst(p: Progress, botId: string) {
-  const games = p.games.filter((g) => g.botId === botId && !g.practiceCourseId);
+export type BotRecord = { wins: number; losses: number; draws: number; total: number; games: GameRecord[] };
+
+/** Partidas reales contra un bot (la práctica de aperturas no cuenta), con la lista para los llamadores que la usan. */
+export function recordOf(games: GameRecord[], botId: string): BotRecord {
+  const played = games.filter((g) => g.botId === botId && !g.practiceCourseId);
   return {
-    wins: games.filter((g) => g.result === 'win').length,
-    losses: games.filter((g) => g.result === 'loss').length,
-    draws: games.filter((g) => g.result === 'draw').length,
+    wins: played.filter((g) => g.result === 'win').length,
+    losses: played.filter((g) => g.result === 'loss').length,
+    draws: played.filter((g) => g.result === 'draw').length,
+    total: played.length,
+    games: played,
   };
+}
+
+export function recordAgainst(p: Progress, botId: string) {
+  const { wins, losses, draws } = recordOf(p.games, botId);
+  return { wins, losses, draws };
 }
 
 // ---------- Guardado ----------

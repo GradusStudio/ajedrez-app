@@ -1,4 +1,4 @@
-import type { GameRecord } from './progressStore';
+import { recordOf, type GameRecord } from './progressStore';
 
 // Historial contra un bot para la capa del resultado (tarea 37, spec «resultado de partida»). Solo partidas
 // reales (la práctica de aperturas no cuenta) y solo con 2 o más: con una sola no hay historial que mostrar.
@@ -14,14 +14,14 @@ export type BotHistory = {
 
 /** Historial contra `botId`, o null si hay menos de 2 partidas. */
 export function botHistory(games: GameRecord[], botId: string): BotHistory | null {
-  const list = games.filter((g) => g.botId === botId && !g.practiceCourseId);
-  if (list.length < 2) return null;
+  const record = recordOf(games, botId);
+  if (record.total < 2) return null;
   return {
-    wins: list.filter((g) => g.result === 'win').length,
-    losses: list.filter((g) => g.result === 'loss').length,
-    draws: list.filter((g) => g.result === 'draw').length,
-    total: list.length,
-    last4: list.slice(0, 4).map((g) => g.result),
+    wins: record.wins,
+    losses: record.losses,
+    draws: record.draws,
+    total: record.total,
+    last4: record.games.slice(0, 4).map((g) => g.result),
   };
 }
 

@@ -1,7 +1,7 @@
 // Datos del Perfil (spec del perfil, secciones 1 a 4). Módulo puro: probado en profileView.test.ts.
 import type { OpeningCourse, Unit } from '../data/lessonTypes';
 import type { Bot } from '../data/bots';
-import { isPuzzleSolved, type GameRecord, type PlayerLevel, type Progress } from '../progress/progressStore';
+import { isPuzzleSolved, recordOf, type GameRecord, type PlayerLevel, type Progress } from '../progress/progressStore';
 import { unitOpen } from '../progress/path';
 
 export type UnitCardState = 'complete' | 'current' | 'locked';
@@ -37,11 +37,8 @@ export function botRecords(bots: Bot[], games: GameRecord[]): { records: BotReco
   const records = [...bots]
     .sort((a, b) => a.elo - b.elo)
     .map((bot) => {
-      const played = games.filter((g) => g.botId === bot.id && !g.practiceCourseId);
-      const wins = played.filter((g) => g.result === 'win').length;
-      const losses = played.filter((g) => g.result === 'loss').length;
-      const draws = played.filter((g) => g.result === 'draw').length;
-      return { bot, wins, losses, draws, played: played.length, beaten: wins > 0 };
+      const r = recordOf(games, bot.id);
+      return { bot, wins: r.wins, losses: r.losses, draws: r.draws, played: r.total, beaten: r.wins > 0 };
     });
   return { records, nextRival: records.find((r) => !r.beaten) };
 }

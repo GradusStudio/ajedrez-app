@@ -1,5 +1,5 @@
 import { Chess, type Square } from 'chess.js';
-import type { Bot } from '../data/bots';
+import { botsForOpening, type Bot } from '../data/bots';
 import type { Lesson, LineMove, LineStep, OpeningCourse } from '../data/lessonTypes';
 
 // Datos de la ficha del curso (tarea 32, spec «aperturas y volver», sección 2). Todo puro y probado: la línea
@@ -83,12 +83,8 @@ export function courseSummary(course: OpeningCourse, isDone: (lessonId: string) 
   return { done, total, next: course.lessons.find((l) => !isDone(l.id)) ?? null, allDone: done === total };
 }
 
-/** Bots que tienen el curso en su repertorio, del más flojo al más fuerte. */
-export function botsForOpening(courseId: string, all: Bot[]): Bot[] {
-  return all
-    .filter((b) => b.repertoire.white.includes(courseId) || b.repertoire.black.includes(courseId))
-    .sort((a, b) => a.elo - b.elo);
-}
+/** Bots que tienen el curso en su repertorio, del más flojo al más fuerte (la misma regla que la partida). */
+export { botsForOpening };
 
 /** Bot para practicar el curso: el más flojo que lo juega; si ninguno, Don Ramiro (igual que `botForOpening`). */
 export function practiceBotForOpening(courseId: string, all: Bot[]): Bot {

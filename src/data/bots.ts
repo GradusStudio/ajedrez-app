@@ -65,8 +65,14 @@ export function findBot(id: string): Bot | undefined {
   return bots.find((b) => b.id === id);
 }
 
+/** Bots que tienen el curso en su repertorio, del más flojo al más fuerte. */
+export function botsForOpening(courseId: string, all: Bot[] = bots): Bot[] {
+  return all
+    .filter((b) => b.repertoire.white.includes(courseId) || b.repertoire.black.includes(courseId))
+    .sort((a, b) => a.elo - b.elo);
+}
+
 /** Bot para practicar una apertura: el de menor nivel que la juega; si ninguno la juega, Don Ramiro. */
 export function botForOpening(courseId: string): Bot {
-  const users = bots.filter((b) => b.repertoire.white.includes(courseId) || b.repertoire.black.includes(courseId));
-  return users.sort((a, b) => a.elo - b.elo)[0] ?? findBot('ramiro') ?? bots[0];
+  return botsForOpening(courseId)[0] ?? findBot('ramiro') ?? bots[0];
 }

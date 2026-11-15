@@ -1,6 +1,6 @@
 # Maia: bots que juegan como personas
 
-Desde el 2-11-2026 los 10 bots eligen sus jugadas con **Maia** en lugar de Stockfish. El libro de aperturas de cada bot y su nivel (Elo) siguen igual; lo que cambia es *cómo* juega cuando sale del libro.
+Desde el 2-11-2026 los bots eligen sus jugadas con **Maia** en lugar de Stockfish. Desde el 14-11-2026 son **nueve**: Ada juega con Stockfish limitado por Elo porque es «la máquina» (ver «Ada juega con Stockfish»). El libro de aperturas de cada bot y su nivel (Elo) siguen igual; lo que cambia es *cómo* juega cuando sale del libro.
 
 ## Por qué Maia
 
@@ -48,7 +48,7 @@ Por eso la partida monta dos WebViews: Maia y Stockfish.
 
 ## Si Maia falla
 
-- **Respaldo con Stockfish:** cada bot guarda en `fallback` (bots.json) el motor que tenía antes de Maia. Si Maia no arranca (por ejemplo, un WebView de Android demasiado viejo para `DecompressionStream`) o se cae a mitad de la partida, el bot sigue con ese motor sin mostrar error (`maiaFailed` en `GameScreen`; `shouldFallback` en `brain.ts`). Hasta ahí, "Reintentar" volvería a fallar siempre.
+- **Respaldo con Stockfish:** cada bot que usa Maia guarda en `fallback` (bots.json) el motor que tenía antes. Ada no lo necesita: ya juega con Stockfish. Si Maia no arranca (por ejemplo, un WebView de Android demasiado viejo para `DecompressionStream`) o se cae a mitad de la partida, el bot sigue con ese motor sin mostrar error (`maiaFailed` en `GameScreen`; `shouldFallback` en `brain.ts`). Hasta ahí, "Reintentar" volvería a fallar siempre.
 - **Un error puntual de una jugada** (una evaluación que falla, o una red que devuelve valores no numéricos y deja sin candidatas): el bot juega la mejor jugada de Stockfish a profundidad 8; solo si tampoco hay Stockfish, una legal al azar. Antes jugaba siempre al azar, y Ada habría regalado la partida.
 
 ## Calibración (2-11-2026)
@@ -67,6 +67,8 @@ Se jugaron unas 750 partidas entre configuraciones de Maia y **los bots anterior
 | Sofía (1800) | 1900 | 0,3 | — | 400 | ~1765 |
 | Ivo (1950) | 1900 | 0,2 | — | 275 | ~1940 |
 | Ada (2200) | 1900 | 0,2 | — | 150 | ~2190 |
+
+La fila de Ada es la medición con Maia, que dejó de usar el 14-11-2026. Sofía e Ivo siguen usando la red de 1900.
 
 Todos los bots: `safety.depth` 8 y 4 candidatas como máximo. `thinkMs` y `bias` quedaron igual.
 

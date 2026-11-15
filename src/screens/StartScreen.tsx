@@ -309,7 +309,7 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
       ) : (
         <View style={[styles.fsRow, !wide && styles.fsColumn]}>
           {fsSteps.map((s) => (
-            <View key={s.id} style={styles.fsStep}>
+            <View key={s.id} style={[styles.fsStep, !wide && styles.fsStepColumn]}>
               <View style={styles.fsHead}>
                 <View style={[styles.fsBadge, s.state === 'done' && styles.fsBadgeDone, s.state === 'next' && styles.fsBadgeNext]}>
                   {s.state === 'done' ? (
@@ -616,6 +616,9 @@ const styles = StyleSheet.create({
   // Primeros pasos de la cuenta nueva
   fsRow: { flexDirection: 'row', gap: space.lg, marginTop: space.md },
   fsColumn: { flexDirection: 'column' },
+  // En columna los pasos no se reparten el alto: si el alto de la ventana aprieta, `flex: 1` los encogía y el botón
+  // «Empezar» se montaba sobre el paso siguiente (reproducido a 393 × 750, el tamaño del teléfono del autor).
+  fsStepColumn: { flexGrow: 0, flexShrink: 0, flexBasis: 'auto' },
   fsStep: { flex: 1, minWidth: 0 },
   fsHead: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginBottom: 4 },
   fsBadge: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surfaceRaised },

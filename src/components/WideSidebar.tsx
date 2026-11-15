@@ -2,11 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Tabs } from 'expo-router/js-tabs';
 import { router, usePathname } from 'expo-router';
-import { BotAvatar } from './BotAvatar';
 import { StatIcon } from './StatIcon';
 import { TabIcon } from './TabIcon';
 import { setTabBarTarget } from './tabBarTarget';
-import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { currentStreak } from '../progress/progressStore';
 import { useProgress } from '../progress/ProgressContext';
@@ -18,7 +16,7 @@ type TabBarProps = Parameters<NonNullable<React.ComponentProps<typeof Tabs>['tab
 
 /**
  * Barra lateral de la web en pantalla ancha: las secciones de siempre arriba y, abajo, la tienda con el saldo
- * y el perfil con el avatar y la racha (spec de la tienda y la barra, sección 1). `labels` en false (ventana de
+ * y el perfil con la racha (spec de la tienda y la barra, sección 1). `labels` en false (ventana de
  * 960 a 1199 px) muestra solo los íconos para dejarle lugar al tablero. Diseño:
  * docs/superpowers/specs/2026-11-14-tienda-y-barra-design.md.
  */
@@ -26,10 +24,8 @@ export function WideSidebar({ state, descriptors, emitter, navigateToTab, labels
   const pathname = usePathname();
   const { progress } = useProgress();
   const { t, tn, number } = useI18n();
-  const { bots } = useContent();
   const today = useTodayKey();
   const streak = currentStreak(progress, today);
-  const pipo = bots.find((b) => b.id === 'pipo') ?? bots[0];
   // El consejo de las pestañas ilumina esta barra (ver tabBarTarget.ts).
   const barRef = useRef<React.ComponentRef<typeof View>>(null);
   useEffect(() => {
@@ -133,11 +129,13 @@ export function WideSidebar({ state, descriptors, emitter, navigateToTab, labels
               ];
             }}
           >
-            <View style={styles.avatarRing}>{pipo && <BotAvatar bot={pipo} size={40} expression="acierto" />}</View>
+            <TabIcon name="profile" color={profileFocused ? colors.primary : colors.textMuted} />
             {labels && (
               <View style={styles.profileText}>
-                <Text style={styles.profileName}>{profileLabel}</Text>
-                <Text style={styles.profileStreak}>{tn('nav.profileStreak', streak)}</Text>
+                <Text numberOfLines={1} style={[styles.profileName, { color: profileFocused ? colors.primary : colors.text }]}>
+                  {profileLabel}
+                </Text>
+                <Text numberOfLines={1} style={styles.profileStreak}>{tn('nav.profileStreak', streak)}</Text>
               </View>
             )}
           </Pressable>
@@ -194,15 +192,6 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
   profileCompact: { justifyContent: 'center', paddingHorizontal: 0 },
-  avatarRing: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    borderWidth: 2,
-    borderColor: colors.gold,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   profileText: { flex: 1 },
   profileName: { fontFamily: fonts.extrabold, fontSize: 16, color: colors.text },
   profileStreak: { fontFamily: fonts.bold, fontSize: type.caption, color: colors.textMuted, marginTop: 1 },

@@ -16,6 +16,7 @@ import { useFeedback } from '../feedback/feedback';
 import { useI18n } from '../i18n/I18nContext';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { boardHighlight, boardThemes, colors } from '../theme';
+import type { BoardThemeId } from '../theme';
 import { useBoardSide } from './BoardSizeContext';
 import { dragTilt, mateSquares, slideTilt } from './boardMotion';
 import { useReducedMotion } from './useReducedMotion';
@@ -68,6 +69,8 @@ type Props = {
   sound?: boolean;
   /** Tablero de plan: sin jaque ni mate, y la última jugada (la preparada) en azul. */
   plan?: boolean;
+  /** Tema forzado para una vista previa (por ejemplo, la tienda): no cambia lo guardado. */
+  themeOverride?: BoardThemeId;
 };
 
 const YELLOW_ARROW = 'rgba(247, 198, 49, 0.9)';
@@ -290,13 +293,15 @@ export function Board({
   onPremoveCancel,
   sound = true,
   plan = false,
+  themeOverride,
 }: Props) {
   // En pantalla ancha el tamaño lo fija BoardLayout; si no, sale del ancho de la ventana.
   const sq = useBoardSide() / 8;
   const boardPx = sq * 8;
 
   const feedback = useFeedback();
-  const boardTheme = useBoardTheme();
+  const currentTheme = useBoardTheme();
+  const boardTheme = themeOverride ?? currentTheme;
   const theme = boardThemes[boardTheme];
   const [selected, setSelected] = useState<Square | null>(null);
 

@@ -40,3 +40,12 @@ export function PieceSetProvider({ children }: { children: React.ReactNode }) {
 }
 
 export const usePieceSet = () => useContext(PieceSetContext);
+
+/**
+ * Fija el set de piezas para sus hijos sin tocar lo guardado (vista previa de la tienda).
+ * No valida propiedad: quien lo usa decide qué set mostrar.
+ */
+export function PieceSetOverride({ id, children }: { id: AnyPieceSetId; children: React.ReactNode }) {
+  const value = useMemo(() => ({ pieceSet: id, setPieceSet: () => {}, loaded: true }), [id]);
+  return <PieceSetContext.Provider value={value}>{children}</PieceSetContext.Provider>;
+}

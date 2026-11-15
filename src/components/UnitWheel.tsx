@@ -4,7 +4,7 @@ import Svg, { ClipPath, Defs, G, Line, Path, Rect, Text as SvgText } from 'react
 import { colors, fonts } from '../theme';
 import { Circle3D } from './Circle3D';
 import { useReducedMotion } from './useReducedMotion';
-import { fitWheelLabel } from './wheelLabel';
+import { fitWheelLabel, WHEEL_NAME_MAX, wheelNameSize } from './wheelLabel';
 
 /** Un gajo de la corona: lo que se ve en el centro y lo que anuncia el lector de pantalla. */
 export type WheelItem = {
@@ -335,11 +335,13 @@ export function UnitWheel({
             const face = item.locked ? mixColor(colors.surfaceRaised, colors.surfaceShadow, e) : mixColor(colors.surfaceRaised, colors.primary, e);
             const edge = item.locked ? mixColor(colors.surfaceShadow, colors.surfaceShadow, e) : mixColor(colors.surfaceShadow, colors.primaryShadow, e);
             const labelColor = item.locked ? mixColor(LOCKED_LABEL, colors.textMuted, e) : mixColor(colors.textMuted, colors.text, e);
-            // El número y el nombre viven en el sistema del gajo: giran con él y se centran sobre el radio medio.
+            // El corte del nombre se calcula con el tamaño máximo y no cambia al girar: el gajo elegido y los de
+            // costado muestran siempre los mismos renglones; solo se interpola el tamaño de la letra.
             const num = 22 + 12 * e;
-            const name = labels === 'number' && item.title ? fitWheelLabel(item.title, 12.5 + 3 * e) : null;
+            const name = labels === 'number' && item.title ? fitWheelLabel(item.title, WHEEL_NAME_MAX) : null;
+            const nameSize = name ? wheelNameSize(e, name.size) : 0;
             const lines = name?.lines ?? [];
-            const lh = (name?.size ?? 0) * 1.12;
+            const lh = nameSize * 1.12;
             const block = num + (lines.length > 0 ? 4 + lines.length * lh : 0);
             const y0 = -block / 2;
             // En Aperturas el nombre corto va solo, en un renglón, con el mismo sistema y el mismo tope de 112 px.
@@ -398,7 +400,7 @@ export function UnitWheel({
                           y={y0 + num + 4 + lh * (k + 0.8)}
                           textAnchor="middle"
                           fontFamily={fonts.extrabold}
-                          fontSize={name?.size ?? 12}
+                          fontSize={nameSize}
                           fill={labelColor}
                         >
                           {line}

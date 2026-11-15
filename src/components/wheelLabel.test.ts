@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { localizedContent } from '../data/localized';
-import { estimateTextWidth, fitWheelLabel, MIN_WHEEL_FONT, WHEEL_TEXT_WIDTH } from './wheelLabel';
+import { estimateTextWidth, fitWheelLabel, MIN_WHEEL_FONT, WHEEL_NAME_MAX, wheelNameSize, WHEEL_TEXT_WIDTH } from './wheelLabel';
 
 const LANGS = ['es', 'en', 'de', 'it', 'fr'] as const;
 const inWidth = (fit: { lines: string[]; size: number }) => fit.lines.every((l) => estimateTextWidth(l, fit.size) <= WHEEL_TEXT_WIDTH);
@@ -43,6 +43,19 @@ test('un nombre imposible se queda en una línea al tamaño mínimo', () => {
     size: MIN_WHEEL_FONT,
   });
   assert.deepEqual(fitWheelLabel('   ', 15), { lines: [], size: 15 });
+});
+
+test('el tamaño del nombre interpola sin cambiar el corte', () => {
+  assert.equal(wheelNameSize(0, 15.5), 12.5);
+  assert.equal(wheelNameSize(1, 15.5), 15.5);
+  assert.equal(wheelNameSize(0, 14), 12.5);
+  assert.equal(wheelNameSize(1, 14), 14);
+  // «Reglas especiales» necesita dos renglones en el gajo elegido; el corte se calcula con el tamaño máximo.
+  const fit = fitWheelLabel('Reglas especiales', WHEEL_NAME_MAX);
+  assert.equal(fit.lines.length, 2);
+  for (const size of [wheelNameSize(0, fit.size), wheelNameSize(1, fit.size)]) {
+    assert.ok(fit.lines.every((l) => estimateTextWidth(l, size) <= WHEEL_TEXT_WIDTH), `${size}`);
+  }
 });
 
 test('el ancho estimado crece con el tamaño y suma los espacios', () => {

@@ -248,7 +248,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
       </View>
 
       {/* Practicar un tema */}
-      <CardSurface style={styles.card} radius={20}>
+      <CardSurface style={[styles.card, styles.topicsCard]} radius={20}>
         <View style={styles.topicHead}>
           <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{t('puzzles.topicTitle')}</Text>
           <Text style={styles.topicHint}>{t('puzzles.topicHint')}</Text>
@@ -343,6 +343,8 @@ const styles = StyleSheet.create({
   topRow: { flexDirection: 'row', gap: space.lg, alignItems: 'stretch', marginTop: space.lg },
   column: { flexDirection: 'column' },
   card: { ...cardSkin, borderRadius: 20, borderWidth: 2, padding: space.lg },
+  /** Separación con las tarjetas de arriba: sin esto los bordes se tocan y parece que se solapan. */
+  topicsCard: { marginTop: space.lg },
   dailyCard: { flex: 1.25, borderColor: colors.gold, borderBottomColor: '#B8901C' },
   practiceCard: { flex: 1 },
   dailyWide: { minWidth: 0 },

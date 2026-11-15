@@ -6,6 +6,9 @@
 export const WHEEL_TEXT_WIDTH = 112;
 /** Tamaño mínimo: si el nombre no entra en dos renglones, se achica hasta acá. */
 export const MIN_WHEEL_FONT = 12;
+/** Tamaño del nombre en el gajo elegido y en los de costado. */
+export const WHEEL_NAME_MAX = 15.5;
+export const WHEEL_NAME_MIN = 12.5;
 
 const GLYPH: Record<string, number> = {
   ' ': 27.9,
@@ -76,6 +79,14 @@ export function estimateTextWidth(text: string, size: number): number {
   let w = 0;
   for (const c of text) w += GLYPH[c] ?? DEFAULT_GLYPH;
   return (w * size * SAFETY) / 100;
+}
+
+/**
+ * Tamaño del nombre para un avance `e` (0 = gajo de costado, 1 = elegido), sin pasar del que necesita su corte.
+ * El corte se calcula una vez con `WHEEL_NAME_MAX`: así el nombre no cambia de renglones al girar.
+ */
+export function wheelNameSize(e: number, maxSize: number): number {
+  return Math.min(WHEEL_NAME_MIN + (WHEEL_NAME_MAX - WHEEL_NAME_MIN) * e, maxSize);
 }
 
 /**

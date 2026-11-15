@@ -1,5 +1,5 @@
 // Mezcla lo guardado con los valores por defecto. Módulo puro (sin React Native) para poder probarlo.
-import { Language } from '../i18n/languages';
+import { Language, AVAILABLE_LANGUAGES } from '../i18n/languages';
 import { BoardThemeId, boardThemes } from '../theme';
 import { LEVELS, type Level } from '../puzzles/puzzles';
 
@@ -54,7 +54,7 @@ export const defaultSettings: Settings = {
   importUser: {},
 };
 
-const LANGUAGES = ['auto', 'es', 'en', 'de', 'it', 'fr'];
+const LANGUAGES: readonly string[] = ['auto', ...AVAILABLE_LANGUAGES];
 
 const isObject = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
 const bool = (x: unknown, fallback: boolean) => (typeof x === 'boolean' ? x : fallback);

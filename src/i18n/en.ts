@@ -760,6 +760,7 @@ export const en: Record<MessageKey, string> = {
   'review.next': 'Next',
   'review.finish': 'Finish',
   'review.analyzingMove': 'Analyzing your move…',
+  'review.analyzingOpponent': "Analyzing the opponent's move…",
   'review.bestWas': 'The best was {move}',
   'review.refining': 'Checking the key moments in depth: {done} of {total}',
   'review.bestLine': 'Line: {line}',

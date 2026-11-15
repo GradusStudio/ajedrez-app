@@ -2,10 +2,10 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { ColumnScrollView, useColumnBarPadding } from '../../components/ColumnScrollView';
 import { Button3D } from '../../components/Button3D';
-import { MessageKey, useI18n } from '../../i18n/I18nContext';
+import { useI18n } from '../../i18n/I18nContext';
 import type { Review } from '../../review/types';
 import { space } from '../../theme';
-import { CATS, countCats, QUALITY_STYLE } from './quality';
+import { CAT_KEY, CATS, countCats, QUALITY_STYLE } from './quality';
 import { styles } from './reviewStyles';
 import { statusBarTop } from '../../components/statusBarTop';
 
@@ -56,7 +56,7 @@ export function SummaryView({ top, bubble, graph, review, me, nameOf, decimal, o
             return (
               <View key={id} style={styles.catRow}>
                 <Text style={styles.catLabel} numberOfLines={1}>
-                  {t(`review.cat.${id}` as MessageKey)}
+                  {t(CAT_KEY[id])}
                 </Text>
                 <Text style={[styles.catCount, counts.w[id] > 0 && { color }]}>{counts.w[id]}</Text>
                 <View style={[styles.catIcon, { backgroundColor: color }]}>

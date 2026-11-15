@@ -29,6 +29,7 @@ import { gameCountsForStreak } from '../progress/streak';
 import { useI18n } from '../i18n/I18nContext';
 import { es, MessageKey } from '../i18n/es';
 import { botGamePgn } from '../review/botGame';
+import { botGameReviewId } from '../review/botGames';
 import { setPendingGame } from '../review/session';
 import { useSettings } from '../settings/SettingsContext';
 import { type, colors, fonts, radius, space } from '../theme';
@@ -212,9 +213,15 @@ export function GameScreen({ bot, userColor, practiceCourse, practiceFromBot, in
   const analyze = () => {
     if (!result) return;
     const userName = t('game.you');
+    const moves = uciMoves(chess);
+    // `withGameFinished` antepone la partida a `games`: su hora da el id canónico, que no depende del idioma
+    // del PGN (las cabeceras llevan «Tú»/«You» y el nombre traducido del bot).
+    const latest = getProgress().games[0];
+    const sameMoves = !!latest && latest.botId === bot.id && latest.moves.length === moves.length && latest.moves.every((m, i) => m === moves[i]);
     setPendingGame({
-      pgn: botGamePgn({ moves: uciMoves(chess), userColor, userName, botName: bot.name, kind: result.kind }),
+      pgn: botGamePgn({ moves, userColor, userName, botName: bot.name, kind: result.kind }),
       username: userName,
+      ...(sameMoves && latest ? { id: botGameReviewId(latest) } : {}),
     });
     onAnalyze();
   };

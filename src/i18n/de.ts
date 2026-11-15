@@ -761,6 +761,7 @@ export const de: Record<MessageKey, string> = {
   'review.next': 'Weiter',
   'review.finish': 'Beenden',
   'review.analyzingMove': 'Dein Zug wird analysiert…',
+  'review.analyzingOpponent': 'Der gegnerische Zug wird analysiert…',
   'review.bestWas': 'Am besten war {move}',
   'review.refining': 'Schlüsselmomente werden genauer geprüft: {done} von {total}',
   'review.bestLine': 'Variante: {line}',

@@ -31,11 +31,22 @@ export function EvalGraph({ review, idx, showCursor, onSelect, width: fixedWidth
   const y = (score: number) => HEIGHT - whiteShare(score) * HEIGHT;
   const area = `M0 ${HEIGHT} ` + review.scores.map((s, i) => `L${x(i).toFixed(1)} ${y(s).toFixed(1)}`).join(' ') + ` L${w} ${HEIGHT} Z`;
 
+  const select = (i: number) => onSelect(Math.max(0, Math.min(n, Math.round(i))));
+
   return (
     <Pressable
-      onPress={(e) => onSelect(n === 0 ? 0 : Math.round((e.nativeEvent.locationX / w) * n))}
+      onPress={(e) => {
+        // En la web, activar un Pressable con Enter llama a onPress con el evento de teclado, sin locationX.
+        if (n === 0) return onSelect(0);
+        const x = (e?.nativeEvent as { locationX?: unknown } | undefined)?.locationX;
+        if (typeof x !== 'number' || !Number.isFinite(x) || w <= 0) return;
+        select((x / w) * n);
+      }}
       accessibilityRole="adjustable"
       accessibilityLabel={t('review.graph')}
+      accessibilityValue={{ min: 0, max: n, now: Math.max(0, Math.min(n, idx)) }}
+      accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+      onAccessibilityAction={(e) => select(idx + (e.nativeEvent.actionName === 'increment' ? 1 : -1))}
       style={[styles.graph, { width: w, height: HEIGHT }]}
     >
       <Svg width={w} height={HEIGHT} pointerEvents="none">

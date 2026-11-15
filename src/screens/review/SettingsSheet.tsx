@@ -3,7 +3,7 @@ import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-nati
 import { BotAvatar } from '../../components/BotAvatar';
 import { Button3D } from '../../components/Button3D';
 import { Segmented } from '../../components/Segmented';
-import { bots } from '../../data/bots';
+import { useContent } from '../../data/useContent';
 import { useI18n } from '../../i18n/I18nContext';
 import { colors, space } from '../../theme';
 import { Icon } from './ReviewParts';
@@ -30,6 +30,8 @@ type Props = {
 /** Hoja de ajustes de la revisión: bando, comentarista, salto entre destacadas y gráfico. */
 export function SettingsSheet(p: Props) {
   const { t } = useI18n();
+  // Los nombres de los bots cambian con el idioma (tarea 35); los ids no.
+  const { bots } = useContent();
   const hlPos = p.highlights.findIndex((h) => h + 1 === p.idx);
   const total = p.highlights.length;
   const hlText =

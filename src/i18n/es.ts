@@ -759,6 +759,7 @@ export const es = {
   'review.next': 'Siguiente',
   'review.finish': 'Finalizar',
   'review.analyzingMove': 'Analizando tu jugada…',
+  'review.analyzingOpponent': 'Analizando la jugada del rival…',
   'review.bestWas': 'La mejor era {move}',
   'review.refining': 'Revisando los momentos clave a fondo: {done} de {total}',
   'review.bestLine': 'Línea: {line}',

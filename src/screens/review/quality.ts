@@ -22,6 +22,30 @@ export const QUALITY_STYLE: Record<StyleKey, Badge> = {
 export const CATS = ['great', 'best', 'excellent', 'good', 'book', 'inaccuracy', 'mistake', 'blunder'] as const;
 export type Cat = (typeof CATS)[number];
 
+/** Claves del catálogo, sin construirlas con un template literal (así el catálogo las comprueba). */
+const TITLE_KEY: Record<StyleKey, MessageKey> = {
+  great: 'review.q.great',
+  best: 'review.q.best',
+  excellent: 'review.q.excellent',
+  good: 'review.q.good',
+  book: 'review.q.book',
+  inaccuracy: 'review.q.inaccuracy',
+  mistake: 'review.q.mistake',
+  blunder: 'review.q.blunder',
+  mate: 'review.q.mate',
+};
+
+export const CAT_KEY: Record<Cat, MessageKey> = {
+  great: 'review.cat.great',
+  best: 'review.cat.best',
+  excellent: 'review.cat.excellent',
+  good: 'review.cat.good',
+  book: 'review.cat.book',
+  inaccuracy: 'review.cat.inaccuracy',
+  mistake: 'review.cat.mistake',
+  blunder: 'review.cat.blunder',
+};
+
 export const REPLY_ARROW = 'rgba(250, 65, 45, 0.85)';
 export const BEST_ARROW = 'rgba(129, 182, 76, 0.95)';
 
@@ -33,7 +57,7 @@ export const badgeOf = (p: ReviewPly): Badge | null => {
   return key === 'good' ? null : QUALITY_STYLE[key];
 };
 
-export const titleKey = (p: ReviewPly): MessageKey => `review.q.${styleKeyOf(p)}` as MessageKey;
+export const titleKey = (p: ReviewPly): MessageKey => TITLE_KEY[styleKeyOf(p)];
 
 export const countCats = (plies: ReviewPly[], color: 'w' | 'b'): Record<Cat, number> => {
   const r: Record<Cat, number> = { great: 0, best: 0, excellent: 0, good: 0, book: 0, inaccuracy: 0, mistake: 0, blunder: 0 };
@@ -47,10 +71,3 @@ export const faceFor = (p: ReviewPly | undefined, mine: boolean): BotExpression 
   if (p.quality === 'inaccuracy') return 'piensa';
   return mine ? 'acierto' : 'explica';
 };
-
-/** "+0,9", "−2,3", "M3": igual que la barra. */
-export function evalLabel(score: number, decimal: string): string {
-  if (Math.abs(score) >= 9000) return `${score > 0 ? '' : '−'}M${10000 - Math.abs(score)}`;
-  const p = (Math.abs(score) / 100).toFixed(1).replace('.', decimal);
-  return score > 0 ? `+${p}` : score < 0 ? `−${p}` : `0${decimal}0`;
-}

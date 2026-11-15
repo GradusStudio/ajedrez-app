@@ -42,11 +42,12 @@ export function useBranchPlay(review: Review | null, engine: UciEngine | null, p
     pb.setFfTarget(null);
     pb.setShowBest(false);
     if (!branch && idx < n && review.plies[idx].move.uci === mv.uci) return pb.goTo(idx + 1);
+    // Sin motor (una revisión guardada) no se abre una variante que nunca se va a calificar.
+    if (!engine) return;
     const id = ++branchId.current;
     const prev = lastVar ? lastVar.rated ?? undefined : idx > 0 ? review.plies[idx - 1] : undefined;
     const number = (branch ? branch.from : idx) + (branch?.moves.length ?? 0) + 1;
     pb.setBranch({ from: branch ? branch.from : idx, moves: [...(branch?.moves ?? []), { id, move: mv, rated: null }] });
-    if (!engine) return;
     const evalOf = async (f: string) => {
       const key = positionKey(f);
       const known = evalCache.current.get(key) ?? reviewEvals.get(key);

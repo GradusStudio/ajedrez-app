@@ -32,7 +32,10 @@ export function useReviewPlayback(n: number, highlights: number[]) {
   const lastVar = branch ? branch.moves[branch.moves.length - 1] : null;
 
   const goTo = (i: number) => {
-    setIdx(Math.max(0, Math.min(n, i)));
+    // Un índice no finito (por ejemplo un toque sin coordenada) no puede llegar al render.
+    const target = Number.isFinite(i) ? i : 0;
+    setIdx(Math.max(0, Math.min(n, Math.round(target))));
+    setPlaying(false);
     setShowBest(false);
     setFfTarget(null);
     setBranch(null);

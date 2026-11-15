@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ScrollView, Text, useWindowDimensions, View } from 'react-native';
+import { Platform, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import { Square } from 'chess.js';
 import { Board } from '../components/Board';
 import { Button3D } from '../components/Button3D';
@@ -47,7 +47,7 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
   const decimal = language === 'en' ? '.' : ',';
   const fmt = (san: string) => sanFromEnglish(san, notation);
 
-  const pending = useMemo(() => peekPendingGame(), []);
+  const [pending] = useState(() => peekPendingGame());
   const game = useMemo(() => (pending ? parseGame(pending.pgn) : null), [pending]);
   // Revisión ya guardada (tarea 34): se muestra tal cual, sin volver a analizar.
   const saved = pending?.review ?? null;
@@ -65,19 +65,47 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
   const [started, setStarted] = useState(false);
   const [sheet, setSheet] = useState(false);
 
-  // La primera revisión calculada en esta pantalla se guarda en el dispositivo (las últimas 10).
-  const stored = useRef(false);
+  // La revisión calculada en esta pantalla se guarda en el dispositivo (las últimas 10). Si después se cambia el
+  // bando o el comentarista, se vuelve a guardar con el mismo id: el registro guardado no se queda con los viejos.
   useEffect(() => {
-    if (!review || saved || !pending || !game || stored.current) return;
-    stored.current = true;
+    if (!review || saved || !pending || !game) return;
     void saveReview({
       id: pending.id ?? reviewId(pending.pgn),
       savedAt: new Date().toISOString(),
-      me: meKnown,
+      me,
       coachId: coach.id,
       review,
     });
-  }, [review, saved, pending, game, meKnown, coach.id]);
+  }, [review, saved, pending, game, me, coach.id]);
+
+  // Flechas del teclado en la web (spec de la revisión): retroceder, avanzar, inicio y fin.
+  const pbRef = useRef(pb);
+  useEffect(() => {
+    pbRef.current = pb;
+  });
+  useEffect(() => {
+    if (Platform.OS !== 'web' || !started) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (sheet) return;
+      const el = e.target as HTMLElement | null;
+      if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)) return;
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        pbRef.current.stepBack();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        pbRef.current.stepForward();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        pbRef.current.goTo(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        pbRef.current.goTo(n);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [started, sheet, n]);
 
   const { idx, lastVar, branch } = pb;
   const fen =
@@ -122,7 +150,7 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
   const shownFen = pv ? (previewMove ? previewMove.fenAfter : pv.baseFen) : fen;
   const shownMove = pv ? previewMove : lastVar ? lastVar.move : ply?.move;
   const lastMove = shownMove ? { from: shownMove.uci.slice(0, 2) as Square, to: shownMove.uci.slice(2, 4) as Square } : null;
-  const mine = lastVar ? true : ply ? ply.move.color === me : true;
+  const mine = lastVar ? lastVar.move.color === me : ply ? ply.move.color === me : true;
   const bad = !!ply && isBad(ply.quality);
   const badge = ply ? badgeOf(ply) : null;
   const colorArrows: { move: string; color: string }[] = [];
@@ -133,7 +161,7 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
   const voice = pendingOwn
     ? engineError
       ? t('analysis.engineDown')
-      : t('review.analyzingMove')
+      : t(mine ? 'review.analyzingMove' : 'review.analyzingOpponent')
     : ply
       ? coachVoice({
           lang: coachLang(language),
@@ -200,8 +228,9 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
   );
 
   if (!started) {
-    // Quiz de puntos de giro: pantalla aparte que solo lee esta revisión. Solo si se sabe de qué bando jugó el usuario.
-    const points = meKnown ? turningPoints(review, meKnown) : [];
+    // Quiz de puntos de giro: pantalla aparte que solo lee esta revisión. Usa el bando elegido (por si el PGN no
+    // dice quién jugó), el mismo que se guarda.
+    const points = turningPoints(review, me);
     return shell(
       <SummaryView
         top={<TopBar onBack={onBack} />}
@@ -235,7 +264,7 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
       <Board
         fen={shownFen}
         orientation={me}
-        interactive={!pb.fast && !pb.autoplaying && !pv}
+        interactive={!!engine && !pb.fast && !pb.autoplaying && !pv}
         onMove={playOwn}
         lastMove={lastMove}
         colorArrows={colorArrows}

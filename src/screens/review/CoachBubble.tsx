@@ -3,7 +3,8 @@ import { ScrollView, Text, View } from 'react-native';
 import { BotAvatar } from '../../components/BotAvatar';
 import type { BotExpression } from '../../components/botFace';
 import type { Bot } from '../../data/bots';
-import { Badge, evalLabel } from './quality';
+import { Badge } from './quality';
+import { formatScore } from '../../engine/evalFormat';
 import { styles } from './reviewStyles';
 
 type Props = {
@@ -25,7 +26,7 @@ export function CoachBubble({ coach, expression, head, startTitle, voice, detail
   return (
     <View style={styles.coachRow}>
       <BotAvatar bot={coach} size={64} expression={expression} />
-      <View style={styles.bubble}>
+      <View style={styles.bubble} accessibilityLiveRegion="polite">
         <ScrollView
           key={`${head?.title ?? startTitle ?? ''}|${voice}|${details.join('|')}|${line}`}
           nestedScrollEnabled
@@ -43,7 +44,7 @@ export function CoachBubble({ coach, expression, head, startTitle, voice, detail
                 {head.title}
               </Text>
               <View style={[styles.evalChip, head.score < 0 && { backgroundColor: '#1B1A18' }]}>
-                <Text style={[styles.evalChipText, head.score < 0 && { color: '#FFFFFF' }]}>{evalLabel(head.score, head.decimal)}</Text>
+                <Text style={[styles.evalChipText, head.score < 0 && { color: '#FFFFFF' }]}>{formatScore(head.score, head.decimal)}</Text>
               </View>
             </View>
           ) : startTitle ? (

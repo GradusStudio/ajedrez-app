@@ -761,6 +761,7 @@ export const fr: Record<MessageKey, string> = {
   'review.next': 'Suivant',
   'review.finish': 'Terminer',
   'review.analyzingMove': 'Analyse de ton coup…',
+  'review.analyzingOpponent': "Analyse du coup de l'adversaire…",
   'review.bestWas': 'Le meilleur était {move}',
   'review.refining': 'Analyse approfondie des moments clés : {done} sur {total}',
   'review.bestLine': 'Variante : {line}',

@@ -44,7 +44,10 @@ export function MoveStrip({ plies, idx, inBranch, fmt, onGo, onPrev, onNext }: P
                 key={p.ply}
                 onPress={() => onGo(i + 1)}
                 onLayout={(e) => {
-                  chipPos.current[i + 1] = { x: e.nativeEvent.layout.x, w: e.nativeEvent.layout.width };
+                  const pos = { x: e.nativeEvent.layout.x, w: e.nativeEvent.layout.width };
+                  chipPos.current[i + 1] = pos;
+                  // Montada directamente en una jugada (por ejemplo desde el gráfico): la tira arranca en ella.
+                  if (i + 1 === idx) stripRef.current?.scrollTo({ x: Math.max(0, pos.x - 90), animated: false });
                 }}
                 accessibilityRole="button"
                 accessibilityLabel={`${p.move.color === 'w' ? Math.floor(i / 2) + 1 + '. ' : ''}${fmt(p.move.san)}`}
@@ -57,7 +60,15 @@ export function MoveStrip({ plies, idx, inBranch, fmt, onGo, onPrev, onNext }: P
             );
           })}
         </ScrollView>
-        <Pressable onPress={onNext} accessibilityRole="button" accessibilityLabel={t('review.ctrlNext')} hitSlop={10} style={styles.stripArrow}>
+        <Pressable
+          onPress={onNext}
+          disabled={inBranch}
+          accessibilityRole="button"
+          accessibilityState={{ disabled: inBranch }}
+          accessibilityLabel={t('review.ctrlNext')}
+          hitSlop={10}
+          style={[styles.stripArrow, inBranch && { opacity: 0.4 }]}
+        >
           <Icon name="next" color={colors.textMuted} />
         </Pressable>
       </View>

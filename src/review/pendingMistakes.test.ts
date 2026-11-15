@@ -70,6 +70,14 @@ test('corta en el máximo pedido', () => {
   assert.equal(pending.points.length, 2);
 });
 
+test('la misma posición en dos revisiones se ofrece una sola vez', () => {
+  const a = stored('a', 'w', [blunder(1, 'w', 'd1d4', 'misma'), blunder(2, 'w', 'a1a3', 'otra')]);
+  const b = stored('b', 'w', [blunder(1, 'w', 'd1d4', 'misma')]);
+  const pending = pendingMistakes([a, b], []);
+  assert.ok(pending);
+  assert.deepEqual(pending.points.map((p) => p.fen), ['misma', 'otra']);
+});
+
 test('si todas las posiciones están practicadas devuelve null', () => {
   const only = stored('o', 'w', [blunder(1, 'w', 'd1d4')]);
   assert.equal(pendingMistakes([only], [keyOf(only, 0)]), null);

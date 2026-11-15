@@ -22,12 +22,18 @@ export function lineMoves(fen: string, pv: string[] | undefined, max = LINE_PLIE
   return out.length >= 2 ? out : [];
 }
 
+/** Número de jugada que corresponde a la posición, según el FEN; 1 si no se puede leer. */
+export function moveNumber(fen: string): number {
+  const n = Number(fen.split(' ')[5]);
+  return Number.isFinite(n) && n > 0 ? n : 1;
+}
+
 /**
  * La línea como texto con números de jugada: «7. Cg5 d5 8. exd5 Ca5» o «7... d5 8. exd5».
  * `fmt` pasa cada jugada de notación inglesa a la del usuario.
  */
 export function lineText(fen: string, moves: LineMove[], fmt: (san: string) => string): string {
-  let number = Number(fen.split(' ')[5]) || 1;
+  let number = moveNumber(fen);
   const parts: string[] = [];
   moves.forEach((m, i) => {
     if (m.color === 'w') parts.push(`${number}.`);

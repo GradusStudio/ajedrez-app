@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { lineMoves, lineText } from './bestLine';
+import { lineMoves, lineText, moveNumber } from './bestLine';
 
 const START = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 const BLACK_TO_MOVE_7 = 'rnbqkbnr/ppp3pp/8/3p1p2/3Np3/6P1/PPPPPPBP/RNBQ1RK1 b kq - 0 7';
@@ -30,4 +30,11 @@ test('lineText numera las jugadas de las blancas y marca con puntos suspensivos 
   assert.equal(lineText(START, white, (s) => s.replace('N', 'C')), '1. e4 e5 2. Cf3 Cc6');
   const black = lineMoves(BLACK_TO_MOVE_7, ['f8c5', 'd4b3', 'c5b6']);
   assert.equal(lineText(BLACK_TO_MOVE_7, black, (s) => s), '7... Bc5 8. Nb3 Bb6');
+});
+
+test('moveNumber lee el número del FEN, también con las negras a mover', () => {
+  assert.equal(moveNumber(START), 1);
+  assert.equal(moveNumber(BLACK_TO_MOVE_7), 7);
+  assert.equal(moveNumber('roto'), 1);
+  assert.equal(moveNumber('a b c d e 0'), 1);
 });

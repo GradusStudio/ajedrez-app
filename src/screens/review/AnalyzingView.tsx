@@ -16,12 +16,14 @@ type Props = {
   engineReady: boolean;
   progress: { done: number; total: number };
   phase: AnalysisPhase;
+  /** Texto del botón de volver: «Análisis» o «Volver» si se entró desde el resultado de una partida. */
+  backLabel: string;
   onBack: () => void;
   onRetry: () => void;
 };
 
 /** Pantalla mientras Stockfish recorre la partida. */
-export function AnalyzingView({ down, engineReady, progress, phase, onBack, onRetry }: Props) {
+export function AnalyzingView({ down, engineReady, progress, phase, backLabel, onBack, onRetry }: Props) {
   const { t } = useI18n();
   // Pantalla ancha: en la columna, como el resumen (sin esto la barra de progreso cruzaría toda la ventana).
   const column = useColumnWidth();
@@ -33,7 +35,7 @@ export function AnalyzingView({ down, engineReady, progress, phase, onBack, onRe
         column ? { width: '100%', maxWidth: column, alignSelf: 'center' } : null,
       ]}
     >
-      <BackButton screen={t('tabs.analysis')} onPress={onBack} />
+      <BackButton screen={backLabel} label={backLabel} onPress={onBack} />
       <Text style={styles.title}>{t('review.title')}</Text>
       <View style={styles.center}>
         {down ? (

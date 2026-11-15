@@ -36,11 +36,11 @@ import { useWideLayout } from '../components/useWideLayout';
 /** Alto fuera del tablero en pantalla ancha: barra de arriba, barra de evaluación, barra de abajo y márgenes. */
 const REVIEW_RESERVE = 240;
 
-type Props = { onBack: () => void; onPractice: () => void };
+type Props = { onBack: () => void; onPractice: () => void; /** Origen: `game` cuando se entra desde el resultado de una partida. */ from?: string };
 
 const topInset = () => statusBarTop(space.sm);
 
-export function GameReviewScreen({ onBack, onPractice }: Props) {
+export function GameReviewScreen({ onBack, onPractice, from }: Props) {
   const { t, tn, language } = useI18n();
   const { settings } = useSettings();
   const notation = resolveNotation(settings.notation, language);
@@ -136,7 +136,15 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
 
   if (!review) {
     return shell(
-      <AnalyzingView down={!!engineError || failed} engineReady={!!engine} progress={progress} phase={phase} onBack={onBack} onRetry={retry} />
+      <AnalyzingView
+        down={!!engineError || failed}
+        engineReady={!!engine}
+        progress={progress}
+        phase={phase}
+        backLabel={from === 'game' ? t('back.generic') : t('tabs.analysis')}
+        onBack={onBack}
+        onRetry={retry}
+      />
     );
   }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useI18n } from '../../i18n/I18nContext';
 import type { ReviewPly } from '../../review/types';
+import { moveNumber } from '../../review/bestLine';
 import { colors } from '../../theme';
 import { badgeOf } from './quality';
 import { Icon } from './ReviewParts';
@@ -39,6 +40,9 @@ export function MoveStrip({ plies, idx, inBranch, fmt, onGo, onPrev, onNext }: P
           {plies.map((p, i) => {
             const b = badgeOf(p);
             const current = idx === i + 1 && !inBranch;
+            // El número sale del FEN de la jugada: sirve también si las negras mueven primero.
+            const no = moveNumber(p.move.fenBefore);
+            const showNo = p.move.color === 'w' || i === 0;
             return (
               <Pressable
                 key={p.ply}
@@ -50,10 +54,10 @@ export function MoveStrip({ plies, idx, inBranch, fmt, onGo, onPrev, onNext }: P
                   if (i + 1 === idx) stripRef.current?.scrollTo({ x: Math.max(0, pos.x - 90), animated: false });
                 }}
                 accessibilityRole="button"
-                accessibilityLabel={`${p.move.color === 'w' ? Math.floor(i / 2) + 1 + '. ' : ''}${fmt(p.move.san)}`}
+                accessibilityLabel={`${p.move.color === 'w' ? `${no}. ` : i === 0 ? `${no}... ` : ''}${fmt(p.move.san)}`}
                 style={[styles.moveChip, current && styles.moveChipCurrent]}
               >
-                {p.move.color === 'w' && <Text style={styles.moveNo}>{Math.floor(i / 2) + 1}.</Text>}
+                {showNo && <Text style={styles.moveNo}>{p.move.color === 'w' ? `${no}.` : `${no}...`}</Text>}
                 {b && <Text style={[styles.moveBadge, { color: b.color }]}>{b.label}</Text>}
                 <Text style={[styles.moveText, current && { color: colors.text }]}>{fmt(p.move.san)}</Text>
               </Pressable>

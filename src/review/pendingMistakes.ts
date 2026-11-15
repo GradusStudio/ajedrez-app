@@ -24,12 +24,20 @@ export const MAX_PENDING = 20;
  */
 export function pendingMistakes(reviews: StoredReview[], done: string[], max = MAX_PENDING): PendingMistakes | null {
   const doneSet = new Set(done);
+  // Una misma posición puede estar en dos revisiones guardadas (por ejemplo, la misma partida revisada dos veces):
+  // el quiz la ofrece una sola vez.
+  const seen = new Set<string>();
   const points: TurningPoint[] = [];
   let me: 'w' | 'b' | null = null;
   let coachId = '';
   for (const stored of reviews) {
     if (!stored.me) continue;
-    const fresh = turningPoints(stored.review, stored.me).filter((tp) => !doneSet.has(turningPointKey(tp)));
+    const fresh = turningPoints(stored.review, stored.me).filter((tp) => {
+      const key = turningPointKey(tp);
+      if (doneSet.has(key) || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
     if (fresh.length === 0) continue;
     if (me === null) {
       me = stored.me;

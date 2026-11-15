@@ -70,7 +70,7 @@ function NewGame({ bot: botId, color, curso, n, from, moves, startedAt }: { bot:
         })
       }
       onOtherBot={() => (practiceCourse ? router.back() : router.dismissTo('/bots'))}
-      onAnalyze={() => router.push('/revision')}
+      onAnalyze={() => router.push({ pathname: '/revision', params: { from: 'game' } })}
     />
   );
 }

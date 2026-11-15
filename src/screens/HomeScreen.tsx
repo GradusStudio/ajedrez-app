@@ -210,6 +210,7 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
       return {
         key: String(u.unit),
         label: String(u.unit),
+        title: u.title,
         locked: !open,
         accessibilityLabel: t(open ? 'home.unitWheelLabel' : 'home.unitWheelLocked', {
           n: u.unit,

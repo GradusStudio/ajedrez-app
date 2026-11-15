@@ -4,14 +4,17 @@ import Svg, { ClipPath, Defs, G, Line, Path, Rect, Text as SvgText } from 'react
 import { colors, fonts } from '../theme';
 import { Circle3D } from './Circle3D';
 import { useReducedMotion } from './useReducedMotion';
+import { fitWheelLabel } from './wheelLabel';
 
 /** Un gajo de la corona: lo que se ve en el centro y lo que anuncia el lector de pantalla. */
 export type WheelItem = {
   key: string;
   /** Número en Aprender, nombre corto en Aperturas. */
   label: string;
+  /** Nombre de la unidad en Aprender («Finales intermedios»); en Aperturas no se usa. */
+  title?: string;
   accessibilityLabel: string;
-  /** Unidad cerrada: gajo con el color de los vecinos y un candado chico debajo del número. */
+  /** Unidad cerrada: gajo con el color de los vecinos y un candado chico al lado del número. */
   locked?: boolean;
 };
 
@@ -39,6 +42,10 @@ const GAP = 2.4;
 const W = R + 16;
 const H = 2 * R + 16 + DEPTH;
 const HALF = STEP / 2 - GAP;
+/** Centro del texto sobre el eje del gajo (radio medio, un poco hacia afuera). */
+const MID = (R + RIN) / 2 + 4;
+/** Texto de una unidad cerrada de costado: más claro que el outline, para que el nombre se lea. */
+const LOCKED_LABEL = '#8B8986';
 
 /** Ancho de la media corona: las pantallas anchas lo usan para dejarle el lugar exacto a la izquierda. */
 export const WHEEL_WIDTH = W;
@@ -304,7 +311,6 @@ export function UnitWheel({
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  const labelPoint = (a: number) => pt(a, (R + RIN) / 2 + 6);
   // Sin selección de texto ni desplazamiento táctil sobre la corona (como el prototipo v2).
   const crownWebStyle =
     Platform.OS === 'web'
@@ -326,11 +332,18 @@ export function UnitWheel({
             const t = Math.max(0, 1 - Math.abs(a) / STEP);
             const e = t * t * (3 - 2 * t);
             const press = pressed === i ? DEPTH / 2 : 0;
-            const p = labelPoint(a);
             const face = item.locked ? mixColor(colors.surfaceRaised, colors.surfaceShadow, e) : mixColor(colors.surfaceRaised, colors.primary, e);
             const edge = item.locked ? mixColor(colors.surfaceShadow, colors.surfaceShadow, e) : mixColor(colors.surfaceShadow, colors.primaryShadow, e);
-            const labelColor = item.locked ? mixColor(colors.outline, colors.textMuted, e) : mixColor(colors.textMuted, colors.text, e);
-            const lockColor = mixColor(colors.surfaceRaised, colors.textMuted, e);
+            const labelColor = item.locked ? mixColor(LOCKED_LABEL, colors.textMuted, e) : mixColor(colors.textMuted, colors.text, e);
+            // El número y el nombre viven en el sistema del gajo: giran con él y se centran sobre el radio medio.
+            const num = 22 + 12 * e;
+            const name = labels === 'number' && item.title ? fitWheelLabel(item.title, 12.5 + 3 * e) : null;
+            const lines = name?.lines ?? [];
+            const lh = (name?.size ?? 0) * 1.12;
+            const block = num + (lines.length > 0 ? 4 + lines.length * lh : 0);
+            const y0 = -block / 2;
+            // En Aperturas el nombre corto va solo, en un renglón, con el mismo sistema y el mismo tope de 112 px.
+            const short = labels === 'short' ? fitWheelLabel(item.label, 15 + 5 * e, 1) : null;
             return (
               <G key={item.key}>
                 <Path
@@ -348,29 +361,52 @@ export function UnitWheel({
                   strokeWidth={2}
                   accessibilityLabel={item.accessibilityLabel}
                 />
-                <SvgText
-                  x={p.x}
-                  y={p.y + press}
-                  textAnchor="middle"
-                  alignmentBaseline="middle"
-                  fontFamily={fonts.extrabold}
-                  fontSize={labels === 'short' ? 15 + 5 * e : 22 + 26 * e}
-                  fill={labelColor}
-                >
-                  {item.label}
-                </SvgText>
-                {item.locked && labels === 'number' && (
-                  <G transform={`translate(${p.x - 6} ${p.y + 20 + 12 * e}) scale(${0.7 + 0.5 * e})`}>
-                    <Path
-                      d="M2.5 5V3.5a3.5 3.5 0 0 1 7 0V5"
-                      stroke={lockColor}
-                      strokeWidth={1.8}
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                    <Rect x={0} y={5} width={12} height={9} rx={2} fill={lockColor} />
-                  </G>
-                )}
+                <G transform={`rotate(${a} ${CX} ${CY}) translate(${CX + MID} ${CY})`}>
+                  {short ? (
+                    <SvgText
+                      x={0}
+                      y={0}
+                      textAnchor="middle"
+                      alignmentBaseline="middle"
+                      fontFamily={fonts.extrabold}
+                      fontSize={short.size}
+                      fill={labelColor}
+                    >
+                      {short.lines[0] ?? item.label}
+                    </SvgText>
+                  ) : (
+                    <>
+                      <SvgText x={0} y={y0 + num * 0.8} textAnchor="middle" fontFamily={fonts.extrabold} fontSize={num} fill={labelColor}>
+                        {item.label}
+                      </SvgText>
+                      {item.locked && (
+                        <G transform={`translate(${num * 0.45} ${y0 + num * 0.16}) scale(0.75)`}>
+                          <Path
+                            d="M2.5 5V3.5a3.5 3.5 0 0 1 7 0V5"
+                            stroke={labelColor}
+                            strokeWidth={1.8}
+                            fill="none"
+                            strokeLinecap="round"
+                          />
+                          <Rect y={5} width={12} height={9} rx={2} fill={labelColor} />
+                        </G>
+                      )}
+                      {lines.map((line, k) => (
+                        <SvgText
+                          key={k}
+                          x={0}
+                          y={y0 + num + 4 + lh * (k + 0.8)}
+                          textAnchor="middle"
+                          fontFamily={fonts.extrabold}
+                          fontSize={name?.size ?? 12}
+                          fill={labelColor}
+                        >
+                          {line}
+                        </SvgText>
+                      ))}
+                    </>
+                  )}
+                </G>
               </G>
             );
           })}

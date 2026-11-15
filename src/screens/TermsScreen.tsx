@@ -29,7 +29,8 @@ export function TermsScreen({ onBack }: { onBack: () => void }) {
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
-      <BackButton screen={t('profile.settings')} onPress={onBack} />
+      {/* Se abre desde Ajustes, Créditos e Instalar: el botón no puede prometer una pantalla concreta. */}
+      <BackButton screen={t('back.generic')} label={t('back.generic')} onPress={onBack} />
 
       <Text accessibilityRole="header" aria-level={1} style={styles.title}>{t('terms.title')}</Text>
       <Text style={styles.updated}>{t('terms.updated')}</Text>

@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import type { Bot } from '../data/bots';
 import type { Lesson, OpeningCourse, Unit } from '../data/lessonTypes';
 import { achievementCount, achievements, newAchievements } from './achievements';
 import { emptyProgress, type GameRecord, type Progress } from './progressStore';
@@ -15,7 +14,7 @@ const course = (id: string, ids: string[]): OpeningCourse =>
 
 const units = [unit(1, ['a1', 'a2']), unit(2, ['b1']), unit(3, ['c1'])];
 const openings = [course('italian', ['i1', 'i2']), course('london', ['l1']), course('scotch', ['s1'])];
-const content = { units, openings, bots: [] as Bot[] };
+const content = { units, openings };
 
 const make = (patch: Partial<Progress> = {}): Progress => ({ ...emptyProgress, ...patch });
 const done = (id: string, errors = 0, completedAt = '2026-11-01T00:00:00.000Z') => ({ [id]: { done: true as const, errors, completedAt, completions: 1 } });

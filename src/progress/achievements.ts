@@ -1,7 +1,6 @@
 // Logros del Perfil (spec del perfil, sección 5). Módulo puro: se calculan con datos que ya existen.
 // Sin React Native: probado en achievements.test.ts.
 import type { OpeningCourse, Unit } from '../data/lessonTypes';
-import type { Bot } from '../data/bots';
 import { currentRating } from './puzzleRating';
 import { isPuzzleSolved, type Progress } from './progressStore';
 
@@ -36,7 +35,7 @@ export type Achievement = {
 };
 
 /** Lo que hace falta del contenido para calcular los logros. */
-export type AchievementContent = { units: Unit[]; openings: OpeningCourse[]; bots: Bot[] };
+export type AchievementContent = { units: Unit[]; openings: OpeningCourse[] };
 
 /** Logro de la tabla de la spec, en el orden en que se muestra. */
 const COLOR: Record<AchievementId, AchievementColor> = {

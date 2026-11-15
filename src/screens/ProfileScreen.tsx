@@ -17,7 +17,7 @@ import progressGamesRaw from '../data/progressGames.json';
 import { achievementCount, achievements, newAchievements, type AchievementId } from '../progress/achievements';
 import { currentRating, formatDelta } from '../progress/puzzleRating';
 import { weekRatingDelta } from '../puzzles/puzzleView';
-import { currentStreak, isPuzzleSolved, streakStatusNow } from '../progress/progressStore';
+import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { piecesFromFen, progressPosition, type ProgressGamesFile } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
 import { useSettings } from '../settings/SettingsContext';
@@ -77,7 +77,7 @@ export function ProfileScreen({ onOpenSettings, onOpenBotGames, onOpenReview, on
   const summary = profileSummary(progress, units, openings);
   const cards = unitCards(units, progress, progress.profile.level, settings.openAllUnits);
   const { records, nextRival } = botRecords(bots, progress.games);
-  const list = achievements(progress, { units, openings, bots });
+  const list = achievements(progress, { units, openings });
   const count = achievementCount(list);
   // Los recién ganados se ven con «Nuevo» en esta visita y quedan marcados para la próxima.
   const [fresh] = useState(() => newAchievements(list, settings.seenAchievements));
@@ -95,7 +95,7 @@ export function ProfileScreen({ onOpenSettings, onOpenBotGames, onOpenReview, on
   const deltaWeek = weekRatingDelta(history, rating, new Date(`${today}T12:00:00`));
   const bestRating = Math.max(rating, ...history.map((p) => p.rating));
   const cleanPuzzles = Object.values(progress.puzzles).filter((p) => p.result === 'clean').length;
-  const puzzlesSolved = Object.keys(progress.puzzles).filter((id) => isPuzzleSolved(progress, id)).length;
+  const puzzlesSolved = summary.puzzlesSolved;
   const beaten = records.filter((r) => r.beaten).length;
 
   const reviewable = progress.mistakes.filter((m) => findLesson(m.lessonId)?.steps.some((s) => s.id === m.stepId));

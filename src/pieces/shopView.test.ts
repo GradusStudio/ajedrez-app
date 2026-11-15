@@ -28,6 +28,11 @@ test('sets: gratis, tuyo y en uso se distinguen', () => {
   assert.deepEqual(items.find((i) => i.id === 'hielo')?.state, { kind: 'short', missing: 200 });
 });
 
+test('cada ítem lleva su tipo, para no castear los ids en la pantalla', () => {
+  assert.equal(shopItems('board', base).every((i) => i.kind === 'board'), true);
+  assert.equal(shopItems('set', base).every((i) => i.kind === 'set'), true);
+});
+
 test('con saldo justo el ítem es comprable', () => {
   const items = shopItems('board', { ...base, coins: 200 });
   assert.deepEqual(items.find((i) => i.id === 'madera')?.state, { kind: 'affordable' });

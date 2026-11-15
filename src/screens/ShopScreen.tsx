@@ -45,7 +45,7 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
   const tips = useTips(['shop']);
   const tipMessage = tips.current ? TIP_MESSAGES[tips.current] : null;
   const gridRef = useRef<React.ComponentRef<typeof View>>(null);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<ShopItem | null>(null);
 
   const kind = tab === 'boards' ? 'board' : 'set';
   const ctx: ShopContext = {
@@ -56,8 +56,8 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
     setInUse: pieceSet,
   };
   const items = shopItems(kind, ctx);
-  const combo = previewCombo(kind, selected, ctx);
-  const action = previewAction(kind, selected, ctx);
+  const combo = previewCombo(kind, selected?.id ?? null, ctx);
+  const action = previewAction(kind, selected?.id ?? null, ctx);
   const previewSize = wide ? 340 : Math.min(width - 60, 480);
   // En la web ancha la vista previa queda fija mientras se recorre la grilla.
   const sticky = wide && Platform.OS === 'web' ? ({ position: 'sticky', top: space.lg } as unknown as ViewStyle) : null;
@@ -77,27 +77,27 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
 
   const applySelected = () => {
     if (!selected) return;
-    if (kind === 'board') update({ boardTheme: selected as BoardThemeId });
-    else setPieceSet(selected as AnyPieceSetId);
+    if (selected.kind === 'board') update({ boardTheme: selected.id });
+    else setPieceSet(selected.id);
     setSelected(null);
   };
 
   const buySelected = () => {
-    const id = selected;
+    const chosen = selected;
     const current = action;
-    if (!id || !current || current.type !== 'buy') return;
+    if (!chosen || !current || current.type !== 'buy') return;
     showDialog(
-      t(kind === 'board' ? 'shop.buy.title.board' : 'shop.buy.title.set', { name: nameOf(kind, id) }),
+      t(chosen.kind === 'board' ? 'shop.buy.title.board' : 'shop.buy.title.set', { name: nameOf(chosen.kind, chosen.id) }),
       t('shop.buy.message', { price: current.price, left: current.left }),
       [
         { text: t('common.cancel'), style: 'cancel' },
         {
           text: t('shop.buy.confirm'),
           onPress: () => {
-            const ok = kind === 'board' ? buyBoardTheme(id, current.price) : buyPieceSet(id, current.price);
+            const ok = chosen.kind === 'board' ? buyBoardTheme(chosen.id, current.price) : buyPieceSet(chosen.id, current.price);
             if (!ok) return;
-            if (kind === 'board') update({ boardTheme: id as BoardThemeId });
-            else setPieceSet(id as AnyPieceSetId);
+            if (chosen.kind === 'board') update({ boardTheme: chosen.id });
+            else setPieceSet(chosen.id);
             setSelected(null);
           },
         },
@@ -106,7 +106,7 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
   };
 
   const cap = action
-    ? t(kind === 'board' ? 'shop.preview.board' : 'shop.preview.set', { name: nameOf(kind, selected ?? '') })
+    ? t(kind === 'board' ? 'shop.preview.board' : 'shop.preview.set', { name: nameOf(kind, selected?.id ?? '') })
     : t('shop.inUse', { board: boardName(combo.board), set: setName(combo.set) });
 
   return (
@@ -179,12 +179,12 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
             <View ref={gridRef} style={styles.grid}>
               {items.map((item) => {
                 const inUseNow = item.id === (kind === 'board' ? boardTheme : pieceSet);
-                const marked = selected ? selected === item.id : inUseNow;
+                const marked = selected ? selected.id === item.id : inUseNow;
                 const state = stateText(item);
                 return (
                   <Pressable
                     key={item.id}
-                    onPress={() => setSelected(item.id)}
+                    onPress={() => setSelected(item)}
                     accessibilityRole="button"
                     accessibilityState={{ selected: marked }}
                     accessibilityLabel={t(kind === 'board' ? 'shop.item.board' : 'shop.item.set', {
@@ -193,10 +193,10 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
                     })}
                     style={[styles.item, wide ? styles.itemWide : styles.itemNarrow, marked && styles.itemSelected]}
                   >
-                    {kind === 'board' ? (
-                      <BoardThumb id={item.id as BoardThemeId} />
+                    {item.kind === 'board' ? (
+                      <BoardThumb id={item.id} />
                     ) : (
-                      <SetThumb id={item.id as AnyPieceSetId} board={boardTheme} />
+                      <SetThumb id={item.id} board={boardTheme} />
                     )}
                     <Text style={styles.itemName}>{nameOf(kind, item.id)}</Text>
                     {item.state.kind === 'affordable' ? (

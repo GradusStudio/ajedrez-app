@@ -20,7 +20,7 @@ export type ShopState =
   | { kind: 'affordable' }
   | { kind: 'short'; missing: number };
 
-export type ShopItem = { id: string; price: number; state: ShopState };
+export type ShopItem = { kind: 'board'; id: BoardThemeId; price: number; state: ShopState } | { kind: 'set'; id: AnyPieceSetId; price: number; state: ShopState };
 
 export type PreviewAction =
   | { type: 'use' }
@@ -49,7 +49,7 @@ const isValid = (kind: ShopKind, id: string): boolean =>
 /** Estado de cada ítem: en uso, gratis, tuyo, te alcanza o te faltan monedas (con `missing`). */
 export function shopItems(kind: ShopKind, ctx: ShopContext): ShopItem[] {
   const inUse = inUseOf(kind, ctx);
-  const items = idsOf(kind).map((id) => {
+  const items: ShopItem[] = idsOf(kind).map((id) => {
     const price = priceOf(kind, id);
     const owned = ownedOf(kind, id, ctx);
     const state: ShopState =
@@ -62,7 +62,9 @@ export function shopItems(kind: ShopKind, ctx: ShopContext): ShopItem[] {
             : ctx.coins >= price
               ? { kind: 'affordable' }
               : { kind: 'short', missing: price - ctx.coins };
-    return { id, price, state };
+    return kind === 'board'
+      ? { kind: 'board', id: id as BoardThemeId, price, state }
+      : { kind: 'set', id: id as AnyPieceSetId, price, state };
   });
   return [...items.filter((i) => i.price === 0), ...items.filter((i) => i.price > 0)];
 }

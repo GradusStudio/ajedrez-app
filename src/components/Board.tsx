@@ -15,13 +15,14 @@ import { Chess, Square } from 'chess.js';
 import { useFeedback } from '../feedback/feedback';
 import { useI18n } from '../i18n/I18nContext';
 import { useBoardTheme } from '../settings/useBoardTheme';
-import { boardHighlight, boardThemes, colors } from '../theme';
+import { boardHighlight, boardLabel, boardSeams, boardThemes, colors } from '../theme';
 import type { BoardThemeId } from '../theme';
 import { useBoardSide } from './BoardSizeContext';
 import { dragTilt, mateSquares, slideTilt } from './boardMotion';
 import { useReducedMotion } from './useReducedMotion';
 import { Captured, computeMove, Offsets } from './boardAnimation';
 import { SquareTexture } from './SquareTexture';
+import { BoardSeams } from './BoardSeams';
 import Piece, { PieceColor, PieceType } from './Piece';
 import { isDoubleTap, TapPoint } from './boardTap';
 import { useContextMenu } from './useContextMenu';
@@ -598,7 +599,7 @@ export function Board({
       if (offsets[`${br}${bc}`]) rowAnimating = true;
       const isLight = (br + bc) % 2 === 0;
       const bg = isLight ? theme.light : theme.dark;
-      const labelColor = isLight ? theme.dark : theme.light;
+      const labelColor = boardLabel(boardTheme, isLight);
 
       const isLast = lastMove && (lastMove.from === square || lastMove.to === square);
       const isSelected = selected === square;
@@ -625,7 +626,7 @@ export function Board({
             zIndex: offsets[`${br}${bc}`] ? 10 : 0,
           }}
         >
-          <SquareTexture theme={boardTheme} light={isLight} size={sq} seed={br * 3 + bc * 5} />
+          <SquareTexture theme={boardTheme} light={isLight} seed={br * 3 + bc * 5} />
           {isLast && !plan && <View style={[styles.fill, { backgroundColor: boardHighlight.lastMove }]} />}
           {isMarked && (
             <View
@@ -655,6 +656,8 @@ export function Board({
           {isCheck && !mate && <View style={[styles.fill, { backgroundColor: boardHighlight.check }]} />}
           {isMateKing && <FadeSquare key={`mate-${anim.id}`} color={boardHighlight.mate} still={reduced} />}
           {mate?.escapes.includes(square) && <FadeSquare key={`esc-${anim.id}`} color={boardHighlight.mateEscape} still={reduced} />}
+
+          {boardSeams(boardTheme) && <BoardSeams cell={sq} left={bc > 0} top={br > 0} />}
 
           {c === 0 && (
             <Text selectable={false} style={[styles.rank, { color: labelColor, fontSize: Math.max(9, sq * 0.2) }]}>

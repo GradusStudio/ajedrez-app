@@ -10,6 +10,7 @@ import { showDialog } from '../components/dialog';
 import Piece from '../components/Piece';
 import { Segmented } from '../components/Segmented';
 import { SquareTexture } from '../components/SquareTexture';
+import { BoardSeams } from '../components/BoardSeams';
 import { StatIcon } from '../components/StatIcon';
 import { statusBarTop } from '../components/statusBarTop';
 import { Tip } from '../components/Tip';
@@ -25,7 +26,7 @@ import { useSettings } from '../settings/SettingsContext';
 import { TIP_MESSAGES } from '../settings/tips';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { useTips } from '../settings/useTips';
-import { boardThemes, cardSkin, type, colors, fonts, radius, space } from '../theme';
+import { boardSeams, boardThemes, cardSkin, type, colors, fonts, radius, space } from '../theme';
 import type { BoardThemeId } from '../theme';
 
 export type ShopTab = 'boards' | 'pieces';
@@ -236,7 +237,8 @@ function BoardThumb({ id }: { id: BoardThemeId }) {
         return (
           <View key={i} style={styles.thumbCell}>
             <View style={[StyleSheet.absoluteFill, { backgroundColor: light ? theme.light : theme.dark }]} />
-            <SquareTexture theme={id} light={light} size={64} seed={i} />
+            <SquareTexture theme={id} light={light} seed={i} />
+            {boardSeams(id) && <BoardSeams cell={44} left={i % 4 > 0} top={i >= 4} />}
           </View>
         );
       })}
@@ -257,7 +259,8 @@ function SetThumb({ id, board }: { id: AnyPieceSetId; board: BoardThemeId }) {
         const light = i % 2 === 0;
         return (
           <View key={p.type} style={[styles.thumbPieceCell, { backgroundColor: light ? theme.light : theme.dark }]}>
-            <SquareTexture theme={board} light={light} size={64} seed={i} />
+            <SquareTexture theme={board} light={light} seed={i} />
+            {boardSeams(board) && <BoardSeams cell={56} left={i > 0} />}
             <Piece type={p.type} color={p.color} size={44} set={id} showEmbers />
           </View>
         );
@@ -301,8 +304,8 @@ const styles = StyleSheet.create({
   right: { flex: 1, minWidth: 0 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: space.md, marginTop: space.lg },
   item: { ...cardSkin, borderRadius: 18, borderWidth: 2, padding: space.sm, gap: 10 },
-  itemWide: { flexGrow: 1, flexBasis: '30%' },
-  itemNarrow: { flexGrow: 1, flexBasis: '46%' },
+  itemWide: { flexBasis: '30%' },
+  itemNarrow: { flexBasis: '46%' },
   itemSelected: { borderColor: colors.gold },
   itemName: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
   itemState: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, minHeight: 20 },

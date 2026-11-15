@@ -71,16 +71,25 @@ export const boardThemes = {
   azul: { name: 'Azul', light: '#DEE3E6', dark: '#8CA2AD' },
   gris: { name: 'Gris', light: '#E3E3E3', dark: '#969696' },
   morado: { name: 'Morado', light: '#EAE3F2', dark: '#9C83B8' },
-  // Con textura (assets/texturas, ver src/pieces/textures.ts). Los colores son el promedio de la textura:
-  // sirven de respaldo, para las coordenadas y para la vista previa.
-  madera: { name: 'Madera', light: '#E0BE8A', dark: '#7A4A2A', texture: 'madera' },
-  marmol: { name: 'Mármol', light: '#E8E6E1', dark: '#2F5A44', texture: 'marmol' },
+  // Con textura (assets/texturas, ver src/pieces/textures.ts). Los colores son el promedio de las texturas
+  // nuevas (15-11-2026): sirven de respaldo mientras cargan, para las coordenadas y para la vista previa.
+  madera: { name: 'Madera', light: '#D3B18B', dark: '#79583F', texture: 'madera' },
+  marmol: { name: 'Mármol', light: '#CCCBCE', dark: '#56575C', texture: 'marmol' },
   hielo: { name: 'Hielo', light: '#91B1C7', dark: '#265E73', texture: 'hielo' },
-  magma: { name: 'Magma', light: '#6D3F2F', dark: '#362A2A', texture: 'magma' },
-} as const satisfies Record<string, { name: string; light: string; dark: string; texture?: string }>;
+  // `label`: color propio de las coordenadas cuando el del tema no llega a 3:1 sobre las dos casillas.
+  // `seams`: lava dibujada en las juntas del tablero (BoardSeams), solo magma.
+  magma: { name: 'Magma', light: '#7D7D7F', dark: '#454547', texture: 'magma', label: '#F2F2F2', seams: true },
+} as const satisfies Record<string, { name: string; light: string; dark: string; texture?: string; label?: string; seams?: boolean }>;
 export type BoardThemeId = keyof typeof boardThemes;
 /** Tema del tablero con textura: `texture` es el estilo de material (`MaterialSetId`). */
 export const boardTexture = (id: BoardThemeId): string | undefined => (boardThemes[id] as { texture?: string }).texture;
+/** Color de las coordenadas: el propio del tema o el complemento de la casilla. */
+export const boardLabel = (id: BoardThemeId, light: boolean): string => {
+  const theme = boardThemes[id] as { light: string; dark: string; label?: string };
+  return theme.label ?? (light ? theme.dark : theme.light);
+};
+/** El tablero dibuja la lava de las juntas (solo magma). */
+export const boardSeams = (id: BoardThemeId): boolean => !!(boardThemes[id] as { seams?: boolean }).seams;
 
 // Resaltados del tablero (sección 5 de design.md)
 export const boardHighlight = {

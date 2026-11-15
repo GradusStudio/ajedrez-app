@@ -2,7 +2,7 @@ import React from 'react';
 import { ColorValue } from 'react-native';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
 
-export type TabIconName = 'home' | 'learn' | 'openings' | 'puzzles' | 'bots' | 'analysis' | 'profile';
+export type TabIconName = 'home' | 'learn' | 'openings' | 'puzzles' | 'bots' | 'analysis' | 'profile' | 'shop';
 
 type Props = { name: TabIconName; color: ColorValue; size?: number };
 
@@ -55,6 +55,13 @@ export function TabIcon({ name, color, size = 24 }: Props) {
           <Rect x={3} y={3} width={18} height={18} rx={3} {...line} />
           <Rect x={3} y={3} width={9} height={9} rx={1} fill={color} />
           <Rect x={12} y={12} width={9} height={9} rx={1} fill={color} />
+        </>
+      )}
+      {name === 'shop' && (
+        // Bolsa de la tienda
+        <>
+          <Path d="M5 8h14l-1 12H6L5 8Z" {...line} />
+          <Path d="M9 8V6a3 3 0 0 1 6 0v2" {...line} />
         </>
       )}
       {name === 'profile' && (

@@ -46,7 +46,6 @@ function Piece({ type, color, size, set, showEmbers = false }: Props) {
     const clip = pieceClipIds(id, key, uid);
     const lavaId = `lava-${clip.sil}`;
     const lava = `url(#${lavaId})`;
-    const clipOf = white ? clip.sil : clip.ink;
     const area = { x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'xMidYMid slice' } as const;
     return (
       <Svg width={size} height={size} viewBox={VIEW_BOX} pointerEvents="none">
@@ -77,6 +76,8 @@ function Piece({ type, color, size, set, showEmbers = false }: Props) {
             <Image {...area} href={tex.black} clipPath={`url(#${clip.ink})`} />
             {w && <Path d={w.cap} fill="#F2FAFF" clipPath={`url(#${clip.ink})`} />}
             {v && <Path d={v.lava} fill={lava} clipPath={`url(#${clip.ink})`} />}
+            {/* Las grietas del dibujo son los huecos de la tinta: en las negras se encienden en naranja. */}
+            {v && <Path d={`${paths.sil} ${paths.ink}`} fill="#FF7A12" fillRule="evenodd" />}
             <Path
               d={paths.ink}
               fill="none"
@@ -84,12 +85,6 @@ function Piece({ type, color, size, set, showEmbers = false }: Props) {
               strokeWidth={rimStrong ? 1.1 : 0.7}
               strokeOpacity={rimStrong ? 1 : 0.8}
             />
-          </>
-        )}
-        {v && (
-          <>
-            <Path d={v.cracks} stroke="#FF7A12" strokeWidth={1.8} strokeOpacity={0.55} strokeLinecap="round" fill="none" clipPath={`url(#${clipOf})`} />
-            <Path d={v.cracks} stroke="#FFD54A" strokeWidth={0.7} strokeOpacity={0.95} strokeLinecap="round" fill="none" clipPath={`url(#${clipOf})`} />
           </>
         )}
         {w && <Path d={w.flake} stroke={white ? '#3A8FC4' : '#BFEFFF'} strokeWidth={1.3} strokeLinecap="round" fill="none" />}

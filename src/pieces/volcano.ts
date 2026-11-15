@@ -1,5 +1,6 @@
 // Detalles volcánicos de las piezas de magma, calculados a partir de la silueta (puro, sin React Native):
-// lava que chorrea desde la punta, grietas encendidas, gotas que cuelgan de la base y brasas.
+// lava que chorrea desde la punta, gotas que cuelgan de la base y brasas. Las grietas encendidas salen
+// del dibujo de la pieza (los huecos de la tinta), no se calculan acá.
 import { pathBounds } from './winter';
 
 export type Ember = { x: number; y: number; r: number };
@@ -9,8 +10,6 @@ export type VolcanoShapes = {
   /** Extremos verticales del degradé de lava (amarillo arriba, rojo abajo). */
   lavaFrom: number;
   lavaTo: number;
-  /** Dos zigzags y una rama corta: el mismo trazado para el halo naranja y el núcleo amarillo. */
-  cracks: string;
   /** Cuatro gotas que cuelgan de la base. */
   drops: string;
   /** Tres brasas por encima de la pieza. */
@@ -24,7 +23,7 @@ const DRIPS = [0.16, 0.07, 0.22, 0.04, 0.18];
 // Largo de cada gota de lava de la base, en unidades del dibujo.
 const DROPS = [4.6, 7, 5.2, 8.2];
 
-const EMPTY: VolcanoShapes = { lava: '', lavaFrom: 0, lavaTo: 0, cracks: '', drops: '', embers: [] };
+const EMPTY: VolcanoShapes = { lava: '', lavaFrom: 0, lavaTo: 0, drops: '', embers: [] };
 
 /** Formas de magma para una silueta; si el trazado no tiene coordenadas, devuelve todo vacío. */
 export function volcanoShapes(sil: string): VolcanoShapes {
@@ -49,18 +48,6 @@ export function volcanoShapes(sil: string): VolcanoShapes {
   }
   lava += `L${r1(x0)} ${r1(y0)}Z`;
 
-  // Dos zigzags que bajan por el cuerpo y una rama corta que sale del codo del primero.
-  const cx = (b.minX + b.maxX) / 2;
-  const top = b.minY + h * 0.3;
-  const bottom = b.minY + h * 0.82;
-  const span = bottom - top;
-  const p = (x: number, y: number) => `${r1(x)} ${r1(y)}`;
-  const cracks =
-    `M${p(cx - w * 0.05, top)}L${p(cx + w * 0.08, top + span * 0.32)}` +
-    `L${p(cx - w * 0.03, top + span * 0.64)}L${p(cx + w * 0.04, bottom)}` +
-    `M${p(cx + w * 0.2, top + h * 0.04)}L${p(cx + w * 0.12, top + span * 0.5)}L${p(cx + w * 0.22, bottom - h * 0.08)}` +
-    `M${p(cx - w * 0.03, top + span * 0.64)}L${p(cx + w * 0.13, top + span * 0.72)}`;
-
   // Cuatro gotas que cuelgan de la base, como los carámbanos del hielo.
   let drops = '';
   for (let i = 0; i < DROPS.length; i++) {
@@ -79,5 +66,5 @@ export function volcanoShapes(sil: string): VolcanoShapes {
     r: i % 2 === 0 ? 1.3 : 1.1,
   }));
 
-  return { lava, lavaFrom: b.minY, lavaTo: y0 + h * Math.max(...DRIPS), cracks, drops, embers };
+  return { lava, lavaFrom: b.minY, lavaTo: y0 + h * Math.max(...DRIPS), drops, embers };
 }

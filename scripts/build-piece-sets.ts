@@ -30,9 +30,15 @@ const SRC = path.join(ROOT, 'assets', 'fuente', 'piezas');
 const OUT = path.join(ROOT, 'src', 'pieces', 'pieceSets.ts');
 const TMP = OUT + '.tmp';
 
-/** Sets que este script sabe regenerar. Hielo, Clásico, Gótico y Contorneado no se tocan. */
-const SHEETS = ['minimalista', 'redondeado', 'madera', 'marmol', 'magma'] as const;
-type SheetSet = (typeof SHEETS)[number];
+/** Hojas aprobadas: id del set → archivo. Hielo, Clásico, Gótico y Contorneado no se tocan. */
+const SHEETS = {
+  minimalista: 'geometrico.png',
+  redondeado: 'juguete.png',
+  madera: 'madera.png',
+  marmol: 'marmol.png',
+  magma: 'magma.png',
+} as const;
+type SheetSet = keyof typeof SHEETS;
 
 /** Luminancia por debajo de este valor se considera tinta (contorno, detalle o pieza negra). */
 const INK_THRESHOLD = 160;
@@ -132,14 +138,14 @@ function buildModule(paths: PathMap) {
 
 async function main() {
   const files = (fs.existsSync(SRC) ? fs.readdirSync(SRC) : []).filter((f) => /\.(png|webp)$/i.test(f));
-  const pending = SHEETS.filter((set) => files.some((f) => new RegExp(`^${set}\\.(png|webp)$`, 'i').test(f)));
+  const pending = (Object.keys(SHEETS) as SheetSet[]).filter((set) => files.includes(SHEETS[set]));
   if (!pending.length)
-    fail(`no hay hojas en ${path.relative(ROOT, SRC)} (se esperaban ${SHEETS.map((s) => `${s}.png`).join(', ')}). No se cambió nada.`);
+    fail(`no hay hojas en ${path.relative(ROOT, SRC)} (se esperaban ${Object.values(SHEETS).join(', ')}). No se cambió nada.`);
 
   const current = PIECE_PATHS as unknown as PathMap;
   const paths: PathMap = { ...current };
   for (const set of pending) {
-    const file = files.find((f) => new RegExp(`^${set}\\.(png|webp)$`, 'i').test(f)) as string;
+    const file = SHEETS[set];
     try {
       paths[set] = await readSheet(set, path.join(SRC, file));
       console.log(`${set}: 12 piezas trazadas`);

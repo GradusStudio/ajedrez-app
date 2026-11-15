@@ -1,4 +1,4 @@
-import { PIECE_SET_META, PieceKey, PieceSetId } from './pieceSets';
+import { PIECE_SET_META, PieceKey, PieceSetId, PathSetId } from './pieceSets';
 
 // Neón y vintage quedaron fuera por ahora (sus texturas siguen en assets/texturas y los textos en i18n).
 // Sets de piezas "de material": usan las siluetas del Clásico y las rellenan con una textura.
@@ -21,8 +21,14 @@ export const MATERIAL_SETS: Record<
 
 export const isMaterialSet = (id: string): id is MaterialSetId => id in MATERIAL_SETS;
 
-/** Set cuyas siluetas se usan para dibujar `id`. */
-export const pathSetOf = (id: AnyPieceSetId): PieceSetId => (isMaterialSet(id) ? 'clasico' : id);
+/**
+ * Set cuyas siluetas se usan para dibujar `id`: madera, mármol y magma tienen las suyas; hielo sigue
+ * con las del Clásico (decisión del autor: el hielo no se toca).
+ */
+export const pathSetOf = (id: AnyPieceSetId): PathSetId => {
+  if (id === 'madera' || id === 'marmol' || id === 'magma') return id;
+  return isMaterialSet(id) ? 'clasico' : id;
+};
 
 /**
  * Ids de los recortes SVG (silueta y tinta) de una pieza. Dependen del trazado (set de siluetas y tipo de pieza)

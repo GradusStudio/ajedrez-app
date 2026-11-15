@@ -52,10 +52,10 @@ export function placementFor(type: PieceType, cropW: number, cropH: number): Pla
   };
 }
 
-/** Bandas contiguas de filas o columnas con tinta; ignora motas de menos del 2 % del máximo. */
+/** Bandas contiguas de filas o columnas con tinta; ignora motas de menos del 0,2 % del máximo. */
 function bands(counts: number[]): { from: number; to: number }[] {
   const max = counts.reduce((m, c) => Math.max(m, c), 0);
-  const min = Math.max(1, Math.floor(max * 0.02));
+  const min = Math.max(1, Math.floor(max * 0.002));
   const out: { from: number; to: number }[] = [];
   let from = -1;
   for (let i = 0; i <= counts.length; i++) {
@@ -69,9 +69,19 @@ function bands(counts: number[]): { from: number; to: number }[] {
   return out;
 }
 
+/** Se queda con las `count` bandas más grandes (las piezas) y las devuelve en orden de posición. */
+function pickMain(list: { from: number; to: number }[], count: number, what: string) {
+  if (list.length < count) throw new Error(`se esperaban ${count} ${what} y aparecieron ${list.length}`);
+  return [...list]
+    .sort((a, b) => b.to - b.from - (a.to - a.from))
+    .slice(0, count)
+    .sort((a, b) => a.from - b.from);
+}
+
 /**
  * Separa las piezas de la hoja por proyecciones de la tinta: dos filas y seis columnas por fila.
  * `ink[i]` vale 1 en los píxeles oscuros (contorno, detalles o pieza negra) y 0 en el fondo blanco.
+ * Si la hoja trae marcos o sombras de borde se descartan: cuentan las dos filas más altas y las seis columnas más anchas.
  */
 export function splitSheet(ink: Uint8Array, width: number, height: number): SheetBoxes {
   if (ink.length !== width * height) throw new Error('la máscara no coincide con el tamaño de la hoja');
@@ -81,16 +91,14 @@ export function splitSheet(ink: Uint8Array, width: number, height: number): Shee
     for (let x = 0; x < width; x++) n += ink[y * width + x];
     rowCounts[y] = n;
   }
-  const rows = bands(rowCounts);
-  if (rows.length !== 2) throw new Error(`se esperaban 2 filas de piezas y aparecieron ${rows.length}`);
+  const rows = pickMain(bands(rowCounts), 2, 'filas de piezas');
   const boxes: SheetBoxes = { white: [], black: [] };
   rows.forEach((row, r) => {
     const colCounts = new Array<number>(width).fill(0);
     for (let y = row.from; y <= row.to; y++) {
       for (let x = 0; x < width; x++) colCounts[x] += ink[y * width + x];
     }
-    const cols = bands(colCounts);
-    if (cols.length !== 6) throw new Error(`la fila ${r + 1} tiene ${cols.length} columnas en vez de 6`);
+    const cols = pickMain(bands(colCounts), 6, `columnas en la fila ${r + 1}`);
     for (const col of cols) {
       let y0 = row.to;
       let y1 = row.from;

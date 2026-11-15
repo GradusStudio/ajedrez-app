@@ -16,6 +16,13 @@ type Props = {
   bonus?: number;
   /** Rótulo del bono, ya traducido (p. ej. «con el bono del día»). */
   bonusLabel?: string;
+  /** Origen y destino propios, en px del contenedor (la capa del resultado, tarea 37). Sin ellos, la casilla. */
+  from?: { x: number; y: number };
+  to?: { x: number; y: number };
+  /** Sin pastilla propia: la capa dibuja la suya y hace latir la suya con `onDone`. */
+  hidePill?: boolean;
+  /** Se llama cuando aterriza la última moneda (para hacer latir una pastilla externa). */
+  onDone?: () => void;
 };
 
 type Point = { x: number; y: number };
@@ -156,7 +163,7 @@ function specsFor(wave: CoinWave, isBonus: boolean, startDelay: number): Spec[] 
  * Premio de monedas sobre el tablero: las monedas salen de la casilla de la jugada y vuelan
  * a una pastilla dorada que suma. No recibe toques; el tablero sigue usable.
  */
-export function CoinReward({ boardSize, orientation, square = null, amount, bonus = 0, bonusLabel }: Props) {
+export function CoinReward({ boardSize, orientation, square = null, amount, bonus = 0, bonusLabel, from, to, hidePill = false, onDone }: Props) {
   const reduced = useReducedMotion();
   const [plan] = useState(() => planCoinReward(amount, bonus));
   const [showBonus, setShowBonus] = useState(plan.main.coins === 0 && !!plan.bonusWave);
@@ -170,8 +177,8 @@ export function CoinReward({ boardSize, orientation, square = null, amount, bonu
   const [pillLift] = useState(() => new Animated.Value(0));
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const cell = boardSize / 8;
-  const start = squareCenter(square, orientation, boardSize);
-  const target = { x: boardSize - 10 - pill.width + 19, y: 10 + pill.height / 2 };
+  const start = from ?? squareCenter(square, orientation, boardSize);
+  const target = to ?? { x: boardSize - 10 - pill.width + 19, y: 10 + pill.height / 2 };
   const mainSpecs = specsFor(plan.main, false, START_MS);
   const bonusSpecs = plan.bonusWave ? specsFor(plan.bonusWave, true, 120) : [];
   const totalLabel = reduced || showBonus;
@@ -219,6 +226,7 @@ export function CoinReward({ boardSize, orientation, square = null, amount, bonu
         ]).start();
       }, 900);
     } else if (!spec.bonus && !plan.bonusWave && spec.display === plan.total) {
+      onDone?.();
       later(() => {
         Animated.parallel([
           Animated.timing(pillOpacity, { toValue: 0, duration: 300, useNativeDriver: true }),
@@ -257,7 +265,7 @@ export function CoinReward({ boardSize, orientation, square = null, amount, bonu
         />
       )}
       {!reduced &&
-        measured &&
+        (to || measured) &&
         mainSpecs.map((spec) => (
           <RewardCoin
             key={spec.key}
@@ -270,7 +278,7 @@ export function CoinReward({ boardSize, orientation, square = null, amount, bonu
           />
         ))}
       {!reduced &&
-        measured &&
+        (to || measured) &&
         showBonus &&
         plan.bonusWave &&
         bonusSpecs.map((spec) => (
@@ -285,21 +293,23 @@ export function CoinReward({ boardSize, orientation, square = null, amount, bonu
           />
         ))}
 
-      <Animated.View
-        onLayout={(e: LayoutChangeEvent) => {
-          setPill({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height });
-          setMeasured(true);
-        }}
-        style={[styles.pill, { opacity: pillOpacity, transform: [{ translateY: pillLift }, { scale: pillScale }] }]}
-      >
-        <Animated.View style={[styles.pillContent, { transform: [{ scale: pillPulse }] }]}>
-          <CoinFace size={26} />
-          <View>
-            <Text style={styles.amount}>+{display}</Text>
-            {!!bonusText && <Text style={styles.bonus}>{bonusText}</Text>}
-          </View>
+      {!hidePill && (
+        <Animated.View
+          onLayout={(e: LayoutChangeEvent) => {
+            setPill({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height });
+            setMeasured(true);
+          }}
+          style={[styles.pill, { opacity: pillOpacity, transform: [{ translateY: pillLift }, { scale: pillScale }] }]}
+        >
+          <Animated.View style={[styles.pillContent, { transform: [{ scale: pillPulse }] }]}>
+            <CoinFace size={26} />
+            <View>
+              <Text style={styles.amount}>+{display}</Text>
+              {!!bonusText && <Text style={styles.bonus}>{bonusText}</Text>}
+            </View>
+          </Animated.View>
         </Animated.View>
-      </Animated.View>
+      )}
     </View>
   );
 }

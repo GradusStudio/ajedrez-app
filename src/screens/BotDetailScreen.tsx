@@ -3,6 +3,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { BackButton } from '../components/BackButton';
 import { botBodySource } from '../components/BotAvatar';
+import { BotGlow } from '../components/BotGlow';
 import { Button3D } from '../components/Button3D';
 import { CardSurface } from '../components/CardSurface';
 import { ColumnScrollView } from '../components/ColumnScrollView';
@@ -29,13 +30,6 @@ const STYLE_COLOR: Record<BotStyle, string> = {
   agresivo: colors.danger,
   equilibrado: colors.gold,
   posicional: '#4FA3E0',
-};
-
-const STYLE_LIGHT: Record<BotStyle, string> = {
-  tranquilo: 'rgba(129, 182, 76, 0.28)',
-  agresivo: 'rgba(250, 65, 45, 0.28)',
-  equilibrado: 'rgba(247, 198, 49, 0.28)',
-  posicional: 'rgba(79, 163, 224, 0.28)',
 };
 
 type Props = {
@@ -97,7 +91,9 @@ export function BotDetailScreen({ bot, onPlay, onBack, onContinue, onOpenCourse,
             <Path d="M0 0h22L11 12Z" fill="#FFFFFF" />
           </Svg>
           <View style={styles.character}>
-            <View style={[styles.light, { backgroundColor: STYLE_LIGHT[bot.style] }]} />
+            <View style={styles.light}>
+              <BotGlow size={300} color={STYLE_COLOR[bot.style]} intensity={0.32} />
+            </View>
             {body ? (
               <Image
                 source={body}
@@ -280,7 +276,7 @@ const styles = StyleSheet.create({
   bubbleText: { fontFamily: fonts.bold, fontSize: type.body, color: '#262421', lineHeight: 22 },
   tail: { marginTop: -2, marginBottom: -2, zIndex: 1 },
   character: { alignItems: 'center', justifyContent: 'flex-end', position: 'relative', marginTop: -4 },
-  light: { position: 'absolute', width: 300, height: 300, borderRadius: 150, top: 30 },
+  light: { position: 'absolute', width: 300, height: 300, top: 30 },
   floor: { width: 140, height: 14, borderRadius: 7, backgroundColor: 'rgba(0, 0, 0, 0.35)', marginTop: -10 },
   right: { flex: 1, minWidth: 0 },
   kicker: { fontFamily: fonts.extrabold, fontSize: type.caption, letterSpacing: 1, textTransform: 'uppercase' },

@@ -10,6 +10,7 @@ import { canPlayRealMove, clipPremoves, planPremoveFen, resolvePremoveFor, type 
 import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
+import { GameResultLayer } from '../components/GameResultLayer';
 import { StatIcon } from '../components/StatIcon';
 import { StreakPill } from '../components/StreakPill';
 import { Bot } from '../data/bots';
@@ -111,6 +112,8 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     practiceCourse ? t('game.practiceSpeech', { name: practiceCourse.name }) : bot.lines.greeting
   );
   const [result, setResult] = useState<Finished | null>(null);
+  // La capa del resultado aparece 600 ms después de terminar: deja ver el mate (el rey caído) antes de taparlo.
+  const [layer, setLayer] = useState(false);
   // Jugadas preparadas mientras el bot piensa (spec 2026-11-13-premove).
   const [premoves, setPremoves] = useState<Premove[]>([]);
   const [premovePending, setPremovePending] = useState(false);
@@ -502,6 +505,13 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     </View>
   );
   const resultBg = result?.kind === 'win' ? colors.correctBg : result?.kind === 'loss' ? colors.incorrectBg : colors.surface;
+
+  // La capa del resultado (tarea 37) espera 600 ms para que se vea el mate en el tablero.
+  useEffect(() => {
+    if (!result) return;
+    const timer = setTimeout(() => setLayer(true), 600);
+    return () => clearTimeout(timer);
+  }, [result]);
   // Resultado: en el celular, panel al pie; en pantalla ancha, una tarjeta en el panel de la derecha.
   const resultBody = result && (
     <>
@@ -588,6 +598,27 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
       </ScrollView>
 
       {result && !wide && <View style={[styles.resultPanel, { backgroundColor: resultBg }]}>{resultBody}</View>}
+
+      {result && layer && (
+        <GameResultLayer
+          bot={bot}
+          userColor={userColor}
+          kind={result.kind}
+          reason={result.reason}
+          plies={sans.length}
+          coins={result.coins}
+          dailyBonus={result.dailyBonus}
+          streak={currentStreak(getProgress())}
+          streakLit={result.streakLit}
+          streakRecovered={result.streakRecovered}
+          games={getProgress().games}
+          practiceCourse={practiceCourse}
+          onClose={() => setLayer(false)}
+          onReview={analyze}
+          onRematch={onRematch}
+          onOtherBot={onOtherBot}
+        />
+      )}
     </View>
   );
 }

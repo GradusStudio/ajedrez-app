@@ -79,6 +79,14 @@ test('los ids de los bots son los mismos en los cinco idiomas', () => {
   }
 });
 
+test('los diez bots tienen la frase de tablas en los cinco idiomas', () => {
+  for (const lang of ['es', ...LANGS] as const) {
+    for (const bot of localizedContent(lang).bots) {
+      assert.ok(bot.lines.onDraw.trim().length > 0, `${lang}: ${bot.id} sin frase de tablas`);
+    }
+  }
+});
+
 test('ningún texto traducido deja el nombre español de un bot que en ese idioma cambia', () => {
   for (const lang of LANGS) {
     const content = localizedContent(lang);

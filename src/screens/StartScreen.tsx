@@ -30,6 +30,7 @@ import { useSettings } from '../settings/SettingsContext';
 import { TIP_MESSAGES, type TipId } from '../settings/tips';
 import { useTips } from '../settings/useTips';
 import { firstSteps, firstStepsDone, type FirstStepId } from '../start/firstSteps';
+import { courseSummary } from '../openings/courseView';
 import { canAffordSomethingNew, type ShopContext } from '../pieces/shopView';
 import { SAMPLE_FEN } from '../pieces/sampleFen';
 import { useBoardTheme } from '../settings/useBoardTheme';
@@ -161,8 +162,10 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
   const recommendedCourseId = level === 'nuevo' ? 'italian' : level === 'basico' ? 'london' : 'scotch';
   const recommendedCourse = openings.find((o) => o.id === recommendedCourseId) ?? openings[0];
   const course = startedCourse ?? recommendedCourse;
-  const courseDone = course ? course.lessons.filter((l) => progress.lessons[l.id]).length : 0;
-  const nextCourseLesson = course?.lessons.find((l) => !progress.lessons[l.id]);
+  // El progreso del curso, con la misma regla que la ficha del curso («Continuar» y la próxima lección).
+  const courseProgress = course ? courseSummary(course, (id) => !!progress.lessons[id]) : null;
+  const courseDone = courseProgress?.done ?? 0;
+  const nextCourseLesson = courseProgress?.next ?? undefined;
   const courseLine = course
     ? nextCourseLesson
       ? t('start.courseProgress', { done: courseDone, total: course.lessons.length, next: nextCourseLesson.title })

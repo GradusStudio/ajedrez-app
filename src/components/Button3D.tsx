@@ -9,6 +9,8 @@ type Props = {
   onPress: () => void;
   variant?: Variant;
   style?: StyleProp<ViewStyle>;
+  /** Texto para el lector cuando el visible es más corto (por ejemplo, en una fila de dos botones). */
+  ariaLabel?: string;
 };
 
 const VARIANTS: Record<
@@ -23,12 +25,12 @@ const VARIANTS: Record<
 };
 
 // Botón con borde inferior 3D (design.md, sección 4).
-export function Button3D({ label, onPress, variant = 'secondary', style }: Props) {
+export function Button3D({ label, onPress, variant = 'secondary', style, ariaLabel }: Props) {
   const v = VARIANTS[variant];
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={label}
+      accessibilityLabel={ariaLabel ?? label}
       onPress={onPress}
       style={({ pressed }) => [
         styles.base,

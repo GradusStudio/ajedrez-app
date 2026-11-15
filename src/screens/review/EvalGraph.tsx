@@ -1,15 +1,15 @@
 import React from 'react';
-import { Pressable, useWindowDimensions } from 'react-native';
+import { Pressable } from 'react-native';
 import Svg, { Circle, Line, Path } from 'react-native-svg';
 import { whiteShare } from '../../engine/evalFormat';
 import { useI18n } from '../../i18n/I18nContext';
 import type { Review } from '../../review/types';
 import { boardHighlight } from '../../theme';
-import { boardPixels } from '../../components/boardSize';
+import { useBoardSide } from '../../components/BoardSizeContext';
 import { badgeOf, QUALITY_STYLE } from './quality';
 import { styles } from './reviewStyles';
 
-const HEIGHT = 64;
+const HEIGHT = 74;
 
 type Props = {
   review: Review;
@@ -24,8 +24,8 @@ type Props = {
 /** Gráfico de ventaja: el área blanca es la ventaja de las blancas. Tocarlo salta a esa jugada. */
 export function EvalGraph({ review, idx, showCursor, onSelect, width: fixedWidth }: Props) {
   const { t } = useI18n();
-  const { width } = useWindowDimensions();
-  const w = fixedWidth ?? boardPixels(width);
+  const boardSide = useBoardSide();
+  const w = fixedWidth ?? boardSide;
   const n = review.plies.length;
   const x = (i: number) => (n === 0 ? 0 : (i / n) * w);
   const y = (score: number) => HEIGHT - whiteShare(score) * HEIGHT;
@@ -52,12 +52,12 @@ export function EvalGraph({ review, idx, showCursor, onSelect, width: fixedWidth
       <Svg width={w} height={HEIGHT} pointerEvents="none">
         <Path d={area} fill="#E9E9E9" />
         <Line x1={0} y1={HEIGHT / 2} x2={w} y2={HEIGHT / 2} stroke="#7A7773" strokeWidth={1} />
-        {review.plies.map((p, i) =>
-          p.highlight ? (
-            <Circle key={i} cx={x(i + 1)} cy={y(p.scoreAfter)} r={3.5} fill={(badgeOf(p) ?? QUALITY_STYLE.best).color} stroke="#262421" strokeWidth={1} />
-          ) : null
-        )}
-        {showCursor && <Line x1={x(idx)} y1={0} x2={x(idx)} y2={HEIGHT} stroke={boardHighlight.markBorder} strokeWidth={2} />}
+        {review.plies.map((p, i) => {
+          const mark = p.great || p.quality === 'excellent' || p.quality === 'inaccuracy' || p.quality === 'mistake' || p.quality === 'blunder';
+          const badge = badgeOf(p) ?? QUALITY_STYLE.best;
+          return mark ? <Circle key={i} cx={x(i + 1)} cy={y(p.scoreAfter)} r={3.5} fill={badge.color} stroke="#262421" strokeWidth={1} /> : null;
+        })}
+        {showCursor && <Line x1={x(idx)} y1={0} x2={x(idx)} y2={HEIGHT} stroke={boardHighlight.markBorder} strokeWidth={3} />}
       </Svg>
     </Pressable>
   );

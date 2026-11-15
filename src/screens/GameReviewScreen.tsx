@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Platform, ScrollView, Text, useWindowDimensions, View } from 'react-native';
+import { Platform, ScrollView, Text, View } from 'react-native';
 import { Square } from 'chess.js';
 import { Board } from '../components/Board';
 import { Button3D } from '../components/Button3D';
@@ -21,8 +21,11 @@ import { AnalyzingView } from './review/AnalyzingView';
 import { CoachBubble } from './review/CoachBubble';
 import { EvalGraph } from './review/EvalGraph';
 import { MoveStrip } from './review/MoveStrip';
-import { badgeOf, BEST_ARROW, CAT_KEY, faceFor, QUALITY_STYLE, REPLY_ARROW, titleKey } from './review/quality';
-import { ReviewTop, ToolBtn } from './review/ReviewParts';
+import { badgeOf, BEST_ARROW, CAT_KEY, faceFor, QUALITY_STYLE, REPLY_ARROW } from './review/quality';
+import { FilterPills } from './review/FilterPills';
+import { MoveList } from './review/MoveList';
+import { NavButtons } from './review/NavButtons';
+import { ReviewTop } from './review/ReviewParts';
 import { styles } from './review/reviewStyles';
 import { SettingsSheet } from './review/SettingsSheet';
 import { SummaryView, type SummaryMoment } from './review/SummaryView';
@@ -129,7 +132,6 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
   // Pantalla ancha (web): tablero a la izquierda; comentarista y jugadas en el panel; barras alineadas con ellos.
   const wide = useWideLayout();
   const contentWidth = useBoardLayoutWidth(REVIEW_RESERVE);
-  const { width: windowWidth } = useWindowDimensions();
 
   if (!game) {
     return (
@@ -278,7 +280,18 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
     <CoachBubble
       coach={coach}
       expression={pendingOwn ? 'piensa' : faceFor(ply, mine)}
-      head={ply ? { badge, title: t(titleKey(ply), { move: san }), score: scoreHere, decimal } : null}
+      head={
+        ply
+          ? {
+              badge,
+              move: san,
+              quality: t(CAT_KEY[ply.great ? 'great' : ply.quality]),
+              color: QUALITY_STYLE[ply.great ? 'great' : ply.quality].color,
+              score: scoreHere,
+              decimal,
+            }
+          : null
+      }
       startTitle={!ply && !pendingOwn && started ? t('review.startPosition') : null}
       voice={explanation.length > 0 ? '' : voice}
       details={details}
@@ -362,7 +375,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
     );
   }
 
-  // ── Revisión jugada a jugada ──
+  // ── Revisión jugada a jugada (spec 2026-11-15, sección 3) ──
   const canBest = bad && !!ply?.bestSan;
   const boardBlock = (
     <>
@@ -378,6 +391,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
       />
     </>
   );
+  const nav = <NavButtons onStart={() => pb.goTo(0)} onPrev={pb.stepBack} onNext={pb.stepForward} onEnd={() => pb.goTo(n)} inBranch={!!branch} />;
   const moveStrip = (
     <MoveStrip
       plies={review.plies}
@@ -389,58 +403,62 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
       onNext={pb.stepForward}
     />
   );
+  const controls = (
+    <View style={{ flexDirection: 'row', gap: space.sm, marginTop: space.sm }}>
+      <View style={{ flex: 1, opacity: canBest ? 1 : 0.4 }} pointerEvents={canBest ? 'auto' : 'none'}>
+        <Button3D
+          label={t(pb.showBest ? 'review.hideBestShort' : 'review.showBestShort')}
+          ariaLabel={t(pb.showBest ? 'review.hideBest' : 'review.showBest')}
+          onPress={() => pb.setShowBest((v) => !v)}
+        />
+      </View>
+      <View style={{ flex: 1, opacity: pv || lineList.length > 0 ? 1 : 0.4 }} pointerEvents={pv || lineList.length > 0 ? 'auto' : 'none'}>
+        <Button3D
+          label={t(pv ? 'review.stopLine' : 'review.showLineShort')}
+          ariaLabel={t(pv ? 'review.stopLine' : 'review.showLine')}
+          onPress={() => (pv ? pb.stopPreview() : ply && pb.startPreview(ply.move.fenBefore, lineList))}
+        />
+      </View>
+    </View>
+  );
+  const nextMoment = () =>
+    pb.next(() => {
+      pb.goTo(0);
+      setStarted(false);
+      setFinished(true);
+    });
+  const nextMomentBtn = <Button3D label={t('review.nextMoment')} variant="primary" onPress={nextMoment} style={{ marginTop: space.sm }} />;
+  const filter = <FilterPills value={pb.filter} onChange={pb.setFilter} />;
+
   return shell(
     <View style={styles.screen}>
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: topInset() }]}>
         <View style={contentWidth ? { width: contentWidth, alignSelf: 'center' } : null}>{top}</View>
         {wide ? (
-          <BoardLayout reserveHeight={REVIEW_RESERVE} board={boardBlock}>
+          // Tablero a la izquierda (barra, tablero, navegación y gráfico); comentarista y jugadas en el panel.
+          <BoardLayout reserveHeight={REVIEW_RESERVE} board={<>{boardBlock}{nav}{graph}</>}>
             {coachBubble}
-            <View style={{ height: space.md }} />
-            {moveStrip}
+            {controls}
+            {nextMomentBtn}
+            <View style={{ height: space.sm }} />
+            {filter}
+            <View style={{ height: space.sm }} />
+            <MoveList plies={review.plies} idx={idx} inBranch={!!branch} fmt={fmt} onGo={pb.goTo} />
           </BoardLayout>
         ) : (
           <>
-            {coachBubble}
-            <View style={{ height: space.md }} />
             {boardBlock}
+            <View style={{ height: space.md }} />
+            {coachBubble}
+            {controls}
+            {nextMomentBtn}
+            {graph}
+            {filter}
+            {nav}
             {moveStrip}
           </>
         )}
       </ScrollView>
-
-      {/* Barra inferior: Mejor · Reproducir · Siguiente / Finalizar. En pantalla ancha, alineada con el tablero. */}
-      <View style={[styles.bottomBar, contentWidth ? { paddingHorizontal: Math.max(space.lg, (windowWidth - contentWidth) / 2) } : null]}>
-        <ToolBtn
-          icon="star"
-          label={pb.showBest ? t('review.hide') : t('review.best')}
-          disabled={!canBest}
-          onPress={() => pb.setShowBest((v) => !v)}
-        />
-        <ToolBtn
-          icon="line"
-          label={pv ? t('review.stopLine') : t('review.showLine')}
-          disabled={!pv && lineList.length === 0}
-          onPress={() => (pv ? pb.stopPreview() : ply && pb.startPreview(ply.move.fenBefore, lineList))}
-        />
-        <ToolBtn
-          icon={pb.autoplaying ? 'pause' : 'play'}
-          label={t(pb.autoplaying ? 'review.ctrlPause' : 'review.ctrlPlay')}
-          onPress={pb.togglePlay}
-        />
-        <Button3D
-          label={t('review.nextMoment')}
-          variant="primary"
-          onPress={() =>
-            pb.next(() => {
-              pb.goTo(0);
-              setStarted(false);
-              setFinished(true);
-            })
-          }
-          style={{ flex: 1.5 }}
-        />
-      </View>
 
       <SettingsSheet
         visible={sheet}

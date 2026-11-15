@@ -34,6 +34,5 @@ export function moveBack(viewPly: number): number {
  * si se llega a la última. Mirar la jugada actual no tiene anterior que avanzar.
  */
 export function moveForward(viewPly: number, ply: number): number | null {
-  if (viewPly >= ply) return null;
-  return viewPly + 1 >= ply ? null : viewPly + 1;
+  return viewPly < ply - 1 ? viewPly + 1 : null;
 }

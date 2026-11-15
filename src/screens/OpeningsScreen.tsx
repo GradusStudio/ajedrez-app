@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useIsFocused } from 'expo-router';
 import { Animated, Easing, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Chess, type Square } from 'chess.js';
+import { BotAvatar } from '../components/BotAvatar';
 import { Board } from '../components/Board';
 import { BoardSizeContext } from '../components/BoardSizeContext';
 import { ColumnScrollView } from '../components/ColumnScrollView';
-import { Chip } from '../components/Chip';
 import { LessonRail } from '../components/LessonRail';
+import { MiniBoard } from '../components/MiniBoard';
 import { ProgressBar } from '../components/ProgressBar';
 import { RecoveryCard } from '../components/RecoveryCard';
 import { Segmented } from '../components/Segmented';
 import { StatIcon } from '../components/StatIcon';
 import { StreakFlame, flameStateOf } from '../components/StreakFlame';
 import { UnitWheel, WHEEL_WIDTH } from '../components/UnitWheel';
-import { BotStyle } from '../data/bots';
 import { Lesson, OpeningCourse } from '../data/lessonTypes';
 import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
+import { botsForOpening, mainLine } from '../openings/courseView';
 import { lessonStates } from '../progress/path';
 import { openingGame, progressPosition } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
@@ -35,11 +37,22 @@ type Props = {
 // Pestaña Aperturas: selector Blancas / Negras y una tarjeta por curso (mapa-de-pantallas.md, 2.6).
 export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
   const { progress } = useProgress();
-  const { openings } = useContent();
+  const { openings, bots } = useContent();
   const { t } = useI18n();
   const { gridStyle, cardStyle } = useWideGrid();
   const [color, setColor] = useState<'w' | 'b'>('w');
-  const list = openings.filter((o) => o.color === color);
+  const list = useMemo(() => openings.filter((o) => o.color === color), [openings, color]);
+  // Tablero chico de cada tarjeta del celular: la posición final de la línea principal.
+  const previews = useMemo(() => {
+    const map = new Map<string, { pieces: MiniPieces; last: { from: string; to: string } | null }>();
+    for (const course of list) {
+      const line = mainLine(course);
+      const final = line?.frames[line.frames.length - 1];
+      if (!final) continue;
+      map.set(course.id, { pieces: piecesFromFen(final.fen), last: final.last });
+    }
+    return map;
+  }, [list]);
   const [chosen, setChosen] = useState(0);
   const [railOpen, setRailOpen] = useState(false);
   const wide = useWideLayout();
@@ -259,32 +272,45 @@ export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
       <View style={gridStyle}>
         {list.map((course) => {
           const done = course.lessons.filter((l) => progress.lessons[l.id]).length;
+          const total = course.lessons.length;
+          const preview = previews.get(course.id);
+          const players = botsForOpening(course.id, bots);
           return (
             <Pressable
               key={course.id}
               onPress={() => onOpenCourse(course)}
               accessibilityRole="button"
-              accessibilityLabel={t('openings.cardLabel', { name: course.name, done, total: course.lessons.length })}
+              accessibilityLabel={t('openings.cardLabel', { name: course.name, done, total })}
               style={({ pressed }) => [
                 styles.card,
                 cardStyle,
                 pressed && { transform: [{ translateY: 2 }], borderBottomWidth: 2 },
               ]}
             >
-              <Text style={styles.cardTitle}>{course.name}</Text>
-              <Text style={styles.cardSummary} numberOfLines={2}>
-                {course.summary}
-              </Text>
-              <View style={styles.progressRow}>
-                <ProgressBar value={done / course.lessons.length} />
-                <Text style={styles.count}>
-                  {done}/{course.lessons.length}
-                </Text>
-              </View>
-              <View style={styles.chips}>
-                {course.botStyles.map((s) => (
-                  <Chip key={s} label={t('openings.botChip', { style: t(`botStyle.${s as BotStyle}`) })} />
-                ))}
+              <View style={styles.cardRow}>
+                {preview && (
+                  <MiniBoard
+                    size={64}
+                    corner="a1"
+                    span={8}
+                    pieces={preview.pieces}
+                    lastMove={preview.last}
+                  />
+                )}
+                <View style={styles.cardBody}>
+                  <Text style={styles.cardTitle} numberOfLines={2}>{course.name}</Text>
+                  <View style={styles.progressRow}>
+                    <ProgressBar value={done / total} />
+                    <Text style={styles.count}>{t('openings.progressCount', { n: done, total })}</Text>
+                  </View>
+                  <View style={styles.faces}>
+                    {players.slice(0, 5).map((bot, i) => (
+                      <View key={bot.id} style={[styles.face, i > 0 && styles.faceOverlap]}>
+                        <BotAvatar bot={bot} size={24} />
+                      </View>
+                    ))}
+                  </View>
+                </View>
               </View>
             </Pressable>
           );
@@ -297,6 +323,21 @@ export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
       </View>
     </ColumnScrollView>
   );
+}
+
+/** Piezas de una posición en el formato de MiniBoard, para el tablero chico de la lista. */
+type MiniPieces = Parameters<typeof MiniBoard>[0]['pieces'];
+function piecesFromFen(fen: string): MiniPieces {
+  const chess = new Chess(fen);
+  const pieces: MiniPieces = {};
+  for (const file of 'abcdefgh') {
+    for (let rank = 1; rank <= 8; rank++) {
+      const square = `${file}${rank}`;
+      const piece = chess.get(square as Square);
+      if (piece) pieces[square] = `${piece.color}${piece.type}`;
+    }
+  }
+  return pieces;
 }
 
 const styles = StyleSheet.create({
@@ -329,10 +370,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     marginBottom: space.sm,
   },
+  cardRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
+  cardBody: { flex: 1, minWidth: 0 },
   cardTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
-  cardSummary: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, lineHeight: 18 },
-  progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md },
+  progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.sm },
   count: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
+  faces: { flexDirection: 'row', alignItems: 'center', marginTop: space.sm },
+  face: { borderRadius: 15, borderWidth: 2, borderColor: colors.bgBottom },
+  faceOverlap: { marginLeft: -8 },
   guide: {
     marginTop: space.lg,
     padding: space.md,
@@ -343,7 +388,6 @@ const styles = StyleSheet.create({
   },
   guideTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
   guideText: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: space.xs, lineHeight: 19 },
-  chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.xs, marginTop: space.sm },
   wideTop: { paddingHorizontal: space.lg, gap: space.sm },
   statsRow: { flexDirection: 'row', gap: space.lg },
   stat: { flexDirection: 'row', alignItems: 'center', gap: space.xs },

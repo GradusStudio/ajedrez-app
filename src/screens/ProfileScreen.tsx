@@ -6,7 +6,6 @@ import { CardSurface } from '../components/CardSurface';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { ProfileUnitCard } from '../components/ProfileUnitCard';
 import { RatingChart } from '../components/RatingChart';
-import { SettingRow } from '../components/SettingRow';
 import { StatIcon } from '../components/StatIcon';
 import { StreakFlame, flameStateOf } from '../components/StreakFlame';
 import { TabIcon } from '../components/TabIcon';
@@ -143,16 +142,17 @@ export function ProfileScreen({ onOpenSettings, onOpenBotGames, onOpenReview, on
               .filter(Boolean)
               .join(', ');
             return (
-              <ProfileUnitCard
-                key={card.unit.unit}
-                card={card}
-                pieces={piecesFromFen(position.fen)}
-                lastMove={position.lastMove}
-                kicker={kicker}
-                count={lessonsCount}
-                label={label}
-                onPress={() => onOpenUnit(card.unit.unit)}
-              />
+              <View key={card.unit.unit} style={[styles.unitCell, !wide && styles.unitCellNarrow]}>
+                <ProfileUnitCard
+                  card={card}
+                  pieces={piecesFromFen(position.fen)}
+                  lastMove={position.lastMove}
+                  kicker={kicker}
+                  count={lessonsCount}
+                  label={label}
+                  onPress={() => onOpenUnit(card.unit.unit)}
+                />
+              </View>
             );
           })}
         </View>
@@ -282,14 +282,23 @@ export function ProfileScreen({ onOpenSettings, onOpenBotGames, onOpenReview, on
       </CardSurface>
 
       {/* 6. Accesos */}
-      <View style={styles.accessRow}>
-        <SettingRow label={t('profile.botGames')} description={t('profile.botGames.description')} onPress={onOpenBotGames} />
+      <View style={[styles.accessRow, !wide && styles.accessColumn]}>
+        <AccessCard title={t('profile.botGames')} text={t('profile.botGames.description')} onPress={onOpenBotGames} />
         {reviewable.length > 0 && (
-          <SettingRow label={t('common.reviewMistakes')} description={tn('profile.pending', reviewable.length)} onPress={openReview} />
+          <AccessCard title={t('common.reviewMistakes')} text={tn('profile.pending', reviewable.length)} onPress={openReview} />
         )}
-        <SettingRow label={t('profile.settings')} description={t('profile.settings.description')} onPress={onOpenSettings} />
+        <AccessCard title={t('profile.settings')} text={t('profile.settings.description')} onPress={onOpenSettings} />
       </View>
     </ColumnScrollView>
+  );
+}
+
+function AccessCard({ title, text, onPress }: { title: string; text: string; onPress: () => void }) {
+  return (
+    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={`${title}. ${text}`} style={styles.accessCard}>
+      <Text style={styles.accessTitle}>{title}</Text>
+      <Text style={styles.accessText}>{text}</Text>
+    </Pressable>
   );
 }
 
@@ -320,6 +329,8 @@ const styles = StyleSheet.create({
   cardAside: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
   unitGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.md },
   unitGridNarrow: { flexDirection: 'column' },
+  unitCell: { width: '32%' },
+  unitCellNarrow: { width: '100%' },
   pair: { flexDirection: 'row', gap: space.lg, alignItems: 'flex-start' },
   ratingTop: { flexDirection: 'row', alignItems: 'baseline', gap: space.sm, marginTop: space.sm },
   ratingNumber: { fontFamily: fonts.extrabold, fontSize: 44, lineHeight: 50, color: colors.gold },
@@ -351,5 +362,9 @@ const styles = StyleSheet.create({
   achDesc: { fontFamily: fonts.semibold, fontSize: 11, color: colors.textMuted, textAlign: 'center', lineHeight: 14 },
   achLocked: { opacity: 0.55 },
   achProgress: { fontFamily: fonts.extrabold, fontSize: 11, color: colors.primary, marginTop: 2 },
-  accessRow: { marginTop: space.xl, gap: space.sm },
+  accessRow: { flexDirection: 'row', gap: space.md, marginTop: space.xl },
+  accessColumn: { flexDirection: 'column' },
+  accessCard: { ...cardSkin, borderRadius: radius.control, borderWidth: 2, padding: space.md, flex: 1 },
+  accessTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  accessText: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: 2 },
 });

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useIsFocused } from 'expo-router';
+import { useIsFocused, useLocalSearchParams } from 'expo-router';
 import { showDialog } from '../components/dialog';
 import { Animated, Easing, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView, useColumnWidth } from '../components/ColumnScrollView';
@@ -53,7 +53,12 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
   const openCatalog = units.filter((u) => openUnitNumbers.includes(u.unit));
   // Unidad elegida en el menú o en la corona. Sin elegir, se muestra la unidad de la lección que sugiere
   // Inicio (la misma regla en las dos pantallas); si no hay, la de la última lección empezada.
-  const [chosen, setChosen] = useState<number | null>(null);
+  // `?unidad=N` llega desde el Perfil y abre Aprender en esa unidad.
+  const params = useLocalSearchParams<{ unidad?: string }>();
+  const [chosen, setChosen] = useState<number | null>(() => {
+    const n = Number(params.unidad);
+    return Number.isInteger(n) && n > 0 ? n : null;
+  });
   const [menuOpen, setMenuOpen] = useState(false);
   const globalSuggested = suggestedLesson(openCatalog, progress);
   const suggestedUnit = globalSuggested

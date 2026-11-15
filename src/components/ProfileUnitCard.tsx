@@ -30,13 +30,15 @@ export function ProfileUnitCard({ card, pieces, lastMove, kicker, count, label, 
       <View style={styles.top}>
         <MiniBoard size={64} corner="a1" span={8} pieces={pieces} lastMove={lastMove ?? undefined} />
         <View style={styles.head}>
-          <Text style={styles.kicker} numberOfLines={1}>
-            {kicker}
-          </Text>
+          <View style={styles.kickerRow}>
+            <Text style={styles.kicker} numberOfLines={1}>
+              {kicker}
+            </Text>
+            {card.state === 'locked' && <Lock />}
+          </View>
           <Text style={styles.title} numberOfLines={2}>
             {card.unit.title}
           </Text>
-          {card.state === 'locked' && <Lock />}
         </View>
       </View>
       <View style={styles.track}>
@@ -49,7 +51,7 @@ export function ProfileUnitCard({ card, pieces, lastMove, kicker, count, label, 
 
 function Lock() {
   return (
-    <Svg width={14} height={16} viewBox="0 0 12 14" style={styles.lock} accessibilityElementsHidden>
+    <Svg width={14} height={16} viewBox="0 0 12 14" accessibilityElementsHidden>
       <Path d="M3 6V4a3 3 0 0 1 6 0v2" fill="none" stroke={colors.textMuted} strokeWidth={1.6} />
       <Rect x={2} y={6} width={8} height={7} rx={1.5} fill={colors.textMuted} />
     </Svg>
@@ -62,9 +64,9 @@ const styles = StyleSheet.create({
   locked: { opacity: 0.55 },
   top: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
   head: { flex: 1, minWidth: 0 },
-  kicker: { fontFamily: fonts.extrabold, fontSize: 12, color: colors.primary, letterSpacing: 0.5, textTransform: 'uppercase' },
+  kickerRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  kicker: { flexShrink: 1, fontFamily: fonts.extrabold, fontSize: 12, color: colors.primary, letterSpacing: 0.5, textTransform: 'uppercase' },
   title: { fontFamily: fonts.extrabold, fontSize: 15, lineHeight: 19, color: colors.text, marginTop: 2 },
-  lock: { position: 'absolute', right: 0, top: 0 },
   track: { height: 5, borderRadius: 3, backgroundColor: colors.surfaceRaised, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: 3, backgroundColor: colors.primary },
   fillGold: { backgroundColor: colors.gold },

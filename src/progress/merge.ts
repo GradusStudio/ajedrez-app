@@ -166,10 +166,7 @@ function mergeOpened(a: string[], b: string[]): string[] {
   return out;
 }
 
-/**
- * Nivel de puzzles: gana el que contó más puzzles (`rated`); si empatan, el cambiado más tarde. `pending` se une, sin
- * los puzzles que ya están terminados en `puzzles` (tope MAX_PENDING).
- */
+/** Un punto del historial de nivel de puzzles (`puzzleRating.history`). */
 type RatingPoint = { at: string; rating: number };
 
 /** Une los historiales de nivel por fecha (si dos puntos caen en la misma, el mayor) y los deja a 60. */
@@ -185,6 +182,10 @@ function mergeRatingHistory(a?: RatingPoint[], b?: RatingPoint[]): RatingPoint[]
     .map(([at, rating]) => ({ at, rating }));
 }
 
+/**
+ * Nivel de puzzles: gana el que contó más puzzles (`rated`); si empatan, el cambiado más tarde. `pending` se une, sin
+ * los puzzles que ya están terminados en `puzzles` (tope MAX_PENDING).
+ */
 export function mergePuzzleRating(
   a: PuzzleRating | undefined,
   b: PuzzleRating | undefined,
@@ -206,7 +207,6 @@ export function mergePuzzleRating(
   return { ...winner, pending, ...(history.length ? { history } : {}) };
 }
 
-/** Combina el progreso local con otro (importado o bajado de Drive). El resultado conserva `local.deviceId`. */
 /** Un mismo puzzle en dos copias: el mejor resultado y la fecha más reciente, con los temas de ambos. */
 function mergePuzzleRecord(a: PuzzleRecord, b: PuzzleRecord): PuzzleRecord {
   const base =
@@ -217,6 +217,7 @@ function mergePuzzleRecord(a: PuzzleRecord, b: PuzzleRecord): PuzzleRecord {
   return themes.length ? { ...base, themes } : base;
 }
 
+/** Combina el progreso local con otro (importado o bajado de Drive). El resultado conserva `local.deviceId`. */
 export function mergeProgress(local: Progress, incoming: Progress): Progress {
   // Si se borró el progreso en uno de los dos después que en el otro, gana entera esa versión.
   const resetCmp = cmpDate(local.resetAt, incoming.resetAt);

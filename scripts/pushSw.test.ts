@@ -22,6 +22,14 @@ test('push-sw.js usa la misma caché y clave que practiceMarkLogic', () => {
   assert.ok(sw.includes('caches.match(PRACTICE_KEY'), 'push-sw.js lee la marca con caches.match(PRACTICE_KEY)');
 });
 
+test('push-sw.js solo abre URLs de la app', () => {
+  const sw = read('scripts/push-sw.js');
+  assert.match(sw, /function safeAppUrl\(/);
+  assert.match(sw, /const url = safeAppUrl\(/);
+  assert.match(sw, /data: \{ url \}/);
+  assert.match(sw, /openWindow\(url\)/);
+});
+
 test('build-sw.js copia push-sw.js e importa /app/push-sw.js', () => {
   const build = read('scripts/build-sw.js');
   assert.match(build, /copyFileSync\([^)]*push-sw\.js/);

@@ -37,12 +37,23 @@ function payloadOf(event) {
   }
 }
 
+/** Solo se abre la app: una URL de otro origen en el payload no debe abrir una pestaña cualquiera. */
+function safeAppUrl(url) {
+  try {
+    const parsed = new URL(url, self.location.origin);
+    if (parsed.origin === self.location.origin && parsed.pathname.startsWith(APP_URL)) return parsed.href;
+  } catch {
+    // URL inválida: se usa la de la app.
+  }
+  return new URL(APP_URL, self.location.origin).href;
+}
+
 async function showReminder(event) {
   if (await practicedToday()) return;
   const data = payloadOf(event);
   const title = typeof data.title === 'string' && data.title ? data.title : 'Gradus';
   const body = typeof data.body === 'string' && data.body ? data.body : 'Es hora de practicar';
-  const url = typeof data.url === 'string' && data.url ? data.url : APP_URL;
+  const url = safeAppUrl(typeof data.url === 'string' && data.url ? data.url : APP_URL);
   await self.registration.showNotification(title, {
     body,
     icon: '/app/icons/icon-192.png',
@@ -65,6 +76,6 @@ async function openApp(url) {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const url = (event.notification.data && event.notification.data.url) || APP_URL;
+  const url = safeAppUrl((event.notification.data && event.notification.data.url) || APP_URL);
   event.waitUntil(openApp(url));
 });

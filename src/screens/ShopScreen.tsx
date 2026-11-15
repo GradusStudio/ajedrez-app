@@ -143,9 +143,9 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
                 <View style={styles.actions}>
                   <Button3D label={t('shop.back')} variant="secondary" onPress={() => setSelected(null)} style={{ flex: 1 }} />
                   {action.type === 'use' ? (
-                    <Button3D label={t('shop.use')} variant="primary" onPress={applySelected} style={{ flex: 1 }} />
+                    <Button3D label={t('shop.use')} variant="primary" onPress={applySelected} style={{ flex: 2 }} />
                   ) : action.type === 'buy' ? (
-                    <Button3D label={t('shop.buyFor', { price: action.price })} variant="primary" onPress={buySelected} style={{ flex: 1 }} />
+                    <Button3D label={t('shop.buyFor', { price: action.price })} variant="primary" onPress={buySelected} style={{ flex: 2 }} />
                   ) : (
                     <View style={styles.shortBtn}>
                       <Text style={styles.shortBtnText}>{t('shop.short', { missing: action.missing })}</Text>
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   cap: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, textAlign: 'center' },
   actions: { flexDirection: 'row', gap: space.sm },
   shortBtn: {
-    flex: 1,
+    flex: 2,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: radius.control,

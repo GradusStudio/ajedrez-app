@@ -228,7 +228,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
         </CardSurface>
 
         {/* Práctica */}
-        <CardSurface style={styles.card} radius={20}>
+        <CardSurface style={[styles.card, wide && styles.practiceCard]} radius={20}>
           <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{t('puzzles.practice')}</Text>
           <Text style={styles.cardText}>{t('puzzles.practiceLead')}</Text>
           <View style={styles.levels}>
@@ -237,6 +237,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
               sub={t('puzzles.near', { n: number(rating) })}
               selected={auto}
               onPress={() => choose('auto')}
+              emphasis
             />
             {levels.map((l) => (
               <LevelButton
@@ -285,7 +286,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
                 style={[styles.topic, wide ? styles.topicWide : styles.topicNarrow]}
               >
                 <ThemeDiagram diagram={diagram} mate={mate} />
-                <Text style={styles.topicName} numberOfLines={1}>{name}</Text>
+                <Text style={styles.topicName} numberOfLines={2}>{name}</Text>
                 <Text style={styles.topicCount} numberOfLines={1}>
                   {solved > 0 && <Text style={styles.topicSolved}>{tn('puzzles.themeSolved', solved)} · </Text>}
                   {quantityText(available)}
@@ -299,14 +300,26 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
   );
 }
 
-function LevelButton({ label, sub, selected, onPress }: { label: string; sub: string; selected: boolean; onPress: () => void }) {
+function LevelButton({
+  label,
+  sub,
+  selected,
+  onPress,
+  emphasis,
+}: {
+  label: string;
+  sub: string;
+  selected: boolean;
+  onPress: () => void;
+  emphasis?: boolean;
+}) {
   return (
     <Pressable
       onPress={onPress}
       accessibilityRole="radio"
       accessibilityState={{ selected }}
       accessibilityLabel={`${label}, ${sub}`}
-      style={[styles.level, selected && styles.levelSelected]}
+      style={[styles.level, emphasis && styles.levelEmphasis, selected && styles.levelSelected]}
     >
       <Text style={[styles.levelText, selected && { color: colors.text }]} numberOfLines={1} adjustsFontSizeToFit>
         {label}
@@ -342,6 +355,7 @@ const styles = StyleSheet.create({
   column: { flexDirection: 'column' },
   card: { ...cardSkin, borderRadius: 20, borderWidth: 2, padding: space.lg },
   dailyCard: { flex: 1.25, borderColor: colors.gold, borderBottomColor: '#B8901C' },
+  practiceCard: { flex: 1 },
   dailyWide: { minWidth: 0 },
   dailyInner: { flexDirection: 'row', gap: space.lg, alignItems: 'center' },
   boardWrap: { flexShrink: 0 },
@@ -363,19 +377,19 @@ const styles = StyleSheet.create({
   weekSolved: { backgroundColor: colors.gold },
   weekToday: { borderWidth: 2, borderColor: colors.gold },
   weekDay: { fontFamily: fonts.bold, fontSize: 10, color: colors.textMuted },
-  levels: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.md },
+  levels: { flexDirection: 'row', gap: space.sm, marginTop: space.md },
   level: {
-    flexGrow: 1,
-    flexBasis: '18%',
-    minWidth: 92,
+    flex: 1,
+    minWidth: 0,
     alignItems: 'center',
     paddingVertical: 8,
-    paddingHorizontal: 6,
+    paddingHorizontal: 4,
     borderRadius: radius.control,
     borderWidth: 2,
     borderColor: colors.surfaceRaised,
     backgroundColor: colors.surface,
   },
+  levelEmphasis: { flex: 1.5 },
   levelSelected: { borderColor: colors.primary, backgroundColor: colors.surfaceRaised },
   levelText: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
   levelSub: { fontFamily: fonts.semibold, fontSize: 11, color: colors.textMuted },

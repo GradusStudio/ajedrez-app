@@ -28,7 +28,7 @@ import { reasonKey } from '../progress/reasonKey';
 import { loadReviews } from '../review/reviewStore';
 import { setPendingGame } from '../review/session';
 import { cleanUsername, fetchGames, FetchError, type GameSource, type ListedGame, validUsername } from '../review/sources';
-import { reviewId, type StoredReview } from '../review/store';
+import { findReview, reviewId, type StoredReview } from '../review/store';
 import { setPendingQuiz } from '../review/turningPoints';
 import { useSettings } from '../settings/SettingsContext';
 import { useTodayKey } from '../settings/useTodayKey';
@@ -79,7 +79,6 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
 
   const botGames = useMemo(() => progress.games.filter((g) => !g.practiceCourseId).slice(0, 10), [progress.games]);
   const [reviews, setReviews] = useState<StoredReview[]>([]);
-  const reviewed = useMemo(() => new Map(reviews.map((r) => [r.id, r])), [reviews]);
   const mistakes = useMemo(() => pendingMistakes(reviews, progress.turningPoints), [reviews, progress.turningPoints]);
 
   const [source, setSource] = useState<Source>(botGames.length > 0 ? 'bots' : 'chesscom');
@@ -141,12 +140,21 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
     setError(null);
   };
 
+  /**
+   * La revisión guardada de una partida de bot: por el id de la partida (`bot:<playedAt>`) o por el hash de su PGN,
+   * que es como se guardó cuando se revisó desde la capa del resultado.
+   */
+  const savedFor = (record: GameRecord) => {
+    const botName = findBot(record.botId)?.name ?? record.botId;
+    const pgnText = botGamePgn(record, botName, t('analysis.you'));
+    const botId = botGameReviewId(record);
+    const saved = findReview(reviews, botId, reviewId(pgnText));
+    return { saved, pgnText, id: saved?.id ?? botId };
+  };
+
   const openGame = (record: GameRecord) => {
-    const bot = findBot(record.botId);
+    const { saved, pgnText, id } = savedFor(record);
     const userName = t('analysis.you');
-    const pgnText = botGamePgn(record, bot?.name ?? record.botId, userName);
-    const id = botGameReviewId(record);
-    const saved = reviewed.get(id);
     setPendingGame(
       saved
         ? { pgn: pgnText, username: userName, id, review: saved.review, me: saved.me, coachId: saved.coachId }
@@ -244,7 +252,7 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
       botGames.map((record) => {
         const bot = findBot(record.botId);
         const result = resultOf(record);
-        const saved = reviewed.has(botGameReviewId(record));
+        const saved = !!savedFor(record).saved;
         const meta = [
           reasonText(record.reason),
           tn('analysis.moves', record.moves.length),

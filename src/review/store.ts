@@ -34,8 +34,7 @@ export function trimReviews(list: StoredReview[], next: StoredReview, max = MAX_
 }
 
 /** Valida lo leído del almacenamiento: un dato roto se descarta en vez de romper la pestaña. */
-export function isStoredReview(value: unknown): value is StoredReview {
-  if (typeof value !== 'object' || value === null) return false;
+export function isStoredReview(value: unknown): value is StoredReview {  if (typeof value !== 'object' || value === null) return false;
   const v = value as Record<string, unknown>;
   const review = v.review as Record<string, unknown> | null | undefined;
   return (
@@ -47,4 +46,16 @@ export function isStoredReview(value: unknown): value is StoredReview {
     review !== null &&
     Array.isArray((review as Record<string, unknown>).plies)
   );
+}
+
+/**
+ * La revisión guardada de una partida, por cualquiera de sus ids: el de la partida de bot (`bot:<playedAt>`) o el
+ * hash de su PGN (cuando se revisó desde la capa del resultado, que no conoce el id de la partida).
+ */
+export function findReview(list: StoredReview[], ...ids: string[]): StoredReview | undefined {
+  for (const id of ids) {
+    const found = list.find((r) => r.id === id);
+    if (found) return found;
+  }
+  return undefined;
 }

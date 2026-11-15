@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { isStoredReview, MAX_REVIEWS, reviewId, trimReviews, type StoredReview } from './store';
+import { findReview, isStoredReview, MAX_REVIEWS, reviewId, trimReviews, type StoredReview } from './store';
 import type { Review } from './types';
 
 const stored = (id: string, savedAt = '2026-11-14T10:00:00.000Z'): StoredReview => ({
@@ -41,4 +41,13 @@ test('un dato roto del almacenamiento se descarta', () => {
     assert.equal(isStoredReview(bad), false, JSON.stringify(bad));
   }
   assert.equal(isStoredReview({ ...stored('x'), me: null }), true);
+});
+
+test('findReview encuentra la revisión por el id de la partida o por el del PGN', () => {
+  const byBot = stored('bot:abc');
+  const byPgn = stored('pgn:xyz');
+  assert.equal(findReview([byBot, byPgn], 'bot:abc')?.id, 'bot:abc');
+  assert.equal(findReview([byBot, byPgn], 'bot:nope', 'pgn:xyz')?.id, 'pgn:xyz');
+  assert.equal(findReview([byBot, byPgn], 'bot:nope'), undefined);
+  assert.equal(findReview([], 'bot:abc'), undefined);
 });

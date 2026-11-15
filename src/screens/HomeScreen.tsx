@@ -55,10 +55,17 @@ export function HomeScreen({ onStartLesson, onOpenUnitTest }: Props) {
   // Inicio (la misma regla en las dos pantallas); si no hay, la de la última lección empezada.
   // `?unidad=N` llega desde el Perfil y abre Aprender en esa unidad.
   const params = useLocalSearchParams<{ unidad?: string }>();
-  const [chosen, setChosen] = useState<number | null>(() => {
-    const n = Number(params.unidad);
-    return Number.isInteger(n) && n > 0 ? n : null;
-  });
+  const paramUnit = Number(params.unidad);
+  const validParam = Number.isInteger(paramUnit) && paramUnit > 0 ? paramUnit : null;
+  const [chosen, setChosen] = useState<number | null>(validParam);
+  // El Perfil puede abrir Aprender en otra unidad con `?unidad=N` aunque la pestaña ya esté montada. Se ajusta el
+  // estado durante el render (patrón de React para un prop que cambia) solo cuando el parámetro cambia de verdad; así
+  // elegir otra unidad con la corona después sigue funcionando.
+  const [lastParam, setLastParam] = useState(validParam);
+  if (validParam !== lastParam) {
+    setLastParam(validParam);
+    if (validParam !== null) setChosen(validParam);
+  }
   const [menuOpen, setMenuOpen] = useState(false);
   const globalSuggested = suggestedLesson(openCatalog, progress);
   const suggestedUnit = globalSuggested

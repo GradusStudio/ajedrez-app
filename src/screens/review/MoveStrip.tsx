@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import type { ReviewPly } from '../../review/types';
-import { moveNumber } from '../../review/bestLine';
+import { movePrefix } from '../../review/bestLine';
 import { colors } from '../../theme';
-import { badgeOf } from './quality';
+import { badgeOf } from '../../review/quality';
 import { styles } from './reviewStyles';
 
 type Props = {
@@ -33,7 +33,7 @@ export function MoveStrip({ plies, idx, inBranch, fmt, onGo }: Props) {
             const b = badgeOf(p);
             const current = idx === i + 1 && !inBranch;
             // El número sale del FEN de la jugada: sirve también si las negras mueven primero.
-            const no = moveNumber(p.move.fenBefore);
+            const prefix = movePrefix(p.move);
             const showNo = p.move.color === 'w' || i === 0;
             return (
               <Pressable
@@ -46,10 +46,10 @@ export function MoveStrip({ plies, idx, inBranch, fmt, onGo }: Props) {
                   if (i + 1 === idx) stripRef.current?.scrollTo({ x: Math.max(0, pos.x - 90), animated: false });
                 }}
                 accessibilityRole="button"
-                accessibilityLabel={`${p.move.color === 'w' ? `${no}. ` : `${no}... `}${fmt(p.move.san)}`}
+                accessibilityLabel={`${prefix} ${fmt(p.move.san)}`}
                 style={[styles.moveChip, current && styles.moveChipCurrent]}
               >
-                {showNo && <Text style={styles.moveNo}>{p.move.color === 'w' ? `${no}.` : `${no}...`}</Text>}
+                {showNo && <Text style={styles.moveNo}>{prefix}</Text>}
                 {b && <Text style={[styles.moveBadge, { color: b.color }]}>{b.label}</Text>}
                 <Text style={[styles.moveText, current && { color: colors.text }]}>{fmt(p.move.san)}</Text>
               </Pressable>

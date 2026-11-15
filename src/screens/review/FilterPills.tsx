@@ -2,14 +2,14 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useI18n } from '../../i18n/I18nContext';
 import { colors, fonts, radius, space, type } from '../../theme';
-import type { Filter } from './useReviewPlayback';
+import type { PlaybackFilter } from './playbackMachine';
 
-type Props = { value: Filter; onChange: (f: Filter) => void };
+type Props = { value: PlaybackFilter; onChange: (f: PlaybackFilter) => void };
 
 /** Filtro del panel: dos pastillas; la elegida lleva el borde primary. Sigue decidiendo a dónde salta el principal. */
 export function FilterPills({ value, onChange }: Props) {
   const { t } = useI18n();
-  const options: { value: Filter; label: string }[] = [
+  const options: { value: PlaybackFilter; label: string }[] = [
     { value: 'highlights', label: t('review.filterHighlights') },
     { value: 'all', label: t('review.filterAll') },
   ];

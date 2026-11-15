@@ -1,16 +1,16 @@
 import { formatScore, isMate } from '../engine/evalFormat';
 import type { Bot } from '../data/bots';
 import type { MessageKey } from '../i18n/I18nContext';
-import { badgeOf, catOf, qualityColor, qualityNameKey, QUALITY_TEXT_LIGHT, type Badge } from '../screens/review/quality';
-import { moveNumber } from './bestLine';
-import { coachExplanation, coachLang, coachVoice } from './coachText';
+import { badgeOf, catOf, qualityColor, qualityNameKey, QUALITY_TEXT_LIGHT, type Badge } from './quality';
+import { moveNumber, plyLabel } from './bestLine';
+import { coachLang } from './coachText';
+import { coachTake } from './coachTake';
 import type { Review, ReviewPly } from './types';
 
 /** Una fila de «Momentos clave» del resumen, ya con los textos traducidos. Módulo puro: sin React Native. */
 export type SummaryMoment = {
   /** Índice en `review.plies` (0 = primera jugada). */
   index: number;
-  san: string;
   /** La jugada con su número («6.Ac4», «1...e5»), como en el prototipo. */
   label: string;
   badge: Badge | null;
@@ -69,38 +69,11 @@ export function summaryMoments(review: Review, me: 'w' | 'b' | null, coach: Bot,
     const p = review.plies[index];
     const san = o.fmt(p.move.san);
     const subject = me && p.move.color === me ? 'you' : 'opponent';
-    let voice = '';
-    let text = '';
-    try {
-      voice = coachVoice({
-        lang,
-        style: coach.style,
-        quality: p.quality,
-        great: p.great,
-        mate: p.move.san.endsWith('#'),
-        subject,
-        move: san,
-        seed: p.ply + coach.elo,
-      });
-      const facts = coachExplanation({
-        lang,
-        subject,
-        quality: p.quality,
-        facts: p.facts,
-        move: san,
-        bestSan: p.bestSan,
-        fmt: o.fmt,
-        seed: p.ply + coach.elo,
-        style: coach.style,
-      });
-      text = firstSentence(facts[0] ?? voice);
-    } catch {
-      // Una revisión guardada vieja o rota puede traer hechos con formas inesperadas: se cae a la voz del bot.
-      text = voice || san;
-    }
+    const { voice, details } = coachTake({ ply: p, coach, lang, subject, san, fmt: o.fmt });
+    const text = firstSentence(details[0] ?? voice) || san;
     const quality = o.t(qualityNameKey(p));
     const n = moveNumber(p.move.fenBefore);
-    const label = p.move.color === 'w' ? `${n}.${san}` : `${n}...${san}`;
+    const label = plyLabel(p.move, o.fmt);
     const aria = o.t('review.momentLabel', {
       n,
       color: o.t(p.move.color === 'w' ? 'common.white' : 'common.black'),
@@ -110,7 +83,6 @@ export function summaryMoments(review: Review, me: 'w' | 'b' | null, coach: Bot,
     });
     return {
       index,
-      san,
       label,
       badge: badgeOf(p),
       color: qualityColor(p),

@@ -6,7 +6,7 @@ import { useI18n } from '../../i18n/I18nContext';
 import type { Review } from '../../review/types';
 import { boardHighlight } from '../../theme';
 import { useBoardSide } from '../../components/BoardSizeContext';
-import { badgeOf, QUALITY_STYLE } from './quality';
+import { badgeOf, QUALITY_STYLE } from '../../review/quality';
 import { styles } from './reviewStyles';
 
 const HEIGHT = 74;

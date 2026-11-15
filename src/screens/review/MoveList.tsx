@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import { useI18n } from '../../i18n/I18nContext';
-import { moveNumber } from '../../review/bestLine';
+import { movePrefix } from '../../review/bestLine';
 import type { ReviewPly } from '../../review/types';
 import { colors, fonts, radius, space, type } from '../../theme';
-import { badgeOf, qualityNameKey } from './quality';
+import { badgeOf, qualityNameKey } from '../../review/quality';
 
 type Props = {
   plies: ReviewPly[];
@@ -35,7 +35,7 @@ export function MoveList({ plies, idx, inBranch, fmt, onGo }: Props) {
       {plies.map((p, i) => {
         const badge = badgeOf(p);
         const current = idx === i + 1 && !inBranch;
-        const no = moveNumber(p.move.fenBefore);
+        const prefix = movePrefix(p.move);
         const showNo = p.move.color === 'w' || i === 0;
         return (
           <Pressable
@@ -48,10 +48,10 @@ export function MoveList({ plies, idx, inBranch, fmt, onGo }: Props) {
             }}
             accessibilityRole="button"
             accessibilityState={{ selected: current }}
-            accessibilityLabel={`${p.move.color === 'w' ? `${no}. ` : `${no}... `}${fmt(p.move.san)}${badge ? `, ${t(qualityNameKey(p))}` : ''}`}
+            accessibilityLabel={`${prefix} ${fmt(p.move.san)}${badge ? `, ${t(qualityNameKey(p))}` : ''}`}
             style={[styles.row, current && styles.current]}
           >
-            <Text style={styles.no}>{showNo ? (p.move.color === 'w' ? `${no}.` : `${no}...`) : ''}</Text>
+            <Text style={styles.no}>{showNo ? prefix : ''}</Text>
             <Text style={[styles.badge, badge ? { color: badge.color } : null]}>{badge?.label ?? ''}</Text>
             <Text style={[styles.move, current && styles.moveCurrent]}>{fmt(p.move.san)}</Text>
           </Pressable>

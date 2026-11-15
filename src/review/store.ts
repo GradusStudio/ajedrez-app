@@ -1,4 +1,5 @@
 import { Chess } from 'chess.js';
+import { uciSquares } from './bestLine';
 import type { Review } from './types';
 
 // Revisiones guardadas en el dispositivo (tarea 34, spec «Análisis», sección Datos). Se guardan las últimas 10
@@ -54,7 +55,7 @@ function isStoredPly(p: unknown): boolean {
     move !== null &&
     (move.color === 'w' || move.color === 'b') &&
     isStr(move.san) &&
-    isStr(move.uci) &&
+    uciSquares(move.uci) !== null &&
     isStr(move.fenBefore) &&
     isStr(move.fenAfter) &&
     isStr(ply.quality) &&

@@ -1,6 +1,6 @@
-import type { BotExpression } from '../../components/botFace';
-import type { MessageKey } from '../../i18n/I18nContext';
-import type { MoveQuality, ReviewPly } from '../../review/types';
+import type { BotExpression } from '../components/botFace';
+import type { MessageKey } from '../i18n/I18nContext';
+import type { MoveQuality, ReviewPly } from './types';
 
 export type StyleKey = MoveQuality | 'great' | 'mate';
 export type Badge = { label: string; color: string };

@@ -1,19 +1,12 @@
 import { useEffect, useState } from 'react';
-import type { LineMove } from '../../review/bestLine';
-import type { GameMove, ReviewPly } from '../../review/types';
-import { nextAction } from './playbackMachine';
-
-export type Filter = 'all' | 'highlights';
+import { nextAction, type Branch, type PlaybackFilter, type Preview } from './playbackMachine';
 
 /** Jugadas propias del usuario sobre una posición de la partida (`from` = jugada desde la que se desvió). */
-export type Branch = { from: number; moves: { id: number; move: GameMove; rated: ReviewPly | null }[] };
+export type { Branch, Preview } from './playbackMachine';
 
 const AUTOPLAY_MS = 1400;
 const FAST_MS = 220; // cámara rápida hasta la próxima jugada destacada
 const LINE_MS = 1100; // una jugada de la línea del motor cada tanto
-
-/** La línea del motor reproducida sobre el tablero desde `baseFen`; `step` = jugadas ya hechas. */
-export type Preview = { baseFen: string; moves: LineMove[]; step: number };
 
 export type Playback = ReturnType<typeof useReviewPlayback>;
 
@@ -23,7 +16,7 @@ export type Playback = ReturnType<typeof useReviewPlayback>;
  */
 export function useReviewPlayback(n: number, highlights: number[]) {
   const [idx, setIdx] = useState(0);
-  const [filter, setFilter] = useState<Filter>('highlights');
+  const [filter, setFilter] = useState<PlaybackFilter>('highlights');
   const [ffTarget, setFfTarget] = useState<number | null>(null);
   const [showBest, setShowBest] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -69,7 +62,7 @@ export function useReviewPlayback(n: number, highlights: number[]) {
     const id = setInterval(() => setPreview((p) => (p && p.step < p.moves.length ? { ...p, step: p.step + 1 } : p)), LINE_MS);
     return () => clearInterval(id);
   }, [previewing]);
-  const startPreview = (baseFen: string, moves: LineMove[]) => {
+  const startPreview = (baseFen: string, moves: Preview['moves']) => {
     setPlaying(false);
     setFfTarget(null);
     setBranch(null);
@@ -88,17 +81,18 @@ export function useReviewPlayback(n: number, highlights: number[]) {
   };
 
   /** Botón principal. `onFinish` se llama al tocarlo estando en la última jugada («Finalizar»). */
+  const nextState = () => ({
+    preview: !!preview,
+    branch: !!branch,
+    ffTarget,
+    idx,
+    n,
+    filter,
+    nextHighlight: highlights.find((h) => h + 1 > idx),
+  });
+  const nextLabel = nextAction(nextState()).label;
   const next = (onFinish: () => void) => {
-    const action = nextAction({
-      preview: !!preview,
-      branch: !!branch,
-      fast,
-      ffTarget,
-      idx,
-      n,
-      filter,
-      nextHighlight: highlights.find((h) => h + 1 > idx),
-    });
+    const action = nextAction(nextState());
     switch (action.type) {
       case 'stopPreview':
         return setPreview(null);
@@ -136,6 +130,6 @@ export function useReviewPlayback(n: number, highlights: number[]) {
   return {
     idx, filter, setFilter, showBest, setShowBest, branch, setBranch, lastVar,
     setPlaying, setFfTarget, autoplaying, fast, preview, startPreview, stopPreview,
-    goTo, togglePlay, next, stepBack, stepForward, jumpHighlight,
+    goTo, togglePlay, next, nextLabel, stepBack, stepForward, jumpHighlight,
   };
 }

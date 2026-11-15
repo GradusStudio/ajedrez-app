@@ -7,7 +7,8 @@ import { summaryMoments } from '../review/summaryMoments';
 import { resolveNotation, sanFromEnglish } from '../chess/notation';
 import { useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
-import { coachExplanation, coachLang, coachVoice } from '../review/coachText';
+import { coachLang } from '../review/coachText';
+import { coachTake } from '../review/coachTake';
 import { lineMoves, lineText } from '../review/bestLine';
 import { parseGame } from '../review/pgn';
 import { clearPendingGame, peekPendingGame, sideOf } from '../review/session';
@@ -20,8 +21,9 @@ import { AnalyzingView } from './review/AnalyzingView';
 import { CoachBubble } from './review/CoachBubble';
 import { EvalGraph } from './review/EvalGraph';
 import { MoveStrip } from './review/MoveStrip';
-import { catOf, faceFor, qualityColor, qualityNameKey, QUALITY_INK, QUALITY_TEXT_DARK } from './review/quality';
-import { reviewView } from './review/reviewView';import { FilterPills } from './review/FilterPills';
+import { catOf, faceFor, qualityColor, qualityNameKey, QUALITY_INK, QUALITY_TEXT_DARK } from '../review/quality';
+import { reviewView } from './review/reviewView';
+import { FilterPills } from './review/FilterPills';
 import { MoveList } from './review/MoveList';
 import { NavButtons } from './review/NavButtons';
 import { ReviewTop } from './review/ReviewParts';
@@ -37,8 +39,13 @@ import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
 import { WideListColumn } from '../components/WideListColumn';
 import { useWideLayout } from '../components/useWideLayout';
 
-/** Alto fuera del tablero en pantalla ancha: barra de arriba, barra de evaluación, navegación, gráfico y márgenes. */
-const REVIEW_RESERVE = 380;
+/**
+ * Alto fuera del tablero en pantalla ancha, sumado de los estilos actuales: inset de arriba (40 + 8), barra superior
+ * (40 + 12), barra de evaluación (22 + 8), navegación (44 + 8), gráfico (74) y relleno de abajo (16) = 272. Se dejan
+ * 28 px de colchón para la barra del navegador y los redondeos. Si se agrega o se quita un bloque del tablero, volver
+ * a medirlo a 1568×706 y 1366×768.
+ */
+const REVIEW_RESERVE = 300;
 
 type Props = { onBack: () => void; onPractice: () => void; /** Origen: `game` cuando se entra desde el resultado de una partida. */ from?: string };
 
@@ -63,6 +70,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
     saved
   );
   const n = review?.plies.length ?? 0;
+  const hasReview = !!review;
   const pb = useReviewPlayback(n, review?.highlights ?? []);
   const { coach, choose: chooseCoach } = useReviewCoach(pending?.coachId);
   const [me, setMe] = useState<'w' | 'b' | null>(() => meKnown);
@@ -116,14 +124,10 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
     pbRef.current = pb;
   });
   useEffect(() => {
-    if (Platform.OS !== 'web' || !started) return;
-    // Al pasar al modo revisión, el foco va al contenedor nuevo (el botón que se pulsó desaparece).
-    const node = document.getElementById('gradus-review-start') as (HTMLElement & { tabIndex: number }) | null;
-    if (node) {
-      node.tabIndex = -1;
-      node.focus();
-    }
-  }, [started]);
+    if (Platform.OS !== 'web') return;
+    // Al aparecer el resumen, al pasar a la revisión o al volver: el foco va al botón principal de la vista nueva.
+    document.getElementById(started ? 'gradus-review-primary' : 'gradus-summary-start')?.focus();
+  }, [started, hasReview]);
   useEffect(() => {
     if (Platform.OS !== 'web' || !started) return;
     const onKey = (e: KeyboardEvent) => {
@@ -181,7 +185,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
         engineReady={!!engine}
         progress={progress}
         phase={phase}
-        backLabel={from === 'game' ? t('back.generic') : t('tabs.analysis')}
+        backLabel={backLabel}
         backAria={backAria}
         onBack={onBack}
         onRetry={retry}
@@ -207,45 +211,28 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
   const lineList = ply && isBad(ply.quality) ? lineMoves(ply.move.fenBefore, ply.bestPv) : [];
 
   const san = ply ? fmt(ply.move.san) : '';
+  // La voz y los hechos de la jugada salen del mismo módulo puro que usa el resumen; si una revisión guardada trae
+  // hechos rotos, se conserva la voz y no se tira la pantalla.
+  const take = ply
+    ? coachTake({ ply, coach, lang: coachLang(language), subject: mine ? 'you' : 'opponent', san, fmt })
+    : null;
   const voice = pendingOwn
     ? engineError
       ? t('analysis.engineDown')
       : t(mine ? 'review.analyzingMove' : 'review.analyzingOpponent')
-    : ply
-      ? coachVoice({
-          lang: coachLang(language),
-          style: coach.style,
-          quality: ply.quality,
-          great: ply.great,
-          mate: ply.move.san.endsWith('#'),
-          subject: mine ? 'you' : 'opponent',
-          move: san,
-          seed: ply.ply + coach.elo,
-        })
+    : take
+      ? take.voice
       : review.highlights.length > 0
         ? `${tn('review.keyMoments', review.highlights.length)} ${t('review.startHint')}`
         : `${t('review.noKeyMoments')} ${t('review.startHint')}`;
 
   // Los hechos (qué buscaba la jugada, por qué falla, cuál era la mejor y por qué) van primero y siempre a la vista.
   // La frase con la voz del bot solo aparece cuando no hay ningún hecho que decir.
-  const explanation = ply
-    ? coachExplanation({
-        lang: coachLang(language),
-        subject: mine ? 'you' : 'opponent',
-        quality: ply.quality,
-        facts: ply.facts,
-        move: san,
-        bestSan: ply.bestSan,
-        fmt,
-        seed: ply.ply + coach.elo,
-        style: coach.style,
-      })
-    : [];
-  const details = [...explanation];
-  if (pb.showBest && ply?.bestSan && !explanation.join(' ').includes(fmt(ply.bestSan))) {
+  const details = [...(take?.details ?? [])];
+  if (pb.showBest && ply?.bestSan && !details.join(' ').includes(fmt(ply.bestSan))) {
     details.push(t('review.bestWas', { move: fmt(ply.bestSan) }));
   }
-
+  const hasFacts = !!take?.details.length;
 
   const nameOf = (c: 'w' | 'b') => (c === 'w' ? game.white : game.black) || t(c === 'w' ? 'common.white' : 'common.black');
 
@@ -268,7 +255,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
           : null
       }
       startTitle={!ply && !pendingOwn && started ? t('review.startPosition') : null}
-      voice={explanation.length > 0 ? '' : voice}
+      voice={hasFacts ? '' : voice}
       details={details}
       line={ply && lineList.length > 0 ? t('review.bestLine', { line: lineText(ply.move.fenBefore, lineList, fmt) }) : ''}
       resetKey={ply?.ply ?? 0}
@@ -292,7 +279,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
       visible={sheet !== null}
       mode={sheet ?? 'settings'}
       onClose={() => setSheet(null)}
-      me={me ?? 'w'}
+      me={me}
       onMe={setMe}
       coachId={coach.id}
       onCoach={chooseCoach}
@@ -409,21 +396,21 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
       setStarted(false);
       setFinished(true);
     });
-  // La acción principal dice lo que hace: con «Todas» avanza una jugada; al final, termina.
-  const primaryLabel = pv
-    ? t('review.stopLine')
-    : branch
-      ? t('review.finish')
-      : idx >= n
-        ? t('review.finish')
-        : pb.filter === 'all'
-          ? t('review.ctrlNext')
-          : t('review.nextMoment');
-  const nextMomentBtn = <Button3D label={primaryLabel} variant="primary" onPress={nextMoment} style={{ marginTop: space.sm }} />;
+  // La acción principal y su etiqueta salen de la misma decisión pura (playbackMachine).
+  const primaryLabel = t(pb.nextLabel);
+  const nextMomentBtn = (
+    <Button3D
+      nativeID="gradus-review-primary"
+      label={primaryLabel}
+      variant="primary"
+      onPress={nextMoment}
+      style={{ marginTop: space.sm }}
+    />
+  );
   const filter = <FilterPills value={pb.filter} onChange={pb.setFilter} />;
 
   return shell(
-    <View style={styles.screen} nativeID="gradus-review-start">
+    <View style={styles.screen}>
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: topInset() }]}>
         <View style={contentWidth ? { width: contentWidth, alignSelf: 'center' } : null}>{top}</View>
         {wide ? (
@@ -452,22 +439,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
         )}
       </ScrollView>
 
-      <SettingsSheet
-        visible={sheet !== null}
-        mode={sheet ?? 'settings'}
-        onClose={() => setSheet(null)}
-        me={me ?? 'w'}
-        onMe={setMe}
-        coachId={coach.id}
-        onCoach={chooseCoach}
-        graph={graph}
-        onChooseOther={onBack}
-        playing={pb.autoplaying}
-        onPlay={() => {
-          pb.togglePlay();
-          setSheet(null);
-        }}
-      />
+      {sheetNode}
     </View>
   );
 }

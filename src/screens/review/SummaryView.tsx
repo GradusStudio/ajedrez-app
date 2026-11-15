@@ -1,5 +1,5 @@
-import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { BotAvatar } from '../../components/BotAvatar';
 import { Button3D } from '../../components/Button3D';
 import { CardSurface } from '../../components/CardSurface';
@@ -11,9 +11,11 @@ import type { Bot } from '../../data/bots';
 import { useI18n } from '../../i18n/I18nContext';
 import type { Review } from '../../review/types';
 import type { SummaryMoment } from '../../review/summaryMoments';
+import { fullMoves } from '../../review/bestLine';
+import { MAX_PLIES } from '../../review/pgn';
 import { colors, fonts, radius, space, type } from '../../theme';
 import { AccuracyRing } from './AccuracyRing';
-import { CAT_KEY, CATS, countCats, QUALITY_STYLE } from './quality';
+import { CAT_KEY, CATS, countCats, QUALITY_STYLE } from '../../review/quality';
 
 type Props = {
   top: React.ReactNode;
@@ -26,7 +28,7 @@ type Props = {
   moments: SummaryMoment[];
   /** Se viene de terminar la revisión: se avisa arriba. */
   finished: boolean;
-  /** La partida tenía más de 240 jugadas: el resumen no cubre el final. */
+  /** La partida tenía más semijugadas de las que se analizan: el resumen no cubre el final. */
   truncated?: boolean;
   onChangeCoach: () => void;
   /** Elige el bando cuando el PGN no lo dice; después el resumen pasa a «Tú / Rival». */
@@ -45,6 +47,12 @@ export function SummaryView({ top, review, me, nameOf, decimal, coach, moments, 
   const { t, tn } = useI18n();
   const wide = useWideLayout();
   const barPadding = useColumnBarPadding();
+  // Al elegir bando, el selector se desmonta: el foco pasa a «Empezar revisión» para no caer al principio de la página.
+  const choosing = useRef(me === null);
+  useEffect(() => {
+    if (choosing.current && me && Platform.OS === 'web') document.getElementById('gradus-summary-start')?.focus();
+    choosing.current = me === null;
+  }, [me]);
   const counts = { w: countCats(review.plies, 'w'), b: countCats(review.plies, 'b') };
   // Sin bando (ni del PGN ni elegido) las columnas son las blancas y las negras, en ese orden.
   const left = me ?? 'w';
@@ -88,17 +96,18 @@ export function SummaryView({ top, review, me, nameOf, decimal, coach, moments, 
               <View style={styles.resultMid}>
                 <Text style={styles.result}>{result}</Text>
                 {last?.move.san.endsWith('#') && <Text style={styles.resultSub}>{t('game.reason.checkmate')}</Text>}
-                <Text style={styles.resultSub}>{tn('analysis.moves', Math.ceil(review.plies.length / 2))}</Text>
+                <Text style={styles.resultSub}>{tn('analysis.moves', fullMoves(review.plies))}</Text>
               </View>
               {side(right)}
             </View>
-            {truncated && <Text style={styles.truncated}>{t('review.truncated')}</Text>}
+            {truncated && <Text style={styles.truncated}>{t('review.truncated', { n: Math.ceil(MAX_PLIES / 2) })}</Text>}
             {me === null && (
               <View style={styles.playingAs}>
                 <Text style={styles.playingAsLabel}>{t('review.playingAs')}</Text>
                 <Segmented
-                  value="w"
+                  value={me}
                   onChange={onMe}
+                  ariaLabel={t('review.playingAs')}
                   options={[
                     { value: 'w', label: t('common.white') },
                     { value: 'b', label: t('common.black') },
@@ -183,7 +192,13 @@ export function SummaryView({ top, review, me, nameOf, decimal, coach, moments, 
               </Pressable>
             </View>
 
-            <Button3D label={t('review.start')} variant="primary" onPress={onStart} style={{ marginTop: space.md }} />
+            <Button3D
+              nativeID="gradus-summary-start"
+              label={t('review.start')}
+              variant="primary"
+              onPress={onStart}
+              style={{ marginTop: space.md }}
+            />
             {onPractice && <Button3D label={t('quiz.title')} variant="secondary" onPress={onPractice} style={{ marginTop: space.sm }} />}
           </CardSurface>
         </View>

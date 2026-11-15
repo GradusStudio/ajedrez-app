@@ -6,14 +6,17 @@ type Option<T extends string | number> = { value: T; label: string; sub?: string
 
 type Props<T extends string | number> = {
   options: Option<T>[];
-  value: T;
+  /** null = ninguna opción elegida todavía (por ejemplo, un bando que aún no se conoce). */
+  value: T | null;
   onChange: (value: T) => void;
+  /** Nombre del grupo para el lector de pantalla («Revisar como»). */
+  ariaLabel?: string;
 };
 
 /** Selector de opciones del mismo ancho (design.md, "Selector de dos opciones"). */
-export function Segmented<T extends string | number>({ options, value, onChange }: Props<T>) {
+export function Segmented<T extends string | number>({ options, value, onChange, ariaLabel }: Props<T>) {
   return (
-    <View style={styles.row}>
+    <View style={styles.row} accessibilityRole="radiogroup" accessibilityLabel={ariaLabel}>
       {options.map((o) => {
         const selected = o.value === value;
         return (

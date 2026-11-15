@@ -80,6 +80,7 @@ test('un dato roto del almacenamiento se descarta', () => {
   const noAccuracy = { ...review(), accuracy: undefined } as unknown as Review;
   const shortScores = review({ scores: [0] });
   const badPly = review({ plies: [{ ...ply, move: { ...move, san: undefined } } as unknown as ReviewPly] });
+  const badUci = review({ plies: [{ ...ply, move: { ...move, uci: 'no es uci' } } as unknown as ReviewPly] });
   const badQuality = review({ plies: [{ ...ply, quality: 'rara' } as unknown as ReviewPly] });
   const badHighlights = review({ highlights: [5] });
   const badPv = review({ plies: [{ ...ply, bestPv: 'e2e4' } as unknown as ReviewPly] });
@@ -96,6 +97,7 @@ test('un dato roto del almacenamiento se descarta', () => {
     stored('x', undefined, noAccuracy),
     stored('x', undefined, shortScores),
     stored('x', undefined, badPly),
+    stored('x', undefined, badUci),
     stored('x', undefined, badQuality),
     stored('x', undefined, badHighlights),
     stored('x', undefined, badPv),

@@ -7,7 +7,7 @@ import { formatScore } from '../../engine/evalFormat';
 import { useI18n } from '../../i18n/I18nContext';
 import { useWideLayout } from '../../components/useWideLayout';
 import { colors, fonts, space, type } from '../../theme';
-import { Badge } from './quality';
+import { Badge } from '../../review/quality';
 
 type Head = {
   badge: Badge | null;

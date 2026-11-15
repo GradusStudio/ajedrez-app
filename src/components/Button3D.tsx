@@ -12,6 +12,8 @@ type Props = {
   /** Texto para el lector cuando el visible es más corto (por ejemplo, en una fila de dos botones). */
   ariaLabel?: string;
   disabled?: boolean;
+  /** Ancla en la web (se mapea al `id`), para mover el foco a este botón. */
+  nativeID?: string;
 };
 
 const VARIANTS: Record<
@@ -26,10 +28,11 @@ const VARIANTS: Record<
 };
 
 // Botón con borde inferior 3D (design.md, sección 4).
-export function Button3D({ label, onPress, variant = 'secondary', style, ariaLabel, disabled }: Props) {
+export function Button3D({ label, onPress, variant = 'secondary', style, ariaLabel, disabled, nativeID }: Props) {
   const v = VARIANTS[variant];
   return (
     <Pressable
+      nativeID={nativeID}
       accessibilityRole="button"
       accessibilityLabel={ariaLabel ?? label}
       accessibilityState={{ disabled: !!disabled }}

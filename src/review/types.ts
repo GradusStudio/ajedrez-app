@@ -25,7 +25,7 @@ export type ParsedGame = {
   result: string; // 1-0, 0-1, 1/2-1/2, *
   startFen: string;
   moves: GameMove[];
-  /** La partida tenía más de 240 jugadas y se recortó: el resumen no cubre el final. */
+  /** La partida tenía más semijugadas de las que se analizan y se recortó: el resumen no cubre el final. */
   truncated?: boolean;
 };
 

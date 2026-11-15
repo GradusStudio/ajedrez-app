@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { lineMoves, lineText, moveNumber } from './bestLine';
+import { fullMoves, lineMoves, lineText, moveNumber, movePrefix, plyLabel, uciSquares } from './bestLine';
+import type { ReviewPly } from './types';
 
 const START = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 const BLACK_TO_MOVE_7 = 'rnbqkbnr/ppp3pp/8/3p1p2/3Np3/6P1/PPPPPPBP/RNBQ1RK1 b kq - 0 7';
@@ -37,4 +38,27 @@ test('moveNumber lee el número del FEN, también con las negras a mover', () =>
   assert.equal(moveNumber(BLACK_TO_MOVE_7), 7);
   assert.equal(moveNumber('roto'), 1);
   assert.equal(moveNumber('a b c d e 0'), 1);
+});
+
+test('movePrefix y plyLabel usan el número del FEN y el separador del color', () => {
+  assert.equal(movePrefix({ color: 'w', fenBefore: START }), '1.');
+  assert.equal(movePrefix({ color: 'b', fenBefore: BLACK_TO_MOVE_7 }), '7...');
+  assert.equal(plyLabel({ san: 'Nf3', color: 'w', fenBefore: START }, (s) => s), '1.Nf3');
+  assert.equal(plyLabel({ san: 'Bc5', color: 'b', fenBefore: BLACK_TO_MOVE_7 }, (s) => s.replace('B', 'A')), '7...Ac5');
+});
+
+test('fullMoves cuenta desde el FEN inicial y con las negras a mover', () => {
+  const p = (color: 'w' | 'b', fenBefore: string) => ({ move: { color, fenBefore } }) as ReviewPly;
+  assert.equal(fullMoves([]), 0);
+  assert.equal(fullMoves([p('w', START)]), 1);
+  assert.equal(fullMoves([p('w', START), p('b', 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1')]), 1);
+  assert.equal(fullMoves([p('b', BLACK_TO_MOVE_7)]), 7);
+  // Un PGN que empieza en una posición avanzada conserva la numeración de la partida.
+  assert.equal(fullMoves([p('b', '8/8/8/8/8/8/8/K6k b - - 0 24')]), 24);
+});
+
+test('uciSquares acepta jugadas UCI y rechaza el resto', () => {
+  assert.deepEqual(uciSquares('e2e4'), { from: 'e2', to: 'e4' });
+  assert.deepEqual(uciSquares('e7e8q'), { from: 'e7', to: 'e8' });
+  for (const bad of ['', 'e2', 'e2e4x', 'e2e2', 'z2e4', 'e9e4', null, 42]) assert.equal(uciSquares(bad), null);
 });

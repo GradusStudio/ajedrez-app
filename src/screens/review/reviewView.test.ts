@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import type { GameMove, ReviewPly } from '../../review/types';
-import { reviewView } from './reviewView';
+import { branchScore, reviewView } from './reviewView';
 
 const move = (san: string, uci: string, color: 'w' | 'b', fenBefore = 'a b c d e 1', fenAfter = 'a b c d e 1'): GameMove => ({ san, uci, color, fenBefore, fenAfter });
 const ply = (san: string, uci: string, color: 'w' | 'b', over: Partial<ReviewPly> = {}): ReviewPly => ({
@@ -60,7 +60,7 @@ test('sin bando, ninguna jugada es del usuario', () => {
 });
 
 test('una variante propia sin calificar queda pendiente y usa su posición', () => {
-  const varMove = { move: move('Qh5', 'd1h5', 'w', 'pre', 'post'), rated: null };
+  const varMove = { id: 1, move: move('Qh5', 'd1h5', 'w', 'pre', 'post'), rated: null };
   const v = reviewView({ ...base, lastVar: varMove, fen: 'post', branch: { from: 0, moves: [varMove] } });
   assert.equal(v.pendingOwn, true);
   assert.equal(v.ply, undefined);
@@ -79,8 +79,25 @@ test('una jugada mala marca la insignia y la flecha roja; con la mejor, también
 });
 
 test('la línea del motor enseña el paso y no las flechas', () => {
-  const v = reviewView({ ...base, preview: { baseFen: 'base', moves: [{ fenAfter: 'p1', uci: 'a1a2' }, { fenAfter: 'p2', uci: 'b1b2' }], step: 2 } });
+  const v = reviewView({ ...base, preview: { baseFen: 'base', moves: [{ san: 'a3', uci: 'a1a2', color: 'w', fenAfter: 'p1' }, { san: 'b3', uci: 'b1b2', color: 'b', fenAfter: 'p2' }], step: 2 } });
   assert.equal(v.shownFen, 'p2');
   assert.deepEqual(v.lastMove, { from: 'b1', to: 'b2' });
+  assert.deepEqual(v.colorArrows, []);
+});
+
+test('la evaluación de la variante es la de su última jugada calificada o la de la posición de origen', () => {
+  const rated = ply('Qh5', 'd1h5', 'w', { scoreAfter: 40 });
+  const own = { id: 1, move: move('Qh5', 'd1h5', 'w'), rated };
+  assert.equal(branchScore({ from: 0, moves: [own] }, [0, 20]), 40);
+  assert.equal(branchScore({ from: 0, moves: [own, { id: 2, move: move('g6', 'g7g6', 'b'), rated: null }] }, [0, 20]), 40);
+  assert.equal(branchScore({ from: 0, moves: [{ id: 2, move: move('g6', 'g7g6', 'b'), rated: null }] }, [0, 20]), 0);
+  const v = reviewView({ ...base, branch: { from: 1, moves: [own] }, lastVar: own });
+  assert.equal(v.score, 40);
+});
+
+test('una jugada o jugada recomendada que no es UCI no llega al tablero', () => {
+  const odd = ply('e4', 'no', 'w', { quality: 'blunder', replyUci: 'tampoco', bestUci: 'xx' });
+  const v = reviewView({ ...base, plies: [odd], idx: 1, showBest: true });
+  assert.equal(v.lastMove, null);
   assert.deepEqual(v.colorArrows, []);
 });

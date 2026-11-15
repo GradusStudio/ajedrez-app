@@ -28,8 +28,8 @@ type Props = {
 
 /**
  * Tablero con su contenido. En el celular (y en ventanas angostas), uno debajo del otro, como siempre.
- * En pantalla ancha, el tablero a la izquierda, lo más grande que entre, y el contenido en un panel de 380 px a la
- * derecha que se desplaza solo, sin mover el tablero.
+ * En pantalla ancha, el tablero a la izquierda, lo más grande que entre, y el contenido en un panel de `WIDE_PANEL`
+ * px a la derecha que se desplaza solo, sin mover el tablero.
  */
 export function BoardLayout({ board, children, reserveHeight = 200, narrowGap = space.lg }: Props) {
   const wide = useWideLayout();

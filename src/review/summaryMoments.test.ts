@@ -68,7 +68,6 @@ test('la calidad del mate es «Jaque mate» y la etiqueta accesible lleva númer
   assert.equal(m.quality, 'review.cat.mate');
   assert.match(m.aria, /"n":7/);
   assert.match(m.aria, /"text":/);
-  assert.equal(m.san, 'Qxf7#');
   assert.equal(m.label, '7.Qxf7#');
 });
 
@@ -80,7 +79,8 @@ test('con negras a mover la etiqueta usa el número del FEN', () => {
 });
 
 test('unos hechos rotos no tiran el resumen', () => {
-  const p = ply({ facts: { found: 'roto' } as never });
+  // Una amenaza sin atacante hace lanzar al compositor de la explicación: la fila cae a la voz del bot.
+  const p = ply({ facts: { threat: { free: true } } as never });
   const [m] = summaryMoments(review([p], [0, 200]), 'w', coach, opts);
   assert.equal(typeof m.text, 'string');
   assert.ok(m.text.length > 0);

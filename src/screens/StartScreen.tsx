@@ -30,6 +30,7 @@ import { useSettings } from '../settings/SettingsContext';
 import { TIP_MESSAGES, type TipId } from '../settings/tips';
 import { useTips } from '../settings/useTips';
 import { firstSteps, firstStepsDone, type FirstStepId } from '../start/firstSteps';
+import { recommendedBotFor, recommendedCourseFor } from '../start/recommendations';
 import { courseSummary } from '../openings/courseView';
 import { canAffordSomethingNew, type ShopContext } from '../pieces/shopView';
 import { SAMPLE_FEN } from '../pieces/sampleFen';
@@ -134,8 +135,7 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
   // Bot recomendado según el nivel elegido en la bienvenida (los bots vienen de menor a mayor Elo).
   const level = progress.profile.level ?? 'nuevo';
   const ongoingBot = progress.ongoingGame ? bots.find((b) => b.id === progress.ongoingGame?.botId) : undefined;
-  const recommendedIndex = level === 'nuevo' ? 0 : level === 'basico' ? 2 : 4;
-  const recommendedBot = bots[Math.min(recommendedIndex, Math.max(0, bots.length - 1))] ?? bots[0];
+  const recommendedBot = recommendedBotFor(level, bots) ?? bots[0];
   // Pipo guía los primeros pasos y es el rival de la primera partida.
   const pipo = bots.find((b) => b.id === 'pipo') ?? recommendedBot;
   const greeter = showFirstSteps ? pipo : teacher;
@@ -162,8 +162,7 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
     })
     .filter((x) => x.last)
     .sort((a, b) => b.last.localeCompare(a.last))[0]?.course;
-  const recommendedCourseId = level === 'nuevo' ? 'italian' : level === 'basico' ? 'london' : 'scotch';
-  const recommendedCourse = openings.find((o) => o.id === recommendedCourseId) ?? openings[0];
+  const recommendedCourse = recommendedCourseFor(level, openings) ?? openings[0];
   const course = startedCourse ?? recommendedCourse;
   // El progreso del curso, con la misma regla que la ficha del curso («Continuar» y la próxima lección).
   const courseProgress = course ? courseSummary(course, (id) => !!progress.lessons[id]) : null;

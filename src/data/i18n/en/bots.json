@@ -1,6 +1,6 @@
 {
   "pipo": {
-    "name": "Pipo",
+    "name": "Pip",
     "tagline": "The Curious One",
     "trait": "Moves the pieces with good intentions but forgets to protect them. Grabs whatever you leave loose and falls for simple mates.",
     "teaches": "Capturing unprotected pieces and giving basic mates.",
@@ -13,9 +13,9 @@
     },
     "teaching": {
       "welcome": [
-        "Hi. I'm Pipo and today we learn together.",
+        "Hi. I'm Pip and today we learn together.",
         "I'm so glad you came. Let's take it easy, one step at a time.",
-        "Hi. I'm Pipo, and I'll be with you for this lesson."
+        "Hi. I'm Pip, and I'll be with you for this lesson."
       ],
       "close": [
         "All done. It was nice learning with you.",
@@ -60,7 +60,7 @@
     }
   },
   "tomas": {
-    "name": "Tomás",
+    "name": "Tom",
     "tagline": "The Trickster",
     "trait": "Sets traps from the opening on and goes after f7. If you don't fall for them, he runs out of plans.",
     "teaches": "Defending against early threats and recognizing well-known traps.",
@@ -90,7 +90,7 @@
     }
   },
   "valentina": {
-    "name": "Valentina",
+    "name": "Val",
     "tagline": "The Attacker",
     "trait": "Sacrifices pawns for the initiative and attacks the king. She fades if you defend calmly.",
     "teaches": "Defending under pressure and counterattacking.",
@@ -120,7 +120,7 @@
     }
   },
   "ramiro": {
-    "name": "Don Ramiro",
+    "name": "Professor Raymond",
     "tagline": "The Professor",
     "trait": "Plays the openings by the book and punishes every error of principle.",
     "teaches": "The principles of the opening: center, development and castling.",
@@ -150,7 +150,7 @@
     }
   },
   "camila": {
-    "name": "Camila",
+    "name": "Camilla",
     "tagline": "The Strategist",
     "trait": "Avoids tactics, improves her pieces and looks for endgames with a small edge.",
     "teaches": "Pawn structure, weak squares and long-term plans.",
@@ -210,7 +210,7 @@
     }
   },
   "sofia": {
-    "name": "Sofía",
+    "name": "Sophie",
     "tagline": "The Tactician",
     "trait": "Calculates several moves ahead. Punishes any unprotected piece.",
     "teaches": "Seeing tactics before they land: forks, pins and double attacks.",
@@ -240,7 +240,7 @@
     }
   },
   "ivo": {
-    "name": "Maestro Ivo",
+    "name": "Master Ivo",
     "tagline": "The Endgame Expert",
     "trait": "Trades pieces with precision and plays endgames with very fine technique.",
     "teaches": "Endgame technique and converting small advantages.",

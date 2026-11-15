@@ -66,13 +66,13 @@ export const en: Record<MessageKey, string> = {
   'start.courseStart': 'Start the course',
   'start.courseButton': 'Continue the course',
   'start.firstSteps.title': 'Your first steps',
-  'start.firstSteps.hello': "Hi, I'm Pipo. I'll show you how to start.",
+  'start.firstSteps.hello': "Hi, I'm Pip. I'll show you how to start.",
   'start.firstSteps.lesson.title': 'Your first lesson',
   'start.firstSteps.lesson.text': 'Learn how the pieces move.',
   'start.firstSteps.puzzle.title': 'Your first puzzle',
   'start.firstSteps.puzzle.text': 'Find the best move in an easy position.',
   'start.firstSteps.game.title': 'Your first game',
-  'start.firstSteps.game.text': 'Play against Pipo, who is also learning.',
+  'start.firstSteps.game.text': 'Play against Pip, who is also learning.',
   'start.firstSteps.done': 'Done',
   'start.firstSteps.next': 'Next',
   'start.firstSteps.later': 'Later',
@@ -84,7 +84,7 @@ export const en: Record<MessageKey, string> = {
   'start.explore.bots': 'Games against characters.',
   'start.explore.analysis': 'Review your games.',
 
-  // Consejos de Pipo
+  // Tips from Pip
   'tips.ok': 'Got it',
   'tips.step': '{n} of {total}',
   'tips.close': 'Close tip',
@@ -105,7 +105,7 @@ export const en: Record<MessageKey, string> = {
   'tips.coins.text': 'You earned coins for solving it without mistakes. They gather up top, next to the flame.',
   'settings.tipsSection': 'Tips',
   'settings.tipsReset': 'Show the tips again',
-  'settings.tipsReset.description': 'Pipo’s tips will appear again the next time you open the app.',
+  'settings.tipsReset.description': 'Pip’s tips will appear again the next time you open the app.',
 
   // Unidades y prueba para saltar
   'unitTest.title': 'Unit {unit} test',

@@ -60,7 +60,7 @@
     }
   },
   "tomas": {
-    "name": "Tomás",
+    "name": "Thomas",
     "tagline": "Le Rusé",
     "trait": "Il cherche des pièges dès l'ouverture et attaque f7. Si tu ne tombes pas dedans, il se retrouve sans plan.",
     "teaches": "Se défendre contre les menaces précoces et reconnaître les pièges connus.",
@@ -90,7 +90,7 @@
     }
   },
   "valentina": {
-    "name": "Valentina",
+    "name": "Valentine",
     "tagline": "L'Attaquante",
     "trait": "Elle sacrifie des pions pour l'initiative et attaque le roi. Elle s'affaiblit si tu te défends avec calme.",
     "teaches": "Se défendre sous pression et contre-attaquer.",
@@ -120,7 +120,7 @@
     }
   },
   "ramiro": {
-    "name": "Don Ramiro",
+    "name": "Professeur Raymond",
     "tagline": "Le Professeur",
     "trait": "Il joue les ouvertures comme dans les livres et sanctionne chaque erreur de principe.",
     "teaches": "Les principes de l'ouverture : centre, développement et roque.",
@@ -150,7 +150,7 @@
     }
   },
   "camila": {
-    "name": "Camila",
+    "name": "Camille",
     "tagline": "La Stratège",
     "trait": "Elle évite la tactique, améliore ses pièces et cherche des finales avec un petit avantage.",
     "teaches": "La structure de pions, les cases faibles et les plans à long terme.",
@@ -210,7 +210,7 @@
     }
   },
   "sofia": {
-    "name": "Sofía",
+    "name": "Sophie",
     "tagline": "La Tacticienne",
     "trait": "Elle calcule plusieurs coups à l'avance. Elle punit toute pièce non protégée.",
     "teaches": "Voir les tactiques avant qu'elles n'arrivent : fourchettes, clouages et doubles attaques.",
@@ -240,7 +240,7 @@
     }
   },
   "ivo": {
-    "name": "Maestro Ivo",
+    "name": "Maître Yves",
     "tagline": "L'Expert des finales",
     "trait": "Il échange les pièces avec précision et joue les finales avec une technique très fine.",
     "teaches": "La technique des finales et la conversion des petits avantages.",

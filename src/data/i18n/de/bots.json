@@ -60,7 +60,7 @@
     }
   },
   "tomas": {
-    "name": "Tomás",
+    "name": "Thomas",
     "tagline": "Der Trickser",
     "trait": "Stellt schon in der Eröffnung Fallen und nimmt f7 ins Visier. Fällst du nicht darauf herein, gehen ihm die Pläne aus.",
     "teaches": "Frühe Drohungen abwehren und bekannte Fallen erkennen.",
@@ -120,7 +120,7 @@
     }
   },
   "ramiro": {
-    "name": "Don Ramiro",
+    "name": "Professor Raimund",
     "tagline": "Der Professor",
     "trait": "Spielt die Eröffnungen wie im Lehrbuch und bestraft jeden Verstoß gegen die Prinzipien.",
     "teaches": "Die Eröffnungsprinzipien: Zentrum, Entwicklung und Rochade.",
@@ -150,7 +150,7 @@
     }
   },
   "camila": {
-    "name": "Camila",
+    "name": "Camilla",
     "tagline": "Die Strategin",
     "trait": "Meidet Taktik, verbessert ihre Figuren und sucht Endspiele mit kleinem Vorteil.",
     "teaches": "Bauernstruktur, schwache Felder und langfristige Pläne.",
@@ -210,7 +210,7 @@
     }
   },
   "sofia": {
-    "name": "Sofía",
+    "name": "Sophie",
     "tagline": "Die Taktikerin",
     "trait": "Rechnet mehrere Züge voraus. Bestraft jede ungedeckte Figur.",
     "teaches": "Taktik sehen, bevor sie zuschlägt: Gabeln, Fesselungen und Doppelangriffe.",
@@ -240,7 +240,7 @@
     }
   },
   "ivo": {
-    "name": "Maestro Ivo",
+    "name": "Meister Ivo",
     "tagline": "Der Endspielkenner",
     "trait": "Tauscht Figuren mit Präzision und spielt Endspiele mit sehr feiner Technik.",
     "teaches": "Endspieltechnik und das Verwerten kleiner Vorteile.",

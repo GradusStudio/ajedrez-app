@@ -60,7 +60,7 @@
     }
   },
   "tomas": {
-    "name": "Tomás",
+    "name": "Tommaso",
     "tagline": "Il Furbo",
     "trait": "Cerca trappole fin dall'apertura e attacca f7. Se non ci caschi, resta senza piano.",
     "teaches": "Difendersi dalle minacce iniziali e riconoscere le trappole più note.",
@@ -120,7 +120,7 @@
     }
   },
   "ramiro": {
-    "name": "Don Ramiro",
+    "name": "Don Raimondo",
     "tagline": "Il Professore",
     "trait": "Gioca le aperture come sui libri e punisce ogni errore di principio.",
     "teaches": "I principi dell'apertura: centro, sviluppo e arrocco.",
@@ -150,7 +150,7 @@
     }
   },
   "camila": {
-    "name": "Camila",
+    "name": "Camilla",
     "tagline": "La Stratega",
     "trait": "Evita la tattica, migliora i suoi pezzi e cerca finali con un piccolo vantaggio.",
     "teaches": "Struttura pedonale, caselle deboli e piani a lungo termine.",
@@ -210,7 +210,7 @@
     }
   },
   "sofia": {
-    "name": "Sofía",
+    "name": "Sofia",
     "tagline": "La Tattica",
     "trait": "Calcola parecchie mosse in anticipo. Punisce qualsiasi pezzo non protetto.",
     "teaches": "Vedere la tattica in arrivo: forchette, inchiodature e attacchi doppi.",

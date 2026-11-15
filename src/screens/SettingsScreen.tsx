@@ -1,7 +1,7 @@
 import React from 'react';
 import { router } from 'expo-router';
 import { showDialog } from '../components/dialog';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
 import { Segmented } from '../components/Segmented';
@@ -21,12 +21,12 @@ import { useBoardTheme } from '../settings/useBoardTheme';
 import { type, colors, fonts, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 
-type Props = { onBack: () => void; onOpenPieces: () => void; onOpenBoards: () => void };
+type Props = { onBack: () => void; onOpenPieces: () => void; onOpenBoards: () => void; onOpenCredits: () => void };
 
 const REMINDER_HOURS = [9, 13, 19, 21];
 
 // Ajustes (mapa-de-pantallas.md, 2.12). Cada cambio se guarda al instante.
-export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
+export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards, onOpenCredits }: Props) {
   const { settings, update } = useSettings();
   const { language, t } = useI18n();
   const { progress, resetProgress, importProgress } = useProgress();
@@ -193,6 +193,9 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards }: Props) {
         </>
       )}
       <Button3D label={t('settings.reset')} variant="destructive" onPress={confirmReset} />
+      <View style={styles.credits}>
+        <SettingRow label={t('credits.title')} onPress={onOpenCredits} />
+      </View>
     </ColumnScrollView>
   );
 }
@@ -204,6 +207,7 @@ const styles = StyleSheet.create({
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   section: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text, marginTop: space.xl, marginBottom: space.sm },
   dataButton: { marginBottom: space.sm },
+  credits: { marginTop: space.xl },
   label: {
     fontFamily: fonts.extrabold,
     fontSize: type.caption,

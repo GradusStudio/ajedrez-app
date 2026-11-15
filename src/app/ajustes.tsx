@@ -10,6 +10,7 @@ export default function SettingsRoute() {
         onBack={() => router.back()}
         onOpenPieces={() => router.push({ pathname: '/tienda', params: { tab: 'piezas' } })}
         onOpenBoards={() => router.push({ pathname: '/tienda', params: { tab: 'tableros' } })}
+        onOpenCredits={() => router.push('/creditos')}
       />
     </WideListColumn>
   );

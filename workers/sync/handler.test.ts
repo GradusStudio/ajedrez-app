@@ -207,8 +207,8 @@ function fakeLimiter(success: boolean) {
   return { limiter, calls };
 }
 
-function reqIp(method: string, body?: unknown, ip?: string) {
-  const headers: Record<string, string> = { Authorization: `Bearer ${KEY}`, Origin: 'https://graduschess.com' };
+function reqIp(method: string, body?: unknown, ip?: string, key = KEY) {
+  const headers: Record<string, string> = { Authorization: `Bearer ${key}`, Origin: 'https://graduschess.com' };
   if (ip) headers['CF-Connecting-IP'] = ip;
   return new Request(URL, { method, headers, body: body === undefined ? undefined : JSON.stringify(body) });
 }
@@ -232,7 +232,7 @@ test('si el limitador dice que sí, el alta pasa; sin cabecera de IP usa unknown
   assert.deepEqual(calls, ['unknown']);
 });
 
-test('el limitador no se consulta en PUT con version mayor que 0, GET ni DELETE', async () => {
+test('el limitador no se consulta en PUT con version mayor que 0 ni en GET, ni al borrar una llave que existe', async () => {
   const { store } = memoryStore();
   await handle(reqIp('PUT', { version: 0, data: file() }), store);
   const { limiter, calls } = fakeLimiter(false);
@@ -240,6 +240,24 @@ test('el limitador no se consulta en PUT con version mayor que 0, GET ni DELETE'
   assert.equal((await handle(reqIp('GET'), store, undefined, limiter)).status, 200);
   assert.equal((await handle(reqIp('DELETE'), store, undefined, limiter)).status, 204);
   assert.deepEqual(calls, []);
+});
+
+test('borrar una llave inventada se limita por IP y no crea la lápida', async () => {
+  const { store, rows } = memoryStore();
+  const { limiter, calls } = fakeLimiter(false);
+  const res = await handle(reqIp('DELETE', undefined, '1.2.3.4', KEY2), store, undefined, limiter);
+  assert.equal(res.status, 429);
+  assert.deepEqual(calls, ['1.2.3.4']);
+  assert.equal(rows.size, 0);
+});
+
+test('con cupo, borrar una llave inventada deja la lápida y GET da 410', async () => {
+  const { store, rows } = memoryStore();
+  const { limiter, calls } = fakeLimiter(true);
+  assert.equal((await handle(reqIp('DELETE', undefined, '1.2.3.4', KEY2), store, undefined, limiter)).status, 204);
+  assert.deepEqual(calls, ['1.2.3.4']);
+  assert.equal(rows.size, 1);
+  assert.equal((await handle(reqIp('GET', undefined, undefined, KEY2), store)).status, 410);
 });
 
 test('un PUT inválido no gasta el cupo del limitador', async () => {

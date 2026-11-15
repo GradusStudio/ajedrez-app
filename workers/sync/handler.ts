@@ -13,7 +13,7 @@ export type ProgressStore = {
   remove(id: string, now: string): Promise<void>;
 };
 
-/** Límite de creaciones por IP (binding de Workers Rate Limiting, opcional: no existe en pruebas ni en `wrangler dev` sin él). */
+/** Límite de creaciones de filas por IP (una por clave): altas y lápidas de borrado. Binding opcional: no existe en pruebas ni en `wrangler dev` sin él. */
 export type CreateLimiter = { limit(options: { key: string }): Promise<{ success: boolean }> };
 
 const KEY_FORMAT = /^[A-Za-z0-9_-]{43}$/;
@@ -100,6 +100,13 @@ async function route(
   }
 
   if (req.method === 'DELETE') {
+    // Borrar una llave que no existe deja una lápida: es una fila nueva (para que los otros dispositivos no resuciten
+    // los datos). También se limita por IP, o con llaves inventadas se llenaría la base sin gastar el cupo de las altas.
+    // Borrar una llave que sí existe no crea filas y no gasta cupo.
+    if (limiter && !(await store.get(id))) {
+      const { success } = await limiter.limit({ key: req.headers.get('CF-Connecting-IP') ?? 'unknown' });
+      if (!success) return reply(429, { error: 'demasiadas altas, prueba más tarde' });
+    }
     await store.remove(id, now().toISOString());
     return reply(204);
   }

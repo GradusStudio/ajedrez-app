@@ -1,7 +1,7 @@
 import React from 'react';
-import { router } from 'expo-router';
-import { ImportGameScreen } from '../screens/ImportGameScreen';
+import { Redirect } from 'expo-router';
 
+// La importación de partidas vive en la pestaña Análisis (tarea 34): las rutas viejas llegan ahí.
 export default function ImportGameRoute() {
-  return <ImportGameScreen onBack={() => router.back()} onReview={() => router.push('/revision')} />;
+  return <Redirect href="/analisis" />;
 }

@@ -1,7 +1,14 @@
 import React from 'react';
 import { router } from 'expo-router';
-import { AnalysisMenuScreen } from '../../screens/AnalysisMenuScreen';
+import { AnalysisScreen } from '../../screens/AnalysisScreen';
 
 export default function AnalysisTab() {
-  return <AnalysisMenuScreen onGame={() => router.push('/importar-partida')} onFree={() => router.push('/analisis-libre')} />;
+  return (
+    <AnalysisScreen
+      onReview={() => router.push('/revision')}
+      onFree={() => router.push('/analisis-libre')}
+      onQuiz={() => router.push('/quiz-partida')}
+      onBots={() => router.push('/bots')}
+    />
+  );
 }

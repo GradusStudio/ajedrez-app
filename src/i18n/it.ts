@@ -342,6 +342,8 @@ export const it: Record<MessageKey, string> = {
   'openings.practice': 'Allenati contro un bot',
   'openings.practiceNoteWhite': 'Giochi col Bianco e il bot segue la linea finché la segui anche tu.',
   'openings.practiceNoteBlack': 'Giochi col Nero e il bot segue la linea finché la segui anche tu.',
+  'openings.positionStart': 'Posizione iniziale',
+  'openings.positionAt': 'Posizione dopo {move}',
 
   // Puzzles
   'puzzles.title': 'Puzzle',

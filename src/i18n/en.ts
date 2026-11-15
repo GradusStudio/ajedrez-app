@@ -341,6 +341,8 @@ export const en: Record<MessageKey, string> = {
   'openings.practice': 'Practice against a bot',
   'openings.practiceNoteWhite': 'You play White, and the bot follows the line as long as you do.',
   'openings.practiceNoteBlack': 'You play Black, and the bot follows the line as long as you do.',
+  'openings.positionStart': 'Starting position',
+  'openings.positionAt': 'Position after {move}',
 
   // Puzzles
   'puzzles.title': 'Puzzles',

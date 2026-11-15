@@ -340,6 +340,8 @@ export const es = {
   'openings.practice': 'Practicar contra un bot',
   'openings.practiceNoteWhite': 'Juegas con blancas y el bot sigue la línea mientras tú la respetes.',
   'openings.practiceNoteBlack': 'Juegas con negras y el bot sigue la línea mientras tú la respetes.',
+  'openings.positionStart': 'Posición inicial',
+  'openings.positionAt': 'Posición después de {move}',
 
   // Puzzles
   'puzzles.title': 'Puzzles',

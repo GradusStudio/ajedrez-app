@@ -31,6 +31,8 @@ export type Settings = {
   puzzleLevel: Level | null;
   /** Nivel «nuevo»: todas las unidades abiertas desde el principio, sin esperar a la prueba. */
   openAllUnits: boolean;
+  /** Último usuario de chess.com y de Lichess: la pestaña Análisis busca sola la próxima vez. */
+  importUser: { chesscom?: string; lichess?: string };
 };
 
 export const defaultSettings: Settings = {
@@ -49,12 +51,26 @@ export const defaultSettings: Settings = {
   puzzleMode: 'auto',
   puzzleLevel: null,
   openAllUnits: false,
+  importUser: {},
 };
 
 const LANGUAGES = ['auto', 'es', 'en', 'de', 'it', 'fr'];
 
 const isObject = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
 const bool = (x: unknown, fallback: boolean) => (typeof x === 'boolean' ? x : fallback);
+
+/** Usuarios guardados de chess.com y Lichess: solo textos no vacíos, recortados (sin '@' ni espacios). */
+function importUsers(raw: unknown): { chesscom?: string; lichess?: string } {
+  const out: { chesscom?: string; lichess?: string } = {};
+  if (!isObject(raw)) return out;
+  for (const site of ['chesscom', 'lichess'] as const) {
+    const value = raw[site];
+    if (typeof value !== 'string') continue;
+    const name = value.trim().replace(/^@+/, '').slice(0, 40);
+    if (name) out[site] = name;
+  }
+  return out;
+}
 
 /** Mezcla lo guardado con los valores por defecto (por si se agregan ajustes nuevos) y descarta lo que no tiene la forma esperada. */
 export function sanitizeSettings(raw: Partial<Settings>): Settings {
@@ -77,6 +93,7 @@ export function sanitizeSettings(raw: Partial<Settings>): Settings {
     puzzleMode: r.puzzleMode === 'manual' ? 'manual' : 'auto',
     openAllUnits: bool(r.openAllUnits, d.openAllUnits),
     puzzleLevel: typeof r.puzzleLevel === 'string' && Object.hasOwn(LEVELS, r.puzzleLevel) ? (r.puzzleLevel as Level) : null,
+    importUser: importUsers(r.importUser),
     reminder: {
       enabled: bool(rr.enabled, d.reminder.enabled),
       hour: Number.isInteger(rr.hour) && (rr.hour as number) >= 0 && (rr.hour as number) <= 23 ? (rr.hour as number) : d.reminder.hour,

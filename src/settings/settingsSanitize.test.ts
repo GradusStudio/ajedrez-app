@@ -78,3 +78,22 @@ test('nivel de puzzles: valores inválidos vuelven al defecto y un nivel válido
   assert.equal(ok.puzzleMode, 'manual');
   assert.equal(ok.puzzleLevel, 'experto');
 });
+
+test('usuario de chess.com y Lichess: por defecto vacío y se conservan los válidos', () => {
+  assert.deepEqual(sanitizeSettings({}).importUser, {});
+  assert.deepEqual(sanitizeSettings({ importUser: { chesscom: 'gradusfan', lichess: 'pipo_92' } }).importUser, {
+    chesscom: 'gradusfan',
+    lichess: 'pipo_92',
+  });
+  assert.deepEqual(sanitizeSettings({ importUser: { chesscom: '  @gradusfan  ', lichess: '   ' } }).importUser, {
+    chesscom: 'gradusfan',
+  });
+});
+
+test('usuario de chess.com y Lichess: lo que no es un nombre se descarta', () => {
+  const s = sanitizeSettings({ importUser: { chesscom: 42, lichess: {} } as never });
+  assert.deepEqual(s.importUser, {});
+  for (const raw of [null, 5, 'x', [1, 2]]) {
+    assert.deepEqual(sanitizeSettings({ importUser: raw as never }).importUser, {}, String(raw));
+  }
+});

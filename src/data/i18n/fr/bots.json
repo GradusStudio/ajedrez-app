@@ -9,7 +9,8 @@
       "onGoodMove": "Beau coup. Je ne l'avais pas vu venir.",
       "onBlunder": "Ça, c'était sans défense. Merci.",
       "onWin": "J'ai gagné. Je ne sais pas comment, mais j'ai gagné.",
-      "onLose": "Tu m'as battu. Je veux voir comment tu as fait."
+      "onLose": "Tu m'as battu. Je veux voir comment tu as fait.",
+      "onDraw": "Personne n'a gagné. On en refait une pour voir ce qui se passe ?"
     },
     "teaching": {
       "welcome": [
@@ -39,7 +40,8 @@
       "onGoodMove": "Bien joué. Je vais devoir faire attention.",
       "onBlunder": "Attention : cette pièce n'est plus protégée.",
       "onWin": "Gagner dans le calme, c'est gagner aussi.",
-      "onLose": "Très bien. Tu as percé ma défense."
+      "onLose": "Très bien. Tu as percé ma défense.",
+      "onDraw": "Personne n'a fait d'erreur. C'est comme ça qu'on joue tranquille."
     },
     "teaching": {
       "welcome": [
@@ -69,7 +71,8 @@
       "onGoodMove": "Hmm, tu as évité le piège. Presque.",
       "onBlunder": "Exactement ce que j'attendais.",
       "onWin": "Je t'avais dit qu'il y avait une astuce.",
-      "onLose": "Tu m'as démasqué. Bien vu."
+      "onLose": "Tu m'as démasqué. Bien vu.",
+      "onDraw": "Aucun piège n'a marché. La prochaine fois."
     },
     "teaching": {
       "welcome": [
@@ -99,7 +102,8 @@
       "onGoodMove": "Belle défense. Je vais passer ailleurs.",
       "onBlunder": "Ça ouvre mon attaque.",
       "onWin": "L'attaque a marché.",
-      "onLose": "Très belle défense."
+      "onLose": "Très belle défense.",
+      "onDraw": "Pas de roi à attaquer. Une autre fois."
     },
     "teaching": {
       "welcome": [
@@ -129,7 +133,8 @@
       "onGoodMove": "C'est bien ce que dit le livre.",
       "onBlunder": "Ce coup va contre un principe de l'ouverture.",
       "onWin": "Révise les principes et réessaie.",
-      "onLose": "Excellent. Tu as bien appris."
+      "onLose": "Excellent. Tu as bien appris.",
+      "onDraw": "Une nulle bien jouée. C'est comme ça qu'on apprend."
     },
     "teaching": {
       "welcome": [
@@ -159,7 +164,8 @@
       "onGoodMove": "Une amélioration de position très sensée.",
       "onBlunder": "Je vais profiter de cette faiblesse.",
       "onWin": "Les petits avantages finissent par faire une victoire.",
-      "onLose": "Ta structure était meilleure. Félicitations."
+      "onLose": "Ta structure était meilleure. Félicitations.",
+      "onDraw": "Aucun camp n'a cédé de terrain. Un bon équilibre."
     },
     "teaching": {
       "welcome": [
@@ -189,7 +195,8 @@
       "onGoodMove": "Tu as ouvert une fissure. Attention.",
       "onBlunder": "Tu as laissé un trou dans ta défense.",
       "onWin": "Mon mur a tenu.",
-      "onLose": "Le mur est tombé. Belle technique."
+      "onLose": "Le mur est tombé. Belle technique.",
+      "onDraw": "Personne n'est passé. Bien joué."
     },
     "teaching": {
       "welcome": [
@@ -219,7 +226,8 @@
       "onGoodMove": "Belle tactique. Je l'ai vue trop tard.",
       "onBlunder": "Il y avait une combinaison et elle t'a échappé.",
       "onWin": "La tactique a décidé de la partie.",
-      "onLose": "Tu m'as battue avec une tactique nette."
+      "onLose": "Tu m'as battue avec une tactique nette.",
+      "onDraw": "Je n'ai pas trouvé le coup et toi non plus. Encore."
     },
     "teaching": {
       "welcome": [
@@ -249,7 +257,8 @@
       "onGoodMove": "Voilà un coup plein de patience.",
       "onBlunder": "En finale, cette erreur coûte cher.",
       "onWin": "La finale a fait la différence. Revois l'activité de ton roi.",
-      "onLose": "Belle technique de finale."
+      "onLose": "Belle technique de finale.",
+      "onDraw": "Une fin juste. La prochaine fois, avec plus de technique."
     },
     "teaching": {
       "welcome": [
@@ -279,7 +288,8 @@
       "onGoodMove": "Précis. C'était le meilleur coup.",
       "onBlunder": "Erreur. J'en profite.",
       "onWin": "Revois la partie : tu vas beaucoup apprendre.",
-      "onLose": "Impressionnant. Tu m'as battue."
+      "onLose": "Impressionnant. Tu m'as battue.",
+      "onDraw": "Nulle exacte. Notre précision était la même."
     },
     "teaching": {
       "welcome": [

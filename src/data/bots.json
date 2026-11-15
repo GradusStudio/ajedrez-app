@@ -62,7 +62,8 @@
         "onGoodMove": "Buena jugada. No la vi venir.",
         "onBlunder": "Eso estaba suelto. Gracias.",
         "onWin": "Gané. No sé cómo, pero gané.",
-        "onLose": "Me ganaste. Quiero ver cómo lo hiciste."
+        "onLose": "Me ganaste. Quiero ver cómo lo hiciste.",
+      "onDraw": "Ni tú ni yo. ¿Jugamos otra para ver qué pasa?"
       },
       "teaching": {
         "welcome": [
@@ -127,7 +128,8 @@
         "onGoodMove": "Bien jugado. Tendré que cuidarme.",
         "onBlunder": "Cuidado: esa pieza quedó sin protección.",
         "onWin": "Ganar con calma también es ganar.",
-        "onLose": "Muy bien. Rompiste mi defensa."
+        "onLose": "Muy bien. Rompiste mi defensa.",
+      "onDraw": "Nadie se equivocó. Así se juega tranquilo."
       },
       "teaching": {
         "welcome": [
@@ -193,7 +195,8 @@
         "onGoodMove": "Mmm, no caíste. Casi.",
         "onBlunder": "Justo lo que esperaba.",
         "onWin": "Te dije que había un truco.",
-        "onLose": "Me descubriste. Bien visto."
+        "onLose": "Me descubriste. Bien visto.",
+      "onDraw": "No cayó ninguna trampa. La próxima sí."
       },
       "teaching": {
         "welcome": [
@@ -260,7 +263,8 @@
         "onGoodMove": "Buena defensa. Voy por otro lado.",
         "onBlunder": "Eso abre mi ataque.",
         "onWin": "El ataque funcionó.",
-        "onLose": "Te defendiste muy bien."
+        "onLose": "Te defendiste muy bien.",
+      "onDraw": "No hubo rey para atacar. Otra vez será."
       },
       "teaching": {
         "welcome": [
@@ -325,7 +329,8 @@
         "onGoodMove": "Eso es lo que dice el libro.",
         "onBlunder": "Esa jugada rompe un principio de apertura.",
         "onWin": "Repasa los principios y vuelve a intentarlo.",
-        "onLose": "Excelente. Has aprendido bien."
+        "onLose": "Excelente. Has aprendido bien.",
+      "onDraw": "Tablas bien jugadas. Así se aprende."
       },
       "teaching": {
         "welcome": [
@@ -389,7 +394,8 @@
         "onGoodMove": "Una mejora de posición muy sensata.",
         "onBlunder": "Esa debilidad la voy a aprovechar.",
         "onWin": "Las pequeñas ventajas suman una victoria.",
-        "onLose": "Mejor estructura la tuya. Felicitaciones."
+        "onLose": "Mejor estructura la tuya. Felicitaciones.",
+      "onDraw": "Ninguno cedió terreno. Buen equilibrio."
       },
       "teaching": {
         "welcome": [
@@ -457,7 +463,8 @@
         "onGoodMove": "Lograste una grieta. Atento.",
         "onBlunder": "Dejaste un hueco en tu defensa.",
         "onWin": "Mi muro resistió.",
-        "onLose": "El muro cayó. Buena técnica."
+        "onLose": "El muro cayó. Buena técnica.",
+      "onDraw": "No pasó nadie. Buen trabajo."
       },
       "teaching": {
         "welcome": [
@@ -524,7 +531,8 @@
         "onGoodMove": "Buena táctica. La vi tarde.",
         "onBlunder": "Había una combinación y no la viste.",
         "onWin": "La táctica decidió la partida.",
-        "onLose": "Me ganaste con una táctica limpia."
+        "onLose": "Me ganaste con una táctica limpia.",
+      "onDraw": "No encontré el golpe y tú tampoco. Otra."
       },
       "teaching": {
         "welcome": [
@@ -592,7 +600,8 @@
         "onGoodMove": "Esa es una jugada de jugador paciente.",
         "onBlunder": "En el final, ese error cuesta caro.",
         "onWin": "El final lo decidió. Revisa la actividad de tu rey.",
-        "onLose": "Gran técnica de final."
+        "onLose": "Gran técnica de final.",
+      "onDraw": "Un final justo. La próxima, con más técnica."
       },
       "teaching": {
         "welcome": [
@@ -661,7 +670,8 @@
         "onGoodMove": "Precisa. Esa fue la mejor jugada.",
         "onBlunder": "Error. Lo aprovecho.",
         "onWin": "Revisa la partida: vas a aprender mucho.",
-        "onLose": "Impresionante. Me ganaste."
+        "onLose": "Impresionante. Me ganaste.",
+      "onDraw": "Empate exacto. La precisión fue la misma."
       },
       "teaching": {
         "welcome": [

@@ -9,7 +9,8 @@
       "onGoodMove": "Guter Zug. Den habe ich nicht kommen sehen.",
       "onBlunder": "Das stand ungedeckt. Danke.",
       "onWin": "Ich habe gewonnen. Keine Ahnung wie, aber ich habe gewonnen.",
-      "onLose": "Du hast mich besiegt. Ich will sehen, wie du das gemacht hast."
+      "onLose": "Du hast mich besiegt. Ich will sehen, wie du das gemacht hast.",
+      "onDraw": "Keiner von uns hat gewonnen. Spielen wir noch eine, um zu sehen, was passiert?"
     },
     "teaching": {
       "welcome": [
@@ -39,7 +40,8 @@
       "onGoodMove": "Gut gespielt. Ich muss aufpassen.",
       "onBlunder": "Vorsicht: Diese Figur steht jetzt ungedeckt.",
       "onWin": "Auch in Ruhe gewinnen ist gewinnen.",
-      "onLose": "Sehr gut. Du hast meine Verteidigung durchbrochen."
+      "onLose": "Sehr gut. Du hast meine Verteidigung durchbrochen.",
+      "onDraw": "Niemand hat einen Fehler gemacht. So spielt man ruhiges Schach."
     },
     "teaching": {
       "welcome": [
@@ -69,7 +71,8 @@
       "onGoodMove": "Hm, du bist nicht reingefallen. Fast.",
       "onBlunder": "Genau darauf habe ich gehofft.",
       "onWin": "Ich habe dir doch gesagt, dass es einen Trick gibt.",
-      "onLose": "Du hast mich durchschaut. Gut gesehen."
+      "onLose": "Du hast mich durchschaut. Gut gesehen.",
+      "onDraw": "Keine Falle hat funktioniert. Nächstes Mal."
     },
     "teaching": {
       "welcome": [
@@ -99,7 +102,8 @@
       "onGoodMove": "Gute Verteidigung. Ich versuche es woanders.",
       "onBlunder": "Das öffnet meinen Angriff.",
       "onWin": "Der Angriff hat funktioniert.",
-      "onLose": "Du hast dich sehr gut verteidigt."
+      "onLose": "Du hast dich sehr gut verteidigt.",
+      "onDraw": "Kein König zum Angreifen. Ein andermal."
     },
     "teaching": {
       "welcome": [
@@ -129,7 +133,8 @@
       "onGoodMove": "So steht es im Buch.",
       "onBlunder": "Dieser Zug verstößt gegen ein Eröffnungsprinzip.",
       "onWin": "Wiederhole die Prinzipien und versuche es noch einmal.",
-      "onLose": "Ausgezeichnet. Du hast gut gelernt."
+      "onLose": "Ausgezeichnet. Du hast gut gelernt.",
+      "onDraw": "Ein gut gespieltes Remis. So lernt man."
     },
     "teaching": {
       "welcome": [
@@ -159,7 +164,8 @@
       "onGoodMove": "Eine sehr vernünftige Verbesserung deiner Stellung.",
       "onBlunder": "Diese Schwäche werde ich nutzen.",
       "onWin": "Kleine Vorteile summieren sich zum Sieg.",
-      "onLose": "Deine Struktur war besser. Glückwunsch."
+      "onLose": "Deine Struktur war besser. Glückwunsch.",
+      "onDraw": "Keine Seite gab Boden auf. Ein gutes Gleichgewicht."
     },
     "teaching": {
       "welcome": [
@@ -189,7 +195,8 @@
       "onGoodMove": "Du hast einen Riss gefunden. Bleib wachsam.",
       "onBlunder": "Du hast eine Lücke in deiner Verteidigung gelassen.",
       "onWin": "Meine Mauer hat gehalten.",
-      "onLose": "Die Mauer ist gefallen. Gute Technik."
+      "onLose": "Die Mauer ist gefallen. Gute Technik.",
+      "onDraw": "Niemand kam durch. Gut gemacht."
     },
     "teaching": {
       "welcome": [
@@ -219,7 +226,8 @@
       "onGoodMove": "Gute Taktik. Ich habe sie zu spät gesehen.",
       "onBlunder": "Da war eine Kombination versteckt.",
       "onWin": "Die Taktik hat die Partie entschieden.",
-      "onLose": "Du hast mich mit einer sauberen Taktik besiegt."
+      "onLose": "Du hast mich mit einer sauberen Taktik besiegt.",
+      "onDraw": "Ich habe den Schlag nicht gefunden, du auch nicht. Noch einmal."
     },
     "teaching": {
       "welcome": [
@@ -249,7 +257,8 @@
       "onGoodMove": "So zieht, wer Geduld hat.",
       "onBlunder": "Im Endspiel kostet dieser Fehler viel.",
       "onWin": "Das Endspiel hat entschieden. Sieh dir an, wie aktiv dein König war.",
-      "onLose": "Große Endspieltechnik."
+      "onLose": "Große Endspieltechnik.",
+      "onDraw": "Ein gerechtes Ende. Nächstes Mal mit mehr Technik."
     },
     "teaching": {
       "welcome": [
@@ -279,7 +288,8 @@
       "onGoodMove": "Präzise. Das war der beste Zug.",
       "onBlunder": "Ein Fehler. Ich nutze ihn.",
       "onWin": "Sieh dir die Partie noch einmal an: Du wirst viel lernen.",
-      "onLose": "Beeindruckend. Du hast mich besiegt."
+      "onLose": "Beeindruckend. Du hast mich besiegt.",
+      "onDraw": "Ein exaktes Remis. Unsere Präzision war gleich."
     },
     "teaching": {
       "welcome": [

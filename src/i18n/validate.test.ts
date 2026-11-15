@@ -57,7 +57,7 @@ const bot = (id: string): Bot =>
     engine: { type: 'stockfish-elo', uciElo: 1320, multipv: 1, thinkMs: [1, 2] },
     repertoire: { white: [], black: [] },
     book: 'corto',
-    lines: { greeting: 'a', onGoodMove: 'b', onBlunder: 'c', onWin: 'd', onLose: 'e' },
+    lines: { greeting: 'a', onGoodMove: 'b', onBlunder: 'c', onWin: 'd', onLose: 'e', onDraw: 'f' },
     teaching: { welcome: ['w1', 'w2'], close: ['c1'], reminder: { risk: 'Racha de {n}', recovery: 'Recupera', general: 'Juega' } },
   }) as Bot;
 const spanish: Content = {
@@ -118,7 +118,7 @@ const good = (): any => ({
       tagline: 'Hi',
       trait: 'Trait',
       teaches: 'Teaches',
-      lines: { greeting: 'a', onGoodMove: 'b', onBlunder: 'c', onWin: 'd', onLose: 'e' },
+      lines: { greeting: 'a', onGoodMove: 'b', onBlunder: 'c', onWin: 'd', onLose: 'e', onDraw: 'f' },
       teaching: { welcome: ['w1', 'w2'], close: ['c1'], reminder: { risk: 'Streak of {n}', recovery: 'Recover', general: 'Play' } },
     },
   },

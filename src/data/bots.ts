@@ -54,7 +54,7 @@ export type Bot = {
   fallback?: Exclude<BotEngine, { type: 'maia' }>;
   repertoire: { white: string[]; black: string[] };
   book: 'corto' | 'medio' | 'largo';
-  lines: { greeting: string; onGoodMove: string; onBlunder: string; onWin: string; onLose: string };
+  lines: { greeting: string; onGoodMove: string; onBlunder: string; onWin: string; onLose: string; onDraw: string };
   /** Voz como profesor: frases de lección y de aviso. Ver docs/bots.md, «Voces de profesor». */
   teaching: { welcome: string[]; close: string[]; reminder: { risk: string; recovery: string; general: string } };
 };

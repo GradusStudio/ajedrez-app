@@ -9,7 +9,8 @@
       "onGoodMove": "Good move. I didn't see that coming.",
       "onBlunder": "That was loose. Thanks.",
       "onWin": "I won. I don't know how, but I won.",
-      "onLose": "You beat me. I want to see how you did it."
+      "onLose": "You beat me. I want to see how you did it.",
+      "onDraw": "Neither of us won. Shall we play another to see what happens?"
     },
     "teaching": {
       "welcome": [
@@ -39,7 +40,8 @@
       "onGoodMove": "Well played. I'll have to be careful.",
       "onBlunder": "Careful: that piece was left unprotected.",
       "onWin": "Winning calmly is still winning.",
-      "onLose": "Very good. You broke through my defense."
+      "onLose": "Very good. You broke through my defense.",
+      "onDraw": "Nobody made a mistake. That's how calm chess is played."
     },
     "teaching": {
       "welcome": [
@@ -69,7 +71,8 @@
       "onGoodMove": "Hmm, you didn't fall for it. So close.",
       "onBlunder": "Just what I was hoping for.",
       "onWin": "I told you there was a trick.",
-      "onLose": "You caught me. Well spotted."
+      "onLose": "You caught me. Well spotted.",
+      "onDraw": "No trap worked. Next time."
     },
     "teaching": {
       "welcome": [
@@ -99,7 +102,8 @@
       "onGoodMove": "Good defense. I'll try another way in.",
       "onBlunder": "That opens up my attack.",
       "onWin": "The attack worked.",
-      "onLose": "You defended very well."
+      "onLose": "You defended very well.",
+      "onDraw": "No king to attack. Another time."
     },
     "teaching": {
       "welcome": [
@@ -129,7 +133,8 @@
       "onGoodMove": "That is what the book says.",
       "onBlunder": "That move breaks an opening principle.",
       "onWin": "Review the principles and try again.",
-      "onLose": "Excellent. You have learned well."
+      "onLose": "Excellent. You have learned well.",
+      "onDraw": "A well-played draw. That's how you learn."
     },
     "teaching": {
       "welcome": [
@@ -159,7 +164,8 @@
       "onGoodMove": "A very sensible improvement of your position.",
       "onBlunder": "I'm going to make use of that weakness.",
       "onWin": "Small advantages add up to a win.",
-      "onLose": "Your structure was better. Congratulations."
+      "onLose": "Your structure was better. Congratulations.",
+      "onDraw": "Neither side gave ground. A good balance."
     },
     "teaching": {
       "welcome": [
@@ -189,7 +195,8 @@
       "onGoodMove": "You found a crack. Stay alert.",
       "onBlunder": "You left a gap in your defense.",
       "onWin": "My wall held.",
-      "onLose": "The wall came down. Good technique."
+      "onLose": "The wall came down. Good technique.",
+      "onDraw": "Nobody got through. Well done."
     },
     "teaching": {
       "welcome": [
@@ -219,7 +226,8 @@
       "onGoodMove": "Good tactic. I saw it too late.",
       "onBlunder": "There was a combination hiding there.",
       "onWin": "Tactics decided the game.",
-      "onLose": "You beat me with a clean tactic."
+      "onLose": "You beat me with a clean tactic.",
+      "onDraw": "I didn't find the blow and neither did you. Again."
     },
     "teaching": {
       "welcome": [
@@ -249,7 +257,8 @@
       "onGoodMove": "That is the move of a patient player.",
       "onBlunder": "In the endgame, that mistake costs dearly.",
       "onWin": "The endgame decided it. Take another look at how active your king was.",
-      "onLose": "Great endgame technique."
+      "onLose": "Great endgame technique.",
+      "onDraw": "A fair ending. Next time, with more technique."
     },
     "teaching": {
       "welcome": [
@@ -279,7 +288,8 @@
       "onGoodMove": "Precise. That was the best move.",
       "onBlunder": "A mistake. I will use it.",
       "onWin": "Go over the game: you will learn a lot.",
-      "onLose": "Impressive. You beat me."
+      "onLose": "Impressive. You beat me.",
+      "onDraw": "An exact draw. Our precision matched."
     },
     "teaching": {
       "welcome": [

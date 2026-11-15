@@ -9,7 +9,8 @@
       "onGoodMove": "Bella mossa. Non l'avevo vista arrivare.",
       "onBlunder": "Quello era indifeso. Grazie.",
       "onWin": "Ho vinto. Non so come, ma ho vinto.",
-      "onLose": "Mi hai battuto. Voglio vedere come hai fatto."
+      "onLose": "Mi hai battuto. Voglio vedere come hai fatto.",
+      "onDraw": "Nessuno dei due ha vinto. Ne giochiamo un'altra per vedere cosa succede?"
     },
     "teaching": {
       "welcome": [
@@ -39,7 +40,8 @@
       "onGoodMove": "Ben giocato. Dovrò stare attenta.",
       "onBlunder": "Attenzione: quel pezzo è rimasto senza protezione.",
       "onWin": "Anche vincere con calma è vincere.",
-      "onLose": "Molto bene. Hai rotto la mia difesa."
+      "onLose": "Molto bene. Hai rotto la mia difesa.",
+      "onDraw": "Nessuno ha sbagliato. Così si gioca tranquilli."
     },
     "teaching": {
       "welcome": [
@@ -69,7 +71,8 @@
       "onGoodMove": "Mmm, la trappola non ha funzionato. Per poco.",
       "onBlunder": "Proprio quello che aspettavo.",
       "onWin": "Te l'avevo detto che c'era un trucco.",
-      "onLose": "Mi hai scoperto. Ben visto."
+      "onLose": "Mi hai scoperto. Ben visto.",
+      "onDraw": "Nessuna trappola ha funzionato. La prossima volta."
     },
     "teaching": {
       "welcome": [
@@ -99,7 +102,8 @@
       "onGoodMove": "Buona difesa. Passo da un'altra parte.",
       "onBlunder": "Questo apre il mio attacco.",
       "onWin": "L'attacco ha funzionato.",
-      "onLose": "Difesa davvero ottima."
+      "onLose": "Difesa davvero ottima.",
+      "onDraw": "Nessun re da attaccare. Un'altra volta."
     },
     "teaching": {
       "welcome": [
@@ -129,7 +133,8 @@
       "onGoodMove": "È ciò che dice il libro.",
       "onBlunder": "Questa mossa infrange un principio di apertura.",
       "onWin": "Ripassa i principi e prova di nuovo.",
-      "onLose": "Eccellente. Hai imparato bene."
+      "onLose": "Eccellente. Hai imparato bene.",
+      "onDraw": "Una patta ben giocata. Così si impara."
     },
     "teaching": {
       "welcome": [
@@ -159,7 +164,8 @@
       "onGoodMove": "Un miglioramento di posizione molto sensato.",
       "onBlunder": "Questa debolezza la sfrutterò.",
       "onWin": "I piccoli vantaggi sommati fanno una vittoria.",
-      "onLose": "La tua struttura era migliore. Complimenti."
+      "onLose": "La tua struttura era migliore. Complimenti.",
+      "onDraw": "Nessuno ha ceduto terreno. Un buon equilibrio."
     },
     "teaching": {
       "welcome": [
@@ -189,7 +195,8 @@
       "onGoodMove": "Hai aperto una crepa. Occhio.",
       "onBlunder": "Hai lasciato un buco nella tua difesa.",
       "onWin": "Il mio muro ha retto.",
-      "onLose": "Il muro è crollato. Buona tecnica."
+      "onLose": "Il muro è crollato. Buona tecnica.",
+      "onDraw": "Non è passato nessuno. Ben fatto."
     },
     "teaching": {
       "welcome": [
@@ -219,7 +226,8 @@
       "onGoodMove": "Bella tattica. L'ho vista tardi.",
       "onBlunder": "C'era una combinazione nascosta.",
       "onWin": "La tattica ha deciso la partita.",
-      "onLose": "Mi hai battuta con una tattica pulita."
+      "onLose": "Mi hai battuta con una tattica pulita.",
+      "onDraw": "Non ho trovato il colpo e nemmeno tu. Ancora."
     },
     "teaching": {
       "welcome": [
@@ -249,7 +257,8 @@
       "onGoodMove": "Questa è la mossa di chi sa avere pazienza.",
       "onBlunder": "Nel finale, questo errore costa caro.",
       "onWin": "Ha deciso il finale. Rivedi l'attività del tuo re.",
-      "onLose": "Grande tecnica di finale."
+      "onLose": "Grande tecnica di finale.",
+      "onDraw": "Un finale giusto. La prossima volta, con più tecnica."
     },
     "teaching": {
       "welcome": [
@@ -279,7 +288,8 @@
       "onGoodMove": "Mossa precisa. Era la migliore.",
       "onBlunder": "Errore. Lo sfrutto.",
       "onWin": "Rivedi la partita: imparerai molto.",
-      "onLose": "Impressionante. Mi hai battuta."
+      "onLose": "Impressionante. Mi hai battuta.",
+      "onDraw": "Patta esatta. La precisione è stata la stessa."
     },
     "teaching": {
       "welcome": [

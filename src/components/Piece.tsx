@@ -16,6 +16,8 @@ type Props = {
   size: number;
   /** Si no se indica, se usa el set elegido por el usuario en el perfil. */
   set?: AnyPieceSetId;
+  /** Brasas de magma: solo en la tienda (vista previa y miniaturas); en el tablero van apagadas. */
+  showEmbers?: boolean;
 };
 
 // Margen alrededor de la pieza, en unidades del dibujo (que mide 100): con 6 por lado,
@@ -27,7 +29,7 @@ const VIEW_BOX = `${-PAD} ${-PAD} ${100 + 2 * PAD} ${100 + 2 * PAD}`;
 // Los detalles blancos de las piezas negras son huecos de la tinta sobre la silueta blanca.
 // Los sets de material usan los trazados del Clásico: la silueta se rellena con la textura clara y, en las
 // negras, la tinta con la oscura (con un filo fino que la separa de una casilla oscura).
-function Piece({ type, color, size, set }: Props) {
+function Piece({ type, color, size, set, showEmbers = false }: Props) {
   const { pieceSet } = usePieceSet();
   const id = set ?? pieceSet;
   const key = `${color}${type}` as PieceKey;
@@ -92,6 +94,7 @@ function Piece({ type, color, size, set }: Props) {
         )}
         {w && <Path d={w.flake} stroke={white ? '#3A8FC4' : '#BFEFFF'} strokeWidth={1.3} strokeLinecap="round" fill="none" />}
         {v &&
+          showEmbers &&
           v.embers.map((e, i) => (
             <React.Fragment key={i}>
               <Circle cx={e.x} cy={e.y} r={e.r * 2.6} fill="#FF7A12" opacity={0.18} />

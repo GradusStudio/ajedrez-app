@@ -71,6 +71,8 @@ type Props = {
   plan?: boolean;
   /** Tema forzado para una vista previa (por ejemplo, la tienda): no cambia lo guardado. */
   themeOverride?: BoardThemeId;
+  /** Brasas de magma en la vista previa de la tienda; en las partidas y lecciones van apagadas. */
+  showEmbers?: boolean;
 };
 
 const YELLOW_ARROW = 'rgba(247, 198, 49, 0.9)';
@@ -112,7 +114,7 @@ const SETTLE_SPRING = { toValue: 0, friction: 3.2, tension: 130, useNativeDriver
  * Pieza que se desliza desde su casilla anterior hasta la actual. Se inclina hacia donde va y se asienta con un resorte
  * (spec: docs/superpowers/specs/2026-11-09-animaciones-de-piezas-design.md). `still`: sin inclinación (reducir movimiento).
  */
-function MovingPiece({ type, color, size, dx, dy, still }: { type: PieceType; color: PieceColor; size: number; dx: number; dy: number; still: boolean }) {
+function MovingPiece({ type, color, size, dx, dy, still, showEmbers }: { type: PieceType; color: PieceColor; size: number; dx: number; dy: number; still: boolean; showEmbers: boolean }) {
   const [t] = useState(() => new Animated.Value(1));
   const [rot] = useState(() => new Animated.Value(0));
   const tilt = still ? 0 : slideTilt(dx);
@@ -136,26 +138,26 @@ function MovingPiece({ type, color, size, dx, dy, still }: { type: PieceType; co
         ],
       }}
     >
-      <Piece type={type} color={color} size={size} />
+      <Piece type={type} color={color} size={size} showEmbers={showEmbers} />
     </Animated.View>
   );
 }
 
 /** Pieza recién soltada arrastrando: ya está en su casilla y se endereza desde la inclinación que traía, con un resorte. */
-function SettlingPiece({ type, color, size, angle }: { type: PieceType; color: PieceColor; size: number; angle: number }) {
+function SettlingPiece({ type, color, size, angle, showEmbers }: { type: PieceType; color: PieceColor; size: number; angle: number; showEmbers: boolean }) {
   const [rot] = useState(() => new Animated.Value(angle));
   useEffect(() => {
     if (angle !== 0) Animated.spring(rot, SETTLE_SPRING).start();
   }, [rot, angle]);
   return (
     <Animated.View pointerEvents="none" style={{ transform: [{ rotate: degrees(rot) }] }}>
-      <Piece type={type} color={color} size={size} />
+      <Piece type={type} color={color} size={size} showEmbers={showEmbers} />
     </Animated.View>
   );
 }
 
 /** Rey vencido en jaque mate: se cae de costado cuando termina de llegar la pieza que da mate. */
-function FallenKing({ color, size, still }: { color: PieceColor; size: number; still: boolean }) {
+function FallenKing({ color, size, still, showEmbers }: { color: PieceColor; size: number; still: boolean; showEmbers: boolean }) {
   const [rot] = useState(() => new Animated.Value(still ? 90 : 0));
   useEffect(() => {
     if (still) return;
@@ -166,7 +168,7 @@ function FallenKing({ color, size, still }: { color: PieceColor; size: number; s
   }, [rot, still]);
   return (
     <Animated.View pointerEvents="none" style={{ transform: [{ rotate: degrees(rot) }] }}>
-      <Piece type="k" color={color} size={size} />
+      <Piece type="k" color={color} size={size} showEmbers={showEmbers} />
     </Animated.View>
   );
 }
@@ -181,7 +183,7 @@ function FadeSquare({ color, still }: { color: string; still: boolean }) {
 }
 
 /** Pieza capturada: se achica y se desvanece en su casilla mientras llega la otra. */
-function CapturedPiece({ type, color, size }: { type: PieceType; color: PieceColor; size: number }) {
+function CapturedPiece({ type, color, size, showEmbers }: { type: PieceType; color: PieceColor; size: number; showEmbers: boolean }) {
   const [t] = useState(() => new Animated.Value(1));
   useEffect(() => {
     Animated.timing(t, { toValue: 0, duration: FADE_MS, easing: Easing.in(Easing.quad), useNativeDriver: true }).start();
@@ -195,7 +197,7 @@ function CapturedPiece({ type, color, size }: { type: PieceType; color: PieceCol
         { transform: [{ scale: t.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1] }) }] },
       ]}
     >
-      <Piece type={type} color={color} size={size} />
+      <Piece type={type} color={color} size={size} showEmbers={showEmbers} />
     </Animated.View>
   );
 }
@@ -294,6 +296,7 @@ export function Board({
   sound = true,
   plan = false,
   themeOverride,
+  showEmbers = false,
 }: Props) {
   // En pantalla ancha el tamaño lo fija BoardLayout; si no, sale del ancho de la ventana.
   const sq = useBoardSide() / 8;
@@ -665,7 +668,7 @@ export function Board({
           )}
 
           {captured && captured.cell === `${br}${bc}` && (
-            <CapturedPiece key={`cap-${anim.id}`} type={captured.type} color={captured.color} size={sq} />
+            <CapturedPiece key={`cap-${anim.id}`} type={captured.type} color={captured.color} size={sq} showEmbers={showEmbers} />
           )}
           {cell &&
             (offsets[`${br}${bc}`] ? (
@@ -677,15 +680,16 @@ export function Board({
                 dx={offsets[`${br}${bc}`].dc * sq}
                 dy={offsets[`${br}${bc}`].dr * sq}
                 still={reduced}
+                showEmbers={showEmbers}
               />
             ) : settle?.cell === `${br}${bc}` ? (
-              <SettlingPiece key={`settle-${anim.id}`} type={cell.type} color={cell.color} size={sq} angle={settle.angle} />
+              <SettlingPiece key={`settle-${anim.id}`} type={cell.type} color={cell.color} size={sq} angle={settle.angle} showEmbers={showEmbers} />
             ) : isMateKing && cell.type === 'k' ? (
-              <FallenKing key={`fall-${anim.id}`} color={cell.color} size={sq} still={reduced} />
+              <FallenKing key={`fall-${anim.id}`} color={cell.color} size={sq} still={reduced} showEmbers={showEmbers} />
             ) : (
               // Mientras se arrastra, en la casilla de origen queda solo una sombra de la pieza.
               <View style={isDragOrigin ? { opacity: 0.3 } : undefined}>
-                <Piece type={cell.type} color={cell.color} size={sq} />
+                <Piece type={cell.type} color={cell.color} size={sq} showEmbers={showEmbers} />
               </View>
             ))}
           {isDragOver && <View style={[styles.fill, { borderWidth: Math.max(3, sq * 0.07), borderColor: boardHighlight.dragOver }]} />}
@@ -746,7 +750,7 @@ export function Board({
           pointerEvents="none"
           style={{ position: 'absolute', left: 0, top: 0, zIndex: 20, transform: [...dragPos.getTranslateTransform(), { rotate: degrees(dragRot) }] }}
         >
-          <Piece type={draggedCell.type} color={draggedCell.color} size={dragSize} />
+          <Piece type={draggedCell.type} color={draggedCell.color} size={dragSize} showEmbers={showEmbers} />
         </Animated.View>
       )}
       <View
@@ -754,7 +758,7 @@ export function Board({
         pointerEvents={touchable ? 'auto' : 'none'}
         {...touchHandlers}
       />
-      {promo && <PromotionPicker to={promo.to} color={turn} sq={sq} orientation={orientation} onChoose={choosePromotion} />}
+      {promo && <PromotionPicker to={promo.to} color={turn} sq={sq} orientation={orientation} onChoose={choosePromotion} showEmbers={showEmbers} />}
     </View>
   );
 }
@@ -769,12 +773,14 @@ function PromotionPicker({
   sq,
   orientation,
   onChoose,
+  showEmbers,
 }: {
   to: Square;
   color: PieceColor;
   sq: number;
   orientation: 'w' | 'b';
   onChoose: (piece: PromotionPiece | null) => void;
+  showEmbers: boolean;
 }) {
   const file = to.charCodeAt(0) - 97;
   const rank = Number(to[1]);
@@ -808,7 +814,7 @@ function PromotionPicker({
             },
           ]}
         >
-          <Piece type={p} color={color} size={sq * 0.92} />
+          <Piece type={p} color={color} size={sq * 0.92} showEmbers={showEmbers} />
         </Pressable>
       ))}
     </View>

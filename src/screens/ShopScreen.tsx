@@ -133,7 +133,7 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
               <View style={styles.boardWrap}>
                 <BoardSizeContext.Provider value={previewSize}>
                   <PieceSetOverride id={combo.set}>
-                    <Board fen={SAMPLE_FEN} orientation="w" interactive={false} themeOverride={combo.board} />
+                    <Board fen={SAMPLE_FEN} orientation="w" interactive={false} themeOverride={combo.board} showEmbers />
                   </PieceSetOverride>
                 </BoardSizeContext.Provider>
               </View>
@@ -258,7 +258,7 @@ function SetThumb({ id, board }: { id: AnyPieceSetId; board: BoardThemeId }) {
         return (
           <View key={p.type} style={[styles.thumbPieceCell, { backgroundColor: light ? theme.light : theme.dark }]}>
             <SquareTexture theme={board} light={light} size={64} seed={i} />
-            <Piece type={p.type} color={p.color} size={44} set={id} />
+            <Piece type={p.type} color={p.color} size={44} set={id} showEmbers />
           </View>
         );
       })}

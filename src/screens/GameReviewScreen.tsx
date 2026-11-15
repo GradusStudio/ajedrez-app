@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, ScrollView, Text, View } from 'react-native';
-import { Square } from 'chess.js';
 import { Board } from '../components/Board';
 import { Button3D } from '../components/Button3D';
 import { EvalBar } from '../components/EvalBar';
@@ -21,8 +20,8 @@ import { AnalyzingView } from './review/AnalyzingView';
 import { CoachBubble } from './review/CoachBubble';
 import { EvalGraph } from './review/EvalGraph';
 import { MoveStrip } from './review/MoveStrip';
-import { badgeOf, BEST_ARROW, catOf, faceFor, qualityColor, qualityNameKey, QUALITY_INK, QUALITY_TEXT_DARK, REPLY_ARROW } from './review/quality';
-import { FilterPills } from './review/FilterPills';
+import { catOf, faceFor, qualityColor, qualityNameKey, QUALITY_INK, QUALITY_TEXT_DARK } from './review/quality';
+import { reviewView } from './review/reviewView';import { FilterPills } from './review/FilterPills';
 import { MoveList } from './review/MoveList';
 import { NavButtons } from './review/NavButtons';
 import { ReviewTop } from './review/ReviewParts';
@@ -190,22 +189,22 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
     );
   }
 
-  // ── Lo que se ve ahora: jugada de la partida o jugada propia ──
-  const ply = lastVar ? (lastVar.rated ?? undefined) : idx > 0 ? review.plies[idx - 1] : undefined;
-  const pendingOwn = !!lastVar && !lastVar.rated;
+  // ── Lo que se ve ahora: jugada de la partida, variante propia o línea del motor (selector puro probado) ──
+  const view = reviewView({
+    fen,
+    plies: review.plies,
+    scores: review.scores,
+    idx,
+    lastVar,
+    preview: pb.preview,
+    branch,
+    me,
+    showBest: pb.showBest,
+  });
+  const { ply, pendingOwn, shownFen, lastMove, mine, bad, badge, colorArrows, score: scoreHere } = view;
+  const pv = pb.preview;
   // La línea del motor de una jugada mala se puede reproducir sobre el tablero desde la posición anterior a esa jugada.
   const lineList = ply && isBad(ply.quality) ? lineMoves(ply.move.fenBefore, ply.bestPv) : [];
-  const pv = pb.preview;
-  const previewMove = pv && pv.step > 0 ? pv.moves[pv.step - 1] : null;
-  const shownFen = pv ? (previewMove ? previewMove.fenAfter : pv.baseFen) : fen;
-  const shownMove = pv ? previewMove : lastVar ? lastVar.move : ply?.move;
-  const lastMove = shownMove ? { from: shownMove.uci.slice(0, 2) as Square, to: shownMove.uci.slice(2, 4) as Square } : null;
-  const mine = me !== null && (lastVar ? lastVar.move.color === me : ply ? ply.move.color === me : false);
-  const bad = !!ply && isBad(ply.quality);
-  const badge = ply ? badgeOf(ply) : null;
-  const colorArrows: { move: string; color: string }[] = [];
-  if (!pv && ply && bad && ply.replyUci) colorArrows.push({ move: ply.replyUci.slice(0, 4), color: REPLY_ARROW });
-  if (!pv && ply && pb.showBest && ply.bestUci) colorArrows.push({ move: ply.bestUci.slice(0, 4), color: BEST_ARROW });
 
   const san = ply ? fmt(ply.move.san) : '';
   const voice = pendingOwn
@@ -248,9 +247,6 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
   }
 
 
-  const scoreHere = branch
-    ? ply?.scoreAfter ?? branch.moves.slice(0, -1).reverse().find((m) => m.rated)?.rated?.scoreAfter ?? review.scores[branch.from]
-    : review.scores[idx];
   const nameOf = (c: 'w' | 'b') => (c === 'w' ? game.white : game.black) || t(c === 'w' ? 'common.white' : 'common.black');
 
   const coachBubble = (

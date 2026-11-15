@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { MAX_PGN_CHARS, parseGame } from './pgn';
+import { cleanPgnHeader, MAX_PGN_CHARS, parseGame } from './pgn';
 
 test('lee una partida normal y devuelve las jugadas con su posición', () => {
   const game = parseGame('1. e4 e5 2. Qh5 Nc6 3. Bc4 Nf6 4. Qxf7# 1-0');
@@ -21,4 +21,15 @@ test('un texto que no es una partida devuelve null', () => {
   assert.equal(parseGame(''), null);
   assert.equal(parseGame('hola'), null);
   assert.equal(parseGame('1. e4 e4'), null);
+});
+
+test('las cabeceras se recortan y se limpian antes de mostrarlas', () => {
+  const long = 'A'.repeat(500);
+  const game = parseGame(`[White "${long}"]\n[Black "B"]\n[Result "1-0"]\n\n1. e4 e5 1-0`);
+  assert.ok(game);
+  assert.equal(game.white.length, 80);
+  assert.equal(game.black, 'B');
+  assert.equal(game.result, '1-0');
+  assert.equal(cleanPgnHeader('A\u0000B'), 'A B');
+  assert.equal(cleanPgnHeader(undefined), '');
 });

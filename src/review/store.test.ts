@@ -1,14 +1,39 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { findReview, isStoredReview, MAX_REVIEWS, reviewId, trimReviews, type StoredReview } from './store';
-import type { Review } from './types';
+import type { Review, ReviewPly } from './types';
 
-const stored = (id: string, savedAt = '2026-11-14T10:00:00.000Z'): StoredReview => ({
+const move = { san: 'e4', uci: 'e2e4', color: 'w' as const, fenBefore: 'start', fenAfter: 'after' };
+const ply: ReviewPly = {
+  ply: 1,
+  move,
+  quality: 'best',
+  loss: 0,
+  cpLoss: 0,
+  great: false,
+  highlight: true,
+  scoreAfter: 20,
+  bestUci: 'e2e4',
+  bestSan: 'e4',
+  replyUci: 'e7e5',
+  replySan: 'e5',
+  facts: {},
+};
+const game = { white: 'Tú', black: 'Pipo', result: '1-0', startFen: 'start', moves: [move] };
+const review = (over: Partial<Review> = {}): Review => ({
+  game,
+  scores: [0, 20],
+  plies: [ply],
+  highlights: [0],
+  accuracy: { w: 90, b: 80 },
+  ...over,
+});
+const stored = (id: string, savedAt = '2026-11-14T10:00:00.000Z', value: Review = review()): StoredReview => ({
   id,
   savedAt,
   me: 'w',
   coachId: 'lola',
-  review: { plies: [], scores: [] } as unknown as Review,
+  review: value,
 });
 
 test('el id de una partida importada es estable y distinto por PGN', () => {
@@ -42,18 +67,38 @@ test('trimReviews corta en 10 y conserva las más recientes', () => {
   assert.equal(list[list.length - 1].id, 'r4');
 });
 
-test('un dato roto del almacenamiento se descarta', () => {
+test('una revisión completa y válida se acepta', () => {
   assert.equal(isStoredReview(stored('x')), true);
-  for (const bad of [null, 5, 'x', {}, { id: 'x' }, { ...stored('x'), me: 'z' }, { ...stored('x'), review: { plies: 'no', scores: [] } }]) {
+  assert.equal(isStoredReview({ ...stored('x'), me: null }), true);
+  // Sin jugadas sigue siendo válida mientras la evaluación tenga la posición inicial.
+  assert.equal(isStoredReview(stored('x', undefined, review({ plies: [], scores: [0], highlights: [] }))), true);
+});
+
+test('un dato roto del almacenamiento se descarta', () => {
+  const noAccuracy = { ...review(), accuracy: undefined } as unknown as Review;
+  const shortScores = review({ scores: [0] });
+  const badPly = review({ plies: [{ ...ply, move: { ...move, san: undefined } } as unknown as ReviewPly] });
+  const badQuality = review({ plies: [{ ...ply, quality: 'rara' } as unknown as ReviewPly] });
+  const badHighlights = review({ highlights: [5] });
+  const badPv = review({ plies: [{ ...ply, bestPv: 'e2e4' } as unknown as ReviewPly] });
+  for (const bad of [
+    null,
+    5,
+    'x',
+    {},
+    { id: 'x' },
+    { ...stored('x'), me: 'z' },
+    stored('x', undefined, noAccuracy),
+    stored('x', undefined, shortScores),
+    stored('x', undefined, badPly),
+    stored('x', undefined, badQuality),
+    stored('x', undefined, badHighlights),
+    stored('x', undefined, badPv),
+    { ...stored('x'), review: { plies: 'no', scores: [] } },
+    { ...stored('x'), review: { plies: [], scores: [] } },
+  ]) {
     assert.equal(isStoredReview(bad), false, JSON.stringify(bad));
   }
-  assert.equal(isStoredReview({ ...stored('x'), me: null }), true);
-  // Las jugadas y las evaluaciones tienen que tener la forma que usan el resumen y el quiz.
-  const ply = { ply: 1, move: { color: 'w' }, bestUci: 'e2e4' };
-  assert.equal(isStoredReview({ ...stored('x'), review: { plies: [ply], scores: [0, 1] } }), true);
-  assert.equal(isStoredReview({ ...stored('x'), review: { plies: [{}], scores: [] } }), false);
-  assert.equal(isStoredReview({ ...stored('x'), review: { plies: [ply], scores: ['x'] } }), false);
-  assert.equal(isStoredReview({ ...stored('x'), review: { plies: [], scores: [] } }), true);
 });
 
 test('findReview encuentra la revisión por el id de la partida o por el del PGN', () => {

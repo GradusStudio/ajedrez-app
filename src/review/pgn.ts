@@ -15,6 +15,13 @@ function firstGame(text: string): string {
   return starts > 1 && second > 0 ? t.slice(0, second) : t;
 }
 
+/** Cabecera PGN para mostrar: sin caracteres de control y con un largo razonable. */
+export function cleanPgnHeader(value: unknown, max = 80): string {
+  return typeof value === 'string'
+    ? value.replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max)
+    : '';
+}
+
 /** null si el texto no es una partida legal (o no tiene jugadas). */
 export function parseGame(pgn: string): ParsedGame | null {
   if (pgn.length > MAX_PGN_CHARS) return null;
@@ -37,9 +44,9 @@ export function parseGame(pgn: string): ParsedGame | null {
     fenAfter: m.after,
   }));
   return {
-    white: headers.White && headers.White !== '?' ? headers.White : '',
-    black: headers.Black && headers.Black !== '?' ? headers.Black : '',
-    result: headers.Result ?? '*',
+    white: cleanPgnHeader(headers.White !== '?' ? headers.White : ''),
+    black: cleanPgnHeader(headers.Black !== '?' ? headers.Black : ''),
+    result: cleanPgnHeader(headers.Result, 8) || '*',
     startFen: moves[0].fenBefore,
     moves,
   };

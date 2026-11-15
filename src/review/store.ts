@@ -36,30 +36,81 @@ export function trimReviews(list: StoredReview[], next: StoredReview, max = MAX_
   return [next, ...list.filter((r) => r.id !== next.id)].slice(0, max);
 }
 
+const QUALITIES = new Set(['book', 'best', 'excellent', 'good', 'inaccuracy', 'mistake', 'blunder']);
+const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
+const isStr = (v: unknown): v is string => typeof v === 'string';
+
+/** Cada jugada tiene todo lo que consumen la pantalla, el resumen, el gráfico y el quiz. */
+function isStoredPly(p: unknown): boolean {
+  if (typeof p !== 'object' || p === null) return false;
+  const ply = p as Record<string, unknown>;
+  const move = ply.move as Record<string, unknown> | null | undefined;
+  const facts = ply.facts;
+  return (
+    isNum(ply.ply) &&
+    Number.isInteger(ply.ply) &&
+    typeof move === 'object' &&
+    move !== null &&
+    (move.color === 'w' || move.color === 'b') &&
+    isStr(move.san) &&
+    isStr(move.uci) &&
+    isStr(move.fenBefore) &&
+    isStr(move.fenAfter) &&
+    isStr(ply.quality) &&
+    QUALITIES.has(ply.quality) &&
+    isNum(ply.loss) &&
+    isNum(ply.cpLoss) &&
+    isNum(ply.scoreAfter) &&
+    typeof ply.great === 'boolean' &&
+    typeof ply.highlight === 'boolean' &&
+    isStr(ply.bestUci) &&
+    isStr(ply.bestSan) &&
+    isStr(ply.replyUci) &&
+    isStr(ply.replySan) &&
+    (ply.bestPv === undefined || (Array.isArray(ply.bestPv) && ply.bestPv.every(isStr))) &&
+    typeof facts === 'object' &&
+    facts !== null
+  );
+}
+
 /** Valida lo leído del almacenamiento: un dato roto se descarta en vez de romper la pestaña. */
 export function isStoredReview(value: unknown): value is StoredReview {
   if (typeof value !== 'object' || value === null) return false;
   const v = value as Record<string, unknown>;
   const review = v.review as Record<string, unknown> | null | undefined;
   if (typeof review !== 'object' || review === null) return false;
+  const game = review.game as Record<string, unknown> | null | undefined;
+  const gameOk =
+    typeof game === 'object' &&
+    game !== null &&
+    isStr(game.white) &&
+    isStr(game.black) &&
+    isStr(game.result) &&
+    isStr(game.startFen) &&
+    Array.isArray(game.moves);
+  const accuracy = review.accuracy as Record<string, unknown> | null | undefined;
+  const accuracyOk = typeof accuracy === 'object' && accuracy !== null && isNum(accuracy.w) && isNum(accuracy.b);
   const scores = review.scores;
-  const scoresOk = Array.isArray(scores) && scores.every((n) => typeof n === 'number' && Number.isFinite(n));
-  // Cada jugada tiene lo que usan el resumen, el quiz y los errores pendientes.
-  const pliesOk =
-    Array.isArray(review.plies) &&
-    review.plies.every((p) => {
-      if (typeof p !== 'object' || p === null) return false;
-      const ply = p as Record<string, unknown>;
-      const move = ply.move as Record<string, unknown> | null | undefined;
-      return typeof ply.ply === 'number' && typeof move === 'object' && move !== null && typeof move.color === 'string' && typeof ply.bestUci === 'string';
-    });
+  const scoresOk = Array.isArray(scores) && scores.every(isNum);
+  const plies = review.plies;
+  const pliesOk = Array.isArray(plies) && plies.every(isStoredPly);
+  const highlights = review.highlights;
+  const highlightsOk =
+    Array.isArray(highlights) &&
+    highlights.every((h) => isNum(h) && Number.isInteger(h) && h >= 0 && (!Array.isArray(plies) || h < plies.length));
+  // La evaluación tiene una posición más que jugadas (inicial + después de cada una).
+  const lengthsOk = scoresOk && Array.isArray(plies) && scores.length === plies.length + 1;
   return (
     typeof v.id === 'string' &&
     typeof v.savedAt === 'string' &&
     (v.me === null || v.me === 'w' || v.me === 'b') &&
     typeof v.coachId === 'string' &&
+    gameOk &&
+    accuracyOk &&
     scoresOk &&
-    pliesOk
+    pliesOk &&
+    highlightsOk &&
+    lengthsOk
   );
 }
 

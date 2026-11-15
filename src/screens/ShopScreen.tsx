@@ -17,6 +17,7 @@ import { useI18n } from '../i18n/I18nContext';
 import type { MessageKey } from '../i18n/es';
 import type { AnyPieceSetId } from '../pieces/materials';
 import { previewAction, previewCombo, shopItems, type ShopContext, type ShopItem } from '../pieces/shopView';
+import { SAMPLE_FEN } from '../pieces/sampleFen';
 import { useProgress } from '../progress/ProgressContext';
 import { PieceSetOverride, usePieceSet } from '../settings/PieceSetContext';
 import { useSettings } from '../settings/SettingsContext';
@@ -25,8 +26,6 @@ import { useBoardTheme } from '../settings/useBoardTheme';
 import { useTips } from '../settings/useTips';
 import { boardThemes, cardSkin, type, colors, fonts, radius, space } from '../theme';
 import type { BoardThemeId } from '../theme';
-
-const SAMPLE_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 
 export type ShopTab = 'boards' | 'pieces';
 

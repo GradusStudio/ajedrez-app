@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Board } from '../components/Board';
+import { BoardSizeContext } from '../components/BoardSizeContext';
 import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { CardSurface } from '../components/CardSurface';
@@ -28,6 +30,10 @@ import { useSettings } from '../settings/SettingsContext';
 import { TIP_MESSAGES, type TipId } from '../settings/tips';
 import { useTips } from '../settings/useTips';
 import { firstSteps, firstStepsDone, type FirstStepId } from '../start/firstSteps';
+import { canAffordSomethingNew, type ShopContext } from '../pieces/shopView';
+import { SAMPLE_FEN } from '../pieces/sampleFen';
+import { useBoardTheme } from '../settings/useBoardTheme';
+import { PieceSetOverride, usePieceSet } from '../settings/PieceSetContext';
 import type { MessageKey } from '../i18n/es';
 import { Puzzle, puzzleGoal } from '../puzzles/puzzles';
 import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
@@ -56,15 +62,19 @@ type Props = {
   onContinueGame: () => void;
   onBot: (bot: Bot) => void;
   onCourse: (course: OpeningCourse) => void;
+  /** Abre la tienda desde la tarjeta «Tu tablero». */
+  onShop: () => void;
 };
 
 /**
  * Pestaña Inicio (feedback del primer tester, 14-11-2026): saludo con el profesor, seguir aprendiendo
  * con el tablero de progreso, puzzle del día, racha, bots y aperturas.
  */
-export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, onBot, onCourse }: Props) {
+export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, onBot, onCourse, onShop }: Props) {
   const { progress } = useProgress();
   const { settings, update } = useSettings();
+  const { pieceSet } = usePieceSet();
+  const boardTheme = useBoardTheme();
   const { units, bots, openings } = useContent();
   const { t, number, tn } = useI18n();
   const wide = useWideLayout();
@@ -357,6 +367,41 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
     </CardSurface>
   );
 
+  // Tarjeta «Tu tablero» (spec de la tienda y la barra, sección 2): la combinación en uso y el acceso a la tienda.
+  const comboName = `${t(`boardTheme.${boardTheme}` as MessageKey)} · ${t(`pieceSet.${pieceSet}.name` as MessageKey)}`;
+  const shopCtx: ShopContext = {
+    coins: progress.coins,
+    boughtBoards: progress.boardThemes,
+    boughtSets: progress.pieceSets,
+    boardInUse: boardTheme,
+    setInUse: pieceSet,
+  };
+  const affordable = canAffordSomethingNew(shopCtx);
+  // En la cuenta nueva aparece recién después de completar los primeros pasos.
+  const boardCard = !showFirstSteps ? (
+    <CardSurface style={styles.card} radius={20}>
+      <Text accessibilityRole="header" aria-level={2} style={styles.k}>{t('start.board.title')}</Text>
+      <View style={[styles.boardRow, !wide && styles.boardRowNarrow]}>
+        <BoardSizeContext.Provider value={150}>
+          <PieceSetOverride id={pieceSet}>
+            <Board fen={SAMPLE_FEN} orientation="w" interactive={false} themeOverride={boardTheme} />
+          </PieceSetOverride>
+        </BoardSizeContext.Provider>
+        <View style={styles.boardInfo}>
+          {affordable && <Text style={styles.afford}>{t('start.board.afford')}</Text>}
+          <Text style={styles.cardTitleSmall}>{comboName}</Text>
+          <Text style={styles.sub}>{t('start.board.text')}</Text>
+          <Button3D
+            label={t('start.board.cta')}
+            variant="secondary"
+            onPress={onShop}
+            style={{ marginTop: space.md, alignSelf: 'flex-start' }}
+          />
+        </View>
+      </View>
+    </CardSurface>
+  ) : null;
+
   return (
     <ColumnScrollView
       role="main"
@@ -392,6 +437,7 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
             <DailyPuzzleCard wide={wide} onOpen={onDaily} />
             {streakCard}
             {openingsCard}
+            {boardCard}
           </View>
         </View>
       ) : (
@@ -401,6 +447,7 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
           {streakCard}
           {botsCard}
           {openingsCard}
+          {boardCard}
         </>
       )}
 
@@ -580,4 +627,15 @@ const styles = StyleSheet.create({
   fsTitle: { fontFamily: fonts.extrabold, fontSize: 20, lineHeight: 26, color: colors.text },
   exploreRow: { marginTop: space.md },
   exploreName: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
+  boardRow: { flexDirection: 'row', alignItems: 'center', gap: space.lg, marginTop: space.md },
+  boardRowNarrow: { flexDirection: 'column', alignItems: 'flex-start' },
+  boardInfo: { flex: 1, minWidth: 0 },
+  afford: {
+    fontFamily: fonts.extrabold,
+    fontSize: type.caption,
+    color: colors.gold,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginBottom: 4,
+  },
 });

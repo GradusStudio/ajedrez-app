@@ -18,6 +18,13 @@ test('el id de una partida importada es estable y distinto por PGN', () => {
   assert.match(a, /^pgn:[a-z0-9]+$/);
 });
 
+test('el id no cambia por las cabeceras Event, Site ni Date (la partida en vivo no las trae)', () => {
+  const live = '[White "Tú"]\n[Black "Pipo"]\n[Result "1-0"]\n\n1. e4 e5 2. Nf3 1-0';
+  const saved = '[Event "Gradus"]\n[Site "Gradus"]\n[Date "2026.11.15"]\n[White "Tú"]\n[Black "Pipo"]\n[Result "1-0"]\n\n1. e4 e5 2. Nf3 1-0';
+  assert.equal(reviewId(live), reviewId(saved));
+  assert.notEqual(reviewId(live), reviewId(live.replace('1. e4', '1. d4')));
+});
+
 test('trimReviews pone la nueva al frente y descarta la del mismo id', () => {
   let list: StoredReview[] = [];
   for (let i = 0; i < 5; i++) list = trimReviews(list, stored(`b${i}`));

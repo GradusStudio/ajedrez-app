@@ -20,9 +20,12 @@ export const MAX_REVIEWS = 10;
 
 /** Identificador corto y estable de una partida importada, a partir de su PGN. */
 export function reviewId(pgn: string): string {
+  // Las cabeceras Event, Site y Date cambian entre el PGN en vivo y el de la partida guardada de la misma partida
+  // (la primera no las trae); no la identifican, así que no entran en el hash.
+  const normalized = pgn.replace(/^\[(?:Event|Site|Date)\s+"[^"]*"\][ \t]*\r?\n?/gm, '');
   let hash = 2166136261;
-  for (let i = 0; i < pgn.length; i++) {
-    hash ^= pgn.charCodeAt(i);
+  for (let i = 0; i < normalized.length; i++) {
+    hash ^= normalized.charCodeAt(i);
     hash = Math.imul(hash, 16777619);
   }
   return `pgn:${(hash >>> 0).toString(36)}`;

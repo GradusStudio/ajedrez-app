@@ -264,8 +264,6 @@ export const en: Record<MessageKey, string> = {
   'boardTheme.magma': 'Magma',
 
   // Piezas
-  'pieces.back': '‹ Back',
-  'pieces.backLabel': 'Back',
   'pieces.title': 'Pieces',
   'pieces.balance': 'You have {n} coins',
   'pieces.subtitle': 'Choose the style you like best. It applies to every board. Sets with a price are bought with coins.',
@@ -329,8 +327,6 @@ export const en: Record<MessageKey, string> = {
   'openings.tabBlack': 'Openings for Black',
   'openings.cardLabel': '{name}, {done} of {total} lessons',
   'openings.botChip': '{style} bot',
-  'openings.back': '‹ Openings',
-  'openings.backLabel': 'Back to Openings',
   'openings.youPlayWhite': 'You play White',
   'openings.youPlayBlack': 'You play Black',
   'openings.completed': 'Completed',
@@ -396,8 +392,6 @@ export const en: Record<MessageKey, string> = {
   'bots.resumeButton': 'Continue',
   'bots.cardLabel': '{name}, {tagline}, level {elo}',
   'bots.record': 'You won {wins} of {played}',
-  'bots.back': '‹ Bots',
-  'bots.backLabel': 'Back to Bots',
   'bots.random': 'Random',
   'bots.teaches': 'Teaches you',
   'bots.playsWhite': 'Plays as White',
@@ -755,8 +749,6 @@ export const en: Record<MessageKey, string> = {
   'quiz.back': 'Back to the review',
 
   // Política de privacidad (web)
-  'privacy.back': '‹ Back',
-  'privacy.backLabel': 'Back',
   'privacy.title': 'Gradus privacy policy',
   'privacy.updated': 'Gradus Chess: learn chess, published by Gradus Studio. Last updated: November 11, 2026.',
   'privacy.summary': 'Gradus has no accounts, ads, or analytics tools, and Gradus Studio does not ask for your name or email. Your progress and settings are saved only on this device, unless you turn on the optional sync, which saves your progress to a Gradus Studio server associated with a random key, without your email or name. The optional daily reminder stores the device record (identifier and subscription) and pending notices on that server, without your progress or personal data.',
@@ -781,8 +773,6 @@ export const en: Record<MessageKey, string> = {
   'privacy.contact.title': 'Changes and contact',
   'privacy.contact.text': 'If this policy changes, it will be updated at this same address with a new date. Questions:',
   'privacy.link': 'Privacy policy',
-  'terms.back': '‹ Back',
-  'terms.backLabel': 'Back',
   'terms.title': 'Gradus terms and conditions',
   'terms.updated': 'Gradus Chess: learn chess, published by Gradus Studio. Last updated: November 8, 2026.',
   'terms.summary': 'Gradus is a free app for learning chess, with no accounts, ads or payments. By using it you accept these terms, which are few and simple.',
@@ -971,5 +961,6 @@ export const en: Record<MessageKey, string> = {
   "puzzles.quantity.millions": "{n}M",
   "puzzles.quantity.thousands": "{n}K",
   "puzzles.themeLabel": "{theme}, {solved}, {available} puzzles",
+  "back.to": "Back to {screen}",
 
 };

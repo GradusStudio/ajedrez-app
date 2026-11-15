@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { BackButton } from '../components/BackButton';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { AppLink } from '../components/AppLink';
 import type { MessageKey } from '../i18n/es';
@@ -27,9 +28,7 @@ export function PrivacyScreen({ onBack }: { onBack: () => void }) {
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('privacy.backLabel')} hitSlop={12} style={styles.backButton}>
-        <Text style={styles.back}>{t('privacy.back')}</Text>
-      </Pressable>
+      <BackButton screen={t('profile.settings')} onPress={onBack} />
 
       <Text accessibilityRole="header" aria-level={1} style={styles.title}>{t('privacy.title')}</Text>
       <Text style={styles.updated}>{t('privacy.updated')}</Text>
@@ -52,8 +51,6 @@ export function PrivacyScreen({ onBack }: { onBack: () => void }) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  backButton: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text, marginTop: space.xs },
   updated: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: space.xs, lineHeight: 19 },
   summary: {

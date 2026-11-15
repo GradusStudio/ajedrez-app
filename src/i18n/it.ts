@@ -265,8 +265,6 @@ export const it: Record<MessageKey, string> = {
   'boardTheme.magma': 'Magma',
 
   // Piezas
-  'pieces.back': '‹ Indietro',
-  'pieces.backLabel': 'Indietro',
   'pieces.title': 'Pezzi',
   'pieces.balance': 'Le tue monete: {n}',
   'pieces.subtitle': 'Scegli lo stile che ti piace di più. Vale per tutte le scacchiere. I set con un prezzo si comprano con le monete.',
@@ -330,8 +328,6 @@ export const it: Record<MessageKey, string> = {
   'openings.tabBlack': 'Aperture col Nero',
   'openings.cardLabel': '{name}, {done} di {total} lezioni',
   'openings.botChip': 'Bot {style}',
-  'openings.back': '‹ Aperture',
-  'openings.backLabel': 'Torna ad Aperture',
   'openings.youPlayWhite': 'Giochi col Bianco',
   'openings.youPlayBlack': 'Giochi col Nero',
   'openings.completed': 'Completata',
@@ -397,8 +393,6 @@ export const it: Record<MessageKey, string> = {
   'bots.resumeButton': 'Continua',
   'bots.cardLabel': '{name}, {tagline}, livello {elo}',
   'bots.record': 'Vinte: {wins} su {played}',
-  'bots.back': '‹ Bot',
-  'bots.backLabel': 'Torna a Bot',
   'bots.random': 'A caso',
   'bots.teaches': 'Ti insegna',
   'bots.playsWhite': 'Col Bianco gioca',
@@ -756,8 +750,6 @@ export const it: Record<MessageKey, string> = {
   'quiz.back': 'Torna alla revisione',
 
   // Política de privacidad (web)
-  'privacy.back': '‹ Indietro',
-  'privacy.backLabel': 'Indietro',
   'privacy.title': 'Informativa sulla privacy di Gradus',
   'privacy.updated': 'Gradus Chess: impara gli scacchi, pubblicata da Gradus Studio. Ultimo aggiornamento: 11 novembre 2026.',
   'privacy.summary': 'Gradus non ha account, annunci né strumenti statistici, e Gradus Studio non chiede il tuo nome né la tua email. Il tuo progresso e le tue impostazioni vengono salvati solo su questo dispositivo, a meno che non attivi la sincronizzazione opzionale, che salva il tuo progresso su un server di Gradus Studio associato a una chiave casuale, senza la tua email né il tuo nome. Il promemoria giornaliero opzionale salva su quel server la registrazione del dispositivo (identificatore e abbonamento) e le notifiche pendenti, senza il tuo progresso né i tuoi dati personali.',
@@ -782,8 +774,6 @@ export const it: Record<MessageKey, string> = {
   'privacy.contact.title': 'Modifiche e contatti',
   'privacy.contact.text': 'Se questa informativa cambia, viene aggiornata a questo stesso indirizzo con una nuova data. Domande:',
   'privacy.link': 'Informativa sulla privacy',
-  'terms.back': '‹ Indietro',
-  'terms.backLabel': 'Indietro',
   'terms.title': 'Termini e condizioni di Gradus',
   'terms.updated': 'Gradus Chess: impara gli scacchi, pubblicato da Gradus Studio. Ultimo aggiornamento: 8 novembre 2026.',
   'terms.summary': 'Gradus è un\'app gratuita per imparare gli scacchi, senza account, pubblicità o pagamenti. Usandola accetti queste condizioni, che sono poche e semplici.',
@@ -972,5 +962,6 @@ export const it: Record<MessageKey, string> = {
   "puzzles.quantity.millions": "{n} Mln",
   "puzzles.quantity.thousands": "{n} mila",
   "puzzles.themeLabel": "{theme}, {solved}, {available} puzzle",
+  "back.to": "Torna a {screen}",
 
 };

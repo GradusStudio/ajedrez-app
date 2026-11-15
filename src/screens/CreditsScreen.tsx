@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { BackButton } from '../components/BackButton';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { useWideGrid } from '../components/useWideGrid';
 import { AppLink } from '../components/AppLink';
@@ -86,9 +87,7 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('common.backToProfile')} hitSlop={12}>
-        <Text style={styles.back}>{t('common.backProfile')}</Text>
-      </Pressable>
+      <BackButton screen={t('profile.settings')} onPress={onBack} />
       <Text style={styles.title}>{t('credits.title')}</Text>
       <Text style={styles.subtitle}>{t('credits.subtitle')}</Text>
       <Text style={styles.note}>{t('credits.translationsNote')}</Text>
@@ -115,7 +114,6 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
   note: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.lg },

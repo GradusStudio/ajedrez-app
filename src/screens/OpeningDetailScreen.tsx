@@ -1,6 +1,7 @@
 import React from 'react';
 import { showDialog } from '../components/dialog';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { BackButton } from '../components/BackButton';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
@@ -49,9 +50,7 @@ export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack 
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('openings.backLabel')} hitSlop={12}>
-        <Text style={styles.back}>{t('openings.back')}</Text>
-      </Pressable>
+      <BackButton screen={t('tabs.openings')} onPress={onBack} />
 
       <Text style={styles.title}>{course.name}</Text>
       <View style={styles.chips}>
@@ -117,7 +116,6 @@ export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: space.xs, marginTop: space.sm },
   summary: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, marginTop: space.md, lineHeight: 20 },

@@ -13,6 +13,7 @@ import { movesText, Notation, resolveNotation, sanFromEnglish } from '../chess/n
 import { MessageKey, useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
 import { Board, BoardMove } from '../components/Board';
+import { BackButton } from '../components/BackButton';
 import { Button3D } from '../components/Button3D';
 import { EvalBar } from '../components/EvalBar';
 import { formatScore, whiteScore } from '../engine/evalFormat';
@@ -147,11 +148,7 @@ export function FreePlayScreen({ onBack }: { onBack?: () => void } = {}) {
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
         {/* En pantalla ancha, el encabezado se alinea con el tablero y su panel. */}
         <View style={contentWidth ? { width: contentWidth, alignSelf: 'center' } : null}>
-          {onBack && (
-            <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('analysisMenu.title')} hitSlop={12}>
-              <Text style={styles.back}>{t('analysisMenu.back')}</Text>
-            </Pressable>
-          )}
+          {onBack && <BackButton screen={t('tabs.analysis')} onPress={onBack} />}
           <Text style={styles.title}>{t('analysis.title')}</Text>
           <Text style={styles.subtitle}>{t('analysis.subtitle')}</Text>
         </View>
@@ -251,7 +248,6 @@ export function FreePlayScreen({ onBack }: { onBack?: () => void } = {}) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.md },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2 },
   card: {

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Platform, Pressable, StyleSheet, Text, useWindowDimensions, View, type ViewStyle } from 'react-native';
+import { BackButton } from '../components/BackButton';
 import { Board } from '../components/Board';
 import { BoardSizeContext } from '../components/BoardSizeContext';
 import { Button3D } from '../components/Button3D';
@@ -114,9 +115,7 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
       <View style={styles.inner}>
-        <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('pieces.backLabel')} hitSlop={12} style={styles.backBtn}>
-          <Text style={styles.back}>{t('pieces.back')}</Text>
-        </Pressable>
+        <BackButton screen={t('home.back')} label={t('home.back')} onPress={onBack} />
         <View style={styles.titleRow}>
           <Text accessibilityRole="header" aria-level={1} style={styles.title}>{t('shop.title')}</Text>
           {!wide && (
@@ -271,8 +270,6 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
   inner: { width: '100%' },
-  backBtn: { alignSelf: 'flex-start' },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
   titleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: space.md },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   balanceChip: { flexDirection: 'row', alignItems: 'center', gap: space.xs },

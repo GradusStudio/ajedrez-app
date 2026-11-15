@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
+import { BackButton } from '../components/BackButton';
 import { botBodySource } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { CardSurface } from '../components/CardSurface';
@@ -84,9 +85,7 @@ export function BotDetailScreen({ bot, onPlay, onBack, onContinue, onOpenCourse,
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('bots.backLabel')} hitSlop={12}>
-        <Text style={styles.back}>{t('bots.back')}</Text>
-      </Pressable>
+      <BackButton screen={t('tabs.bots')} onPress={onBack} />
 
       <View style={[styles.cols, !wide && styles.colsNarrow]}>
         {/* Izquierda: el personaje */}
@@ -261,7 +260,6 @@ function RecordCell({ value, label, gold }: { value: number; label: string; gold
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
   cols: { flexDirection: 'row', gap: space.xxl, alignItems: 'flex-start' },
   colsNarrow: { flexDirection: 'column', gap: space.lg },
   left: { width: 360, alignItems: 'center' },

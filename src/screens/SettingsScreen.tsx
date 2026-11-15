@@ -1,9 +1,10 @@
 import React from 'react';
 import { router } from 'expo-router';
 import { showDialog } from '../components/dialog';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Button3D } from '../components/Button3D';
+import { BackButton } from '../components/BackButton';
 import { Segmented } from '../components/Segmented';
 import { SyncSection } from './SyncSection';
 import { SettingRow } from '../components/SettingRow';
@@ -92,9 +93,7 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards, onOpenCredi
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('common.backToProfile')} hitSlop={12}>
-        <Text style={styles.back}>{t('common.backProfile')}</Text>
-      </Pressable>
+      <BackButton screen={t('tabs.profile')} onPress={onBack} />
       <Text style={styles.title}>{t('settings.title')}</Text>
 
       {/* Práctica: el nivel de puzzles en las dos plataformas; el recordatorio depende del soporte de cada una */}
@@ -203,7 +202,6 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards, onOpenCredi
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   section: { fontFamily: fonts.extrabold, fontSize: 20, color: colors.text, marginTop: space.xl, marginBottom: space.sm },
   dataButton: { marginBottom: space.sm },

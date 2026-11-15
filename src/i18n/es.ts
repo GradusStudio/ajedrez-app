@@ -263,8 +263,6 @@ export const es = {
   'boardTheme.magma': 'Magma',
 
   // Piezas
-  'pieces.back': '‹ Volver',
-  'pieces.backLabel': 'Volver',
   'pieces.title': 'Piezas',
   'pieces.balance': 'Tienes {n} monedas',
   'pieces.subtitle': 'Elige el estilo que más te guste. Se aplica en todos los tableros. Los sets con precio se compran con monedas.',
@@ -328,8 +326,6 @@ export const es = {
   'openings.tabBlack': 'Aperturas con negras',
   'openings.cardLabel': '{name}, {done} de {total} lecciones',
   'openings.botChip': 'Bot {style}',
-  'openings.back': '‹ Aperturas',
-  'openings.backLabel': 'Volver a Aperturas',
   'openings.youPlayWhite': 'Juegas con blancas',
   'openings.youPlayBlack': 'Juegas con negras',
   'openings.completed': 'Completada',
@@ -395,8 +391,6 @@ export const es = {
   'bots.resumeButton': 'Continuar',
   'bots.cardLabel': '{name}, {tagline}, nivel {elo}',
   'bots.record': 'Le ganaste {wins} de {played}',
-  'bots.back': '‹ Bots',
-  'bots.backLabel': 'Volver a Bots',
   'bots.random': 'Al azar',
   'bots.teaches': 'Te enseña',
   'bots.playsWhite': 'Con blancas juega',
@@ -754,8 +748,6 @@ export const es = {
   'quiz.back': 'Volver a la revisión',
 
   // Política de privacidad (web)
-  'privacy.back': '‹ Volver',
-  'privacy.backLabel': 'Volver',
   'privacy.title': 'Política de privacidad de Gradus',
   'privacy.updated': 'Gradus Chess: aprende ajedrez, publicada por Gradus Studio. Última actualización: 11 de noviembre de 2026.',
   'privacy.summary': 'Gradus no tiene cuentas, anuncios ni herramientas de estadísticas, y Gradus Studio no te pide tu nombre ni tu correo. Tu progreso y tus ajustes se guardan solo en este dispositivo, salvo que actives la sincronización opcional, que guarda tu progreso en un servidor de Gradus Studio asociado a una llave al azar, sin tu correo ni tu nombre. El recordatorio diario opcional guarda en ese servidor el registro del dispositivo (identificador y suscripción) y los avisos pendientes, sin tu progreso ni tus datos personales.',
@@ -780,8 +772,6 @@ export const es = {
   'privacy.contact.title': 'Cambios y contacto',
   'privacy.contact.text': 'Si esta política cambia, se actualiza en esta misma dirección con una nueva fecha. Consultas:',
   'privacy.link': 'Política de privacidad',
-  'terms.back': '‹ Volver',
-  'terms.backLabel': 'Volver',
   'terms.title': 'Términos y condiciones de Gradus',
   'terms.updated': 'Gradus Chess: aprende ajedrez, publicada por Gradus Studio. Última actualización: 8 de noviembre de 2026.',
   'terms.summary': 'Gradus es una app gratuita para aprender ajedrez, sin cuentas, anuncios ni pagos. Al usarla aceptas estas condiciones, que son pocas y sencillas.',
@@ -971,6 +961,7 @@ export const es = {
   "puzzles.quantity.millions": "{n} M",
   "puzzles.quantity.thousands": "{n} mil",
   "puzzles.themeLabel": "{theme}, {solved}, {available} puzzles",
+  "back.to": "Volver a {screen}",
 } as const;
 
 export type MessageKey = keyof typeof es;

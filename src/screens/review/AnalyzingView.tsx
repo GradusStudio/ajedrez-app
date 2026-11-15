@@ -1,6 +1,7 @@
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useColumnWidth } from '../../components/ColumnScrollView';
+import { BackButton } from '../../components/BackButton';
 import { Button3D } from '../../components/Button3D';
 import { ProgressBar } from '../../components/ProgressBar';
 import { useI18n } from '../../i18n/I18nContext';
@@ -32,9 +33,7 @@ export function AnalyzingView({ down, engineReady, progress, phase, onBack, onRe
         column ? { width: '100%', maxWidth: column, alignSelf: 'center' } : null,
       ]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('review.chooseOther')} hitSlop={12}>
-        <Text style={styles.back}>{t('analysisMenu.back')}</Text>
-      </Pressable>
+      <BackButton screen={t('tabs.analysis')} onPress={onBack} />
       <Text style={styles.title}>{t('review.title')}</Text>
       <View style={styles.center}>
         {down ? (

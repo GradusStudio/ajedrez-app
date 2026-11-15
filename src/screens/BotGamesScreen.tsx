@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { BackButton } from '../components/BackButton';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { BotAvatar } from '../components/BotAvatar';
 import { statusBarTop } from '../components/statusBarTop';
@@ -27,9 +28,7 @@ export function BotGamesScreen({ onBack, onOpenBot }: Props) {
       style={styles.screen}
       contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
     >
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('pieces.backLabel')} hitSlop={12}>
-        <Text style={styles.back}>{t('pieces.back')}</Text>
-      </Pressable>
+      <BackButton screen={t('tabs.profile')} onPress={onBack} />
       <Text style={styles.title}>{t('profile.botGames')}</Text>
       <Text style={styles.subtitle}>{t('profile.botGames.subtitle')}</Text>
 
@@ -67,7 +66,6 @@ export function BotGamesScreen({ onBack, onOpenBot }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.sm },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   subtitle: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
   empty: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },

@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.lg },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.md },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   muted: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted },
   analyzing: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.text },

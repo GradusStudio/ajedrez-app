@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button3D } from '../components/Button3D';
+import { BackButton } from '../components/BackButton';
 import { ColumnScrollView } from '../components/ColumnScrollView';
 import { Segmented } from '../components/Segmented';
 import { MessageKey, useI18n } from '../i18n/I18nContext';
@@ -108,9 +109,7 @@ export function ImportGameScreen({ onBack, onReview }: Props) {
         contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}
         keyboardShouldPersistTaps="handled"
       >
-        <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={t('analysisMenu.title')} hitSlop={12}>
-          <Text style={styles.back}>{t('analysisMenu.back')}</Text>
-        </Pressable>
+        <BackButton screen={t('tabs.analysis')} onPress={onBack} />
         <Text style={styles.title}>{t('import.title')}</Text>
         <View style={{ height: space.lg }} />
         <Segmented
@@ -206,7 +205,6 @@ export function ImportGameScreen({ onBack, onReview }: Props) {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xxl },
-  back: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginBottom: space.md },
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text },
   label: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.text, marginBottom: space.sm },
   input: {

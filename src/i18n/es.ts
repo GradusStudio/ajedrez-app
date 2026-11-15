@@ -930,6 +930,23 @@ export const es = {
   "profile.achievement.turningPoint.description": "Resuelve un punto de giro.",
   "profile.achievement.collector.name": "Coleccionista",
   "profile.achievement.collector.description": "Compra algo en la tienda.",
+  "bots.number": "BOT {n} DE {total}",
+  "bots.openings": "Sus aperturas",
+  "bots.myGames": "Tus partidas contra {name}",
+  "bots.won": "Ganadas",
+  "bots.lost": "Perdidas",
+  "bots.drawn": "Tablas",
+  "bots.result.win": "ganada",
+  "bots.result.loss": "perdida",
+  "bots.result.draw": "tablas",
+  "bots.lastGames": "Últimas partidas: {results}",
+  "bots.noGamesShort": "sin partidas",
+  "bots.noGames": "Todavía no jugaste contra {name}. Gánale una vez y suma {coins} monedas.",
+  "bots.ongoing": "Partida sin terminar · jugada {n}",
+  "bots.yourTurn": "te toca a ti",
+  "bots.rivalTurn": "le toca a {name}",
+  "bots.prepare": "¿Quieres prepararte?",
+  "bots.practiceLink": "Practica la {opening} contra {bot} ›",
 } as const;
 
 export type MessageKey = keyof typeof es;

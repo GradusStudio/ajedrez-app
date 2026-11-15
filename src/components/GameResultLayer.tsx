@@ -84,6 +84,18 @@ export function GameResultLayer(props: Props) {
   const glowColor = kind === 'win' ? colors.gold : kind === 'loss' ? colors.primary : '#FFFFFF';
   const speech = kind === 'win' ? bot.lines.onLose : kind === 'loss' ? bot.lines.onWin : bot.lines.onDraw;
   const titleColor = kind === 'win' ? colors.gold : kind === 'loss' ? colors.text : colors.textMuted;
+  const resultTitle = kind === 'win' ? t('game.win') : kind === 'loss' ? t('game.loss') : t('game.draw');
+  // Lo que anuncia el lector al abrir la capa: el resultado, la frase del bot y lo que se ganó.
+  const summaryLabel = [
+    t('result.match', { bot: bot.name, elo: number(bot.elo) }),
+    resultTitle,
+    speech,
+    coins > 0 ? t('result.coinsPill', { n: coins }) : '',
+    dailyBonus > 0 ? t('result.dailyPill', { n: dailyBonus }) : '',
+    streak > 0 ? tn('result.streakPill', streak) : '',
+  ]
+    .filter(Boolean)
+    .join('. ');
   const moveNo = Math.max(1, Math.ceil(plies / 2));
   const history = botHistory(games, bot.id);
   const note = history ? historyNote(history) : null;
@@ -265,7 +277,7 @@ export function GameResultLayer(props: Props) {
         aria-level={1}
         style={[styles.big, { color: titleColor }]}
       >
-        {kind === 'win' ? t('game.win') : kind === 'loss' ? t('game.loss') : t('game.draw')}
+        {resultTitle}
       </Text>
       <Text style={styles.howText}>{how}</Text>
       {pills}
@@ -305,7 +317,14 @@ export function GameResultLayer(props: Props) {
   );
 
   return (
-    <Animated.View ref={layerRef} style={[styles.layer, { opacity: fade }]} role="dialog" aria-modal aria-label={t('result.match', { bot: bot.name, elo: number(bot.elo) })}>
+    <Animated.View
+      ref={layerRef}
+      style={[styles.layer, { opacity: fade }]}
+      role="dialog"
+      aria-modal
+      aria-label={summaryLabel}
+      accessibilityViewIsModal
+    >
       <Pressable onPress={props.onClose} accessibilityRole="button" accessibilityLabel={t('result.close')} hitSlop={10} style={styles.close}>
         <Text style={styles.closeGlyph}>✕</Text>
       </Pressable>

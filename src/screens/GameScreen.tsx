@@ -404,9 +404,13 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
     ]);
   };
 
-  // El botón "atrás" de Android pide la misma confirmación que la ✕.
+  // El botón "atrás" de Android cierra la capa del resultado si está abierta; si no, pide salir como siempre.
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (layer) {
+        setLayer(false);
+        return true;
+      }
       exit();
       return true;
     });

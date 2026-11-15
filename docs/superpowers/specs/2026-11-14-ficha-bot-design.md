@@ -43,3 +43,24 @@ Todo existe: `bots.json` (nombre, frase, nivel, estilo, rasgo, «te enseña», r
 
 - `npm test`, `npx expo lint`, `npx tsc --noEmit`, `noHardcoded`.
 - Navegador (`web-compilada`) a 1366 y 375 px: un bot sin partidas (Ada), uno con récord (Tomás), uno con una partida sin terminar, uno sin libro con negras (Pipo); el enlace a un curso de apertura y a la práctica; elegir color y jugar.
+
+## Aperturas de cada bot (revisión del 14-11-2026, aprobada por el autor)
+
+Revisadas contra la personalidad de cada bot. Problema encontrado: **9 cursos no los jugaba ningún bot** (Dragón, Ataque Indio de Rey, Moderna, Pirc, Blackmar-Diemer, Rossolimo, Alapin, Gambito de dama aceptado y Holandesa), y `botForOpening` (`src/data/bots.ts`) caía en Don Ramiro, que no tiene esas aperturas en su libro. Además, Valentina y Sofía jugaban casi lo mismo (Gambito de rey y Najdorf).
+
+Cambios en `repertoire` de `src/data/bots.json` (y de cada `src/data/i18n/<lang>/bots.json` si repite el repertorio):
+
+| Bot | Blancas | Negras |
+|---|---|---|
+| Valentina | vienna, kings-gambit, danish, **bdg** | **dragon** (en lugar de sicilian) |
+| Bruno | london, **kia** | caro-kann, french, **dutch** |
+| Lola | london | scandinavian, **pirc** |
+| Camila | english, catalan, queens-gambit, **queens-gambit-accepted** | queens-gambit-declined |
+| Maestro Ivo | ruy-lopez, queens-gambit, **rossolimo** | nimzo-indian, queens-gambit-declined |
+| Ada | london, italian, vienna, ruy-lopez, queens-gambit, **alapin** | scandinavian, petrov, sicilian, nimzo-indian, **modern** |
+| Pipo, Tomás, Don Ramiro, Sofía | sin cambios | sin cambios |
+
+- Comprobar que el libro de cada bot (`book`: corto, medio, largo) se arma también con los cursos nuevos y que el bot los juega desde la primera jugada (`src/bots/brain.ts`).
+- Prueba nueva: **todo curso de `aperturas-v3.json` tiene al menos un bot** que lo juega del color del curso; si falla, la prueba nombra el curso.
+- `botForOpening` ya elige al bot de menor nivel que juega el curso: con esto, la práctica de cada curso es contra alguien que lo conoce.
+- Revisar en `docs/bots.md` el repertorio de cada ficha y actualizarlo.

@@ -16,6 +16,7 @@ import {
   PIECE_ORDER,
   PX_PER_UNIT,
   SHEET_PX,
+  closeMask,
   fillHoles,
   pathFromSvg,
   placementFor,
@@ -73,8 +74,8 @@ function crop(mask: Uint8Array, sheetW: number, box: Box) {
 }
 
 /** Compone la máscara en el lienzo de 1000 px (blanco y negro) y la traza con potrace. */
-async function traceMask(mask: Uint8Array, w: number, h: number, type: PieceType): Promise<string> {
-  const place = placementFor(type, w, h);
+async function traceMask(mask: Uint8Array, w: number, h: number, type: PieceType, stretchX = 1): Promise<string> {
+  const place = placementFor(type, w, h, stretchX);
   const raw = Buffer.alloc(w * h);
   for (let i = 0; i < raw.length; i++) raw[i] = mask[i] ? 0 : 255;
   const piece = await sharp(raw, { raw: { width: w, height: h, channels: 1 } })
@@ -99,19 +100,29 @@ async function readSheet(set: SheetSet, file: string): Promise<Record<PieceKey, 
   const { ink, width, height } = await loadInk(file);
   const boxes = splitSheet(ink, width, height);
   const out = {} as Record<PieceKey, Paths>;
-  for (const [color, list] of [['w', boxes.white], ['b', boxes.black]] as const) {
-    for (let i = 0; i < PIECE_ORDER.length; i++) {
-      const type = PIECE_ORDER[i];
-      const box = list[i];
-      if (!box) throw new Error(`${set}: falta la pieza ${i + 1} de la fila ${color === 'w' ? 'blanca' : 'negra'}`);
-      const piece = crop(ink, width, box);
-      const sil = fillHoles(piece.mask, piece.width, piece.height);
-      const key = `${color}${type}` as PieceKey;
-      out[key] = {
-        sil: await traceMask(sil, piece.width, piece.height, type),
-        ink: await traceMask(piece.mask, piece.width, piece.height, type),
-      };
-    }
+  for (let i = 0; i < PIECE_ORDER.length; i++) {
+    const type = PIECE_ORDER[i];
+    const wb = boxes.white[i];
+    const bb = boxes.black[i];
+    if (!wb) throw new Error(`${set}: falta la pieza ${i + 1} de la fila blanca`);
+    if (!bb) throw new Error(`${set}: falta la pieza ${i + 1} de la fila negra`);
+    const wp = crop(ink, width, wb);
+    const bp = crop(ink, width, bb);
+    // El ancho de la negra se lleva al de la blanca: el dibujo de la fila negra puede venir más ancho.
+    const stretch = wp.width / wp.height / (bp.width / bp.height);
+    const ws = fillHoles(wp.mask, wp.width, wp.height);
+    // En las negras, la base, la corona o las almenas pueden estar separadas por una línea blanca fina:
+    // el cierre morfológico une las partes para que la silueta y la tinta salgan del mismo trazado.
+    const radius = Math.max(4, Math.round(Math.min(bp.width, bp.height) * 0.04));
+    const bs = closeMask(bp.mask, bp.width, bp.height, radius);
+    out[`w${type}` as PieceKey] = {
+      sil: await traceMask(ws, wp.width, wp.height, type),
+      ink: await traceMask(wp.mask, wp.width, wp.height, type),
+    };
+    out[`b${type}` as PieceKey] = {
+      sil: await traceMask(bs, bp.width, bp.height, type, stretch),
+      ink: await traceMask(bp.mask, bp.width, bp.height, type, stretch),
+    };
   }
   return out;
 }

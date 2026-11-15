@@ -7,12 +7,14 @@ import {
   PIECE_ORDER,
   PX_PER_UNIT,
   TARGET_HEIGHTS,
+  closeMask,
   fillHoles,
   pathFromSvg,
   placementFor,
   scalePathNumbers,
   splitSheet,
 } from './build-piece-sets.logic';
+import { PIECE_PATHS } from '../src/pieces/pieceSets';
 
 test('las alturas del Clásico mantienen el orden rey > dama ≥ alfil ≥ caballo ≥ torre > peón', () => {
   const order = PIECE_ORDER.map((t) => TARGET_HEIGHTS[t]);
@@ -30,6 +32,14 @@ test('cada pieza nueva apoya en la línea de base y se centra', () => {
   assert.equal(place.height, Math.round(TARGET_HEIGHTS.k * PX_PER_UNIT));
   assert.equal(place.top + place.height, BASELINE * PX_PER_UNIT);
   assert.equal(place.left + place.width / 2, CENTER_X * PX_PER_UNIT);
+});
+
+test('stretchX corrige el ancho sin cambiar la altura ni la base', () => {
+  const base = placementFor('q', 200, 300);
+  const corregida = placementFor('q', 200, 300, 0.8);
+  assert.ok(Math.abs(corregida.width - base.width * 0.8) <= 1);
+  assert.equal(corregida.height, base.height);
+  assert.equal(corregida.top + corregida.height, BASELINE * PX_PER_UNIT);
 });
 
 test('una pieza ancha se limita al ancho máximo y no se sale del viewBox', () => {
@@ -89,4 +99,52 @@ test('scalePathNumbers pasa de píxeles del lienzo a unidades del viewBox', () =
 test('pathFromSvg extrae el d del svg de potrace', () => {
   assert.equal(pathFromSvg('<svg><path fill="#000" d="M0 0 L1 1 Z"/></svg>'), 'M0 0 L1 1 Z');
   assert.throws(() => pathFromSvg('<svg></svg>'), /path/);
+});
+
+test('closeMask une un canal fino y deja abierto uno ancho', () => {
+  const W = 40;
+  const H = 20;
+  const fine = new Uint8Array(W * H);
+  for (let y = 2; y <= 8; y++) for (let x = 2; x <= 37; x++) fine[y * W + x] = 1;
+  for (let y = 10; y <= 17; y++) for (let x = 2; x <= 37; x++) fine[y * W + x] = 1;
+  assert.equal(closeMask(fine, W, H, 2)[9 * W + 20], 1, 'el canal de una fila se cierra');
+
+  const wide = new Uint8Array(W * H);
+  for (let y = 2; y <= 8; y++) for (let x = 2; x <= 37; x++) wide[y * W + x] = 1;
+  for (let y = 17; y <= 19; y++) for (let x = 2; x <= 37; x++) wide[y * W + x] = 1;
+  assert.equal(closeMask(wide, W, H, 2)[12 * W + 20], 0, 'el canal de ocho filas sigue abierto');
+});
+
+/** Caja aproximada de un path (todos sus números son coordenadas x, y). */
+function pathBox(d: string) {
+  const nums = (d.match(/-?\d*\.?\d+/g) ?? []).map(Number);
+  let x0 = Infinity;
+  let y0 = Infinity;
+  let x1 = -Infinity;
+  let y1 = -Infinity;
+  for (let i = 0; i + 1 < nums.length; i += 2) {
+    x0 = Math.min(x0, nums[i]);
+    x1 = Math.max(x1, nums[i]);
+    y0 = Math.min(y0, nums[i + 1]);
+    y1 = Math.max(y1, nums[i + 1]);
+  }
+  return { x0, y0, x1, y1, width: x1 - x0, height: y1 - y0 };
+}
+
+test('las negras de cada set miden como las blancas y su tinta queda dentro de la silueta', () => {
+  const types = ['k', 'q', 'r', 'b', 'n', 'p'] as const;
+  for (const set of ['minimalista', 'redondeado', 'madera', 'marmol', 'magma'] as const) {
+    for (const t of types) {
+      const w = pathBox(PIECE_PATHS[set][`w${t}`].sil);
+      const b = pathBox(PIECE_PATHS[set][`b${t}`].sil);
+      assert.ok(b.width <= w.width * 1.05, `${set}-${t}: ancho negra ${b.width.toFixed(1)} vs blanca ${w.width.toFixed(1)}`);
+      assert.ok(Math.abs(b.height - w.height) <= w.height * 0.05, `${set}-${t}: alto`);
+      assert.ok(Math.abs(b.y1 - BASELINE) <= 1 && Math.abs(w.y1 - BASELINE) <= 1, `${set}-${t}: línea de base`);
+      const ink = pathBox(PIECE_PATHS[set][`b${t}`].ink);
+      assert.ok(
+        ink.x0 >= b.x0 - 3 && ink.x1 <= b.x1 + 3 && ink.y0 >= b.y0 - 3 && ink.y1 <= b.y1 + 3,
+        `${set}-${t}: la tinta se sale de la silueta`,
+      );
+    }
+  }
 });

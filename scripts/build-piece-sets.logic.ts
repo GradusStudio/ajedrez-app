@@ -31,16 +31,21 @@ export type Placement = { left: number; top: number; width: number; height: numb
 /** Cajas (en píxeles inclusivos) de las 12 piezas: primero las 6 blancas y después las 6 negras. */
 export type SheetBoxes = { white: Box[]; black: Box[] };
 
-/** Dónde y con qué tamaño se compone cada pieza en el lienzo de 1000 × 1000 px que se pasa a potrace. */
-export function placementFor(type: PieceType, cropW: number, cropH: number): Placement {
+/**
+ * Dónde y con qué tamaño se compone cada pieza en el lienzo de 1000 × 1000 px que se pasa a potrace.
+ * `stretchX` corrige en horizontal la fila negra para que su ancho coincida con el de la blanca
+ * (el dibujo de ChatGPT no siempre tiene la misma proporción en las dos filas).
+ */
+export function placementFor(type: PieceType, cropW: number, cropH: number, stretchX = 1): Placement {
   if (!(cropW > 0) || !(cropH > 0)) throw new Error('la pieza no tiene píxeles');
   const targetH = TARGET_HEIGHTS[type] * PX_PER_UNIT;
-  let width = (cropW * targetH) / cropH;
+  let width = ((cropW * targetH) / cropH) * stretchX;
   let height = targetH;
   const maxW = MAX_WIDTH * PX_PER_UNIT;
   if (width > maxW) {
+    const k = maxW / width;
     width = maxW;
-    height = (cropH * maxW) / cropW;
+    height *= k;
   }
   const w = Math.round(width);
   const h = Math.round(height);
@@ -147,6 +152,48 @@ export function fillHoles(mask: Uint8Array, width: number, height: number): Uint
   }
   const out = new Uint8Array(mask);
   for (let i = 0; i < out.length; i++) if (!mask[i] && !outside[i]) out[i] = 1;
+  return out;
+}
+
+/** Distancia de Manhattan de cada píxel al píxel más cercano con valor `seed` (0 o 1). */
+function distanceTo(mask: Uint8Array, width: number, height: number, seed: number): Int32Array {
+  const INF = 1e9;
+  const d = new Int32Array(width * height);
+  for (let i = 0; i < d.length; i++) d[i] = mask[i] === seed ? 0 : INF;
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const i = y * width + x;
+      let v = d[i];
+      if (x > 0) v = Math.min(v, d[i - 1] + 1);
+      if (y > 0) v = Math.min(v, d[i - width] + 1);
+      d[i] = v;
+    }
+  }
+  for (let y = height - 1; y >= 0; y--) {
+    for (let x = width - 1; x >= 0; x--) {
+      const i = y * width + x;
+      let v = d[i];
+      if (x < width - 1) v = Math.min(v, d[i + 1] + 1);
+      if (y < height - 1) v = Math.min(v, d[i + width] + 1);
+      d[i] = v;
+    }
+  }
+  return d;
+}
+
+/**
+ * Cierre morfológico (dilatar y erosionar) con un elemento en rombo de radio `radius`.
+ * Une las partes de una pieza negra separadas por una línea blanca fina (la base, el pedestal,
+ * el cuello del peón) sin rellenar los huecos anchos (el espacio entre almenas).
+ */
+export function closeMask(mask: Uint8Array, width: number, height: number, radius: number): Uint8Array {
+  if (!(radius > 0)) return new Uint8Array(mask);
+  const d1 = distanceTo(mask, width, height, 1);
+  const dilated = new Uint8Array(mask.length);
+  for (let i = 0; i < dilated.length; i++) dilated[i] = d1[i] <= radius ? 1 : 0;
+  const d0 = distanceTo(dilated, width, height, 0);
+  const out = new Uint8Array(mask.length);
+  for (let i = 0; i < out.length; i++) out[i] = dilated[i] && d0[i] > radius ? 1 : 0;
   return out;
 }
 

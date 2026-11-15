@@ -118,6 +118,7 @@ export const es = {
   'unitTest.failed.message': 'Se aprueba con un error como máximo. Podés repetirla ahora.',
   'settings.openAllUnits': 'Abrir todas las unidades',
   'settings.openAllUnits.description': 'Para el nivel «Nunca jugué»: todas las unidades disponibles desde el principio.',
+  'settings.openAllUnits.byLevel': 'Con tu nivel ya están todas abiertas.',
   'home.unitWheelLocked': 'Unidad {n}: {title}, cerrada, {done} de {total} lecciones',
 
   // Aprender

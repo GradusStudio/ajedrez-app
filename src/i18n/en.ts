@@ -119,6 +119,7 @@ export const en: Record<MessageKey, string> = {
   'unitTest.failed.message': 'You pass with at most one mistake. You can retry now.',
   'settings.openAllUnits': 'Open all units',
   'settings.openAllUnits.description': 'For the “Never played” level: every unit available from the start.',
+  'settings.openAllUnits.byLevel': 'With your level, all units are already open.',
   'home.unitWheelLocked': 'Unit {n}: {title}, locked, {done} of {total} lessons',
 
   // Aprender

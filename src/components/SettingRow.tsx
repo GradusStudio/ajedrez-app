@@ -11,10 +11,12 @@ type Props = {
   /** Fila que abre otra pantalla: muestra el valor actual y "›". */
   detail?: string;
   onPress?: () => void;
+  /** Interruptor apagado sin interacción (por ejemplo, cuando el nivel ya abre todo). */
+  disabled?: boolean;
 };
 
 /** Fila de Ajustes y Perfil: con interruptor o con flecha. */
-export function SettingRow({ label, description, value, onValueChange, detail, onPress }: Props) {
+export function SettingRow({ label, description, value, onValueChange, detail, onPress, disabled = false }: Props) {
   const content = (
     <>
       <View style={{ flex: 1 }}>
@@ -24,10 +26,12 @@ export function SettingRow({ label, description, value, onValueChange, detail, o
       {onValueChange ? (
         <Switch
           value={value}
-          onValueChange={onValueChange}
+          onValueChange={disabled ? undefined : onValueChange}
+          disabled={disabled}
           trackColor={{ false: colors.outline, true: colors.primary }}
           thumbColor="#FFFFFF"
           accessibilityLabel={label}
+          accessibilityState={{ disabled }}
         />
       ) : (
         <Text style={styles.detail}>{detail ? `${detail}  ›` : '›'}</Text>
@@ -47,7 +51,7 @@ export function SettingRow({ label, description, value, onValueChange, detail, o
       </Pressable>
     );
   }
-  return <View style={styles.row}>{content}</View>;
+  return <View style={[styles.row, disabled && styles.rowDisabled]}>{content}</View>;
 }
 
 const styles = StyleSheet.create({
@@ -65,6 +69,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
     marginBottom: space.sm,
   },
+  rowDisabled: { opacity: 0.5 },
   label: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text },
   description: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, marginTop: 2 },
   detail: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted },

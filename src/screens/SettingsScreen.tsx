@@ -34,6 +34,8 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards, onOpenCredi
   const { pieceSet } = usePieceSet();
   const boardTheme = useBoardTheme();
   const pieceName = t(`pieceSet.${pieceSet}.name`);
+  // Con un nivel distinto de «nunca jugué» todas las unidades están abiertas por el nivel (unitOpen, path.ts).
+  const levelOpensAll = progress.profile.level !== 'nuevo';
 
   const setReminder = async (enabled: boolean, hour = settings.reminder.hour) => {
     if (!enabled) {
@@ -106,9 +108,10 @@ export function SettingsScreen({ onBack, onOpenPieces, onOpenBoards, onOpenCredi
       />
       <SettingRow
         label={t('settings.openAllUnits')}
-        description={t('settings.openAllUnits.description')}
-        value={settings.openAllUnits}
+        description={levelOpensAll ? t('settings.openAllUnits.byLevel') : t('settings.openAllUnits.description')}
+        value={levelOpensAll ? true : settings.openAllUnits}
         onValueChange={(v) => update({ openAllUnits: v })}
+        disabled={levelOpensAll}
       />
       {REMINDER_SUPPORT === 'supported' && (
         <>

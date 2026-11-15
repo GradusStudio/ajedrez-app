@@ -119,6 +119,7 @@ export const de: Record<MessageKey, string> = {
   'unitTest.failed.message': 'Du bestehst mit höchstens einem Fehler. Du kannst es sofort wiederholen.',
   'settings.openAllUnits': 'Alle Einheiten öffnen',
   'settings.openAllUnits.description': 'Für das Niveau „Nie gespielt“: alle Einheiten von Anfang an verfügbar.',
+  'settings.openAllUnits.byLevel': 'Mit deinem Niveau sind alle Einheiten bereits offen.',
   'home.unitWheelLocked': 'Einheit {n}: {title}, gesperrt, {done} von {total} Lektionen',
 
   // Aprender

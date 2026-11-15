@@ -1,8 +1,9 @@
 import React from 'react';
-import Svg, { ClipPath, Defs, Image, Path } from 'react-native-svg';
+import Svg, { Circle, ClipPath, Defs, Image, LinearGradient, Path, Stop } from 'react-native-svg';
 import { AnyPieceSetId, MATERIAL_SETS, isMaterialSet, pathSetOf, pieceClipIds } from '../pieces/materials';
 import { PIECE_PATHS, PieceKey } from '../pieces/pieceSets';
 import { TEXTURES } from '../pieces/textures';
+import { volcanoShapes } from '../pieces/volcano';
 import { winterShapes } from '../pieces/winter';
 import { usePieceSet } from '../settings/PieceSetContext';
 
@@ -36,10 +37,14 @@ function Piece({ type, color, size, set }: Props) {
 
   if (isMaterialSet(id)) {
     const tex = TEXTURES[id];
-    const { outline, rim, winter } = MATERIAL_SETS[id];
+    const { outline, rim, winter, volcano, rimStrong } = MATERIAL_SETS[id];
     const w = winter ? winterShapes(paths.sil) : null;
+    const v = volcano ? volcanoShapes(paths.sil) : null;
     const white = color === 'w';
     const clip = pieceClipIds(id, key, uid);
+    const lavaId = `lava-${clip.sil}`;
+    const lava = `url(#${lavaId})`;
+    const clipOf = white ? clip.sil : clip.ink;
     const area = { x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'xMidYMid slice' } as const;
     return (
       <Svg width={size} height={size} viewBox={VIEW_BOX} pointerEvents="none">
@@ -50,20 +55,49 @@ function Piece({ type, color, size, set }: Props) {
           <ClipPath id={clip.ink}>
             <Path d={paths.ink} clipRule="evenodd" />
           </ClipPath>
+          {v && (
+            <LinearGradient id={lavaId} x1={0} y1={v.lavaFrom} x2={0} y2={v.lavaTo} gradientUnits="userSpaceOnUse">
+              <Stop offset={0} stopColor="#FFD54A" />
+              <Stop offset={0.55} stopColor="#FF7A12" />
+              <Stop offset={1} stopColor="#D93A00" />
+            </LinearGradient>
+          )}
         </Defs>
         {w && <Path d={w.icicles} fill={white ? '#E4F4FF' : '#7FD4F0'} stroke={outline} strokeWidth={0.9} strokeLinejoin="round" />}
+        {v && <Path d={v.drops} fill={lava} stroke={outline} strokeWidth={0.9} strokeLinejoin="round" />}
         <Image {...area} href={tex.white} clipPath={`url(#${clip.sil})`} />
         {w && white && <Path d={w.cap} fill="#FFFFFF" clipPath={`url(#${clip.sil})`} />}
+        {v && white && <Path d={v.lava} fill={lava} clipPath={`url(#${clip.sil})`} />}
         {white ? (
           <Path d={paths.ink} fill={outline} fillRule="evenodd" />
         ) : (
           <>
             <Image {...area} href={tex.black} clipPath={`url(#${clip.ink})`} />
             {w && <Path d={w.cap} fill="#F2FAFF" clipPath={`url(#${clip.ink})`} />}
-            <Path d={paths.ink} fill="none" stroke={rim} strokeWidth={0.7} strokeOpacity={0.8} />
+            {v && <Path d={v.lava} fill={lava} clipPath={`url(#${clip.ink})`} />}
+            <Path
+              d={paths.ink}
+              fill="none"
+              stroke={rim}
+              strokeWidth={rimStrong ? 1.1 : 0.7}
+              strokeOpacity={rimStrong ? 1 : 0.8}
+            />
+          </>
+        )}
+        {v && (
+          <>
+            <Path d={v.cracks} stroke="#FF7A12" strokeWidth={1.8} strokeOpacity={0.55} strokeLinecap="round" fill="none" clipPath={`url(#${clipOf})`} />
+            <Path d={v.cracks} stroke="#FFD54A" strokeWidth={0.7} strokeOpacity={0.95} strokeLinecap="round" fill="none" clipPath={`url(#${clipOf})`} />
           </>
         )}
         {w && <Path d={w.flake} stroke={white ? '#3A8FC4' : '#BFEFFF'} strokeWidth={1.3} strokeLinecap="round" fill="none" />}
+        {v &&
+          v.embers.map((e, i) => (
+            <React.Fragment key={i}>
+              <Circle cx={e.x} cy={e.y} r={e.r * 2.6} fill="#FF7A12" opacity={0.18} />
+              <Circle cx={e.x} cy={e.y} r={e.r} fill="#FFD54A" opacity={0.95} />
+            </React.Fragment>
+          ))}
       </Svg>
     );
   }

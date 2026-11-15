@@ -6,12 +6,17 @@ import { PIECE_SET_META, PieceKey, PieceSetId } from './pieceSets';
 export type MaterialSetId = 'madera' | 'marmol' | 'hielo' | 'magma';
 export type AnyPieceSetId = PieceSetId | MaterialSetId;
 
-// `winter`: suma nieve, carámbanos y un copo (winter.ts). `outline`: contorno de las piezas blancas. `rim`: filo fino alrededor de las negras (separa la pieza de una casilla oscura).
-export const MATERIAL_SETS: Record<MaterialSetId, { outline: string; rim: string; winter?: boolean }> = {
+// `winter`: suma nieve, carámbanos y un copo (winter.ts). `volcano`: lava, grietas, gotas y brasas (volcano.ts).
+// `outline`: contorno de las piezas blancas. `rim`: filo alrededor de las negras (separa la pieza de una casilla oscura);
+// `rimStrong` lo engrosa y lo deja opaco (magma).
+export const MATERIAL_SETS: Record<
+  MaterialSetId,
+  { outline: string; rim: string; winter?: boolean; volcano?: boolean; rimStrong?: boolean }
+> = {
   madera: { outline: '#3B2412', rim: '#C89A5E' },
   marmol: { outline: '#2A2A2A', rim: '#D8C48A' },
   hielo: { outline: '#14304A', rim: '#9FD8F2', winter: true },
-  magma: { outline: '#3A0F02', rim: '#FF9A4D' },
+  magma: { outline: '#3A0F02', rim: '#FF9A4D', volcano: true, rimStrong: true },
 };
 
 export const isMaterialSet = (id: string): id is MaterialSetId => id in MATERIAL_SETS;

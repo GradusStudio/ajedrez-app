@@ -261,7 +261,9 @@ function SetThumb({ id, board }: { id: AnyPieceSetId; board: BoardThemeId }) {
           <View key={p.type} style={[styles.thumbPieceCell, { backgroundColor: light ? theme.light : theme.dark }]}>
             <SquareTexture theme={board} light={light} seed={i} />
             {boardSeams(board) && <BoardSeams cell={56} left={i > 0} />}
-            <Piece type={p.type} color={p.color} size={44} set={id} showEmbers />
+            <View style={styles.thumbPieceOnTop}>
+              <Piece type={p.type} color={p.color} size={44} set={id} showEmbers />
+            </View>
           </View>
         );
       })}
@@ -316,4 +318,6 @@ const styles = StyleSheet.create({
   thumbCell: { width: '25%', height: '50%' },
   thumbPieces: { flexDirection: 'row', width: '100%', aspectRatio: 1.6, borderRadius: 12, overflow: 'hidden' },
   thumbPieceCell: { flex: 1, height: '100%', alignItems: 'center', justifyContent: 'center' },
+  // La textura y las juntas son capas absolutas: la pieza va en un View posicionado para quedar encima.
+  thumbPieceOnTop: { zIndex: 1 },
 });

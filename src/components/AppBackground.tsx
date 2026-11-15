@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
-import Svg, { Defs, Ellipse, LinearGradient, RadialGradient, Rect, Stop } from 'react-native-svg';
+import Svg, { Defs, LinearGradient, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { colors } from '../theme';
 
 /**
@@ -11,7 +11,6 @@ import { colors } from '../theme';
  */
 export function AppBackground() {
   const { width, height } = useWindowDimensions();
-  const vmax = Math.max(width, height);
 
   return (
     <Svg style={StyleSheet.absoluteFill} width={width} height={height} pointerEvents="none" aria-hidden>
@@ -20,33 +19,21 @@ export function AppBackground() {
           <Stop offset="0" stopColor={colors.bgTop} />
           <Stop offset="1" stopColor={colors.bgBottom} />
         </LinearGradient>
-        {/* Viñeta: elipse de 130 % × 110 % centrada en 40 % 30 %, transparente hasta la mitad y negra al borde. */}
-        <RadialGradient id="gradus-bg-vignette" cx="50%" cy="50%" r="50%">
-          <Stop offset="0.5" stopColor="#000000" stopOpacity={0} />
-          <Stop offset="1" stopColor="#000000" stopOpacity={0.45} />
+        {/* Viñeta: un Rect a pantalla completa con el gradiente más allá de los bordes, sin arcos. */}
+        <RadialGradient id="gradus-bg-vignette" cx="40%" cy="30%" r="0.75">
+          <Stop offset="0.45" stopColor="#000000" stopOpacity={0} />
+          <Stop offset="1" stopColor="#000000" stopOpacity={1} />
         </RadialGradient>
-        {/* Luz: elipse de 70vmax × 55vmax centrada en 30 % 20 %. */}
-        <RadialGradient id="gradus-bg-lamp" cx="50%" cy="50%" r="50%">
+        {/* Luz: elipse de 70vmax × 55vmax centrada en 30 % 20 %, también a pantalla completa. */}
+        <RadialGradient id="gradus-bg-lamp" cx="30%" cy="20%" r="0.8">
           <Stop offset="0" stopColor="#FFC480" stopOpacity={0.13} />
           <Stop offset="0.55" stopColor="#FFC480" stopOpacity={0.04} />
           <Stop offset="0.8" stopColor="#FFC480" stopOpacity={0} />
         </RadialGradient>
       </Defs>
       <Rect width={width} height={height} fill="url(#gradus-bg-base)" />
-      <Ellipse
-        cx={width * 0.4}
-        cy={height * 0.3}
-        rx={width * 0.65}
-        ry={height * 0.55}
-        fill="url(#gradus-bg-vignette)"
-      />
-      <Ellipse
-        cx={width * 0.3}
-        cy={height * 0.2}
-        rx={vmax * 0.35}
-        ry={vmax * 0.275}
-        fill="url(#gradus-bg-lamp)"
-      />
+      <Rect width={width} height={height} fill="url(#gradus-bg-vignette)" />
+      <Rect width={width} height={height} fill="url(#gradus-bg-lamp)" />
     </Svg>
   );
 }

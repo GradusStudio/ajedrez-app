@@ -9,7 +9,7 @@ Fecha: 14-11-2026 · Diseño: opus · Pedido del autor: «Perfil en la parte de 
 - Arriba, las secciones de siempre: Inicio, Aprender, Aperturas, Puzzles, Bots y Análisis.
 - Un espacio flexible empuja al fondo un grupo separado por una línea de 2 px (`rgba(255,255,255,.06)`):
   - **Tienda**, con el ícono de bolsa y el saldo de monedas a la derecha (moneda de 18 px y número en `gold`, 14 px).
-  - **Perfil**, como fila más alta (60 px): la cara del avatar del usuario (o la de Pipo si no eligió) en un círculo de 40 px con canto dorado, «Perfil» en 16 px y, debajo, la racha («Racha de 6 días», 13 px, `textMuted`).
+  - **Perfil**, como fila más alta (60 px): el ícono de Perfil (como las demás filas, sin foto; decisión del autor del 14-11), «Perfil» en 16 px y, debajo, la racha («Racha de 6 días», 13 px, `textMuted`).
 - La versión compacta (960 a 1199 px, solo íconos) mantiene el mismo orden: Tienda y Perfil abajo.
 - **Celular:** las pestañas de abajo no cambian (Perfil sigue al final). La tienda se abre desde Inicio y desde Perfil.
 

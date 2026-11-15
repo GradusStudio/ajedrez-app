@@ -76,13 +76,13 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
   // La semana del puzzle del día: el id de cada día se resuelve con la misma regla que el del día de hoy.
   useEffect(() => {
     let cancelled = false;
-    dailyWeek(progress, source, new Date(`${today}T12:00:00`))
+    dailyWeek({ puzzles: progress.puzzles }, source, new Date(`${today}T12:00:00`))
       .then((days) => !cancelled && setWeek(days))
       .catch(() => !cancelled && setWeek(null));
     return () => {
       cancelled = true;
     };
-  }, [progress, source, today]);
+  }, [progress.puzzles, source, today]);
 
   const levels = levelsWithPuzzles(source);
   const rating = currentRating(progress);

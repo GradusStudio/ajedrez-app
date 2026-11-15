@@ -35,10 +35,12 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
+    "@types/potrace": "^2.1.5",
     "@types/react": "~19.3.0",
     "eslint": "^9.0.0",
     "eslint-config-expo": "~58.0.4",
     "fzstd": "0.1.1",
+    "potrace": "^2.1.8",
     "sharp": "^0.35.5",
     "stockfish": "19.0.1",
     "tsx": "^4.23.15",
@@ -49,6 +51,7 @@
   "scripts": {
     "build:web": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\" && expo export -p web --output-dir dist/app && tsx scripts/build-portada.ts && node scripts/build-sw.js",
     "build:avatars": "node scripts/build-avatars.js",
+    "build:pieces": "tsx scripts/build-piece-sets.ts",
     "build:engine": "node scripts/build-engine.js",
     "build:maia": "node scripts/build-maia.js",
     "build:puzzles": "node scripts/build-puzzles.js",

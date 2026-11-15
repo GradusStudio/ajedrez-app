@@ -1001,6 +1001,7 @@ export const es = {
   "bots.practiceLink": "Practica la {opening} contra {bot} ›",
   "puzzles.weekChange": "{delta} esta semana",
   "puzzles.near": "cerca de {n}",
+  "puzzles.autoLevel": "a tu nivel",
   "puzzles.practiceLead": "Uno tras otro, cerca de tu nivel. El nivel sube si los resuelves sin errores.",
   "puzzles.weekLabel": "Puzzle del día esta semana: {days}",
   "puzzles.week.solved": "{day}, resuelto",
@@ -1024,6 +1025,7 @@ export const es = {
   "puzzles.quantity.thousands": "{n} mil",
   "puzzles.themeLabel": "{theme}, {solved}, {available} puzzles",
   "back.to": "Volver a {screen}",
+  "back.generic": "Volver",
 } as const;
 
 export type MessageKey = keyof typeof es;

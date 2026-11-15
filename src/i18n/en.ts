@@ -1001,6 +1001,7 @@ export const en: Record<MessageKey, string> = {
   "bots.practiceLink": "Practice the {opening} against {bot} ›",
   "puzzles.weekChange": "{delta} this week",
   "puzzles.near": "near {n}",
+  "puzzles.autoLevel": "at your level",
   "puzzles.practiceLead": "One after another, near your level. Your level goes up when you solve them without mistakes.",
   "puzzles.weekLabel": "Daily puzzle this week: {days}",
   "puzzles.week.solved": "{day}, solved",
@@ -1024,5 +1025,6 @@ export const en: Record<MessageKey, string> = {
   "puzzles.quantity.thousands": "{n}K",
   "puzzles.themeLabel": "{theme}, {solved}, {available} puzzles",
   "back.to": "Back to {screen}",
+  "back.generic": "Back",
 
 };

@@ -1002,6 +1002,7 @@ export const fr: Record<MessageKey, string> = {
   "bots.practiceLink": "Entraîne l'{opening} contre {bot} ›",
   "puzzles.weekChange": "{delta} cette semaine",
   "puzzles.near": "près de {n}",
+  "puzzles.autoLevel": "à ton niveau",
   "puzzles.practiceLead": "Un après l’autre, près de ton niveau. Ton niveau monte si tu les résous sans erreurs.",
   "puzzles.weekLabel": "Puzzle du jour cette semaine : {days}",
   "puzzles.week.solved": "{day}, résolu",
@@ -1025,5 +1026,6 @@ export const fr: Record<MessageKey, string> = {
   "puzzles.quantity.thousands": "{n} k",
   "puzzles.themeLabel": "{theme}, {solved}, {available} puzzles",
   "back.to": "Retour à {screen}",
+  "back.generic": "Retour",
 
 };

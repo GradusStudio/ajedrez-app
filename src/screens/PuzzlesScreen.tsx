@@ -14,7 +14,7 @@ import { isPuzzleSolved } from '../progress/progressStore';
 import { currentRating, formatDelta } from '../progress/puzzleRating';
 import { useSettings } from '../settings/SettingsContext';
 import { useTodayKey } from '../settings/useTodayKey';
-import { Level, levelRange, Puzzle, PRACTICE_THEMES, puzzleGoal, themeName, userColor } from '../puzzles/puzzles';
+import { Level, LEVELS, levelOf, levelRange, Puzzle, PRACTICE_THEMES, puzzleGoal, themeName, userColor } from '../puzzles/puzzles';
 import { dailyWeek, puzzleFinalFen, quantity, themeCount, themeSolvedCount, weekRatingDelta, type WeekState } from '../puzzles/puzzleView';
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
 import { levelsWithPuzzles, PuzzleSource } from '../puzzles/source';
@@ -87,7 +87,11 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
   const levels = levelsWithPuzzles(source);
   const rating = currentRating(progress);
   const auto = settings.puzzleMode === 'auto';
-  const level: Level = settings.puzzleLevel && levels.includes(settings.puzzleLevel) ? settings.puzzleLevel : levels[0] ?? 'facil';
+  // En modo manual sin nivel elegido (ajustes viejos), se usa el nivel más cercano al rating, no el primero (Fácil).
+  const order = Object.keys(LEVELS) as Level[];
+  const preferred = levelOf(rating);
+  const nearest = levels.find((l) => order.indexOf(l) >= order.indexOf(preferred)) ?? levels[levels.length - 1] ?? 'facil';
+  const level: Level = settings.puzzleLevel && levels.includes(settings.puzzleLevel) ? settings.puzzleLevel : nearest;
   const solvedTotal = Object.keys(progress.puzzles).filter((id) => isPuzzleSolved(progress, id)).length;
   const history = progress.puzzleRating?.history ?? [];
   const deltaWeek = weekRatingDelta(history, rating, new Date(`${today}T12:00:00`));
@@ -234,7 +238,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
           <View style={styles.levels}>
             <LevelButton
               label={t('puzzles.mode.auto')}
-              sub={t('puzzles.near', { n: number(rating) })}
+              sub={settings.showPuzzleRating ? t('puzzles.near', { n: number(rating) }) : t('puzzles.autoLevel')}
               selected={auto}
               onPress={() => choose('auto')}
               emphasis

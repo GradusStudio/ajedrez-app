@@ -62,6 +62,8 @@ type Props = {
   onFirstPuzzle: () => void;
   onContinueGame: () => void;
   onBot: (bot: Bot) => void;
+  /** «Tu primera partida»: entra directo a la partida contra Pipo, sin pasar por su ficha. */
+  onFirstGame: (bot: Bot) => void;
   onCourse: (course: OpeningCourse) => void;
   /** Abre la tienda desde la tarjeta «Tu tablero». */
   onShop: () => void;
@@ -71,7 +73,7 @@ type Props = {
  * Pestaña Inicio (feedback del primer tester, 14-11-2026): saludo con el profesor, seguir aprendiendo
  * con el tablero de progreso, puzzle del día, racha, bots y aperturas.
  */
-export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, onBot, onCourse, onShop }: Props) {
+export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, onBot, onFirstGame, onCourse, onShop }: Props) {
   const { progress } = useProgress();
   const { settings, update } = useSettings();
   const { pieceSet } = usePieceSet();
@@ -143,7 +145,7 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
     } else if (id === 'puzzle') {
       onFirstPuzzle();
     } else {
-      onBot(pipo);
+      onFirstGame(pipo);
     }
   };
 

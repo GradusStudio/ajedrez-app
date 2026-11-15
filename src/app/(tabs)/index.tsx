@@ -13,6 +13,7 @@ export default function StartTab() {
         onFirstPuzzle={() => router.push({ pathname: '/puzzle', params: { modo: 'practica', nivel: 'facil' } })}
         onContinueGame={() => router.push({ pathname: '/partida', params: { continuar: '1' } })}
         onBot={(bot) => router.push({ pathname: '/bot/[id]', params: { id: bot.id } })}
+        onFirstGame={(bot) => router.push({ pathname: '/partida', params: { bot: bot.id } })}
         onCourse={(course) => router.push({ pathname: '/apertura/[id]', params: { id: course.id } })}
         onShop={() => router.push('/tienda')}
       />

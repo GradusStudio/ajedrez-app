@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
-import { botForOpening } from '../../data/bots';
 import { useContent } from '../../data/useContent';
 import { useConfirmNewGame } from '../../progress/useConfirmNewGame';
 import { WideListColumn } from '../../components/WideListColumn';
@@ -25,7 +24,9 @@ export default function BotRoute() {
           const course = findOpening(courseId);
           if (!course) return;
           confirmNewGame(() =>
-            router.push({ pathname: '/partida', params: { bot: botForOpening(course.id).id, color, curso: course.id } })
+            // La ficha promete «Practica la apertura contra este bot»: se juega contra el de la ficha, no contra
+            // el de menor nivel que conoce el curso (botForOpening).
+            router.push({ pathname: '/partida', params: { bot: bot.id, color, curso: course.id } })
           );
         }}
       />

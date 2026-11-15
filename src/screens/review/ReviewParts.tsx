@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import Svg, { Circle, Path, Polygon } from 'react-native-svg';
+import { BackButton } from '../../components/BackButton';
 import { useI18n } from '../../i18n/I18nContext';
 import { colors } from '../../theme';
 import { styles } from './reviewStyles';
@@ -79,6 +80,22 @@ export function TopBar({ onBack, onSettings }: { onBack: () => void; onSettings?
       ) : (
         <View style={styles.topBtn} />
       )}
+    </View>
+  );
+}
+
+/**
+ * Barra del rediseño (spec 2026-11-15, sección 1): BackButton de la app a la izquierda («Análisis» o «Volver») y
+ * el engranaje como botón redondo a la derecha.
+ */
+export function ReviewTop({ onBack, onSettings, backLabel }: { onBack: () => void; onSettings: () => void; backLabel: string }) {
+  const { t } = useI18n();
+  return (
+    <View style={styles.topBar}>
+      <BackButton screen={backLabel} label={backLabel} onPress={onBack} />
+      <Pressable onPress={onSettings} accessibilityRole="button" accessibilityLabel={t('review.settings')} hitSlop={10} style={styles.gear}>
+        <Icon name="sliders" color={colors.text} size={22} />
+      </Pressable>
     </View>
   );
 }

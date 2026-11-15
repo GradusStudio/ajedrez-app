@@ -4,6 +4,7 @@ import { Square } from 'chess.js';
 import { Board } from '../components/Board';
 import { Button3D } from '../components/Button3D';
 import { EvalBar } from '../components/EvalBar';
+import { formatScore } from '../engine/evalFormat';
 import { resolveNotation, sanFromEnglish } from '../chess/notation';
 import { useI18n } from '../i18n/I18nContext';
 import { useSettings } from '../settings/SettingsContext';
@@ -20,17 +21,18 @@ import { AnalyzingView } from './review/AnalyzingView';
 import { CoachBubble } from './review/CoachBubble';
 import { EvalGraph } from './review/EvalGraph';
 import { MoveStrip } from './review/MoveStrip';
-import { badgeOf, BEST_ARROW, faceFor, REPLY_ARROW, titleKey } from './review/quality';
-import { ToolBtn, TopBar } from './review/ReviewParts';
+import { badgeOf, BEST_ARROW, CAT_KEY, faceFor, QUALITY_STYLE, REPLY_ARROW, titleKey } from './review/quality';
+import { ReviewTop, ToolBtn } from './review/ReviewParts';
 import { styles } from './review/reviewStyles';
 import { SettingsSheet } from './review/SettingsSheet';
-import { SummaryView } from './review/SummaryView';
+import { SummaryView, type SummaryMoment } from './review/SummaryView';
 import { useBranchPlay } from './review/useBranchPlay';
 import { useReviewAnalysis } from './review/useReviewAnalysis';
 import { useReviewCoach } from './review/useReviewCoach';
 import { useReviewPlayback } from './review/useReviewPlayback';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
+import { WideListColumn } from '../components/WideListColumn';
 import { useWideLayout } from '../components/useWideLayout';
 
 /** Alto fuera del tablero en pantalla ancha: barra de arriba, barra de evaluación, barra de abajo y márgenes. */
@@ -63,7 +65,20 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
   const { coach, choose: chooseCoach } = useReviewCoach(pending?.coachId);
   const [me, setMe] = useState<'w' | 'b'>(() => meKnown ?? 'w');
   const [started, setStarted] = useState(false);
+  const [finished, setFinished] = useState(false);
   const [sheet, setSheet] = useState(false);
+  const [sheetCoachOnly, setSheetCoachOnly] = useState(false);
+  const backLabel = from === 'game' ? t('back.generic') : t('tabs.analysis');
+  const top = (
+    <ReviewTop
+      onBack={onBack}
+      backLabel={backLabel}
+      onSettings={() => {
+        setSheetCoachOnly(false);
+        setSheet(true);
+      }}
+    />
+  );
 
   // La revisión calculada en esta pantalla se guarda en el dispositivo (las últimas 10). Si después se cambia el
   // bando o el comentarista, se vuelve a guardar con el mismo id: el registro guardado no se queda con los viejos.
@@ -205,6 +220,55 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
     details.push(t('review.bestWas', { move: fmt(ply.bestSan) }));
   }
 
+  // Filas de «Momentos clave» del resumen: hasta 5, con el comentario ya traducido y la diferencia de evaluación.
+  const moments: SummaryMoment[] = review.highlights.slice(0, 5).map((index) => {
+    const p = review.plies[index];
+    const mSan = fmt(p.move.san);
+    const subject = p.move.color === me ? 'you' : 'opponent';
+    const facts = coachExplanation({
+      lang: coachLang(language),
+      subject,
+      quality: p.quality,
+      facts: p.facts,
+      move: mSan,
+      bestSan: p.bestSan,
+      fmt,
+      seed: p.ply + coach.elo,
+      style: coach.style,
+    });
+    const voice = coachVoice({
+      lang: coachLang(language),
+      style: coach.style,
+      quality: p.quality,
+      great: p.great,
+      mate: p.move.san.endsWith('#'),
+      subject,
+      move: mSan,
+      seed: p.ply + coach.elo,
+    });
+    const badge = badgeOf(p);
+    const quality = t(CAT_KEY[p.great ? 'great' : p.quality]);
+    // La diferencia de una jugada que permite o da mate no es un número de peones: se muestra «+M» o «−M».
+    const swing = p.scoreAfter - review.scores[p.ply - 1];
+    const diff = Math.abs(swing) >= 9000 ? (swing > 0 ? '+M' : '−M') : formatScore(swing, decimal);
+    const aria = t('review.momentLabel', {
+      n: Math.ceil(p.ply / 2),
+      color: t(p.move.color === 'w' ? 'common.white' : 'common.black'),
+      move: mSan,
+      quality,
+    });
+    return {
+      index,
+      san: mSan,
+      badge,
+      color: (badge ?? QUALITY_STYLE[p.great ? 'great' : p.quality]).color,
+      quality,
+      text: facts[0] ?? voice,
+      diff,
+      aria,
+    };
+  });
+
   const scoreHere = branch
     ? ply?.scoreAfter ?? branch.moves.slice(0, -1).reverse().find((m) => m.rated)?.rated?.scoreAfter ?? review.scores[branch.from]
     : review.scores[idx];
@@ -240,16 +304,30 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
     // dice quién jugó), el mismo que se guarda.
     const points = turningPoints(review, me);
     return shell(
-      <SummaryView
-        top={<TopBar onBack={onBack} />}
-        bubble={coachBubble}
-        graph={graph}
+      // El resumen usa una columna de 1060 px: dos tarjetas lado a lado (spec 2026-11-15, sección 2).
+      <WideListColumn width={1060}>
+        <SummaryView
+        top={top}
         review={review}
         me={me}
+        meKnown={meKnown !== null}
         nameOf={nameOf}
         decimal={decimal}
+        coach={coach}
+        moments={moments}
+        finished={finished}
+        onChangeCoach={() => {
+          setSheetCoachOnly(true);
+          setSheet(true);
+        }}
         onStart={() => {
           pb.goTo(0);
+          setFinished(false);
+          setStarted(true);
+        }}
+        onJump={(index) => {
+          pb.goTo(index + 1);
+          setFinished(false);
           setStarted(true);
         }}
         onPractice={
@@ -261,6 +339,26 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
             : undefined
         }
       />
+      <SettingsSheet
+        visible={sheet}
+        coachOnly={sheetCoachOnly}
+        onClose={() => {
+          setSheet(false);
+          setSheetCoachOnly(false);
+        }}
+        me={me}
+        onMe={setMe}
+        coachId={coach.id}
+        onCoach={chooseCoach}
+        filter={pb.filter}
+        onFilter={pb.setFilter}
+        highlights={review.highlights}
+        idx={idx}
+        onJump={pb.jumpHighlight}
+        graph={graph}
+        onChooseOther={onBack}
+      />
+      </WideListColumn>
     );
   }
 
@@ -294,9 +392,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
   return shell(
     <View style={styles.screen}>
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: topInset() }]}>
-        <View style={contentWidth ? { width: contentWidth, alignSelf: 'center' } : null}>
-          <TopBar onBack={onBack} onSettings={() => setSheet(true)} />
-        </View>
+        <View style={contentWidth ? { width: contentWidth, alignSelf: 'center' } : null}>{top}</View>
         {wide ? (
           <BoardLayout reserveHeight={REVIEW_RESERVE} board={boardBlock}>
             {coachBubble}
@@ -333,16 +429,27 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
           onPress={pb.togglePlay}
         />
         <Button3D
-          label={t(idx >= n && !branch ? 'review.finish' : 'review.next')}
+          label={t('review.nextMoment')}
           variant="primary"
-          onPress={() => pb.next(onBack)}
+          onPress={() =>
+            pb.next(() => {
+              pb.goTo(0);
+              setStarted(false);
+              setFinished(true);
+            })
+          }
           style={{ flex: 1.5 }}
         />
       </View>
 
       <SettingsSheet
         visible={sheet}
-        onClose={() => setSheet(false)}
+        coachOnly={sheetCoachOnly}
+        onPlay={() => pb.togglePlay()}
+        onClose={() => {
+          setSheet(false);
+          setSheetCoachOnly(false);
+        }}
         me={me}
         onMe={setMe}
         coachId={coach.id}

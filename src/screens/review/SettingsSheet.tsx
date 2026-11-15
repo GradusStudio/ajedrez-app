@@ -25,6 +25,10 @@ type Props = {
   onJump: (dir: 1 | -1) => void;
   graph: React.ReactNode;
   onChooseOther: () => void;
+  /** Solo el selector de comentarista (el enlace «cambiar» del resumen). */
+  coachOnly?: boolean;
+  /** Reproducir la partida desde los ajustes (antes estaba en la barra inferior). */
+  onPlay?: () => void;
 };
 
 /** Hoja de ajustes de la revisión: bando, comentarista, salto entre destacadas y gráfico. */
@@ -53,17 +57,21 @@ export function SettingsSheet(p: Props) {
             </Pressable>
           </View>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Text style={styles.sectionTitle}>{t('review.playingAs')}</Text>
-            <Segmented
-              value={p.me}
-              onChange={p.onMe}
-              options={[
-                { value: 'w', label: t('common.white') },
-                { value: 'b', label: t('common.black') },
-              ]}
-            />
+            {!p.coachOnly && (
+              <>
+                <Text style={styles.sectionTitle}>{t('review.playingAs')}</Text>
+                <Segmented
+                  value={p.me}
+                  onChange={p.onMe}
+                  options={[
+                    { value: 'w', label: t('common.white') },
+                    { value: 'b', label: t('common.black') },
+                  ]}
+                />
+              </>
+            )}
 
-            <Text style={[styles.sectionTitle, { marginTop: space.lg }]}>{t('review.coach')}</Text>
+            <Text style={[styles.sectionTitle, { marginTop: p.coachOnly ? 0 : space.lg }]}>{t('review.coach')}</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: space.sm, paddingVertical: 4 }}>
               {bots.map((b) => (
                 <Pressable
@@ -82,33 +90,38 @@ export function SettingsSheet(p: Props) {
               ))}
             </ScrollView>
 
-            <Text style={[styles.sectionTitle, { marginTop: space.lg }]}>{t('review.jumpTo')}</Text>
-            <Segmented
-              value={p.filter}
-              onChange={p.onFilter}
-              options={[
-                { value: 'highlights', label: t('review.filterHighlights') },
-                { value: 'all', label: t('review.filterAll') },
-              ]}
-            />
-            {p.filter === 'highlights' && (
-              <View style={styles.hlRow}>
-                <Pressable onPress={() => p.onJump(-1)} accessibilityRole="button" accessibilityLabel={t('review.prevHighlight')} hitSlop={10}>
-                  <Text style={styles.hlArrow}>‹</Text>
-                </Pressable>
-                <Text style={styles.hlText}>{hlText}</Text>
-                <Pressable onPress={() => p.onJump(1)} accessibilityRole="button" accessibilityLabel={t('review.nextHighlight')} hitSlop={10}>
-                  <Text style={styles.hlArrow}>›</Text>
-                </Pressable>
-              </View>
+            {!p.coachOnly && (
+              <>
+                <Text style={[styles.sectionTitle, { marginTop: space.lg }]}>{t('review.jumpTo')}</Text>
+                <Segmented
+                  value={p.filter}
+                  onChange={p.onFilter}
+                  options={[
+                    { value: 'highlights', label: t('review.filterHighlights') },
+                    { value: 'all', label: t('review.filterAll') },
+                  ]}
+                />
+                {p.filter === 'highlights' && (
+                  <View style={styles.hlRow}>
+                    <Pressable onPress={() => p.onJump(-1)} accessibilityRole="button" accessibilityLabel={t('review.prevHighlight')} hitSlop={10}>
+                      <Text style={styles.hlArrow}>‹</Text>
+                    </Pressable>
+                    <Text style={styles.hlText}>{hlText}</Text>
+                    <Pressable onPress={() => p.onJump(1)} accessibilityRole="button" accessibilityLabel={t('review.nextHighlight')} hitSlop={10}>
+                      <Text style={styles.hlArrow}>›</Text>
+                    </Pressable>
+                  </View>
+                )}
+                {p.onPlay && <Button3D label={t('review.ctrlPlay')} onPress={p.onPlay} style={{ marginTop: space.lg }} />}
+
+                <View style={{ height: space.lg }} />
+                {p.graph}
+
+                <View style={{ height: space.xl }} />
+                <Button3D label={t('review.chooseOther')} onPress={p.onChooseOther} />
+                <View style={{ height: space.md }} />
+              </>
             )}
-
-            <View style={{ height: space.lg }} />
-            {p.graph}
-
-            <View style={{ height: space.xl }} />
-            <Button3D label={t('review.chooseOther')} onPress={p.onChooseOther} />
-            <View style={{ height: space.md }} />
           </ScrollView>
         </View>
       </View>

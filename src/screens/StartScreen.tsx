@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Board } from '../components/Board';
 import { BoardSizeContext } from '../components/BoardSizeContext';
@@ -36,8 +36,9 @@ import { SAMPLE_FEN } from '../pieces/sampleFen';
 import { useBoardTheme } from '../settings/useBoardTheme';
 import { PieceSetOverride, usePieceSet } from '../settings/PieceSetContext';
 import type { MessageKey } from '../i18n/es';
-import { Puzzle, puzzleGoal } from '../puzzles/puzzles';
-import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
+import { puzzleGoal } from '../puzzles/puzzles';
+import { useDailyPuzzle } from '../puzzles/useDailyPuzzle';
+import { usePuzzleSource } from '../puzzles/usePuzzles';
 import { type, colors, fonts, space } from '../theme';
 
 const progressGames = (progressGamesRaw as unknown as ProgressGamesFile).units;
@@ -478,28 +479,13 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
   );
 }
 
-type Daily = { status: 'loading' } | { status: 'error'; offline: boolean } | { status: 'ready'; puzzle: Puzzle };
-
 /** Puzzle del día en una tarjeta, con su tablero y el estado de resuelto. */
 function DailyPuzzleCard({ wide, onOpen }: { wide: boolean; onOpen: (id: string) => void }) {
   const sourceState = usePuzzleSource();
   const source = sourceState.status === 'ready' ? sourceState.source : null;
   const { progress } = useProgress();
   const { t } = useI18n();
-  const [daily, setDaily] = useState<Daily>({ status: 'loading' });
-  const [attempt, setAttempt] = useState(0);
-
-  useEffect(() => {
-    if (!source) return;
-    let cancelled = false;
-    source.daily().then(
-      (puzzle) => !cancelled && setDaily({ status: 'ready', puzzle }),
-      (e) => !cancelled && setDaily({ status: 'error', offline: isOfflineError(e) })
-    );
-    return () => {
-      cancelled = true;
-    };
-  }, [source, attempt]);
+  const { daily, retry } = useDailyPuzzle(source);
 
   let body: React.ReactNode;
   if (!source) {
@@ -526,10 +512,7 @@ function DailyPuzzleCard({ wide, onOpen }: { wide: boolean; onOpen: (id: string)
         <Button3D
           label={t('common.retry')}
           variant="secondary"
-          onPress={() => {
-            setDaily({ status: 'loading' });
-            setAttempt((n) => n + 1);
-          }}
+          onPress={retry}
           style={{ marginTop: space.md, alignSelf: 'flex-start' }}
         />
       </>

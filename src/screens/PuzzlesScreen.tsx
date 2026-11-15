@@ -14,12 +14,13 @@ import { isPuzzleSolved } from '../progress/progressStore';
 import { currentRating, formatDelta } from '../progress/puzzleRating';
 import { useSettings } from '../settings/SettingsContext';
 import { useTodayKey } from '../settings/useTodayKey';
-import { Level, LEVELS, levelOf, levelRange, Puzzle, PRACTICE_THEMES, puzzleGoal, themeName, userColor } from '../puzzles/puzzles';
+import { Level, LEVELS, levelOf, levelRange, PRACTICE_THEMES, puzzleGoal, themeName, userColor } from '../puzzles/puzzles';
 import { dailyWeek, puzzleFinalFen, quantity, themeCount, themeSolvedCount, weekRatingDelta, type WeekState } from '../puzzles/puzzleView';
 import { PuzzlesStatus } from '../puzzles/PuzzlesStatus';
 import { levelsWithPuzzles, PuzzleSource } from '../puzzles/source';
 import { THEME_DIAGRAMS } from '../puzzles/themeDiagrams';
-import { isOfflineError, usePuzzleSource } from '../puzzles/usePuzzles';
+import { useDailyPuzzle } from '../puzzles/useDailyPuzzle';
+import { usePuzzleSource } from '../puzzles/usePuzzles';
 import { cardSkin, type, colors, fonts, radius, space } from '../theme';
 
 type Props = {
@@ -47,8 +48,6 @@ export function PuzzlesScreen(props: Props) {
   return <PuzzlesLoaded {...props} source={state.source} />;
 }
 
-type Daily = { status: 'loading' } | { status: 'error'; offline: boolean } | { status: 'ready'; puzzle: Puzzle };
-
 function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: PuzzleSource }) {
   const { progress } = useProgress();
   const { t, tn, number, language } = useI18n();
@@ -56,20 +55,9 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
   const wide = useWideLayout();
   const { width } = useWindowDimensions();
   const today = useTodayKey();
-  const [daily, setDaily] = useState<Daily>({ status: 'loading' });
-  const [dailyAttempt, setDailyAttempt] = useState(0);
+  const { daily, retry } = useDailyPuzzle(source);
   const [week, setWeek] = useState<{ key: string; state: WeekState }[] | null>(null);
 
-  useEffect(() => {
-    let cancelled = false;
-    source.daily().then(
-      (puzzle) => !cancelled && setDaily({ status: 'ready', puzzle }),
-      (e) => !cancelled && setDaily({ status: 'error', offline: isOfflineError(e) })
-    );
-    return () => {
-      cancelled = true;
-    };
-  }, [source, dailyAttempt]);
   // En la web, baja en segundo plano lo necesario para jugar sin conexión.
   useEffect(() => source.prepareOffline(), [source]);
 
@@ -219,10 +207,7 @@ function PuzzlesLoaded({ onOpenDaily, onPractice, source }: Props & { source: Pu
                   <Button3D
                     label={t('common.retry')}
                     variant="secondary"
-                    onPress={() => {
-                      setDaily({ status: 'loading' });
-                      setDailyAttempt((n) => n + 1);
-                    }}
+                    onPress={retry}
                     style={{ marginTop: space.md, alignSelf: 'flex-start' }}
                   />
                 </>

@@ -24,7 +24,7 @@ export function AppBackground() {
           <Stop offset="0.45" stopColor="#000000" stopOpacity={0} />
           <Stop offset="1" stopColor="#000000" stopOpacity={1} />
         </RadialGradient>
-        {/* Luz: elipse de 70vmax × 55vmax centrada en 30 % 20 %, también a pantalla completa. */}
+        {/* Luz: gradiente radial cálido centrado en 30 % 20 %, en un Rect a pantalla completa (sin borde). */}
         <RadialGradient id="gradus-bg-lamp" cx="30%" cy="20%" r="0.8">
           <Stop offset="0" stopColor="#FFC480" stopOpacity={0.13} />
           <Stop offset="0.55" stopColor="#FFC480" stopOpacity={0.04} />

@@ -8,8 +8,8 @@ export default function SettingsRoute() {
     <WideListColumn>
       <SettingsScreen
         onBack={() => router.back()}
-        onOpenPieces={() => router.push('/piezas')}
-        onOpenBoards={() => router.push('/tableros')}
+        onOpenPieces={() => router.push({ pathname: '/tienda', params: { tab: 'piezas' } })}
+        onOpenBoards={() => router.push({ pathname: '/tienda', params: { tab: 'tableros' } })}
       />
     </WideListColumn>
   );

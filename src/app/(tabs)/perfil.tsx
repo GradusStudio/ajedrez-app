@@ -7,8 +7,8 @@ export default function ProfileTab() {
     <ProfileScreen
       onOpenSettings={() => router.push('/ajustes')}
       onOpenCredits={() => router.push('/creditos')}
-      onOpenPieces={() => router.push('/piezas')}
-      onOpenBoards={() => router.push('/tableros')}
+      onOpenPieces={() => router.push({ pathname: '/tienda', params: { tab: 'piezas' } })}
+      onOpenBoards={() => router.push({ pathname: '/tienda', params: { tab: 'tableros' } })}
       onOpenBotGames={() => router.push('/historial-bots')}
       onOpenReview={(lessonId, stepIds) =>
         router.push({ pathname: '/leccion/[id]', params: { id: lessonId, repaso: stepIds.join(',') } })

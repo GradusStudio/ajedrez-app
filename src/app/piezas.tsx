@@ -1,13 +1,7 @@
 import React from 'react';
-import { router } from 'expo-router';
-import { PieceSetScreen } from '../screens/PieceSetScreen';
-import { WideListColumn } from '../components/WideListColumn';
-import { WIDE_GRID_COLUMN } from '../components/wideLayout';
+import { Redirect } from 'expo-router';
 
+/** Ruta vieja: ahora la tienda es una sola en /tienda. */
 export default function PiecesRoute() {
-  return (
-    <WideListColumn width={WIDE_GRID_COLUMN}>
-      <PieceSetScreen onBack={() => router.back()} />
-    </WideListColumn>
-  );
+  return <Redirect href={{ pathname: '/tienda', params: { tab: 'piezas' } }} />;
 }

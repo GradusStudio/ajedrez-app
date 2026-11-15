@@ -253,3 +253,14 @@ Para las pestañas sin contenido: título de pantalla y una tarjeta con "Próxim
 - Avatares y colores de acento por personalidad de bot.
 - Sonidos y animaciones de feedback.
 - Modo claro (por ahora solo oscuro).
+
+## Piezas y texturas con ComfyUI
+
+Los sets nuevos (Geométrico, Juguete, Madera, Mármol, Hielo y Magma) se generan con ComfyUI y se aprueban antes de vectorizar. Modelos y licencias:
+
+- **SDXL base**: `sd_xl_base_1.0.safetensors`, Stable Diffusion XL 1.0, licencia CreativeML Open RAIL++-M, https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0.
+- **ControlNet union**: `xinsir/controlnet-union-sdxl-1.0`, archivo `diffusion_pytorch_model_promax.safetensors` (unos 2,5 GB), licencia Apache 2.0, https://huggingface.co/xinsir/controlnet-union-sdxl-1.0. Se usa con `SetUnionControlNetType` en modo lineart sobre los bocetos de las piezas.
+- **LoRA de texturas**: `Hand-Painted_2d_Seamless_Textures-000007`. **No se usa** hasta confirmar que su licencia permite el uso comercial.
+- **Anima no se usa** en la app.
+
+Las pruebas, las guías y las hojas de contacto están en la nota del vault «Gradus - Piezas nuevas». Nada se integra sin la aprobación del autor.

@@ -102,7 +102,7 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
   const autoSearched = useRef(new Set<string>());
 
   const search = useCallback(
-    async (site: 'chesscom' | 'lichess', force = false) => {
+    async (site: 'chesscom' | 'lichess') => {
       autoSearched.current.add(site);
       const name = cleanUsername(settings.importUser[site] ?? '');
       if (!validUsername(name)) {
@@ -284,10 +284,10 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
             autoCapitalize="none"
             autoCorrect={false}
             returnKeyType="search"
-            onSubmitEditing={() => search(source, true)}
+            onSubmitEditing={() => search(source)}
             style={[styles.input, wide && { flex: 1 }]}
           />
-          <Button3D label={t('import.search')} onPress={() => search(source, true)} />
+          <Button3D label={t('import.search')} onPress={() => search(source)} />
         </View>
         <Text style={styles.hint}>{t('analysis.userRemembered')}</Text>
         {loading && (

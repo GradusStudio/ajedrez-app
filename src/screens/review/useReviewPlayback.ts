@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { LineMove } from '../../review/bestLine';
 import type { GameMove, ReviewPly } from '../../review/types';
+import { nextAction } from './playbackMachine';
 
 export type Filter = 'all' | 'highlights';
 
@@ -88,25 +89,33 @@ export function useReviewPlayback(n: number, highlights: number[]) {
 
   /** Botón principal. `onFinish` se llama al tocarlo estando en la última jugada («Finalizar»). */
   const next = (onFinish: () => void) => {
-    if (preview) return setPreview(null);
-    if (branch) {
-      // Vuelve a la posición de la partida desde la que se probó otra jugada.
-      setBranch(null);
-      setShowBest(false);
-      return;
+    const action = nextAction({
+      preview: !!preview,
+      branch: !!branch,
+      fast,
+      ffTarget,
+      idx,
+      n,
+      filter,
+      nextHighlight: highlights.find((h) => h + 1 > idx),
+    });
+    switch (action.type) {
+      case 'stopPreview':
+        return setPreview(null);
+      case 'leaveBranch':
+        setBranch(null);
+        setShowBest(false);
+        return;
+      case 'finish':
+        return onFinish();
+      case 'goTo':
+        return goTo(action.target);
+      case 'fastForward':
+        setShowBest(false);
+        setPlaying(false);
+        setFfTarget(action.target);
+        return;
     }
-    if (fast && ffTarget !== null) return goTo(ffTarget); // tocar durante la cámara rápida salta al destino
-    if (idx >= n) return onFinish();
-    if (filter === 'all') return goTo(idx + 1);
-    const nextHl = highlights.find((h) => h + 1 > idx);
-    // Después de la última destacada se vuelve al resumen; no hace falta un toque extra para llegar al final.
-    if (nextHl === undefined) return onFinish();
-    const target = nextHl + 1;
-    if (target - idx > 1) {
-      setShowBest(false);
-      setPlaying(false);
-      setFfTarget(target);
-    } else goTo(target);
   };
 
   const stepBack = () => {

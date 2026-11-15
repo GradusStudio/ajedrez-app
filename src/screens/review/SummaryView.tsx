@@ -4,6 +4,7 @@ import { BotAvatar } from '../../components/BotAvatar';
 import { Button3D } from '../../components/Button3D';
 import { CardSurface } from '../../components/CardSurface';
 import { ColumnScrollView, useColumnBarPadding } from '../../components/ColumnScrollView';
+import { Segmented } from '../../components/Segmented';
 import { statusBarTop } from '../../components/statusBarTop';
 import { useWideLayout } from '../../components/useWideLayout';
 import type { Bot } from '../../data/bots';
@@ -28,6 +29,8 @@ type Props = {
   /** La partida tenía más de 240 jugadas: el resumen no cubre el final. */
   truncated?: boolean;
   onChangeCoach: () => void;
+  /** Elige el bando cuando el PGN no lo dice; después el resumen pasa a «Tú / Rival». */
+  onMe: (c: 'w' | 'b') => void;
   onStart: () => void;
   /** Abre el quiz de puntos de giro; sin errores del usuario no hay botón. */
   onPractice?: () => void;
@@ -38,7 +41,7 @@ type Props = {
  * Resumen previo a la revisión (spec 2026-11-15, sección 2): dos tarjetas con la partida (anillos de precisión,
  * resultado y tabla de calidades) y los momentos clave; el comentarista se elige desde acá.
  */
-export function SummaryView({ top, review, me, nameOf, decimal, coach, moments, finished, truncated, onChangeCoach, onStart, onPractice, onJump }: Props) {
+export function SummaryView({ top, review, me, nameOf, decimal, coach, moments, finished, truncated, onChangeCoach, onMe, onStart, onPractice, onJump }: Props) {
   const { t, tn } = useI18n();
   const wide = useWideLayout();
   const barPadding = useColumnBarPadding();
@@ -85,11 +88,24 @@ export function SummaryView({ top, review, me, nameOf, decimal, coach, moments, 
               <View style={styles.resultMid}>
                 <Text style={styles.result}>{result}</Text>
                 {last?.move.san.endsWith('#') && <Text style={styles.resultSub}>{t('game.reason.checkmate')}</Text>}
-                <Text style={styles.resultSub}>{tn('analysis.moves', review.plies.length)}</Text>
+                <Text style={styles.resultSub}>{tn('analysis.moves', Math.ceil(review.plies.length / 2))}</Text>
               </View>
               {side(right)}
             </View>
             {truncated && <Text style={styles.truncated}>{t('review.truncated')}</Text>}
+            {me === null && (
+              <View style={styles.playingAs}>
+                <Text style={styles.playingAsLabel}>{t('review.playingAs')}</Text>
+                <Segmented
+                  value="w"
+                  onChange={onMe}
+                  options={[
+                    { value: 'w', label: t('common.white') },
+                    { value: 'b', label: t('common.black') },
+                  ]}
+                />
+              </View>
+            )}
 
             <View style={styles.catTable}>
               <View style={styles.catHead}>
@@ -139,7 +155,7 @@ export function SummaryView({ top, review, me, nameOf, decimal, coach, moments, 
                     <View style={styles.momentBody}>
                       <View style={styles.momentHead}>
                         <Text style={styles.momentMove} numberOfLines={1}>
-                          {m.san}
+                          {m.label}
                         </Text>
                         <Text style={[styles.momentQuality, { color: m.textColor }]} numberOfLines={1}>
                           {m.quality}
@@ -199,6 +215,8 @@ const styles = StyleSheet.create({
   result: { fontFamily: fonts.extrabold, fontSize: 30, color: colors.gold },
   resultSub: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, textAlign: 'center' },
   truncated: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.gold, marginTop: space.sm, lineHeight: 17 },
+  playingAs: { marginTop: space.md, gap: 4 },
+  playingAsLabel: { fontFamily: fonts.bold, fontSize: type.caption, color: colors.textMuted },
   catTable: { marginTop: space.lg },
   catHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
   catHeadText: { color: colors.textMuted, fontSize: type.caption },

@@ -38,8 +38,8 @@ import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
 import { WideListColumn } from '../components/WideListColumn';
 import { useWideLayout } from '../components/useWideLayout';
 
-/** Alto fuera del tablero en pantalla ancha: barra de arriba, barra de evaluación, barra de abajo y márgenes. */
-const REVIEW_RESERVE = 240;
+/** Alto fuera del tablero en pantalla ancha: barra de arriba, barra de evaluación, navegación, gráfico y márgenes. */
+const REVIEW_RESERVE = 380;
 
 type Props = { onBack: () => void; onPractice: () => void; /** Origen: `game` cuando se entra desde el resultado de una partida. */ from?: string };
 
@@ -116,6 +116,15 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
   useEffect(() => {
     pbRef.current = pb;
   });
+  useEffect(() => {
+    if (Platform.OS !== 'web' || !started) return;
+    // Al pasar al modo revisión, el foco va al contenedor nuevo (el botón que se pulsó desaparece).
+    const node = document.getElementById('gradus-review-start') as (HTMLElement & { tabIndex: number }) | null;
+    if (node) {
+      node.tabIndex = -1;
+      node.focus();
+    }
+  }, [started]);
   useEffect(() => {
     if (Platform.OS !== 'web' || !started) return;
     const onKey = (e: KeyboardEvent) => {
@@ -319,6 +328,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
         finished={finished}
         truncated={!!game?.truncated}
         onChangeCoach={() => setSheet('coach')}
+        onMe={setMe}
         onStart={() => {
           pb.goTo(0);
           setFinished(false);
@@ -417,7 +427,7 @@ export function GameReviewScreen({ onBack, onPractice, from }: Props) {
   const filter = <FilterPills value={pb.filter} onChange={pb.setFilter} />;
 
   return shell(
-    <View style={styles.screen}>
+    <View style={styles.screen} nativeID="gradus-review-start">
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: topInset() }]}>
         <View style={contentWidth ? { width: contentWidth, alignSelf: 'center' } : null}>{top}</View>
         {wide ? (

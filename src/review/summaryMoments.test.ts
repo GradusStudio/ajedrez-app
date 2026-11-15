@@ -69,12 +69,14 @@ test('la calidad del mate es «Jaque mate» y la etiqueta accesible lleva númer
   assert.match(m.aria, /"n":7/);
   assert.match(m.aria, /"text":/);
   assert.equal(m.san, 'Qxf7#');
+  assert.equal(m.label, '7.Qxf7#');
 });
 
 test('con negras a mover la etiqueta usa el número del FEN', () => {
   const p = ply({ ply: 1, move: { san: 'e5', uci: 'e7e5', color: 'b', fenBefore: 'a b c d e 5', fenAfter: 'a b c d e 5' } });
   const [m] = summaryMoments(review([p], [0, 0]), 'b', coach, opts);
   assert.match(m.aria, /"n":5/);
+  assert.equal(m.label, '5...e5');
 });
 
 test('unos hechos rotos no tiran el resumen', () => {

@@ -11,6 +11,8 @@ export type SummaryMoment = {
   /** Índice en `review.plies` (0 = primera jugada). */
   index: number;
   san: string;
+  /** La jugada con su número («6.Ac4», «1...e5»), como en el prototipo. */
+  label: string;
   badge: Badge | null;
   color: string;
   /** Variante clara del color, para texto pequeño sobre la tarjeta oscura. */
@@ -97,8 +99,10 @@ export function summaryMoments(review: Review, me: 'w' | 'b' | null, coach: Bot,
       text = voice || san;
     }
     const quality = o.t(qualityNameKey(p));
+    const n = moveNumber(p.move.fenBefore);
+    const label = p.move.color === 'w' ? `${n}.${san}` : `${n}...${san}`;
     const aria = o.t('review.momentLabel', {
-      n: moveNumber(p.move.fenBefore),
+      n,
       color: o.t(p.move.color === 'w' ? 'common.white' : 'common.black'),
       move: san,
       quality,
@@ -107,6 +111,7 @@ export function summaryMoments(review: Review, me: 'w' | 'b' | null, coach: Bot,
     return {
       index,
       san,
+      label,
       badge: badgeOf(p),
       color: qualityColor(p),
       textColor: QUALITY_TEXT_LIGHT[catOf(p)],

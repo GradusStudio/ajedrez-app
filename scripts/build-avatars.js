@@ -4,10 +4,13 @@
 //   → src/components/botExpressions.generated.ts (mapa que usa BotAvatar)
 // Un nombre que no corresponda a un bot o a una expresión, o no tener imágenes, detiene el script sin tocar nada.
 // Las imágenes se convierten en una carpeta temporal y reemplazan a las anteriores solo si todas salieron bien.
+// Poses de cuerpo: `--bots=pipo,ramiro` limita la conversión a los bots aprobados; cada pose se alinea
+// con el neutro por el centro de las botas y la línea de pies (scripts/bodyAlign.js).
 /* global __dirname, process */
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
+const { bootStats, alignOffset, composeBox } = require('./bodyAlign.js');
 
 const root = path.join(__dirname, '..');
 const srcDir = path.join(root, 'assets', 'fuente', 'expresiones');
@@ -24,12 +27,56 @@ const bodyMapFile = path.join(root, 'src', 'components', 'botBodies.generated.ts
 const POSES = ['explica', 'piensa', 'acierto', 'pista', 'festejo', 'lamento'];
 const BODY_W = 768;
 const BODY_H = 1024;
+// Solo estos bots (--bots=pipo,ramiro). Sin el flag se procesan todos los que tengan archivos.
+const APPROVED = (process.argv.slice(2).find((a) => a.startsWith('--bots=')) || '')
+  .replace('--bots=', '')
+  .split(',')
+  .filter(Boolean);
 
 const bots = require(path.join(root, 'src', 'data', 'bots.json')).bots.map((b) => b.id);
 
 function fail(msg) {
   console.error('Error: ' + msg);
   process.exit(1);
+}
+
+/** Canal alfa de una imagen o buffer. */
+async function alphaOf(input) {
+  const { data, info } = await sharp(input).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const alpha = new Uint8Array(info.width * info.height);
+  for (let i = 0; i < alpha.length; i++) alpha[i] = data[i * 4 + 3];
+  return { alpha, width: info.width, height: info.height };
+}
+
+/** Convierte una pose a 768 × 1024 con las botas y los pies alineados con el neutro del bot. */
+async function convertAligned(srcFile, id, outFile) {
+  const poseBuf = await sharp(srcFile)
+    .resize(BODY_W, BODY_H, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png()
+    .toBuffer();
+  const neutralFile = path.join(bodyOutDir, `${id}.webp`);
+  let dx = 0;
+  let dy = 0;
+  if (fs.existsSync(neutralFile)) {
+    const pose = await alphaOf(poseBuf);
+    const neutral = await alphaOf(neutralFile);
+    ({ dx, dy } = alignOffset(
+      bootStats(pose.alpha, pose.width, pose.height),
+      bootStats(neutral.alpha, neutral.width, neutral.height),
+    ));
+  }
+  const box = composeBox(BODY_W, BODY_H, dx, dy);
+  const input =
+    box.extractWidth === BODY_W && box.extractHeight === BODY_H
+      ? poseBuf
+      : await sharp(poseBuf)
+          .extract({ left: box.extractLeft, top: box.extractTop, width: box.extractWidth, height: box.extractHeight })
+          .png()
+          .toBuffer();
+  await sharp({ create: { width: BODY_W, height: BODY_H, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
+    .composite([{ input, left: box.left, top: box.top }])
+    .webp({ quality: 90 })
+    .toFile(outFile);
 }
 
 async function main() {
@@ -88,36 +135,33 @@ async function main() {
   console.log(`${files.length} imágenes → ${path.relative(root, mapFile)}`);
 
   // Cuerpos: las poses son opcionales. Si no hay originales, el mapa queda vacío y botBody usa el neutro.
-  const bodyFiles = (fs.existsSync(bodySrcDir) ? fs.readdirSync(bodySrcDir) : []).filter((f) => /\.(png|webp)$/i.test(f)).sort();
+  // Solo las poses reales: ignora las hojas de contacto, los neutros de referencia y las variantes.
+  const poseFile = new RegExp(`^([a-z]+)-(${POSES.join('|')})\\.(png|webp)$`, 'i');
+  const bodyFiles = (fs.existsSync(bodySrcDir) ? fs.readdirSync(bodySrcDir) : []).filter((f) => poseFile.test(f)).sort();
   const bodyMap = {};
   for (const file of bodyFiles) {
-    const m = /^([a-z]+)-([a-z]+)\.(png|webp)$/.exec(file);
-    if (!m) fail(`el nombre «${file}» no sigue el formato <bot>-<pose>.png`);
-    const [, id, pose] = m;
+    const [, id, pose] = poseFile.exec(file);
     if (!bots.includes(id)) fail(`«${file}»: no hay un bot «${id}» (bots: ${bots.join(', ')})`);
-    if (!POSES.includes(pose)) fail(`«${file}»: la pose «${pose}» no existe (válidas: ${POSES.join(', ')})`);
+    if (APPROVED.length && !APPROVED.includes(id)) continue;
     if (bodyMap[id]?.[pose]) fail(`«${file}»: ya hay otra imagen para ${id}-${pose} (png y webp a la vez)`);
     (bodyMap[id] ??= {})[pose] = file;
   }
-  if (bodyFiles.length) {
+  if (Object.keys(bodyMap).length) {
     fs.rmSync(bodyTmpDir, { recursive: true, force: true });
     fs.mkdirSync(bodyTmpDir, { recursive: true });
     try {
       for (const id of Object.keys(bodyMap)) {
         for (const pose of Object.keys(bodyMap[id])) {
-          await sharp(path.join(bodySrcDir, bodyMap[id][pose]))
-            .resize(BODY_W, BODY_H, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-            .webp({ quality: 90 })
-            .toFile(path.join(bodyTmpDir, `${id}-${pose}.webp`));
+          await convertAligned(path.join(bodySrcDir, bodyMap[id][pose]), id, path.join(bodyTmpDir, `${id}-${pose}.webp`));
         }
       }
     } catch (e) {
       fs.rmSync(bodyTmpDir, { recursive: true, force: true });
       fail(`no se pudo convertir una pose de cuerpo (${e.message}). No se cambió nada.`);
     }
-    // Reemplaza solo las poses; los cuerpos neutros (<id>.webp) no se tocan.
+    // Reemplaza solo las poses de los bots procesados; los neutros y las poses de otros bots no se tocan.
     fs.mkdirSync(bodyOutDir, { recursive: true });
-    const poseRe = new RegExp(`^[a-z]+-(?:${POSES.join('|')})\\.webp$`);
+    const poseRe = new RegExp(`^(?:${Object.keys(bodyMap).join('|')})-(?:${POSES.join('|')})\\.webp$`);
     for (const f of fs.readdirSync(bodyOutDir)) {
       if (poseRe.test(f)) fs.rmSync(path.join(bodyOutDir, f), { force: true });
     }
@@ -144,8 +188,10 @@ async function main() {
     "import type { ImageSourcePropType } from 'react-native';\n" +
     "import type { BotPose } from './botBody';\n\n" +
     `export const BOT_BODIES: Partial<Record<string, Partial<Record<BotPose, ImageSourcePropType>>>> = ${bodyBody};\n`;
-  fs.writeFileSync(bodyMapFile, bodyTs);
-  console.log(`${bodyFiles.length} poses de cuerpo → ${path.relative(root, bodyMapFile)}`);
+  if (bodyIds.length) {
+    fs.writeFileSync(bodyMapFile, bodyTs);
+    console.log(`${bodyIds.length} bots con poses → ${path.relative(root, bodyMapFile)}`);
+  }
 }
 
 main().catch((e) => fail(e.message));

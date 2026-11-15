@@ -11,8 +11,9 @@ import { BotAvatar } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { Chip } from '../components/Chip';
 import { GameResultLayer } from '../components/GameResultLayer';
-import { StatIcon } from '../components/StatIcon';
-import { StreakPill } from '../components/StreakPill';
+import { InertGroup } from '../components/InertGroup';
+import { ResultBadges } from '../components/ResultBadges';
+import { coinsNoteVisible, resultTitleKey } from '../components/resultText';
 import { Bot } from '../data/bots';
 import { OpeningCourse } from '../data/lessonTypes';
 import { EngineView } from '../engine/EngineView';
@@ -44,6 +45,8 @@ type Props = {
   userColor: 'w' | 'b';
   /** Modo práctica: el bot sigue la línea de esta apertura mientras el usuario la respete. */
   practiceCourse?: OpeningCourse;
+  /** La práctica se empezó desde la ficha del bot: «Volver» regresa a esa ficha. */
+  practiceFromBot?: boolean;
   /** Partida guardada que se retoma: jugadas UCI desde el inicio y cuándo se empezó. Sin ellas, empieza de cero. */
   initialMoves?: string[];
   initialStartedAt?: string;
@@ -87,7 +90,7 @@ function matedKingSquare(chess: Chess): Square | null {
 }
 
 // Partida contra un bot (mapa-de-pantallas.md, 2.10).
-export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initialStartedAt, onExit, onRematch, onOtherBot, onAnalyze }: Props) {
+export function GameScreen({ bot, userColor, practiceCourse, practiceFromBot, initialMoves, initialStartedAt, onExit, onRematch, onOtherBot, onAnalyze }: Props) {
   const { finishGame, saveOngoingGame, getProgress } = useProgress();
   const { settings } = useSettings();
   const { language, t } = useI18n();
@@ -432,20 +435,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
   const contentWidth = useBoardLayoutWidth(GAME_RESERVE);
 
   const board = (
-    <BoardStage
-      orientation={userColor}
-      bonusLabel={t('coinReward.bonus')}
-      reward={
-        result && result.coins + result.dailyBonus > 0
-          ? {
-              key: `${result.kind}-${result.coins}-${result.dailyBonus}`,
-              square: result.rewardSquare ?? null,
-              amount: result.coins,
-              bonus: result.dailyBonus,
-            }
-          : null
-      }
-    >
+    <BoardStage orientation={userColor}>
       <Board
         fen={shownFen}
         orientation={userColor}
@@ -520,26 +510,25 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
   const resultBody = result && (
     <>
       <Text style={[styles.resultTitle, { color: result.kind === 'win' ? colors.primary : result.kind === 'loss' ? colors.danger : colors.text }]}>
-        {result.kind === 'win' ? t('game.win') : result.kind === 'loss' ? t('game.loss') : t('game.draw')}
+        {t(resultTitleKey(result.kind))}
       </Text>
       <Text style={styles.resultReason}>{t(result.reason)}</Text>
-      {result.coins > 0 && (
-        <View style={styles.coinsRow}>
-          <StatIcon name="coin" size={18} />
-          <Text style={[styles.coinsText, { marginTop: 0 }]}>{t('game.coins', { n: result.coins })}</Text>
-        </View>
-      )}
-      {result.kind === 'win' && result.coins === 0 && !practiceCourse && <Text style={styles.coinsNote}>{t('game.coinsNote')}</Text>}
-      {result.dailyBonus > 0 && <Text style={styles.coinsText}>{t('common.dailyBonus', { n: result.dailyBonus })}</Text>}
-      {result.streakRecovered && <Text style={styles.coinsText}>{t('common.streakRecovered')}</Text>}
-      <StreakPill streak={currentStreak(getProgress())} streakLit={result.streakLit} />
+      <ResultBadges
+        coins={result.coins}
+        dailyBonus={result.dailyBonus}
+        streak={currentStreak(getProgress())}
+        streakLit={result.streakLit}
+        streakRecovered={result.streakRecovered}
+        showCoinsNote={coinsNoteVisible(result.kind, result.coins, !!practiceCourse)}
+        style={{ marginTop: space.sm }}
+      />
       <Button3D
         label={practiceCourse ? t('game.rematchPractice') : t('game.rematch')}
         variant="primary"
         onPress={onRematch}
         style={{ marginTop: space.md }}
       />
-      <Button3D label={practiceCourse ? t('game.backToOpening') : t('game.otherBot')} onPress={onOtherBot} style={{ marginTop: space.sm }} />
+      <Button3D label={practiceCourse ? (practiceFromBot ? t('game.backToBot', { bot: bot.name }) : t('game.backToOpening')) : t('game.otherBot')} onPress={onOtherBot} style={{ marginTop: space.sm }} />
       {sans.length > 0 && <Button3D label={t('game.analyze')} onPress={analyze} style={{ marginTop: space.sm }} />}
     </>
   );
@@ -571,6 +560,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
         />
       )}
 
+      <InertGroup inert={result !== null && layer} style={styles.behind}>
       <ScrollView contentContainerStyle={[styles.content, { paddingTop: statusBarTop(space.sm) }]}>
         <View style={[styles.topRow, contentWidth ? { width: contentWidth, alignSelf: 'center' } : null]}>
           <Pressable onPress={exit} accessibilityRole="button" accessibilityLabel={t('game.exitLabel')} hitSlop={12}>
@@ -602,6 +592,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
       </ScrollView>
 
       {result && !wide && <View style={[styles.resultPanel, { backgroundColor: resultBg }]}>{resultBody}</View>}
+      </InertGroup>
 
       {result && layer && (
         <GameResultLayer
@@ -617,6 +608,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
           streakRecovered={result.streakRecovered}
           games={getProgress().games}
           practiceCourse={practiceCourse}
+          practiceFromBot={practiceFromBot}
           onClose={() => setLayer(false)}
           onReview={analyze}
           onRematch={onRematch}
@@ -629,6 +621,7 @@ export function GameScreen({ bot, userColor, practiceCourse, initialMoves, initi
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'transparent' },
+  behind: { flex: 1 },
   content: { paddingHorizontal: space.lg, paddingBottom: space.xl },
   topRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginBottom: space.sm },
   close: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.textMuted },
@@ -662,7 +655,4 @@ const styles = StyleSheet.create({
   resultCard: { marginTop: space.lg, borderRadius: radius.control, padding: space.lg },
   resultTitle: { fontFamily: fonts.extrabold, fontSize: type.title },
   resultReason: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.text, marginTop: 4 },
-  coinsRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.sm },
-  coinsText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.gold, marginTop: space.xs },
-  coinsNote: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: space.sm },
 });

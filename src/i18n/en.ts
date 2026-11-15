@@ -481,11 +481,13 @@ export const en: Record<MessageKey, string> = {
   'result.otherBot': 'Choose another bot',
   'result.rematchPractice': 'Practise again',
   'result.backToOpening': 'Back to the opening',
+  'result.backToBot': 'Back to {bot}',
   'result.showBoard': 'View the board',
   'result.close': 'Close',
   'game.rematchPractice': 'Practice again',
   'game.rematch': 'Rematch',
   'game.backToOpening': 'Back to the opening',
+  'game.backToBot': 'Back to {bot}',
   'game.otherBot': 'Choose another bot',
   'game.analyze': 'Analyze game',
 

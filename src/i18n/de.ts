@@ -482,11 +482,13 @@ export const de: Record<MessageKey, string> = {
   'result.otherBot': 'Anderen Bot wählen',
   'result.rematchPractice': 'Noch einmal üben',
   'result.backToOpening': 'Zurück zur Eröffnung',
+  'result.backToBot': 'Zurück zu {bot}',
   'result.showBoard': 'Brett ansehen',
   'result.close': 'Schließen',
   'game.rematchPractice': 'Nochmal üben',
   'game.rematch': 'Revanche',
   'game.backToOpening': 'Zurück zur Eröffnung',
+  'game.backToBot': 'Zurück zu {bot}',
   'game.otherBot': 'Anderen Bot wählen',
   'game.analyze': 'Partie analysieren',
 

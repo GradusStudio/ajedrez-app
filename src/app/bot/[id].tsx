@@ -26,7 +26,7 @@ export default function BotRoute() {
           confirmNewGame(() =>
             // La ficha promete «Practica la apertura contra este bot»: se juega contra el de la ficha, no contra
             // el de menor nivel que conoce el curso (botForOpening).
-            router.push({ pathname: '/partida', params: { bot: bot.id, color, curso: course.id } })
+            router.push({ pathname: '/partida', params: { bot: bot.id, color, curso: course.id, from: 'bot' } })
           );
         }}
       />

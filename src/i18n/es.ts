@@ -480,11 +480,13 @@ export const es = {
   'result.otherBot': 'Elegir otro bot',
   'result.rematchPractice': 'Practicar otra vez',
   'result.backToOpening': 'Volver a la apertura',
+  'result.backToBot': 'Volver a {bot}',
   'result.showBoard': 'Ver el tablero',
   'result.close': 'Cerrar',
   'game.rematchPractice': 'Practicar otra vez',
   'game.rematch': 'Revancha',
   'game.backToOpening': 'Volver a la apertura',
+  'game.backToBot': 'Volver a {bot}',
   'game.otherBot': 'Elegir otro bot',
   'game.analyze': 'Analizar partida',
 

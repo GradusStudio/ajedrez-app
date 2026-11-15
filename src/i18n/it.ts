@@ -482,11 +482,13 @@ export const it: Record<MessageKey, string> = {
   'result.otherBot': 'Scegli un altro bot',
   'result.rematchPractice': 'Allenati ancora',
   'result.backToOpening': "Torna all'apertura",
+  'result.backToBot': 'Torna a {bot}',
   'result.showBoard': 'Vedi la scacchiera',
   'result.close': 'Chiudi',
   'game.rematchPractice': 'Allenati ancora',
   'game.rematch': 'Rivincita',
   'game.backToOpening': "Torna all'apertura",
+  'game.backToBot': 'Torna a {bot}',
   'game.otherBot': 'Scegli un altro bot',
   'game.analyze': 'Analizza partita',
 

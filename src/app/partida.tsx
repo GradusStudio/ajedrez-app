@@ -8,14 +8,15 @@ import { GameScreen } from '../screens/GameScreen';
 
 /**
  * Partida contra un bot. Parámetros: bot (id), color (del usuario: w/b),
- * curso (opcional: modo práctica de esa apertura), n (para que la revancha empiece de cero) y
+ * curso (opcional: modo práctica de esa apertura), n (para que la revancha empiece de cero),
+ * from=bot (la práctica se empezó desde la ficha del bot, así «Volver» regresa ahí) y
  * continuar=1 (retoma la partida sin terminar guardada en el progreso; entonces bot, color y curso salen de ella).
  */
 export default function GameRoute() {
-  const params = useLocalSearchParams<{ bot: string; color: string; curso?: string; n?: string; continuar?: string }>();
+  const params = useLocalSearchParams<{ bot: string; color: string; curso?: string; n?: string; from?: string; continuar?: string }>();
   const { loaded } = useProgress();
   if (params.continuar === '1') return loaded ? <ResumeRoute /> : null;
-  return <NewGame bot={params.bot} color={params.color} curso={params.curso} n={params.n} />;
+  return <NewGame bot={params.bot} color={params.color} curso={params.curso} n={params.n} from={params.from} />;
 }
 
 /**
@@ -37,12 +38,13 @@ function ResumeRoute() {
   return <NewGame bot={saved.botId} color={saved.userColor} curso={saved.practiceCourseId} moves={saved.moves} startedAt={saved.startedAt} />;
 }
 
-function NewGame({ bot: botId, color, curso, n, moves, startedAt }: { bot: string; color: string; curso?: string; n?: string; moves?: string[]; startedAt?: string }) {
+function NewGame({ bot: botId, color, curso, n, from, moves, startedAt }: { bot: string; color: string; curso?: string; n?: string; from?: string; moves?: string[]; startedAt?: string }) {
   const { findBot, findOpening } = useContent();
   const bot = findBot(botId);
   if (!bot) return <Redirect href="/bots" />;
   const userColor = color === 'b' ? 'b' : 'w';
   const practiceCourse = curso ? findOpening(curso) : undefined;
+  const practiceFromBot = Boolean(practiceCourse && from === 'bot');
 
   return (
     <GameScreen
@@ -50,6 +52,7 @@ function NewGame({ bot: botId, color, curso, n, moves, startedAt }: { bot: strin
       bot={bot}
       userColor={userColor}
       practiceCourse={practiceCourse}
+      practiceFromBot={practiceFromBot}
       initialMoves={moves}
       initialStartedAt={startedAt}
       onExit={() => router.back()}
@@ -61,6 +64,7 @@ function NewGame({ bot: botId, color, curso, n, moves, startedAt }: { bot: strin
             // Revancha con los colores cambiados; en práctica, siempre con el color de la apertura.
             color: practiceCourse ? userColor : userColor === 'w' ? 'b' : 'w',
             ...(practiceCourse ? { curso: practiceCourse.id } : {}),
+            ...(practiceFromBot ? { from: 'bot' } : {}),
             n: String(Date.now()),
           },
         })

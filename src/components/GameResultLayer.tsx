@@ -16,8 +16,8 @@ import { botBodySource } from './BotAvatar';
 import { BotGlow } from './BotGlow';
 import { Button3D } from './Button3D';
 import { CoinReward } from './CoinReward';
-import { StatIcon } from './StatIcon';
-import { StreakFlame } from './StreakFlame';
+import { ResultBadges } from './ResultBadges';
+import { resultTitleKey, coinsNoteVisible } from './resultText';
 import { useReducedMotion } from './useReducedMotion';
 import { useWideLayout } from './useWideLayout';
 import type { Bot } from '../data/bots';
@@ -41,6 +41,8 @@ type Props = {
   streakRecovered: boolean;
   games: GameRecord[];
   practiceCourse?: OpeningCourse;
+  /** La práctica se empezó desde la ficha del bot: se vuelve a ella, no a la apertura. */
+  practiceFromBot?: boolean;
   onClose: () => void;
   onReview: () => void;
   onRematch: () => void;
@@ -48,7 +50,6 @@ type Props = {
 };
 
 const BG = 'rgba(38, 36, 33, 0.92)'; // colors.bg al 92 % (spec del resultado)
-const FLAME = '#F5912F';
 const COINS_TITLE_ID = 'gradus-result-title';
 
 type NodeRef = React.ComponentRef<typeof View>;
@@ -64,7 +65,7 @@ const measureWindow = (node: NodeRef | null, cb: (x: number, y: number, w: numbe
  * botones. «Ver el tablero» la cierra y deja la tarjeta del panel como antes.
  */
 export function GameResultLayer(props: Props) {
-  const { bot, userColor, kind, reason, plies, coins, dailyBonus, streak, streakLit, streakRecovered, games, practiceCourse } = props;
+  const { bot, userColor, kind, reason, plies, coins, dailyBonus, streak, streakLit, streakRecovered, games, practiceCourse, practiceFromBot } = props;
   const { t, tn, number } = useI18n();
   const wide = useWideLayout();
   const { height } = useWindowDimensions();
@@ -84,7 +85,7 @@ export function GameResultLayer(props: Props) {
   const glowColor = kind === 'win' ? colors.gold : kind === 'loss' ? colors.primary : '#FFFFFF';
   const speech = kind === 'win' ? bot.lines.onLose : kind === 'loss' ? bot.lines.onWin : bot.lines.onDraw;
   const titleColor = kind === 'win' ? colors.gold : kind === 'loss' ? colors.text : colors.textMuted;
-  const resultTitle = kind === 'win' ? t('game.win') : kind === 'loss' ? t('game.loss') : t('game.draw');
+  const resultTitle = t(resultTitleKey(kind));
   // Lo que anuncia el lector al abrir la capa: el resultado, la frase del bot y lo que se ganó.
   const summaryLabel = [
     t('result.match', { bot: bot.name, elo: number(bot.elo) }),
@@ -170,6 +171,7 @@ export function GameResultLayer(props: Props) {
   }, [reduced, coins, pillLanded]);
 
   // Escape cierra la capa en la web. El foco va al resultado una sola vez, al montar (no en cada render).
+  // Tab y Shift+Tab giran dentro de la capa: el fondo queda inerte y no se puede salir con el teclado.
   const onCloseRef = useRef(props.onClose);
   useEffect(() => {
     onCloseRef.current = props.onClose;
@@ -177,7 +179,32 @@ export function GameResultLayer(props: Props) {
   useEffect(() => {
     if (Platform.OS !== 'web') return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onCloseRef.current();
+      if (e.key === 'Escape') {
+        onCloseRef.current();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const root = layerRef.current as unknown as HTMLElement | null;
+      if (!root || typeof root.querySelectorAll !== 'function') return;
+      const focusables = Array.from(
+        root.querySelectorAll<HTMLElement>('button, [role="button"], [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+      ).filter((el) => !el.hasAttribute('disabled') && el.getClientRects().length > 0);
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+      const inside = root.contains(active);
+      const index = focusables.indexOf(active as HTMLElement);
+      if (e.shiftKey) {
+        // Desde el primer botón (o desde el título, que va antes) se vuelve al último.
+        if ((inside && index <= 0) || !inside) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else if (index === focusables.length - 1 || !inside) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener('keydown', onKey);
     const node = document.getElementById(COINS_TITLE_ID) as (HTMLElement & { tabIndex: number }) | null;
@@ -232,42 +259,6 @@ export function GameResultLayer(props: Props) {
     </View>
   );
 
-  const pills = (
-    <View style={styles.pills}>
-      {coins > 0 && (
-        <View
-          ref={coinRef}
-          style={[styles.pill, styles.pillCoins]}
-          accessibilityLabel={t('result.coinsPill', { n: coins })}
-        >
-          <Animated.View style={[styles.pillContent, { transform: [{ scale: pulse }] }]}>
-            <StatIcon name="coin" size={18} />
-            <Text style={styles.pillCoinsText}>{t('result.coinsPill', { n: coins })}</Text>
-          </Animated.View>
-        </View>
-      )}
-      {dailyBonus > 0 && (
-        <View style={[styles.pill, styles.pillDaily]}>
-          <StatIcon name="coin" size={16} />
-          <Text style={styles.pillDailyText}>{t('result.dailyPill', { n: dailyBonus })}</Text>
-        </View>
-      )}
-      {streakRecovered ? (
-        <View style={[styles.pill, styles.pillFlame]}>
-          <StreakFlame state="recovering" size={18} />
-          <Text style={styles.pillFlameText}>{t('result.streakRecovered')}</Text>
-        </View>
-      ) : (
-        streak > 0 && (
-          <View style={[styles.pill, styles.pillFlame]}>
-            <StreakFlame state={streakLit ? 'lit' : 'ember'} size={18} />
-            <Text style={styles.pillFlameText}>{tn('result.streakPill', streak)}</Text>
-          </View>
-        )
-      )}
-    </View>
-  );
-
   const infoBlock = (
     <>
       <Text style={styles.kicker}>{t('result.match', { bot: bot.name, elo: number(bot.elo) })}</Text>
@@ -280,8 +271,18 @@ export function GameResultLayer(props: Props) {
         {resultTitle}
       </Text>
       <Text style={styles.howText}>{how}</Text>
-      {pills}
-      {kind === 'win' && coins === 0 && !practiceCourse && <Text style={styles.coinsNote}>{t('game.coinsNote')}</Text>}
+      <ResultBadges
+        coins={coins}
+        dailyBonus={dailyBonus}
+        streak={streak}
+        streakLit={streakLit}
+        streakRecovered={streakRecovered}
+        showCoinsNote={coinsNoteVisible(kind, coins, !!practiceCourse)}
+        coinRef={coinRef}
+        pulse={pulse}
+        style={{ marginBottom: space.lg }}
+        noteStyle={{ marginTop: -8, marginBottom: space.lg }}
+      />
 
       {history && (
         <View style={styles.history}>
@@ -306,7 +307,7 @@ export function GameResultLayer(props: Props) {
         style={[styles.actionHalf, !wide && styles.actionFull]}
       />
       <Button3D
-        label={practiceCourse ? t('result.backToOpening') : t('result.otherBot')}
+        label={practiceCourse ? (practiceFromBot ? t('result.backToBot', { bot: bot.name }) : t('result.backToOpening')) : t('result.otherBot')}
         onPress={props.onOtherBot}
         style={[styles.actionHalf, !wide && styles.actionFull]}
       />
@@ -397,16 +398,6 @@ const styles = StyleSheet.create({
   kicker: { fontFamily: fonts.extrabold, fontSize: type.caption, color: colors.primary, letterSpacing: 0.6, textTransform: 'uppercase' },
   big: { fontFamily: fonts.extrabold, fontSize: 46, lineHeight: 52, marginTop: 4 },
   howText: { fontFamily: fonts.semibold, fontSize: type.body, color: colors.textMuted, marginTop: 6, marginBottom: space.lg, lineHeight: 22 },
-  pills: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: space.lg },
-  pill: { flexDirection: 'row', alignItems: 'center', gap: 8, borderRadius: 999, borderWidth: 2, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: 'rgba(38,36,33,0.8)' },
-  pillContent: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  pillCoins: { borderColor: colors.gold },
-  pillCoinsText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.gold },
-  pillDaily: { borderColor: 'rgba(255,255,255,0.12)' },
-  pillDailyText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
-  pillFlame: { borderColor: FLAME },
-  pillFlameText: { fontFamily: fonts.extrabold, fontSize: type.body, color: FLAME },
-  coinsNote: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted, marginTop: -8, marginBottom: space.lg },
   history: { marginBottom: space.lg, gap: 2 },
   historyMain: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
   historyNote: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted },

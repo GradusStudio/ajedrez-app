@@ -157,11 +157,15 @@ export function GameResultLayer(props: Props) {
     return () => clearTimeout(id);
   }, [reduced, coins, pillLanded]);
 
-  // Escape cierra la capa en la web. El foco va al resultado.
+  // Escape cierra la capa en la web. El foco va al resultado una sola vez, al montar (no en cada render).
+  const onCloseRef = useRef(props.onClose);
+  useEffect(() => {
+    onCloseRef.current = props.onClose;
+  });
   useEffect(() => {
     if (Platform.OS !== 'web') return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') props.onClose();
+      if (e.key === 'Escape') onCloseRef.current();
     };
     window.addEventListener('keydown', onKey);
     const node = document.getElementById(COINS_TITLE_ID) as (HTMLElement & { tabIndex: number }) | null;
@@ -172,7 +176,7 @@ export function GameResultLayer(props: Props) {
       node.focus();
     }
     return () => window.removeEventListener('keydown', onKey);
-  }, [props]);
+  }, []);
 
   const onCoinsLanded = () => {
     setPillLanded(true);
@@ -221,7 +225,6 @@ export function GameResultLayer(props: Props) {
       {coins > 0 && (
         <View
           ref={coinRef}
-          onLayout={() => {}}
           style={[styles.pill, styles.pillCoins]}
           accessibilityLabel={t('result.coinsPill', { n: coins })}
         >

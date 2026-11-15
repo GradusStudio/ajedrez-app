@@ -28,7 +28,7 @@ export function hasUsableStructure(p: Record<string, unknown>): boolean {
       ? isCount(l.bestErrors) && isString(l.completedAt) && isCount(l.completions)
       : l.done === true && isCount(l.errors) && isString(l.completedAt) && isCount(l.completions);
   if (has('lessons') && !everyValue(p.lessons, lessonOk)) return false;
-  if (has('puzzles') && !everyValue(p.puzzles, (r) => ['clean', 'solved', 'failed'].includes(r.result as string) && isString(r.at))) return false;
+  if (has('puzzles') && !everyValue(p.puzzles, (r) => ['clean', 'solved', 'failed'].includes(r.result as string) && isString(r.at) && (!('themes' in r) || (isStrings(r.themes) && r.themes.length <= 50)))) return false;
   if (has('drafts') && !everyValue(p.drafts, (d) => isInt(d.stepIndex) && isCount(d.errors) && isStrings(d.mistakes))) return false;
   if (has('mistakes') && !everyItem(p.mistakes, (m) => isString(m.stepId) && isString(m.lessonId) && isString(m.lastSeen) && isCount(m.count))) return false;
   const gameOk = (g: Record<string, unknown>) =>
@@ -61,6 +61,8 @@ export function hasUsableStructure(p: Record<string, unknown>): boolean {
   if (has('puzzleRating')) {
     const r = p.puzzleRating;
     if (!(isObject(r) && isCount(r.rating) && isInt(r.rated) && isStringOrNull(r.at) && isStrings(r.pending))) return false;
+    // El historial es opcional; si está, cada punto es { at, rating } y hay como mucho los 60 que se guardan.
+    if ('history' in r && !(Array.isArray(r.history) && r.history.length <= 60 && r.history.every((point) => isObject(point) && isString(point.at) && isCount(point.rating)))) return false;
   }
   if (has('puzzlesOpened') && !isStrings(p.puzzlesOpened)) return false;
   if (has('ongoingGame')) {

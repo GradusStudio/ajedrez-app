@@ -8,7 +8,7 @@ const stored = (id: string, savedAt = '2026-11-14T10:00:00.000Z'): StoredReview 
   savedAt,
   me: 'w',
   coachId: 'lola',
-  review: { plies: [] } as unknown as Review,
+  review: { plies: [], scores: [] } as unknown as Review,
 });
 
 test('el id de una partida importada es estable y distinto por PGN', () => {
@@ -44,10 +44,16 @@ test('trimReviews corta en 10 y conserva las más recientes', () => {
 
 test('un dato roto del almacenamiento se descarta', () => {
   assert.equal(isStoredReview(stored('x')), true);
-  for (const bad of [null, 5, 'x', {}, { id: 'x' }, { ...stored('x'), me: 'z' }, { ...stored('x'), review: { plies: 'no' } }]) {
+  for (const bad of [null, 5, 'x', {}, { id: 'x' }, { ...stored('x'), me: 'z' }, { ...stored('x'), review: { plies: 'no', scores: [] } }]) {
     assert.equal(isStoredReview(bad), false, JSON.stringify(bad));
   }
   assert.equal(isStoredReview({ ...stored('x'), me: null }), true);
+  // Las jugadas y las evaluaciones tienen que tener la forma que usan el resumen y el quiz.
+  const ply = { ply: 1, move: { color: 'w' }, bestUci: 'e2e4' };
+  assert.equal(isStoredReview({ ...stored('x'), review: { plies: [ply], scores: [0, 1] } }), true);
+  assert.equal(isStoredReview({ ...stored('x'), review: { plies: [{}], scores: [] } }), false);
+  assert.equal(isStoredReview({ ...stored('x'), review: { plies: [ply], scores: ['x'] } }), false);
+  assert.equal(isStoredReview({ ...stored('x'), review: { plies: [], scores: [] } }), true);
 });
 
 test('findReview encuentra la revisión por el id de la partida o por el del PGN', () => {

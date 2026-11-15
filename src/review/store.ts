@@ -37,17 +37,29 @@ export function trimReviews(list: StoredReview[], next: StoredReview, max = MAX_
 }
 
 /** Valida lo leído del almacenamiento: un dato roto se descarta en vez de romper la pestaña. */
-export function isStoredReview(value: unknown): value is StoredReview {  if (typeof value !== 'object' || value === null) return false;
+export function isStoredReview(value: unknown): value is StoredReview {
+  if (typeof value !== 'object' || value === null) return false;
   const v = value as Record<string, unknown>;
   const review = v.review as Record<string, unknown> | null | undefined;
+  if (typeof review !== 'object' || review === null) return false;
+  const scores = review.scores;
+  const scoresOk = Array.isArray(scores) && scores.every((n) => typeof n === 'number' && Number.isFinite(n));
+  // Cada jugada tiene lo que usan el resumen, el quiz y los errores pendientes.
+  const pliesOk =
+    Array.isArray(review.plies) &&
+    review.plies.every((p) => {
+      if (typeof p !== 'object' || p === null) return false;
+      const ply = p as Record<string, unknown>;
+      const move = ply.move as Record<string, unknown> | null | undefined;
+      return typeof ply.ply === 'number' && typeof move === 'object' && move !== null && typeof move.color === 'string' && typeof ply.bestUci === 'string';
+    });
   return (
     typeof v.id === 'string' &&
     typeof v.savedAt === 'string' &&
     (v.me === null || v.me === 'w' || v.me === 'b') &&
     typeof v.coachId === 'string' &&
-    typeof review === 'object' &&
-    review !== null &&
-    Array.isArray((review as Record<string, unknown>).plies)
+    scoresOk &&
+    pliesOk
   );
 }
 

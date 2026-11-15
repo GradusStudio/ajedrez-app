@@ -64,3 +64,12 @@ Cambios en `repertoire` de `src/data/bots.json` (y de cada `src/data/i18n/<lang>
 - Prueba nueva: **todo curso de `aperturas-v3.json` tiene al menos un bot** que lo juega del color del curso; si falla, la prueba nombra el curso.
 - `botForOpening` ya elige al bot de menor nivel que juega el curso: con esto, la práctica de cada curso es contra alguien que lo conoce.
 - Revisar en `docs/bots.md` el repertorio de cada ficha y actualizarlo.
+
+## Ada juega con Stockfish (decisión del autor, 14-11-2026)
+
+Ada es «la máquina»: no tiene que jugar como una persona. Deja de usar Maia y juega con **Stockfish limitado por Elo**, que hoy ya es su respaldo en `bots.json`:
+- `engine` pasa a `{ "type": "stockfish-elo", "uciElo": 2200, "multipv": 1, "thinkMs": [1500, 3500] }` (lo que hoy está en `fallback`). El `fallback` puede quedar igual o quitarse si el tipo `stockfish-elo` no lo necesita.
+- **Recalibrar** con partidas entre bots vecinos, como en `docs/maia.md` «Calibración»: Ada contra Maestro Ivo (1950) tiene que ganar alrededor del **76 %** (regla de 200 puntos). Si da mucho más o mucho menos, ajustar `uciElo` (Stockfish no baja de 1320) y repetir. Anotar el resultado en `docs/maia.md` y `docs/bots.md`.
+- Las frases y las tablas siguen evaluándose con Stockfish como hoy.
+- Si Ada era el único bot con la red de Maia 1900, no: Sofía e Ivo la siguen usando; la red se queda.
+- Actualizar `docs/maia.md` (los bots que juegan con Maia pasan a ser nueve) y la ficha de Ada en `docs/bots.md`.

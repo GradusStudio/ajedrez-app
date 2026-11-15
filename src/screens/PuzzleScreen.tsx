@@ -30,6 +30,11 @@ type Props = {
   onExit: () => void;
   /** Solo en práctica: pasa al siguiente puzzle. */
   onNext?: () => void;
+  /**
+   * Guardar los temas del puzzle en el progreso. Solo la práctica por tema los necesita (para contar los resueltos
+   * por tema); en el resto se omiten para no engordar el progreso que se sincroniza.
+   */
+  saveThemes?: boolean;
 };
 
 type Status = 'playing' | 'solved' | 'failed';
@@ -44,7 +49,7 @@ const MAX_SESSION_SECONDS = 30 * 60;
 const toSquares = (uci: string): SquareMove => ({ from: uci.slice(0, 2) as Square, to: uci.slice(2, 4) as Square });
 
 // Puzzle de Lichess: el rival hace la primera jugada y el usuario busca la solución (mapa-de-pantallas.md, 2.8).
-export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
+export function PuzzleScreen({ puzzle, label, onExit, onNext, saveThemes = false }: Props) {
   const { finishPuzzle, failPuzzle, progress } = useProgress();
   const { settings } = useSettings();
   const { t, tn } = useI18n();
@@ -114,7 +119,7 @@ export function PuzzleScreen({ puzzle, label, onExit, onNext }: Props) {
     if (result !== 'failed') feedback.correct();
     setStatus(result === 'failed' ? 'failed' : 'solved');
     setRewardSquare(square);
-    setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS), puzzle.rating, puzzle.themes));
+    setEarned(finishPuzzle(puzzle.id, result, Math.min((Date.now() - startedAt.current) / 1000, MAX_SESSION_SECONDS), puzzle.rating, saveThemes ? puzzle.themes : []));
   };
 
   /** Baja el nivel de puzzles ahora, aunque después se salga sin terminar. */

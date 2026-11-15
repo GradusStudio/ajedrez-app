@@ -98,6 +98,7 @@ function PuzzleLoaded({ source }: { source: PuzzleSource }) {
         label={label}
         onExit={() => router.back()}
         onNext={practice ? next : undefined}
+        saveThemes={Boolean(theme)}
       />
     </View>
   );

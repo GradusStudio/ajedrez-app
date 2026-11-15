@@ -263,4 +263,6 @@ Los sets nuevos (Geométrico, Juguete, Madera, Mármol, Hielo y Magma) se genera
 - **LoRA de texturas**: `Hand-Painted_2d_Seamless_Textures-000007`. **No se usa** hasta confirmar que su licencia permite el uso comercial.
 - **Anima no se usa** en la app.
 
+Las texturas de madera (boj, nogal, arce), mármol (Carrara, Marquina, gris pulido) y el tablero de magma se generaron el 15-11-2026 con SDXL base a 768 px, 24 pasos, dpmpp_2m karras, cfg 7, una imagen por textura y prompts fotográficos («close-up photograph of … texture background»); los prompts con «seamless tileable, top down scan» producían rayas y objetos. Sin LoRA. Las piezas de magma conservan su textura; el tablero nuevo es piedra mate clara/oscura sin lava ni brillo, con el tono ajustado para que el damero se lea y las piezas resalten.
+
 Las pruebas, las guías y las hojas de contacto están en la nota del vault «Gradus - Piezas nuevas». Nada se integra sin la aprobación del autor.

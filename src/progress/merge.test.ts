@@ -521,6 +521,31 @@ test('nivel de puzzles: pending se une sin los que ya están terminados; un lado
   assert.deepEqual(mergeProgress(once, once), once);
 });
 
+test('nivel de puzzles: los historiales se unen por fecha (el mayor si empatan) y se ordenan', () => {
+  const point = (day: number, rating: number) => ({ at: `2026-01-0${day}T00:00:00.000Z`, rating });
+  const a = make({ puzzleRating: { ...nivel(1500, 40, '2026-01-02T00:00:00.000Z'), history: [point(1, 1400), point(2, 1500)] } });
+  const b = make({ puzzleRating: { ...nivel(1400, 10, '2026-01-03T00:00:00.000Z'), history: [point(2, 1450), point(3, 1600)] } });
+  assert.deepEqual(mergeProgress(a, b).puzzleRating?.history, [point(1, 1400), point(2, 1500), point(3, 1600)]);
+});
+
+test('nivel de puzzles: el historial combinado se corta a los últimos 60 puntos', () => {
+  const point = (i: number) => ({ at: new Date(Date.UTC(2026, 0, 1, 0, i)).toISOString(), rating: 1000 + i });
+  const a = make({ puzzleRating: { ...nivel(1100, 40, null), history: Array.from({ length: 40 }, (_, i) => point(i)) } });
+  const b = make({ puzzleRating: { ...nivel(1200, 10, null), history: Array.from({ length: 40 }, (_, i) => point(i + 40)) } });
+  const history = mergeProgress(a, b).puzzleRating?.history ?? [];
+  assert.equal(history.length, 60);
+  assert.deepEqual(history[0], point(20));
+  assert.deepEqual(history[59], point(79));
+});
+
+test('nivel de puzzles: si un lado no tiene historial se usa el del otro', () => {
+  const history = [{ at: '2026-01-01T00:00:00.000Z', rating: 1300 }];
+  const a = make({ puzzleRating: nivel(1500, 40, null) });
+  const b = make({ puzzleRating: { ...nivel(1400, 10, null), history } });
+  assert.deepEqual(mergeProgress(a, b).puzzleRating?.history, history);
+  assert.deepEqual(mergeProgress(b, a).puzzleRating?.history, history);
+});
+
 // ---------- Partida en curso ----------
 
 const juego = (moves: string[]) => ({ botId: 'pipo', userColor: 'w' as const, moves, startedAt: '2026-11-09T10:00:00.000Z' });

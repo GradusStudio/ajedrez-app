@@ -1,6 +1,6 @@
 import { strict as assert } from 'node:assert';
 import { test } from 'node:test';
-import { applyRating, currentRating, formatDelta, initialRating, ratingDelta } from './puzzleRating';
+import { applyRating, currentRating, formatDelta, initialRating, ratingDelta, type PuzzleRating } from './puzzleRating';
 
 test('initialRating sale del nivel de la bienvenida', () => {
   assert.equal(initialRating('nuevo'), 800);
@@ -38,4 +38,15 @@ test('formatDelta usa + y el signo menos', () => {
   assert.equal(formatDelta(8), '+8');
   assert.equal(formatDelta(-18), '−18');
   assert.equal(formatDelta(0), '0');
+});
+
+test('applyRating guarda el historial de los últimos 60 cambios', () => {
+  let state: PuzzleRating = { rating: 1000, rated: 0, at: null, pending: [] };
+  for (let i = 0; i < 61; i++) {
+    state = applyRating(state, 1200, 1, new Date(Date.UTC(2026, 0, 1, 0, i))).state;
+  }
+  assert.equal(state.history?.length, 60);
+  assert.equal(state.rated, 61);
+  assert.equal(state.history?.[59].rating, state.rating);
+  assert.equal(state.history?.[0].at, new Date(Date.UTC(2026, 0, 1, 0, 1)).toISOString());
 });

@@ -1,5 +1,5 @@
 import { MAX_OPENED, PROGRESS_VERSION, PUZZLE_RANK, coinBalance, withBalance, type GameRecord, type LessonProgress, type Mistake, type Progress, type PuzzleRecord } from './progressStore';
-import { MAX_PENDING, type PuzzleRating } from './puzzleRating';
+import { MAX_HISTORY, MAX_PENDING, type PuzzleRating } from './puzzleRating';
 import type { DayActions, Streak } from './streak';
 
 // Combina dos copias del progreso (la del dispositivo y una importada de un archivo o de Drive) sin perder nada.
@@ -170,6 +170,21 @@ function mergeOpened(a: string[], b: string[]): string[] {
  * Nivel de puzzles: gana el que contó más puzzles (`rated`); si empatan, el cambiado más tarde. `pending` se une, sin
  * los puzzles que ya están terminados en `puzzles` (tope MAX_PENDING).
  */
+type RatingPoint = { at: string; rating: number };
+
+/** Une los historiales de nivel por fecha (si dos puntos caen en la misma, el mayor) y los deja a 60. */
+function mergeRatingHistory(a?: RatingPoint[], b?: RatingPoint[]): RatingPoint[] {
+  const byAt = new Map<string, number>();
+  for (const point of [...(a ?? []), ...(b ?? [])]) {
+    const prev = byAt.get(point.at);
+    if (prev === undefined || point.rating > prev) byAt.set(point.at, point.rating);
+  }
+  return [...byAt.entries()]
+    .sort(([x], [y]) => (x < y ? -1 : x > y ? 1 : 0))
+    .slice(-MAX_HISTORY)
+    .map(([at, rating]) => ({ at, rating }));
+}
+
 export function mergePuzzleRating(
   a: PuzzleRating | undefined,
   b: PuzzleRating | undefined,
@@ -177,11 +192,18 @@ export function mergePuzzleRating(
 ): PuzzleRating | undefined {
   if (!a || !b) {
     const only = a ?? b;
-    return only && { ...only, pending: only.pending.filter((id) => !puzzles[id]).slice(-MAX_PENDING) };
+    if (!only) return undefined;
+    const history = only.history ? mergeRatingHistory(only.history) : undefined;
+    return {
+      ...only,
+      ...(history ? { history } : {}),
+      pending: only.pending.filter((id) => !puzzles[id]).slice(-MAX_PENDING),
+    };
   }
   const winner = pick(a, b, a.rated - b.rated || cmpDate(a.at, b.at));
   const pending = union(a.pending, b.pending).filter((id) => !puzzles[id]).slice(-MAX_PENDING);
-  return { ...winner, pending };
+  const history = mergeRatingHistory(a.history, b.history);
+  return { ...winner, pending, ...(history.length ? { history } : {}) };
 }
 
 /** Combina el progreso local con otro (importado o bajado de Drive). El resultado conserva `local.deviceId`. */

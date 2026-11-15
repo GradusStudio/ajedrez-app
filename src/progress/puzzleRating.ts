@@ -7,7 +7,17 @@ import type { PlayerLevel } from './progressStore';
  * `rated`: cuántos puzzles movieron el nivel. `at`: fecha ISO del último cambio. `pending`: puzzles que ya bajaron el
  * nivel por un fallo cobrado en el momento pero todavía no se terminaron (no vuelven a moverlo).
  */
-export type PuzzleRating = { rating: number; rated: number; at: string | null; pending: string[] };
+export type PuzzleRating = {
+  rating: number;
+  rated: number;
+  at: string | null;
+  pending: string[];
+  /** Últimos cambios de nivel, del más viejo al más nuevo. Opcional: se agregó sin subir la versión. */
+  history?: { at: string; rating: number }[];
+};
+
+/** Cuántos cambios de nivel se guardan para el gráfico del Perfil. */
+export const MAX_HISTORY = 60;
 
 export const RATING_MIN = 400;
 export const RATING_MAX = 3000;
@@ -35,7 +45,9 @@ export function ratingDelta(rating: number, rated: number, puzzleRating: number,
 export function applyRating(state: PuzzleRating, puzzleRating: number, score: 0 | 1, now: Date): { state: PuzzleRating; delta: number } {
   const raw = state.rating + ratingDelta(state.rating, state.rated, puzzleRating, score);
   const rating = Math.min(RATING_MAX, Math.max(RATING_MIN, raw));
-  return { state: { ...state, rating, rated: state.rated + 1, at: now.toISOString() }, delta: rating - state.rating };
+  const at = now.toISOString();
+  const history = [...(state.history ?? []), { at, rating }].slice(-MAX_HISTORY);
+  return { state: { ...state, rating, rated: state.rated + 1, at, history }, delta: rating - state.rating };
 }
 
 /** «+8», «−18» (signo menos, no guion) o «0». */

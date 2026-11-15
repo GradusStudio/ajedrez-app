@@ -563,7 +563,7 @@ export const es = {
   'credits.pieces.name': 'Piezas',
   'credits.pieces.what': 'Los 5 sets de piezas se generaron a partir de imágenes creadas con ChatGPT (OpenAI) y se pasaron a dibujos vectoriales.',
   'credits.bots.name': 'Personajes de los bots',
-  'credits.bots.what': 'Los avatares de los bots y sus caras de la lección (explica, piensa, acierto y pista) se crearon con ChatGPT (OpenAI).',
+  'credits.bots.what': 'Los avatares de los bots, sus caras de la lección (explica, piensa, acierto y pista) y sus poses de cuerpo entero (lección y resultado) se crearon con ChatGPT (OpenAI).',
   'credits.icon.name': 'Icono',
   'credits.icon.what': 'El icono de la app (el caballo que sube la escalera) se creó con ChatGPT (OpenAI).',
   'credits.sounds.name': 'Sonidos',

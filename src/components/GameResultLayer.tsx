@@ -12,7 +12,7 @@ import {
   View,
 } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { botBodySource } from './BotAvatar';
+import { botBody } from './BotAvatar';
 import { BotGlow } from './BotGlow';
 import { Button3D } from './Button3D';
 import { CoinReward } from './CoinReward';
@@ -81,6 +81,8 @@ export function GameResultLayer(props: Props) {
 
   const bodyHeight = wide ? 380 : height >= 900 ? 220 : 160;
   const bodyWidth = Math.round(bodyHeight * 0.75);
+  // Si el usuario perdió, el bot ganó y festeja; si el usuario ganó, el bot se lamenta. En tablas, el neutro.
+  const body = botBody(bot.id, kind === 'loss' ? 'festejo' : kind === 'win' ? 'lamento' : undefined);
   const glowSize = wide ? 360 : bodyHeight + 120;
   const glowColor = kind === 'win' ? colors.gold : kind === 'loss' ? colors.primary : '#FFFFFF';
   const speech = kind === 'win' ? bot.lines.onLose : kind === 'loss' ? bot.lines.onWin : bot.lines.onDraw;
@@ -252,7 +254,7 @@ export function GameResultLayer(props: Props) {
           <BotGlow size={glowSize} color={glowColor} intensity={kind === 'draw' ? 0.16 : 0.3} />
         </View>
         <Animated.View style={[styles.bodyWrap, { width: bodyWidth, height: bodyHeight }, bodyStyle]}>
-          <Image source={botBodySource(bot.id)} style={{ width: bodyWidth, height: bodyHeight }} resizeMode="contain" accessible accessibilityLabel={bot.name} />
+          <Image source={body} style={{ width: bodyWidth, height: bodyHeight }} resizeMode="contain" accessible accessibilityLabel={bot.name} />
         </Animated.View>
         <View style={[styles.floor, { width: bodyWidth * 0.58 }]} />
       </View>

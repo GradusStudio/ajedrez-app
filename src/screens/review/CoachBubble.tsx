@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { BotAvatar, botBodySource } from '../../components/BotAvatar';
+import { BotAvatar, botBody } from '../../components/BotAvatar';
 import type { BotExpression } from '../../components/botFace';
 import type { Bot } from '../../data/bots';
 import { formatScore } from '../../engine/evalFormat';
@@ -51,7 +51,7 @@ export function CoachBubble({ coach, expression, head, startTitle, voice, detail
   // Al cambiar de jugada el globo muestra otra cosa: los hechos de la anterior no siguen desplegados.
   if (state.key !== resetKey) setState({ key: resetKey, open: false });
   const expanded = state.open;
-  const body = botBodySource(coach.id);
+  const body = botBody(coach.id, expression);
   const visible = expanded ? details : details.slice(0, 1);
 
   return (

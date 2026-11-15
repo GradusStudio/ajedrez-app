@@ -4,7 +4,9 @@ import { Bot, BotStyle } from '../data/bots';
 import { boardHighlight, colors, fonts } from '../theme';
 import { Circle3D } from './Circle3D';
 import { BOT_EXPRESSIONS } from './botExpressions.generated';
+import { BOT_BODIES } from './botBodies.generated';
 import { BotExpression, expressionSource } from './botFace';
+import { bodySource, type BotPose } from './botBody';
 
 // Avatar del bot: su personaje sobre un círculo con el color de su estilo (design.md, sección 8).
 // Un bot sin imagen en AVATARS muestra su inicial.
@@ -48,6 +50,14 @@ const BODIES: Record<string, ImageSourcePropType> = {
 /** Cuerpo entero del bot para el panel ancho; sin imagen, el llamador usa el busto. */
 export function botBodySource(id: string): ImageSourcePropType | undefined {
   return BODIES[id];
+}
+
+/**
+ * Cuerpo entero de la pose pedida (las de la lección o `festejo`/`lamento` del resultado). Si esa pose todavía no
+ * está, devuelve el cuerpo neutro.
+ */
+export function botBody(id: string, pose?: BotPose): ImageSourcePropType | undefined {
+  return bodySource(BOT_BODIES, id, pose, BODIES[id]);
 }
 
 // `expression`: cara del bot (explica, piensa, acierto, pista); sin imagen para esa cara, muestra el avatar.

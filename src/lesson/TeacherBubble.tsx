@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { BotAvatar, botBodySource } from '../components/BotAvatar';
+import { BotAvatar, botBody } from '../components/BotAvatar';
 import { Button3D } from '../components/Button3D';
 import { BotExpression } from '../components/botFace';
 import { useWideLayout } from '../components/useWideLayout';
@@ -40,7 +40,7 @@ export function TeacherBubble({ children }: { children: string }) {
     const notice = panel.status !== 'idle';
     const noticeBg = panel.status === 'correct' ? colors.correctBg : colors.incorrectBg;
     const tailBg = notice ? noticeBg : '#FFFFFF';
-    const body = botBodySource(bot.id);
+    const body = botBody(bot.id, expression);
     return (
       <View accessible accessibilityLabel={label}>
         <Text style={styles.wideName}>{bot.name}</Text>

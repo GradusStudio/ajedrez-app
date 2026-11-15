@@ -565,7 +565,7 @@ export const fr: Record<MessageKey, string> = {
   'credits.pieces.name': 'Pièces',
   'credits.pieces.what': 'Les 5 sets de pièces ont été générés à partir d\'images créées avec ChatGPT (OpenAI), puis convertis en dessins vectoriels.',
   'credits.bots.name': 'Personnages des bots',
-  'credits.bots.what': 'Les avatars des bots et leurs visages de leçon (explique, réfléchit, réussite et indice) ont été créés avec ChatGPT (OpenAI).',
+  'credits.bots.what': 'Les avatars des bots, leurs visages de leçon (explique, réfléchit, réussite et indice) et leurs poses en pied (leçon et résultat) ont été créés avec ChatGPT (OpenAI).',
   'credits.icon.name': 'Icône',
   'credits.icon.what': "L'icône de l'app (le cavalier qui monte l'escalier) a été créée avec ChatGPT (OpenAI).",
   'credits.sounds.name': 'Sons',

@@ -158,7 +158,7 @@ export function ProfileScreen({ onOpenSettings, onOpenBotGames, onOpenReview, on
         </View>
       </CardSurface>
 
-      <View style={styles.pair}>
+      <View style={[styles.pair, !wide && styles.pairNarrow]}>
         {/* 3. Nivel de puzzles */}
         <CardSurface style={styles.card} radius={20}>
           <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{t('profile.rating.title')}</Text>
@@ -332,6 +332,8 @@ const styles = StyleSheet.create({
   unitCell: { width: '32%' },
   unitCellNarrow: { width: '100%' },
   pair: { flexDirection: 'row', gap: space.lg, alignItems: 'flex-start' },
+  // En el celular las dos tarjetas van en una columna: en 375 px, en fila quedan de ~163 px y la grilla de bots no entra.
+  pairNarrow: { flexDirection: 'column', alignItems: 'stretch' },
   ratingTop: { flexDirection: 'row', alignItems: 'baseline', gap: space.sm, marginTop: space.sm },
   ratingNumber: { fontFamily: fonts.extrabold, fontSize: 44, lineHeight: 50, color: colors.gold },
   ratingDelta: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.primary },

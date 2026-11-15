@@ -630,13 +630,9 @@
       "trait": "Juega con precisión casi total y usa todo su repertorio. Es el desafío final.",
       "teaches": "Jugar sin errores contra un rival muy exacto.",
       "engine": {
-        "type": "maia",
-        "net": 1900,
-        "temperature": 0.2,
-        "safety": {
-          "maxLoss": 150,
-          "depth": 8
-        },
+        "type": "stockfish-elo",
+        "uciElo": 2140,
+        "multipv": 1,
         "thinkMs": [
           1500,
           3500
@@ -683,15 +679,6 @@
           "recovery": "Para recuperar la racha, hoy un puzzle, una lección y una partida contra un bot.",
           "general": "Es un buen momento para practicar. Entra."
         }
-      },
-      "fallback": {
-        "type": "stockfish-elo",
-        "uciElo": 2200,
-        "multipv": 1,
-        "thinkMs": [
-          1500,
-          3500
-        ]
       }
     }
   ]

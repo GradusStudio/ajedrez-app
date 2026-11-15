@@ -77,6 +77,11 @@ Lo que se aprendió:
 - Con 16 partidas, el azar mueve los porcentajes ±12 puntos (unos ±90 de Elo), y los bots viejos no eran del todo transitivos (Valentina le ganaba más a Maia 1100 que Don Ramiro). Pipo y Lola quedaron interpolados entre dos mediciones. Hay que confirmarlo con partidas reales.
 - **Cómo se midió:** fuera de la app, con una copia en Python de Maia (idéntica a la de la app) y Stockfish 17.1 nativo en lugar del lite de la app. A los bots `stockfish-elo` viejos se les dio una décima parte del tiempo de la app, porque el Stockfish del celular piensa unas 10 veces menos por segundo. Los scripts de medición no forman parte de la app.
 
+### Ada juega con Stockfish (14-11-2026)
+
+Ada es «la máquina» y no tiene que jugar como una persona. Dejó Maia y usa **Stockfish limitado por Elo** (`stockfish-elo`, `uciElo` 2140): el nivel medido de Maestro Ivo es ~1940 y la regla de los 200 puntos le da a Ada alrededor del 76 % de victorias. El `elo` de la ficha sigue en 2200; el límite del motor es 2140. No tiene `fallback`: ya es Stockfish. Las frases y las tablas se siguen evaluando con Stockfish, como en los demás bots. **Pendiente de confirmar con partidas reales:** los scripts de medición del 2-11 no están en el repositorio, así que el ajuste se hizo con la regla de 200 puntos sobre la tabla de arriba.
+
+
 ## Licencia
 
 Las redes de Maia son **GPL v3**, igual que Stockfish y que la app. Van **sin modificar** (el archivo `.pb.gz` original, en base64) y la licencia está en `src/engine/maia/redes/COPYING.txt`. Créditos tiene una tarjeta "Maia · Lc0" con los enlaces al código. `lc0Tables.ts` y `maiaWorkerSource.ts` siguen el código de Lc0 (GPL v3). Esto no es asesoramiento legal.

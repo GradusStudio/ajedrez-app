@@ -146,14 +146,14 @@ const fakeStockfish = (calls: unknown[] = []) =>
 
 test('si Maia devuelve valores no numéricos, juega la mejor de Stockfish (no se traba)', async () => {
   const maia = { failed: false, evaluate: async () => ({ logits: Array(20).fill(NaN), wdl: [0.4, 0.2, 0.4] }) } as unknown as MaiaEngine;
-  const move = await thinkMove({ maia, stockfish: fakeStockfish() }, botWithoutBook('ada'), AFTER_E4);
+  const move = await thinkMove({ maia, stockfish: fakeStockfish() }, botWithoutBook('ivo'), AFTER_E4);
   assert.equal(move.uci, 'e7e5');
 });
 
 test('si una evaluación de Maia falla, juega la mejor de Stockfish y no una al azar', async () => {
   const maia = { failed: false, evaluate: async () => { throw new Error('boom'); } } as unknown as MaiaEngine;
   for (let i = 0; i < 5; i++) {
-    const move = await thinkMove({ maia, stockfish: fakeStockfish() }, botWithoutBook('ada'), AFTER_E4);
+    const move = await thinkMove({ maia, stockfish: fakeStockfish() }, botWithoutBook('ivo'), AFTER_E4);
     assert.equal(move.uci, 'e7e5');
   }
 });
@@ -161,19 +161,36 @@ test('si una evaluación de Maia falla, juega la mejor de Stockfish y no una al 
 test('con Maia caída, el bot sigue con su motor de respaldo de Stockfish', async () => {
   const calls: { elo?: number }[] = [];
   const maia = { failed: true, evaluate: async () => { throw new Error('no debería llamarse'); } } as unknown as MaiaEngine;
-  const ada = botWithoutBook('ada');
-  const move = await thinkMove({ maia, stockfish: fakeStockfish(calls) }, ada, AFTER_E4);
+  const ivo = botWithoutBook('ivo');
+  const move = await thinkMove({ maia, stockfish: fakeStockfish(calls) }, ivo, AFTER_E4);
   assert.equal(move.uci, 'e7e5');
-  assert.equal(calls[0].elo, 2200, 'usa el Elo del motor anterior de Ada');
-  const none = await thinkMove({ maia: null, stockfish: fakeStockfish() }, ada, AFTER_E4);
+  assert.equal(calls[0].elo, 1950, 'usa el Elo del motor anterior de Ivo');
+  const none = await thinkMove({ maia: null, stockfish: fakeStockfish() }, ivo, AFTER_E4);
   assert.equal(none.uci, 'e7e5', 'también si Maia nunca arrancó');
 });
 
-test('todos los bots tienen motor de respaldo con Stockfish', () => {
+test('Ada juega con Stockfish limitado a 2140 y no llama a Maia', async () => {
+  const calls: { elo?: number }[] = [];
+  let maiaCalled = false;
+  const maia = {
+    failed: false,
+    evaluate: async () => {
+      maiaCalled = true;
+      throw new Error('Ada no usa Maia');
+    },
+  } as unknown as MaiaEngine;
+  const move = await thinkMove({ maia, stockfish: fakeStockfish(calls) }, botWithoutBook('ada'), AFTER_E4);
+  assert.equal(move.uci, 'e7e5');
+  assert.equal(maiaCalled, false);
+  assert.equal(calls[0].elo, 2140);
+});
+
+test('todos los bots que usan Maia tienen motor de respaldo con Stockfish', () => {
   for (const id of ['pipo', 'lola', 'tomas', 'valentina', 'ramiro', 'camila', 'bruno', 'sofia', 'ivo', 'ada']) {
     const b = findBot(id)!;
-    assert.ok(b.fallback, id);
+    if (b.engine.type === 'maia') assert.ok(b.fallback, id);
   }
+  assert.equal(findBot('ada')!.engine.type, 'stockfish-elo');
 });
 
 test('loadNetBase64 devuelve la misma red que el archivo generado', async () => {

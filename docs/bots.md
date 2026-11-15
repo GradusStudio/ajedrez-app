@@ -140,6 +140,7 @@ Los niveles se calibraron con partidas entre bots (ver `maia.md`, «Calibración
 
 ### 10. Ada · La máquina
 - **Nivel:** 2200 · **Estilo:** equilibrado
+- **Motor:** Stockfish limitado a `uciElo` 2140 (14-11-2026): es la máquina y no imita a una persona. Calibrado por la regla de los 200 puntos contra el nivel medido de Ivo (~1940); falta confirmarlo con partidas reales.
 - **Personalidad:** Juega con precisión casi total y usa todo su repertorio. Es el desafío final.
 - **Te enseña:** Jugar sin errores contra un rival muy exacto.
 - **Con blancas:** london, italian, vienna, ruy-lopez, queens-gambit, alapin

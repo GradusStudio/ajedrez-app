@@ -117,7 +117,8 @@
           "london"
         ],
         "black": [
-          "scandinavian"
+          "scandinavian",
+          "pirc"
         ]
       },
       "book": "medio",
@@ -246,10 +247,11 @@
         "white": [
           "vienna",
           "kings-gambit",
-          "danish"
+          "danish",
+          "bdg"
         ],
         "black": [
-          "sicilian"
+          "dragon"
         ]
       },
       "book": "largo",
@@ -374,7 +376,8 @@
         "white": [
           "english",
           "catalan",
-          "queens-gambit"
+          "queens-gambit",
+          "queens-gambit-accepted"
         ],
         "black": [
           "queens-gambit-declined"
@@ -439,11 +442,13 @@
       },
       "repertoire": {
         "white": [
-          "london"
+          "london",
+          "kia"
         ],
         "black": [
           "caro-kann",
-          "french"
+          "french",
+          "dutch"
         ]
       },
       "book": "largo",
@@ -573,7 +578,8 @@
       "repertoire": {
         "white": [
           "ruy-lopez",
-          "queens-gambit"
+          "queens-gambit",
+          "rossolimo"
         ],
         "black": [
           "nimzo-indian",
@@ -642,13 +648,15 @@
           "italian",
           "vienna",
           "ruy-lopez",
-          "queens-gambit"
+          "queens-gambit",
+          "alapin"
         ],
         "black": [
           "scandinavian",
           "petrov",
           "sicilian",
-          "nimzo-indian"
+          "nimzo-indian",
+          "modern"
         ]
       },
       "book": "largo",

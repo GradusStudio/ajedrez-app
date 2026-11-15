@@ -39,7 +39,7 @@ Los niveles se calibraron con partidas entre bots (ver `maia.md`, «Calibración
 - **Personalidad:** Protege todo y casi nunca ataca. Cambia piezas cuando puede y espera tu error.
 - **Te enseña:** Paciencia: cómo romper una posición sólida sin arriesgar de más.
 - **Con blancas:** london
-- **Con negras:** scandinavian
+- **Con negras:** scandinavian, pirc
 - **Frases:**
   - Al empezar: «Con calma. Aquí no hay apuro.»
   - Si juegas bien: «Bien jugado. Tendré que cuidarme.»
@@ -64,8 +64,8 @@ Los niveles se calibraron con partidas entre bots (ver `maia.md`, «Calibración
 - **Nivel:** 1200 · **Estilo:** agresivo
 - **Personalidad:** Sacrifica peones por iniciativa y ataca al rey. Se debilita si te defiendes con calma.
 - **Te enseña:** Defenderse bajo presión y contraatacar.
-- **Con blancas:** vienna, kings-gambit, danish
-- **Con negras:** sicilian
+- **Con blancas:** vienna, kings-gambit, danish, bdg
+- **Con negras:** dragon
 - **Frases:**
   - Al empezar: «Vamos a jugar rápido y con ataque.»
   - Si juegas bien: «Buena defensa. Voy por otro lado.»
@@ -90,7 +90,7 @@ Los niveles se calibraron con partidas entre bots (ver `maia.md`, «Calibración
 - **Nivel:** 1500 · **Estilo:** posicional
 - **Personalidad:** Evita las tácticas, mejora sus piezas y busca finales con ventaja pequeña.
 - **Te enseña:** Estructura de peones, casillas débiles y planes a largo plazo.
-- **Con blancas:** english, catalan, queens-gambit
+- **Con blancas:** english, catalan, queens-gambit, queens-gambit-accepted
 - **Con negras:** queens-gambit-declined
 - **Frases:**
   - Al empezar: «Prefiero ganar despacio.»
@@ -103,8 +103,8 @@ Los niveles se calibraron con partidas entre bots (ver `maia.md`, «Calibración
 - **Nivel:** 1650 · **Estilo:** tranquilo
 - **Personalidad:** Defensa sólida y paciencia infinita. Concede espacio, pero casi no deja debilidades.
 - **Te enseña:** Atacar una posición sólida con paciencia y buenos cambios.
-- **Con blancas:** london
-- **Con negras:** caro-kann, french
+- **Con blancas:** london, kia
+- **Con negras:** caro-kann, french, dutch
 - **Frases:**
   - Al empezar: «Intenta romper mi muro.»
   - Si juegas bien: «Lograste una grieta. Atento.»
@@ -129,7 +129,7 @@ Los niveles se calibraron con partidas entre bots (ver `maia.md`, «Calibración
 - **Nivel:** 1950 · **Estilo:** posicional
 - **Personalidad:** Cambia piezas con precisión y juega los finales con una técnica muy fina.
 - **Te enseña:** Técnica de finales y conversión de ventajas pequeñas.
-- **Con blancas:** ruy-lopez, queens-gambit
+- **Con blancas:** ruy-lopez, queens-gambit, rossolimo
 - **Con negras:** nimzo-indian, queens-gambit-declined
 - **Frases:**
   - Al empezar: «Los finales muestran la verdad de una partida.»
@@ -142,8 +142,8 @@ Los niveles se calibraron con partidas entre bots (ver `maia.md`, «Calibración
 - **Nivel:** 2200 · **Estilo:** equilibrado
 - **Personalidad:** Juega con precisión casi total y usa todo su repertorio. Es el desafío final.
 - **Te enseña:** Jugar sin errores contra un rival muy exacto.
-- **Con blancas:** london, italian, vienna, ruy-lopez, queens-gambit
-- **Con negras:** scandinavian, petrov, sicilian, nimzo-indian
+- **Con blancas:** london, italian, vienna, ruy-lopez, queens-gambit, alapin
+- **Con negras:** scandinavian, petrov, sicilian, nimzo-indian, modern
 - **Frases:**
   - Al empezar: «Juego lo mejor que sé. Que comience la partida.»
   - Si juegas bien: «Precisa. Esa fue la mejor jugada.»
@@ -193,7 +193,7 @@ Cada bot sigue las líneas de `aperturas-v3.json` mientras el rival las respete.
 ## 4. Aperturas que usan los bots
 
 - **Escritas:** las 20 aperturas que usan los bots ya están en `aperturas-v3.json` (y en `readyOpenings` de `bots.json`).
-- **Sin ningún bot que las juegue:** dragon, kia, modern, pirc, bdg, rossolimo, alapin, queens-gambit-accepted. Se pueden estudiar, pero todavía no practicar contra un bot. Decisión pendiente: asignarlas o dejarlas así.
+- **Sin ningún bot que las juegue:** ninguna. Los nueve cursos que antes quedaban sin bot (dragón, ataque indio de rey, moderna, pirc, Blackmar-Diemer, Rossolimo, Alapin, gambito de dama aceptado y holandesa) pasaron al repertorio de Valentina, Bruno, Lola, Camila, Ivo y Ada (spec de la ficha del bot, 14-11-2026). `botForOpening` siempre encuentra un bot que conoce el curso y una prueba en `src/bots/repertoire.test.ts` lo comprueba.
 
 Las líneas están validadas como jugadas legales, pero no evaluadas con motor (Albin y Catalana son las menos seguras).
 

@@ -4,6 +4,8 @@ import type { ParsedGame } from './types';
 // Lee un PGN y reproduce la partida con chess.js. Sin React Native.
 
 export const MAX_PLIES = 240; // tope para que el análisis no dure una eternidad
+/** Tope del texto del PGN: una partida de 240 jugadas con comentarios pesa mucho menos. Se mira antes de cargarla. */
+export const MAX_PGN_CHARS = 200_000;
 
 /** Si el texto trae varias partidas, se queda con la primera. */
 function firstGame(text: string): string {
@@ -15,6 +17,7 @@ function firstGame(text: string): string {
 
 /** null si el texto no es una partida legal (o no tiene jugadas). */
 export function parseGame(pgn: string): ParsedGame | null {
+  if (pgn.length > MAX_PGN_CHARS) return null;
   const text = firstGame(pgn);
   if (!text) return null;
   const chess = new Chess();

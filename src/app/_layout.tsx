@@ -26,7 +26,6 @@ import { useRouteMeta } from '../seo/useRouteMeta';
 import { DriveSyncProvider } from '../sync/DriveSyncContext';
 import { AppBackground } from '../components/AppBackground';
 import { AppErrorBoundary } from '../components/AppErrorBoundary';
-import { clearChunkReloadMark } from '../pwa/reloadOnce';
 import { colors } from '../theme';
 
 // Tema de la navegación: su `background` es el fondo que se ve detrás de las pantallas mientras se deslizan.
@@ -114,11 +113,6 @@ function AppStack() {
   // La pantalla de carga (el caballo) se va cuando el progreso y los ajustes ya están listos.
   useEffect(() => {
     if (ready) SplashScreen.hideAsync().catch(() => {});
-  }, [ready]);
-
-  // La app cargó bien: la próxima versión publicada puede recargar una vez si un trozo no carga.
-  useEffect(() => {
-    if (ready) clearChunkReloadMark();
   }, [ready]);
 
   if (!ready) return <Loading />;

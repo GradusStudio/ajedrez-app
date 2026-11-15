@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScreenError } from './ScreenError';
 import { shouldReloadForChunk } from '../pwa/chunkError';
-import { reloadOnceForChunk, reloadPage } from '../pwa/reloadOnce';
+import { readChunkReloadMark, reloadOnceForChunk, reloadPage } from '../pwa/reloadOnce';
 
 type Props = { children: React.ReactNode };
 type State = { error: unknown; tried: boolean };
@@ -20,7 +20,7 @@ export class AppErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: unknown) {
-    if (shouldReloadForChunk(error, this.state.tried)) {
+    if (!this.state.tried && shouldReloadForChunk(error, readChunkReloadMark(), Date.now())) {
       this.setState({ tried: true });
       reloadOnceForChunk();
     }

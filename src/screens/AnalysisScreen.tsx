@@ -24,6 +24,7 @@ import { useProgress } from '../progress/ProgressContext';
 import { botGamePgn, botGameReviewId } from '../review/botGames';
 import { parseGame } from '../review/pgn';
 import { pendingMistakes } from '../review/pendingMistakes';
+import { reasonKey } from '../progress/reasonKey';
 import { loadReviews } from '../review/reviewStore';
 import { setPendingGame } from '../review/session';
 import { cleanUsername, fetchGames, FetchError, type GameSource, type ListedGame, validUsername } from '../review/sources';
@@ -176,6 +177,12 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
     onQuiz();
   };
 
+  /** El motivo guardado en español se muestra en el idioma elegido; los textos viejos desconocidos, como están. */
+  const reasonText = (reason: string) => {
+    const key = reasonKey(reason);
+    return key ? t(key) : reason;
+  };
+
   const resultOf = (record: GameRecord) => {
     if (record.result === 'win') return { label: t('import.youWon'), color: colors.gold };
     if (record.result === 'loss') return { label: t('import.youLost'), color: colors.textMuted };
@@ -239,7 +246,7 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
         const result = resultOf(record);
         const saved = reviewed.has(botGameReviewId(record));
         const meta = [
-          record.reason,
+          reasonText(record.reason),
           tn('analysis.moves', record.moves.length),
           whenOf(record.playedAt),
         ].join(' · ');

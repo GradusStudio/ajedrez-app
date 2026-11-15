@@ -16,6 +16,7 @@ import { useI18n } from '../i18n/I18nContext';
 import progressGamesRaw from '../data/progressGames.json';
 import { achievementCount, achievements, newAchievements, type AchievementId } from '../progress/achievements';
 import { currentRating, formatDelta } from '../progress/puzzleRating';
+import { weekRatingDelta } from '../puzzles/puzzleView';
 import { currentStreak, isPuzzleSolved, streakStatusNow } from '../progress/progressStore';
 import { piecesFromFen, progressPosition, type ProgressGamesFile } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
@@ -90,9 +91,8 @@ export function ProfileScreen({ onOpenSettings, onOpenBotGames, onOpenReview, on
   const rating = currentRating(progress);
   const history = progress.puzzleRating?.history ?? [];
   const chart = history.slice(-40);
-  const weekAgo = new Date(`${today}T12:00:00`).getTime() - 7 * 24 * 60 * 60 * 1000;
-  const weekStart = history.find((p) => new Date(p.at).getTime() >= weekAgo) ?? history[0];
-  const deltaWeek = weekStart ? rating - weekStart.rating : 0;
+  // La misma ventana de siete días que la pestaña Puzzles (antes eran ocho y la etiqueta decía siete).
+  const deltaWeek = weekRatingDelta(history, rating, new Date(`${today}T12:00:00`));
   const bestRating = Math.max(rating, ...history.map((p) => p.rating));
   const cleanPuzzles = Object.values(progress.puzzles).filter((p) => p.result === 'clean').length;
   const puzzlesSolved = Object.keys(progress.puzzles).filter((id) => isPuzzleSolved(progress, id)).length;

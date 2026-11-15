@@ -1,0 +1,45 @@
+# Ficha del bot con cuerpo entero
+
+Fecha: 14-11-2026 · Diseño: opus · **Referencia visual:** `prototipo-ficha-bot.html` (raíz del repo, fuera de git; arriba a la derecha se elige cualquiera de los diez bots).
+
+Hoy la ficha (`BotDetailScreen`) es una columna de texto: avatar de 72 px, nombre, frase, rasgo, «Te enseña», aperturas como texto corrido, el selector de color y «Jugar». No dice cómo te fue contra él ni aprovecha el arte nuevo.
+
+## Pantalla ancha (columna de 1000 px)
+
+Arriba: «‹ Bots» para volver. Debajo, dos columnas.
+
+### Izquierda (360 px): el personaje
+- **Cuerpo entero** (`assets/bots/cuerpo/<id>.webp`) de 400 px de alto, parado sobre una sombra en el piso, con una luz suave del **color de su estilo** detrás (equilibrado `gold`, tranquilo `primary`, agresivo `danger`, posicional `blue`, al 28 %).
+- **Globo blanco** arriba con su saludo (`lines.greeting`) y la cola hacia el personaje, como el globo de la lección.
+- Más adelante, cuando haya animación (Rive, en pausa), es el primer lugar donde moverlo.
+
+### Derecha: quién es y cómo te fue
+1. «BOT 4 DE 10» (12 px, color del estilo), el **nombre** (40 px, 900) y la frase («La atacante», 18 px, `textMuted`).
+2. Chips: «Nivel 1200» con una **barrita de 10 segmentos** (`gold` hasta su nivel, ⌈elo/220⌉) y su estilo con el borde y el texto del color del estilo.
+3. El **rasgo** (`trait`) en 17 px.
+4. Dos tarjetas lado a lado:
+   - **Te enseña** (`teaches`).
+   - **Sus aperturas:** una fila por apertura, con un cuadradito blanco o negro según el color, y el nombre como **enlace al curso** de esa apertura. Sin libro: «Sin libro: juega por principios».
+5. **Tus partidas contra {bot}:** ganadas (en `gold`), perdidas y tablas en grande, y a la derecha las **últimas 5** como puntos (dorado = ganada, gris = perdida, gris claro = tablas). Si hay una **partida sin terminar** con él (`ongoingGame`): «Partida sin terminar · jugada 14, te toca a ti» y el botón secundario «Continuar». Si nunca jugaste: «Todavía no jugaste contra {bot}. Gánale una vez y suma {elo/100} monedas.»
+6. **Tú juegas con:** tres botones grandes (64 px de alto) con un rey dibujado blanco, gris o negro y el texto «Blancas», «Al azar» y «Negras». El elegido lleva el borde verde. Al lado, **«Jugar»** (botón primario de 64 px, texto oscuro sobre verde).
+7. Debajo, alineado a la derecha: «¿Quieres prepararte? **Practica la {primera apertura} contra {bot} ›**», que abre la práctica de aperturas que ya existe.
+
+## Celular
+
+Una columna: el personaje centrado (unos 260 px de alto) con el globo arriba; nombre, chips y rasgo; «Te enseña» y «Sus aperturas» una debajo de la otra; tus partidas; colores en fila y «Jugar» de ancho completo, fijo abajo si la pantalla no alcanza.
+
+## Datos
+
+Todo existe: `bots.json` (nombre, frase, nivel, estilo, rasgo, «te enseña», repertorio y saludo), `progress.games` (récord y últimas partidas por bot), `progress.ongoingGame`, los cursos de aperturas para los enlaces, y las monedas por victoria (`elo / 100`, una vez por día). No hay datos nuevos.
+
+## Accesibilidad y textos
+
+- El cuerpo entero lleva `accessibilityLabel` con el nombre del bot; el globo se lee como texto.
+- Los botones de color son un grupo de radio (como hoy) con etiqueta completa.
+- Los puntos de las últimas partidas tienen una etiqueta («Últimas partidas: ganada, perdida, ganada»).
+- Textos de tú, sin exclamaciones, en los cinco idiomas, usando los nombres por idioma de la spec de bots cuando se implementen.
+
+## Cómo se comprueba
+
+- `npm test`, `npx expo lint`, `npx tsc --noEmit`, `noHardcoded`.
+- Navegador (`web-compilada`) a 1366 y 375 px: un bot sin partidas (Ada), uno con récord (Tomás), uno con una partida sin terminar, uno sin libro con negras (Pipo); el enlace a un curso de apertura y a la práctica; elegir color y jugar.

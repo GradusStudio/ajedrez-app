@@ -4,7 +4,7 @@ import { useI18n } from '../../i18n/I18nContext';
 import { moveNumber } from '../../review/bestLine';
 import type { ReviewPly } from '../../review/types';
 import { colors, fonts, radius, space, type } from '../../theme';
-import { badgeOf } from './quality';
+import { badgeOf, qualityNameKey } from './quality';
 
 type Props = {
   plies: ReviewPly[];
@@ -22,6 +22,10 @@ export function MoveList({ plies, idx, inBranch, fmt, onGo }: Props) {
   const rows = useRef<Record<number, number>>({});
 
   useEffect(() => {
+    if (idx === 0) {
+      ref.current?.scrollTo({ y: 0, animated: true });
+      return;
+    }
     const y = rows.current[idx];
     if (y !== undefined) ref.current?.scrollTo({ y: Math.max(0, y - 60), animated: true });
   }, [idx]);
@@ -39,9 +43,12 @@ export function MoveList({ plies, idx, inBranch, fmt, onGo }: Props) {
             onPress={() => onGo(i + 1)}
             onLayout={(e) => {
               rows.current[i + 1] = e.nativeEvent.layout.y;
+              // Montada ya en una jugada (por ejemplo desde un momento del resumen): la fila actual se ve.
+              if (i + 1 === idx) ref.current?.scrollTo({ y: Math.max(0, e.nativeEvent.layout.y - 60), animated: false });
             }}
             accessibilityRole="button"
-            accessibilityLabel={`${p.move.color === 'w' ? `${no}. ` : i === 0 ? `${no}... ` : ''}${fmt(p.move.san)}`}
+            accessibilityState={{ selected: current }}
+            accessibilityLabel={`${p.move.color === 'w' ? `${no}. ` : `${no}... `}${fmt(p.move.san)}${badge ? `, ${t(qualityNameKey(p))}` : ''}`}
             style={[styles.row, current && styles.current]}
           >
             <Text style={styles.no}>{showNo ? (p.move.color === 'w' ? `${no}.` : `${no}...`) : ''}</Text>

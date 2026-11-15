@@ -9,36 +9,24 @@ import { useWideLayout } from '../../components/useWideLayout';
 import type { Bot } from '../../data/bots';
 import { useI18n } from '../../i18n/I18nContext';
 import type { Review } from '../../review/types';
+import type { SummaryMoment } from '../../review/summaryMoments';
 import { colors, fonts, radius, space, type } from '../../theme';
 import { AccuracyRing } from './AccuracyRing';
-import { Badge, CAT_KEY, CATS, countCats, QUALITY_STYLE } from './quality';
-
-/** Una fila de «Momentos clave», armada por la pantalla con el comentario ya traducido. */
-export type SummaryMoment = {
-  /** Índice en `review.plies` (0 = primera jugada). */
-  index: number;
-  san: string;
-  badge: Badge | null;
-  color: string;
-  quality: string;
-  text: string;
-  /** Diferencia de evaluación ya formateada («+0,8», «−2,3»). */
-  diff: string;
-  aria: string;
-};
+import { CAT_KEY, CATS, countCats, QUALITY_STYLE } from './quality';
 
 type Props = {
   top: React.ReactNode;
   review: Review;
-  me: 'w' | 'b';
-  /** false en un PGN sin usuario: las columnas son «Blancas» y «Negras», no «Tú» y «Rival». */
-  meKnown: boolean;
+  /** null si el PGN no dice de qué lado jugó el usuario y todavía no lo eligió. */
+  me: 'w' | 'b' | null;
   nameOf: (c: 'w' | 'b') => string;
   decimal: string;
   coach: Bot;
   moments: SummaryMoment[];
   /** Se viene de terminar la revisión: se avisa arriba. */
   finished: boolean;
+  /** La partida tenía más de 240 jugadas: el resumen no cubre el final. */
+  truncated?: boolean;
   onChangeCoach: () => void;
   onStart: () => void;
   /** Abre el quiz de puntos de giro; sin errores del usuario no hay botón. */
@@ -50,15 +38,15 @@ type Props = {
  * Resumen previo a la revisión (spec 2026-11-15, sección 2): dos tarjetas con la partida (anillos de precisión,
  * resultado y tabla de calidades) y los momentos clave; el comentarista se elige desde acá.
  */
-export function SummaryView({ top, review, me, meKnown, nameOf, decimal, coach, moments, finished, onChangeCoach, onStart, onPractice, onJump }: Props) {
+export function SummaryView({ top, review, me, nameOf, decimal, coach, moments, finished, truncated, onChangeCoach, onStart, onPractice, onJump }: Props) {
   const { t, tn } = useI18n();
   const wide = useWideLayout();
   const barPadding = useColumnBarPadding();
   const counts = { w: countCats(review.plies, 'w'), b: countCats(review.plies, 'b') };
-  // Sin bando conocido las columnas son las blancas y las negras, en ese orden.
-  const left = meKnown ? me : 'w';
-  const right = meKnown ? (me === 'w' ? 'b' : 'w') : 'b';
-  const labels = meKnown ? { left: t('game.you'), right: t('review.rival') } : { left: t('common.white'), right: t('common.black') };
+  // Sin bando (ni del PGN ni elegido) las columnas son las blancas y las negras, en ese orden.
+  const left = me ?? 'w';
+  const right = me === 'b' ? 'w' : 'b';
+  const labels = me ? { left: t('game.you'), right: t('review.rival') } : { left: t('common.white'), right: t('common.black') };
   const ringSize = wide ? 120 : 96;
   const pct = (v: number) => v.toFixed(1).replace('.', decimal);
   const last = review.plies[review.plies.length - 1];
@@ -68,10 +56,10 @@ export function SummaryView({ top, review, me, meKnown, nameOf, decimal, coach, 
       <AccuracyRing
         value={review.accuracy[c]}
         size={ringSize}
-        color={meKnown && c === me ? colors.primary : colors.textMuted}
+        color={me === c ? colors.primary : colors.textMuted}
         caption={t('review.accuracy')}
         decimal={decimal}
-        ariaLabel={meKnown && c === me ? t('review.accuracyYou', { pct: pct(review.accuracy[c]) }) : t('review.accuracyRival', { name: nameOf(c), pct: pct(review.accuracy[c]) })}
+        ariaLabel={me === c ? t('review.accuracyYou', { pct: pct(review.accuracy[c]) }) : t('review.accuracyRival', { name: nameOf(c), pct: pct(review.accuracy[c]) })}
       />
       <Text style={styles.playerName} numberOfLines={1}>
         {nameOf(c)}
@@ -101,6 +89,7 @@ export function SummaryView({ top, review, me, meKnown, nameOf, decimal, coach, 
               </View>
               {side(right)}
             </View>
+            {truncated && <Text style={styles.truncated}>{t('review.truncated')}</Text>}
 
             <View style={styles.catTable}>
               <View style={styles.catHead}>
@@ -152,10 +141,10 @@ export function SummaryView({ top, review, me, meKnown, nameOf, decimal, coach, 
                         <Text style={styles.momentMove} numberOfLines={1}>
                           {m.san}
                         </Text>
-                        <Text style={[styles.momentQuality, { color: m.color }]} numberOfLines={1}>
+                        <Text style={[styles.momentQuality, { color: m.textColor }]} numberOfLines={1}>
                           {m.quality}
                         </Text>
-                        <Text style={[styles.momentDiff, { color: m.color }]}>{m.diff}</Text>
+                        <Text style={[styles.momentDiff, { color: m.textColor }]}>{m.diff}</Text>
                       </View>
                       <Text style={styles.momentText} numberOfLines={2}>
                         {m.text}
@@ -209,6 +198,7 @@ const styles = StyleSheet.create({
   resultMid: { alignItems: 'center', minWidth: 78 },
   result: { fontFamily: fonts.extrabold, fontSize: 30, color: colors.gold },
   resultSub: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.textMuted, textAlign: 'center' },
+  truncated: { fontFamily: fonts.semibold, fontSize: type.caption, color: colors.gold, marginTop: space.sm, lineHeight: 17 },
   catTable: { marginTop: space.lg },
   catHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
   catHeadText: { color: colors.textMuted, fontSize: type.caption },

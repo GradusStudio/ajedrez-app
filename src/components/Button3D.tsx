@@ -11,6 +11,7 @@ type Props = {
   style?: StyleProp<ViewStyle>;
   /** Texto para el lector cuando el visible es más corto (por ejemplo, en una fila de dos botones). */
   ariaLabel?: string;
+  disabled?: boolean;
 };
 
 const VARIANTS: Record<
@@ -25,12 +26,14 @@ const VARIANTS: Record<
 };
 
 // Botón con borde inferior 3D (design.md, sección 4).
-export function Button3D({ label, onPress, variant = 'secondary', style, ariaLabel }: Props) {
+export function Button3D({ label, onPress, variant = 'secondary', style, ariaLabel, disabled }: Props) {
   const v = VARIANTS[variant];
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={ariaLabel ?? label}
+      accessibilityState={{ disabled: !!disabled }}
+      disabled={disabled}
       onPress={onPress}
       style={({ pressed }) => [
         styles.base,
@@ -41,6 +44,7 @@ export function Button3D({ label, onPress, variant = 'secondary', style, ariaLab
           borderBottomWidth: pressed ? 2 : 4,
           transform: [{ translateY: pressed ? 2 : 0 }],
         },
+        disabled && { opacity: 0.4 },
         style,
       ]}
     >

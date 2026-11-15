@@ -22,19 +22,6 @@ export const QUALITY_STYLE: Record<StyleKey, Badge> = {
 export const CATS = ['great', 'best', 'excellent', 'good', 'book', 'inaccuracy', 'mistake', 'blunder'] as const;
 export type Cat = (typeof CATS)[number];
 
-/** Claves del catálogo, sin construirlas con un template literal (así el catálogo las comprueba). */
-const TITLE_KEY: Record<StyleKey, MessageKey> = {
-  great: 'review.q.great',
-  best: 'review.q.best',
-  excellent: 'review.q.excellent',
-  good: 'review.q.good',
-  book: 'review.q.book',
-  inaccuracy: 'review.q.inaccuracy',
-  mistake: 'review.q.mistake',
-  blunder: 'review.q.blunder',
-  mate: 'review.q.mate',
-};
-
 export const CAT_KEY: Record<Cat, MessageKey> = {
   great: 'review.cat.great',
   best: 'review.cat.best',
@@ -44,6 +31,54 @@ export const CAT_KEY: Record<Cat, MessageKey> = {
   inaccuracy: 'review.cat.inaccuracy',
   mistake: 'review.cat.mistake',
   blunder: 'review.cat.blunder',
+};
+
+/** Calidad para el nombre corto: el mate tiene la suya (la insignia ya lo distingue). */
+export type CatOrMate = Cat | 'mate';
+
+export const catOf = (p: ReviewPly): CatOrMate => (p.move.san.endsWith('#') ? 'mate' : p.great ? 'great' : p.quality);
+
+export const qualityNameKey = (p: ReviewPly): MessageKey => (catOf(p) === 'mate' ? 'review.cat.mate' : CAT_KEY[catOf(p) as Cat]);
+
+export const qualityColor = (p: ReviewPly): string => QUALITY_STYLE[catOf(p)].color;
+
+/** Colores para texto pequeño sobre fondo oscuro (tarjeta de momentos): los brillantes no pasan contraste AA. */
+export const QUALITY_TEXT_LIGHT: Record<StyleKey, string> = {
+  great: '#7CC3F5',
+  best: '#A5D96A',
+  excellent: '#B5DB7A',
+  good: '#B5D69A',
+  book: '#D3B08A',
+  inaccuracy: '#FFD84D',
+  mistake: '#FFB05C',
+  blunder: '#FF7A6E',
+  mate: '#A5D96A',
+};
+
+/** Colores para texto sobre el globo blanco. */
+export const QUALITY_TEXT_DARK: Record<StyleKey, string> = {
+  great: '#1F5F8B',
+  best: '#4F6B2A',
+  excellent: '#4F6B2A',
+  good: '#4F6B2A',
+  book: '#6B542F',
+  inaccuracy: '#7A5A00',
+  mistake: '#A04A00',
+  blunder: '#A81F14',
+  mate: '#4F6B2A',
+};
+
+/** Tinta del glifo de la insignia según el fondo de la calidad. */
+export const QUALITY_INK: Record<StyleKey, string> = {
+  great: '#262421',
+  best: '#262421',
+  excellent: '#262421',
+  good: '#262421',
+  book: '#262421',
+  inaccuracy: '#262421',
+  mistake: '#262421',
+  blunder: '#FFFFFF',
+  mate: '#262421',
 };
 
 export const REPLY_ARROW = 'rgba(250, 65, 45, 0.85)';
@@ -56,8 +91,6 @@ export const badgeOf = (p: ReviewPly): Badge | null => {
   const key = styleKeyOf(p);
   return key === 'good' ? null : QUALITY_STYLE[key];
 };
-
-export const titleKey = (p: ReviewPly): MessageKey => TITLE_KEY[styleKeyOf(p)];
 
 export const countCats = (plies: ReviewPly[], color: 'w' | 'b'): Record<Cat, number> => {
   const r: Record<Cat, number> = { great: 0, best: 0, excellent: 0, good: 0, book: 0, inaccuracy: 0, mistake: 0, blunder: 0 };

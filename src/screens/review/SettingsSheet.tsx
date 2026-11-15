@@ -8,42 +8,28 @@ import { useI18n } from '../../i18n/I18nContext';
 import { colors, space } from '../../theme';
 import { Icon } from './ReviewParts';
 import { styles } from './reviewStyles';
-import type { Filter } from './useReviewPlayback';
 
 type Props = {
   visible: boolean;
+  /** 'coach': solo el selector (enlace «cambiar» del resumen). 'settings': bando, comentarista, reproducir y gráfico. */
+  mode: 'coach' | 'settings';
   onClose: () => void;
   me: 'w' | 'b';
   onMe: (c: 'w' | 'b') => void;
   coachId: string;
   onCoach: (id: string) => void;
-  /** Solo cambia a dónde salta «Siguiente»; todo lo demás sigue libre. */
-  filter: Filter;
-  onFilter: (f: Filter) => void;
-  highlights: number[];
-  idx: number;
-  onJump: (dir: 1 | -1) => void;
   graph: React.ReactNode;
   onChooseOther: () => void;
-  /** Solo el selector de comentarista (el enlace «cambiar» del resumen). */
-  coachOnly?: boolean;
-  /** Reproducir la partida desde los ajustes (antes estaba en la barra inferior). */
+  /** Para que el botón diga «Pausar» mientras la partida se reproduce sola. */
+  playing?: boolean;
   onPlay?: () => void;
 };
 
-/** Hoja de ajustes de la revisión: bando, comentarista, salto entre destacadas y gráfico. */
+/** Hoja de la revisión: en modo «coach» solo el comentarista; en «settings», además bando, reproducción y gráfico. */
 export function SettingsSheet(p: Props) {
   const { t } = useI18n();
   // Los nombres de los bots cambian con el idioma (tarea 35); los ids no.
   const { bots } = useContent();
-  const hlPos = p.highlights.findIndex((h) => h + 1 === p.idx);
-  const total = p.highlights.length;
-  const hlText =
-    total === 0
-      ? t('review.noHighlights')
-      : hlPos >= 0
-        ? t('review.highlightPos', { n: hlPos + 1, total })
-        : t('common.xOfY', { n: p.highlights.filter((h) => h + 1 < p.idx).length, total });
 
   return (
     <Modal visible={p.visible} transparent animationType="slide" onRequestClose={p.onClose}>
@@ -51,13 +37,13 @@ export function SettingsSheet(p: Props) {
         <Pressable style={StyleSheet.absoluteFill} onPress={p.onClose} accessibilityRole="button" accessibilityLabel={t('review.close')} />
         <View style={styles.sheet}>
           <View style={styles.sheetHead}>
-            <Text style={styles.sheetTitle}>{t('review.settings')}</Text>
+            <Text style={styles.sheetTitle}>{t(p.mode === 'coach' ? 'review.coach' : 'review.settings')}</Text>
             <Pressable onPress={p.onClose} accessibilityRole="button" accessibilityLabel={t('review.close')} hitSlop={12}>
               <Icon name="close" color={colors.textMuted} />
             </Pressable>
           </View>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {!p.coachOnly && (
+            {p.mode === 'settings' && (
               <>
                 <Text style={styles.sectionTitle}>{t('review.playingAs')}</Text>
                 <Segmented
@@ -71,7 +57,7 @@ export function SettingsSheet(p: Props) {
               </>
             )}
 
-            <Text style={[styles.sectionTitle, { marginTop: p.coachOnly ? 0 : space.lg }]}>{t('review.coach')}</Text>
+            <Text style={[styles.sectionTitle, { marginTop: p.mode === 'settings' ? space.lg : 0 }]}>{t('review.coach')}</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: space.sm, paddingVertical: 4 }}>
               {bots.map((b) => (
                 <Pressable
@@ -90,33 +76,17 @@ export function SettingsSheet(p: Props) {
               ))}
             </ScrollView>
 
-            {!p.coachOnly && (
+            {p.mode === 'settings' && (
               <>
-                <Text style={[styles.sectionTitle, { marginTop: space.lg }]}>{t('review.jumpTo')}</Text>
-                <Segmented
-                  value={p.filter}
-                  onChange={p.onFilter}
-                  options={[
-                    { value: 'highlights', label: t('review.filterHighlights') },
-                    { value: 'all', label: t('review.filterAll') },
-                  ]}
-                />
-                {p.filter === 'highlights' && (
-                  <View style={styles.hlRow}>
-                    <Pressable onPress={() => p.onJump(-1)} accessibilityRole="button" accessibilityLabel={t('review.prevHighlight')} hitSlop={10}>
-                      <Text style={styles.hlArrow}>‹</Text>
-                    </Pressable>
-                    <Text style={styles.hlText}>{hlText}</Text>
-                    <Pressable onPress={() => p.onJump(1)} accessibilityRole="button" accessibilityLabel={t('review.nextHighlight')} hitSlop={10}>
-                      <Text style={styles.hlArrow}>›</Text>
-                    </Pressable>
-                  </View>
+                {p.onPlay && (
+                  <Button3D
+                    label={t(p.playing ? 'review.ctrlPause' : 'review.ctrlPlay')}
+                    onPress={p.onPlay}
+                    style={{ marginTop: space.lg }}
+                  />
                 )}
-                {p.onPlay && <Button3D label={t('review.ctrlPlay')} onPress={p.onPlay} style={{ marginTop: space.lg }} />}
-
                 <View style={{ height: space.lg }} />
                 {p.graph}
-
                 <View style={{ height: space.xl }} />
                 <Button3D label={t('review.chooseOther')} onPress={p.onChooseOther} />
                 <View style={{ height: space.md }} />

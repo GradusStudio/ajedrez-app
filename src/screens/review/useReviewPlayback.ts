@@ -99,7 +99,9 @@ export function useReviewPlayback(n: number, highlights: number[]) {
     if (idx >= n) return onFinish();
     if (filter === 'all') return goTo(idx + 1);
     const nextHl = highlights.find((h) => h + 1 > idx);
-    const target = nextHl === undefined ? n : nextHl + 1;
+    // Después de la última destacada se vuelve al resumen; no hace falta un toque extra para llegar al final.
+    if (nextHl === undefined) return onFinish();
+    const target = nextHl + 1;
     if (target - idx > 1) {
       setShowBest(false);
       setPlaying(false);

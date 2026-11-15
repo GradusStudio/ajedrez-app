@@ -16,6 +16,10 @@ type Head = {
   /** «Excelente», «Error grave»… */
   quality: string;
   color: string;
+  /** Variante oscura del color, para el texto sobre el globo blanco. */
+  textColor: string;
+  /** Tinta del glifo de la insignia (oscura en las insignias claras). */
+  ink: string;
   score: number;
   decimal: string;
 };
@@ -31,6 +35,8 @@ type Props = {
   details: string[];
   /** La línea del motor con la mejor jugada, ya con su texto. */
   line: string;
+  /** Cambia con cada jugada: al pasar a otra, los hechos vuelven a plegarse. */
+  resetKey?: string | number;
 };
 
 /**
@@ -38,10 +44,13 @@ type Props = {
  * la derecha. Arriba del texto, el símbolo, la jugada y la calidad en su color. Los hechos largos se despliegan con
  * «Explicar». Si el bot no tiene cuerpo, se usa su cara.
  */
-export function CoachBubble({ coach, expression, head, startTitle, voice, details, line }: Props) {
+export function CoachBubble({ coach, expression, head, startTitle, voice, details, line, resetKey }: Props) {
   const { t } = useI18n();
   const wide = useWideLayout();
-  const [expanded, setExpanded] = useState(false);
+  const [state, setState] = useState({ key: resetKey, open: false });
+  // Al cambiar de jugada el globo muestra otra cosa: los hechos de la anterior no siguen desplegados.
+  if (state.key !== resetKey) setState({ key: resetKey, open: false });
+  const expanded = state.open;
   const body = botBodySource(coach.id);
   const visible = expanded ? details : details.slice(0, 1);
 
@@ -61,13 +70,13 @@ export function CoachBubble({ coach, expression, head, startTitle, voice, detail
             <View style={styles.head}>
               {head.badge && (
                 <View style={[styles.badge, { backgroundColor: head.badge.color }]}>
-                  <Text style={styles.badgeText}>{head.badge.label}</Text>
+                  <Text style={[styles.badgeText, { color: head.ink }]}>{head.badge.label}</Text>
                 </View>
               )}
               <Text style={styles.move} numberOfLines={1}>
                 {head.move}
               </Text>
-              <Text style={[styles.quality, { color: head.color }]} numberOfLines={1}>
+              <Text style={[styles.quality, { color: head.textColor }]} numberOfLines={1}>
                 {head.quality}
               </Text>
               <Text style={styles.score}>{formatScore(head.score, head.decimal)}</Text>
@@ -82,7 +91,7 @@ export function CoachBubble({ coach, expression, head, startTitle, voice, detail
             </Text>
           ))}
           {details.length > 1 && (
-            <Pressable onPress={() => setExpanded((v) => !v)} accessibilityRole="button" hitSlop={6} style={styles.explainBtn}>
+            <Pressable onPress={() => setState({ key: resetKey, open: !state.open })} accessibilityRole="button" hitSlop={6} style={styles.explainBtn}>
               <Text style={styles.explain}>{expanded ? t('review.hide') : t('review.explain')}</Text>
             </Pressable>
           )}
@@ -129,6 +138,6 @@ const styles = StyleSheet.create({
   voice: { fontFamily: fonts.bold, fontSize: type.body, color: colors.bg, marginTop: 4, lineHeight: 21 },
   detail: { fontFamily: fonts.semibold, fontSize: type.secondary, color: '#403D39', marginTop: 4, lineHeight: 19 },
   explainBtn: { alignSelf: 'flex-start', marginTop: 6 },
-  explain: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.primary },
+  explain: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: '#3F6B22' },
   line: { fontFamily: fonts.semibold, fontSize: type.secondary, color: '#6B6660', marginTop: 6, lineHeight: 18 },
 });

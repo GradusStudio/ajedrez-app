@@ -1,11 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
-import { useI18n } from '../../i18n/I18nContext';
 import type { ReviewPly } from '../../review/types';
 import { moveNumber } from '../../review/bestLine';
 import { colors } from '../../theme';
 import { badgeOf } from './quality';
-import { Icon } from './ReviewParts';
 import { styles } from './reviewStyles';
 
 type Props = {
@@ -15,13 +13,10 @@ type Props = {
   inBranch: boolean;
   fmt: (san: string) => string;
   onGo: (ply: number) => void;
-  onPrev: () => void;
-  onNext: () => void;
 };
 
-/** Tira de jugadas que sigue a la jugada actual, con flechas y saltos al inicio y al final. */
-export function MoveStrip({ plies, idx, inBranch, fmt, onGo, onPrev, onNext }: Props) {
-  const { t } = useI18n();
+/** Tira horizontal de jugadas del celular. La navegación la hacen los cuatro botones de `NavButtons`. */
+export function MoveStrip({ plies, idx, inBranch, fmt, onGo }: Props) {
   const stripRef = useRef<React.ComponentRef<typeof ScrollView>>(null);
   const chipPos = useRef<Record<number, { x: number; w: number }>>({});
 
@@ -33,9 +28,6 @@ export function MoveStrip({ plies, idx, inBranch, fmt, onGo, onPrev, onNext }: P
   return (
     <>
       <View style={styles.strip}>
-        <Pressable onPress={onPrev} accessibilityRole="button" accessibilityLabel={t('review.ctrlPrev')} hitSlop={10} style={styles.stripArrow}>
-          <Icon name="back" color={colors.textMuted} />
-        </Pressable>
         <ScrollView ref={stripRef} horizontal showsHorizontalScrollIndicator={false} style={{ flex: 1 }} contentContainerStyle={styles.stripContent}>
           {plies.map((p, i) => {
             const b = badgeOf(p);
@@ -54,7 +46,7 @@ export function MoveStrip({ plies, idx, inBranch, fmt, onGo, onPrev, onNext }: P
                   if (i + 1 === idx) stripRef.current?.scrollTo({ x: Math.max(0, pos.x - 90), animated: false });
                 }}
                 accessibilityRole="button"
-                accessibilityLabel={`${p.move.color === 'w' ? `${no}. ` : i === 0 ? `${no}... ` : ''}${fmt(p.move.san)}`}
+                accessibilityLabel={`${p.move.color === 'w' ? `${no}. ` : `${no}... `}${fmt(p.move.san)}`}
                 style={[styles.moveChip, current && styles.moveChipCurrent]}
               >
                 {showNo && <Text style={styles.moveNo}>{p.move.color === 'w' ? `${no}.` : `${no}...`}</Text>}
@@ -64,25 +56,6 @@ export function MoveStrip({ plies, idx, inBranch, fmt, onGo, onPrev, onNext }: P
             );
           })}
         </ScrollView>
-        <Pressable
-          onPress={onNext}
-          disabled={inBranch}
-          accessibilityRole="button"
-          accessibilityState={{ disabled: inBranch }}
-          accessibilityLabel={t('review.ctrlNext')}
-          hitSlop={10}
-          style={[styles.stripArrow, inBranch && { opacity: 0.4 }]}
-        >
-          <Icon name="next" color={colors.textMuted} />
-        </Pressable>
-      </View>
-      <View style={styles.stripEnds}>
-        <Pressable onPress={() => onGo(0)} accessibilityRole="button" accessibilityLabel={t('review.ctrlStart')} hitSlop={8} style={styles.endBtn}>
-          <Icon name="first" color={colors.textMuted} size={20} />
-        </Pressable>
-        <Pressable onPress={() => onGo(plies.length)} accessibilityRole="button" accessibilityLabel={t('review.ctrlEnd')} hitSlop={8} style={styles.endBtn}>
-          <Icon name="last" color={colors.textMuted} size={20} />
-        </Pressable>
       </View>
     </>
   );

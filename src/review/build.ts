@@ -247,7 +247,9 @@ export function buildReview(
   game.moves.forEach((move, i) => {
     // Una jugada revisada a más profundidad se califica con su par profundo (nunca mezclado con el superficial).
     const deep = refined?.get(i);
-    plies.push(ratePly(i + 1, move, deep?.before ?? evals[i], deep?.after ?? evals[i + 1], book, plies[i - 1]));
+    const ply = ratePly(i + 1, move, deep?.before ?? evals[i], deep?.after ?? evals[i + 1], book, plies[i - 1]);
+    // El resumen y el gráfico muestran la diferencia con la misma evaluación que calificó la jugada.
+    plies.push(deep ? { ...ply, ratedBefore: deep.before.score, ratedAfter: deep.after.score } : ply);
   });
 
   const scores = evals.slice(0, n + 1).map((e) => e.score);

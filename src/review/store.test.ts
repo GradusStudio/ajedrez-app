@@ -3,7 +3,9 @@ import { test } from 'node:test';
 import { findReview, isStoredReview, MAX_REVIEWS, reviewId, trimReviews, type StoredReview } from './store';
 import type { Review, ReviewPly } from './types';
 
-const move = { san: 'e4', uci: 'e2e4', color: 'w' as const, fenBefore: 'start', fenAfter: 'after' };
+const START = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+const AFTER = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1';
+const move = { san: 'e4', uci: 'e2e4', color: 'w' as const, fenBefore: START, fenAfter: AFTER };
 const ply: ReviewPly = {
   ply: 1,
   move,
@@ -19,7 +21,7 @@ const ply: ReviewPly = {
   replySan: 'e5',
   facts: {},
 };
-const game = { white: 'Tú', black: 'Pipo', result: '1-0', startFen: 'start', moves: [move] };
+const game = { white: 'Tú', black: 'Pipo', result: '1-0', startFen: START, moves: [move] };
 const review = (over: Partial<Review> = {}): Review => ({
   game,
   scores: [0, 20],
@@ -81,6 +83,9 @@ test('un dato roto del almacenamiento se descarta', () => {
   const badQuality = review({ plies: [{ ...ply, quality: 'rara' } as unknown as ReviewPly] });
   const badHighlights = review({ highlights: [5] });
   const badPv = review({ plies: [{ ...ply, bestPv: 'e2e4' } as unknown as ReviewPly] });
+  const badFen = review({ plies: [{ ...ply, move: { ...move, fenBefore: 'no es un fen' } } as unknown as ReviewPly] });
+  const badOrder = review({ plies: [{ ...ply, ply: 2 } as unknown as ReviewPly] });
+  const badHighlightsOrder = review({ highlights: [1, 0] });
   for (const bad of [
     null,
     5,
@@ -94,6 +99,9 @@ test('un dato roto del almacenamiento se descarta', () => {
     stored('x', undefined, badQuality),
     stored('x', undefined, badHighlights),
     stored('x', undefined, badPv),
+    stored('x', undefined, badFen),
+    stored('x', undefined, badOrder),
+    stored('x', undefined, badHighlightsOrder),
     { ...stored('x'), review: { plies: 'no', scores: [] } },
     { ...stored('x'), review: { plies: [], scores: [] } },
   ]) {

@@ -18,7 +18,6 @@ import { useProgress } from '../progress/ProgressContext';
 import { isQuizAnswer, peekPendingQuiz, turningPointKey } from '../review/turningPoints';
 import { useSettings } from '../settings/SettingsContext';
 import { type, colors, fonts, radius, space } from '../theme';
-import { styles as reviewStyles } from './review/reviewStyles';
 import { statusBarTop } from '../components/statusBarTop';
 import { BoardLayout, useBoardLayoutWidth } from '../components/BoardLayout';
 import { BoardStage } from '../components/BoardStage';
@@ -190,7 +189,7 @@ export function TurningPointQuizScreen({ onExit }: Props) {
             </View>
           </FadeIn>
         </ColumnScrollView>
-        <View style={[reviewStyles.bottomBar, barPadding]}>
+        <View style={[styles.bottomBar, barPadding]}>
           <Button3D label={t('quiz.back')} variant="primary" onPress={onExit} style={{ flex: 1 }} />
         </View>
       </View>
@@ -287,6 +286,17 @@ export function TurningPointQuizScreen({ onExit }: Props) {
 }
 
 const styles = StyleSheet.create({
+  bottomBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: space.sm,
+    paddingHorizontal: space.lg,
+    paddingTop: space.sm,
+    paddingBottom: space.lg,
+    backgroundColor: colors.bg,
+    borderTopWidth: 1,
+    borderTopColor: colors.surfaceRaised,
+  },
   screen: { flex: 1, backgroundColor: 'transparent' },
   center: { alignItems: 'center', justifyContent: 'center', padding: space.lg },
   muted: { fontFamily: fonts.semibold, fontSize: type.secondary, color: colors.textMuted },

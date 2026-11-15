@@ -49,5 +49,6 @@ export function parseGame(pgn: string): ParsedGame | null {
     result: cleanPgnHeader(headers.Result, 8) || '*',
     startFen: moves[0].fenBefore,
     moves,
+    truncated: history.length > MAX_PLIES,
   };
 }

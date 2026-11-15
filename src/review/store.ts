@@ -1,3 +1,4 @@
+import { Chess } from 'chess.js';
 import type { Review } from './types';
 
 // Revisiones guardadas en el dispositivo (tarea 34, spec «Análisis», sección Datos). Se guardan las últimas 10
@@ -61,6 +62,8 @@ function isStoredPly(p: unknown): boolean {
     isNum(ply.loss) &&
     isNum(ply.cpLoss) &&
     isNum(ply.scoreAfter) &&
+    (ply.ratedBefore === undefined || isNum(ply.ratedBefore)) &&
+    (ply.ratedAfter === undefined || isNum(ply.ratedAfter)) &&
     typeof ply.great === 'boolean' &&
     typeof ply.highlight === 'boolean' &&
     isStr(ply.bestUci) &&
@@ -94,10 +97,31 @@ export function isStoredReview(value: unknown): value is StoredReview {
   const scoresOk = Array.isArray(scores) && scores.every(isNum);
   const plies = review.plies;
   const pliesOk = Array.isArray(plies) && plies.every(isStoredPly);
+  // Las jugadas van en orden 1..n y sus FEN se pueden cargar (el tablero hace new Chess sin try).
+  const pliesInOrder = Array.isArray(plies) && plies.every((p, i) => (p as { ply?: unknown }).ply === i + 1);
+  const fenOk =
+    Array.isArray(plies) &&
+    plies.every((p) => {
+      const move = (p as { move?: { fenBefore?: unknown; fenAfter?: unknown } }).move;
+      try {
+        new Chess(String(move?.fenBefore));
+        new Chess(String(move?.fenAfter));
+        return true;
+      } catch {
+        return false;
+      }
+    });
   const highlights = review.highlights;
   const highlightsOk =
     Array.isArray(highlights) &&
-    highlights.every((h) => isNum(h) && Number.isInteger(h) && h >= 0 && (!Array.isArray(plies) || h < plies.length));
+    highlights.every(
+      (h, i) =>
+        isNum(h) &&
+        Number.isInteger(h) &&
+        h >= 0 &&
+        (!Array.isArray(plies) || h < plies.length) &&
+        (i === 0 || (isNum(highlights[i - 1]) && h > (highlights[i - 1] as number)))
+    );
   // La evaluación tiene una posición más que jugadas (inicial + después de cada una).
   const lengthsOk = scoresOk && Array.isArray(plies) && scores.length === plies.length + 1;
   return (
@@ -109,6 +133,8 @@ export function isStoredReview(value: unknown): value is StoredReview {
     accuracyOk &&
     scoresOk &&
     pliesOk &&
+    pliesInOrder &&
+    fenOk &&
     highlightsOk &&
     lengthsOk
   );

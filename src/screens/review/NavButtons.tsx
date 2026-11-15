@@ -9,6 +9,8 @@ type Props = {
   onPrev: () => void;
   onNext: () => void;
   onEnd: () => void;
+  idx: number;
+  n: number;
   /** Dentro de una variante, «siguiente» no hace nada: se deshabilita. */
   inBranch?: boolean;
 };
@@ -21,13 +23,15 @@ const BUTTONS: { icon: IconName; key: 'ctrlStart' | 'ctrlPrev' | 'ctrlNext' | 'c
 ];
 
 /** Los cuatro botones de navegación de la revisión (48 × 44, relieve de 4 px), debajo del tablero. */
-export function NavButtons({ onStart, onPrev, onNext, onEnd, inBranch }: Props) {
+export function NavButtons({ onStart, onPrev, onNext, onEnd, idx, n, inBranch }: Props) {
   const { t } = useI18n();
   const handlers = { ctrlStart: onStart, ctrlPrev: onPrev, ctrlNext: onNext, ctrlEnd: onEnd };
   return (
     <View style={styles.row}>
       {BUTTONS.map(({ icon, key }) => {
-        const disabled = key === 'ctrlNext' && !!inBranch;
+        // En los extremos no hay a dónde ir; dentro de una variante, «siguiente» sale con el botón principal.
+        const disabled =
+          key === 'ctrlStart' || key === 'ctrlPrev' ? idx === 0 && !inBranch : key === 'ctrlNext' ? !!inBranch || idx >= n : idx >= n;
         return (
           <Pressable
             key={key}

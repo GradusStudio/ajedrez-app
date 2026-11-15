@@ -25,6 +25,8 @@ export type ParsedGame = {
   result: string; // 1-0, 0-1, 1/2-1/2, *
   startFen: string;
   moves: GameMove[];
+  /** La partida tenía más de 240 jugadas y se recortó: el resumen no cubre el final. */
+  truncated?: boolean;
 };
 
 /** Lo que el motor dice de una posición. `score` va en centipeones desde las blancas (mate: ±(10000 − n)). */
@@ -77,6 +79,9 @@ export type ReviewPly = {
   highlight: boolean;
   /** Evaluación (blancas) de la posición después de la jugada. */
   scoreAfter: number;
+  /** Par profundo con el que se calificó una jugada mala, si se refinó (blancas). El resumen lo usa para la diferencia. */
+  ratedBefore?: number;
+  ratedAfter?: number;
   bestUci: string;
   /** Variante del motor que empieza con la mejor jugada (UCI, hasta 8). Solo en jugadas malas. */
   bestPv?: string[];

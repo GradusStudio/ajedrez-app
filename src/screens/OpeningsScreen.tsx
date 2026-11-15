@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useIsFocused } from 'expo-router';
 import { Animated, Easing, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Chess, type Square } from 'chess.js';
-import { BotAvatar } from '../components/BotAvatar';
+import { BotFaces } from '../components/BotFaces';
 import { Board } from '../components/Board';
 import { BoardSizeContext } from '../components/BoardSizeContext';
 import { ColumnScrollView } from '../components/ColumnScrollView';
@@ -19,7 +18,7 @@ import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import { botsForOpening, mainLine } from '../openings/courseView';
 import { lessonStates } from '../progress/path';
-import { openingGame, progressPosition } from '../progress/progressGame';
+import { openingGame, piecesFromFen, progressPosition } from '../progress/progressGame';
 import { useProgress } from '../progress/ProgressContext';
 import { currentStreak, streakStatusNow } from '../progress/progressStore';
 import { useTodayKey } from '../settings/useTodayKey';
@@ -44,7 +43,7 @@ export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
   const list = useMemo(() => openings.filter((o) => o.color === color), [openings, color]);
   // Tablero chico de cada tarjeta del celular: la posición final de la línea principal.
   const previews = useMemo(() => {
-    const map = new Map<string, { pieces: MiniPieces; last: { from: string; to: string } | null }>();
+    const map = new Map<string, { pieces: ReturnType<typeof piecesFromFen>; last: { from: string; to: string } | null }>();
     for (const course of list) {
       const line = mainLine(course);
       const final = line?.frames[line.frames.length - 1];
@@ -304,11 +303,7 @@ export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
                     <Text style={styles.count}>{t('openings.progressCount', { n: done, total })}</Text>
                   </View>
                   <View style={styles.faces}>
-                    {players.slice(0, 5).map((bot, i) => (
-                      <View key={bot.id} style={[styles.face, i > 0 && styles.faceOverlap]}>
-                        <BotAvatar bot={bot} size={24} />
-                      </View>
-                    ))}
+                    <BotFaces bots={players.slice(0, 5)} size={24} />
                   </View>
                 </View>
               </View>
@@ -323,21 +318,6 @@ export function OpeningsScreen({ onOpenCourse, onStartLesson }: Props) {
       </View>
     </ColumnScrollView>
   );
-}
-
-/** Piezas de una posición en el formato de MiniBoard, para el tablero chico de la lista. */
-type MiniPieces = Parameters<typeof MiniBoard>[0]['pieces'];
-function piecesFromFen(fen: string): MiniPieces {
-  const chess = new Chess(fen);
-  const pieces: MiniPieces = {};
-  for (const file of 'abcdefgh') {
-    for (let rank = 1; rank <= 8; rank++) {
-      const square = `${file}${rank}`;
-      const piece = chess.get(square as Square);
-      if (piece) pieces[square] = `${piece.color}${piece.type}`;
-    }
-  }
-  return pieces;
 }
 
 const styles = StyleSheet.create({
@@ -375,9 +355,7 @@ const styles = StyleSheet.create({
   cardTitle: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.sm },
   count: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },
-  faces: { flexDirection: 'row', alignItems: 'center', marginTop: space.sm },
-  face: { borderRadius: 15, borderWidth: 2, borderColor: colors.bgBottom },
-  faceOverlap: { marginLeft: -8 },
+  faces: { marginTop: space.sm },
   guide: {
     marginTop: space.lg,
     padding: space.md,

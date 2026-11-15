@@ -3,6 +3,7 @@ import { showDialog } from '../components/dialog';
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { BackButton } from '../components/BackButton';
 import { BotAvatar } from '../components/BotAvatar';
+import { BotFaces } from '../components/BotFaces';
 import { Button3D } from '../components/Button3D';
 import { CardSurface } from '../components/CardSurface';
 import { ColumnScrollView } from '../components/ColumnScrollView';
@@ -84,13 +85,7 @@ export function OpeningDetailScreen({ course, onStartLesson, onPractice, onBack 
       <Text style={styles.summary}>{course.summary}</Text>
 
       <View style={styles.who}>
-        <View style={styles.faces}>
-          {players.map((bot, i) => (
-            <View key={bot.id} style={[styles.face, i > 0 && styles.faceOverlap]}>
-              <BotAvatar bot={bot} size={36} />
-            </View>
-          ))}
-        </View>
+        <BotFaces bots={players} size={36} />
         <Text style={styles.whoText}>{whoPlays}</Text>
       </View>
 
@@ -200,9 +195,6 @@ const styles = StyleSheet.create({
   title: { fontFamily: fonts.extrabold, fontSize: type.title, color: colors.text, marginTop: 4 },
   summary: { fontFamily: fonts.bold, fontSize: type.body, color: colors.textMuted, lineHeight: 23, marginTop: space.sm },
   who: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md, flexWrap: 'wrap' },
-  faces: { flexDirection: 'row', alignItems: 'center' },
-  face: { borderRadius: 21, borderWidth: 2, borderColor: colors.bgBottom },
-  faceOverlap: { marginLeft: -10 },
   whoText: { flexShrink: 1, fontFamily: fonts.bold, fontSize: type.secondary, color: colors.text },
   progress: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: space.md },
   progressText: { fontFamily: fonts.extrabold, fontSize: type.secondary, color: colors.textMuted },

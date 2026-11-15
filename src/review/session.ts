@@ -1,3 +1,5 @@
+import type { Review } from './types';
+
 // La partida elegida pasa de la pantalla de importar a la de revisión por aquí (un PGN es demasiado
 // largo para llevarlo como parámetro de ruta). Sin React Native.
 
@@ -5,6 +7,10 @@ export type PendingGame = {
   pgn: string;
   /** Usuario de quien revisa, si se conoce (para saber de qué lado juega). */
   username?: string;
+  /** Id de la partida, para guardar la revisión («bot:<playedAt>» o «pgn:<hash>»). */
+  id?: string;
+  /** Revisión ya hecha que hay que mostrar sin volver a analizar (tarea 34). */
+  review?: Review;
 };
 
 let pending: PendingGame | null = null;

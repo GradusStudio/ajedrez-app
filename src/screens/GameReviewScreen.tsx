@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import { Square } from 'chess.js';
 import { Board } from '../components/Board';
@@ -11,6 +11,8 @@ import { coachExplanation, coachLang, coachVoice } from '../review/coachText';
 import { lineMoves, lineText } from '../review/bestLine';
 import { parseGame } from '../review/pgn';
 import { clearPendingGame, peekPendingGame, sideOf } from '../review/session';
+import { saveReview } from '../review/reviewStore';
+import { reviewId } from '../review/store';
 import { setPendingQuiz, turningPoints } from '../review/turningPoints';
 import { isBad } from '../review/types';
 import { space } from '../theme';
@@ -47,15 +49,35 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
 
   const pending = useMemo(() => peekPendingGame(), []);
   const game = useMemo(() => (pending ? parseGame(pending.pgn) : null), [pending]);
+  // Revisión ya guardada (tarea 34): se muestra tal cual, sin volver a analizar.
+  const saved = pending?.review ?? null;
+  const meKnown = game ? (sideOf(pending?.username, game.white, game.black) ?? saved?.me ?? null) : null;
   useEffect(() => () => clearPendingGame(), []);
 
-  const { engine, engineError, engineView, review, progress, phase, failed, retry } = useReviewAnalysis(game);
+  const { engine, engineError, engineView, review, progress, phase, failed, retry } = useReviewAnalysis(
+    saved ? null : game,
+    saved
+  );
   const n = review?.plies.length ?? 0;
   const pb = useReviewPlayback(n, review?.highlights ?? []);
-  const { coach, choose: chooseCoach } = useReviewCoach();
-  const [me, setMe] = useState<'w' | 'b'>(() => (game ? sideOf(pending?.username, game.white, game.black) ?? 'w' : 'w'));
+  const { coach, choose: chooseCoach } = useReviewCoach(saved?.coachId);
+  const [me, setMe] = useState<'w' | 'b'>(() => meKnown ?? 'w');
   const [started, setStarted] = useState(false);
   const [sheet, setSheet] = useState(false);
+
+  // La primera revisión calculada en esta pantalla se guarda en el dispositivo (las últimas 10).
+  const stored = useRef(false);
+  useEffect(() => {
+    if (!review || saved || !pending || !game || stored.current) return;
+    stored.current = true;
+    void saveReview({
+      id: pending.id ?? reviewId(pending.pgn),
+      savedAt: new Date().toISOString(),
+      me: meKnown,
+      coachId: coach.id,
+      review,
+    });
+  }, [review, saved, pending, game, meKnown, coach.id]);
 
   const { idx, lastVar, branch } = pb;
   const fen =
@@ -179,7 +201,7 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
 
   if (!started) {
     // Quiz de puntos de giro: pantalla aparte que solo lee esta revisión. Solo si se sabe de qué bando jugó el usuario.
-    const points = sideOf(pending?.username, game.white, game.black) ? turningPoints(review, me) : [];
+    const points = meKnown ? turningPoints(review, meKnown) : [];
     return shell(
       <SummaryView
         top={<TopBar onBack={onBack} />}

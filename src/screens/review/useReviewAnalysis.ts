@@ -9,16 +9,16 @@ import type { ParsedGame, Review } from '../../review/types';
 export type AnalysisPhase = 'scan' | 'refine';
 
 /** Motor + análisis de toda la partida. `engineView` hay que dibujarlo una vez en la pantalla. */
-export function useReviewAnalysis(game: ParsedGame | null) {
+export function useReviewAnalysis(game: ParsedGame | null, initial: Review | null = null) {
   const [failed, setFailed] = useState(false);
-  const [review, setReview] = useState<Review | null>(null);
+  const [review, setReview] = useState<Review | null>(initial);
   const [phase, setPhase] = useState<AnalysisPhase>('scan');
   const [progress, setProgress] = useState({ done: 0, total: 1 });
-  // Si el análisis falló, el motor se apaga hasta que se reintente.
-  const { engine, error: engineError, retry: retryEngine, view: engineView } = useUciEngine(!failed);
+  // Si el análisis falló, el motor se apaga hasta que se reintente. Con una revisión ya guardada no hace falta.
+  const { engine, error: engineError, retry: retryEngine, view: engineView } = useUciEngine(!failed && !initial);
 
   useEffect(() => {
-    if (!engine || !game || review) return;
+    if (initial || !engine || !game || review) return;
     let cancelled = false;
     (async () => {
       const evals = await analyzeGame(engine, game, (done, total) => !cancelled && setProgress({ done, total }), () => cancelled);

@@ -5,15 +5,16 @@ import { bots, findBot } from '../../data/bots';
 const COACH_KEY = '@ajedrez/reviewCoach';
 const DEFAULT_COACH = 'ramiro';
 
-/** Bot que comenta la revisión; la elección se recuerda entre partidas. */
-export function useReviewCoach() {
-  const [coachId, setCoachId] = useState(DEFAULT_COACH);
+/** Bot que comenta la revisión; la elección se recuerda entre partidas. `initialId` la fija (revisión guardada). */
+export function useReviewCoach(initialId?: string) {
+  const [coachId, setCoachId] = useState(initialId ?? DEFAULT_COACH);
 
   useEffect(() => {
+    if (initialId) return;
     AsyncStorage.getItem(COACH_KEY)
       .then((id) => id && findBot(id) && setCoachId(id))
       .catch(() => {});
-  }, []);
+  }, [initialId]);
 
   const choose = (id: string) => {
     setCoachId(id);

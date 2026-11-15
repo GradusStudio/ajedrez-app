@@ -21,6 +21,7 @@ import { useContent } from '../data/useContent';
 import { useI18n } from '../i18n/I18nContext';
 import type { GameRecord } from '../progress/progressStore';
 import { useProgress } from '../progress/ProgressContext';
+import { todayKey } from '../progress/streak';
 import { botGamePgn, botGameReviewId } from '../review/botGames';
 import { parseGame } from '../review/pgn';
 import { pendingMistakes } from '../review/pendingMistakes';
@@ -46,9 +47,9 @@ const ERROR_KEY = {
 /** Ancho de la columna de la pestaña en la web ancha (dos columnas: partidas y errores). */
 const WIDE_COLUMN = 1000;
 
-/** Fecha relativa de una partida: hoy, ayer o hace N días (clave local YYYY-MM-DD). */
-function daysAgo(playedAt: string, today: string): number {
-  const day = playedAt.slice(0, 10);
+/** Fecha relativa de una partida: hoy, ayer o hace N días, con el día local (no el UTC de la fecha ISO). */
+function daysAgo(date: Date, today: string): number {
+  const day = todayKey(date);
   if (day === today) return 0;
   const a = new Date(`${today}T12:00:00`).getTime();
   const b = new Date(`${day}T12:00:00`).getTime();
@@ -77,7 +78,10 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
   const focused = useIsFocused();
   const today = useTodayKey();
 
-  const botGames = useMemo(() => progress.games.filter((g) => !g.practiceCourseId).slice(0, 10), [progress.games]);
+  const botGames = useMemo(
+    () => progress.games.filter((g) => !g.practiceCourseId && g.moves.length > 0).slice(0, 10),
+    [progress.games]
+  );
   const [reviews, setReviews] = useState<StoredReview[]>([]);
   const mistakes = useMemo(() => pendingMistakes(reviews, progress.turningPoints), [reviews, progress.turningPoints]);
 
@@ -99,9 +103,12 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
 
   // La búsqueda automática (usuario recordado) se hace una vez por fuente al elegirla.
   const autoSearched = useRef(new Set<string>());
+  /** Identifica el pedido de búsqueda vigente: una respuesta vieja no pisa la lista de otra fuente. */
+  const searchSeq = useRef(0);
 
   const search = useCallback(
     async (site: 'chesscom' | 'lichess') => {
+      const seq = ++searchSeq.current;
       autoSearched.current.add(site);
       const name = cleanUsername(settings.importUser[site] ?? '');
       if (!validUsername(name)) {
@@ -113,6 +120,7 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
       setLoading(true);
       update({ importUser: { ...settings.importUser, [site]: name } });
       const res = await fetchGames(site, name);
+      if (seq !== searchSeq.current) return;
       setLoading(false);
       if (res.ok) setGames(res.games);
       else setError(t(ERROR_KEY[res.error]));
@@ -135,6 +143,9 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
   }, [source]);
 
   const changeSource = (next: Source) => {
+    // Invalida una búsqueda en curso: si vuelve después, no pisa la lista de la fuente nueva.
+    searchSeq.current += 1;
+    setLoading(false);
     setSource(next);
     setGames(null);
     setError(null);
@@ -197,8 +208,8 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
     return { label: t('import.drew'), color: colors.text };
   };
 
-  const whenOf = (playedAt: string) => {
-    const days = daysAgo(playedAt, today);
+  const whenOf = (date: Date) => {
+    const days = daysAgo(date, today);
     if (days === 0) return t('analysis.when.today');
     if (days === 1) return t('analysis.when.yesterday');
     return tn('analysis.when.days', days);
@@ -255,8 +266,8 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
         const saved = !!savedFor(record).saved;
         const meta = [
           reasonText(record.reason),
-          tn('analysis.moves', record.moves.length),
-          whenOf(record.playedAt),
+          tn('analysis.moves', Math.ceil(record.moves.length / 2)),
+          whenOf(new Date(record.playedAt)),
         ].join(' · ');
         return (
           <View key={record.playedAt} style={styles.game}>
@@ -325,7 +336,7 @@ export function AnalysisScreen({ onReview, onFree, onQuiz, onBots }: Props) {
                     <Text style={styles.players} numberOfLines={1}>
                       {g.black}{g.blackRating ? ` (${g.blackRating})` : ''}
                     </Text>
-                    <Text style={styles.gameMeta}>{[g.speed, whenOf(new Date(g.date).toISOString())].filter(Boolean).join(' · ')}</Text>
+                    <Text style={styles.gameMeta}>{[g.speed, whenOf(new Date(g.date))].filter(Boolean).join(' · ')}</Text>
                   </View>
                   <Text style={[styles.chip, { color: chip.color }]}>{chip.label}</Text>
                 </Pressable>

@@ -32,6 +32,20 @@ export const validUsername = (s: string) => /^[A-Za-z0-9_-]{2,40}$/.test(s);
 export const MAX_RESPONSE_CHARS = 10_000_000;
 export const tooBigResponse = (text: string) => text.length > MAX_RESPONSE_CHARS;
 
+/** Si el servidor ya declara un cuerpo mayor que el tope, no se lee: evita cargar en memoria algo gigante. */
+export function declaredTooBig(contentLength: string | null): boolean {
+  if (contentLength === null) return false;
+  const bytes = Number(contentLength);
+  return Number.isFinite(bytes) && bytes > MAX_RESPONSE_CHARS;
+}
+
+/** Texto de la respuesta con el tope aplicado antes y después de leer; null si se pasa. */
+async function readCappedText(res: Response): Promise<string | null> {
+  if (declaredTooBig(res.headers.get('content-length'))) return null;
+  const text = await res.text();
+  return tooBigResponse(text) ? null : text;
+}
+
 /** El índice de archivos de chess.com trae las URLs de cada mes: solo se piden las de su propia API. */
 const CHESSCOM_ARCHIVE_URL = /^https:\/\/api\.chess\.com\/pub\/player\/[A-Za-z0-9_-]{1,40}\/games\/\d{4}\/\d{2}$/;
 export const isChessComArchiveUrl = (url: unknown): boolean => typeof url === 'string' && CHESSCOM_ARCHIVE_URL.test(url);
@@ -131,8 +145,8 @@ export function parseLichessNdjson(text: string): ListedGame[] {
 async function getJson(url: string): Promise<{ status: number; json?: unknown }> {
   const res = await fetch(url, { headers: fetchHeaders('application/json') });
   if (!res.ok) return { status: res.status };
-  const text = await res.text();
-  if (tooBigResponse(text)) return { status: res.status };
+  const text = await readCappedText(res);
+  if (text === null) return { status: res.status };
   try {
     return { status: res.status, json: JSON.parse(text) };
   } catch {
@@ -168,8 +182,8 @@ export async function fetchLichessGames(username: string): Promise<FetchResult> 
     );
     if (res.status === 404) return { ok: false, error: 'notFound' };
     if (!res.ok) return { ok: false, error: 'network' };
-    const text = await res.text();
-    if (tooBigResponse(text)) return { ok: false, error: 'network' };
+    const text = await readCappedText(res);
+    if (text === null) return { ok: false, error: 'network' };
     const games = parseLichessNdjson(text);
     return games.length ? { ok: true, games } : { ok: false, error: 'empty' };
   } catch {

@@ -41,7 +41,7 @@ export function useReviewAnalysis(game: ParsedGame | null, initial: Review | nul
       cancelled = true;
       engine.stop();
     };
-  }, [engine, game, review]);
+  }, [engine, game, review, initial]);
 
   const retry = () => {
     setFailed(false);

@@ -11,6 +11,10 @@ export type PendingGame = {
   id?: string;
   /** Revisión ya hecha que hay que mostrar sin volver a analizar (tarea 34). */
   review?: Review;
+  /** Bando del usuario en esa revisión guardada, si se conoce. */
+  me?: 'w' | 'b' | null;
+  /** Comentarista con el que se guardó la revisión. */
+  coachId?: string;
 };
 
 let pending: PendingGame | null = null;

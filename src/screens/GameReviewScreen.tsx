@@ -51,7 +51,7 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
   const game = useMemo(() => (pending ? parseGame(pending.pgn) : null), [pending]);
   // Revisión ya guardada (tarea 34): se muestra tal cual, sin volver a analizar.
   const saved = pending?.review ?? null;
-  const meKnown = game ? (sideOf(pending?.username, game.white, game.black) ?? saved?.me ?? null) : null;
+  const meKnown = game ? (sideOf(pending?.username, game.white, game.black) ?? pending?.me ?? null) : null;
   useEffect(() => () => clearPendingGame(), []);
 
   const { engine, engineError, engineView, review, progress, phase, failed, retry } = useReviewAnalysis(
@@ -60,7 +60,7 @@ export function GameReviewScreen({ onBack, onPractice }: Props) {
   );
   const n = review?.plies.length ?? 0;
   const pb = useReviewPlayback(n, review?.highlights ?? []);
-  const { coach, choose: chooseCoach } = useReviewCoach(saved?.coachId);
+  const { coach, choose: chooseCoach } = useReviewCoach(pending?.coachId);
   const [me, setMe] = useState<'w' | 'b'>(() => meKnown ?? 'w');
   const [started, setStarted] = useState(false);
   const [sheet, setSheet] = useState(false);

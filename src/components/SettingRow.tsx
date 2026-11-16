@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.surfaceShadow,
     paddingVertical: space.md,
     paddingHorizontal: space.lg,
-    marginBottom: space.sm,
+    marginBottom: space.md,
   },
   rowDisabled: { opacity: 0.5 },
   label: { fontFamily: fonts.bold, fontSize: type.body, color: colors.text },

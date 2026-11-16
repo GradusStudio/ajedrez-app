@@ -128,7 +128,7 @@ export function ShopScreen({ tab, onTab, onBack }: { tab: ShopTab; onTab: (tab: 
         </View>
         <Text style={styles.lead}>{t('shop.lead')}</Text>
 
-        <View style={wide ? styles.cols : undefined}>
+        <View style={wide ? styles.cols : styles.stack}>
           <View style={[styles.left, wide && styles.leftWide, sticky]}>
             <CardSurface style={styles.previewCard} radius={20}>
               <View style={styles.boardWrap}>
@@ -281,6 +281,8 @@ const styles = StyleSheet.create({
   balanceChipText: { fontFamily: fonts.extrabold, fontSize: 18, color: colors.gold },
   lead: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted, marginTop: 2, marginBottom: space.lg },
   cols: { flexDirection: 'row', gap: space.xxl, alignItems: 'flex-start' },
+  // En angosto, la vista previa y las pestañas no deben tocarse.
+  stack: { gap: space.lg },
   left: { width: '100%', gap: space.lg },
   leftWide: { width: 372, flexShrink: 0 },
   previewCard: { padding: space.md, gap: space.md },

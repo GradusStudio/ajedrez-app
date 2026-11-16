@@ -386,7 +386,7 @@ const styles = StyleSheet.create({
   levelSub: { fontFamily: fonts.semibold, fontSize: 10, color: colors.textMuted },
   topicHead: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: space.md },
   topicHint: { fontFamily: fonts.bold, fontSize: type.secondary, color: colors.textMuted },
-  topics: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.md },
+  topics: { flexDirection: 'row', flexWrap: 'wrap', gap: space.md, marginTop: space.md },
   topic: {
     ...cardSkin,
     borderRadius: radius.control,

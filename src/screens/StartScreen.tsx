@@ -427,11 +427,11 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
       </View>
 
       {showFirstSteps ? (
-        <>
+        <View style={styles.stack}>
           {firstStepsCard}
           {firstStepsStreak}
           {exploreCard}
-        </>
+        </View>
       ) : wide ? (
         <View style={styles.grid}>
           <View style={styles.colLeft}>
@@ -446,14 +446,14 @@ export function StartScreen({ onLesson, onDaily, onFirstPuzzle, onContinueGame, 
           </View>
         </View>
       ) : (
-        <>
+        <View style={styles.stack}>
           {heroCard}
           <DailyPuzzleCard wide={wide} onOpen={onDaily} />
           {streakCard}
           {botsCard}
           {openingsCard}
           {boardCard}
-        </>
+        </View>
       )}
 
       <Tip
@@ -571,6 +571,8 @@ const styles = StyleSheet.create({
   },
   pillText: { fontFamily: fonts.extrabold, fontSize: type.body, color: colors.text },
   grid: { flexDirection: 'row', alignItems: 'flex-start', gap: space.lg },
+  // En angosto las tarjetas se apilan solas dentro del ScrollView: el gap evita que un canto tape la siguiente.
+  stack: { gap: space.lg },
   colLeft: { flex: 1.35, gap: space.lg },
   colRight: { flex: 1, gap: space.lg },
   card: {

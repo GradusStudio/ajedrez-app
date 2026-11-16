@@ -88,6 +88,52 @@ test('splitSheet falla si la hoja no tiene 2 filas', () => {
   assert.throws(() => splitSheet(ink, 10, 10), /2 filas/);
 });
 
+/** Hoja sintética de dos filas con seis piezas de 8 × 7 px separadas por 2 px. */
+function twoRows(W = 62, H = 21) {
+  const ink = new Uint8Array(W * H);
+  const rect = (x0: number, y0: number, x1: number, y1: number) => {
+    for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) ink[y * W + x] = 1;
+  };
+  for (let c = 0; c < 6; c++) {
+    rect(1 + c * 10, 2, 8 + c * 10, 8);
+    rect(1 + c * 10, 12, 8 + c * 10, 18);
+  }
+  return { ink, W, H };
+}
+
+test('splitSheet conserva las bases cuando una línea blanca cruza la fila negra', () => {
+  const { ink, W, H } = twoRows();
+  // La línea que separa las losas del cuerpo cruza toda la hoja a la misma altura.
+  for (let x = 0; x < W; x++) ink[15 * W + x] = 0;
+  const boxes = splitSheet(ink, W, H);
+  assert.equal(boxes.black.length, 6);
+  assert.deepEqual(boxes.black[0], { x0: 1, y0: 12, x1: 8, y1: 18 });
+  assert.deepEqual(boxes.black[5], { x0: 51, y0: 12, x1: 58, y1: 18 });
+  assert.equal(boxes.white[0].y1, 8, 'la fila blanca no cambia');
+});
+
+test('splitSheet conserva el cuerpo cuando una línea blanca cruza la fila blanca', () => {
+  const { ink, W, H } = twoRows();
+  for (let x = 0; x < W; x++) ink[5 * W + x] = 0;
+  const boxes = splitSheet(ink, W, H);
+  assert.equal(boxes.white.length, 6);
+  assert.deepEqual(boxes.white[0], { x0: 1, y0: 2, x1: 8, y1: 8 });
+  assert.deepEqual(boxes.black[0], { x0: 1, y0: 12, x1: 8, y1: 18 });
+});
+
+test('splitSheet une columnas separadas por una línea blanca de menos del 1,5 % del ancho', () => {
+  const { ink, W, H } = twoRows(100, 21);
+  // Línea vertical de 1 px en el medio de cada pieza: los dos trozos son una sola columna.
+  for (let c = 0; c < 6; c++) {
+    for (let y = 0; y < H; y++) ink[y * W + 5 + c * 10] = 0;
+  }
+  const boxes = splitSheet(ink, W, H);
+  assert.equal(boxes.white.length, 6);
+  assert.equal(boxes.black.length, 6);
+  assert.deepEqual(boxes.white[0], { x0: 1, y0: 2, x1: 8, y1: 8 });
+  assert.deepEqual(boxes.black[5], { x0: 51, y0: 12, x1: 58, y1: 18 });
+});
+
 test('fillHoles rellena un anillo y deja el exterior en 0', () => {
   const W = 5;
   const H = 5;

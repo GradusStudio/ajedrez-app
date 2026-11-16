@@ -57,10 +57,15 @@ export function placementFor(type: PieceType, cropW: number, cropH: number, stre
   };
 }
 
+/** Mínimo de tinta para considerar ocupada una fila o columna: 0,2 % del máximo. */
+function bandMin(counts: number[]): number {
+  const max = counts.reduce((m, c) => Math.max(m, c), 0);
+  return Math.max(1, Math.floor(max * 0.002));
+}
+
 /** Bandas contiguas de filas o columnas con tinta; ignora motas de menos del 0,2 % del máximo. */
 function bands(counts: number[]): { from: number; to: number }[] {
-  const max = counts.reduce((m, c) => Math.max(m, c), 0);
-  const min = Math.max(1, Math.floor(max * 0.002));
+  const min = bandMin(counts);
   const out: { from: number; to: number }[] = [];
   let from = -1;
   for (let i = 0; i <= counts.length; i++) {
@@ -74,19 +79,23 @@ function bands(counts: number[]): { from: number; to: number }[] {
   return out;
 }
 
-/** Se queda con las `count` bandas más grandes (las piezas) y las devuelve en orden de posición. */
-function pickMain(list: { from: number; to: number }[], count: number, what: string) {
-  if (list.length < count) throw new Error(`se esperaban ${count} ${what} y aparecieron ${list.length}`);
-  return [...list]
-    .sort((a, b) => b.to - b.from - (a.to - a.from))
-    .slice(0, count)
-    .sort((a, b) => a.from - b.from);
+/** Une bandas separadas por menos de `minGap` píxeles: una línea blanca fina dentro de una pieza. */
+function mergeBands(list: { from: number; to: number }[], minGap: number) {
+  const out: { from: number; to: number }[] = [];
+  for (const band of list) {
+    const last = out[out.length - 1];
+    if (last && band.from - last.to - 1 < minGap) last.to = band.to;
+    else out.push({ ...band });
+  }
+  return out;
 }
 
 /**
  * Separa las piezas de la hoja por proyecciones de la tinta: dos filas y seis columnas por fila.
  * `ink[i]` vale 1 en los píxeles oscuros (contorno, detalles o pieza negra) y 0 en el fondo blanco.
- * Si la hoja trae marcos o sombras de borde se descartan: cuentan las dos filas más altas y las seis columnas más anchas.
+ * Las filas se cortan por el hueco blanco más ancho entre la tinta (las bases pueden quedar separadas
+ * del cuerpo por una línea que cruza toda la hoja) y cada fila se queda con todas las bandas de su lado.
+ * En las columnas se unen los huecos de menos del 1,5 % del ancho medio de una pieza: líneas blancas internas.
  */
 export function splitSheet(ink: Uint8Array, width: number, height: number): SheetBoxes {
   if (ink.length !== width * height) throw new Error('la máscara no coincide con el tamaño de la hoja');
@@ -96,14 +105,49 @@ export function splitSheet(ink: Uint8Array, width: number, height: number): Shee
     for (let x = 0; x < width; x++) n += ink[y * width + x];
     rowCounts[y] = n;
   }
-  const rows = pickMain(bands(rowCounts), 2, 'filas de piezas');
+  const min = bandMin(rowCounts);
+  let first = -1;
+  let last = -1;
+  for (let y = 0; y < height; y++) {
+    if (rowCounts[y] <= min) continue;
+    if (first < 0) first = y;
+    last = y;
+  }
+  if (first < 0) throw new Error('la hoja no tiene 2 filas de piezas');
+  let gapFrom = -1;
+  let gapTo = -1;
+  let run = -1;
+  for (let y = first; y <= last; y++) {
+    if (rowCounts[y] <= min) {
+      if (run < 0) run = y;
+      continue;
+    }
+    if (run < 0) continue;
+    const end = y - 1;
+    const len = end - run + 1;
+    // Solo los huecos interiores: los márgenes de arriba y abajo no separan las dos filas.
+    if (run > first && end < last && (gapFrom < 0 || len > gapTo - gapFrom + 1)) {
+      gapFrom = run;
+      gapTo = end;
+    }
+    run = -1;
+  }
+  if (gapFrom < 0) throw new Error('la hoja no tiene 2 filas de piezas: falta el hueco entre ellas');
+  const rows = [
+    { from: first, to: gapFrom - 1 },
+    { from: gapTo + 1, to: last },
+  ];
   const boxes: SheetBoxes = { white: [], black: [] };
   rows.forEach((row, r) => {
     const colCounts = new Array<number>(width).fill(0);
     for (let y = row.from; y <= row.to; y++) {
       for (let x = 0; x < width; x++) colCounts[x] += ink[y * width + x];
     }
-    const cols = pickMain(bands(colCounts), 6, `columnas en la fila ${r + 1}`);
+    const raw = bands(colCounts);
+    const meanWidth = raw.reduce((sum, b) => sum + b.to - b.from + 1, 0) / Math.max(1, raw.length);
+    // 1,5 % del ancho medio de una pieza (no de la hoja: entre piezas puede haber menos del 1,5 %).
+    const cols = mergeBands(raw, Math.max(2, Math.round(meanWidth * 0.015)));
+    if (cols.length !== 6) throw new Error(`la fila ${r + 1} tiene ${cols.length} columnas en vez de 6`);
     for (const col of cols) {
       let y0 = row.to;
       let y1 = row.from;

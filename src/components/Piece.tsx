@@ -1,7 +1,8 @@
 import React from 'react';
 import Svg, { Circle, ClipPath, Defs, Image, LinearGradient, Path, Stop } from 'react-native-svg';
 import { AnyPieceSetId, MATERIAL_SETS, isMaterialSet, pathSetOf, pieceClipIds } from '../pieces/materials';
-import { PIECE_PATHS, PieceKey } from '../pieces/pieceSets';
+import { PieceKey } from '../pieces/pieceSets';
+import { loadPieceSet, piecePaths } from '../pieces/piecePaths';
 import { TEXTURES } from '../pieces/textures';
 import { volcanoShapes } from '../pieces/volcano';
 import { winterShapes } from '../pieces/winter';
@@ -33,7 +34,22 @@ function Piece({ type, color, size, set, showEmbers = false }: Props) {
   const { pieceSet } = usePieceSet();
   const id = set ?? pieceSet;
   const key = `${color}${type}` as PieceKey;
-  const paths = PIECE_PATHS[pathSetOf(id)][key];
+  const setId = pathSetOf(id);
+  const [, setPathsTick] = React.useState(0);
+  // Los sets que no son base se descargan aparte: al llegar, este re-render toma sus trazados.
+  React.useEffect(() => {
+    let alive = true;
+    loadPieceSet(setId).then(
+      () => {
+        if (alive) setPathsTick((n) => n + 1);
+      },
+      () => {}
+    );
+    return () => {
+      alive = false;
+    };
+  }, [setId]);
+  const paths = piecePaths(setId, key);
   // Id único por pieza: Safari no resuelve bien `url(#id)` cuando varios SVG repiten el mismo id.
   const uid = React.useId().replace(/[^a-zA-Z0-9_-]/g, '');
 

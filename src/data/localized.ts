@@ -9,37 +9,50 @@ import { buildContent, type Content, type LanguageFiles } from './translate';
 const spanish: Content = { units, openings, bots };
 
 /**
- * Archivos de texto de un idioma. Cada caso lleva su propio `require` estático (Metro lo empaqueta)
- * y solo se ejecuta si ese idioma se elige. Un idioma sin archivos da el español.
+ * Archivos de texto de un idioma, con import dinámico. Metro los separa del trozo común y solo se
+ * descargan cuando se elige ese idioma (las aperturas traducidas son lo que más pesa).
+ * Un idioma sin archivos da el español.
  */
-export function languageFiles(language: Language): LanguageFiles | undefined {
+export async function languageFiles(language: Language): Promise<LanguageFiles | undefined> {
   switch (language) {
     case 'en':
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      return (require('./i18n/en') as { files: LanguageFiles }).files;
+      return (await import('./i18n/en')).files;
     case 'de':
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      return (require('./i18n/de') as { files: LanguageFiles }).files;
+      return (await import('./i18n/de')).files;
     case 'it':
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      return (require('./i18n/it') as { files: LanguageFiles }).files;
+      return (await import('./i18n/it')).files;
     case 'fr':
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      return (require('./i18n/fr') as { files: LanguageFiles }).files;
+      return (await import('./i18n/fr')).files;
     default:
       return undefined;
   }
 }
 
 const cache = new Map<Language, Content>();
+const listeners = new Set<() => void>();
 
-/** Contenido del idioma, con memoria. En español devuelve los mismos objetos originales. */
+/** useSyncExternalStore: avisa cuando llega el contenido de un idioma. */
+export function subscribeLocalized(listener: () => void): () => void {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+}
+
+/** Contenido ya cargado del idioma; si todavía no llegó, el español. */
 export function localizedContent(language: Language): Content {
   if (language === 'es') return spanish;
-  let content = cache.get(language);
-  if (!content) {
-    content = buildContent(spanish, languageFiles(language));
-    cache.set(language, content);
-  }
+  return cache.get(language) ?? spanish;
+}
+
+/** Carga (una vez) el contenido del idioma. Los idiomas ya cargados salen de la memoria. */
+export async function loadLocalizedContent(language: Language): Promise<Content> {
+  if (language === 'es') return spanish;
+  const cached = cache.get(language);
+  if (cached) return cached;
+  const files = await languageFiles(language);
+  const content = files ? buildContent(spanish, files) : spanish;
+  cache.set(language, content);
+  listeners.forEach((listener) => listener());
   return content;
 }

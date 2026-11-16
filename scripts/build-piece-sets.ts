@@ -127,15 +127,20 @@ async function readSheet(set: SheetSet, file: string): Promise<Record<PieceKey, 
   return out;
 }
 
-function buildModule(paths: PathMap) {
+const OUT_SETS = path.join(ROOT, 'src', 'pieces', 'sets');
+
+/** Archivo principal: tipos, meta y los tres sets base. Los demás viven en src/pieces/sets y se cargan aparte. */
+function buildModule(base: PathMap) {
   const header =
     '// GENERADO por scripts/build-piece-sets.ts: trazado vectorial de los sets de piezas (viewBox 0 0 100 100).\n' +
     '// `sil` = silueta (se rellena con la textura o de blanco); `ink` = tinta (contornos, detalles y piezas negras).\n' +
-    '// Ambos usan fillRule="evenodd". No editar a mano: `npm run build:pieces`.\n\n';
+    '// Ambos usan fillRule="evenodd". No editar a mano: `npm run build:pieces`.\n' +
+    '// Los sets nuevos viven en ./sets/<set>.ts y se cargan con import dinámico (piecePaths.ts).\n\n';
   const types =
     "export type PieceSetId = 'clasico' | 'minimalista' | 'gotico' | 'redondeado' | 'contorneado';\n" +
     "export type MaterialPathSetId = 'madera' | 'marmol' | 'magma';\n" +
     'export type PathSetId = PieceSetId | MaterialPathSetId;\n' +
+    "export type BasePathSetId = 'clasico' | 'gotico' | 'contorneado';\n" +
     "export type PieceKey = 'wk' | 'wq' | 'wb' | 'wn' | 'wr' | 'wp' | 'bk' | 'bq' | 'bb' | 'bn' | 'br' | 'bp';\n" +
     'export type PiecePaths = { sil: string; ink: string };\n\n' +
     "export const DEFAULT_PIECE_SET: PieceSetId = 'clasico';\n\n";
@@ -143,8 +148,18 @@ function buildModule(paths: PathMap) {
     'export const PIECE_SET_META: { id: PieceSetId; name: string; description: string }[] = ' +
     JSON.stringify(PIECE_SET_META, null, 2) +
     ';\n\n';
-  const map = 'export const PIECE_PATHS: Record<PathSetId, Record<PieceKey, PiecePaths>> = ' + JSON.stringify(paths) + ';\n';
+  const map = 'export const PIECE_PATHS: Record<BasePathSetId, Record<PieceKey, PiecePaths>> = ' + JSON.stringify(base) + ';\n';
   return header + types + meta + map;
+}
+
+function buildSetModule(paths: Record<string, unknown>) {
+  return (
+    '// GENERADO por scripts/build-piece-sets.ts. No editar a mano: `npm run build:pieces`.\n' +
+    "import type { PieceKey, PiecePaths } from '../pieceSets';\n\n" +
+    'export const PATHS: Record<PieceKey, PiecePaths> = ' +
+    JSON.stringify(paths) +
+    ';\n'
+  );
 }
 
 async function main() {
@@ -154,20 +169,23 @@ async function main() {
     fail(`no hay hojas en ${path.relative(ROOT, SRC)} (se esperaban ${Object.values(SHEETS).join(', ')}). No se cambió nada.`);
 
   const current = PIECE_PATHS as unknown as PathMap;
-  const paths: PathMap = { ...current };
+  const base: PathMap = { clasico: current.clasico, gotico: current.gotico, contorneado: current.contorneado };
+  const extra: Record<string, Record<PieceKey, Paths>> = {};
   for (const set of pending) {
     const file = SHEETS[set];
     try {
-      paths[set] = await readSheet(set, path.join(SRC, file));
+      extra[set] = await readSheet(set, path.join(SRC, file));
       console.log(`${set}: 12 piezas trazadas`);
     } catch (e) {
       fail(`${file}: ${(e as Error).message}. No se cambió nada.`);
     }
   }
 
-  fs.writeFileSync(TMP, buildModule(paths));
+  fs.writeFileSync(TMP, buildModule(base));
   fs.renameSync(TMP, OUT);
-  console.log(`${pending.length} sets → ${path.relative(ROOT, OUT)}`);
+  fs.mkdirSync(OUT_SETS, { recursive: true });
+  for (const set of pending) fs.writeFileSync(path.join(OUT_SETS, `${set}.ts`), buildSetModule(extra[set]));
+  console.log(`${pending.length} sets → ${path.relative(ROOT, OUT)} y ${path.relative(ROOT, OUT_SETS)}/`);
 }
 
 main().catch((e) => fail((e as Error).message));

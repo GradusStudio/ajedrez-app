@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { PIECE_PATHS } from './pieceSets';
+import { PATHS } from './sets/magma';
 import { volcanoShapes } from './volcano';
 import { pathBounds } from './winter';
 
 test('las 12 piezas de magma tienen lava, gotas y tres brasas', () => {
-  for (const [key, p] of Object.entries(PIECE_PATHS.magma)) {
+  for (const [key, p] of Object.entries(PATHS)) {
     const v = volcanoShapes(p.sil);
     const b = pathBounds(p.sil);
     assert.ok(v.lava.startsWith('M') && v.lava.endsWith('Z'), key);
@@ -23,6 +23,6 @@ test('un trazado sin coordenadas no rompe las formas', () => {
 });
 
 test('las formas solo dependen de la silueta', () => {
-  const sil = PIECE_PATHS.magma.wk.sil;
+  const sil = PATHS.wk.sil;
   assert.deepEqual(volcanoShapes(sil), volcanoShapes(sil));
 });

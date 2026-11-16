@@ -1,14 +1,15 @@
-import { STOCKFISH_JS, STOCKFISH_WASM_BASE64 } from './stockfish/stockfishAssets';
-
 /**
  * Página que corre dentro del WebView invisible (EngineView).
  * Arma el motor en un Worker a partir de los archivos de Stockfish sin modificar:
  * el .wasm se pasa por la URL del worker (después de '#'), como espera stockfish.js.
+ * Los assets (2,4 MB en base64) se importan acá adentro para que Metro los separe del trozo común
+ * y solo se descarguen cuando una pantalla monta el motor.
  * Comunicación solo por texto UCI:
  *   app → motor: window.sendToEngine("go depth 10")
  *   motor → app: window.ReactNativeWebView.postMessage("bestmove e2e4 ...")
  */
-export function buildEngineHtml(): string {
+export async function buildEngineHtml(): Promise<string> {
+  const { STOCKFISH_JS, STOCKFISH_WASM_BASE64 } = await import('./stockfish/stockfishAssets');
   // "</" dentro del JS cerraría la etiqueta <script>: se escapa.
   const js = JSON.stringify(STOCKFISH_JS).replace(/<\//g, '<\\/');
   return `<!doctype html><html><head><meta charset="utf-8"></head><body><script>

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { applyBotText, applyLessonText, applyOpeningText, buildContent } from './translate';
-import { localizedContent } from './localized';
+import { loadLocalizedContent, localizedContent } from './localized';
 import { bots } from './bots';
 import { openings } from './openings';
 import { units } from './units';
@@ -149,9 +149,9 @@ test('español devuelve los datos originales', () => {
   assert.equal(es.bots, bots);
 });
 
-test('un idioma sin archivos devuelve el español, con memoria', () => {
+test('un idioma sin archivos devuelve el español, con memoria', async () => {
   const unknown = 'pt' as Language;
-  const en = localizedContent(unknown);
+  const en = await loadLocalizedContent(unknown);
   assert.equal(en.units, units);
   assert.equal(localizedContent(unknown), en);
 });

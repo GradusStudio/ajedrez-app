@@ -14,7 +14,19 @@ import {
   scalePathNumbers,
   splitSheet,
 } from './build-piece-sets.logic';
-import { PIECE_PATHS } from '../src/pieces/pieceSets';
+import { PATHS as MINIMALISTA } from '../src/pieces/sets/minimalista';
+import { PATHS as REDONDEADO } from '../src/pieces/sets/redondeado';
+import { PATHS as MADERA } from '../src/pieces/sets/madera';
+import { PATHS as MARMOL } from '../src/pieces/sets/marmol';
+import { PATHS as MAGMA } from '../src/pieces/sets/magma';
+
+const GENERATED = {
+  minimalista: MINIMALISTA,
+  redondeado: REDONDEADO,
+  madera: MADERA,
+  marmol: MARMOL,
+  magma: MAGMA,
+} as const;
 
 test('las alturas del Clásico mantienen el orden rey > dama ≥ alfil ≥ caballo ≥ torre > peón', () => {
   const order = PIECE_ORDER.map((t) => TARGET_HEIGHTS[t]);
@@ -135,12 +147,12 @@ test('las negras de cada set miden como las blancas y su tinta queda dentro de l
   const types = ['k', 'q', 'r', 'b', 'n', 'p'] as const;
   for (const set of ['minimalista', 'redondeado', 'madera', 'marmol', 'magma'] as const) {
     for (const t of types) {
-      const w = pathBox(PIECE_PATHS[set][`w${t}`].sil);
-      const b = pathBox(PIECE_PATHS[set][`b${t}`].sil);
+      const w = pathBox(GENERATED[set][`w${t}`].sil);
+      const b = pathBox(GENERATED[set][`b${t}`].sil);
       assert.ok(b.width <= w.width * 1.05, `${set}-${t}: ancho negra ${b.width.toFixed(1)} vs blanca ${w.width.toFixed(1)}`);
       assert.ok(Math.abs(b.height - w.height) <= w.height * 0.05, `${set}-${t}: alto`);
       assert.ok(Math.abs(b.y1 - BASELINE) <= 1 && Math.abs(w.y1 - BASELINE) <= 1, `${set}-${t}: línea de base`);
-      const ink = pathBox(PIECE_PATHS[set][`b${t}`].ink);
+      const ink = pathBox(GENERATED[set][`b${t}`].ink);
       assert.ok(
         ink.x0 >= b.x0 - 3 && ink.x1 <= b.x1 + 3 && ink.y0 >= b.y0 - 3 && ink.y1 <= b.y1 + 3,
         `${set}-${t}: la tinta se sale de la silueta`,

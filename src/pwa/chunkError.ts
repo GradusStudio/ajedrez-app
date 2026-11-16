@@ -11,6 +11,8 @@ const PATTERNS = [
   /Failed to fetch dynamically imported module/i,
   /error loading dynamically imported module/i,
   /Importing a module script failed/i,
+  // Cloudflare responde 404 con el HTML de la app: el navegador intenta evaluarlo como JS y falla así.
+  /Unexpected token '</i,
 ];
 
 /**

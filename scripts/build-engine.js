@@ -19,13 +19,22 @@ const js = fs.readFileSync(path.join(pkgDir, 'bin', `${base}.js`), 'utf8');
 const wasm = fs.readFileSync(path.join(pkgDir, 'bin', `${base}.wasm`));
 
 fs.mkdirSync(outDir, { recursive: true });
+// La versión va en su propio módulo: Créditos la importa sin arrastrar los 2,4 MB de los assets.
+fs.writeFileSync(
+  path.join(outDir, 'version.ts'),
+  [
+    '// ARCHIVO GENERADO por scripts/build-engine.js. No editar a mano.',
+    `export const STOCKFISH_VERSION = ${JSON.stringify(`${pkg.version} (${base})`)};`,
+    '',
+  ].join('\n')
+);
 fs.writeFileSync(
   path.join(outDir, 'stockfishAssets.ts'),
   [
     '// ARCHIVO GENERADO por scripts/build-engine.js. No editar a mano.',
     `// Stockfish.js ${pkg.version} (${base}), licencia GPL v3: ver COPYING.txt en esta carpeta.`,
     `// Código fuente: ${pkg.homepage || 'https://github.com/nmrugg/stockfish.js'}`,
-    `export const STOCKFISH_VERSION = ${JSON.stringify(`${pkg.version} (${base})`)};`,
+    '// Los assets se cargan con un import diferido desde engineHtml.ts (fuera del trozo común).',
     `export const STOCKFISH_JS = ${JSON.stringify(js)};`,
     `export const STOCKFISH_WASM_BASE64 = ${JSON.stringify(wasm.toString('base64'))};`,
     '',

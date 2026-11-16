@@ -8,7 +8,7 @@ import deCoach from '../review/coach/de.json';
 import enCoach from '../review/coach/en.json';
 import frCoach from '../review/coach/fr.json';
 import itCoach from '../review/coach/it.json';
-import { localizedContent } from './localized';
+import { loadLocalizedContent, localizedContent } from './localized';
 
 // Nombres de los bots por idioma (spec del rediseño de bots, sección 5). El español no cambia y los id tampoco:
 // los textos traducidos no pueden quedar con el nombre español de un bot que en ese idioma se llama distinto.
@@ -63,33 +63,33 @@ function strings(value: unknown): string[] {
   return [];
 }
 
-test('cada bot se llama como dice la tabla en los cuatro idiomas', () => {
+test('cada bot se llama como dice la tabla en los cuatro idiomas', async () => {
   for (const lang of LANGS) {
-    const byId = new Map(localizedContent(lang).bots.map((b) => [b.id, b.name]));
+    const byId = new Map((await loadLocalizedContent(lang)).bots.map((b) => [b.id, b.name]));
     for (const [id, spanish] of Object.entries(ES)) {
       assert.equal(byId.get(id), NAMES[lang][id] ?? spanish, `${lang}: ${id}`);
     }
   }
 });
 
-test('los ids de los bots son los mismos en los cinco idiomas', () => {
+test('los ids de los bots son los mismos en los cinco idiomas', async () => {
   const reference = localizedContent('es').bots.map((b) => b.id).sort();
   for (const lang of LANGS) {
-    assert.deepEqual(localizedContent(lang).bots.map((b) => b.id).sort(), reference, lang);
+    assert.deepEqual((await loadLocalizedContent(lang)).bots.map((b) => b.id).sort(), reference, lang);
   }
 });
 
-test('los diez bots tienen la frase de tablas en los cinco idiomas', () => {
+test('los diez bots tienen la frase de tablas en los cinco idiomas', async () => {
   for (const lang of ['es', ...LANGS] as const) {
-    for (const bot of localizedContent(lang).bots) {
+    for (const bot of (await loadLocalizedContent(lang)).bots) {
       assert.ok(bot.lines.onDraw.trim().length > 0, `${lang}: ${bot.id} sin frase de tablas`);
     }
   }
 });
 
-test('ningún texto traducido deja el nombre español de un bot que en ese idioma cambia', () => {
+test('ningún texto traducido deja el nombre español de un bot que en ese idioma cambia', async () => {
   for (const lang of LANGS) {
-    const content = localizedContent(lang);
+    const content = await loadLocalizedContent(lang);
     const texts = [
       ...strings(CATALOGS[lang]),
       ...strings(content.units),

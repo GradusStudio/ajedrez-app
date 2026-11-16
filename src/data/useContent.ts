@@ -1,12 +1,23 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useSyncExternalStore } from 'react';
 import { useI18n } from '../i18n/I18nContext';
-import { localizedContent } from './localized';
+import { loadLocalizedContent, localizedContent, subscribeLocalized } from './localized';
 
-/** Unidades, aperturas y bots en el idioma elegido, con las búsquedas por id. */
+/**
+ * Unidades, aperturas y bots en el idioma elegido, con las búsquedas por id.
+ * El contenido traducido se carga aparte (import dinámico): hasta que llega se ve el español.
+ */
 export function useContent() {
   const { language } = useI18n();
+  const content = useSyncExternalStore(
+    subscribeLocalized,
+    () => localizedContent(language),
+    () => localizedContent(language)
+  );
+  useEffect(() => {
+    loadLocalizedContent(language).catch(() => {});
+  }, [language]);
   return useMemo(() => {
-    const { units, openings, bots } = localizedContent(language);
+    const { units, openings, bots } = content;
     return {
       units,
       openings,
@@ -21,5 +32,5 @@ export function useContent() {
       findOpening: (id: string) => openings.find((o) => o.id === id),
       findBot: (id: string) => bots.find((b) => b.id === id),
     };
-  }, [language]);
+  }, [content]);
 }

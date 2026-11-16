@@ -9,26 +9,44 @@ type Props = {
   onError: (message: string) => void;
 };
 
-let cachedHtml: string | null = null;
+let cachedHtml: Promise<string> | null = null;
 const engineHtml = () => (cachedHtml ??= buildEngineHtml());
 
 /** Versión web de EngineView: Stockfish corre en un iframe oculto. */
 export function EngineView({ onReady, onError }: Props) {
   const [engine] = useState(() => new UciEngine());
+  const [html, setHtml] = useState<string | null>(null);
 
   useEffect(() => {
     engine.setOnFailure(onError);
   });
 
-  // Desde que se monta ya cuenta el tiempo: si la página nunca arranca, también se avisa.
   useEffect(() => {
+    let alive = true;
+    engineHtml().then(
+      (h) => {
+        if (alive) setHtml(h);
+      },
+      (e) => {
+        if (alive) onError(String((e as Error)?.message ?? e));
+      }
+    );
+    return () => {
+      alive = false;
+    };
+  }, [onError]);
+
+  // Desde que el iframe existe ya cuenta el tiempo: si la página nunca arranca, también se avisa.
+  useEffect(() => {
+    if (!html) return;
     engine.arm();
     return () => engine.close();
-  }, [engine]);
+  }, [engine, html]);
 
+  if (!html) return null;
   return (
     <HiddenFrame
-      html={engineHtml()}
+      html={html}
       onSend={(send) => engine.connect((cmd) => send?.({ fn: 'sendToEngine', arg: cmd }))}
       onMessage={(line) => {
         if (line === 'host ready') {

@@ -1,5 +1,5 @@
 import '../pwa/captureInstallPrompt';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, AppState, Platform, View } from 'react-native';
 import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
 import * as NavigationBar from 'expo-navigation-bar';
@@ -26,6 +26,8 @@ import { useRouteMeta } from '../seo/useRouteMeta';
 import { DriveSyncProvider } from '../sync/DriveSyncContext';
 import { AppBackground } from '../components/AppBackground';
 import { AppErrorBoundary } from '../components/AppErrorBoundary';
+import { ScreenError } from '../components/ScreenError';
+import { reloadPage } from '../pwa/reloadOnce';
 import { colors } from '../theme';
 
 // Tema de la navegación: su `background` es el fondo que se ve detrás de las pantallas mientras se deslizan.
@@ -100,6 +102,16 @@ function AppStack() {
   // Pantalla ancha (web): las pantallas ocupan toda la ventana y su contenido va en una columna de 480 px
   // (ColumnScrollView, así la barra de desplazamiento queda contra el borde). La bienvenida, que no se desplaza,
   // va encerrada en la columna entera (`inColumn`).
+  // Si el arranque no termina en 10 s (una fuente, el progreso o un trozo que no llega), en vez de
+  // dejar el spinner para siempre se muestra el aviso de error con «Recargar la app».
+  const [timedOut, setTimedOut] = useState(false);
+  const [retry, setRetry] = useState(0);
+  useEffect(() => {
+    if (ready) return;
+    const timer = setTimeout(() => setTimedOut(true), 10_000);
+    return () => clearTimeout(timer);
+  }, [ready, retry]);
+
   const wide = useWideLayout();
   const inColumn = {
     contentStyle: { backgroundColor: 'transparent', ...(wide ? { width: '100%' as const, maxWidth: COLUMN_MAX, alignSelf: 'center' as const } : null) },
@@ -115,7 +127,19 @@ function AppStack() {
     if (ready) SplashScreen.hideAsync().catch(() => {});
   }, [ready]);
 
-  if (!ready) return <Loading />;
+  if (!ready) {
+    return timedOut ? (
+      <ScreenError
+        onRetry={() => {
+          setTimedOut(false);
+          setRetry((n) => n + 1);
+        }}
+        onReload={reloadPage}
+      />
+    ) : (
+      <Loading />
+    );
+  }
   return (
     // Las pantallas entran deslizándose desde la derecha, con la de abajo corriéndose un poco (más suave
     // que la animación por defecto de Android). La bienvenida y el resultado aparecen con un fundido.

@@ -1,9 +1,23 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { PIECE_SET_LIST, pathSetOf, pieceClipIds } from './materials';
-import { PieceKey, PIECE_PATHS } from './pieceSets';
+import { PieceKey, PIECE_PATHS, type PiecePaths, type PathSetId } from './pieceSets';
+import { PATHS as MINIMALISTA } from './sets/minimalista';
+import { PATHS as REDONDEADO } from './sets/redondeado';
+import { PATHS as MADERA } from './sets/madera';
+import { PATHS as MARMOL } from './sets/marmol';
+import { PATHS as MAGMA } from './sets/magma';
 
 const KEYS: PieceKey[] = ['wk', 'wq', 'wb', 'wn', 'wr', 'wp', 'bk', 'bq', 'bb', 'bn', 'br', 'bp'];
+
+const ALL_PATHS: Record<PathSetId, Record<PieceKey, PiecePaths>> = {
+  ...PIECE_PATHS,
+  minimalista: MINIMALISTA,
+  redondeado: REDONDEADO,
+  madera: MADERA,
+  marmol: MARMOL,
+  magma: MAGMA,
+};
 
 // En la web todos los SVG comparten el documento: `url(#id)` toma el primer elemento con ese id. Si dos piezas
 // distintas usan el mismo id, todas se recortan con la silueta de la primera (el rey). El id debe depender
@@ -33,7 +47,7 @@ test('silueta y tinta nunca comparten id', () => {
 
 test('un id compartido siempre corresponde al mismo trazado', () => {
   const all = PIECE_SET_LIST.flatMap((set) =>
-    KEYS.map((key) => ({ ids: pieceClipIds(set.id, key), paths: PIECE_PATHS[pathSetOf(set.id)][key] }))
+    KEYS.map((key) => ({ ids: pieceClipIds(set.id, key), paths: ALL_PATHS[pathSetOf(set.id)][key] }))
   );
   for (const a of all) {
     for (const b of all) {

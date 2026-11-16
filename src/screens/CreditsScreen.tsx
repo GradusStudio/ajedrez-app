@@ -7,7 +7,7 @@ import { AppLink } from '../components/AppLink';
 import { useI18n } from '../i18n/I18nContext';
 import { SOURCE_URL } from '../links';
 import { PRIVACY_PAGE_AVAILABLE } from '../privacyPage';
-import { STOCKFISH_VERSION } from '../engine/stockfish/stockfishAssets';
+import { STOCKFISH_VERSION } from '../engine/stockfish/version';
 import { type, colors, fonts, radius, space } from '../theme';
 import { statusBarTop } from '../components/statusBarTop';
 

@@ -15,8 +15,9 @@ type Props = {
   onError: (message: string) => void;
 };
 
-// La página pesa ~2,4 MB (incluye el motor): se arma una sola vez.
-let cachedHtml: string | null = null;
+// La página pesa ~2,4 MB (incluye el motor): se arma una sola vez y solo cuando se monta el motor,
+// así los assets quedan fuera del trozo común de la web.
+let cachedHtml: Promise<string> | null = null;
 const engineHtml = () => (cachedHtml ??= buildEngineHtml());
 
 /**
@@ -25,17 +26,35 @@ const engineHtml = () => (cachedHtml ??= buildEngineHtml());
  */
 export function EngineView({ onReady, onError }: Props) {
   const [engine] = useState(() => new UciEngine());
+  const [html, setHtml] = useState<string | null>(null);
 
   useEffect(() => {
     engine.setOnFailure(onError);
   });
 
-  // Desde que se monta ya cuenta el tiempo: si la página nunca arranca, también se avisa.
   useEffect(() => {
+    let alive = true;
+    engineHtml().then(
+      (h) => {
+        if (alive) setHtml(h);
+      },
+      (e) => {
+        if (alive) onError(String((e as Error)?.message ?? e));
+      }
+    );
+    return () => {
+      alive = false;
+    };
+  }, [onError]);
+
+  // Desde que el WebView existe ya cuenta el tiempo: si la página nunca arranca, también se avisa.
+  useEffect(() => {
+    if (!html) return;
     engine.arm();
     return () => engine.close();
-  }, [engine]);
+  }, [engine, html]);
 
+  if (!html) return null;
   return (
     <WebView
       // Cuando el WebView existe, el motor manda por él cada comando.
@@ -47,7 +66,7 @@ export function EngineView({ onReady, onError }: Props) {
       containerStyle={styles.hidden}
       style={styles.hidden}
       originWhitelist={['https://localhost*']}
-      source={{ html: engineHtml(), baseUrl: 'https://localhost/' }}
+      source={{ html, baseUrl: 'https://localhost/' }}
       javaScriptEnabled
       onMessage={(e: WebViewMessageEvent) => {
         const line = e.nativeEvent.data;

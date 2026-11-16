@@ -14,7 +14,7 @@ const inlineScripts = (html: string) => [...html.matchAll(/<script>([\s\S]*?)<\/
 const hash = (js: string) => `'sha256-${createHash('sha256').update(js, 'utf8').digest('base64')}'`;
 
 export async function frameScriptHashes(): Promise<string[]> {
-  const pages = [FRAME_SHIM + buildEngineHtml()];
+  const pages = [FRAME_SHIM + (await buildEngineHtml())];
   for (const id of MAIA_NETS) pages.push(FRAME_SHIM + buildMaiaHtml(await loadNetBase64(id)));
   return [...new Set(pages.flatMap(inlineScripts).map(hash))];
 }

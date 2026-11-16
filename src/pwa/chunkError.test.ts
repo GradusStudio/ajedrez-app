@@ -10,6 +10,11 @@ test('reconoce los mensajes de trozo que no carga', () => {
   assert.equal(isChunkLoadError('Loading chunk src_screens_Perfil_tsx failed'), true);
 });
 
+test('un trozo servido como HTML (404 con la página) se reconoce como error de trozo', () => {
+  assert.equal(isChunkLoadError(new SyntaxError("Unexpected token '<'")), true);
+  assert.equal(shouldReloadForChunk(new SyntaxError("Unexpected token '<'"), null, 0), true);
+});
+
 test('no confunde un error de la pantalla con uno de trozo', () => {
   assert.equal(isChunkLoadError(new Error('Cannot read properties of undefined')), false);
   assert.equal(isChunkLoadError(null), false);

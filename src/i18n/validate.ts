@@ -131,6 +131,7 @@ export function checkTranslation(language: Language, spanish: Content, files: La
 }
 
 /** Problemas de la traducción de un idioma (lista vacía: está completa). El español es la referencia. */
-export function findProblems(language: Language): string[] {
-  return checkTranslation(language, localizedContent('es'), languageFiles(language), new Set(MOVE_EXCEPTIONS));
+export async function findProblems(language: Language): Promise<string[]> {
+  const files = await languageFiles(language);
+  return checkTranslation(language, localizedContent('es'), files, new Set(MOVE_EXCEPTIONS));
 }
